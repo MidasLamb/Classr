@@ -26,6 +26,7 @@ public class Class extends VisualObject {
 		super.show(g);
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}
+	
 
 
 }

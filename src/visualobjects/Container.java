@@ -18,9 +18,10 @@ public class Container extends VisualObject {
 		for (VisualObject v : this.getChildren()){
 			if (v.isIn(x, y)){
 				this.selected.setIsSelected(false);
-				this.selected = v;
-				v.setIsSelected(true);
-				return v.select(x, y);
+				VisualObject t = v.select(x, y);
+				this.selected = t;
+				t.setIsSelected(true);
+				return t;
 			}
 		}
 		Class c = new Class(x,y);

@@ -37,8 +37,12 @@ public abstract class VisualObject{
 	}
 	
 	public VisualObject select(int x, int y) {
-		
-		return null;
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(x, y)){
+				return v;
+			}
+		}
+		return this;
 	}
 	
 	public int getX() {
@@ -93,6 +97,7 @@ public abstract class VisualObject{
 	public void setIsSelected(boolean b){
 		this.isSelected = b;
 	}
+
 
 	public boolean isSelected() {
 		return isSelected;
