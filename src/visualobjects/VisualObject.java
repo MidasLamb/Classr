@@ -1,6 +1,7 @@
 package visualobjects;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -9,6 +10,8 @@ public abstract class VisualObject{
 	private int y;
 	private int width;
 	private int height;
+	
+	private boolean isSelected;
 	
 	private Collection<VisualObject> children;
 	
@@ -54,6 +57,14 @@ public abstract class VisualObject{
 		return height;
 	}
 	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
 	protected Collection<VisualObject> getChildren(){
 		return this.children;
 	}
@@ -79,5 +90,16 @@ public abstract class VisualObject{
 		this.children.add(c);
 	}
 	
+	public void setIsSelected(boolean b){
+		this.isSelected = b;
+	}
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+	
+	public void handleKey(KeyEvent e){
+		
+	}
 	
 }

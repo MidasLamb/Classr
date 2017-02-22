@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
-	private boolean bo = true;
 	private Container container;
 
 	public MyCanvasWindow(String title) {
@@ -36,7 +35,6 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleMouseEvent(MouseEvent e) {
-		this.repaint();
 		this.container.select(e.getX(), e.getY());
 		this.repaint();
 	}
@@ -52,6 +50,7 @@ public class MyCanvasWindow extends CanvasWindow {
 			return;
 		this.container.sendKeyToSelected(e);
 		this.repaint();
+		//TODO Handle shift keys and such
 		
 	}	
 
