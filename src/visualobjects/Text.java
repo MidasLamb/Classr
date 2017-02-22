@@ -14,6 +14,11 @@ public class Text extends VisualObject {
 		this.text = "New Text";
 	}
 	
+	public Text(int x, int y){
+		this(x,y, 50,16);
+		// 50, 16 is the standard size of the font if the text is "New Text"
+	}
+	
 	public void removeLetter(){
 		this.text = text.substring(0, text.length()-1);
 		//TODO string length = 0

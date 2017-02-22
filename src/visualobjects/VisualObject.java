@@ -39,7 +39,7 @@ public abstract class VisualObject{
 	public VisualObject select(int x, int y) {
 		for (VisualObject v: this.getChildren()){
 			if (v.isIn(x, y)){
-				return v;
+				return v.select(x, y);
 			}
 		}
 		return this;
@@ -106,5 +106,15 @@ public abstract class VisualObject{
 	public void handleKey(KeyEvent e){
 		
 	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	
 	
 }
