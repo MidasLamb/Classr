@@ -1,5 +1,6 @@
 package visualobjects.visualclass;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import visualobjects.VisualObject;
@@ -20,8 +21,10 @@ public class ContentPlaceholder extends VisualObject {
 	
 	@Override
 	public void show(Graphics g){
-		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		
+		g.setColor(Color.orange);
+		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		g.setColor(Color.black);
+		g.drawString("Click to add", this.getX(), this.getY() + this.getHeight()/2);
 		
 	}
 	
@@ -29,7 +32,7 @@ public class ContentPlaceholder extends VisualObject {
 	public VisualObject select(int x, int y) {
 		Content c = new Content(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		parent.addContent(c);
-		return c;
+		return c.getText();
 	}
 
 

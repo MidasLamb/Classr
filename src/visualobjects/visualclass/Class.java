@@ -1,5 +1,6 @@
 package visualobjects.visualclass;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +35,9 @@ public class Class extends VisualObject {
 	@Override
 	public void show(Graphics g) {
 		super.show(g);
+		g.setColor(Color.red);
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		g.setColor(Color.black);
 	}
 	
 	
@@ -42,7 +45,7 @@ public class Class extends VisualObject {
 	 * Updates the height according to the height of the vertical children.
 	 */
 	public void updateHeight(){
-		int h = 0;
+		int h = -10;
 		h += this.name.getHeight();
 		h += this.attributes.getHeight();
 		h += this.methods.getHeight();

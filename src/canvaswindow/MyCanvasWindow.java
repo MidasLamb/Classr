@@ -8,6 +8,7 @@ import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
 	private Container container;
+	private boolean mousePressed = false;
 
 	public MyCanvasWindow(String title) {
 		super(title);
@@ -35,8 +36,22 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleMouseEvent(MouseEvent e) {
-		this.container.select(e.getX(), e.getY());
-		this.repaint();
+		System.out.println(e.getButton());
+		//Dragging = 0;
+		//Pressing down/releasing = 1;
+		
+		boolean clickedDown = false;
+		if(e.getButton() == 1){
+			if (this.mousePressed == false)
+				clickedDown = true;
+			this.mousePressed = !this.mousePressed;
+		}
+
+		if (clickedDown){
+			this.container.select(e.getX(), e.getY());
+			this.repaint();
+		}
+		
 	}
 	
 	/**
