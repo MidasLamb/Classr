@@ -27,12 +27,14 @@ public class Container extends VisualObject {
 		Class c = new Class(x,y);
 		this.addChild(c);
 		
+		Text a = c.getText();
+		
 		if (this.selected != null) 
 				this.selected.setIsSelected(false);
-		this.selected = c;
-		c.setIsSelected(true);
+		this.selected = a;
+		a.setIsSelected(true);
 		
-		return c;
+		return a;
 	}
 	
 	public void sendKeyToSelected(KeyEvent e){

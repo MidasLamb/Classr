@@ -36,7 +36,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleMouseEvent(MouseEvent e) {
-		System.out.println(e.getButton());
+		//System.out.println(e.getButton());
 		//Dragging = 0;
 		//Pressing down/releasing = 1;
 		

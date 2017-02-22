@@ -30,6 +30,10 @@ public class Class extends VisualObject {
 		this.updateHeight();
 		
 	}
+	
+	public Text getText(){
+		return this.name;
+	}
 
 
 	@Override
