@@ -29,6 +29,11 @@ public class Content extends VisualObject {
 	}
 	
 	@Override
+	public VisualObject select(int x, int y){
+		return this.text;
+	}
+	
+	@Override
 	public void setY(int y){
 		super.setY(y);
 		this.text.setY(this.getY() + 16);

@@ -20,7 +20,8 @@ public class Text extends VisualObject {
 	}
 	
 	public void removeLetter(){
-		this.text = text.substring(0, text.length()-1);
+		if (this.text.length() > 0)
+			this.text = text.substring(0, text.length()-1);
 		//TODO string length = 0
 	}
 	
