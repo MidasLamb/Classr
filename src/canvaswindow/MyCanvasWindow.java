@@ -48,8 +48,11 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleKeyEvent(KeyEvent e) {
+		if (e.getKeyCode() == 0)
+			return;
+		this.container.sendKeyToSelected(e);
+		this.repaint();
 		
-	}
-	
+	}	
 
 }

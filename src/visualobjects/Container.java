@@ -1,9 +1,12 @@
 package visualobjects;
 
 
+import java.awt.event.KeyEvent;
+
 import visualobjects.visualclass.Class;
 
 public class Container extends VisualObject {
+	private Text selected;
 
 	public Container(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -17,9 +20,16 @@ public class Container extends VisualObject {
 				return v.select(x, y);
 			}
 		}
-		Class c = new Class(x,y, 10,10);
+		Text c = new Text(x,y, 10,10);
 		this.addChild(c);
+		this.selected = c;
 		return c;
 	}
+	
+	public void sendKeyToSelected(KeyEvent e){
+		this.selected.handleKey(e);
+	}
+	
+	
 
 }
