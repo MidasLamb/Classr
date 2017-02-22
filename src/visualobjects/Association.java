@@ -7,10 +7,5 @@ public class Association extends VisualObject {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void edit() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

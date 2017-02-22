@@ -19,22 +19,5 @@ public class Class extends VisualObject {
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}
 
-	@Override
-	public VisualObject select(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void edit() {
-		// TODO Auto-generated method stub
-
-	}
 
 }

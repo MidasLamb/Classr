@@ -20,7 +20,9 @@ public abstract class VisualObject{
 		this.height = height;
 	}
 	
-	public abstract void edit();
+	public void edit(){
+		
+	}
 	
 	public void show(Graphics g) {
 		for(VisualObject v: this.getChildren()){
