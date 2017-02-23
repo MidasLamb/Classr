@@ -49,14 +49,14 @@ public class Class extends VisualObject {
 	 * Updates the height according to the height of the vertical children.
 	 */
 	public void updateHeight(){
-		int h = -10;
+		int h = 0;
 		h += this.name.getHeight();
 		h += this.attributes.getHeight();
 		h += this.methods.getHeight();
 		this.setHeight(h);
 		
-		this.attributes.setY(this.getY() + 10);
-		this.methods.setY(this.getY() + 10 + this.attributes.getHeight());
+		this.attributes.setY(this.getY() + this.name.getHeight());
+		this.methods.setY(this.getY() + this.name.getHeight() + this.attributes.getHeight());
 	}
 
 
