@@ -1,16 +1,18 @@
 package visualobjects.visualclass;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
+import mouse.MouseClick;
 import visualobjects.Text;
 import visualobjects.VisualObject;
 
 public class Content extends VisualObject {
 	private Text text;
 
-	public Content(int x, int y, int width, int height) {
-		super(x, y, width, height);
-		this.text = new Text(this.getX(), this.getY() + 16, this.getWidth(), this.getHeight());
+	public Content(int x, int y, int width, int height, VisualObject parent) {
+		super(x, y, width, height, parent);
+		this.text = new Text(this.getX(), this.getY() + 16, this.getWidth(), this.getHeight(), this);
 		this.addChild(text);
 	}
 
@@ -19,9 +21,11 @@ public class Content extends VisualObject {
 	public void show(Graphics g){
 		super.show(g);
 		if (this.isSelected()){
+			g.setColor(Color.orange);
 			g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		}
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		g.setColor(Color.BLACK);
 	}
 	
 	public Text getText(){
@@ -29,8 +33,11 @@ public class Content extends VisualObject {
 	}
 	
 	@Override
-	public VisualObject select(int x, int y){
-		return this.text;
+	public VisualObject select(int x, int y, MouseClick mc){
+		if (mc.equals(MouseClick.DOUBLE_CLICK))
+			return this.text;
+		else 
+			return this;
 	}
 	
 	@Override

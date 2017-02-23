@@ -4,15 +4,19 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import mouse.MouseClick;
+import mouse.MouseClickHandler;
 import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
 	private Container container;
 	private boolean mousePressed = false;
-
+	private MouseClickHandler mouseClickHandler;
+	
 	public MyCanvasWindow(String title) {
 		super(title);
 		this.container = new Container(0,0,600,800);
+		this.mouseClickHandler = new MouseClickHandler(this.container);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -36,21 +40,24 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleMouseEvent(MouseEvent e) {
+		this.mouseClickHandler.handleKey(e);
+		this.repaint();
 		//System.out.println(e.getButton());
 		//Dragging = 0;
 		//Pressing down/releasing = 1;
 		
-		boolean clickedDown = false;
-		if(e.getButton() == 1){
-			if (this.mousePressed == false)
-				clickedDown = true;
-			this.mousePressed = !this.mousePressed;
-		}
-
-		if (clickedDown){
-			this.container.select(e.getX(), e.getY());
-			this.repaint();
-		}
+//		
+//		boolean clickedDown = false;
+//		if(e.getButton() == 1){
+//			if (this.mousePressed == false)
+//				clickedDown = true;
+//			this.mousePressed = !this.mousePressed;
+//		}
+//
+//		if (clickedDown){
+//			this.container.select(e.getX(), e.getY(), MouseClick.CLICK);
+//			this.repaint();
+//		}
 		
 	}
 	

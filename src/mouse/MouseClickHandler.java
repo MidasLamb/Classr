@@ -24,35 +24,34 @@ public class MouseClickHandler {
 	
 	public void handleKey(MouseEvent e){
 		if (e.getID() == MouseEvent.MOUSE_PRESSED){
-			System.out.println("Mouse Pressed");
 			this.isDown = true;
 			
-			if (System.currentTimeMillis() - this.lastClickTime < 100){
-				if (Math.abs(e.getX() - this.lastClickX) < 10 &&
-						Math.abs(e.getY() - this.lastClickY) < 10){
+			if (System.currentTimeMillis() - this.lastClickTime < 200){
+				if (Math.abs(e.getX() - this.lastClickX) < 20 &&
+						Math.abs(e.getY() - this.lastClickY) < 20){
 					//Doubleclick
-					//container.select(e.getX(), e.getY(), MouseClick.DOUBLE_CLICK);
+					container.select(e.getX(), e.getY(), MouseClick.DOUBLE_CLICK);
 				} else {
-					//container.select(e.getX(), e.getY(), MouseClick.CLICK);
+					container.select(e.getX(), e.getY(), MouseClick.CLICK);
 				}
 			} else {
-				//container.select(e.getX(), e.getY(), MouseClick.CLICK);
+				container.select(e.getX(), e.getY(), MouseClick.CLICK);
 			}
+			this.lastClickX = e.getX();
+			this.lastClickY = e.getY();
 			this.lastClickTime = System.currentTimeMillis();
 			
 		}
 		
 		if (e.getID() == MouseEvent.MOUSE_RELEASED){
-			System.out.println("Mouse Released");
 			this.isDown = false;
 			if (this.isBeingDragged){
-				//container.select(e.getX(), e.getY(), MouseClick.DRAG);
+				container.select(e.getX(), e.getY(), MouseClick.DRAG);
 			}
 			this.isBeingDragged = false;
 		}
 		
 		if (e.getID() == MouseEvent.MOUSE_DRAGGED){
-			System.out.println("Mouse Drag");
 			this.isBeingDragged = true;
 		}
 	}

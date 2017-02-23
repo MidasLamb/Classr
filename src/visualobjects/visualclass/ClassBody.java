@@ -9,7 +9,7 @@ public class ClassBody extends VisualObject {
 	private ContentPlaceholder cp;
 
 	public ClassBody(int x, int y, int width, int height, Class parent) {
-		super(x, y, width, height);
+		super(x, y, width, height, parent);
 		this.parent = parent;
 		this.cp = new ContentPlaceholder(x, y, width, height, this);
 		this.addChild(cp);
@@ -25,7 +25,7 @@ public class ClassBody extends VisualObject {
 		this.addChild(c);
 		this.cp.setY(cp.getY() + c.getHeight());
 		this.updateHeight();
-		parent.updateHeight();
+		this.parent.updateHeight();
 	}
 	
 	public void updateHeight(){

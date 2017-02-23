@@ -9,14 +9,14 @@ public class Text extends VisualObject {
 	private boolean isStandardText;
 	private String standardTextString = "okidoki";
 
-	public Text(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public Text(int x, int y, int width, int height, VisualObject parent) {
+		super(x, y, width, height, parent);
 		this.text = "New Text";
 	}
 	
-	public Text(int x, int y){
+	public Text(int x, int y, VisualObject parent){
 		// 50, 16 is the standard size of the font if the text is "New Text"
-		this(x,y, 50,16);
+		this(x,y, 50,16, parent);
 	}
 	
 	public void removeLetter(){

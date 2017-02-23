@@ -5,22 +5,26 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import mouse.MouseClick;
+
 public abstract class VisualObject{
 	private int x;
 	private int y;
 	private int width;
 	private int height;
+	private VisualObject parent;
 	
 	private boolean isSelected;
 	
 	private Collection<VisualObject> children;
 	
-	public VisualObject(int x,int y,int width, int height) {
+	public VisualObject(int x,int y,int width, int height, VisualObject parent) {
 		children = new ArrayList<VisualObject>();
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.parent = parent;
 	}
 	
 	public void edit(){
@@ -33,13 +37,17 @@ public abstract class VisualObject{
 		}
 	}
 	public void delete() {
-		
+		for (VisualObject v: this.getChildren()){
+			v.delete();
+		}
+		this.children = null;
+		this.parent.removeChild(this);
 	}
 	
-	public VisualObject select(int x, int y) {
+	public VisualObject select(int x, int y, MouseClick mc) {
 		for (VisualObject v: this.getChildren()){
 			if (v.isIn(x, y)){
-				return v.select(x, y);
+				return v.select(x, y, mc);
 			}
 		}
 		return this;
@@ -94,6 +102,10 @@ public abstract class VisualObject{
 		this.children.add(c);
 	}
 	
+	public void removeChild(VisualObject c){
+		this.children.remove(c);
+	}
+	
 	public void setIsSelected(boolean b){
 		this.isSelected = b;
 	}
@@ -104,7 +116,8 @@ public abstract class VisualObject{
 	}
 	
 	public void handleKey(KeyEvent e){
-		
+		if (e.getKeyCode() == KeyEvent.VK_DELETE)
+			this.delete();
 	}
 
 	public void setX(int x) {
@@ -113,6 +126,17 @@ public abstract class VisualObject{
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public VisualObject getParent(){
+		return this.parent;
+	}
+	
+	public Container getContainer(){
+		VisualObject v = this;
+		while (v != null && !(v instanceof Container))
+			v = v.getParent();
+		return (Container) v;
 	}
 	
 	
