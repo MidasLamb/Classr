@@ -53,6 +53,8 @@ public class Text extends VisualObject {
 		String s = Character.toString(e.getKeyChar());
 		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")){
 			this.removeLetter();
+		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			this.setIsSelected(false);
 		} else {
 			this.addLetter(s);
 		}
