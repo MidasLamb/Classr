@@ -12,6 +12,7 @@ public class Class extends VisualObject {
 	private Text name;
 	private ClassBody attributes;
 	private ClassBody methods;
+	private AssociationHandle ah;
 	
 	public Class(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -20,7 +21,7 @@ public class Class extends VisualObject {
 	
 	public Class(int x, int y) {
 		super(x, y, 100, 0);
-		// this.addChild(new AssociationHandle(x, y+20));
+		
 		this.name = new Text(this.getX()+10, this.getY()+10, this.getWidth()-20, 20);
 		this.attributes =new ClassBody(this.getX(), this.getY()+20, this.getWidth(), 40, this);
 		this.methods = new ClassBody(this.getX(), this.getY()+60, this.getWidth(), 40, this);
@@ -28,6 +29,9 @@ public class Class extends VisualObject {
 		this.addChild(this.attributes);
 		this.addChild(this.methods);
 		this.updateHeight();
+		
+		this.ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2);
+		this.addChild(ah);
 		
 	}
 	
@@ -57,6 +61,22 @@ public class Class extends VisualObject {
 		
 		this.attributes.setY(this.getY() + this.name.getHeight());
 		this.methods.setY(this.getY() + this.name.getHeight() + this.attributes.getHeight());
+	}
+	
+	@Override
+	public VisualObject select(int x, int y){
+		if (this.ah.isIn(x, y)){
+			return this.ah.select(x, y);
+		}
+		return super.select(x, y);
+	}
+	
+	@Override
+	public boolean isIn(int x, int y){
+		if (this.ah.isIn(x, y)){
+			return true;
+		}
+		return super.isIn(x, y);
 	}
 
 
