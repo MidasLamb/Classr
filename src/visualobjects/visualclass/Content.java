@@ -19,13 +19,10 @@ public class Content extends VisualObject {
 	
 	@Override
 	public void show(Graphics g){
-		super.show(g);
-		if (this.isSelected()){
-			g.setColor(Color.orange);
-			g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		}
+		if (this.isSelected())
+			g.setColor(Color.red);
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		g.setColor(Color.BLACK);
+		super.show(g);
 	}
 	
 	public Text getText(){
@@ -34,7 +31,7 @@ public class Content extends VisualObject {
 	
 	@Override
 	public VisualObject select(int x, int y, MouseClick mc){
-		if (mc.equals(MouseClick.DOUBLE_CLICK) || this.isSelected())
+		if (mc.equals(MouseClick.DOUBLE_CLICK) || this.isSelected() || this.text.isSelected())
 			return this.text;
 		else 
 			return this;
@@ -44,6 +41,12 @@ public class Content extends VisualObject {
 	public void setY(int y){
 		super.setY(y);
 		this.text.setY(this.getY() + 16);
+	}
+	
+	@Override
+	public void delete(){
+		super.delete();
+		((ClassBody) this.getParent()).updateHeight();
 	}
 
 }

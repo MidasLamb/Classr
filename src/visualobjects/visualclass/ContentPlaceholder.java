@@ -37,7 +37,7 @@ public class ContentPlaceholder extends VisualObject {
 			return c.getText();
 		}
 		if (mc.equals(MouseClick.CLICK)){
-			return parent;
+			return parent.getParent();
 		}
 		return null;
 	}

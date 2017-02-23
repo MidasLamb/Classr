@@ -22,7 +22,7 @@ public class Container extends VisualObject {
 	//TODO extraheer het geselecteerd maken naar een aparte functie??
 	@Override
 	public VisualObject select(int x, int y, MouseClick mc) {
-		System.out.println(mc.toString());
+		//System.out.println(mc.toString());
 		for (VisualObject v : this.getChildren()){
 			if (v.isIn(x, y)){
 				VisualObject t = v.select(x, y, mc);

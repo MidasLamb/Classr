@@ -47,11 +47,10 @@ public class Class extends VisualObject {
 
 	@Override
 	public void show(Graphics g) {
-		super.show(g);
 		if (this.isSelected())
 			g.setColor(Color.red);
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		g.setColor(Color.black);
+		super.show(g);
 	}
 	
 	
@@ -80,13 +79,8 @@ public class Class extends VisualObject {
 		}
 		
 		VisualObject vo =  super.select(x, y, mc);
-//		if (vo.equals(this.name) && mc.equals(MouseClick.CLICK) && !this.isSelected()){
-//			return this;
-//		}
-//		if (vo.equals(this) && !mc.equals(MouseClick.DRAG))
-//			return this.name;
 		
-		if (vo.equals(this.name) || vo.equals(this)){
+		if (vo != null && (vo.equals(this.name) || vo.equals(this))){
 			if (this.isSelected()){
 				return this.name;
 			} else {

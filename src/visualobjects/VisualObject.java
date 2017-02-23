@@ -1,5 +1,6 @@
 package visualobjects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -17,9 +18,11 @@ public abstract class VisualObject{
 	private boolean isSelected;
 	
 	private Collection<VisualObject> children;
+	private Collection<VisualObject> removeQueue;
 	
 	public VisualObject(int x,int y,int width, int height, VisualObject parent) {
 		children = new ArrayList<VisualObject>();
+		removeQueue = new ArrayList<VisualObject>();
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -32,15 +35,17 @@ public abstract class VisualObject{
 	}
 	
 	public void show(Graphics g) {
+		if (this.isSelected())
+			g.setColor(Color.red);
 		for(VisualObject v: this.getChildren()){
 			v.show(g);
 		}
+		g.setColor(Color.black);
 	}
+
+	
 	public void delete() {
-		for (VisualObject v: this.getChildren()){
-			v.delete();
-		}
-		this.children = null;
+		this.children = new ArrayList<VisualObject>();
 		this.parent.removeChild(this);
 	}
 	
@@ -104,6 +109,10 @@ public abstract class VisualObject{
 	
 	public void removeChild(VisualObject c){
 		this.children.remove(c);
+	}
+	
+	private void queueForRemove(VisualObject c){
+		this.removeQueue.add(c);
 	}
 	
 	public void setIsSelected(boolean b){

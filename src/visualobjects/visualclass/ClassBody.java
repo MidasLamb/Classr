@@ -1,6 +1,8 @@
 package visualobjects.visualclass;
 
 import visualobjects.VisualObject;
+
+import java.awt.Color;
 import java.awt.Graphics;
 
 import mouse.MouseClick;
@@ -19,8 +21,10 @@ public class ClassBody extends VisualObject {
 	
 	@Override
 	public void show(Graphics g) {
-		super.show(g);
+		if (this.isSelected())
+			g.setColor(Color.red);
 		g.drawLine(this.getX(), this.getY(), this.getX() + this.getWidth(), this.getY());
+		super.show(g);
 	}
 
 	public void addContent(Content c){
@@ -35,6 +39,7 @@ public class ClassBody extends VisualObject {
 		for (VisualObject v: this.getChildren())
 			h += v.getHeight();
 		this.setHeight(h);
+		this.parent.updateHeight();
 	}
 	
 	@Override

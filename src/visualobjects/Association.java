@@ -28,12 +28,8 @@ public class Association extends VisualObject {
 	
 	@Override
 	public void show(Graphics g){
-		if (this.isSelected()){
-			g.setColor(Color.red);
-		}
 		super.show(g);
 		g.drawLine(this.p1.getX(), this.p1.getY(), this.p2.getX(), this.p2.getY());
-		g.setColor(Color.black);
 	}
 	
 	public Text getText(){
@@ -54,6 +50,12 @@ public class Association extends VisualObject {
 			return this;
 		}
 		return null;
+	}
+	
+	@Override
+	public void delete(){
+		this.p1.removeChild(this);
+		this.p2.removeChild(this);
 	}
 
 
