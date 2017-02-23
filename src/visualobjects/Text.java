@@ -15,8 +15,8 @@ public class Text extends VisualObject {
 	}
 	
 	public Text(int x, int y){
-		this(x,y, 50,16);
 		// 50, 16 is the standard size of the font if the text is "New Text"
+		this(x,y, 50,16);
 	}
 	
 	public void removeLetter(){
@@ -49,13 +49,20 @@ public class Text extends VisualObject {
 		}
 	}
 	
+	/**
+	 * Changes the text due to keypresses
+	 */
 	public void handleKey(KeyEvent e){
+		//Get the key and put it in a string
 		String s = Character.toString(e.getKeyChar());
+		//Delete text if you press the backspace
 		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")){
 			this.removeLetter();
+		//Go out of object if you press enter
 		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.setIsSelected(false);
-		} else {
+		// if it isn't an action key you can write it down
+		} else if(!e.isActionKey()){
 			this.addLetter(s);
 		}
 	}
@@ -89,9 +96,4 @@ public class Text extends VisualObject {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x) 
 				&& isBetween(this.getY()-this.getHeight(), this.getY(), y);
 	}
-
-	
-	
-
-
 }

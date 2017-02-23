@@ -8,7 +8,7 @@ public class main {
 		java.awt.EventQueue.invokeLater(() -> {
 			          new MyCanvasWindow("My Canvas Window").show();
 			      });
-
+		
 	}
 
 }
