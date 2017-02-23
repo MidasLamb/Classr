@@ -30,22 +30,26 @@ public class Text extends VisualObject {
 	}
 	@Override 
 	public void show(Graphics g){
+		//Get and set the width/height based on font
 		FontMetrics m = g.getFontMetrics();
 		this.setWidth(m.stringWidth(this.text));
 		this.setHeight(m.getHeight());
 		
-		//g.drawRect(this.getX(), this.getY() - this.getHeight(), this.getWidth(), this.getHeight());
-		g.drawString(this.text, this.getX(), this.getY());
+		//Draw the string
+		//Add the height with the Y value since drawing strings
+		//	begins bottom left
+		g.drawString(this.text, this.getX(), this.getY() + this.getHeight());
 		
+		//Draw cursus
 		if (this.isSelected()){
 			g.drawLine(this.getX() + this.getWidth() + 1,
-					this.getY() - this.getHeight() + 5,
+					this.getY(),
 					this.getX() + this.getWidth() + 1,
-					this.getY());
+					this.getY() + this.getHeight());
 			g.drawLine(this.getX() + this.getWidth() + 2,
-					this.getY() - this.getHeight() + 5,
+					this.getY(),
 					this.getX() + this.getWidth() + 2,
-					this.getY());
+					this.getY() + this.getHeight());
 		}
 	}
 	
@@ -84,16 +88,5 @@ public class Text extends VisualObject {
 				this.isStandardText = false;
 			}
 		}
-	}
-	
-	@Override
-	public VisualObject select(int x, int y) {
-		return this;
-	}
-	
-	@Override
-	public boolean isIn(int x, int y){
-		return isBetween(this.getX(), this.getX() + this.getWidth(), x) 
-				&& isBetween(this.getY()-this.getHeight(), this.getY(), y);
 	}
 }

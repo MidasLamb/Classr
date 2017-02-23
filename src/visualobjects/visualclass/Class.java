@@ -22,7 +22,7 @@ public class Class extends VisualObject {
 	public Class(int x, int y) {
 		super(x, y, 100, 0);
 		
-		this.name = new Text(this.getX()+10, this.getY()+10, this.getWidth()-20, 20);
+		this.name = new Text(this.getX()+10, this.getY(), this.getWidth()-20, 20);
 		this.attributes =new ClassBody(this.getX(), this.getY()+20, this.getWidth(), 40, this);
 		this.methods = new ClassBody(this.getX(), this.getY()+60, this.getWidth(), 40, this);
 		this.addChild(this.name);
