@@ -25,9 +25,10 @@ public class Container extends VisualObject {
 		System.out.println(mc.toString());
 		for (VisualObject v : this.getChildren()){
 			if (v.isIn(x, y)){
+				VisualObject t = v.select(x, y, mc);
 				if (this.selected != null)
 					this.selected.setIsSelected(false);
-				VisualObject t = v.select(x, y, mc);
+				
 				this.selected = t;
 				//TODO wanneer kan t == null??? Gebeurt bij associaties precies
 				if (t != null)

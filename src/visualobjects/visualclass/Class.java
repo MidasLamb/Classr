@@ -80,11 +80,19 @@ public class Class extends VisualObject {
 		}
 		
 		VisualObject vo =  super.select(x, y, mc);
-		if (vo.equals(this.name) && mc.equals(MouseClick.CLICK)){
-			return this;
+//		if (vo.equals(this.name) && mc.equals(MouseClick.CLICK) && !this.isSelected()){
+//			return this;
+//		}
+//		if (vo.equals(this) && !mc.equals(MouseClick.DRAG))
+//			return this.name;
+		
+		if (vo.equals(this.name) || vo.equals(this)){
+			if (this.isSelected()){
+				return this.name;
+			} else {
+				return this;
+			}
 		}
-		if (vo.equals(this) && mc.equals(MouseClick.DOUBLE_CLICK))
-			return this.name;
 		return vo;
 			
 	}

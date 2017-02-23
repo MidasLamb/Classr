@@ -2,6 +2,8 @@ package visualobjects.visualclass;
 
 import visualobjects.VisualObject;
 import java.awt.Graphics;
+
+import mouse.MouseClick;
 import visualobjects.Text;
 
 public class ClassBody extends VisualObject {
@@ -48,6 +50,8 @@ public class ClassBody extends VisualObject {
 		
 		this.cp.setY(this.getY() + h);
 	}
+	
+	
 
 
 }

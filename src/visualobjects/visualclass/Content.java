@@ -34,7 +34,7 @@ public class Content extends VisualObject {
 	
 	@Override
 	public VisualObject select(int x, int y, MouseClick mc){
-		if (mc.equals(MouseClick.DOUBLE_CLICK))
+		if (mc.equals(MouseClick.DOUBLE_CLICK) || this.isSelected())
 			return this.text;
 		else 
 			return this;

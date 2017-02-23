@@ -47,11 +47,11 @@ public class Association extends VisualObject {
 	
 	@Override
 	public VisualObject select(int x, int y, MouseClick mc){
+		if (mc.equals(MouseClick.DOUBLE_CLICK) || this.isSelected()){
+			return this.text.select(x, y, mc);
+		}
 		if (mc.equals(MouseClick.CLICK)){
 			return this;
-		}
-		if (mc.equals(MouseClick.DOUBLE_CLICK)){
-			return this.text.select(x, y, mc);
 		}
 		return null;
 	}
