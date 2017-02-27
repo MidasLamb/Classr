@@ -1,5 +1,7 @@
 package visualobjects.visualclass;
 
+import static main.Constants.*;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -23,11 +25,11 @@ public class Class extends VisualObject {
 	}
 	
 	public Class(int x, int y, VisualObject p) {
-		super(x, y, 100, 0, p);
+		super(x, y, CLASS_WIDTH, 0, p);
 		
 		this.associations = new ArrayList<Association>();
 		
-		this.name = new Text(this.getX()+10, this.getY(), this.getWidth()-20, 20, this);
+		this.name = new Text(this.getX()+TEXT_MARGIN, this.getY(), this.getWidth()-2*TEXT_MARGIN, TEXT_HEIGHT, this);
 		this.attributes =new ClassBody(this.getX(), this.getY(), this.getWidth(), 40, this);
 		this.methods = new ClassBody(this.getX(), this.getY(), this.getWidth(), 40, this);
 		this.addChild(this.name);

@@ -1,5 +1,7 @@
 package visualobjects.visualclass;
 
+import static main.Constants.*;
+
 import java.awt.Graphics;
 
 import mouse.MouseClick;
@@ -9,7 +11,7 @@ import visualobjects.VisualObject;
 public class AssociationHandle extends VisualObject {
 
 	public AssociationHandle(int x, int y, VisualObject parent) {
-		super(x, y, 10, 10, parent);
+		super(x, y, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
 		// TODO Auto-generated constructor stub
 	}
 
