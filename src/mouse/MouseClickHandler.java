@@ -1,7 +1,7 @@
 package mouse;
 
+import static main.Constants.*;
 import java.awt.event.MouseEvent;
-
 import visualobjects.Container;
 
 public class MouseClickHandler {
@@ -19,10 +19,10 @@ public class MouseClickHandler {
 		if (e.getID() == MouseEvent.MOUSE_PRESSED){
 			this.isDown = true;
 			//Check if time until last click is lower than threshold
-			if (System.currentTimeMillis() - getLastClickTime() < 200){
+			if (System.currentTimeMillis() - getLastClickTime() < DOUBLECLICK_TRESHOLD){
 				//Check if click is in range of last click
-				if (Math.abs(e.getX() - getLastClickX()) < 20 &&
-						Math.abs(e.getY() - getLastClickY()) < 20){
+				if (Math.abs(e.getX() - getLastClickX()) < DOUBLECLICK_RANGE &&
+						Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE){
 					//Doubleclick
 					getContainer().select(e.getX(), e.getY(), MouseClick.DOUBLE_CLICK);
 				} else {
