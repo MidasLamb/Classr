@@ -18,7 +18,7 @@ public final class Constants {
 	
 	public static final int CLASS_WIDTH = 100;
 	
-	public static final int CLASS_BODY_INITIAL_HEIGHT = 10;
+	public static final int CLASS_BODY_INITIAL_HEIGHT = 40;
 	
 	public static final int TEXT_MARGIN = 10;
 	public static final int TEXT_HEIGHT = 20;
