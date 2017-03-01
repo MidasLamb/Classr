@@ -22,6 +22,8 @@ public final class Constants {
 	
 	public static final int TEXT_MARGIN = 10;
 	public static final int TEXT_HEIGHT = 20;
+	
+	public static final int MAX_TEXT_WIDTH = CLASS_WIDTH - 20;
 
 	
 	private Constants() {

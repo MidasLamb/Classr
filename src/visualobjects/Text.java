@@ -1,17 +1,17 @@
 package visualobjects;
+import static main.Constants.*;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public class Text extends VisualObject {
-	private String text;
 	private boolean isStandardText;
 	private String standardTextString = "okidoki";
 
 	public Text(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
-		this.text = "New Text";
+		this.setText("New Text");
 	}
 	
 	public Text(int x, int y, VisualObject parent){
@@ -20,25 +20,27 @@ public class Text extends VisualObject {
 	}
 	
 	public void removeLetter(){
-		if (this.text.length() > 0)
-			this.text = text.substring(0, text.length()-1);
+		if (this.getText().length() > 0)
+			this.setText(text.substring(0, text.length()-1));
 		//TODO string length = 0
 	}
 	
 	public void addLetter(String i){
-		this.text += i;
+		this.setText(this.getText() + i);
 	}
 	@Override 
 	public void show(Graphics g){
+		//Limit the text size if it is to long
+		cutTextMaxWidth(g);
 		//Get and set the width/height based on font
 		FontMetrics m = g.getFontMetrics();
-		this.setWidth(m.stringWidth(this.text));
+		this.setWidth(m.stringWidth(this.getText()));
 		this.setHeight(m.getHeight());
 		
 		//Draw the string
 		//Add the height with the Y value since drawing strings
 		//	begins bottom left
-		g.drawString(this.text, this.getX(), this.getY() + this.getHeight());
+		g.drawString(this.getText(), this.getX(), this.getY() + this.getHeight());
 		
 		//Draw cursus
 		if (this.isSelected()){
@@ -71,20 +73,37 @@ public class Text extends VisualObject {
 		}
 	}
 	
+	private void cutTextMaxWidth(Graphics g){
+		FontMetrics m = g.getFontMetrics();
+		while(m.stringWidth(getText()) > MAX_TEXT_WIDTH){
+			removeLetter();	
+		}
+	}
+	
+	private String getText() {
+		return text;
+	}
+
+	private void setText(String text) {
+		this.text = text;
+	}
+	
+	private String text;
+
 	@Override
 	public void setIsSelected(boolean b){
 		boolean prev = this.isSelected();
 		super.setIsSelected(b);
 		if (this.isSelected() == false && prev){
-			if (this.text.length() == 0){
-				this.text = this.standardTextString;
+			if (this.getText().length() == 0){
+				this.setText(this.standardTextString);
 				this.isStandardText = true;
 			}
 		}
 		
 		if (this.isSelected() && prev == false){
 			if (this.isStandardText){
-				this.text = "";
+				this.setText("");
 				this.isStandardText = false;
 			}
 		}
