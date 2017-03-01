@@ -12,11 +12,7 @@ import visualobjects.Association;
 import visualobjects.Text;
 import visualobjects.VisualObject;
 
-public class Class extends VisualObject {
-	private Text name;
-	private ClassBody attributes;
-	private ClassBody methods;
-	private AssociationHandle ah;
+public class Class extends VisualObject {	
 	private Collection<Association> associations;
 	
 	public Class(int x, int y, int width, int height, VisualObject p) {
@@ -29,21 +25,17 @@ public class Class extends VisualObject {
 		
 		this.associations = new ArrayList<Association>();
 		
-		this.name = new Text(this.getX()+TEXT_MARGIN, this.getY(), this.getWidth()-2*TEXT_MARGIN, TEXT_HEIGHT, this);
-		this.attributes =new ClassBody(this.getX(), this.getY(), this.getWidth(), CLASS_BODY_INITIAL_HEIGHT, this);
-		this.methods = new ClassBody(this.getX(), this.getY(), this.getWidth(), CLASS_BODY_INITIAL_HEIGHT, this);
-		this.addChild(this.name);
-		this.addChild(this.attributes);
-		this.addChild(this.methods);
+		setName(new Text(this.getX()+TEXT_MARGIN, this.getY(), this.getWidth()-2*TEXT_MARGIN, TEXT_HEIGHT, this));
+		this.setAttributes(new ClassBody(this.getX(), this.getY(), this.getWidth(), CLASS_BODY_INITIAL_HEIGHT, this));
+		this.setMethods(new ClassBody(this.getX(), this.getY(), this.getWidth(), CLASS_BODY_INITIAL_HEIGHT, this));
+		this.addChild(this.getName());
+		this.addChild(this.getAttributes());
+		this.addChild(this.getMethods());
 		this.updateHeight();
 		
-		this.ah = new AssociationHandle(this.getX() - ASSOCIATIONHANDLE_SIZE/2, this.getY() + this.getHeight() / 2, this);
-		this.addChild(ah);
+		this.setAssHandle(new AssociationHandle(this.getX() - ASSOCIATIONHANDLE_SIZE/2, this.getY() + this.getHeight() / 2, this));
+		this.addChild(getAssHandle());
 		
-	}
-	
-	public Text getText(){
-		return this.name;
 	}
 
 
@@ -61,19 +53,19 @@ public class Class extends VisualObject {
 	 */
 	public void updateHeight(){
 		int h = 0;
-		h += this.name.getHeight();
-		h += this.attributes.getHeight();
-		h += this.methods.getHeight();
+		h += this.getName().getHeight();
+		h += this.getAttributes().getHeight();
+		h += this.getMethods().getHeight();
 		this.setHeight(h);
 		
-		this.attributes.setY(this.getY() + this.name.getHeight());
-		this.methods.setY(this.getY() + this.name.getHeight() + this.attributes.getHeight());
+		this.getAttributes().setY(this.getY() + this.getName().getHeight());
+		this.getMethods().setY(this.getY() + this.getName().getHeight() + this.getAttributes().getHeight());
 	}
 	
 	@Override
 	public VisualObject select(int x, int y, MouseClick mc){
-		if (this.ah.isIn(x, y)){
-			return this.ah.select(x, y, mc);
+		if (this.getAssHandle().isIn(x, y)){
+			return this.getAssHandle().select(x, y, mc);
 		}
 		for (Association a: this.associations){
 			if (a.isIn(x, y))
@@ -82,9 +74,9 @@ public class Class extends VisualObject {
 		
 		VisualObject vo =  super.select(x, y, mc);
 		
-		if (vo != null && (vo.equals(this.name) || vo.equals(this))){
+		if (vo != null && (vo.equals(this.getName()) || vo.equals(this))){
 			if (this.isSelected()){
-				return this.name;
+				return this.getName();
 			} else {
 				return this;
 			}
@@ -95,7 +87,7 @@ public class Class extends VisualObject {
 	
 	@Override
 	public boolean isIn(int x, int y){
-		if (this.ah.isIn(x, y)){
+		if (this.getAssHandle().isIn(x, y)){
 			return true;
 		}
 		for (Association a: this.associations){
@@ -115,6 +107,45 @@ public class Class extends VisualObject {
 		this.associations.remove(a);
 	}
 	
+	public Text getName() {
+		return name;
+	}
+
+	private void setName(Text name) {
+		this.name = name;
+	}
+	
+	private Text name;
+	
+	private ClassBody getAttributes() {
+		return attributes;
+	}
+
+	private void setAttributes(ClassBody attributes) {
+		this.attributes = attributes;
+	}
+	
+	private ClassBody attributes;
+
+	private ClassBody getMethods() {
+		return methods;
+	}
+
+	private void setMethods(ClassBody methods) {
+		this.methods = methods;
+	}
+
+	private ClassBody methods;
+	
+	private AssociationHandle getAssHandle() {
+		return assHandle;
+	}
+
+	private void setAssHandle(AssociationHandle assHandle) {
+		this.assHandle = assHandle;
+	}
+	
+	private AssociationHandle assHandle;
 
 
 }

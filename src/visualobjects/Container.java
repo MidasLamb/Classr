@@ -42,7 +42,7 @@ public class Container extends VisualObject {
 			Class c = new Class(x,y, this);
 			this.addChild(c);
 			
-			Text a = c.getText();
+			Text a = c.getName();
 			
 			if (this.selected != null) 
 					this.selected.setIsSelected(false);
