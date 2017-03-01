@@ -1,5 +1,7 @@
 package canvaswindow;
 
+import static main.Constants.*;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -15,7 +17,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	
 	public MyCanvasWindow(String title) {
 		super(title);
-		this.container = new Container(0,0,600,800);
+		this.container = new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT);
 		this.mouseClickHandler = new MouseClickHandler(this.container);
 		// TODO Auto-generated constructor stub
 	}
