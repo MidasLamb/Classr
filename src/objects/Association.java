@@ -24,4 +24,15 @@ public class Association {
 	}
 	
 	private RealClass class2 ;
+	
+	
+	private String getName() {
+		return this.name;
+	}
+	
+	private void setName(String name) {
+		this.name = name;
+	}
+	
+	private String name;
 }
