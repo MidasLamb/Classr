@@ -1,6 +1,7 @@
 package objects;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 
 public class RealClass {
 
@@ -14,41 +15,54 @@ public class RealClass {
 	
 	private String className;
 	
-	private void addAttributes(Attributes attribute) {
+	private void addAttributes(Attribute attribute) {
 		this.attributes.add(attribute);
 	}
 	
-	private void deleteAttribute(Attributes attribute){
-		
+	private void deleteAttribute(Attribute attribute) throws NoSuchElementException{
+		if(!this.attributes.remove(attribute)){
+			throw new NoSuchElementException();
+		}
 	}
 	
-	private HashSet<Attributes> getAttributes() {
-		return attributes;
+	public HashSet<Attribute> getAttributes() {
+		return new HashSet<>(attributes);
 	}
 
-	private void setAttributes(HashSet<Attributes> attributes) {
+	public void setAttributes(HashSet<Attribute> attributes) {
 		this.attributes = attributes;
 	}
 	
-	private HashSet<Attributes> attributes = new HashSet<>();
+	private HashSet<Attribute> attributes = new HashSet<>();
 	
-	public HashSet<Methodes> getMethodes() {
-		return methodes;
+	private void addMethode(Methode methode) {
+		this.methodes.add(methode);
+	}
+	
+	private void deleteMethodes(Methode methode) throws NoSuchElementException{
+		if(!this.methodes.remove(methode)){
+			throw new NoSuchElementException();
+		}
+	}
+	
+	public HashSet<Methode> getMethodes() {
+		return new HashSet<>(this.methodes);
 	}
 
-	public void setMethodes(HashSet<Methodes> methodes) {
+	private void setMethodes(HashSet<Methode> methodes) {
 		this.methodes = methodes;
 	}
 
-	private HashSet<Methodes> methodes = new HashSet<>();
+	private HashSet<Methode> methodes = new HashSet<>();
 	
 	public HashSet<Association> getAssociations() {
-		return associations;
+		return new HashSet<>(this.associations);
 	}
 
-	public void setAssociations(HashSet<Association> associations) {
+	private void setAssociations(HashSet<Association> associations) {
 		this.associations = associations;
 	}
 	
 	private HashSet<Association> associations = new HashSet<>();
+
 }
