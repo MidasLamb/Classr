@@ -14,6 +14,14 @@ public class RealClass {
 	
 	private String className;
 	
+	private void addAttributes(Attributes attribute) {
+		this.attributes.add(attribute);
+	}
+	
+	private void deleteAttribute(Attributes attribute){
+		
+	}
+	
 	private HashSet<Attributes> getAttributes() {
 		return attributes;
 	}
@@ -31,6 +39,16 @@ public class RealClass {
 	public void setMethodes(HashSet<Methodes> methodes) {
 		this.methodes = methodes;
 	}
-	
+
 	private HashSet<Methodes> methodes = new HashSet<>();
+	
+	public HashSet<Association> getAssociations() {
+		return associations;
+	}
+
+	public void setAssociations(HashSet<Association> associations) {
+		this.associations = associations;
+	}
+	
+	private HashSet<Association> associations = new HashSet<>();
 }

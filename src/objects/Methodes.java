@@ -2,4 +2,13 @@ package objects;
 
 public class Methodes {
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	private String name;
 }
