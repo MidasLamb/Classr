@@ -1,20 +1,23 @@
 package visualobjects.visualclass;
 
 import java.awt.Graphics;
+import java.util.Collection;
 
 import objects.Attribute;
 import objects.Methode;
 import objects.RealClass;
+import visualobjects.Text;
 import visualobjects.VisualObject;
 
 public class VisualClass extends VisualObject {
 	private RealClass realClass;
 	
-	private 
+	private Collection<Text> attributes;
+	private Collection<Text> methods;
 
 	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
-		this.realClass = new RealClass();
+		this.setRealClass(new RealClass());
 	}
 	
 	public VisualClass(int x, int y, VisualObject parent){
