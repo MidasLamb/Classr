@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import mouse.MouseClick;
+import mouse.MouseClickSort;
 import mouse.MouseClickHandler;
 import visualobjects.Container;
 

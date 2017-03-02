@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import mouse.MouseClick;
+import mouse.MouseClickSort;
 
 public abstract class VisualObject{
 	private int x;
@@ -49,7 +49,7 @@ public abstract class VisualObject{
 		this.parent.removeChild(this);
 	}
 	
-	public VisualObject select(int x, int y, MouseClick mc) {
+	public VisualObject select(int x, int y, MouseClickSort mc) {
 		for (VisualObject v: this.getChildren()){
 			if (v.isIn(x, y)){
 				return v.select(x, y, mc);

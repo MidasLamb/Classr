@@ -24,12 +24,12 @@ public class MouseClickHandler {
 				if (Math.abs(e.getX() - getLastClickX()) < DOUBLECLICK_RANGE &&
 						Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE){
 					//Doubleclick
-					getContainer().select(e.getX(), e.getY(), MouseClick.DOUBLE_CLICK);
+					getContainer().select(e.getX(), e.getY(), MouseClickSort.DOUBLE_CLICK);
 				} else {
-					getContainer().select(e.getX(), e.getY(), MouseClick.CLICK);
+					getContainer().select(e.getX(), e.getY(), MouseClickSort.CLICK);
 				}
 			} else {
-				getContainer().select(e.getX(), e.getY(), MouseClick.CLICK);
+				getContainer().select(e.getX(), e.getY(), MouseClickSort.CLICK);
 			}
 			//save the data
 			setLastClickX(e.getX());
@@ -40,7 +40,7 @@ public class MouseClickHandler {
 		if (e.getID() == MouseEvent.MOUSE_RELEASED){
 			setDown(false);
 			if (isBeingDragged()){
-				getContainer().select(e.getX(), e.getY(), MouseClick.DRAG);
+				getContainer().select(e.getX(), e.getY(), MouseClickSort.DRAG);
 			}
 			setBeingDragged(false);
 		}

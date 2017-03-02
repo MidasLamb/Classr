@@ -42,7 +42,7 @@ public class Text extends VisualObject {
 		//	begins bottom left
 		g.drawString(this.getText(), this.getX(), this.getY() + this.getHeight());
 		
-		//Draw cursus
+		//Draw cursor
 		if (this.isSelected()){
 			g.drawLine(this.getX() + this.getWidth() + 1,
 					this.getY(),

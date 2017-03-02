@@ -4,7 +4,7 @@ import static main.Constants.*;
 
 import java.awt.Graphics;
 
-import mouse.MouseClick;
+import mouse.MouseClickSort;
 import visualobjects.VisualObject;
 
 public class AssociationHandle extends VisualObject {
@@ -21,9 +21,9 @@ public class AssociationHandle extends VisualObject {
 	}
 	
 	@Override
-	public VisualObject select(int x, int y, MouseClick mc){
+	public VisualObject select(int x, int y, MouseClickSort mc){
 		super.select(x, y, mc);
-		if (mc.equals(MouseClick.DRAG) && this.getContainer().hasHandleStart()){
+		if (mc.equals(MouseClickSort.DRAG) && this.getContainer().hasHandleStart()){
 			VisualClass other = (VisualClass) this.getContainer().getHandleStart().getParent();
 			VisualClass thisParent = (VisualClass) this.getParent();
 			Association a = new Association(thisParent, other);

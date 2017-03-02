@@ -2,12 +2,13 @@ package visualobjects.visualclass;
 
 import java.awt.Graphics;
 
-import mouse.MouseClick;
+import mouse.MouseClickSort;
 import visualobjects.Text;
+import visualobjects.TextBox;
 import visualobjects.VisualObject;
 
 public class Association extends VisualObject {
-	private Text text;
+	private TextBox text;
 	private VisualClass p1;
 	private VisualClass p2;
 
@@ -21,7 +22,7 @@ public class Association extends VisualObject {
 		int centerX = p1.getX() + (p2.getX() - p1.getX())/2;
 		int centerY = p1.getY() + (p2.getY() - p1.getY())/2;
 		
-		this.text = new Text(centerX ,centerY, this);
+		this.text = new TextBox(centerX ,centerY, this);
 		this.addChild(this.text);
 		
 	}
@@ -32,7 +33,7 @@ public class Association extends VisualObject {
 		g.drawLine(this.p1.getX(), this.p1.getY(), this.p2.getX(), this.p2.getY());
 	}
 	
-	public Text getText(){
+	public TextBox getText(){
 		return this.text;
 	}
 	
@@ -42,11 +43,11 @@ public class Association extends VisualObject {
 	}
 	
 	@Override
-	public VisualObject select(int x, int y, MouseClick mc){
-		if (mc.equals(MouseClick.DOUBLE_CLICK) || this.isSelected()){
-			return this.text.select(x, y, mc);
+	public VisualObject select(int x, int y, MouseClickSort mc){
+		if (mc.equals(MouseClickSort.DOUBLE_CLICK) || this.isSelected()){
+			return this.text.getText();
 		}
-		if (mc.equals(MouseClick.CLICK)){
+		if (mc.equals(MouseClickSort.CLICK)){
 			return this;
 		}
 		return null;

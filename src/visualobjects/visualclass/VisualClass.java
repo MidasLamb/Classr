@@ -4,30 +4,32 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import mouse.MouseClick;
+import main.Constants;
+import mouse.MouseClickSort;
 import objects.Attribute;
 import objects.Methode;
 import objects.RealClass;
 import visualobjects.Text;
+import visualobjects.TextBox;
 import visualobjects.VisualObject;
 
 public class VisualClass extends VisualObject {
 	private final RealClass realClass;
 	
-	private Text name;
+	private TextBox name;
 	private AssociationHandle associationHandle;
 	private Collection<Association> associations;
 
-	private Collection<Text> attributes;
-	private Collection<Text> methods;
+	private Collection<TextBox> attributes;
+	private Collection<TextBox> methods;
 
 	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
 		this.realClass = new RealClass();
 		
-		this.setAttributes(new ArrayList<Text>());
-		this.setMethods(new ArrayList<Text>());
-		this.setName(new Text(this.getX(), this.getY(), parent));
+		this.setAttributes(new ArrayList<TextBox>());
+		this.setMethods(new ArrayList<TextBox>());
+		this.setName(new TextBox(this.getX(), this.getY(), 5, parent));
 		this.addChild(this.getName());
 		
 		this.updateDimensions();
@@ -53,38 +55,45 @@ public class VisualClass extends VisualObject {
 		
 		y += this.getName().getHeight();
 		
-		for (Text t : this.getAttributes()){
+		for (TextBox t : this.getAttributes()){
 			y += t.getHeight();
 		}
 		
-		g.fillRect(this.getX(), y, this.getWidth(), 16);
-		y += 16;
-		//TODO magic number
+		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
+		y +=  Constants.CLASS_WHITE_SPACE;
+
 		
-		for (Text t: this.getMethods()){
+		for (TextBox t: this.getMethods()){
 			y += t.getHeight();
 		}
-		g.fillRect(this.getX(), y, this.getWidth(), 16);
-		y += 16;
+		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
 	}
 	
 	
-	public VisualObject select(int x, int y, MouseClick mc){
+	public VisualObject select(int x, int y, MouseClickSort mc){
 		VisualObject vo = super.select(x, y, mc);
-		if (mc.equals(MouseClick.CLICK)){
+		if (mc.equals(MouseClickSort.CLICK)){
 			if (this.getAssociationHandle().isIn(x, y)){
 				return this.getAssociationHandle();
 			}
+			if (vo.equals(this.getName())){
+				if (this.isSelected())
+					return this.getName().getText();
+				return this;
+			}
+			if (vo instanceof TextBox){
+				vo.select(x, y, mc);
+			}
 			return vo;
-		} else if (mc.equals(MouseClick.DOUBLE_CLICK)){
+		} else if (mc.equals(MouseClickSort.DOUBLE_CLICK)){
 			if (vo == this){
 				if (this.isInEmptyAttribute(x, y)){
-					Text t = this.createAttribute();
-					return t;
+					TextBox t = this.createAttribute();
+					return t.getText();
 				}
 				if (this.isInEmptyMethod(x, y)){
-					Text t = this.createMethod();
-					return t;
+					TextBox t = this.createMethod();
+					return t.getText();
 				}
 					
 			} else {
@@ -100,37 +109,37 @@ public class VisualClass extends VisualObject {
 		
 		y += this.getName().getHeight();
 		
-		for (Text t : this.getAttributes()){
+		for (TextBox t : this.getAttributes()){
 			t.setY(y);
 			y += t.getHeight();
 		}
 		
-		y += 16;
+		y +=  Constants.CLASS_WHITE_SPACE;
 		//TODO magic number
 		
-		for (Text t: this.getMethods()){
+		for (TextBox t: this.getMethods()){
 			t.setY(y);
 			y += t.getHeight();
 		}
 		
-		y += 16;
+		y +=  Constants.CLASS_WHITE_SPACE;
 		
 		this.setHeight(y - this.getY());
 	}
 
-	private Collection<Text> getAttributes() {
+	private Collection<TextBox> getAttributes() {
 		return attributes;
 	}
 
-	private void setAttributes(Collection<Text> attributes) {
+	private void setAttributes(Collection<TextBox> attributes) {
 		this.attributes = attributes;
 	}
 
-	private Collection<Text> getMethods() {
+	private Collection<TextBox> getMethods() {
 		return methods;
 	}
 
-	private void setMethods(Collection<Text> methods) {
+	private void setMethods(Collection<TextBox> methods) {
 		this.methods = methods;
 	}
 
@@ -138,37 +147,37 @@ public class VisualClass extends VisualObject {
 		return realClass;
 	}
 	
-	private void addAttribute(Text a){
+	private void addAttribute(TextBox a){
 		this.getAttributes().add(a);
 		this.addChild(a);
 	}
 	
-	private void addMethod(Text m){
+	private void addMethod(TextBox m){
 		this.getMethods().add(m);
 		this.addChild(m);
 	}
 	
-	public Text createAttribute(){
-		Text t = new Text(this.getX(),
-				this.getY(), this);
+	public TextBox createAttribute(){
+		TextBox t = new TextBox(this.getX(),
+				this.getY(), 5, this);
 		this.addAttribute(t);
 		this.updateDimensions();
 		return t;
 	}
 	
-	public Text createMethod(){
-		Text t = new Text(this.getX(),
-				this.getY(), this);
+	public TextBox createMethod(){
+		TextBox t = new TextBox(this.getX(),
+				this.getY(), 5, this);
 		this.addMethod(t);
 		this.updateDimensions();
 		return t;
 	}
 	
-	public Text getName() {
+	public TextBox getName() {
 		return name;
 	}
 
-	public void setName(Text name) {
+	public void setName(TextBox name) {
 		this.name = name;
 	}
 	
@@ -180,11 +189,11 @@ public class VisualClass extends VisualObject {
 		
 		bottom += this.getName().getHeight();
 		
-		for (Text t : this.getAttributes()){
+		for (TextBox t : this.getAttributes()){
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
-		bottom += 16;
+		bottom +=  Constants.CLASS_WHITE_SPACE;
 		//TODO magic number
 		
 		return VisualClass.isBetween(left, right, x) 
@@ -199,20 +208,18 @@ public class VisualClass extends VisualObject {
 		
 		bottom += this.getName().getHeight();
 		
-		for (Text t : this.getAttributes()){
+		for (TextBox t : this.getAttributes()){
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
-		top += 16;
-		bottom += 16;
-		//TODO magic number
+		top +=  Constants.CLASS_WHITE_SPACE;
+		bottom +=  Constants.CLASS_WHITE_SPACE;
 		
-		for (Text t: this.getMethods()){
+		for (TextBox t: this.getMethods()){
 			bottom += t.getHeight();
 		}
 		
-		bottom += 16;
-		//TODO magic number;
+		bottom += Constants.CLASS_WHITE_SPACE;
 		
 		return VisualClass.isBetween(left, right, x) 
 				&& VisualClass.isBetween(top, bottom, y);
@@ -262,6 +269,20 @@ public class VisualClass extends VisualObject {
 		for (Association a : this.getAssociations()){
 			a.deleteFromOther(this);;
 		}
+	}
+	
+	@Override
+	public void removeChild(VisualObject c){
+		if (this.getAttributes().contains(c)){
+			this.getAttributes().remove(c);
+		}
+		if (this.getMethods().contains(c)){
+			this.getMethods().remove(c);
+		}
+		
+		
+		super.removeChild(c);
+		
 	}
 
 }
