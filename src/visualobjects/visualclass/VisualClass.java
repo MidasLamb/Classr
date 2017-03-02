@@ -25,6 +25,7 @@ public class VisualClass extends VisualObject {
 		this.setMethods(new ArrayList<Text>());
 		this.setName(new Text(this.getX(), this.getY(), parent));
 		this.addChild(this.getName());
+		this.updateDimensions();
 	}
 
 	public VisualClass(int x, int y, VisualObject parent){
@@ -35,48 +36,86 @@ public class VisualClass extends VisualObject {
 	
 	public void show(Graphics g){
 		super.show(g);
+		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int x = this.getX();
 		int y = this.getY();
 		int width = this.getWidth();
 		
-		for (Methode m : this.getRealClass().getMethodes()){
-			
+		
+		y += this.getName().getHeight();
+		
+		for (Text t : this.getAttributes()){
+			y += t.getHeight();
 		}
 		
-		for (Attribute a: this.getRealClass().getAttributes()){
-			
+		g.fillRect(this.getX(), y, this.getWidth(), 16);
+		y += 16;
+		//TODO magic number
+		
+		for (Text t: this.getMethods()){
+			y += t.getHeight();
 		}
+		g.fillRect(this.getX(), y, this.getWidth(), 16);
+		y += 16;
 	}
 	
 	
 	public VisualObject select(int x, int y, MouseClick mc){
 		VisualObject vo = super.select(x, y, mc);
 		if (vo == this){
-			
-		} else {
-			if (mc.equals(MouseClick.DOUBLE_CLICK)){
+			if (this.isInEmptyAttribute(x, y)){
 				Text t = this.createAttribute();
 				return t;
 			}
+			if (this.isInEmptyMethod(x, y)){
+				Text t = this.createMethod();
+				return t;
+			}
+				
+		} else {
+			return vo;
 		}
 		
 		return null;
 	}
+	
+	public void updateDimensions(){
+		int y = this.getY();
+		
+		y += this.getName().getHeight();
+		
+		for (Text t : this.getAttributes()){
+			t.setY(y);
+			y += t.getHeight();
+		}
+		
+		y += 16;
+		//TODO magic number
+		
+		for (Text t: this.getMethods()){
+			t.setY(y);
+			y += t.getHeight();
+		}
+		
+		y += 16;
+		
+		this.setHeight(y - this.getY());
+	}
 
-	public Collection<Text> getAttributes() {
+	private Collection<Text> getAttributes() {
 		return attributes;
 	}
 
-	public void setAttributes(Collection<Text> attributes) {
+	private void setAttributes(Collection<Text> attributes) {
 		this.attributes = attributes;
 	}
 
-	public Collection<Text> getMethods() {
+	private Collection<Text> getMethods() {
 		return methods;
 	}
 
-	public void setMethods(Collection<Text> methods) {
+	private void setMethods(Collection<Text> methods) {
 		this.methods = methods;
 	}
 
@@ -96,15 +135,17 @@ public class VisualClass extends VisualObject {
 	
 	public Text createAttribute(){
 		Text t = new Text(this.getX(),
-				this.getY(), this.getWidth(), 50, this);
+				this.getY(), this);
 		this.addAttribute(t);
+		this.updateDimensions();
 		return t;
 	}
 	
 	public Text createMethod(){
 		Text t = new Text(this.getX(),
-				this.getY(), this.getWidth(), 50, this);
+				this.getY(), this);
 		this.addMethod(t);
+		this.updateDimensions();
 		return t;
 	}
 	
@@ -117,11 +158,49 @@ public class VisualClass extends VisualObject {
 	}
 	
 	private boolean isInEmptyAttribute(int x, int y){
-		return false;
+		int left = this.getX();
+		int right = this.getX() + this.getWidth();
+		int top = this.getY() + this.getName().getHeight();
+		int bottom = this.getY();
+		
+		bottom += this.getName().getHeight();
+		
+		for (Text t : this.getAttributes()){
+			top += t.getHeight();
+			bottom += t.getHeight();
+		}
+		bottom += 16;
+		//TODO magic number
+		
+		return VisualClass.isBetween(left, right, x) 
+				&& VisualClass.isBetween(top, bottom, y);
 	}
 	
 	private boolean isInEmptyMethod(int x, int y){
-		return false;
+		int left = this.getX();
+		int right = this.getX() + this.getWidth();
+		int top = this.getY() + this.getName().getHeight();
+		int bottom = this.getY();
+		
+		bottom += this.getName().getHeight();
+		
+		for (Text t : this.getAttributes()){
+			top += t.getHeight();
+			bottom += t.getHeight();
+		}
+		top += 16;
+		bottom += 16;
+		//TODO magic number
+		
+		for (Text t: this.getMethods()){
+			bottom += t.getHeight();
+		}
+		
+		bottom += 16;
+		//TODO magic number;
+		
+		return VisualClass.isBetween(left, right, x) 
+				&& VisualClass.isBetween(top, bottom, y);
 	}
 
 }
