@@ -15,7 +15,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	public MyCanvasWindow(String title) {
 		super(title);
 		setContainer(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT));
-		setMouseClickHandler(new MouseClickHandler(this.container));
+		setMouseClickHandler(new MouseClickHandler(getContainer()));
 		// TODO Auto-generated constructor stub
 	}
 	
