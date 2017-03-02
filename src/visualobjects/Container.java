@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import mouse.MouseClick;
+import visualobjects.visualclass.Association;
 import visualobjects.visualclass.AssociationHandle;
-import visualobjects.visualclass.Class;
 import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {

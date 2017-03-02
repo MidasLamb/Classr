@@ -5,7 +5,6 @@ import static main.Constants.*;
 import java.awt.Graphics;
 
 import mouse.MouseClick;
-import visualobjects.Association;
 import visualobjects.VisualObject;
 
 public class AssociationHandle extends VisualObject {

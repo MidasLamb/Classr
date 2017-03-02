@@ -1,11 +1,10 @@
-package visualobjects;
+package visualobjects.visualclass;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import mouse.MouseClick;
-import visualobjects.visualclass.Class;
-import visualobjects.visualclass.VisualClass;
+import visualobjects.Text;
+import visualobjects.VisualObject;
 
 public class Association extends VisualObject {
 	private Text text;

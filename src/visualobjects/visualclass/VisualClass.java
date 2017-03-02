@@ -8,7 +8,6 @@ import mouse.MouseClick;
 import objects.Attribute;
 import objects.Methode;
 import objects.RealClass;
-import visualobjects.Association;
 import visualobjects.Text;
 import visualobjects.VisualObject;
 
