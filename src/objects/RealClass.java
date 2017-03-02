@@ -58,6 +58,16 @@ public class RealClass {
 	public HashSet<Association> getAssociations() {
 		return new HashSet<>(this.associations);
 	}
+	
+	private void addAssociation(Association association) {
+		this.associations.add(association);
+	}
+	
+	private void deleteAssociations(Association association) throws NoSuchElementException{
+		if(!this.associations.remove(association)){
+			throw new NoSuchElementException();
+		}
+	}
 
 	private void setAssociations(HashSet<Association> associations) {
 		this.associations = associations;
