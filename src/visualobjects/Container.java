@@ -17,45 +17,25 @@ public class Container extends VisualObject {
 
 	public Container(int x, int y, int width, int height) {
 		super(x, y, width, height, null);
-		// TODO Auto-generated constructor stub
 	}
 
-	//TODO extraheer het geselecteerd maken naar een aparte functie??
+	
 	@Override
 	public VisualObject select(int x, int y, MouseClick mc) {
-		//System.out.println(mc.toString());
 		for (VisualObject v : this.getChildren()){
 			if (v.isIn(x, y)){
 				VisualObject t = v.select(x, y, mc);
-				if (this.selected != null)
-					this.selected.setIsSelected(false);
-				
-				this.selected = t;
-				//TODO wanneer kan t == null??? Gebeurt bij associaties precies
-				if (t != null)
-					t.setIsSelected(true);
-				if (mc.equals(mc.CLICK) && t instanceof AssociationHandle)
+				this.switchSelectedTo(t);
+				if (mc.equals(MouseClick.CLICK) && t instanceof AssociationHandle)
 					this.handleStart = (AssociationHandle) t;
 				return t;
 			}
 		}
 		if (mc.equals(MouseClick.DOUBLE_CLICK)){
-			VisualClass c = new VisualClass(x,y, this);
-			this.addChild(c);
-			
-			Text a = c.getName();
-			
-			if (this.selected != null) 
-					this.selected.setIsSelected(false);
-			this.selected = a;
-			a.setIsSelected(true);
-			
-			return null;
+			return this.createNewClass(x, y);	
 		}
 		this.handleStart = null;
-		if (this.selected != null) 
-			this.selected.setIsSelected(false);
-		this.selected = null;
+		this.switchSelectedTo(null);
 		return null;
 	}
 	
@@ -78,6 +58,23 @@ public class Container extends VisualObject {
 	@Override
 	public void handleKey(KeyEvent e){
 		
+	}
+	
+	private void switchSelectedTo(VisualObject vo){
+		if (this.selected != null) 
+			this.selected.setIsSelected(false);
+		this.selected = vo;
+		if (vo != null)
+			vo.setIsSelected(true);
+	}
+	
+	private VisualObject createNewClass(int x, int y){
+		VisualClass c = new VisualClass(x,y, this);
+		this.addChild(c);
+		
+		Text a = c.getName();
+		this.switchSelectedTo(a);
+		return a;
 	}
 	
 
