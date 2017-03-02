@@ -8,6 +8,7 @@ import mouse.MouseClick;
 import objects.Attribute;
 import objects.Methode;
 import objects.RealClass;
+import visualobjects.Association;
 import visualobjects.Text;
 import visualobjects.VisualObject;
 
@@ -15,17 +16,27 @@ public class VisualClass extends VisualObject {
 	private final RealClass realClass;
 	
 	private Text name;
+	private AssociationHandle associationHandle;
+	private Collection<Association> associations;
+
 	private Collection<Text> attributes;
 	private Collection<Text> methods;
 
 	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
 		this.realClass = new RealClass();
+		
 		this.setAttributes(new ArrayList<Text>());
 		this.setMethods(new ArrayList<Text>());
 		this.setName(new Text(this.getX(), this.getY(), parent));
 		this.addChild(this.getName());
+		
 		this.updateDimensions();
+		this.setAssociations(new ArrayList<Association>());
+		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, this));
+		this.addChild(this.getAssociationHandle());
+		
+		
 	}
 
 	public VisualClass(int x, int y, VisualObject parent){
@@ -38,9 +49,7 @@ public class VisualClass extends VisualObject {
 		super.show(g);
 		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		int x = this.getX();
 		int y = this.getY();
-		int width = this.getWidth();
 		
 		
 		y += this.getName().getHeight();
@@ -63,18 +72,25 @@ public class VisualClass extends VisualObject {
 	
 	public VisualObject select(int x, int y, MouseClick mc){
 		VisualObject vo = super.select(x, y, mc);
-		if (vo == this){
-			if (this.isInEmptyAttribute(x, y)){
-				Text t = this.createAttribute();
-				return t;
+		if (mc.equals(MouseClick.CLICK)){
+			if (this.getAssociationHandle().isIn(x, y)){
+				return this.getAssociationHandle();
 			}
-			if (this.isInEmptyMethod(x, y)){
-				Text t = this.createMethod();
-				return t;
-			}
-				
-		} else {
 			return vo;
+		} else if (mc.equals(MouseClick.DOUBLE_CLICK)){
+			if (vo == this){
+				if (this.isInEmptyAttribute(x, y)){
+					Text t = this.createAttribute();
+					return t;
+				}
+				if (this.isInEmptyMethod(x, y)){
+					Text t = this.createMethod();
+					return t;
+				}
+					
+			} else {
+				return vo;
+			}
 		}
 		
 		return null;
@@ -201,6 +217,52 @@ public class VisualClass extends VisualObject {
 		
 		return VisualClass.isBetween(left, right, x) 
 				&& VisualClass.isBetween(top, bottom, y);
+	}
+	
+	private AssociationHandle getAssociationHandle() {
+		return associationHandle;
+	}
+
+	private void setAssociationHandle(AssociationHandle associationHandle) {
+		this.associationHandle = associationHandle;
+	}
+	
+	public void addAssociation(Association a){
+		this.getAssociations().add(a);
+		this.addChild(a);
+	}
+	
+	public void removeAssociation(Association a){
+		this.removeChild(a);
+		this.getAssociations().remove(a);
+	}
+
+	private Collection<Association> getAssociations() {
+		return associations;
+	}
+
+	private void setAssociations(Collection<Association> associations) {
+		this.associations = associations;
+	}
+
+	@Override
+	public boolean isIn(int x, int y){
+		if (this.getAssociationHandle().isIn(x, y)){
+			return true;
+		}
+		for (Association a: this.getAssociations()){
+			if (a.isIn(x, y))
+				return true;
+		}
+		return super.isIn(x, y);
+	}
+	
+	@Override
+	public void delete(){
+		super.delete();
+		for (Association a : this.getAssociations()){
+			a.deleteFromOther(this);;
+		}
 	}
 
 }

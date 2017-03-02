@@ -5,13 +5,14 @@ import java.awt.Graphics;
 
 import mouse.MouseClick;
 import visualobjects.visualclass.Class;
+import visualobjects.visualclass.VisualClass;
 
 public class Association extends VisualObject {
 	private Text text;
-	private Class p1;
-	private Class p2;
+	private VisualClass p1;
+	private VisualClass p2;
 
-	public Association(Class parent1, Class parent2) {
+	public Association(VisualClass parent1, VisualClass parent2) {
 		super(0, 0, 0, 0, null);
 		this.p1 = parent1;
 		this.p2 = parent2;
@@ -54,8 +55,16 @@ public class Association extends VisualObject {
 	
 	@Override
 	public void delete(){
-		this.p1.removeChild(this);
-		this.p2.removeChild(this);
+		this.p1.removeAssociation(this);
+		this.p2.removeAssociation(this);
+	}
+
+	public void deleteFromOther(VisualClass t){
+		if (t.equals(this.p1)){
+			this.p2.removeAssociation(this);
+		}else if (t.equals(this.p2)){
+			this.p1.removeAssociation(this);
+		}
 	}
 
 

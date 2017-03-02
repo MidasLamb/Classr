@@ -75,5 +75,10 @@ public class Container extends VisualObject {
 		return this.handleStart;
 	}
 	
+	@Override
+	public void handleKey(KeyEvent e){
+		
+	}
+	
 
 }

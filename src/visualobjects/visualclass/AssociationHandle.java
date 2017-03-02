@@ -25,8 +25,8 @@ public class AssociationHandle extends VisualObject {
 	public VisualObject select(int x, int y, MouseClick mc){
 		super.select(x, y, mc);
 		if (mc.equals(MouseClick.DRAG) && this.getContainer().hasHandleStart()){
-			Class other = (Class) this.getContainer().getHandleStart().getParent();
-			Class thisParent = (Class) this.getParent();
+			VisualClass other = (VisualClass) this.getContainer().getHandleStart().getParent();
+			VisualClass thisParent = (VisualClass) this.getParent();
 			Association a = new Association(thisParent, other);
 			return a.getText();
 		}
