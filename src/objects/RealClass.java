@@ -14,23 +14,23 @@ public class RealClass {
 	
 	private String className;
 	
-	private HashSet<Attributes> getAttributes() {
+	public HashSet<Attribute> getAttributes() {
 		return attributes;
 	}
 
-	private void setAttributes(HashSet<Attributes> attributes) {
+	public void setAttributes(HashSet<Attribute> attributes) {
 		this.attributes = attributes;
 	}
 	
-	private HashSet<Attributes> attributes = new HashSet<>();
+	private HashSet<Attribute> attributes = new HashSet<>();
 	
-	public HashSet<Methodes> getMethodes() {
+	public HashSet<Methode> getMethodes() {
 		return methodes;
 	}
 
-	public void setMethodes(HashSet<Methodes> methodes) {
+	public void setMethodes(HashSet<Methode> methodes) {
 		this.methodes = methodes;
 	}
 	
-	private HashSet<Methodes> methodes = new HashSet<>();
+	private HashSet<Methode> methodes = new HashSet<>();
 }

@@ -8,6 +8,7 @@ import java.util.Collection;
 import mouse.MouseClick;
 import visualobjects.visualclass.AssociationHandle;
 import visualobjects.visualclass.Class;
+import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {
 	private VisualObject selected;
@@ -39,17 +40,17 @@ public class Container extends VisualObject {
 			}
 		}
 		if (mc.equals(MouseClick.DOUBLE_CLICK)){
-			Class c = new Class(x,y, this);
+			VisualClass c = new VisualClass(x,y, this);
 			this.addChild(c);
 			
-			Text a = c.getName();
+			//Text a = c.getName();
 			
 			if (this.selected != null) 
 					this.selected.setIsSelected(false);
-			this.selected = a;
-			a.setIsSelected(true);
+			//this.selected = a;
+			//a.setIsSelected(true);
 			
-			return a;
+			return null;
 		}
 		this.handleStart = null;
 		if (this.selected != null) 
