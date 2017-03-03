@@ -22,14 +22,14 @@ public class VisualClass extends VisualObject {
 	
 	private TextBox name;
 	private AssociationHandle associationHandle;
-	private Collection<Association> associations;
+	private Collection<VisualAssociation> associations;
 
 	private Collection<TextBox> attributes;
 	private Collection<TextBox> methods;
 
 	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
-		this.realClass = new RealClass();
+		this.realClass = new RealClass(this);
 		
 		this.setAttributes(new ArrayList<TextBox>());
 		this.setMethods(new ArrayList<TextBox>());
@@ -37,7 +37,7 @@ public class VisualClass extends VisualObject {
 		this.addChild(this.getName());
 		
 		this.updateDimensions();
-		this.setAssociations(new ArrayList<Association>());
+		this.setAssociations(new ArrayList<VisualAssociation>());
 		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, this));
 		this.addChild(this.getAssociationHandle());
 		
@@ -51,7 +51,7 @@ public class VisualClass extends VisualObject {
 	
 	
 	public void show(Graphics g){
-		super.show(g);
+		
 		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int y = this.getY();
@@ -71,6 +71,7 @@ public class VisualClass extends VisualObject {
 			y += t.getHeight();
 		}
 		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
+		super.show(g);
 	}
 	
 
@@ -206,21 +207,22 @@ public class VisualClass extends VisualObject {
 		this.associationHandle = associationHandle;
 	}
 	
-	public void addAssociation(Association a){
+	public void addAssociation(VisualAssociation a){
+		System.out.println("Added association");
 		this.getAssociations().add(a);
 		this.addChild(a);
 	}
 	
-	public void removeAssociation(Association a){
+	public void removeAssociation(VisualAssociation a){
 		this.removeChild(a);
 		this.getAssociations().remove(a);
 	}
 
-	private Collection<Association> getAssociations() {
+	private Collection<VisualAssociation> getAssociations() {
 		return associations;
 	}
 
-	private void setAssociations(Collection<Association> associations) {
+	private void setAssociations(Collection<VisualAssociation> associations) {
 		this.associations = associations;
 	}
 
@@ -229,7 +231,7 @@ public class VisualClass extends VisualObject {
 		if (this.getAssociationHandle().isIn(x, y)){
 			return true;
 		}
-		for (Association a: this.getAssociations()){
+		for (VisualAssociation a: this.getAssociations()){
 			if (a.isIn(x, y))
 				return true;
 		}
@@ -239,7 +241,7 @@ public class VisualClass extends VisualObject {
 	@Override
 	public void delete(){
 		super.delete();
-		for (Association a : this.getAssociations()){
+		for (VisualAssociation a : this.getAssociations()){
 			a.deleteFromOther(this);;
 		}
 	}

@@ -2,20 +2,22 @@ package visualobjects.visualclass;
 
 import java.awt.Graphics;
 
+import objects.Association;
 import visualobjects.Container;
 import visualobjects.Text;
 import visualobjects.TextBox;
 import visualobjects.VisualObject;
 
-public class Association extends VisualObject {
+public class VisualAssociation extends VisualObject {
 	private TextBox text;
 	private VisualClass p1;
 	private VisualClass p2;
 
-	public Association(VisualClass parent1, VisualClass parent2) {
+	public VisualAssociation(VisualClass parent1, VisualClass parent2) {
 		super(0, 0, 0, 0, parent1);
 		this.p1 = parent1;
 		this.p2 = parent2;
+		Association ass = new Association(parent1.getRealClass(), parent2.getRealClass());
 		this.p1.addAssociation(this);
 		this.p2.addAssociation(this);
 		

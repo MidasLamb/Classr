@@ -26,7 +26,12 @@ public class AssociationHandle extends VisualObject {
 		VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
 		if (otherHandle instanceof AssociationHandle){
 			VisualClass other = (VisualClass) otherHandle.getParent();
-			Association a = new Association(parent, other);
+			this.createAssociation(other);
 		}
+	}
+	
+	private void createAssociation(VisualClass other){
+		VisualClass parent = (VisualClass) this.getParent();
+		VisualAssociation a = new VisualAssociation(parent, other);
 	}
 }

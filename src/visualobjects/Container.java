@@ -8,14 +8,14 @@ import java.util.Collection;
 import mouse.MouseClick;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.SingleClick;
-import visualobjects.visualclass.Association;
+import visualobjects.visualclass.VisualAssociation;
 import visualobjects.visualclass.AssociationHandle;
 import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {
 	private VisualObject selected;
 	private AssociationHandle handleStart;
-	private Collection<Association> associations;
+	private Collection<VisualAssociation> associations;
 
 	public Container(int x, int y, int width, int height) {
 		super(x, y, width, height, null);

@@ -3,7 +3,14 @@ package objects;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
+import visualobjects.visualclass.VisualClass;
+
 public class RealClass {
+	private VisualClass visualClass;
+	
+	public RealClass(VisualClass vc){
+		this.setVisualClass(vc);
+	}
 
 	private String getClassName() {
 		return className;
@@ -59,11 +66,11 @@ public class RealClass {
 		return new HashSet<>(this.associations);
 	}
 	
-	private void addAssociation(Association association) {
+	public void addAssociation(Association association) {
 		this.associations.add(association);
 	}
 	
-	private void deleteAssociations(Association association) throws NoSuchElementException{
+	public void deleteAssociations(Association association) throws NoSuchElementException{
 		if(!this.associations.remove(association)){
 			throw new NoSuchElementException();
 		}
@@ -74,5 +81,13 @@ public class RealClass {
 	}
 	
 	private HashSet<Association> associations = new HashSet<>();
+
+	private VisualClass getVisualClass() {
+		return visualClass;
+	}
+
+	private void setVisualClass(VisualClass visualClass) {
+		this.visualClass = visualClass;
+	}
 
 }
