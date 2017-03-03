@@ -1,30 +1,29 @@
 package mouse;
 
-public enum MouseClick {
-	CLICK{
-
-		@Override
-		public String toString() {
-			return "Click";
-		}
+public class MouseClick {
+	private int x;
+	private int y;
 		
-	},
-	DOUBLE_CLICK{
+	public MouseClick(int x, int y){
+		this.setX(x);
+		this.setY(y);
+	}
 
-		@Override
-		public String toString() {
-			return "Double click";
-		}
-		
-	},
-	DRAG{
+	public int getX() {
+		return x;
+	}
 
-		@Override
-		public String toString() {
-			return "Drag";
-		}
-		
-	};
-	
-	public abstract String toString();
+	private void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	private void setY(int y) {
+		this.y = y;
+	}
+
+
 }

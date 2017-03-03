@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import mouse.MouseClick;
+import mouse.clicks.DoubleClick;
+import mouse.clicks.SingleClick;
+import visualobjects.visualclass.Association;
 import visualobjects.visualclass.AssociationHandle;
-import visualobjects.visualclass.Class;
 import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {
@@ -17,54 +19,14 @@ public class Container extends VisualObject {
 
 	public Container(int x, int y, int width, int height) {
 		super(x, y, width, height, null);
-		// TODO Auto-generated constructor stub
 	}
 
-	//TODO extraheer het geselecteerd maken naar een aparte functie??
-	@Override
-	public VisualObject select(int x, int y, MouseClick mc) {
-		//System.out.println(mc.toString());
-		for (VisualObject v : this.getChildren()){
-			if (v.isIn(x, y)){
-				VisualObject t = v.select(x, y, mc);
-				if (this.selected != null)
-					this.selected.setIsSelected(false);
-				
-				this.selected = t;
-				//TODO wanneer kan t == null??? Gebeurt bij associaties precies
-				if (t != null)
-					t.setIsSelected(true);
-				if (mc.equals(mc.CLICK) && t instanceof AssociationHandle)
-					this.handleStart = (AssociationHandle) t;
-				return t;
-			}
-		}
-		if (mc.equals(MouseClick.DOUBLE_CLICK)){
-			VisualClass c = new VisualClass(x,y, this);
-			this.addChild(c);
-			
-			//Text a = c.getName();
-			
-			if (this.selected != null) 
-					this.selected.setIsSelected(false);
-			//this.selected = a;
-			//a.setIsSelected(true);
-			
-			return null;
-		}
-		this.handleStart = null;
-		if (this.selected != null) 
-			this.selected.setIsSelected(false);
-		this.selected = null;
-		return null;
-	}
-	
+		
 	public void sendKeyToSelected(KeyEvent e){
 		if (selected != null){
 			this.selected.handleKey(e);
 			return;
 		}
-		this.handleKey(e);
 	}
 	
 	public boolean hasHandleStart(){
@@ -73,6 +35,48 @@ public class Container extends VisualObject {
 	
 	public AssociationHandle getHandleStart(){
 		return this.handleStart;
+	}
+	
+	public void switchSelectedTo(VisualObject vo){
+		if (this.selected != null) 
+			this.selected.setIsSelected(false);
+		this.selected = vo;
+		if (vo != null)
+			vo.setIsSelected(true);
+	}
+	
+	private VisualObject createNewClass(int x, int y){
+		VisualClass c = new VisualClass(x,y, this);
+		this.addChild(c);
+		
+		Text a = c.getName().getText();
+		this.switchSelectedTo(a);
+		return a;
+	}
+	
+	@Override
+	public void onDoubleClick(DoubleClick dc){
+		if (this.select(dc.getX(), dc.getY()).equals(this)){
+			//Double click on empty 
+			VisualObject v = this.createNewClass(dc.getX(), dc.getY());
+			return;
+		}
+		super.onDoubleClick(dc);
+	}
+	
+	@Override
+	public void onClick(SingleClick sc){
+		int x = sc.getX();
+		int y = sc.getY();
+		boolean b = false;
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(x, y))
+				b = true;
+		}
+		if (b)
+			super.onClick(sc);
+		else
+			this.switchSelectedTo(null);
 	}
 	
 

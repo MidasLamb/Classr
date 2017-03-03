@@ -6,19 +6,15 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import mouse.MouseClick;
 import mouse.MouseClickHandler;
 import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
-	private Container container;
-	private boolean mousePressed = false;
-	private MouseClickHandler mouseClickHandler;
-	
+
 	public MyCanvasWindow(String title) {
 		super(title);
-		this.container = new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT);
-		this.mouseClickHandler = new MouseClickHandler(this.container);
+		setContainer(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT));
+		setMouseClickHandler(new MouseClickHandler(getContainer()));
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -32,7 +28,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void paint(Graphics g) {
-		this.container.show(g);
+		this.getContainer().show(g);
 	}
 	
 	/**
@@ -42,24 +38,8 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleMouseEvent(MouseEvent e) {
-		this.mouseClickHandler.handleKey(e);
+		getMouseClickHandler().handleKey(e);
 		this.repaint();
-		//System.out.println(e.getButton());
-		//Dragging = 0;
-		//Pressing down/releasing = 1;
-		
-//		
-//		boolean clickedDown = false;
-//		if(e.getButton() == 1){
-//			if (this.mousePressed == false)
-//				clickedDown = true;
-//			this.mousePressed = !this.mousePressed;
-//		}
-//
-//		if (clickedDown){
-//			this.container.select(e.getX(), e.getY(), MouseClick.CLICK);
-//			this.repaint();
-//		}
 		
 	}
 	
@@ -72,10 +52,40 @@ public class MyCanvasWindow extends CanvasWindow {
 	protected void handleKeyEvent(KeyEvent e) {
 		if (e.getKeyCode() == 0)
 			return;
-		this.container.sendKeyToSelected(e);
+		this.getContainer().sendKeyToSelected(e);
 		this.repaint();
 		//TODO Handle shift keys and such
 		
 	}	
+	
+	private Container getContainer() {
+		return container;
+	}
+
+	private void setContainer(Container container) {
+		this.container = container;
+	}
+	
+	private Container container;
+
+	public boolean isMousePressed() {
+		return mousePressed;
+	}
+
+	public void setMousePressed(boolean mousePressed) {
+		this.mousePressed = mousePressed;
+	}
+	
+	private boolean mousePressed = false;
+	
+	private MouseClickHandler getMouseClickHandler() {
+		return mouseClickHandler;
+	}
+
+	private void setMouseClickHandler(MouseClickHandler mouseClickHandler) {
+		this.mouseClickHandler = mouseClickHandler;
+	}
+	
+	private MouseClickHandler mouseClickHandler;
 
 }

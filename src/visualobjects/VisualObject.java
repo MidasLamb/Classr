@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import mouse.MouseClick;
+import mouse.clicks.DoubleClick;
+import mouse.clicks.Drag;
+import mouse.clicks.SingleClick;
 
 public abstract class VisualObject{
 	private int x;
@@ -49,13 +52,46 @@ public abstract class VisualObject{
 		this.parent.removeChild(this);
 	}
 	
-	public VisualObject select(int x, int y, MouseClick mc) {
+	public VisualObject select(int x, int y) {
 		for (VisualObject v: this.getChildren()){
 			if (v.isIn(x, y)){
-				return v.select(x, y, mc);
+				return v.select(x, y);
 			}
 		}
 		return this;
+	}
+	
+	public void onClick(SingleClick mc){
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(mc.getX(), mc.getY())){
+				v.onClick(mc);
+				return; //Return is required because association text would get two clicks when one is pressed, because it get's it from both parents
+			}
+		}
+	}
+	
+	public void onDoubleClick(DoubleClick dc){
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(dc.getX(), dc.getY())){
+				v.onDoubleClick(dc);
+			}
+		}
+	}
+	
+	public void onDragEnd(Drag d){
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(d.getEndX(), d.getEndY())){
+				v.onDragEnd(d);
+			}
+		}
+	}
+	
+	public void onDragStart(Drag d){
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(d.getStartX(), d.getStartY())){
+				v.onDragStart(d);
+			}
+		}
 	}
 	
 	public int getX() {
@@ -109,6 +145,7 @@ public abstract class VisualObject{
 	
 	public void removeChild(VisualObject c){
 		this.children.remove(c);
+		this.afterDeleteChild(c);
 	}
 	
 	private void queueForRemove(VisualObject c){
@@ -146,6 +183,10 @@ public abstract class VisualObject{
 		while (v != null && !(v instanceof Container))
 			v = v.getParent();
 		return (Container) v;
+	}
+	
+	protected void afterDeleteChild(VisualObject v){
+		
 	}
 	
 	

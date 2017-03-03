@@ -17,7 +17,7 @@ public final class Constants {
 	
 	
 	public static final int CLASS_WIDTH = 100;
-	
+	public static final int CLASS_WHITE_SPACE = 16;
 	public static final int CLASS_BODY_INITIAL_HEIGHT = 40;
 	
 	public static final int TEXT_MARGIN = 10;
@@ -25,6 +25,9 @@ public final class Constants {
 	
 	public static final int MAX_TEXT_WIDTH = CLASS_WIDTH - 20;
 
+	public static final int STANDARD_PADDING = 5;
+	
+	public static final int STANDARD_TEXT_HEIGHT = 16;
 	
 	private Constants() {
 		throw new AssertionError();

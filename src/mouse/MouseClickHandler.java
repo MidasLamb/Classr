@@ -2,6 +2,10 @@ package mouse;
 
 import static main.Constants.*;
 import java.awt.event.MouseEvent;
+
+import mouse.clicks.DoubleClick;
+import mouse.clicks.Drag;
+import mouse.clicks.SingleClick;
 import visualobjects.Container;
 
 public class MouseClickHandler {
@@ -24,12 +28,15 @@ public class MouseClickHandler {
 				if (Math.abs(e.getX() - getLastClickX()) < DOUBLECLICK_RANGE &&
 						Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE){
 					//Doubleclick
-					getContainer().select(e.getX(), e.getY(), MouseClick.DOUBLE_CLICK);
+					
+					getContainer().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
 				} else {
-					getContainer().select(e.getX(), e.getY(), MouseClick.CLICK);
+					
+					getContainer().onClick(new SingleClick(e.getX(), e.getY()));
 				}
 			} else {
-				getContainer().select(e.getX(), e.getY(), MouseClick.CLICK);
+				
+				getContainer().onClick(new SingleClick(e.getX(), e.getY()));
 			}
 			//save the data
 			setLastClickX(e.getX());
@@ -40,7 +47,8 @@ public class MouseClickHandler {
 		if (e.getID() == MouseEvent.MOUSE_RELEASED){
 			setDown(false);
 			if (isBeingDragged()){
-				getContainer().select(e.getX(), e.getY(), MouseClick.DRAG);
+				
+				getContainer().onDragEnd(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
 			}
 			setBeingDragged(false);
 		}

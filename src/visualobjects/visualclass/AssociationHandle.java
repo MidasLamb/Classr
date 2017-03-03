@@ -4,8 +4,7 @@ import static main.Constants.*;
 
 import java.awt.Graphics;
 
-import mouse.MouseClick;
-import visualobjects.Association;
+import mouse.clicks.Drag;
 import visualobjects.VisualObject;
 
 public class AssociationHandle extends VisualObject {
@@ -22,14 +21,12 @@ public class AssociationHandle extends VisualObject {
 	}
 	
 	@Override
-	public VisualObject select(int x, int y, MouseClick mc){
-		super.select(x, y, mc);
-		if (mc.equals(MouseClick.DRAG) && this.getContainer().hasHandleStart()){
-			Class other = (Class) this.getContainer().getHandleStart().getParent();
-			Class thisParent = (Class) this.getParent();
-			Association a = new Association(thisParent, other);
-			return a.getText();
+	public void onDragEnd(Drag d){
+		VisualClass parent = (VisualClass) this.getParent();
+		VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
+		if (otherHandle instanceof AssociationHandle){
+			VisualClass other = (VisualClass) otherHandle.getParent();
+			Association a = new Association(parent, other);
 		}
-		return this;
 	}
 }
