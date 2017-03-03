@@ -5,7 +5,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import mouse.MouseClick;
 import mouse.MouseClickSort;
+import mouse.clicks.DoubleClick;
+import mouse.clicks.SingleClick;
 import visualobjects.visualclass.Association;
 import visualobjects.visualclass.AssociationHandle;
 import visualobjects.visualclass.VisualClass;
@@ -19,26 +22,7 @@ public class Container extends VisualObject {
 		super(x, y, width, height, null);
 	}
 
-	
-	@Override
-	public VisualObject select(int x, int y, MouseClickSort mc) {
-		for (VisualObject v : this.getChildren()){
-			if (v.isIn(x, y)){
-				VisualObject t = v.select(x, y, mc);
-				this.switchSelectedTo(t);
-				if (mc.equals(MouseClickSort.CLICK) && t instanceof AssociationHandle)
-					this.handleStart = (AssociationHandle) t;
-				return t;
-			}
-		}
-		if (mc.equals(MouseClickSort.DOUBLE_CLICK)){
-			return this.createNewClass(x, y);	
-		}
-		this.handleStart = null;
-		this.switchSelectedTo(null);
-		return null;
-	}
-	
+		
 	public void sendKeyToSelected(KeyEvent e){
 		if (selected != null){
 			this.selected.handleKey(e);
@@ -54,7 +38,7 @@ public class Container extends VisualObject {
 		return this.handleStart;
 	}
 	
-	private void switchSelectedTo(VisualObject vo){
+	public void switchSelectedTo(VisualObject vo){
 		if (this.selected != null) 
 			this.selected.setIsSelected(false);
 		this.selected = vo;
@@ -69,6 +53,31 @@ public class Container extends VisualObject {
 		Text a = c.getName().getText();
 		this.switchSelectedTo(a);
 		return a;
+	}
+	
+	@Override
+	public void onDoubleClick(DoubleClick dc){
+		if (this.select(dc.getX(), dc.getY()).equals(this)){
+			//Double click on empty 
+			VisualObject v = this.createNewClass(dc.getX(), dc.getY());
+			return;
+		}
+		super.onDoubleClick(dc);
+	}
+	
+	@Override
+	public void onClick(SingleClick sc){
+		int x = sc.getX();
+		int y = sc.getY();
+		boolean b = false;
+		for (VisualObject v: this.getChildren()){
+			if (v.isIn(x, y))
+				b = true;
+		}
+		if (b)
+			super.onClick(sc);
+		else
+			this.switchSelectedTo(null);
 	}
 	
 

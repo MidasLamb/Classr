@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 import main.Constants;
 import mouse.MouseClickSort;
+import mouse.clicks.SingleClick;
+import visualobjects.visualclass.VisualClass;
 
 public class TextBox extends VisualObject {
 	private int paddingLeft;
@@ -46,10 +48,12 @@ public class TextBox extends VisualObject {
 				parent);
 	}
 	
-	public VisualObject select(int x, int y, MouseClickSort mc){
-		if (this.isSelected())
-			return this.getText();
-		return this;
+	@Override
+	public void onClick(SingleClick sc){
+		if (!this.isSelected())
+			this.getContainer().switchSelectedTo(this);
+		else if (this.isSelected())
+			this.getContainer().switchSelectedTo(this.getText());
 	}
 
 

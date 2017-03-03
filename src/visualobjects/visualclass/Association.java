@@ -3,6 +3,7 @@ package visualobjects.visualclass;
 import java.awt.Graphics;
 
 import mouse.MouseClickSort;
+import visualobjects.Container;
 import visualobjects.Text;
 import visualobjects.TextBox;
 import visualobjects.VisualObject;
@@ -13,7 +14,7 @@ public class Association extends VisualObject {
 	private VisualClass p2;
 
 	public Association(VisualClass parent1, VisualClass parent2) {
-		super(0, 0, 0, 0, null);
+		super(0, 0, 0, 0, parent1);
 		this.p1 = parent1;
 		this.p2 = parent2;
 		this.p1.addAssociation(this);
@@ -43,17 +44,6 @@ public class Association extends VisualObject {
 	}
 	
 	@Override
-	public VisualObject select(int x, int y, MouseClickSort mc){
-		if (mc.equals(MouseClickSort.DOUBLE_CLICK) || this.isSelected()){
-			return this.text.getText();
-		}
-		if (mc.equals(MouseClickSort.CLICK)){
-			return this;
-		}
-		return null;
-	}
-	
-	@Override
 	public void delete(){
 		this.p1.removeAssociation(this);
 		this.p2.removeAssociation(this);
@@ -65,6 +55,12 @@ public class Association extends VisualObject {
 		}else if (t.equals(this.p2)){
 			this.p1.removeAssociation(this);
 		}
+	}
+	
+	@Override
+	protected void afterDeleteChild(VisualObject v){
+		if (v.equals(this.getText()))
+			this.delete();
 	}
 
 

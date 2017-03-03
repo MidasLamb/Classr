@@ -1,11 +1,16 @@
 package visualobjects.visualclass;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import main.Constants;
+import mouse.MouseClick;
 import mouse.MouseClickSort;
+import mouse.clicks.DoubleClick;
+import mouse.clicks.Drag;
+import mouse.clicks.SingleClick;
 import objects.Attribute;
 import objects.Methode;
 import objects.RealClass;
@@ -29,7 +34,7 @@ public class VisualClass extends VisualObject {
 		
 		this.setAttributes(new ArrayList<TextBox>());
 		this.setMethods(new ArrayList<TextBox>());
-		this.setName(new TextBox(this.getX(), this.getY(), 5, parent));
+		this.setName(new TextBox(this.getX(), this.getY(), 5, this));
 		this.addChild(this.getName());
 		
 		this.updateDimensions();
@@ -69,40 +74,7 @@ public class VisualClass extends VisualObject {
 		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
 	}
 	
-	
-	public VisualObject select(int x, int y, MouseClickSort mc){
-		VisualObject vo = super.select(x, y, mc);
-		if (mc.equals(MouseClickSort.CLICK)){
-			if (this.getAssociationHandle().isIn(x, y)){
-				return this.getAssociationHandle();
-			}
-			if (vo.equals(this.getName())){
-				if (this.isSelected())
-					return this.getName().getText();
-				return this;
-			}
-			if (vo instanceof TextBox){
-				vo.select(x, y, mc);
-			}
-			return vo;
-		} else if (mc.equals(MouseClickSort.DOUBLE_CLICK)){
-			if (vo == this){
-				if (this.isInEmptyAttribute(x, y)){
-					TextBox t = this.createAttribute();
-					return t.getText();
-				}
-				if (this.isInEmptyMethod(x, y)){
-					TextBox t = this.createMethod();
-					return t.getText();
-				}
-					
-			} else {
-				return vo;
-			}
-		}
-		
-		return null;
-	}
+
 	
 	public void updateDimensions(){
 		int y = this.getY();
@@ -206,6 +178,7 @@ public class VisualClass extends VisualObject {
 		int top = this.getY() + this.getName().getHeight();
 		int bottom = this.getY();
 		
+		
 		bottom += this.getName().getHeight();
 		
 		for (TextBox t : this.getAttributes()){
@@ -216,6 +189,7 @@ public class VisualClass extends VisualObject {
 		bottom +=  Constants.CLASS_WHITE_SPACE;
 		
 		for (TextBox t: this.getMethods()){
+			top += t.getHeight();
 			bottom += t.getHeight();
 		}
 		
@@ -279,10 +253,52 @@ public class VisualClass extends VisualObject {
 		if (this.getMethods().contains(c)){
 			this.getMethods().remove(c);
 		}
-		
-		
 		super.removeChild(c);
 		
+	}
+	
+	@Override
+	public VisualObject select(int x, int y){
+		if (this.getAssociationHandle().isIn(x, y)){
+			return this.getAssociationHandle();
+		}
+		return super.select(x, y);
+	}
+	
+	@Override
+	public void onClick(SingleClick sc){
+		if (this.getAssociationHandle().isIn(sc.getX(), sc.getY())){
+			this.getAssociationHandle().onClick(sc);
+			return;
+		}
+		
+		super.onClick(sc);
+	}
+	
+	@Override
+	public void onDragEnd(Drag d){
+		if (this.getAssociationHandle().isIn(d.getEndX(), d.getEndY())){
+			this.getAssociationHandle().onDragEnd(d);
+			return;
+		}
+		super.onDragEnd(d);
+	}
+	
+	@Override
+	public void onDoubleClick(DoubleClick dc){
+		if (this.isInEmptyAttribute(dc.getX(), dc.getY())){
+			this.createAttribute();
+		}
+		if (this.isInEmptyMethod(dc.getX(), dc.getY())){
+			this.createMethod();
+		}
+	}
+	
+	@Override
+	public void afterDeleteChild(VisualObject v){
+		this.updateDimensions();
+		if (v.equals(this.getName()))
+			this.delete();
 	}
 
 }
