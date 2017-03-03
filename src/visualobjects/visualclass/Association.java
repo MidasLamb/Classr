@@ -2,7 +2,6 @@ package visualobjects.visualclass;
 
 import java.awt.Graphics;
 
-import mouse.MouseClickSort;
 import visualobjects.Container;
 import visualobjects.Text;
 import visualobjects.TextBox;

@@ -7,7 +7,6 @@ import java.util.Collection;
 
 import main.Constants;
 import mouse.MouseClick;
-import mouse.MouseClickSort;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
@@ -287,10 +286,13 @@ public class VisualClass extends VisualObject {
 	@Override
 	public void onDoubleClick(DoubleClick dc){
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())){
-			this.createAttribute();
+			TextBox t = this.createAttribute();
+			this.getContainer().switchSelectedTo(t.getText());
+			
 		}
 		if (this.isInEmptyMethod(dc.getX(), dc.getY())){
-			this.createMethod();
+			TextBox t = this.createMethod();
+			this.getContainer().switchSelectedTo(t.getText());
 		}
 	}
 	

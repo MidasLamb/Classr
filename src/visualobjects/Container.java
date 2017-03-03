@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import mouse.MouseClick;
-import mouse.MouseClickSort;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.SingleClick;
 import visualobjects.visualclass.Association;

@@ -4,7 +4,6 @@ import static main.Constants.*;
 
 import java.awt.Graphics;
 
-import mouse.MouseClickSort;
 import mouse.clicks.Drag;
 import visualobjects.VisualObject;
 

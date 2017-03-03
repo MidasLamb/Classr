@@ -1,21 +1,13 @@
 package mouse.clicks;
 
 import mouse.MouseClick;
-import mouse.MouseClickSort;
 
 public class DoubleClick extends MouseClick {
 
-	public DoubleClick(int startX, int startY, MouseClickSort mcs) {
-		super(startX, startY, mcs);
+	public DoubleClick(int x, int y) {
+		super(x, y);
 	}
-	
-	public int getX(){
-		return this.getStartX();
-	}
-	
-	public int getY(){
-		return this.getStartY();
-	}
+
 
 
 }

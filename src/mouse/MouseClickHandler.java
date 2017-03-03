@@ -29,14 +29,14 @@ public class MouseClickHandler {
 						Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE){
 					//Doubleclick
 					
-					getContainer().onDoubleClick(new DoubleClick(e.getX(), e.getY(), null));
+					getContainer().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
 				} else {
 					
-					getContainer().onClick(new SingleClick(e.getX(), e.getY(), null));
+					getContainer().onClick(new SingleClick(e.getX(), e.getY()));
 				}
 			} else {
 				
-				getContainer().onClick(new SingleClick(e.getX(), e.getY(), null));
+				getContainer().onClick(new SingleClick(e.getX(), e.getY()));
 			}
 			//save the data
 			setLastClickX(e.getX());
@@ -48,7 +48,7 @@ public class MouseClickHandler {
 			setDown(false);
 			if (isBeingDragged()){
 				
-				getContainer().onDragEnd(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY(), null));
+				getContainer().onDragEnd(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
 			}
 			setBeingDragged(false);
 		}
