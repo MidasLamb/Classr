@@ -11,7 +11,7 @@ import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import objects.Attribute;
-import objects.Methode;
+import objects.Method;
 import objects.RealClass;
 import visualobjects.Text;
 import visualobjects.TextBox;

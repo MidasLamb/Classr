@@ -1,6 +1,6 @@
 package objects;
 
-public class Methode {
+public class Method {
 	
 	private String getName() {
 		return name;
