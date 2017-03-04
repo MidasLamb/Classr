@@ -139,7 +139,7 @@ public abstract class VisualObject{
 	/**
 	 * checks if c is between a en b
 	 */
-	public static boolean isBetween(int a, int b, int c) {
+	protected static boolean isBetween(int a, int b, int c) {
 	    return a <= c && 
 	    		b >= c;
 	}

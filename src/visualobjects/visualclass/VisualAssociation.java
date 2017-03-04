@@ -24,7 +24,7 @@ public class VisualAssociation extends VisualObject {
 		int centerX = p1.getX() + (p2.getX() - p1.getX())/2;
 		int centerY = p1.getY() + (p2.getY() - p1.getY())/2;
 		
-		this.text = new TextBox(centerX ,centerY, this);
+		this.text = new TextBox(centerX ,centerY, this, "Associatie");
 		this.addChild(this.text);
 		
 	}
