@@ -21,10 +21,8 @@ public class TextBox extends VisualObject {
 		this.setPaddingRight(paddingRight);
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
-		
 		this.setText(new Text(this.getX() + this.getPaddingLeft(),
 				this.getY() + this.getPaddingTop(), this));
-		
 		this.addChild(this.getText());
 	}
 	
@@ -112,6 +110,7 @@ public class TextBox extends VisualObject {
 	@Override
 	public void setY(int y){
 		super.setY(y);
-		this.getText().setY(y + this.getPaddingTop());
+		if(getText() != null)
+			this.getText().setY(y + this.getPaddingTop());
 	}
 }

@@ -1,31 +1,18 @@
 package visualobjects.visualclass;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import main.Constants;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
-import mouse.clicks.MouseClick;
 import mouse.clicks.SingleClick;
-import objects.Attribute;
-import objects.Method;
 import objects.RealClass;
-import visualobjects.Text;
 import visualobjects.TextBox;
 import visualobjects.VisualObject;
 
-public class VisualClass extends VisualObject {
-	private final RealClass realClass;
-	
-	private TextBox name;
-	private AssociationHandle associationHandle;
-	private Collection<VisualAssociation> associations;
-
-	private Collection<TextBox> attributes;
-	private Collection<TextBox> methods;
+public class VisualClass extends VisualObject {	
 
 	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
@@ -87,7 +74,6 @@ public class VisualClass extends VisualObject {
 		}
 		
 		y +=  Constants.CLASS_WHITE_SPACE;
-		//TODO magic number
 		
 		for (TextBox t: this.getMethods()){
 			t.setY(y);
@@ -106,6 +92,8 @@ public class VisualClass extends VisualObject {
 	private void setAttributes(Collection<TextBox> attributes) {
 		this.attributes = attributes;
 	}
+	
+	private Collection<TextBox> attributes;
 
 	private Collection<TextBox> getMethods() {
 		return methods;
@@ -114,10 +102,14 @@ public class VisualClass extends VisualObject {
 	private void setMethods(Collection<TextBox> methods) {
 		this.methods = methods;
 	}
+	
+	private Collection<TextBox> methods;	
 
 	public RealClass getRealClass() {
 		return realClass;
 	}
+	
+	private final RealClass realClass;
 	
 	private void addAttribute(TextBox a){
 		this.getAttributes().add(a);
@@ -153,6 +145,8 @@ public class VisualClass extends VisualObject {
 		this.name = name;
 	}
 	
+	private TextBox name;
+	
 	private boolean isInEmptyAttribute(int x, int y){
 		int left = this.getX();
 		int right = this.getX() + this.getWidth();
@@ -166,7 +160,6 @@ public class VisualClass extends VisualObject {
 			bottom += t.getHeight();
 		}
 		bottom +=  Constants.CLASS_WHITE_SPACE;
-		//TODO magic number
 		
 		return VisualClass.isBetween(left, right, x) 
 				&& VisualClass.isBetween(top, bottom, y);
@@ -207,6 +200,8 @@ public class VisualClass extends VisualObject {
 		this.associationHandle = associationHandle;
 	}
 	
+	private AssociationHandle associationHandle;
+	
 	public void addAssociation(VisualAssociation a){
 		System.out.println("Added association");
 		this.getAssociations().add(a);
@@ -225,6 +220,8 @@ public class VisualClass extends VisualObject {
 	private void setAssociations(Collection<VisualAssociation> associations) {
 		this.associations = associations;
 	}
+	
+	private Collection<VisualAssociation> associations;
 
 	@Override
 	public boolean isIn(int x, int y){

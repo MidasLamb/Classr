@@ -66,7 +66,7 @@ public class Text extends VisualObject {
 			this.removeLetter();
 		//Go out of object if you press enter
 		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			this.setIsSelected(false);
+			this.setSelected(false);
 		// if it isn't an action key you can write it down
 		} else if(!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT){
 			this.addLetter(s);
@@ -91,9 +91,9 @@ public class Text extends VisualObject {
 	private String text;
 
 	@Override
-	public void setIsSelected(boolean b){
+	public void setSelected(boolean b){
 		boolean prev = this.isSelected();
-		super.setIsSelected(b);
+		super.setSelected(b);
 		if (this.isSelected() == false && prev){
 			if (this.getText().length() == 0){
 				this.setText(this.standardTextString);
