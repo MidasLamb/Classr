@@ -1,4 +1,4 @@
-package mouse;
+package inputHandlers;
 
 import static main.Constants.*;
 import java.awt.event.MouseEvent;
@@ -19,7 +19,7 @@ public class MouseClickHandler {
 		setLastClickY(-1);
 	}
 	
-	public void handleKey(MouseEvent e){
+	public void handleInput(MouseEvent e){
 		if (e.getID() == MouseEvent.MOUSE_PRESSED){
 			this.isDown = true;
 			//Check if time until last click is lower than threshold

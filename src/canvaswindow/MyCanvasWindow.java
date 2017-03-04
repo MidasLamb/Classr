@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import mouse.MouseClickHandler;
+import inputHandlers.*;
 import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
@@ -15,6 +15,7 @@ public class MyCanvasWindow extends CanvasWindow {
 		super(title);
 		setContainer(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT));
 		setMouseClickHandler(new MouseClickHandler(getContainer()));
+		setKeyHandler(new KeyHandler(getContainer()));
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -38,7 +39,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleMouseEvent(MouseEvent e) {
-		getMouseClickHandler().handleKey(e);
+		getMouseClickHandler().handleInput(e);
 		this.repaint();
 		
 	}
@@ -50,9 +51,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void handleKeyEvent(KeyEvent e) {
-		if (e.getKeyCode() == 0)
-			return;
-		this.getContainer().sendKeyToSelected(e);
+		getKeyHandler().handleInput(e);
 		this.repaint();
 		//TODO Handle shift keys and such
 		
@@ -85,7 +84,17 @@ public class MyCanvasWindow extends CanvasWindow {
 	private void setMouseClickHandler(MouseClickHandler mouseClickHandler) {
 		this.mouseClickHandler = mouseClickHandler;
 	}
-	
+
 	private MouseClickHandler mouseClickHandler;
+	
+	public KeyHandler getKeyHandler() {
+		return keyHandler;
+	}
+
+	public void setKeyHandler(KeyHandler keyHandler) {
+		this.keyHandler = keyHandler;
+	}
+	
+	private KeyHandler keyHandler;
 
 }
