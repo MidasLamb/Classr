@@ -11,16 +11,15 @@ import visualobjects.Container;
 public class MouseClickHandler {
 	
 	public MouseClickHandler(Container container){
-		setLastClickTime(0);
+		setLastClickTime(-200);
 		setContainer(container);
 		setBeingDragged(false);
-		setLastClickX(-1);
-		setLastClickY(-1);
+		setLastClickX(0);
+		setLastClickY(0);
 	}
 	
 	public void handleInput(MouseEvent e){
 		if (e.getID() == MouseEvent.MOUSE_PRESSED){
-			//Check if time until last click is lower than threshold
 			if (isDoubleClick(e)){
 				//Let the container know that there was a double click					
 				getContainer().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
