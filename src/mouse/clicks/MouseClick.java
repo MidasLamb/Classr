@@ -1,4 +1,4 @@
-package mouse;
+package mouse.clicks;
 
 public class MouseClick {
 	private int x;

@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import main.Constants;
-import mouse.MouseClick;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
+import mouse.clicks.MouseClick;
 import mouse.clicks.SingleClick;
 import objects.Attribute;
 import objects.Method;

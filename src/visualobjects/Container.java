@@ -5,8 +5,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import mouse.MouseClick;
 import mouse.clicks.DoubleClick;
+import mouse.clicks.MouseClick;
 import mouse.clicks.SingleClick;
 import visualobjects.visualclass.VisualAssociation;
 import visualobjects.visualclass.AssociationHandle;
