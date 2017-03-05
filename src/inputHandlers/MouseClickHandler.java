@@ -11,11 +11,7 @@ import visualobjects.Container;
 public class MouseClickHandler {
 	
 	public MouseClickHandler(Container container){
-		setLastClickTime(0);
 		setContainer(container);
-		setBeingDragged(false);
-		setLastClickX(0);
-		setLastClickY(0);
 	}
 	
 	public void handleInput(MouseEvent e){
