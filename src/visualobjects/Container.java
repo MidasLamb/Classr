@@ -79,12 +79,19 @@ public class Container extends VisualObject {
 			this.switchSelectedTo(null);
 	}
 	
-	//Getters and setters
+	
+	/**
+	 * @return	VisualObject that is selected
+	 */
 	private VisualObject getSelected() {
 		return selected;
 	}
 
 
+	/**
+	 * @param 	selected
+	 * 			VisualObject that will be set as selected
+	 */
 	private void setSelected(VisualObject selected) {
 		this.selected = selected;
 	}
