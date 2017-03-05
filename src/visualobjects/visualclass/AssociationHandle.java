@@ -9,7 +9,7 @@ import visualobjects.VisualObject;
 
 public class AssociationHandle extends VisualObject {
 
-	public AssociationHandle(int x, int y, VisualObject parent) {
+	public AssociationHandle(int x, int y, VisualClass parent) {
 		super(x, y, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
 		// TODO Auto-generated constructor stub
 	}

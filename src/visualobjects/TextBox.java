@@ -2,35 +2,37 @@ package visualobjects;
 
 import main.Constants;
 import mouse.clicks.SingleClick;
+import objects.Logical_objects;
 
 public class TextBox extends VisualObject {
 	
 	public TextBox(int x, int y, int width, int height, int paddingLeft, int paddingRight, 
-			int paddingTop, int paddingBottom, VisualObject parent, String standardstring){
+			int paddingTop, int paddingBottom, VisualObject parent, String standardstring, Logical_objects object){
 		super(x, y, width, height, parent);
+		setLogicalObject(object);
 		this.setPaddingLeft(paddingLeft);
 		this.setPaddingRight(paddingRight);
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
-		this.setText(new Text(this.getX() + this.getPaddingLeft(),
-				this.getY() + this.getPaddingTop(), this, standardstring));
+		this.setText(new TextHandler(this.getX() + this.getPaddingLeft(),
+				this.getY() + this.getPaddingTop(), this, standardstring, getLogicalObject()));
 		this.addChild(this.getText());
 	}
 	
 	public TextBox(int x, int y, int width, int height, int padding, 
-			VisualObject parent, String standardstring){
-		this(x, y ,width, height, padding, padding, padding, padding, parent, standardstring);
+			VisualObject parent, String standardstring, Logical_objects object){
+		this(x, y ,width, height, padding, padding, padding, padding, parent, standardstring, object);
 	}
 	
-	public TextBox(int x, int y, int padding, VisualObject parent, String standardstring){
+	public TextBox(int x, int y, int padding, VisualObject parent, String standardstring, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
-				Constants.STANDARD_PADDING,parent, standardstring);
+				Constants.STANDARD_PADDING,parent, standardstring, object);
 	}
 	
-	public TextBox(int x, int y, VisualObject parent, String standardstring){
+	public TextBox(int x, int y, VisualObject parent, String standardstring, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,
 				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
-				parent, standardstring);
+				parent, standardstring, object);
 	}
 	
 	@Override
@@ -99,13 +101,13 @@ public class TextBox extends VisualObject {
 	
 	private int paddingRight;
 
-	public Text getText() {
+	public TextHandler getText() {
 		return text;
 	}
 
-	private void setText(Text text) {
+	private void setText(TextHandler text) {
 		this.text = text;
 	}
-	
-	private Text text;
+
+	private TextHandler text;
 }

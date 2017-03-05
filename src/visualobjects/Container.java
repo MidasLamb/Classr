@@ -39,7 +39,7 @@ public class Container extends VisualObject {
 	private void createNewClass(int x, int y){
 		VisualClass c = new VisualClass(x,y, this);
 		this.addChild(c);
-		Text a = c.getName().getText();
+		TextHandler a = c.getName().getText();
 		this.switchSelectedTo(a);
 	}
 	

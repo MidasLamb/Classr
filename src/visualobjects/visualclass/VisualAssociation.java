@@ -3,8 +3,9 @@ package visualobjects.visualclass;
 import java.awt.Graphics;
 
 import objects.Association;
+import objects.Logical_objects;
 import visualobjects.Container;
-import visualobjects.Text;
+import visualobjects.TextHandler;
 import visualobjects.TextBox;
 import visualobjects.VisualObject;
 
@@ -17,14 +18,14 @@ public class VisualAssociation extends VisualObject {
 		super(0, 0, 0, 0, parent1);
 		this.p1 = parent1;
 		this.p2 = parent2;
-		Association ass = new Association(parent1.getRealClass(), parent2.getRealClass());
+		Association ass = new Association(parent1.getLogicalObject(), parent2.getLogicalObject());
 		this.p1.addAssociation(this);
 		this.p2.addAssociation(this);
 		
 		int centerX = p1.getX() + (p2.getX() - p1.getX())/2;
 		int centerY = p1.getY() + (p2.getY() - p1.getY())/2;
 		
-		this.text = new TextBox(centerX ,centerY, this, "Associatie");
+		this.text = new TextBox(centerX ,centerY, this, "Associatie", ass);
 		this.addChild(this.text);
 		
 	}
