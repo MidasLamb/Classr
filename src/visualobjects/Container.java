@@ -11,11 +11,22 @@ public class Container extends VisualObject {
 		super(x, y, width, height, null);
 	}
 	
+	
+	/**
+	 * @param	e
+	 * 			KeyEvent that needs to be handled
+	 * @effect	If there is an element selected, let that element handle KeyEvent e
+	 */
 	public void sendKeyToSelected(KeyEvent e){
 		if (getSelected() != null)
 			getSelected().handleKey(e);
 	}
 	
+	/**
+	 * @param 	vo
+	 * 			VisualObject that will be selected
+	 * @effect	Unselects the selected item (if present), and sets VisualObject vo as selected
+	 */
 	public void switchSelectedTo(VisualObject vo){
 		//Unselect previous selected item
 		if (getSelected() != null) 
@@ -32,7 +43,7 @@ public class Container extends VisualObject {
 	 * 			The x coordinate where the class needs to be showed
 	 * @param 	y
 	 * 			The y coordinate where the class needs to be showed
-	 * @post	Creates a new visual class in this container
+	 * @effect	Creates a new visual class in this container
 	 * 				adds the class to the children
 	 * 				makes the text item of the class the selected item
 	 */

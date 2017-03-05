@@ -26,4 +26,15 @@ public class Association extends Logical_objects {
 	}
 	
 	private RealClass class2 ;
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	private String name;
 }
