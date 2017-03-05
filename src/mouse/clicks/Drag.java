@@ -1,7 +1,5 @@
 package mouse.clicks;
 
-import mouse.MouseClick;
-
 public class Drag extends MouseClick {
 	private int startX;
 	private int startY;

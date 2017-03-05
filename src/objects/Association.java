@@ -2,9 +2,11 @@ package objects;
 
 public class Association {
 	
-	public void Association(RealClass class1, RealClass class2){
+	public Association(RealClass class1, RealClass class2){
 		setClass1(class1);
 		setClass2(class2);
+		this.getClass1().addAssociation(this);
+		this.getClass2().addAssociation(this);
 	}
 	
 	private RealClass getClass1() {
@@ -24,15 +26,4 @@ public class Association {
 	}
 	
 	private RealClass class2 ;
-	
-	
-	private String getName() {
-		return this.name;
-	}
-	
-	private void setName(String name) {
-		this.name = name;
-	}
-	
-	private String name;
 }

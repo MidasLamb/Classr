@@ -1,67 +1,56 @@
 package visualobjects;
-
-
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Collection;
 
-import mouse.MouseClick;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.SingleClick;
-import visualobjects.visualclass.Association;
-import visualobjects.visualclass.AssociationHandle;
 import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {
-	private VisualObject selected;
-	private AssociationHandle handleStart;
-	private Collection<Association> associations;
 
 	public Container(int x, int y, int width, int height) {
 		super(x, y, width, height, null);
 	}
-
-		
+	
 	public void sendKeyToSelected(KeyEvent e){
-		if (selected != null){
-			this.selected.handleKey(e);
-			return;
-		}
-	}
-	
-	public boolean hasHandleStart(){
-		return (this.handleStart != null);
-	}
-	
-	public AssociationHandle getHandleStart(){
-		return this.handleStart;
+		if (getSelected() != null)
+			getSelected().handleKey(e);
 	}
 	
 	public void switchSelectedTo(VisualObject vo){
-		if (this.selected != null) 
-			this.selected.setIsSelected(false);
-		this.selected = vo;
+		//Unselect previous selected item
+		if (getSelected() != null) 
+			getSelected().setSelected(false);
+		//Select current selected item
 		if (vo != null)
-			vo.setIsSelected(true);
+			vo.setSelected(true);
+		setSelected(vo);
 	}
 	
-	private VisualObject createNewClass(int x, int y){
+	/**
+	 * 
+	 * @param 	x
+	 * 			The x coordinate where the class needs to be showed
+	 * @param 	y
+	 * 			The y coordinate where the class needs to be showed
+	 * @post	Creates a new visual class in this container
+	 * 				adds the class to the children
+	 * 				makes the text item of the class the selected item
+	 */
+	private void createNewClass(int x, int y){
 		VisualClass c = new VisualClass(x,y, this);
 		this.addChild(c);
-		
 		Text a = c.getName().getText();
 		this.switchSelectedTo(a);
-		return a;
 	}
 	
 	@Override
 	public void onDoubleClick(DoubleClick dc){
 		if (this.select(dc.getX(), dc.getY()).equals(this)){
 			//Double click on empty 
-			VisualObject v = this.createNewClass(dc.getX(), dc.getY());
-			return;
+			createNewClass(dc.getX(), dc.getY());
+		} else {
+			super.onDoubleClick(dc);
 		}
-		super.onDoubleClick(dc);
 	}
 	
 	@Override
@@ -79,5 +68,15 @@ public class Container extends VisualObject {
 			this.switchSelectedTo(null);
 	}
 	
+	//Getters and setters
+	private VisualObject getSelected() {
+		return selected;
+	}
 
+
+	private void setSelected(VisualObject selected) {
+		this.selected = selected;
+	}
+	
+	private VisualObject selected;
 }

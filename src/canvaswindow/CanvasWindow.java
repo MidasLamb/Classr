@@ -28,10 +28,7 @@ import javax.swing.JPanel;
  * </pre>
  */
 public class CanvasWindow {
-	
-	private Panel panel;
-	private Frame frame;
-	
+
 	/**
 	 * Initializes a CanvasWindow object.
 	 * 
@@ -40,16 +37,16 @@ public class CanvasWindow {
 	protected CanvasWindow(String title) {
 		if (!EventQueue.isDispatchThread())
 			throw new RuntimeException("You must call this constructor from the AWT dipatch thread");
-		panel = new Panel();
-		frame = new Frame(title);
+		setPanel(new Panel());
+		setFrame(new Frame(title));
 	}
-	
+
 	/**
 	 * Call this method if the canvas is out of date and needs to be repainted.
 	 * This will cause method {@link #paint(Graphics)} to be called after the current call of method handleMouseEvent or handleKeyEvent finishes.
 	 */
 	protected final void repaint() {
-		panel.repaint();
+		getPanel().repaint();
 	}
 	
 	/**
@@ -79,7 +76,6 @@ public class CanvasWindow {
 	}
 
 	private class Panel extends JPanel {
-		
 		{
 			setPreferredSize(new Dimension(600, 600));
 			setBackground(Color.WHITE);
@@ -134,7 +130,6 @@ public class CanvasWindow {
 			
 			CanvasWindow.this.paint(g);
 		}
-		
 	}
 
 	private class Frame extends JFrame {
@@ -142,14 +137,34 @@ public class CanvasWindow {
 			super(title);
 			
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			getContentPane().add(panel);
+			getContentPane().add(getPanel());
 			pack();
 			setLocationRelativeTo(null);
 		}
 	}
 
 	public final void show() {
-		frame.setVisible(true);
+		getFrame().setVisible(true);
 	}
+	
+	private Frame getFrame() {
+		return frame;
+	}
+
+	private void setFrame(Frame frame) {
+		this.frame = frame;
+	}
+	
+	private Frame frame;
+	
+	private Panel getPanel() {
+		return panel;
+	}
+
+	private void setPanel(Panel panel) {
+		this.panel = panel;
+	}
+	
+	private Panel panel;
 
 }

@@ -1,61 +1,44 @@
 package visualobjects.visualclass;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import main.Constants;
-import mouse.MouseClick;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
-import objects.Attribute;
-import objects.Methode;
 import objects.RealClass;
-import visualobjects.Text;
 import visualobjects.TextBox;
 import visualobjects.VisualObject;
 
-public class VisualClass extends VisualObject {
-	private final RealClass realClass;
-	
-	private TextBox name;
-	private AssociationHandle associationHandle;
-	private Collection<Association> associations;
-
-	private Collection<TextBox> attributes;
-	private Collection<TextBox> methods;
+public class VisualClass extends VisualObject {	
 
 	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
 		super(x, y, width, height, parent);
-		this.realClass = new RealClass();
+		this.realClass = new RealClass(this);
 		
-		this.setAttributes(new ArrayList<TextBox>());
-		this.setMethods(new ArrayList<TextBox>());
-		this.setName(new TextBox(this.getX(), this.getY(), 5, this));
+		this.setAttributes(new HashSet<>());
+		this.setMethods(new HashSet<>());
+		this.setName(new TextBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse"));
 		this.addChild(this.getName());
 		
 		this.updateDimensions();
-		this.setAssociations(new ArrayList<Association>());
+		this.setAssociations(new ArrayList<VisualAssociation>());
 		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, this));
 		this.addChild(this.getAssociationHandle());
-		
-		
 	}
 
 	public VisualClass(int x, int y, VisualObject parent){
 		this(x,y, 100,200, parent);
 	}
 	
-	
-	
+	@Override
 	public void show(Graphics g){
-		super.show(g);
 		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int y = this.getY();
-		
 		
 		y += this.getName().getHeight();
 		
@@ -71,11 +54,14 @@ public class VisualClass extends VisualObject {
 			y += t.getHeight();
 		}
 		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
+		super.show(g);
 	}
 	
-
-	
-	public void updateDimensions(){
+	/**
+	 * @post calculates the height of this object
+	 * 			and sets it
+	 */
+	private void updateDimensions(){
 		int y = this.getY();
 		
 		y += this.getName().getHeight();
@@ -86,7 +72,6 @@ public class VisualClass extends VisualObject {
 		}
 		
 		y +=  Constants.CLASS_WHITE_SPACE;
-		//TODO magic number
 		
 		for (TextBox t: this.getMethods()){
 			t.setY(y);
@@ -96,26 +81,6 @@ public class VisualClass extends VisualObject {
 		y +=  Constants.CLASS_WHITE_SPACE;
 		
 		this.setHeight(y - this.getY());
-	}
-
-	private Collection<TextBox> getAttributes() {
-		return attributes;
-	}
-
-	private void setAttributes(Collection<TextBox> attributes) {
-		this.attributes = attributes;
-	}
-
-	private Collection<TextBox> getMethods() {
-		return methods;
-	}
-
-	private void setMethods(Collection<TextBox> methods) {
-		this.methods = methods;
-	}
-
-	public RealClass getRealClass() {
-		return realClass;
 	}
 	
 	private void addAttribute(TextBox a){
@@ -128,28 +93,20 @@ public class VisualClass extends VisualObject {
 		this.addChild(m);
 	}
 	
-	public TextBox createAttribute(){
+	private TextBox createAttribute(){
 		TextBox t = new TextBox(this.getX(),
-				this.getY(), 5, this);
+				this.getY(), 5, this, "Nieuw attribuut");
 		this.addAttribute(t);
 		this.updateDimensions();
 		return t;
 	}
 	
-	public TextBox createMethod(){
+	private TextBox createMethod(){
 		TextBox t = new TextBox(this.getX(),
-				this.getY(), 5, this);
+				this.getY(), 5, this, "Nieuwe methode");
 		this.addMethod(t);
 		this.updateDimensions();
 		return t;
-	}
-	
-	public TextBox getName() {
-		return name;
-	}
-
-	public void setName(TextBox name) {
-		this.name = name;
 	}
 	
 	private boolean isInEmptyAttribute(int x, int y){
@@ -165,7 +122,6 @@ public class VisualClass extends VisualObject {
 			bottom += t.getHeight();
 		}
 		bottom +=  Constants.CLASS_WHITE_SPACE;
-		//TODO magic number
 		
 		return VisualClass.isBetween(left, right, x) 
 				&& VisualClass.isBetween(top, bottom, y);
@@ -194,34 +150,19 @@ public class VisualClass extends VisualObject {
 		
 		bottom += Constants.CLASS_WHITE_SPACE;
 		
-		return VisualClass.isBetween(left, right, x) 
-				&& VisualClass.isBetween(top, bottom, y);
+		return isBetween(left, right, x) 
+				&& isBetween(top, bottom, y);
 	}
 	
-	private AssociationHandle getAssociationHandle() {
-		return associationHandle;
-	}
-
-	private void setAssociationHandle(AssociationHandle associationHandle) {
-		this.associationHandle = associationHandle;
-	}
-	
-	public void addAssociation(Association a){
+	void addAssociation(VisualAssociation a){
+		System.out.println("Added association");
 		this.getAssociations().add(a);
 		this.addChild(a);
 	}
 	
-	public void removeAssociation(Association a){
+	void removeAssociation(VisualAssociation a){
 		this.removeChild(a);
 		this.getAssociations().remove(a);
-	}
-
-	private Collection<Association> getAssociations() {
-		return associations;
-	}
-
-	private void setAssociations(Collection<Association> associations) {
-		this.associations = associations;
 	}
 
 	@Override
@@ -229,7 +170,7 @@ public class VisualClass extends VisualObject {
 		if (this.getAssociationHandle().isIn(x, y)){
 			return true;
 		}
-		for (Association a: this.getAssociations()){
+		for (VisualAssociation a: this.getAssociations()){
 			if (a.isIn(x, y))
 				return true;
 		}
@@ -239,7 +180,7 @@ public class VisualClass extends VisualObject {
 	@Override
 	public void delete(){
 		super.delete();
-		for (Association a : this.getAssociations()){
+		for (VisualAssociation a : this.getAssociations()){
 			a.deleteFromOther(this);;
 		}
 	}
@@ -266,21 +207,18 @@ public class VisualClass extends VisualObject {
 	
 	@Override
 	public void onClick(SingleClick sc){
-		if (this.getAssociationHandle().isIn(sc.getX(), sc.getY())){
+		if (this.getAssociationHandle().isIn(sc.getX(), sc.getY()))
 			this.getAssociationHandle().onClick(sc);
-			return;
-		}
-		
-		super.onClick(sc);
+		else
+			super.onClick(sc);
 	}
 	
 	@Override
 	public void onDragEnd(Drag d){
-		if (this.getAssociationHandle().isIn(d.getEndX(), d.getEndY())){
+		if (this.getAssociationHandle().isIn(d.getEndX(), d.getEndY()))
 			this.getAssociationHandle().onDragEnd(d);
-			return;
-		}
-		super.onDragEnd(d);
+		else
+			super.onDragEnd(d);
 	}
 	
 	@Override
@@ -302,5 +240,63 @@ public class VisualClass extends VisualObject {
 		if (v.equals(this.getName()))
 			this.delete();
 	}
+	
+	//Getters and setters
+	
+	private AssociationHandle getAssociationHandle() {
+		return associationHandle;
+	}
+
+	private void setAssociationHandle(AssociationHandle associationHandle) {
+		this.associationHandle = associationHandle;
+	}
+	
+	private AssociationHandle associationHandle;
+	
+	private Collection<VisualAssociation> getAssociations() {
+		return associations;
+	}
+
+	private void setAssociations(Collection<VisualAssociation> associations) {
+		this.associations = associations;
+	}
+	
+	private Collection<VisualAssociation> associations;
+	
+	public TextBox getName() {
+		return name;
+	}
+
+	public void setName(TextBox name) {
+		this.name = name;
+	}
+	
+	private TextBox name;
+	
+	private Collection<TextBox> getAttributes() {
+		return attributes;
+	}
+
+	private void setAttributes(Collection<TextBox> attributes) {
+		this.attributes = new HashSet<>(attributes);
+	}
+	
+	private HashSet<TextBox> attributes;	
+	
+	private Collection<TextBox> getMethods() {
+		return methods;
+	}
+
+	private void setMethods(Collection<TextBox> methods) {
+		this.methods = new HashSet<>(methods);
+	}
+	
+	private HashSet<TextBox> methods;
+
+	public RealClass getRealClass() {
+		return realClass;
+	}
+	
+	private final RealClass realClass;
 
 }

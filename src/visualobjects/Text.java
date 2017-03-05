@@ -6,28 +6,39 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public class Text extends VisualObject {
-	private boolean isStandardText;
-	private String standardTextString = "okidoki";
 
-	public Text(int x, int y, int width, int height, VisualObject parent) {
+	public Text(int x, int y, int width, int height, VisualObject parent, String standardstring) {
 		super(x, y, width, height, parent);
-		this.setText("New Text");
+		setStandardTextString(standardstring);
+		setText(getStandardTextString());
 	}
 	
-	public Text(int x, int y, VisualObject parent){
+	public Text(int x, int y, VisualObject parent, String standardstring){
 		// 50, 16 is the standard size of the font if the text is "New Text"
-		this(x,y, 50,16, parent);
+		this(x, y, 50, 16, parent, standardstring);
 	}
 	
+	/**
+	 * @post removes one letter from text
+	 */
 	public void removeLetter(){
 		if (this.getText().length() > 0)
-			this.setText(text.substring(0, text.length()-1));
-		//TODO string length = 0
+			this.setText(getText().substring(0, getText().length()-1));
 	}
 	
-	public void addLetter(String i){
-		this.setText(this.getText() + i);
+	/**
+	 * 
+	 * @param 	c
+	 * 			add character to the text
+	 */
+	private void addLetter(char c){
+		this.setText(this.getText() + c);
 	}
+
+	
+	/**
+	 * @post shows the text frame
+	 */
 	@Override 
 	public void show(Graphics g){
 		//Limit the text size if it is to long
@@ -42,43 +53,77 @@ public class Text extends VisualObject {
 		//	begins bottom left
 		g.drawString(this.getText(), this.getX(), this.getY() + this.getHeight());
 		
-		//Draw cursor
-		if (this.isSelected()){
-			g.drawLine(this.getX() + this.getWidth() + 1,
-					this.getY(),
-					this.getX() + this.getWidth() + 1,
-					this.getY() + this.getHeight());
-			g.drawLine(this.getX() + this.getWidth() + 2,
-					this.getY(),
-					this.getX() + this.getWidth() + 2,
-					this.getY() + this.getHeight());
+		//If the text is selected draw the cursor
+		if (this.isSelected())
+			drawCursor(g);
+	}
+
+	/**
+	 * 
+	 * @param g
+	 * 			Graphics
+	 * @post draws the cursor
+	 */
+	private void drawCursor(Graphics g) {
+		g.drawLine(this.getX() + this.getWidth() + 1,
+				this.getY(),
+				this.getX() + this.getWidth() + 1,
+				this.getY() + this.getHeight());
+		g.drawLine(this.getX() + this.getWidth() + 2,
+				this.getY(),
+				this.getX() + this.getWidth() + 2,
+				this.getY() + this.getHeight());
+	}
+	
+	@Override
+	public void handleKey(KeyEvent e){
+		//Get the key and put it in a string
+		String s = Character.toString(e.getKeyChar());
+		//Delete letter if you press the backspace
+		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")){
+			this.removeLetter();
+		//Unselect this object
+		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			this.setSelected(false);
+		// if it isn't an action key write it down
+		} else if(!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT){
+			this.addLetter(s.charAt(0));
 		}
 	}
 	
 	/**
-	 * Changes the text due to keypresses
+	 * 
+	 * @param 	g
+	 * 			Graphics
+	 * @post 	cuts the text so it's not larger than the box
 	 */
-	public void handleKey(KeyEvent e){
-		//Get the key and put it in a string
-		String s = Character.toString(e.getKeyChar());
-		//Delete text if you press the backspace
-		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")){
-			this.removeLetter();
-		//Go out of object if you press enter
-		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			this.setIsSelected(false);
-		// if it isn't an action key you can write it down
-		} else if(!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT){
-			this.addLetter(s);
-		}
-	}
-	
 	private void cutTextMaxWidth(Graphics g){
 		FontMetrics m = g.getFontMetrics();
 		while(m.stringWidth(getText()) > MAX_TEXT_WIDTH){
 			removeLetter();	
 		}
 	}
+
+	@Override
+	public void setSelected(boolean b){
+		boolean prev = this.isSelected();
+		super.setSelected(b);
+		if (this.isSelected() == false && prev){
+			if (this.getText().length() == 0){
+				this.setText(this.getStandardTextString());
+				setIsStandardTextSet(true);
+			}
+		}
+		
+		if (this.isSelected() && prev == false){
+			if (isStandardTextSet()){
+				this.setText("");
+				setIsStandardTextSet(false);
+			}
+		}
+	}
+	
+	//Getters and setters
 	
 	private String getText() {
 		return text;
@@ -89,23 +134,24 @@ public class Text extends VisualObject {
 	}
 	
 	private String text;
-
-	@Override
-	public void setIsSelected(boolean b){
-		boolean prev = this.isSelected();
-		super.setIsSelected(b);
-		if (this.isSelected() == false && prev){
-			if (this.getText().length() == 0){
-				this.setText(this.standardTextString);
-				this.isStandardText = true;
-			}
-		}
-		
-		if (this.isSelected() && prev == false){
-			if (this.isStandardText){
-				this.setText("");
-				this.isStandardText = false;
-			}
-		}
+	
+	private boolean isStandardTextSet() {
+		return isStandardTextSet;
 	}
+	
+	private String getStandardTextString() {
+		return standardTextString;
+	}
+
+	private void setStandardTextString(String standardTextString) {
+		this.standardTextString = standardTextString;
+	}
+
+	private String standardTextString;
+
+	private void setIsStandardTextSet(boolean isStandardText) {
+		this.isStandardTextSet = isStandardText;
+	}
+
+	private boolean isStandardTextSet;
 }
