@@ -151,7 +151,7 @@ public class VisualClass extends VisualObject {
 		bottom += Constants.CLASS_WHITE_SPACE;
 		
 		return isBetween(left, right, x) 
-				&& this.isBetween(top, bottom, y);
+				&& isBetween(top, bottom, y);
 	}
 	
 	void addAssociation(VisualAssociation a){
