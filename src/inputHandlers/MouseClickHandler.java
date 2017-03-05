@@ -54,6 +54,8 @@ public class MouseClickHandler {
 					Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE;
 	}
 	
+	//Getters and setters
+	
 	private long getLastClickTime() {
 		return lastClickTime;
 	}
