@@ -98,7 +98,7 @@ public class VisualClass extends VisualObject {
 	private TextBox createAttribute(){
 		Attribute attr = getLogicalObject().addAttributes();
 		TextBox t = new TextBox(this.getX(),
-				this.getY(), 5, this, "Nieuw attribuut", attr);
+				this.getY(), 5, this, attr);
 		this.addAttribute(t);
 		this.updateDimensions();
 		return t;
@@ -107,7 +107,7 @@ public class VisualClass extends VisualObject {
 	private TextBox createMethod(){
 		Method method = getLogicalObject().addMethod();
 		TextBox t = new TextBox(this.getX(),
-				this.getY(), 5, this, "Nieuwe methode", method);
+				this.getY(), 5, this, method);
 		this.addMethod(t);
 		this.updateDimensions();
 		return t;

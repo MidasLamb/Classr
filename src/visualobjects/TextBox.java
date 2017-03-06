@@ -71,10 +71,21 @@ public class TextBox extends VisualObject {
 				Constants.STANDARD_PADDING,parent, standardstring, object);
 	}
 	
+	public TextBox(int x, int y, int padding, VisualObject parent, Logical_objects object){
+		this(x,y, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
+				Constants.STANDARD_PADDING,parent, "", object);
+	}
+	
 	public TextBox(int x, int y, VisualObject parent, String standardstring, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,
 				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
 				parent, standardstring, object);
+	}
+	
+	public TextBox(int x, int y, VisualObject parent, Logical_objects object){
+		this(x,y, Constants.CLASS_WIDTH,
+				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
+				parent, "", object);
 	}
 	
 	@Override
