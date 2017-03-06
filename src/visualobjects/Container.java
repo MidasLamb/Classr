@@ -1,5 +1,4 @@
 package visualobjects;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import mouse.clicks.DoubleClick;
