@@ -15,8 +15,7 @@ public class AssociationHandle extends VisualObject {
 	}
 
 	@Override
-	public void show(Graphics g) {
-		super.show(g);
+	public void draw(Graphics g) {
 		g.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 	
