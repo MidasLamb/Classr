@@ -12,7 +12,7 @@ public class RealClass extends Logical_objects {
 		this.setVisualClass(vc);
 	}
 	
-	public Attribute addAttributes() {
+	public Attribute addAttribute() {
 		Attribute attr = new Attribute();
 		this.attributes.add(attr);
 		return attr;
@@ -40,7 +40,7 @@ public class RealClass extends Logical_objects {
 		throw new IllegalStateException();
 	}
 	
-	private HashSet<Attribute> getAttributes() {
+	public HashSet<Attribute> getAttributes() {
 		return new HashSet<>(attributes);
 	}
 
