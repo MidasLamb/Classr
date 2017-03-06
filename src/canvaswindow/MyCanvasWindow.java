@@ -16,7 +16,6 @@ public class MyCanvasWindow extends CanvasWindow {
 		setContainer(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT));
 		setMouseClickHandler(new MouseClickHandler(getContainer()));
 		setKeyHandler(new KeyHandler(getContainer()));
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
@@ -66,16 +65,6 @@ public class MyCanvasWindow extends CanvasWindow {
 	}
 	
 	private Container container;
-
-	public boolean isMousePressed() {
-		return mousePressed;
-	}
-
-	public void setMousePressed(boolean mousePressed) {
-		this.mousePressed = mousePressed;
-	}
-	
-	private boolean mousePressed = false;
 	
 	private MouseClickHandler getMouseClickHandler() {
 		return mouseClickHandler;

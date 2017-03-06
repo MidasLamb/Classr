@@ -1,4 +1,5 @@
 package visualobjects;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import mouse.clicks.DoubleClick;
@@ -50,7 +51,7 @@ public class Container extends VisualObject {
 	private void createNewClass(int x, int y){
 		VisualClass c = new VisualClass(x,y, this);
 		this.addChild(c);
-		TextHandler a = c.getName().getText();
+		VisualObject a = c.getName().getContent();
 		this.switchSelectedTo(a);
 	}
 	

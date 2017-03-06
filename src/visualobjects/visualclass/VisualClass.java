@@ -12,7 +12,7 @@ import mouse.clicks.SingleClick;
 import objects.Attribute;
 import objects.Method;
 import objects.RealClass;
-import visualobjects.TextBox;
+import visualobjects.PaddingBox;
 import visualobjects.VisualObject;
 
 public class VisualClass extends VisualObject {	
@@ -23,7 +23,7 @@ public class VisualClass extends VisualObject {
 		
 		this.setAttributes(new HashSet<>());
 		this.setMethods(new HashSet<>());
-		this.setName(new TextBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
+		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
 		this.addChild(this.getName());
 		
 		this.updateDimensions();
@@ -37,14 +37,14 @@ public class VisualClass extends VisualObject {
 	}
 	
 	@Override
-	public void show(Graphics g){
+	public void draw(Graphics g){
 		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int y = this.getY();
 		
 		y += this.getName().getHeight();
 		
-		for (TextBox t : this.getAttributes()){
+		for (PaddingBox t : this.getAttributes()){
 			y += t.getHeight();
 		}
 		
@@ -52,11 +52,10 @@ public class VisualClass extends VisualObject {
 		y +=  Constants.CLASS_WHITE_SPACE;
 
 		
-		for (TextBox t: this.getMethods()){
+		for (PaddingBox t: this.getMethods()){
 			y += t.getHeight();
 		}
 		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
-		super.show(g);
 	}
 	
 	/**
@@ -68,14 +67,14 @@ public class VisualClass extends VisualObject {
 		
 		y += this.getName().getHeight();
 		
-		for (TextBox t : this.getAttributes()){
+		for (PaddingBox t : this.getAttributes()){
 			t.setY(y);
 			y += t.getHeight();
 		}
 		
 		y +=  Constants.CLASS_WHITE_SPACE;
 		
-		for (TextBox t: this.getMethods()){
+		for (PaddingBox t: this.getMethods()){
 			t.setY(y);
 			y += t.getHeight();
 		}
@@ -85,28 +84,28 @@ public class VisualClass extends VisualObject {
 		this.setHeight(y - this.getY());
 	}
 	
-	private void addAttribute(TextBox a){
+	private void addAttribute(PaddingBox a){
 		this.getAttributes().add(a);
 		this.addChild(a);
 	}
 	
-	private void addMethod(TextBox m){
+	private void addMethod(PaddingBox m){
 		this.getMethods().add(m);
 		this.addChild(m);
 	}
 	
-	private TextBox createAttribute(){
-		Attribute attr = getLogicalObject().addAttributes();
-		TextBox t = new TextBox(this.getX(),
+	private PaddingBox createAttribute(){
+		Attribute attr = getLogicalObject().addAttribute();
+		PaddingBox t = new PaddingBox(this.getX(),
 				this.getY(), 5, this, attr);
 		this.addAttribute(t);
 		this.updateDimensions();
 		return t;
 	}
 	
-	private TextBox createMethod(){
+	private PaddingBox createMethod(){
 		Method method = getLogicalObject().addMethod();
-		TextBox t = new TextBox(this.getX(),
+		PaddingBox t = new PaddingBox(this.getX(),
 				this.getY(), 5, this, method);
 		this.addMethod(t);
 		this.updateDimensions();
@@ -121,7 +120,7 @@ public class VisualClass extends VisualObject {
 		
 		bottom += this.getName().getHeight();
 		
-		for (TextBox t : this.getAttributes()){
+		for (PaddingBox t : this.getAttributes()){
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
@@ -140,14 +139,14 @@ public class VisualClass extends VisualObject {
 		
 		bottom += this.getName().getHeight();
 		
-		for (TextBox t : this.getAttributes()){
+		for (PaddingBox t : this.getAttributes()){
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
 		top +=  Constants.CLASS_WHITE_SPACE;
 		bottom +=  Constants.CLASS_WHITE_SPACE;
 		
-		for (TextBox t: this.getMethods()){
+		for (PaddingBox t: this.getMethods()){
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
@@ -159,7 +158,6 @@ public class VisualClass extends VisualObject {
 	}
 	
 	void addAssociation(VisualAssociation a){
-		System.out.println("Added association");
 		this.getAssociations().add(a);
 		this.addChild(a);
 	}
@@ -229,13 +227,13 @@ public class VisualClass extends VisualObject {
 	@Override
 	public void onDoubleClick(DoubleClick dc){
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())){
-			TextBox t = this.createAttribute();
-			this.getContainer().switchSelectedTo(t.getText());
+			PaddingBox t = this.createAttribute();
+			this.getContainer().switchSelectedTo(t.getContent());
 			
 		}
 		if (this.isInEmptyMethod(dc.getX(), dc.getY())){
-			TextBox t = this.createMethod();
-			this.getContainer().switchSelectedTo(t.getText());
+			PaddingBox t = this.createMethod();
+			this.getContainer().switchSelectedTo(t.getContent());
 		}
 	}
 	
@@ -277,34 +275,34 @@ public class VisualClass extends VisualObject {
 	
 	private Collection<VisualAssociation> associations;
 	
-	public TextBox getName() {
+	public PaddingBox getName() {
 		return name;
 	}
 
-	public void setName(TextBox name) {
+	public void setName(PaddingBox name) {
 		this.name = name;
 	}
 	
-	private TextBox name;
+	private PaddingBox name;
 	
-	private Collection<TextBox> getAttributes() {
+	private Collection<PaddingBox> getAttributes() {
 		return attributes;
 	}
 
-	private void setAttributes(Collection<TextBox> attributes) {
+	private void setAttributes(Collection<PaddingBox> attributes) {
 		this.attributes = new HashSet<>(attributes);
 	}
 	
-	private HashSet<TextBox> attributes;	
+	private HashSet<PaddingBox> attributes;	
 	
-	private Collection<TextBox> getMethods() {
+	private Collection<PaddingBox> getMethods() {
 		return methods;
 	}
 
-	private void setMethods(Collection<TextBox> methods) {
+	private void setMethods(Collection<PaddingBox> methods) {
 		this.methods = new HashSet<>(methods);
 	}
 	
-	private HashSet<TextBox> methods;
+	private HashSet<PaddingBox> methods;
 
 }

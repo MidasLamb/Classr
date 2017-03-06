@@ -12,7 +12,7 @@ public class RealClass extends Logical_objects {
 		this.setVisualClass(vc);
 	}
 	
-	public Attribute addAttributes() {
+	public Attribute addAttribute() {
 		Attribute attr = new Attribute();
 		this.attributes.add(attr);
 		return attr;
@@ -40,7 +40,7 @@ public class RealClass extends Logical_objects {
 		throw new IllegalStateException();
 	}
 	
-	private HashSet<Attribute> getAttributes() {
+	HashSet<Attribute> getAttributes() {
 		return new HashSet<>(attributes);
 	}
 
@@ -62,17 +62,17 @@ public class RealClass extends Logical_objects {
 		}
 	}
 	
-	private HashSet<Method> getMethodes() {
+	HashSet<Method> getMethods() {
 		return new HashSet<>(this.methods);
 	}
 
-	private void setMethodes(HashSet<Method> methodes) {
-		this.methods = methodes;
+	private void setMethods(HashSet<Method> methods) {
+		this.methods = methods;
 	}
 
 	private HashSet<Method> methods = new HashSet<>();
 	
-	private HashSet<Association> getAssociations() {
+	HashSet<Association> getAssociations() {
 		return new HashSet<>(this.associations);
 	}
 	
@@ -92,7 +92,7 @@ public class RealClass extends Logical_objects {
 	
 	private HashSet<Association> associations = new HashSet<>();
 
-	private VisualClass getVisualClass() {
+	VisualClass getVisualClass() {
 		return visualClass;
 	}
 
