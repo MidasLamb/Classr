@@ -10,7 +10,10 @@ public class RealClassTest {
 
 	@Test
 	public void testRealClass() {
-		fail("Not yet implemented");
+		VisualClass vc = new VisualClass(0, 0, null);
+		RealClass realclass = new RealClass(vc);
+		
+		assertTrue(realclass.getVisualClass() == vc);
 	}
 
 	@Test
@@ -35,32 +38,53 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildMethod() {
-		fail();
+		VisualClass vc = new VisualClass(0, 0, null);
+		RealClass realclass = new RealClass(vc);
+		Method meth = realclass.addMethod();
+		
+		realclass.deleteChild(meth);
+		assertFalse(realclass.getMethods().contains(meth));
 	}
 
 	@Test
 	public void testDeleteChildAssociation() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeleteChildLogical_objects() {
-		fail("Not yet implemented");
+		VisualClass vc = new VisualClass(0, 0, null);
+		RealClass rc1 = new RealClass(vc);
+		RealClass rc2 = new RealClass(vc);
+		Association ass = new Association(rc1, rc2);
+		
+		rc1.deleteChild(ass);
+		assertFalse(rc1.getAssociations().contains(ass));
 	}
 
 	@Test
 	public void testAddMethod() {
-		fail("Not yet implemented");
+		VisualClass vc = new VisualClass(0, 0, null);
+		RealClass realclass = new RealClass(vc);
+		int initialSize = realclass.getMethods().size();
+		Method meth = realclass.addMethod();
+		int finalSize = realclass.getMethods().size();
+		assertTrue(finalSize == initialSize + 1 && realclass.getMethods().contains(meth));
 	}
 
 	@Test
 	public void testAddAssociation() {
-		fail("Not yet implemented");
+		VisualClass vc = new VisualClass(0, 0, null);
+		RealClass rc1 = new RealClass(vc);
+		RealClass rc2 = new RealClass(vc);
+		Association ass = new Association(rc1, rc2);
+		assertTrue(rc1.getAssociations().contains(ass) && rc2.getAssociations().contains(ass));
 	}
 
 	@Test
 	public void testDeleteAssociation() {
-		fail("Not yet implemented");
+		VisualClass vc = new VisualClass(0, 0, null);
+		RealClass rc1 = new RealClass(vc);
+		RealClass rc2 = new RealClass(vc);
+		Association ass = new Association(rc1, rc2);
+		
+		rc1.deleteAssociation(ass);
+		assertFalse(rc1.getAssociations().contains(ass));
 	}
 
 }
