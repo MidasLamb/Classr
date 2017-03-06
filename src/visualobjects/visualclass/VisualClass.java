@@ -95,7 +95,7 @@ public class VisualClass extends VisualObject {
 	}
 	
 	private TextBox createAttribute(){
-		Attribute attr = getLogicalObject().addAttributes();
+		Attribute attr = getLogicalObject().addAttribute();
 		TextBox t = new TextBox(this.getX(),
 				this.getY(), 5, this, attr);
 		this.addAttribute(t);
