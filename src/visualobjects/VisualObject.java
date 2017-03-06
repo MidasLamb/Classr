@@ -12,11 +12,13 @@ import mouse.clicks.SingleClick;
 import objects.Logical_objects;
 
 public abstract class VisualObject{
+	private int z;
 
-	public VisualObject(int x,int y,int width, int height, VisualObject parent) {
+	public VisualObject(int x,int y,int z,int width, int height, VisualObject parent) {
 		setChildren(new ArrayList<VisualObject>());
 		setX(x);
 		setY(y);
+		setZ(z);
 		setWidth(width);
 		setHeight(height);
 		setParent(parent);
@@ -30,6 +32,7 @@ public abstract class VisualObject{
 	 * 			shows this object red if it is selected
 	 */
 	public void show(Graphics g) {
+		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);
 		this.draw(g);
@@ -273,5 +276,13 @@ public abstract class VisualObject{
 	}	
 	
 	private Logical_objects logicalObject;
+
+	protected int getZ() {
+		return z;
+	}
+
+	private void setZ(int z) {
+		this.z = z;
+	}
 	
 }

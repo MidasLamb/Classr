@@ -9,7 +9,7 @@ import visualobjects.visualclass.VisualClass;
 public class Container extends VisualObject {
 
 	public Container(int x, int y, int width, int height) {
-		super(x, y, width, height, null);
+		super(x, y, Integer.MIN_VALUE, width, height, null);
 	}
 	
 	
@@ -49,7 +49,7 @@ public class Container extends VisualObject {
 	 * 				makes the text item of the class the selected item
 	 */
 	private void createNewClass(int x, int y){
-		VisualClass c = new VisualClass(x,y, this);
+		VisualClass c = new VisualClass(x,y, 1, this);
 		this.addChild(c);
 		VisualObject a = c.getName().getContent();
 		this.switchSelectedTo(a);

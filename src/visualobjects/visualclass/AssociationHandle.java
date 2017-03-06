@@ -9,8 +9,8 @@ import visualobjects.VisualObject;
 
 public class AssociationHandle extends VisualObject {
 
-	public AssociationHandle(int x, int y, VisualClass parent) {
-		super(x, y, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
+	public AssociationHandle(int x, int y, int z, VisualClass parent) {
+		super(x, y, z, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
 	}
 
 	@Override

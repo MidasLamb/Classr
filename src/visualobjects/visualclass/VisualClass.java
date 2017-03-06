@@ -17,8 +17,8 @@ import visualobjects.VisualObject;
 
 public class VisualClass extends VisualObject {	
 
-	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
-		super(x, y, width, height, parent);
+	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
+		super(x, y, z, width, height, parent);
 		setLogicalObject(new RealClass(this));
 		
 		this.setAttributes(new HashSet<>());
@@ -28,12 +28,13 @@ public class VisualClass extends VisualObject {
 		
 		this.updateDimensions();
 		this.setAssociations(new ArrayList<VisualAssociation>());
-		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, this));
+		//TODO Fix z values;
+		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, 0, this));
 		this.addChild(this.getAssociationHandle());
 	}
 
-	public VisualClass(int x, int y, VisualObject parent){
-		this(x,y, 100,200, parent);
+	public VisualClass(int x, int y, int z, VisualObject parent){
+		this(x,y, z, 100,200, parent);
 	}
 	
 	@Override

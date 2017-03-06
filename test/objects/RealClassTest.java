@@ -10,7 +10,7 @@ public class RealClassTest {
 
 	@Test
 	public void testRealClass() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass realclass = new RealClass(vc);
 		
 		assertTrue(realclass.getVisualClass() == vc);
@@ -18,7 +18,7 @@ public class RealClassTest {
 
 	@Test
 	public void testAddAttributes() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass realclass = new RealClass(vc);
 		int initialSize = realclass.getAttributes().size();
 		Attribute attr = realclass.addAttribute();
@@ -28,7 +28,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildAttribute() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass realclass = new RealClass(vc);
 		Attribute attr = realclass.addAttribute();
 		
@@ -38,7 +38,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildMethod() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass realclass = new RealClass(vc);
 		Method meth = realclass.addMethod();
 		
@@ -48,7 +48,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildAssociation() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass rc1 = new RealClass(vc);
 		RealClass rc2 = new RealClass(vc);
 		Association ass = new Association(rc1, rc2);
@@ -59,7 +59,7 @@ public class RealClassTest {
 
 	@Test
 	public void testAddMethod() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass realclass = new RealClass(vc);
 		int initialSize = realclass.getMethods().size();
 		Method meth = realclass.addMethod();
@@ -69,7 +69,7 @@ public class RealClassTest {
 
 	@Test
 	public void testAddAssociation() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass rc1 = new RealClass(vc);
 		RealClass rc2 = new RealClass(vc);
 		Association ass = new Association(rc1, rc2);
@@ -78,7 +78,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteAssociation() {
-		VisualClass vc = new VisualClass(0, 0, null);
+		VisualClass vc = new VisualClass(0, 0, 0, null);
 		RealClass rc1 = new RealClass(vc);
 		RealClass rc2 = new RealClass(vc);
 		Association ass = new Association(rc1, rc2);

@@ -32,16 +32,16 @@ public class PaddingBox extends VisualObject {
 	 * @param 	object
 	 * 			Logical object of which this TextBox is the textual representation
 	 */
-	public PaddingBox(int x, int y, int width, int height, int paddingLeft, int paddingRight, 
+	public PaddingBox(int x, int y, int z, int width, int height, int paddingLeft, int paddingRight, 
 			int paddingTop, int paddingBottom, VisualObject parent, String standardstring, Logical_objects object){
-		super(x, y, width, height, parent);
+		super(x, y, z, width, height, parent);
 		setLogicalObject(object);
 		this.setPaddingLeft(paddingLeft);
 		this.setPaddingRight(paddingRight);
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
 		this.setContent(new TextHandler(this.getX() + this.getPaddingLeft(),
-				this.getY() + this.getPaddingTop(), this, standardstring, getLogicalObject()));
+				this.getY() + this.getPaddingTop(), this.getZ() + 1, this, standardstring, getLogicalObject()));
 		this.addChild(this.getContent());
 	}
 	
@@ -63,29 +63,29 @@ public class PaddingBox extends VisualObject {
 	 * @param 	object
 	 * 			Logical object of which this TextBox is the textual representation
 	 */
-	public PaddingBox(int x, int y, int width, int height, int padding, 
+	public PaddingBox(int x, int y, int z, int width, int height, int padding, 
 			VisualObject parent, String standardstring, Logical_objects object){
-		this(x, y ,width, height, padding, padding, padding, padding, parent, standardstring, object);
+		this(x, y, z, width, height, padding, padding, padding, padding, parent, standardstring, object);
 	}
 	
-	public PaddingBox(int x, int y, int padding, VisualObject parent, String standardstring, Logical_objects object){
-		this(x,y, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
+	public PaddingBox(int x, int y, int z, int padding, VisualObject parent, String standardstring, Logical_objects object){
+		this(x,y, z, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
 				Constants.STANDARD_PADDING,parent, standardstring, object);
 	}
 	
-	public PaddingBox(int x, int y, int padding, VisualObject parent, Logical_objects object){
-		this(x,y, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
+	public PaddingBox(int x, int y, int z, int padding, VisualObject parent, Logical_objects object){
+		this(x,y, z, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
 				Constants.STANDARD_PADDING,parent, "", object);
 	}
 	
-	public PaddingBox(int x, int y, VisualObject parent, String standardstring, Logical_objects object){
-		this(x,y, Constants.CLASS_WIDTH,
+	public PaddingBox(int x, int y, int z,VisualObject parent, String standardstring, Logical_objects object){
+		this(x,y, z, Constants.CLASS_WIDTH,
 				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
 				parent, standardstring, object);
 	}
 	
-	public PaddingBox(int x, int y, VisualObject parent, Logical_objects object){
-		this(x,y, Constants.CLASS_WIDTH,
+	public PaddingBox(int x, int y, int z, VisualObject parent, Logical_objects object){
+		this(x,y, z, Constants.CLASS_WIDTH,
 				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
 				parent, "", object);
 	}

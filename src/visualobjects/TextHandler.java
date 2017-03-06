@@ -9,18 +9,18 @@ import objects.Logical_objects;
 
 public class TextHandler extends VisualObject {
 
-	public TextHandler(int x, int y, int width, int height, 
+	public TextHandler(int x, int y, int z, int width, int height, 
 			VisualObject parent, String standardstring, Logical_objects object) {
-		super(x, y, width, height, parent);
+		super(x, y, z, width, height, parent);
 		setLogicalObject(object);
 		setStandardTextString(standardstring);
 		setText(getStandardTextString());
 	}
 	
-	public TextHandler(int x, int y, VisualObject parent, 
+	public TextHandler(int x, int y,int z, VisualObject parent, 
 			String standardstring, Logical_objects object){
 		// 50, 16 is the standard size of the font if the text is "New Text"
-		this(x, y, 50, 16, parent, standardstring, object);
+		this(x, y, z, 50, 16, parent, standardstring, object);
 	}
 	
 	/**
