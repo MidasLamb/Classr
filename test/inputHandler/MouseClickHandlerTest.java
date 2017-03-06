@@ -11,8 +11,10 @@ import org.junit.Test;
 
 import inputHandlers.MouseClickHandler;
 import mouse.clicks.DoubleClick;
+import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import visualobjects.Container;
+import visualobjects.VisualObject;
 
 public class MouseClickHandlerTest {
 	
@@ -253,6 +255,14 @@ public class MouseClickHandlerTest {
 		assertFalse(container.recievedDoubleClick);
 	}
 	
+	@Test
+	public void dragTest1() throws InterruptedException{
+		testContainer container = new testContainer();
+		MouseClickHandler handler = new MouseClickHandler(container);
+		simulateDrag(0, 0, 1, 1, handler);
+		assertTrue(container.isDragged);
+	}
+	
 	private static void simulateSingleClick(MouseClickHandler handler){
 		simulateSingleClick(0, 0, handler);
 	}
@@ -260,6 +270,14 @@ public class MouseClickHandlerTest {
 	private static void simulateSingleClick(int x, int y, MouseClickHandler handler){
 		Component dummy = new List();
 		MouseEvent event = new MouseEvent(dummy,MouseEvent.MOUSE_PRESSED,1,MouseEvent.BUTTON1,x,y,2,false);
+		handler.handleInput(event);
+	}
+	
+	private static void simulateDrag(int x1, int y1, int x2, int y2, MouseClickHandler handler){
+		Component dummy = new List();
+		MouseEvent event = new MouseEvent(dummy,MouseEvent.MOUSE_DRAGGED,1,MouseEvent.BUTTON1,x1,y1,2,false);
+		handler.handleInput(event);
+		event = new MouseEvent(dummy,MouseEvent.MOUSE_RELEASED,1,MouseEvent.BUTTON1,x2,y2,2,false);
 		handler.handleInput(event);
 	}
 	
@@ -281,9 +299,15 @@ public class MouseClickHandlerTest {
 			recievedDoubleClick = true;
 		}
 		
+		@Override
+		public void onDragEnd(Drag d){
+			isDragged = true;
+		}
+		
 		public int amountRecievedClicks;
 		public boolean recievedSingleClick;
 		public boolean recievedDoubleClick;
+		public boolean isDragged;
 		
 	}
 
