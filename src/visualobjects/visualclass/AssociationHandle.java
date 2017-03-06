@@ -22,7 +22,6 @@ public class AssociationHandle extends VisualObject {
 	
 	@Override
 	public void onDragEnd(Drag d){
-		VisualClass parent = (VisualClass) this.getParent();
 		VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
 		if (otherHandle instanceof AssociationHandle){
 			VisualClass other = (VisualClass) otherHandle.getParent();
