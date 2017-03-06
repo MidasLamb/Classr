@@ -5,22 +5,22 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import objects.LogicalObject;
+import objects.Logical_objects;
 
 public class TextHandler extends VisualObject {
 
-	public TextHandler(int x, int y, int width, int height, 
-			VisualObject parent, String standardstring, LogicalObject object) {
-		super(x, y, width, height, parent);
+	public TextHandler(int x, int y, int z, int width, int height, 
+			VisualObject parent, String standardstring, Logical_objects object) {
+		super(x, y, z, width, height, parent);
 		setLogicalObject(object);
 		setStandardTextString(standardstring);
 		setText(getStandardTextString());
 	}
 	
-	public TextHandler(int x, int y, VisualObject parent, 
-			String standardstring, LogicalObject object){
+	public TextHandler(int x, int y,int z, VisualObject parent, 
+			String standardstring, Logical_objects object){
 		// 50, 16 is the standard size of the font if the text is "New Text"
-		this(x, y, 50, 16, parent, standardstring, object);
+		this(x, y, z, 50, 16, parent, standardstring, object);
 	}
 	
 	/**

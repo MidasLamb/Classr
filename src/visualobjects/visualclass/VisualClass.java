@@ -17,8 +17,8 @@ import visualobjects.VisualObject;
 
 public class VisualClass extends VisualObject {	
 
-	public VisualClass(int x, int y, int width, int height, VisualObject parent) {
-		super(x, y, width, height, parent);
+	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
+		super(x, y, z, width, height, parent);
 		setLogicalObject(new RealClass(this));
 		
 		this.setAttributes(new HashSet<>());
@@ -28,12 +28,13 @@ public class VisualClass extends VisualObject {
 		
 		this.updateDimensions();
 		this.setAssociations(new ArrayList<VisualAssociation>());
-		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, this));
+		//TODO Fix z values;
+		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, 0, this));
 		this.addChild(this.getAssociationHandle());
 	}
 
-	public VisualClass(int x, int y, VisualObject parent){
-		this(x,y, 100,200, parent);
+	public VisualClass(int x, int y, int z, VisualObject parent){
+		this(x,y, z, 100,200, parent);
 	}
 	
 	@Override
@@ -84,16 +85,32 @@ public class VisualClass extends VisualObject {
 		this.setHeight(y - this.getY());
 	}
 	
+	
+	/**
+	 * Add a PaddingBox to the attributes
+	 * @param 	a
+	 * 			PaddingBox to be added to attributes
+	 */
 	private void addAttribute(PaddingBox a){
 		this.getAttributes().add(a);
 		this.addChild(a);
 	}
 	
+	
+	/**
+	 * Add a PaddingBox to the methods
+	 * @param 	m
+	 * 			PaddingBox to be added to methods
+	 */
 	private void addMethod(PaddingBox m){
 		this.getMethods().add(m);
 		this.addChild(m);
 	}
 	
+	/**
+	 * Create a new attribute PaddingBox
+	 * @return	PaddingBox of the attribute that was created
+	 */
 	private PaddingBox createAttribute(){
 		Attribute attr = getLogicalObject().addAttribute();
 		PaddingBox t = new PaddingBox(this.getX(),
@@ -103,6 +120,11 @@ public class VisualClass extends VisualObject {
 		return t;
 	}
 	
+	
+	/**
+	 * Create a new method PaddingBox
+	 * @return	PaddingBox of the method that was created
+	 */
 	private PaddingBox createMethod(){
 		Method method = getLogicalObject().addMethod();
 		PaddingBox t = new PaddingBox(this.getX(),
@@ -112,6 +134,13 @@ public class VisualClass extends VisualObject {
 		return t;
 	}
 	
+	/**
+	 * @param 	x
+	 * 			Coordinate on the x-axis
+	 * @param 	y
+	 * 			Coordinate on the y-axis
+	 * @return	Returns true if (x,y) is located in the empty attribute, otherwise false
+	 */
 	private boolean isInEmptyAttribute(int x, int y){
 		int left = this.getX();
 		int right = this.getX() + this.getWidth();
@@ -130,6 +159,14 @@ public class VisualClass extends VisualObject {
 				&& VisualClass.isBetween(top, bottom, y);
 	}
 	
+	
+	/**
+	 * @param 	x
+	 * 			Coordinate on the x-axis
+	 * @param 	y
+	 * 			Coordinate on the y-axis
+	 * @return	Returns true if (x,y) is located in the empty method, otherwise false
+	 */
 	private boolean isInEmptyMethod(int x, int y){
 		int left = this.getX();
 		int right = this.getX() + this.getWidth();
@@ -157,11 +194,21 @@ public class VisualClass extends VisualObject {
 				&& isBetween(top, bottom, y);
 	}
 	
+	/**
+	 * Add a VisualAssociation to the list of associations
+	 * @param 	a
+	 * 			VisualAssociation to be added to the associations
+	 */
 	void addAssociation(VisualAssociation a){
 		this.getAssociations().add(a);
 		this.addChild(a);
 	}
 	
+	/**
+	 * Remove a VisualAssociation from the list of associations
+	 * @param 	a
+	 * 			VisualAssociation to be removed from the associations
+	 */
 	void removeAssociation(VisualAssociation a){
 		this.removeChild(a);
 		this.getAssociations().remove(a);

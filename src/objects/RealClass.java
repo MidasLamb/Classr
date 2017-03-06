@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 import visualobjects.visualclass.VisualClass;
 
-public class RealClass extends LogicalObject {
+public class RealClass extends Logical_objects {
 	private VisualClass visualClass;
 	
 	public RealClass(VisualClass vc){
@@ -36,7 +36,7 @@ public class RealClass extends LogicalObject {
 		deleteAssociation(ass);
 	}
 	
-	public void deleteChild(LogicalObject object){
+	public void deleteChild(Logical_objects object){
 		throw new IllegalStateException();
 	}
 	

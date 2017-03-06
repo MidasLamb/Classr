@@ -1,6 +1,6 @@
 package objects;
 
-public class Association extends LogicalObject {
+public class Association extends Logical_objects {
 	
 	public Association(RealClass class1, RealClass class2){
 		setClass1(class1);
