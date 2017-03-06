@@ -191,11 +191,12 @@ public class VisualClass extends VisualObject {
 	public void removeChild(VisualObject c){
 		if (this.getAttributes().contains(c)){
 			this.getAttributes().remove(c);
+			this.getLogicalObject().deleteChild(c.getLogicalObject());
 		}
 		if (this.getMethods().contains(c)){
 			this.getMethods().remove(c);
+			this.getLogicalObject().deleteChild(c.getLogicalObject());
 		}
-		this.getLogicalObject().deleteChild(c.getLogicalObject());
 		super.removeChild(c);
 		
 	}
