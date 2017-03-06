@@ -1,6 +1,6 @@
 package objects;
 
-public abstract class LogicalObject {
+public class Logical_objects {
 	public String getName() {
 		return name;
 	}

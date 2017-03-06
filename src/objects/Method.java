@@ -1,5 +1,5 @@
 package objects;
 
-public class Method extends LogicalObject {
+public class Method extends Logical_objects {
 
 }

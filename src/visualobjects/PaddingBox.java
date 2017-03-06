@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import main.Constants;
 import mouse.clicks.SingleClick;
-import objects.LogicalObject;
+import objects.Logical_objects;
 
 public class PaddingBox extends VisualObject {
 	
@@ -33,7 +33,7 @@ public class PaddingBox extends VisualObject {
 	 * 			Logical object of which this TextBox is the textual representation
 	 */
 	public PaddingBox(int x, int y, int width, int height, int paddingLeft, int paddingRight, 
-			int paddingTop, int paddingBottom, VisualObject parent, String standardstring, LogicalObject object){
+			int paddingTop, int paddingBottom, VisualObject parent, String standardstring, Logical_objects object){
 		super(x, y, width, height, parent);
 		setLogicalObject(object);
 		this.setPaddingLeft(paddingLeft);
@@ -64,27 +64,27 @@ public class PaddingBox extends VisualObject {
 	 * 			Logical object of which this TextBox is the textual representation
 	 */
 	public PaddingBox(int x, int y, int width, int height, int padding, 
-			VisualObject parent, String standardstring, LogicalObject object){
+			VisualObject parent, String standardstring, Logical_objects object){
 		this(x, y ,width, height, padding, padding, padding, padding, parent, standardstring, object);
 	}
 	
-	public PaddingBox(int x, int y, int padding, VisualObject parent, String standardstring, LogicalObject object){
+	public PaddingBox(int x, int y, int padding, VisualObject parent, String standardstring, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
 				Constants.STANDARD_PADDING,parent, standardstring, object);
 	}
 	
-	public PaddingBox(int x, int y, int padding, VisualObject parent, LogicalObject object){
+	public PaddingBox(int x, int y, int padding, VisualObject parent, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,Constants.STANDARD_TEXT_HEIGHT+padding+padding,
 				Constants.STANDARD_PADDING,parent, "", object);
 	}
 	
-	public PaddingBox(int x, int y, VisualObject parent, String standardstring, LogicalObject object){
+	public PaddingBox(int x, int y, VisualObject parent, String standardstring, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,
 				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
 				parent, standardstring, object);
 	}
 	
-	public PaddingBox(int x, int y, VisualObject parent, LogicalObject object){
+	public PaddingBox(int x, int y, VisualObject parent, Logical_objects object){
 		this(x,y, Constants.CLASS_WIDTH,
 				Constants.STANDARD_TEXT_HEIGHT+(2*Constants.STANDARD_PADDING),Constants.STANDARD_PADDING,
 				parent, "", object);
