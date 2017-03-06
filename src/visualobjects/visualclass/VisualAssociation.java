@@ -13,8 +13,7 @@ public class VisualAssociation extends VisualObject {
 		this.p1 = parent1;
 		this.p2 = parent2;
 		Association ass = new Association(parent1.getLogicalObject(), parent2.getLogicalObject());
-		this.p1.addAssociation(this);
-		getP2().addAssociation(this);
+		this.setLogicalObject(ass);
 		
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX())/2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY())/2;
@@ -24,13 +23,6 @@ public class VisualAssociation extends VisualObject {
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 	}
 	
-	public void deleteFromOther(VisualClass t){
-		if (t.equals(this.p1)){
-			getP2().removeAssociation(this);
-		}else if (t.equals(getP2())){
-			getP1().removeAssociation(this);
-		}
-	}
 	
 	@Override
 	public void draw(Graphics g){
@@ -42,11 +34,6 @@ public class VisualAssociation extends VisualObject {
 		return getText().isIn(x, y);
 	}
 	
-	@Override
-	public void delete(){
-		getP1().removeAssociation(this);
-		getP2().removeAssociation(this);
-	}
 	
 	@Override
 	protected void afterDeleteChild(VisualObject v){

@@ -5,13 +5,14 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.PriorityQueue;
 
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import objects.Logical_objects;
 
-public abstract class VisualObject{
+public abstract class VisualObject implements Comparable<VisualObject>{
 	private int z;
 
 	public VisualObject(int x,int y,int z,int width, int height, VisualObject parent) {
@@ -32,11 +33,13 @@ public abstract class VisualObject{
 	 * 			shows this object red if it is selected
 	 */
 	public void show(Graphics g) {
+		PriorityQueue<VisualObject> childs = new PriorityQueue(this.getChildren());
+		
 		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);
 		this.draw(g);
-		for(VisualObject v: this.getChildren()){
+		for(VisualObject v: childs){
 			v.show(g);
 		}
 		g.setColor(Color.black);
@@ -246,7 +249,7 @@ public abstract class VisualObject{
 		return new ArrayList<VisualObject>(this.children);
 	}
 	
-	protected void addChild(VisualObject c){
+	public void addChild(VisualObject c){
 		this.children.add(c);
 	}
 	
@@ -283,6 +286,10 @@ public abstract class VisualObject{
 
 	private void setZ(int z) {
 		this.z = z;
+	}
+	
+	public int compareTo(VisualObject other) {
+	    return Integer.compare(this.getZ(), other.getZ());
 	}
 	
 }
