@@ -37,7 +37,7 @@ public class VisualClass extends VisualObject {
 	}
 	
 	@Override
-	public void show(Graphics g){
+	public void draw(Graphics g){
 		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int y = this.getY();
@@ -56,7 +56,6 @@ public class VisualClass extends VisualObject {
 			y += t.getHeight();
 		}
 		g.fillRect(this.getX(), y, this.getWidth(),  Constants.CLASS_WHITE_SPACE);
-		super.show(g);
 	}
 	
 	/**
@@ -159,7 +158,6 @@ public class VisualClass extends VisualObject {
 	}
 	
 	void addAssociation(VisualAssociation a){
-		System.out.println("Added association");
 		this.getAssociations().add(a);
 		this.addChild(a);
 	}

@@ -21,7 +21,7 @@ public class VisualAssociation extends VisualObject {
 		
 		this.text = new TextBox(centerX ,centerY, this, ass);
 		this.addChild(getText());
-		
+		this.getContainer().switchSelectedTo(this.getText().getText());
 	}
 	
 	public void deleteFromOther(VisualClass t){
@@ -33,8 +33,7 @@ public class VisualAssociation extends VisualObject {
 	}
 	
 	@Override
-	public void show(Graphics g){
-		super.show(g);
+	public void draw(Graphics g){
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
 	}
 	

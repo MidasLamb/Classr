@@ -32,10 +32,15 @@ public abstract class VisualObject{
 	public void show(Graphics g) {
 		if (this.isSelected())
 			g.setColor(Color.red);
+		this.draw(g);
 		for(VisualObject v: this.getChildren()){
 			v.show(g);
 		}
 		g.setColor(Color.black);
+	}
+	
+	protected void draw(Graphics g){
+		
 	}
 
 	/**

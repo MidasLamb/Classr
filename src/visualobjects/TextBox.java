@@ -1,5 +1,7 @@
 package visualobjects;
 
+import java.awt.Graphics;
+
 import main.Constants;
 import mouse.clicks.SingleClick;
 import objects.Logical_objects;

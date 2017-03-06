@@ -45,7 +45,7 @@ public class TextHandler extends VisualObject {
 	 * @post shows the text frame
 	 */
 	@Override 
-	public void show(Graphics g){
+	public void draw(Graphics g){
 		//Limit the text size if it is to long
 		cutTextMaxWidth(g);
 		//Get and set the width/height based on font

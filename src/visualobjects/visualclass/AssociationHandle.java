@@ -11,12 +11,10 @@ public class AssociationHandle extends VisualObject {
 
 	public AssociationHandle(int x, int y, VisualClass parent) {
 		super(x, y, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void show(Graphics g) {
-		super.show(g);
+	public void draw(Graphics g) {
 		g.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 	
