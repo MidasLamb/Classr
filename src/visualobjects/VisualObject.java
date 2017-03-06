@@ -16,7 +16,7 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 	private int z;
 
 	public VisualObject(int x,int y,int z,int width, int height, VisualObject parent) {
-		setChildren(new ArrayList<VisualObject>());
+		setChildren(new PriorityQueue<VisualObject>());
 		setX(x);
 		setY(y);
 		setZ(z);
@@ -32,14 +32,12 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 	 * @post shows this visual object and his children
 	 * 			shows this object red if it is selected
 	 */
-	public void show(Graphics g) {
-		PriorityQueue<VisualObject> childs = new PriorityQueue(this.getChildren());
-		
+	public void show(Graphics g) {		
 		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);
 		this.draw(g);
-		for(VisualObject v: childs){
+		for(VisualObject v: this.getChildren()){
 			v.show(g);
 		}
 		g.setColor(Color.black);
@@ -53,7 +51,7 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 	 * @post Deletes this visual object
 	 */
 	public void delete() {
-		setChildren(new ArrayList<VisualObject>());
+		setChildren(new PriorityQueue<VisualObject>());
 		getParent().removeChild(this);
 	}
 	
@@ -241,12 +239,12 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 	private VisualObject parent;
 
 	
-	private void setChildren(Collection<VisualObject> children){
+	private void setChildren(PriorityQueue<VisualObject> children){
 		this.children = children;
 	}
 	
-	protected Collection<VisualObject> getChildren(){
-		return new ArrayList<VisualObject>(this.children);
+	protected PriorityQueue<VisualObject> getChildren(){
+		return new PriorityQueue<VisualObject>(this.children);
 	}
 	
 	public void addChild(VisualObject c){
@@ -258,7 +256,7 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 		this.afterDeleteChild(c);
 	}
 	
-	private Collection<VisualObject> children;
+	private PriorityQueue<VisualObject> children;
 
 	public void setSelected(boolean b){
 		this.isSelected = b;
