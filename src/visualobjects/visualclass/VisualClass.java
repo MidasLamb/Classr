@@ -158,7 +158,6 @@ public class VisualClass extends VisualObject {
 	}
 	
 	void addAssociation(VisualAssociation a){
-		System.out.println("Added association");
 		this.getAssociations().add(a);
 		this.addChild(a);
 	}

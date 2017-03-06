@@ -21,7 +21,7 @@ public class VisualAssociation extends VisualObject {
 		
 		this.text = new TextBox(centerX ,centerY, this, ass);
 		this.addChild(getText());
-		
+		this.getContainer().switchSelectedTo(this.getText().getText());
 	}
 	
 	public void deleteFromOther(VisualClass t){
