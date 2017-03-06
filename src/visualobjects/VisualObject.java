@@ -9,7 +9,7 @@ import java.util.Collection;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
-import objects.Logical_objects;
+import objects.LogicalObject;
 
 public abstract class VisualObject{
 
@@ -264,14 +264,14 @@ public abstract class VisualObject{
 	
 	private boolean isSelected;
 	
-	public Logical_objects getLogicalObject() {
+	public LogicalObject getLogicalObject() {
 		return logicalObject;
 	}
 
-	public void setLogicalObject(Logical_objects object) {
+	public void setLogicalObject(LogicalObject object) {
 		this.logicalObject = object;
 	}	
 	
-	private Logical_objects logicalObject;
+	private LogicalObject logicalObject;
 	
 }
