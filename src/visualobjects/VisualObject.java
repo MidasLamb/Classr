@@ -3,8 +3,6 @@ package visualobjects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.PriorityQueue;
 
 import mouse.clicks.DoubleClick;
@@ -12,10 +10,10 @@ import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import objects.LogicalObject;
 
-public abstract class VisualObject implements Comparable<VisualObject>{
+public abstract class VisualObject implements Comparable<VisualObject> {
 	private int z;
 
-	public VisualObject(int x,int y,int z,int width, int height, VisualObject parent) {
+	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
 		setChildren(new PriorityQueue<VisualObject>());
 		setX(x);
 		setY(y);
@@ -24,27 +22,27 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 		setHeight(height);
 		setParent(parent);
 	}
-	
+
 	/**
 	 * 
-	 * @param 	g
-	 * 			Graphics g
-	 * @post shows this visual object and his children
-	 * 			shows this object red if it is selected
+	 * @param g
+	 *            Graphics g
+	 * @post shows this visual object and his children shows this object red if
+	 *       it is selected
 	 */
-	public void show(Graphics g) {		
+	public void show(Graphics g) {
 		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);
 		this.draw(g);
-		for(VisualObject v: this.getChildren()){
+		for (VisualObject v : this.getChildren()) {
 			v.show(g);
 		}
 		g.setColor(Color.black);
 	}
-	
-	protected void draw(Graphics g){
-		
+
+	protected void draw(Graphics g) {
+
 	}
 
 	/**
@@ -55,83 +53,87 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 		setChildren(new PriorityQueue<VisualObject>());
 		getParent().removeChild(this);
 	}
-	
-	protected void onDelete(){
-		
+
+	protected void onDelete() {
+
 	}
-	
+
 	/**
 	 * 
-	 * @param 	x
-	 * 			The x-coordinate of the pixel that is selected
-	 * @param 	y
-	 * 			The y-coordinate of the pixel that is selected
-	 * @return	the visual object that is in this region
-	 * 				it can be one of the children or this object itself
+	 * @param x
+	 *            The x-coordinate of the pixel that is selected
+	 * @param y
+	 *            The y-coordinate of the pixel that is selected
+	 * @return the visual object that is in this region it can be one of the
+	 *         children or this object itself
 	 */
 	public VisualObject select(int x, int y) {
-		for (VisualObject v: this.getChildren()){
-			if (v.isIn(x, y)){
+		for (VisualObject v : this.getChildren()) {
+			if (v.isIn(x, y)) {
 				return v.select(x, y);
 			}
 		}
 		return this;
 	}
-	
+
 	/**
 	 * 
-	 * @param 	sc
-	 * 			The single click object
-	 * @post	triggers the onClick function of the child object that is clicked
+	 * @param sc
+	 *            The single click object
+	 * @post triggers the onClick function of the child object that is clicked
 	 */
-	public void onClick(SingleClick sc){
-		for (VisualObject v: this.getChildren()){
-			if (v.isIn(sc.getX(), sc.getY())){
+	public void onClick(SingleClick sc) {
+		for (VisualObject v : this.getChildren()) {
+			if (v.isIn(sc.getX(), sc.getY())) {
 				v.onClick(sc);
-				//Return is required because association text would get two 
-				//	clicks when one is pressed, because it get's it from both parents
-				return; 
+				// Return is required because association text would get two
+				// clicks when one is pressed, because it get's it from both
+				// parents
+				return;
 			}
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @param 	dc
-	 * 			The double click object
-	 * @post	triggers the onDoubleClick function of the child object that is clicked
+	 * @param dc
+	 *            The double click object
+	 * @post triggers the onDoubleClick function of the child object that is
+	 *       clicked
 	 */
-	public void onDoubleClick(DoubleClick dc){
-		for (VisualObject v: this.getChildren()){
-			if (v.isIn(dc.getX(), dc.getY())){
+	public void onDoubleClick(DoubleClick dc) {
+		for (VisualObject v : this.getChildren()) {
+			if (v.isIn(dc.getX(), dc.getY())) {
 				v.onDoubleClick(dc);
 			}
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @param 	d
-	 * 			The drag object
-	 * @post	triggers the onDragEnd function of the child where the dragging starts
+	 * @param d
+	 *            The drag object
+	 * @post triggers the onDragEnd function of the child where the dragging
+	 *       starts
 	 */
-	public void onDragStart(Drag d){
-		for (VisualObject v: this.getChildren()){
-			if (v.isIn(d.getStartX(), d.getStartY())){
+	public void onDragStart(Drag d) {
+		for (VisualObject v : this.getChildren()) {
+			if (v.isIn(d.getStartX(), d.getStartY())) {
 				v.onDragStart(d);
 			}
 		}
 	}
-	
+
 	/**
 	 * 
-	 * @param 	d
-	 * 			The drag object
-	 * @post	triggers the onDragEnd function of the child where there is dragged too
+	 * @param d
+	 *            The drag object
+	 * @post triggers the onDragEnd function of the child where there is dragged
+	 *       too
 	 */
-	public void onDragEnd(Drag d){
-		for (VisualObject v: this.getChildren()){
-			if (v.isIn(d.getEndX(), d.getEndY())){
+	public void onDragEnd(Drag d) {
+		for (VisualObject v : this.getChildren()) {
+			if (v.isIn(d.getEndX(), d.getEndY())) {
 				v.onDragEnd(d);
 			}
 		}
@@ -139,148 +141,145 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 
 	/**
 	 * 
-	 * @param 	x
-	 * 			the x-coordinate
-	 * @param 	y
-	 * 			the t-coordinate
-	 * @return true if this object is at the given coordinates
-	 * 			otherwise false
+	 * @param x
+	 *            the x-coordinate
+	 * @param y
+	 *            the t-coordinate
+	 * @return true if this object is at the given coordinates otherwise false
 	 */
-	public boolean isIn(int x, int y){
-		return isBetween(this.getX(), this.getX() + this.getWidth(), x) 
+	public boolean isIn(int x, int y) {
+		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}
-	
+
 	/**
 	 * checks if c is between a en b
 	 */
 	protected static boolean isBetween(int a, int b, int c) {
-	    return a <= c && 
-	    		b >= c;
+		return a <= c && b >= c;
 	}
-	
+
 	/**
 	 * 
-	 * @param 	e
-	 * 			Key event
-	 * @post	if delete is pressed this object will delete itself
+	 * @param e
+	 *            Key event
+	 * @post if delete is pressed this object will delete itself
 	 */
-	public void handleKey(KeyEvent e){
+	public void handleKey(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DELETE)
 			this.delete();
 	}
-	
+
 	/**
 	 * 
 	 * @return the container where this object is in
 	 */
-	public Container getContainer(){
+	public Container getContainer() {
 		VisualObject v = this;
 		while (v != null && !(v instanceof Container))
 			v = v.getParent();
 		return (Container) v;
 	}
-	
+
 	/**
 	 * 
-	 * @param 	child
-	 * 			The child that is deleted
-	 * @post	does nothing
+	 * @param child
+	 *            The child that is deleted
+	 * @post does nothing
 	 */
-	protected void afterDeleteChild(VisualObject child){
-		
+	protected void afterDeleteChild(VisualObject child) {
+
 	}
-	
-	//Getters and setters
-	
+
+	// Getters and setters
+
 	public int getX() {
 		return this.x;
 	}
-	
+
 	public void setX(int x) {
 		this.x = x;
 	}
-	
+
 	private int x;
-	
+
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	public int getY() {
 		return this.y;
 	}
-	
+
 	private int y;
-	
+
 	public int getWidth() {
 		return width;
 	}
-	
+
 	public void setWidth(int width) {
 		this.width = width;
 	}
-	
+
 	private int width;
 
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
+
 	public int getHeight() {
 		return height;
 	}
-	
+
 	private int height;
-	
+
 	private void setParent(VisualObject parent) {
 		this.parent = parent;
 	}
-	
-	public VisualObject getParent(){
+
+	public VisualObject getParent() {
 		return this.parent;
 	}
 
 	private VisualObject parent;
 
-	
-	private void setChildren(PriorityQueue<VisualObject> children){
+	private void setChildren(PriorityQueue<VisualObject> children) {
 		this.children = children;
 	}
-	
-	protected PriorityQueue<VisualObject> getChildren(){
+
+	protected PriorityQueue<VisualObject> getChildren() {
 		return new PriorityQueue<VisualObject>(this.children);
 	}
-	
-	public void addChild(VisualObject c){
+
+	public void addChild(VisualObject c) {
 		this.children.add(c);
 	}
-	
-	public void removeChild(VisualObject c){
+
+	public void removeChild(VisualObject c) {
 		this.children.remove(c);
 		this.afterDeleteChild(c);
 	}
-	
+
 	private PriorityQueue<VisualObject> children;
 
-	public void setSelected(boolean b){
+	public void setSelected(boolean b) {
 		this.isSelected = b;
 	}
 
 	public boolean isSelected() {
 		return isSelected;
 	}
-	
+
 	private boolean isSelected;
-	
+
 	public LogicalObject getLogicalObject() {
 		return logicalObject;
 	}
 
 	public void setLogicalObject(LogicalObject object) {
 		this.logicalObject = object;
-	}	
-	
+	}
+
 	private LogicalObject logicalObject;
 
 	protected int getZ() {
@@ -290,9 +289,9 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 	private void setZ(int z) {
 		this.z = z;
 	}
-	
+
 	public int compareTo(VisualObject other) {
-	    return Integer.compare(this.getZ(), other.getZ());
+		return Integer.compare(this.getZ(), other.getZ());
 	}
-	
+
 }
