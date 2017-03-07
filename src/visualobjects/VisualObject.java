@@ -88,7 +88,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	 *            The single click object
 	 * @post triggers the onClick function of the child object that is clicked
 	 */
-	public void onClick(SingleClick sc) {
+	protected void onClick(SingleClick sc) {
 		for (VisualObject v : this.getChildren()) {
 			if (v.isIn(sc.getX(), sc.getY())) {
 				v.onClick(sc);
@@ -107,7 +107,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	 * @post triggers the onDoubleClick function of the child object that is
 	 *       clicked
 	 */
-	public void onDoubleClick(DoubleClick dc) {
+	protected void onDoubleClick(DoubleClick dc) {
 		for (VisualObject v : this.getChildren()) {
 			if (v.isIn(dc.getX(), dc.getY())) {
 				v.onDoubleClick(dc);
@@ -171,7 +171,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	 *            Key event
 	 * @post if delete is pressed this object will delete itself
 	 */
-	public void handleKey(KeyEvent e) {
+	void handleKey(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DELETE)
 			this.delete();
 	}
@@ -180,7 +180,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	 * 
 	 * @return the container where this object is in
 	 */
-	public Container getContainer() {
+	protected Container getContainer() {
 		VisualObject v = this;
 		while (v != null && !(v instanceof Container))
 			v = v.getParent();
@@ -195,6 +195,10 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	 */
 	protected void afterDeleteChild(VisualObject child) {
 
+	}
+	
+	public int compareTo(VisualObject other) {
+		return Integer.compare(this.getZ(), other.getZ());
 	}
 
 	// Getters and setters
@@ -278,11 +282,11 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 
 	private boolean isSelected;
 
-	public LogicalObject getLogicalObject() {
+	protected LogicalObject getLogicalObject() {
 		return logicalObject;
 	}
 
-	public void setLogicalObject(LogicalObject object) {
+	protected void setLogicalObject(LogicalObject object) {
 		this.logicalObject = object;
 	}
 
@@ -294,10 +298,6 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 
 	private void setZ(int z) {
 		this.z = z;
-	}
-
-	public int compareTo(VisualObject other) {
-		return Integer.compare(this.getZ(), other.getZ());
 	}
 
 }

@@ -5,13 +5,13 @@ public class Method extends LogicalObject {
 		this.setRealClass(rc);
 	}
 	
-	private RealClass rc;
-
 	public RealClass getRealClass() {
-		return rc;
+		return realClass;
 	}
 
 	private void setRealClass(RealClass rc) {
-		this.rc = rc;
+		this.realClass = rc;
 	}
+	
+	private RealClass realClass;
 }

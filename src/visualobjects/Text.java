@@ -8,9 +8,9 @@ import java.awt.event.KeyEvent;
 
 import objects.LogicalObject;
 
-public class TextHandler extends VisualObject {
+public class Text extends VisualObject {
 
-	public TextHandler(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
+	public Text(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
 			LogicalObject object) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(object);
@@ -19,7 +19,7 @@ public class TextHandler extends VisualObject {
 		setIsStandardTextSet(true);
 	}
 
-	public TextHandler(int x, int y, int z, VisualObject parent, String standardstring, LogicalObject object) {
+	public Text(int x, int y, int z, VisualObject parent, String standardstring, LogicalObject object) {
 		// 50, 16 is the standard size of the font if the text is "New Text"
 		this(x, y, z, 50, 16, parent, standardstring, object);
 	}

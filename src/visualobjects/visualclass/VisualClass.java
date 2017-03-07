@@ -216,16 +216,6 @@ public class VisualClass extends VisualObject {
 		super.setLogicalObject(object);
 	}
 
-	public PaddingBox getName() {
-		return name;
-	}
-
-	public void setName(PaddingBox name) {
-		this.name = name;
-	}
-
-	private PaddingBox name;
-
 	@Override
 	public boolean isIn(int x, int y) {
 		for (VisualObject vo : this.getChildren()) {
@@ -253,5 +243,17 @@ public class VisualClass extends VisualObject {
 			this.getContainer().removeChild(m.getVisualObject());
 		}
 	}
+	
+	//Getters and setters
+	
+	public PaddingBox getName() {
+		return name;
+	}
+
+	private void setName(PaddingBox name) {
+		this.name = name;
+	}
+
+	private PaddingBox name;
 
 }

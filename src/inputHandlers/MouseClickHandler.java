@@ -48,7 +48,7 @@ public class MouseClickHandler {
 	 * 			
 	 * @return True if the click is a double click otherwise false
 	 */
-	public boolean isDoubleClick(MouseEvent e) {
+	private boolean isDoubleClick(MouseEvent e) {
 		return System.currentTimeMillis() - getLastClickTime() < DOUBLECLICK_TRESHOLD 
 				&& Math.abs(e.getX() - getLastClickX()) < DOUBLECLICK_RANGE &&
 					Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE;

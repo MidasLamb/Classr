@@ -43,7 +43,7 @@ public class PaddingBox extends VisualObject {
 		this.setPaddingRight(paddingRight);
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
-		this.setContent(new TextHandler(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
+		this.setContent(new Text(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
 				this.getZ() + 1, this, standardstring, getLogicalObject()));
 		this.addChild(this.getContent());
 	}
@@ -112,6 +112,29 @@ public class PaddingBox extends VisualObject {
 		if (getContent() != null)
 			this.getContent().setY(y + this.getPaddingTop());
 	}
+	
+	@Override
+	public int getHeight() {
+		return this.getContent().getHeight() + this.getPaddingTop() + this.getPaddingBottom();
+	}
+
+	@Override
+	public int getWidth() {
+		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
+	}
+	
+	@Override
+	protected void onDelete(){
+		if (this.getLogicalObject() instanceof Attribute){
+			((Attribute) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
+			((VisualClass) ((Attribute) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
+		}
+		
+		if (this.getLogicalObject() instanceof Method){
+			((Method) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
+			((VisualClass) ((Method) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
+		}
+	}
 
 	// Getters and setters
 
@@ -164,27 +187,4 @@ public class PaddingBox extends VisualObject {
 	}
 
 	private VisualObject content;
-
-	@Override
-	public int getHeight() {
-		return this.getContent().getHeight() + this.getPaddingTop() + this.getPaddingBottom();
-	}
-
-	@Override
-	public int getWidth() {
-		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
-	}
-	
-	@Override
-	protected void onDelete(){
-		if (this.getLogicalObject() instanceof Attribute){
-			((Attribute) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
-			((VisualClass) ((Attribute) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
-		}
-		
-		if (this.getLogicalObject() instanceof Method){
-			((Method) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
-			((VisualClass) ((Method) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
-		}
-	}
 }

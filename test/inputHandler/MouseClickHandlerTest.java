@@ -1,7 +1,10 @@
 package inputHandler;
 
-import static main.Constants.*;
-import static org.junit.Assert.*;
+import static main.Constants.DOUBLECLICK_RANGE;
+import static main.Constants.DOUBLECLICK_TRESHOLD;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Component;
 import java.awt.List;
@@ -14,7 +17,6 @@ import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import visualobjects.Container;
-import visualobjects.VisualObject;
 
 public class MouseClickHandlerTest {
 	

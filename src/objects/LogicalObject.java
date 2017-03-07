@@ -13,8 +13,6 @@ public class LogicalObject {
 	
 	private String name;
 	
-	private VisualObject visualObject;
-	
 	public void setVisualObject(VisualObject vo){
 		this.visualObject = vo;
 	}
@@ -22,4 +20,6 @@ public class LogicalObject {
 	public VisualObject getVisualObject(){
 		return this.visualObject;
 	}
+	
+	private VisualObject visualObject;
 }

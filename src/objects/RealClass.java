@@ -5,15 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
-import visualobjects.visualclass.VisualClass;
-
-public class RealClass extends LogicalObject {
-	private VisualClass visualClass;
-	
-	public RealClass(){
-		
-	}
-	
+public class RealClass extends LogicalObject {	
 	public Attribute addAttribute() {
 		Attribute attr = new Attribute(this);
 		this.attributes.add(attr);
@@ -26,7 +18,7 @@ public class RealClass extends LogicalObject {
 		}
 	}
 	
-	public void deleteChild(Attribute attr){
+	private void deleteChild(Attribute attr){
 		deleteAttribute(attr);
 	}
 	
@@ -58,16 +50,6 @@ public class RealClass extends LogicalObject {
 		throw new IllegalStateException();
 	}
 	
-	public Collection<Attribute> getAttributes() {
-		return new ArrayList<>(attributes);
-	}
-
-	private void setAttributes(ArrayList<Attribute> attributes) {
-		this.attributes = attributes;
-	}
-	
-	private ArrayList<Attribute> attributes = new ArrayList<>();
-	
 	public Method addMethod() {
 		Method method = new Method(this);
 		this.methods.add(method);
@@ -79,6 +61,28 @@ public class RealClass extends LogicalObject {
 			throw new NoSuchElementException();
 		}
 	}
+	
+	public void addAssociation(Association association) {
+		this.associations.add(association);
+	}
+	
+	public void deleteAssociation(Association association) throws NoSuchElementException{
+		if(!this.associations.remove(association)){
+			throw new NoSuchElementException();
+		}
+	}
+	
+	//getters and setters
+	
+	public Collection<Attribute> getAttributes() {
+		return new ArrayList<>(attributes);
+	}
+
+	private void setAttributes(ArrayList<Attribute> attributes) {
+		this.attributes = attributes;
+	}
+	
+	private ArrayList<Attribute> attributes = new ArrayList<>();
 	
 	public Collection<Method> getMethods() {
 		return new ArrayList<>(this.methods);
@@ -94,16 +98,6 @@ public class RealClass extends LogicalObject {
 		return new HashSet<>(this.associations);
 	}
 	
-	public void addAssociation(Association association) {
-		this.associations.add(association);
-	}
-	
-	public void deleteAssociation(Association association) throws NoSuchElementException{
-		if(!this.associations.remove(association)){
-			throw new NoSuchElementException();
-		}
-	}
-
 	private void setAssociations(HashSet<Association> associations) {
 		this.associations = associations;
 	}
