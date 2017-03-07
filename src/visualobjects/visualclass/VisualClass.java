@@ -9,7 +9,7 @@ import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import objects.Attribute;
-import objects.Logical_objects;
+import objects.LogicalObject;
 import objects.Method;
 import objects.RealClass;
 import visualobjects.PaddingBox;
@@ -19,7 +19,8 @@ public class VisualClass extends VisualObject {
 
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
-		setLogicalObject(new RealClass(this));
+		setLogicalObject(new RealClass());
+		getLogicalObject().setVisualObject(this);
 		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
 		this.addChild(this.getName());
 		this.updateDimensions();

@@ -17,16 +17,15 @@ public class RealClassTest {
 	public void testRealClass() {
 		Container container = new Container(0, 0, 10, 10);
 		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass realclass = new RealClass(vc);
+		RealClass realclass = new RealClass();
+		realclass.setVisualObject(vc);
 		
-		assertTrue(realclass.getVisualClass() == vc);
+		assertTrue(realclass.getVisualObject() == vc);
 	}
 
 	@Test
 	public void testAddAttributes() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass realclass = new RealClass(vc);
+		RealClass realclass = new RealClass();
 		int initialSize = realclass.getAttributes().size();
 		Attribute attr = realclass.addAttribute();
 		int finalSize = realclass.getAttributes().size();
@@ -35,9 +34,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildAttribute() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass realclass = new RealClass(vc);
+		RealClass realclass = new RealClass();
 		Attribute attr = realclass.addAttribute();
 		
 		realclass.deleteChild(attr);
@@ -46,9 +43,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildMethod() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass realclass = new RealClass(vc);
+		RealClass realclass = new RealClass();
 		Method meth = realclass.addMethod();
 		
 		realclass.deleteChild(meth);
@@ -57,10 +52,8 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildAssociation() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass rc1 = new RealClass(vc);
-		RealClass rc2 = new RealClass(vc);
+		RealClass rc1 = new RealClass();
+		RealClass rc2 = new RealClass();
 		Association ass = new Association(rc1, rc2);
 		
 		rc1.deleteChild(ass);
@@ -69,9 +62,7 @@ public class RealClassTest {
 
 	@Test
 	public void testAddMethod() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass realclass = new RealClass(vc);
+		RealClass realclass = new RealClass();
 		int initialSize = realclass.getMethods().size();
 		Method meth = realclass.addMethod();
 		int finalSize = realclass.getMethods().size();
@@ -80,20 +71,16 @@ public class RealClassTest {
 
 	@Test
 	public void testAddAssociation() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass rc1 = new RealClass(vc);
-		RealClass rc2 = new RealClass(vc);
+		RealClass rc1 = new RealClass();
+		RealClass rc2 = new RealClass();
 		Association ass = new Association(rc1, rc2);
 		assertTrue(rc1.getAssociations().contains(ass) && rc2.getAssociations().contains(ass));
 	}
 
 	@Test
 	public void testDeleteAssociation() {
-		Container container = new Container(0, 0, 1000, 1000);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass rc1 = new RealClass(vc);
-		RealClass rc2 = new RealClass(vc);
+		RealClass rc1 = new RealClass();
+		RealClass rc2 = new RealClass();
 		Association ass = new Association(rc1, rc2);
 		
 		rc1.deleteAssociation(ass);

@@ -2,7 +2,7 @@ package objects;
 
 import visualobjects.VisualObject;
 
-public class Logical_objects {
+public class LogicalObject {
 	public String getName() {
 		return name;
 	}
