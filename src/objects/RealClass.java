@@ -15,7 +15,7 @@ public class RealClass extends LogicalObject {
 	}
 	
 	public Attribute addAttribute() {
-		Attribute attr = new Attribute();
+		Attribute attr = new Attribute(this);
 		this.attributes.add(attr);
 		return attr;
 	}
@@ -39,6 +39,22 @@ public class RealClass extends LogicalObject {
 	}
 	
 	public void deleteChild(LogicalObject object){
+		if (object instanceof Method){
+			this.deleteChild((Method) object);
+			return;
+		}
+		
+		if (object instanceof Association){
+			this.deleteChild((Association) object);
+			return;
+		}
+		
+		if (object instanceof Attribute){
+			this.deleteChild((Attribute) object);
+			return;
+		}
+		
+		
 		throw new IllegalStateException();
 	}
 	
@@ -53,7 +69,7 @@ public class RealClass extends LogicalObject {
 	private ArrayList<Attribute> attributes = new ArrayList<>();
 	
 	public Method addMethod() {
-		Method method = new Method();
+		Method method = new Method(this);
 		this.methods.add(method);
 		return method;
 	}

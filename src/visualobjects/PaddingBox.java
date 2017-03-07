@@ -3,7 +3,9 @@ package visualobjects;
 import main.Constants;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.SingleClick;
+import objects.Attribute;
 import objects.LogicalObject;
+import objects.Method;
 
 public class PaddingBox extends VisualObject {
 
@@ -170,5 +172,14 @@ public class PaddingBox extends VisualObject {
 	@Override
 	public int getWidth() {
 		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
+	}
+	
+	@Override
+	protected void onDelete(){
+		if (this.getLogicalObject() instanceof Attribute)
+			((Attribute) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
+		
+		if (this.getLogicalObject() instanceof Method)
+			((Method) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
 	}
 }

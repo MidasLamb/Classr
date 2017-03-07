@@ -87,7 +87,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), 5, this, attr);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), 5, this.getContainer(), attr);
 		this.getContainer().addChild(t);
 		attr.setVisualObject(t);
 		this.updateDimensions();
@@ -101,7 +101,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), 5, this, method);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), 5, this.getContainer(), method);
 		this.getContainer().addChild(t);
 		method.setVisualObject(t);
 		this.updateDimensions();
@@ -241,6 +241,16 @@ public class VisualClass extends VisualObject {
 		for (Association a : co) {
 			((RealClass) this.getLogicalObject()).deleteAssociation(a);
 			a.getVisualObject().delete();
+		}
+		
+		Collection<Attribute> ca = ((RealClass) this.getLogicalObject()).getAttributes();
+		for (Attribute a: ca){
+			this.getContainer().removeChild(a.getVisualObject());
+		}
+		
+		Collection<Method> cm = ((RealClass) this.getLogicalObject()).getMethods();
+		for (Method m: cm){
+			this.getContainer().removeChild(m.getVisualObject());
 		}
 	}
 
