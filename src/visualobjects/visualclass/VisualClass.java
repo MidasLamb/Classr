@@ -24,9 +24,10 @@ public class VisualClass extends VisualObject {
 		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
 		this.addChild(this.getName());
 		this.updateDimensions();
-		//TODO Fix z values;
+
+		//AH should be child of visualClass, because it has no logical counterpart
 		AssociationHandle ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight()/2, 0, this);
-		this.getParent().addChild(ah);
+		this.addChild(ah);
 	}
 
 	public VisualClass(int x, int y, int z, VisualObject parent){
@@ -234,5 +235,13 @@ public class VisualClass extends VisualObject {
 	
 	private PaddingBox name;
 	
+	@Override
+	public boolean isIn(int x, int y){
+		for (VisualObject vo: this.getChildren()){
+			if (vo.isIn(x, y))
+				return true;
+		}
+		return super.isIn(x, y);
+	}
 
 }
