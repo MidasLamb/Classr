@@ -4,8 +4,17 @@ import static main.Constants.CANVAS_TITLE;
 import static org.junit.Assert.*;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.OptionalInt;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import javax.imageio.ImageIO;
 
@@ -14,12 +23,11 @@ import org.junit.Test;
 public class containerTests {
 
 	@Test
-	public void createClassTest() throws IOException {
+	public void newClassTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/newClass/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
-		BufferedImage reference = ImageIO.read(new FileInputStream("recordings/newClass/recording.image10.png"));
-		assertTrue(imagesEqual(actual,  reference));
+		assertTrue(imagesEqual(getReferenceImage("newClass"),  actual));
 	}
 	
 	@Test
@@ -27,26 +35,23 @@ public class containerTests {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/createTwoClasses/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
-		BufferedImage reference = ImageIO.read(new FileInputStream("recordings/createTwoClasses/recording.image152.png"));
-		assertTrue(imagesEqual(actual,  reference));
+		assertTrue(imagesEqual(getReferenceImage("createTwoClasses"),  actual));
 	}
 	
 	@Test
-	public void createAndSelectClass() throws IOException {
+	public void createAndSelectClassTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/createAndSelectClass/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
-		BufferedImage reference = ImageIO.read(new FileInputStream("recordings/createAndSelectClass/recording.image20.png"));
-		assertTrue(imagesEqual(actual,  reference));
+		assertTrue(imagesEqual(getReferenceImage("createAndSelectClass"),  actual));
 	}
 	
 	@Test
 	public void changeClassNameTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/changeClassName/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		BufferedImage reference = ImageIO.read(new FileInputStream("recordings/changeClassName/recording.image127.png"));
-		assertTrue(imagesEqual(actual,  reference));
+		BufferedImage actual = canvasWindow.captureImage();;
+		assertTrue(imagesEqual(getReferenceImage("changeClassName"),  actual));
 	}
 	
 	@Test
@@ -54,9 +59,65 @@ public class containerTests {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/addAttribute/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
-		BufferedImage reference = ImageIO.read(new FileInputStream("recordings/addAttribute/recording.image122.png"));
-		assertTrue(imagesEqual(actual,  reference));
+		assertTrue(imagesEqual(getReferenceImage("addAttribute"),  actual));
 	}
+	
+	@Test
+	public void addMethodeTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/addMethode/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("addMethode"),  actual));
+	}
+	
+	@Test
+	public void addAssociationTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/addAssociation/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("addAssociation"),  actual));
+	}
+	
+	@Test
+	public void deleteClassTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteClass/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteClass"),  actual));
+	}
+	
+	@Test
+	public void deleteClassWithAssAndMethTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteClassWithAssAndMeth/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteClassWithAssAndMeth"),  actual));
+	}
+	
+	@Test
+	public void deleteAssociationTest1() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteAssociation1/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteAssociation1"),  actual));
+	}
+	
+	@Test
+	public void deleteAssociationTest2() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteAssociation2/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteAssociation2"),  actual));
+	}
+	
+	@Test
+	public void deleteAttribute() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteAttribute/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteAttribute"),  actual));
+	}
+	
 	
 	private static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
 		try{
@@ -71,6 +132,21 @@ public class containerTests {
 		} catch (IndexOutOfBoundsException e){
 			return false;
 		}
+	}
+	
+	private static BufferedImage getReferenceImage(String testName) throws IOException{
+		String pattern = ".*recording.image([0-9]*).png";
+		Pattern r = Pattern.compile(pattern);
+		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
+		OptionalInt max = directory.mapToInt(file ->{
+			Matcher m = r.matcher(file.toString());
+			if (m.find())
+				return Integer.parseInt(m.group(1));
+			return -1;
+		}).max();
+		directory.close();
+		String referenceDirectory =  "recordings/" + testName + "/recording.image" + Integer.toString(max.getAsInt())+ ".png";
+		return ImageIO.read(new FileInputStream(referenceDirectory));
 	}
 
 }

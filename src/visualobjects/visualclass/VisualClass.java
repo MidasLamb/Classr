@@ -23,7 +23,7 @@ public class VisualClass extends VisualObject {
 		
 		this.setAttributes(new HashSet<>());
 		this.setMethods(new HashSet<>());
-		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
+		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, getLogicalObject()));
 		this.addChild(this.getName());
 		
 		this.updateDimensions();
@@ -238,11 +238,11 @@ public class VisualClass extends VisualObject {
 	public void removeChild(VisualObject c){
 		if (this.getAttributes().contains(c)){
 			this.getAttributes().remove(c);
-			this.getLogicalObject().deleteChild(c.getLogicalObject());
+			this.getLogicalObject().deleteChild((Attribute) c.getLogicalObject());
 		}
 		if (this.getMethods().contains(c)){
 			this.getMethods().remove(c);
-			this.getLogicalObject().deleteChild(c.getLogicalObject());
+			this.getLogicalObject().deleteChild((Method) c.getLogicalObject());
 		}
 		super.removeChild(c);
 		
