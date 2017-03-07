@@ -52,7 +52,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 		this.onDelete();
 		Container c = this.getContainer();
 		if (c != null){
-			if (c.getSelected().equals(this))
+			if (c.getSelected() != null && c.getSelected().equals(this))
 				c.switchSelectedTo(null);
 		}
 			

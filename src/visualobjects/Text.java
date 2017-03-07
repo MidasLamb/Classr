@@ -2,6 +2,7 @@ package visualobjects;
 
 import static main.Constants.MAX_TEXT_WIDTH;
 
+import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -56,8 +57,14 @@ public class Text extends VisualObject {
 		// Draw the string
 		// Add the height with the Y value since drawing strings
 		// begins bottom left
+		Color s = g.getColor();
+		if (!this.getParent().isSelected() && this.isStandardTextSet())
+			g.setColor(Color.gray);
 		g.drawString(this.getText(), this.getX(), this.getY() + this.getHeight());
 
+		if (!this.getParent().isSelected() && this.isStandardTextSet())
+			g.setColor(s);
+		
 		// If the text is selected draw the cursor
 		if (this.isSelected())
 			drawCursor(g);
