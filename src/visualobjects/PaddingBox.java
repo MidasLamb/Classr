@@ -35,7 +35,7 @@ public class PaddingBox extends VisualObject {
 	 */
 	public PaddingBox(int x, int y, int z, int width, int height, int paddingLeft, int paddingRight, 
 			int paddingTop, int paddingBottom, VisualObject parent, String standardstring, Logical_objects object){
-		super(x, y, z, width, height, parent);
+		super(x, y, -10, width, height, parent);
 		setLogicalObject(object);
 		this.setPaddingLeft(paddingLeft);
 		this.setPaddingRight(paddingRight);
