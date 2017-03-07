@@ -3,6 +3,7 @@ package visualobjects;
 import java.awt.Graphics;
 
 import main.Constants;
+import mouse.clicks.DoubleClick;
 import mouse.clicks.SingleClick;
 import objects.Logical_objects;
 
@@ -96,6 +97,11 @@ public class PaddingBox extends VisualObject {
 			this.getContainer().switchSelectedTo(this);
 		else if (this.isSelected())
 			this.getContainer().switchSelectedTo(this.getContent());
+	}
+	
+	@Override
+	public void onDoubleClick(DoubleClick dc){
+		this.onClick(new SingleClick(dc.getX(), dc.getY()));
 	}
 	
 	@Override

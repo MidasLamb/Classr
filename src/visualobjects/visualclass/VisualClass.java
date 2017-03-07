@@ -203,6 +203,7 @@ public class VisualClass extends VisualObject {
 			PaddingBox t = this.createMethod();
 			this.getContainer().switchSelectedTo(t.getContent());
 		}
+		super.onDoubleClick(dc);
 	}
 	
 	@Override
