@@ -6,6 +6,7 @@ import mouse.clicks.SingleClick;
 import objects.Attribute;
 import objects.LogicalObject;
 import objects.Method;
+import visualobjects.visualclass.VisualClass;
 
 public class PaddingBox extends VisualObject {
 
@@ -176,10 +177,14 @@ public class PaddingBox extends VisualObject {
 	
 	@Override
 	protected void onDelete(){
-		if (this.getLogicalObject() instanceof Attribute)
+		if (this.getLogicalObject() instanceof Attribute){
 			((Attribute) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
+			((VisualClass) ((Attribute) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
+		}
 		
-		if (this.getLogicalObject() instanceof Method)
+		if (this.getLogicalObject() instanceof Method){
 			((Method) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
+			((VisualClass) ((Method) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
+		}
 	}
 }

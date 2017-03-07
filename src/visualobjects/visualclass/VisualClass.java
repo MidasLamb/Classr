@@ -57,7 +57,7 @@ public class VisualClass extends VisualObject {
 	/**
 	 * @post calculates the height of this object and sets it
 	 */
-	private void updateDimensions() {
+	public void updateDimensions() {
 		// TODO update
 		int y = this.getY();
 

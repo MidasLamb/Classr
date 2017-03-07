@@ -83,7 +83,7 @@ public class Container extends VisualObject {
 	/**
 	 * @return VisualObject that is selected
 	 */
-	private VisualObject getSelected() {
+	public VisualObject getSelected() {
 		return selected;
 	}
 
