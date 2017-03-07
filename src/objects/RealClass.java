@@ -1,5 +1,7 @@
 package objects;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
@@ -40,15 +42,15 @@ public class RealClass extends Logical_objects {
 		throw new IllegalStateException();
 	}
 	
-	HashSet<Attribute> getAttributes() {
-		return new HashSet<>(attributes);
+	public Collection<Attribute> getAttributes() {
+		return new ArrayList<>(attributes);
 	}
 
-	private void setAttributes(HashSet<Attribute> attributes) {
+	private void setAttributes(ArrayList<Attribute> attributes) {
 		this.attributes = attributes;
 	}
 	
-	private HashSet<Attribute> attributes = new HashSet<>();
+	private ArrayList<Attribute> attributes = new ArrayList<>();
 	
 	public Method addMethod() {
 		Method method = new Method();
@@ -62,15 +64,15 @@ public class RealClass extends Logical_objects {
 		}
 	}
 	
-	HashSet<Method> getMethods() {
-		return new HashSet<>(this.methods);
+	public Collection<Method> getMethods() {
+		return new ArrayList<>(this.methods);
 	}
 
-	private void setMethods(HashSet<Method> methods) {
+	private void setMethods(ArrayList<Method> methods) {
 		this.methods = methods;
 	}
 
-	private HashSet<Method> methods = new HashSet<>();
+	private ArrayList<Method> methods = new ArrayList<>();
 	
 	HashSet<Association> getAssociations() {
 		return new HashSet<>(this.associations);

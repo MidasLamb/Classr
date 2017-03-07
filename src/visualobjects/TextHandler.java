@@ -15,6 +15,7 @@ public class TextHandler extends VisualObject {
 		setLogicalObject(object);
 		setStandardTextString(standardstring);
 		setText(getStandardTextString());
+		setIsStandardTextSet(true);
 	}
 	
 	public TextHandler(int x, int y,int z, VisualObject parent, 

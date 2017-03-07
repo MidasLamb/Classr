@@ -1,5 +1,7 @@
 package objects;
 
+import visualobjects.VisualObject;
+
 public class Logical_objects {
 	public String getName() {
 		return name;
@@ -10,4 +12,14 @@ public class Logical_objects {
 	}
 	
 	private String name;
+	
+	private VisualObject visualObject;
+	
+	public void setVisualObject(VisualObject vo){
+		this.visualObject = vo;
+	}
+	
+	public VisualObject getVisualObject(){
+		return this.visualObject;
+	}
 }

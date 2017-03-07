@@ -5,17 +5,18 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.PriorityQueue;
 
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
 import objects.Logical_objects;
 
-public abstract class VisualObject{
+public abstract class VisualObject implements Comparable<VisualObject>{
 	private int z;
 
 	public VisualObject(int x,int y,int z,int width, int height, VisualObject parent) {
-		setChildren(new ArrayList<VisualObject>());
+		setChildren(new PriorityQueue<VisualObject>());
 		setX(x);
 		setY(y);
 		setZ(z);
@@ -31,7 +32,7 @@ public abstract class VisualObject{
 	 * @post shows this visual object and his children
 	 * 			shows this object red if it is selected
 	 */
-	public void show(Graphics g) {
+	public void show(Graphics g) {		
 		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);
@@ -50,7 +51,7 @@ public abstract class VisualObject{
 	 * @post Deletes this visual object
 	 */
 	public void delete() {
-		setChildren(new ArrayList<VisualObject>());
+		setChildren(new PriorityQueue<VisualObject>());
 		getParent().removeChild(this);
 	}
 	
@@ -238,15 +239,15 @@ public abstract class VisualObject{
 	private VisualObject parent;
 
 	
-	private void setChildren(Collection<VisualObject> children){
+	private void setChildren(PriorityQueue<VisualObject> children){
 		this.children = children;
 	}
 	
-	protected Collection<VisualObject> getChildren(){
-		return new ArrayList<VisualObject>(this.children);
+	protected PriorityQueue<VisualObject> getChildren(){
+		return new PriorityQueue<VisualObject>(this.children);
 	}
 	
-	protected void addChild(VisualObject c){
+	public void addChild(VisualObject c){
 		this.children.add(c);
 	}
 	
@@ -255,7 +256,7 @@ public abstract class VisualObject{
 		this.afterDeleteChild(c);
 	}
 	
-	private Collection<VisualObject> children;
+	private PriorityQueue<VisualObject> children;
 
 	public void setSelected(boolean b){
 		this.isSelected = b;
@@ -283,6 +284,10 @@ public abstract class VisualObject{
 
 	private void setZ(int z) {
 		this.z = z;
+	}
+	
+	public int compareTo(VisualObject other) {
+	    return Integer.compare(this.getZ(), other.getZ());
 	}
 	
 }
