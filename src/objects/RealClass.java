@@ -74,7 +74,7 @@ public class RealClass extends LogicalObject {
 
 	private ArrayList<Method> methods = new ArrayList<>();
 	
-	HashSet<Association> getAssociations() {
+	public HashSet<Association> getAssociations() {
 		return new HashSet<>(this.associations);
 	}
 	

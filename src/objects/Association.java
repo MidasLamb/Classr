@@ -9,7 +9,7 @@ public class Association extends LogicalObject {
 		this.getClass2().addAssociation(this);
 	}
 	
-	private RealClass getClass1() {
+	public RealClass getClass1() {
 		return class1;
 	}
 	private void setClass1(RealClass class1) {
@@ -18,7 +18,7 @@ public class Association extends LogicalObject {
 	
 	private RealClass class1;
 
-	private RealClass getClass2() {
+	public RealClass getClass2() {
 		return class2;
 	}
 	private void setClass2(RealClass class2) {
@@ -37,4 +37,9 @@ public class Association extends LogicalObject {
 	}
 	
 	private String name;
+	
+	public void remove(){
+		this.getClass1().deleteAssociation(this);
+		this.getClass2().deleteAssociation(this);
+	}
 }

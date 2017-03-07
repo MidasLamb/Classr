@@ -3,22 +3,25 @@ package visualobjects.visualclass;
 import java.awt.Graphics;
 
 import objects.Association;
+import objects.RealClass;
 import visualobjects.PaddingBox;
 import visualobjects.VisualObject;
 
 public class VisualAssociation extends VisualObject {
 
-	public VisualAssociation(VisualClass parent1, VisualClass parent2) {
-		super(0, 0,0, 0, 0, parent1);
-		this.p1 = parent1;
-		this.p2 = parent2;
-		Association ass = new Association(parent1.getLogicalObject(), parent2.getLogicalObject());
-		this.setLogicalObject(ass);
+	public VisualAssociation(Association association, VisualObject parent) {
+		super(0, 0,0, 0, 0, parent);
+		this.setLogicalObject(association);
+		((RealClass) association.getClass1()).addAssociation(association);
+		association.setVisualObject(this);
+		
+		p1 = (VisualClass) association.getClass1().getVisualObject();
+		p2 = (VisualClass) association.getClass2().getVisualObject();
 		
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX())/2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY())/2;
 		//TODO fix z version.
-		this.text = new PaddingBox(centerX ,centerY, 0,  this, ass);
+		this.text = new PaddingBox(centerX ,centerY, 0,  this, association);
 		this.addChild(getText());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 	}
@@ -37,8 +40,10 @@ public class VisualAssociation extends VisualObject {
 	
 	@Override
 	protected void afterDeleteChild(VisualObject v){
-		if (v.equals(this.getText()))
+		if (v.equals(this.getText())){
+			((Association) this.getLogicalObject()).remove();
 			this.delete();
+		}
 	}
 	
 	//Getters and setters

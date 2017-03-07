@@ -8,6 +8,7 @@ import main.Constants;
 import mouse.clicks.DoubleClick;
 import mouse.clicks.Drag;
 import mouse.clicks.SingleClick;
+import objects.Association;
 import objects.Attribute;
 import objects.LogicalObject;
 import objects.Method;
@@ -242,6 +243,15 @@ public class VisualClass extends VisualObject {
 				return true;
 		}
 		return super.isIn(x, y);
+	}
+	
+	@Override 
+	protected void onDelete(){
+		Collection<Association> co = ((RealClass) this.getLogicalObject()).getAssociations();
+		for (Association a: co){
+			((RealClass) this.getLogicalObject()).deleteAssociation(a);
+			a.getVisualObject().delete();
+		}
 	}
 
 }

@@ -51,8 +51,13 @@ public abstract class VisualObject implements Comparable<VisualObject>{
 	 * @post Deletes this visual object
 	 */
 	public void delete() {
+		this.onDelete();
 		setChildren(new PriorityQueue<VisualObject>());
 		getParent().removeChild(this);
+	}
+	
+	protected void onDelete(){
+		
 	}
 	
 	/**
