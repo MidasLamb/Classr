@@ -1,8 +1,8 @@
 package visualobjects;
 import java.awt.event.KeyEvent;
 
-import mouse.clicks.DoubleClick;
-import mouse.clicks.SingleClick;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.SingleClick;
 import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {

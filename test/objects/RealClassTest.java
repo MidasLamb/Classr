@@ -4,9 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import mouse.clicks.DoubleClick;
-import mouse.clicks.Drag;
-import mouse.clicks.SingleClick;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.Drag;
+import inputHandlers.clicks.SingleClick;
 import objects.RealClass;
 import visualobjects.Container;
 import visualobjects.visualclass.VisualClass;

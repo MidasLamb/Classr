@@ -1,8 +1,8 @@
 package visualobjects;
 
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.SingleClick;
 import main.Constants;
-import mouse.clicks.DoubleClick;
-import mouse.clicks.SingleClick;
 import objects.Attribute;
 import objects.LogicalObject;
 import objects.Method;

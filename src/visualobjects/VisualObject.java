@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.PriorityQueue;
 
-import mouse.clicks.DoubleClick;
-import mouse.clicks.Drag;
-import mouse.clicks.SingleClick;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.Drag;
+import inputHandlers.clicks.SingleClick;
 import objects.LogicalObject;
 
 public abstract class VisualObject implements Comparable<VisualObject> {

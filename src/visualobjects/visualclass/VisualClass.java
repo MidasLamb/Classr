@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import inputHandlers.clicks.DoubleClick;
 import main.Constants;
-import mouse.clicks.DoubleClick;
 import objects.Association;
 import objects.Attribute;
 import objects.Method;
