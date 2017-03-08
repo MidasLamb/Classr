@@ -40,18 +40,21 @@ public class VisualClass extends VisualObject {
 		int y = this.getY();
 
 		y += this.getName().getHeight();
+		
+		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
 
 		for (VisualObject t : this.getAttributes()) {
 			y += t.getHeight();
 		}
 
-		g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
+		//g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
 		y += Constants.CLASS_WHITE_SPACE;
-
+		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
+		
 		for (VisualObject t : this.getMethods()) {
 			y += t.getHeight();
 		}
-		g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
+		//g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
 	}
 
 	/**
@@ -87,7 +90,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), 0 , this.getContainer(),"Nieuw Attribuut", attr);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX , this.getContainer(),"Nieuw Attribuut", attr);
 		this.getContainer().addChild(t);
 		attr.setVisualObject(t);
 		this.updateDimensions();
@@ -101,7 +104,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), 0, this.getContainer(), "Nieuwe Methode", method);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX, this.getContainer(), "Nieuwe Methode", method);
 		this.getContainer().addChild(t);
 		method.setVisualObject(t);
 		this.updateDimensions();

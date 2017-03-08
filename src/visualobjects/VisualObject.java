@@ -3,18 +3,22 @@ package visualobjects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 import objects.LogicalObject;
 
-public abstract class VisualObject implements Comparable<VisualObject> {
+public abstract class VisualObject{
 	private int z;
 
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
-		setChildren(new PriorityQueue<VisualObject>());
+		setChildren(new ArrayList<VisualObject>());
 		setX(x);
 		setY(y);
 		setZ(z);
@@ -51,12 +55,12 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	public void delete() {
 		this.onDelete();
 		Container c = this.getContainer();
-		if (c != null){
+		if (c != null) {
 			if (c.getSelected() != null && c.getSelected().equals(this))
 				c.switchSelectedTo(null);
 		}
-			
-		setChildren(new PriorityQueue<VisualObject>());
+
+		setChildren(new ArrayList<VisualObject>());
 		getParent().removeChild(this);
 	}
 
@@ -196,10 +200,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 	protected void afterDeleteChild(VisualObject child) {
 
 	}
-	
-	public int compareTo(VisualObject other) {
-		return Integer.compare(this.getZ(), other.getZ());
-	}
+
 
 	// Getters and setters
 
@@ -253,16 +254,17 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 
 	private VisualObject parent;
 
-	private void setChildren(PriorityQueue<VisualObject> children) {
-		this.children = children;
+	private void setChildren(ArrayList<VisualObject> list) {
+		this.children = list;
 	}
 
-	protected PriorityQueue<VisualObject> getChildren() {
-		return new PriorityQueue<VisualObject>(this.children);
+	protected ArrayList<VisualObject> getChildren() {
+		return new ArrayList<VisualObject>(this.children);
 	}
 
 	public void addChild(VisualObject c) {
 		this.children.add(c);
+		this.children.sort(new VisualObjectComparator());
 	}
 
 	public void removeChild(VisualObject c) {
@@ -270,7 +272,7 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 		this.afterDeleteChild(c);
 	}
 
-	private PriorityQueue<VisualObject> children;
+	private ArrayList<VisualObject> children;
 
 	public void setSelected(boolean b) {
 		this.isSelected = b;
@@ -298,6 +300,17 @@ public abstract class VisualObject implements Comparable<VisualObject> {
 
 	private void setZ(int z) {
 		this.z = z;
+	}
+
+	private class VisualObjectComparator implements Comparator<VisualObject> {
+		@Override
+		public int compare(VisualObject x, VisualObject y) {
+			int diff = x.getZ() - y.getZ();
+			if (diff == 0)
+				return -1;
+			return diff;
+		}
+
 	}
 
 }
