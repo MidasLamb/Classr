@@ -40,18 +40,21 @@ public class VisualClass extends VisualObject {
 		int y = this.getY();
 
 		y += this.getName().getHeight();
+		
+		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
 
 		for (VisualObject t : this.getAttributes()) {
 			y += t.getHeight();
 		}
 
-		g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
+		//g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
 		y += Constants.CLASS_WHITE_SPACE;
-
+		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
+		
 		for (VisualObject t : this.getMethods()) {
 			y += t.getHeight();
 		}
-		g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
+		//g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
 	}
 
 	/**
