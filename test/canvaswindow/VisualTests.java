@@ -1,10 +1,9 @@
 package canvaswindow;
 
 import static main.Constants.CANVAS_TITLE;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,17 +33,7 @@ public class VisualTests {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/createTwoClasses/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
-		File outputfile = new File("image.jpg");
-		ImageIO.write(actual, "jpg", outputfile);
 		assertTrue(imagesEqual(getReferenceImage("createTwoClasses"),  actual));
-	}
-	
-	@Test
-	public void testTest() throws IOException {
-		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/test/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		assertTrue(imagesEqual(getReferenceImage("test"),  actual));
 	}
 	
 	@Test
