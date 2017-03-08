@@ -1,10 +1,10 @@
 package objects;
 
 public class Attribute extends LogicalObject {
-	public Attribute(RealClass rc){
+	public Attribute(RealClass rc) {
 		this.setRealClass(rc);
 	}
-	
+
 	public RealClass getRealClass() {
 		return realClass;
 	}
@@ -12,6 +12,6 @@ public class Attribute extends LogicalObject {
 	private void setRealClass(RealClass rc) {
 		this.realClass = rc;
 	}
-	
+
 	private RealClass realClass;
 }
