@@ -11,8 +11,7 @@ import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 import objects.LogicalObject;
 
-public abstract class VisualObject{
-	private int z;
+public abstract class VisualObject {
 
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
 		setChildren(new ArrayList<VisualObject>());
@@ -198,7 +197,6 @@ public abstract class VisualObject{
 
 	}
 
-
 	// Getters and setters
 
 	public int getX() {
@@ -299,12 +297,12 @@ public abstract class VisualObject{
 		this.z = z;
 	}
 
+	private int z;
+
 	private class VisualObjectComparator implements Comparator<VisualObject> {
 		@Override
 		public int compare(VisualObject x, VisualObject y) {
 			int diff = x.getZ() - y.getZ();
-			if (diff == 0)
-				return -1;
 			return diff;
 		}
 

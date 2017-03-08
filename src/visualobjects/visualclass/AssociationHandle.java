@@ -5,7 +5,6 @@ import static main.Constants.ASSOCIATIONHANDLE_SIZE;
 import java.awt.Graphics;
 
 import inputHandlers.clicks.Drag;
-import objects.Association;
 import visualobjects.VisualObject;
 
 public class AssociationHandle extends VisualObject {
@@ -30,8 +29,8 @@ public class AssociationHandle extends VisualObject {
 
 	private void createAssociation(VisualClass other) {
 		VisualClass parent = (VisualClass) this.getParent();
-		Association ass = new Association(parent.getLogicalObject(), other.getLogicalObject());
-		VisualAssociation a = new VisualAssociation(ass, this.getContainer());
+
+		VisualAssociation a = new VisualAssociation(parent, other, this.getContainer());
 		this.getContainer().addChild(a);
 	}
 }

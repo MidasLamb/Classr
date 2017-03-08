@@ -64,7 +64,7 @@ public class Text extends VisualObject {
 
 		if (!this.getParent().isSelected() && this.isStandardTextSet())
 			g.setColor(s);
-		
+
 		// If the text is selected draw the cursor
 		if (this.isSelected())
 			drawCursor(g);
@@ -94,8 +94,7 @@ public class Text extends VisualObject {
 		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.setSelected(false);
 			// if it isn't an action key write it down
-		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT 
-				&& e.getKeyCode() != KeyEvent.VK_DELETE) {
+		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT && e.getKeyCode() != KeyEvent.VK_DELETE) {
 			this.addLetter(s.charAt(0));
 		}
 	}

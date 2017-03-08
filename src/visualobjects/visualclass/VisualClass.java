@@ -40,21 +40,23 @@ public class VisualClass extends VisualObject {
 		int y = this.getY();
 
 		y += this.getName().getHeight();
-		
+
 		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
 
 		for (VisualObject t : this.getAttributes()) {
 			y += t.getHeight();
 		}
 
-		//g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
+		// g.fillRect(this.getX(), y, this.getWidth(),
+		// Constants.CLASS_WHITE_SPACE);
 		y += Constants.CLASS_WHITE_SPACE;
 		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
-		
+
 		for (VisualObject t : this.getMethods()) {
 			y += t.getHeight();
 		}
-		//g.fillRect(this.getX(), y, this.getWidth(), Constants.CLASS_WHITE_SPACE);
+		// g.fillRect(this.getX(), y, this.getWidth(),
+		// Constants.CLASS_WHITE_SPACE);
 	}
 
 	/**
@@ -90,7 +92,8 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX , this.getContainer(),"Nieuw Attribuut", attr);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX, this.getContainer(),
+				"Nieuw Attribuut", attr);
 		this.getContainer().addChild(t);
 		attr.setVisualObject(t);
 		this.updateDimensions();
@@ -104,7 +107,8 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX, this.getContainer(), "Nieuwe Methode", method);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX, this.getContainer(),
+				"Nieuwe Methode", method);
 		this.getContainer().addChild(t);
 		method.setVisualObject(t);
 		this.updateDimensions();
@@ -137,7 +141,6 @@ public class VisualClass extends VisualObject {
 	}
 
 	private Collection<VisualObject> getAttributes() {
-		// TODO maybe change?
 		Collection<Attribute> co = ((RealClass) this.getLogicalObject()).getAttributes();
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
 		for (Attribute a : co) {
@@ -180,7 +183,6 @@ public class VisualClass extends VisualObject {
 	}
 
 	private Collection<VisualObject> getMethods() {
-		// TODO Auto-generated method stub
 		Collection<Method> co = ((RealClass) this.getLogicalObject()).getMethods();
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
 		for (Method m : co) {
@@ -235,20 +237,20 @@ public class VisualClass extends VisualObject {
 			((RealClass) this.getLogicalObject()).deleteAssociation(a);
 			a.getVisualObject().delete();
 		}
-		
+
 		Collection<Attribute> ca = ((RealClass) this.getLogicalObject()).getAttributes();
-		for (Attribute a: ca){
+		for (Attribute a : ca) {
 			this.getContainer().removeChild(a.getVisualObject());
 		}
-		
+
 		Collection<Method> cm = ((RealClass) this.getLogicalObject()).getMethods();
-		for (Method m: cm){
+		for (Method m : cm) {
 			this.getContainer().removeChild(m.getVisualObject());
 		}
 	}
-	
-	//Getters and setters
-	
+
+	// Getters and setters
+
 	public PaddingBox getName() {
 		return name;
 	}
