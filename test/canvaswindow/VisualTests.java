@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 
 import org.junit.Test;
 
-public class containerTests {
+public class VisualTests {
 
 	@Test
 	public void newClassTest() throws IOException {

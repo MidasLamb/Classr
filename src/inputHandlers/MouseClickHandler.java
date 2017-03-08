@@ -3,9 +3,9 @@ package inputHandlers;
 import static main.Constants.*;
 import java.awt.event.MouseEvent;
 
-import mouse.clicks.DoubleClick;
-import mouse.clicks.Drag;
-import mouse.clicks.SingleClick;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.Drag;
+import inputHandlers.clicks.SingleClick;
 import visualobjects.Container;
 
 public class MouseClickHandler {

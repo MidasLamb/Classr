@@ -4,7 +4,7 @@ import static main.Constants.ASSOCIATIONHANDLE_SIZE;
 
 import java.awt.Graphics;
 
-import mouse.clicks.Drag;
+import inputHandlers.clicks.Drag;
 import objects.Association;
 import visualobjects.VisualObject;
 

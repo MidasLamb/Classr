@@ -1,13 +1,10 @@
 package objects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import mouse.clicks.DoubleClick;
-import mouse.clicks.Drag;
-import mouse.clicks.SingleClick;
-import objects.RealClass;
 import visualobjects.Container;
 import visualobjects.visualclass.VisualClass;
 

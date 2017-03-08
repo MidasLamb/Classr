@@ -9,9 +9,9 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
 
-import mouse.clicks.DoubleClick;
-import mouse.clicks.Drag;
-import mouse.clicks.SingleClick;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.Drag;
+import inputHandlers.clicks.SingleClick;
 import objects.LogicalObject;
 
 public abstract class VisualObject{
