@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.TreeSet;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;

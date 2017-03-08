@@ -13,7 +13,6 @@ import java.nio.file.Paths;
 import java.util.OptionalInt;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javax.imageio.ImageIO;
@@ -35,7 +34,17 @@ public class VisualTests {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/createTwoClasses/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
+		File outputfile = new File("image.jpg");
+		ImageIO.write(actual, "jpg", outputfile);
 		assertTrue(imagesEqual(getReferenceImage("createTwoClasses"),  actual));
+	}
+	
+	@Test
+	public void testTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/test/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("test"),  actual));
 	}
 	
 	@Test
