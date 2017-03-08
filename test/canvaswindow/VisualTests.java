@@ -85,6 +85,22 @@ public class VisualTests {
 	}
 	
 	@Test
+	public void selectAttrTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/selectAttr/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("selectAttr"),  actual));
+	}
+	
+	@Test
+	public void selectMethodeTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/selectMethode/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("selectMethode"),  actual));
+	}
+	
+	@Test
 	public void deleteClassWithAssAndMethTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/deleteClassWithAssAndMeth/recording", canvasWindow);
@@ -109,13 +125,12 @@ public class VisualTests {
 	}
 	
 	@Test
-	public void deleteAttribute() throws IOException {
+	public void deleteAttributeTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/deleteAttribute/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
 		assertTrue(imagesEqual(getReferenceImage("deleteAttribute"),  actual));
-	}
-	
+	}	
 	
 	private static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
 		try{
