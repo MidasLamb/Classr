@@ -28,7 +28,7 @@ public class Text extends VisualObject {
 	/**
 	 * @post removes one letter from text
 	 */
-	public void removeLetter() {
+	private void removeLetter() {
 		if (this.getText().length() > 0)
 			this.setText(getText().substring(0, getText().length() - 1));
 	}
@@ -131,9 +131,7 @@ public class Text extends VisualObject {
 			}
 		}
 	}
-
-	// Getters and setters
-
+	
 	private String getText() {
 		return getLogicalObject().getName();
 	}
@@ -142,9 +140,7 @@ public class Text extends VisualObject {
 		getLogicalObject().setName(text);
 	}
 
-	private boolean isStandardTextSet() {
-		return isStandardTextSet;
-	}
+	// Getters and setters
 
 	private String getStandardTextString() {
 		return standardTextString;
@@ -155,6 +151,10 @@ public class Text extends VisualObject {
 	}
 
 	private String standardTextString;
+	
+	private boolean isStandardTextSet() {
+		return isStandardTextSet;
+	}
 
 	private void setIsStandardTextSet(boolean isStandardText) {
 		this.isStandardTextSet = isStandardText;

@@ -33,6 +33,5 @@ public class AssociationHandle extends VisualObject {
 		Association ass = new Association(parent.getLogicalObject(), other.getLogicalObject());
 		VisualAssociation a = new VisualAssociation(ass, this.getContainer());
 		this.getContainer().addChild(a);
-
 	}
 }
