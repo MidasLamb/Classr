@@ -94,7 +94,8 @@ public class Text extends VisualObject {
 		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			this.setSelected(false);
 			// if it isn't an action key write it down
-		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT) {
+		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT 
+				&& e.getKeyCode() != KeyEvent.VK_DELETE) {
 			this.addLetter(s.charAt(0));
 		}
 	}
