@@ -6,6 +6,10 @@ import java.io.File;
 
 import canvaswindow.MyCanvasWindow;
 
+/**
+ * A class to records steps and images for testcases.
+ *
+ */
 public class Recorder {
 	
 	public static void main(String[] args) {

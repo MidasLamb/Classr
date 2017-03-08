@@ -112,7 +112,7 @@ public class PaddingBox extends VisualObject {
 		if (getContent() != null)
 			this.getContent().setY(y + this.getPaddingTop());
 	}
-	
+
 	@Override
 	public int getHeight() {
 		return this.getContent().getHeight() + this.getPaddingTop() + this.getPaddingBottom();
@@ -122,15 +122,15 @@ public class PaddingBox extends VisualObject {
 	public int getWidth() {
 		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
 	}
-	
+
 	@Override
-	protected void onDelete(){
-		if (this.getLogicalObject() instanceof Attribute){
+	protected void onDelete() {
+		if (this.getLogicalObject() instanceof Attribute) {
 			((Attribute) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
 			((VisualClass) ((Attribute) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
 		}
-		
-		if (this.getLogicalObject() instanceof Method){
+
+		if (this.getLogicalObject() instanceof Method) {
 			((Method) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
 			((VisualClass) ((Method) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
 		}

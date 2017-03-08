@@ -10,16 +10,16 @@ public class LogicalObject {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	private String name;
-	
-	public void setVisualObject(VisualObject vo){
+
+	public void setVisualObject(VisualObject vo) {
 		this.visualObject = vo;
 	}
-	
-	public VisualObject getVisualObject(){
+
+	public VisualObject getVisualObject() {
 		return this.visualObject;
 	}
-	
+
 	private VisualObject visualObject;
 }

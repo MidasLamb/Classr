@@ -2,6 +2,7 @@ package visualobjects.visualclass;
 
 import java.awt.Graphics;
 
+import main.Constants;
 import objects.Association;
 import objects.RealClass;
 import visualobjects.PaddingBox;
@@ -9,19 +10,19 @@ import visualobjects.VisualObject;
 
 public class VisualAssociation extends VisualObject {
 
-	public VisualAssociation(Association association, VisualObject parent) {
+	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
 		super(0, 0, 0, 0, 0, parent);
+		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
 		((RealClass) association.getClass1()).addAssociation(association);
 		association.setVisualObject(this);
 
-		p1 = (VisualClass) association.getClass1().getVisualObject();
-		p2 = (VisualClass) association.getClass2().getVisualObject();
+		p1 = participant1;
+		p2 = participant2;
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		// TODO fix z version.
-		this.text = new PaddingBox(centerX, centerY, 0, this, "Nieuwe associatie",  association);
+		this.text = new PaddingBox(centerX, centerY, Constants.Z_PADDING_BOX, this, "Nieuwe associatie", association);
 		this.addChild(getText());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 	}
