@@ -2,6 +2,11 @@ package objects;
 
 import visualobjects.VisualObject;
 
+/**
+ * A class of logical objects, involving a name and visual object
+ * 
+ * @author team 11
+ */
 public class LogicalObject {
 	public String getName() {
 		return name;
