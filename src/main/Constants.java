@@ -29,6 +29,11 @@ public final class Constants {
 	
 	public static final int STANDARD_TEXT_HEIGHT = 16;
 	
+	public static final int Z_CLASS = 0;
+	public static final int Z_PADDING_BOX = -10;
+	public static final int Z_ASSOCIATION = -5;
+	
+	
 	private Constants() {
 		throw new AssertionError();
 	}
