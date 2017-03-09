@@ -265,6 +265,16 @@ public class MouseClickHandlerTest {
 		assertTrue(container.isDragged);
 	}
 	
+	@Test
+	public void dragTest2() throws InterruptedException{
+		testContainer container = new testContainer();
+		MouseClickHandler handler = new MouseClickHandler(container);
+		Component dummy = new List();
+		MouseEvent event = new MouseEvent(dummy,MouseEvent.MOUSE_DRAGGED,1,MouseEvent.BUTTON1,2,2,2,false);
+		handler.handleInput(event);
+		assertFalse(container.isDragged);
+	}
+	
 	private static void simulateSingleClick(MouseClickHandler handler){
 		simulateSingleClick(0, 0, handler);
 	}

@@ -121,7 +121,7 @@ public abstract class VisualObject {
 	 * 
 	 * @param d
 	 *            The drag object
-	 * @post triggers the onDragEnd function of the child where the dragging
+	 * @post triggers the onDragStart function of the child where the dragging
 	 *       starts
 	 */
 	public void onDragStart(Drag d) {

@@ -125,12 +125,41 @@ public class VisualTests {
 	}
 	
 	@Test
+	public void deleteAssociationTest3() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteAssociation3/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteAssociation3"),  actual));
+	}
+	
+	@Test
+	public void deleteAssociationTest4() throws IOException {
+		//Drie klassen associatie van 1 -> 2 van 2 ->3 en dan 2 verwijderen
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/deleteAssociation4/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("deleteAssociation4"),  actual));
+	}
+	
+	@Test
 	public void deleteAttributeTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/deleteAttribute/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
 		assertTrue(imagesEqual(getReferenceImage("deleteAttribute"),  actual));
 	}	
+	
+	@Test
+	public void doubleClickTest() throws IOException {
+		//Twee keer klikken op dezelfde plaats in container
+		// zou geen twee klassen mogen maken
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/doubleClick/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("doubleClick"),  actual));
+	}
+	
+	
 	
 	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
 		try{
