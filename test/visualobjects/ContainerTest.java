@@ -42,13 +42,13 @@ public class ContainerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deteleteTest1() {
+	public void deleteTest1() {
 		Container container = new Container(10, 10, 100, 100);
 		container.removeChild(container);
 	}
 	
 	@Test
-	public void deteleteTest2() {
+	public void deleteTest2() {
 		Container container = new Container(10, 10, 100, 100);
 		new VisualClass(0, 0, 0, container);
 		VisualClass klasse2 = new VisualClass(1, 1, 1, container);
@@ -56,7 +56,7 @@ public class ContainerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deteleteTest3() {
+	public void deleteTest3() {
 		Container container = new Container(10, 10, 100, 100);
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
 		container.removeChild(klasse1);
@@ -64,7 +64,7 @@ public class ContainerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deteleteTest4() {
+	public void deleteTest4() {
 		Container container = new Container(10, 10, 100, 100);
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
 		new VisualClass(1, 1, 1, container);
@@ -73,7 +73,7 @@ public class ContainerTest {
 	}
 	
 	@Test
-	public void deteleteTest5() {
+	public void deleteTest5() {
 		Container container = new Container(10, 10, 100, 100);
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
 		VisualClass klasse2 = new VisualClass(1, 1, 1, container);
@@ -82,7 +82,7 @@ public class ContainerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deteleteTest6() {
+	public void deleteTest6() {
 		Container container = new Container(10, 10, 100, 100);
 		VisualClass klasse = new VisualClass(0, 0, 0, container);
 		klasse.delete();
@@ -134,13 +134,84 @@ public class ContainerTest {
 		Container container = new Container(0, 0, 1000, 1000);
 		DoubleClick click1 = new DoubleClick(138,101);
 		container.onDoubleClick(click1);
-		boolean found = false;
+		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualClass){
-				found = true;
+				count++;
 			}
 		}
-		assertTrue(found);
+		assertEquals(1, count);
+	}
+	
+	@Test
+	public void createClassTest2(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(138,101);
+		container.onDoubleClick(click1);
+		int x = 0, y = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualClass){
+				x = ((VisualClass) child).getX();
+				y = ((VisualClass) child).getY();
+			}
+		}
+		assertTrue(x == 138 && y == 101);
+	}
+	
+	@Test
+	public void notCreateDoubleClassTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(138,101);
+		SingleClick click2 = new SingleClick(1, 1);
+		container.onDoubleClick(click1);
+		container.onClick(click2);
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualClass){
+				count++;
+			}
+		}
+		assertEquals(1, count);
+	}
+	
+	@Test
+	public void clickOnClassTest1(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(138,101);
+		SingleClick click2 = new SingleClick(1,1);
+		SingleClick click3 = new SingleClick(138,101);
+		container.onDoubleClick(click1);
+		container.onClick(click2);
+		container.onClick(click3);
+		VisualClass klasse = null;
+		VisualObject selected = container.getSelected();
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualClass){
+				klasse = (VisualClass) child;
+			}
+		}
+		assertTrue(klasse.getChildren().contains(selected));
+	}
+	
+	@Test
+	public void clickOnClassTest2(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(138,101);
+		SingleClick click2 = new SingleClick(1,1);
+		SingleClick click3 = new SingleClick(138,101);
+		container.onDoubleClick(click1);
+		container.onClick(click2);
+		container.onClick(click3);
+		VisualClass klasse = null;
+		VisualObject padding = container.getSelected();
+		container.onClick(click3);
+		VisualObject text = container.getSelected();
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualClass){
+				klasse = (VisualClass) child;
+			}
+		}
+		assertTrue(klasse.getChildren().contains(padding) && padding.getChildren().contains(text));
 	}
 	
 	@Test
@@ -203,13 +274,91 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onDragStart(drag);
 		container.onDragEnd(drag);
-		boolean found = false;
+		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
-				found = true;
+				count++;
 			}
 		}
-		assertTrue(found);
+		assertEquals(1,count);
+	}
+	
+	@Test
+	public void createTwoAssTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(138,101);
+		DoubleClick click2 = new DoubleClick(226,299);
+		DoubleClick click3 = new DoubleClick(500,500);
+		Drag drag1 = new Drag(137,135, 225,333);
+		Drag drag2 = new Drag(500,534, 225,333);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onDoubleClick(click3);
+		container.onDragStart(drag1);
+		container.onDragEnd(drag1);
+		container.onDragStart(drag2);
+		container.onDragEnd(drag2);
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualAssociation){
+				count++;
+			}
+		}
+		assertEquals(2,count);
+	}
+	
+	@Test
+	public void selectContainerTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		SingleClick click = new SingleClick(1,1);
+		container.onClick(click);
+		VisualObject selected = container.getSelected();
+		assertEquals(null, selected);
+	}
+	
+	@Test
+	public void selectAttributeTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(182,162);
+		DoubleClick click2 = new DoubleClick(210,196);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(210,196);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onClick(click3);
+		container.onClick(click4);
+		assertTrue(container.getSelected() instanceof PaddingBox);
+	}
+	
+	@Test
+	public void selectMethodeTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(149,118);
+		DoubleClick click2 = new DoubleClick(201,164);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(201,164);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onClick(click3);
+		container.onClick(click4);
+		assertTrue(container.getSelected() instanceof PaddingBox);
+	}
+	
+	@Test
+	public void selectAssTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(103,108);
+		DoubleClick click2 = new DoubleClick(326,369);
+		Drag drag = new Drag(104,142,325,401);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(243,256);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onDragStart(drag);
+		container.onDragEnd(drag);
+		container.onClick(click3);
+		container.onClick(click4);
+		assertTrue(container.getSelected() instanceof PaddingBox);
 	}
 	
 	@Test
@@ -223,16 +372,165 @@ public class ContainerTest {
 		container.onClick(click2);
 		//klik op klasse
 		container.onClick(click3);
-		Canvas canvas = new Canvas();
-		KeyEvent ke = new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_DELETE, 'a');
+		KeyEvent ke = getDeleteKey();
 		container.handleKey(ke);
-		boolean found = false;
+		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualClass){
-				found = true;
+				count++;
 			}
 		}
-		assertFalse(found);
+		assertEquals(0,count);
+	}
+	
+	@Test
+	public void deleteAttributeTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(182,162);
+		DoubleClick click2 = new DoubleClick(210,196);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(210,196);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onClick(click3);
+		container.onClick(click4);
+		container.handleKey(getDeleteKey());
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof PaddingBox){
+				count++;
+			}
+		}		
+		assertEquals(0, count);
+	}
+	
+	@Test
+	public void deleteMethodeTest(){
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(149,118);
+		DoubleClick click2 = new DoubleClick(201,164);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(201,164);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onClick(click3);
+		container.onClick(click4);
+		container.handleKey(getDeleteKey());
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof PaddingBox){
+				count++;
+			}
+		}		
+		assertEquals(0, count);
+	}
+	
+	@Test
+	public void deleteAssTest1(){
+		//verwijderen door klikken op ass zelf
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(103,108);
+		DoubleClick click2 = new DoubleClick(326,369);
+		Drag drag = new Drag(104,142,325,401);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(243,256);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onDragStart(drag);
+		container.onDragEnd(drag);
+		container.onClick(click3);
+		container.onClick(click4);
+		container.handleKey(getDeleteKey());
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualAssociation){
+				count++;
+			}
+		}
+		assertEquals(0, count);
+	}
+	
+	@Test
+	public void deleteAssTest2(){
+		//verwijderen door klikken op p1
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(103,108);
+		DoubleClick click2 = new DoubleClick(326,369);
+		Drag drag = new Drag(104,142,325,401);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(103,108);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onDragStart(drag);
+		container.onDragEnd(drag);
+		container.onClick(click3);
+		container.onClick(click4);
+		container.handleKey(getDeleteKey());
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualAssociation){
+				count++;
+			}
+		}
+		assertEquals(0, count);
+	}
+	
+	@Test
+	public void deleteAssTest3(){
+		//verwijderen door klikken op p2
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(103,108);
+		DoubleClick click2 = new DoubleClick(326,369);
+		Drag drag = new Drag(104,142,325,401);
+		SingleClick click3 = new SingleClick(1,1);
+		SingleClick click4 = new SingleClick(326,369);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onDragStart(drag);
+		container.onDragEnd(drag);
+		container.onClick(click3);
+		container.onClick(click4);
+		container.handleKey(getDeleteKey());
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualAssociation){
+				count++;
+			}
+		}
+		assertEquals(0, count);
+	}
+	
+	@Test
+	public void deleteTwoAssTest(){
+		//delete the ass by deleting the middle class that has a connection to both
+		Container container = new Container(0, 0, 1000, 1000);
+		DoubleClick click1 = new DoubleClick(129,94);
+		DoubleClick click2 = new DoubleClick(198,285);
+		DoubleClick click3 = new DoubleClick(462,259);
+		SingleClick click4 = new SingleClick(258,300);
+		Drag drag1 = new Drag(129,125, 198,318);
+		Drag drag2 = new Drag(198,318, 461,292);
+		container.onDoubleClick(click1);
+		container.onDoubleClick(click2);
+		container.onDoubleClick(click3);
+		container.onDragStart(drag1);
+		container.onDragEnd(drag1);
+		container.onDragStart(drag2);
+		container.onDragEnd(drag2);
+		container.onClick(click4);
+		container.handleKey(getDeleteKey());
+		int count = 0;
+		for(VisualObject child : container.getChildren()){
+			if(child instanceof VisualAssociation){
+				count++;
+			}
+		}
+		assertEquals(0,count);
+	}
+	
+	private static KeyEvent getDeleteKey(){
+		Canvas canvas = new Canvas();
+		return new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_DELETE, 'a');
 	}
 	
 }
