@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
+import objects.Association;
 
 import static main.Constants.*;
 import visualobjects.Container;
@@ -127,6 +128,16 @@ public class VisualClassTest {
 		
 		assertTrue(visualClass1.getLogicalObject().getAssociations().size() == 1);
 		assertTrue(visualClass2.getLogicalObject().getAssociations().size() == 1);
+		for (Association a: visualClass1.getLogicalObject().getAssociations()){
+			assertTrue(a.getClass1().equals(visualClass1.getLogicalObject()) || a.getClass1().equals(visualClass2.getLogicalObject()));
+			assertTrue(a.getClass2().equals(visualClass1.getLogicalObject()) || a.getClass2().equals(visualClass2.getLogicalObject()));
+		}
+		
+		for (Association a: visualClass2.getLogicalObject().getAssociations()){
+			assertTrue(a.getClass1().equals(visualClass1.getLogicalObject()) || a.getClass1().equals(visualClass2.getLogicalObject()));
+			assertTrue(a.getClass2().equals(visualClass1.getLogicalObject()) || a.getClass2().equals(visualClass2.getLogicalObject()));
+		}
+		
 	}
 	
 	@Test
