@@ -1,17 +1,17 @@
-package canvaswindow;
+package visualobjects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.MouseClick;
 import inputHandlers.clicks.SingleClick;
 import visualobjects.Container;
-import visualobjects.VisualObject;
 import visualobjects.VisualClass;
 
-public class CanvasTests {
+public class ContainerTest {
 
 	@Test
 	public void isInTest1() {
@@ -63,7 +63,7 @@ public class CanvasTests {
 	public void deteleteTest4() {
 		Container container = new Container(10, 10, 100, 100);
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
-		VisualClass klasse2 = new VisualClass(1, 1, 1, container);
+		new VisualClass(1, 1, 1, container);
 		container.removeChild(klasse1);
 		container.removeChild(klasse1);
 	}

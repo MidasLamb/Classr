@@ -1,8 +1,8 @@
 package objects;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.NoSuchElementException;
 
 import org.junit.Test;
@@ -17,8 +17,7 @@ public class RealClassTest {
 		Container container = new Container(0, 0, 10, 10);
 		VisualClass vc = new VisualClass(0, 0, 0, container);
 		RealClass realclass = new RealClass();
-		realclass.setVisualObject(vc);
-		
+		realclass.setVisualObject(vc);		
 		assertTrue(realclass.getVisualObject() == vc);
 	}
 
@@ -34,8 +33,7 @@ public class RealClassTest {
 	@Test
 	public void testDeleteChildAttribute1() {
 		RealClass realclass = new RealClass();
-		Attribute attr = realclass.addAttribute();
-		
+		Attribute attr = realclass.addAttribute();		
 		realclass.deleteChild(attr);
 		assertFalse(realclass.getAttributes().contains(attr));
 	}
@@ -49,20 +47,26 @@ public class RealClassTest {
 	}
 
 	@Test
-	public void testDeleteChildMethod() {
+	public void testDeleteChildMethod1() {
 		RealClass realclass = new RealClass();
-		Method meth = realclass.addMethod();
-		
+		Method meth = realclass.addMethod();		
 		realclass.deleteChild(meth);
 		assertFalse(realclass.getMethods().contains(meth));
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testDeleteChildMethod2() {
+		RealClass realclass = new RealClass();
+		Method meth = realclass.addMethod();		
+		realclass.deleteChild(meth);
+		realclass.deleteChild(meth);
 	}
 
 	@Test
 	public void testDeleteChildAssociation() {
 		RealClass rc1 = new RealClass();
 		RealClass rc2 = new RealClass();
-		Association ass = new Association(rc1, rc2);
-		
+		Association ass = new Association(rc1, rc2);		
 		rc1.deleteChild(ass);
 		assertFalse(rc1.getAssociations().contains(ass));
 	}
@@ -93,5 +97,67 @@ public class RealClassTest {
 		rc1.deleteAssociation(ass);
 		assertFalse(rc1.getAssociations().contains(ass));
 	}
+	
+	@Test
+	public void getAttributesTest1() {
+		RealClass realclass = new RealClass();
+		realclass.addAttribute();
+		realclass.addAttribute();
+		realclass.addAttribute();
+		assertEquals(3, realclass.getAttributes().size());
+	}
+	
+	@Test
+	public void getAttributesTest2() {
+		RealClass realclass = new RealClass();
+		Attribute attr = realclass.addAttribute();
+		realclass.addAttribute();
+		realclass.addAttribute();
+		Collection<Attribute> attrs = realclass.getAttributes();
+		attrs.remove(attr);
+		assertEquals(3, realclass.getAttributes().size());
+	}
+	
+	@Test
+	public void getAttributesTest3() {
+		RealClass realclass = new RealClass();
+		Attribute attr = realclass.addAttribute();
+		realclass.addAttribute();
+		realclass.addAttribute();
+		Collection<Attribute> attrs = realclass.getAttributes();
+		attrs.remove(attr);
+		assertTrue(realclass.getAttributes().contains(attr));
+	}
+	
+	@Test
+	public void getMethodesTest1() {
+		RealClass realclass = new RealClass();
+		realclass.addMethod();
+		realclass.addMethod();
+		realclass.addMethod();
+		assertEquals(3, realclass.getMethods().size());
+	}
+	
+	@Test
+	public void getMethodesTest2() {
+		RealClass realclass = new RealClass();
+		Method meth = realclass.addMethod();
+		realclass.addMethod();
+		realclass.addMethod();
+		Collection<Method> meths = realclass.getMethods();
+		meths.remove(meth);
+		assertEquals(3, realclass.getMethods().size());
+	}	
+	
+	@Test
+	public void getMethodesTest3() {
+		RealClass realclass = new RealClass();
+		Method meth = realclass.addMethod();
+		realclass.addMethod();
+		realclass.addMethod();
+		Collection<Method> meths = realclass.getMethods();
+		meths.remove(meth);
+		assertTrue(realclass.getMethods().contains(meth));
+	}	
 
 }

@@ -12,5 +12,13 @@ public class MethodTest {
 		Method methode = realclass.addMethod();
 		assertEquals(realclass, methode.getRealClass());
 	}
+	
+	@Test
+	public void deleteClass() {
+		RealClass realclass = new RealClass();
+		Method methode = realclass.addMethod();
+		realclass.deleteChild(methode);
+		assertEquals(realclass, methode.getRealClass());
+	}
 
 }
