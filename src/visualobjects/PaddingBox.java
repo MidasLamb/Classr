@@ -6,7 +6,6 @@ import static main.Constants.*;
 import objects.Attribute;
 import objects.LogicalObject;
 import objects.Method;
-import visualobjects.visualclass.VisualClass;
 
 public class PaddingBox extends VisualObject {
 
@@ -45,7 +44,6 @@ public class PaddingBox extends VisualObject {
 		this.setPaddingBottom(paddingBottom);
 		this.setContent(new Text(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
 				this.getZ() + 1, this, standardstring, getLogicalObject()));
-		this.addChild(this.getContent());
 	}
 
 	/**

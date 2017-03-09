@@ -5,7 +5,6 @@ import java.awt.event.KeyEvent;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import static main.Constants.*;
-import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {
 
@@ -51,7 +50,6 @@ public class Container extends VisualObject {
 	 */
 	private void createNewClass(int x, int y) {
 		VisualClass c = new VisualClass(x, y, Z_CLASS, this);
-		this.addChild(c);
 		VisualObject a = c.getName().getContent();
 		this.switchSelectedTo(a);
 	}

@@ -21,6 +21,8 @@ public abstract class VisualObject {
 		setWidth(width);
 		setHeight(height);
 		setParent(parent);
+		if (parent != null)
+			parent.addChild(this);
 	}
 
 	/**
@@ -253,11 +255,11 @@ public abstract class VisualObject {
 		this.children = list;
 	}
 
-	protected ArrayList<VisualObject> getChildren() {
+	ArrayList<VisualObject> getChildren() {
 		return new ArrayList<VisualObject>(this.children);
 	}
 
-	public void addChild(VisualObject c) {
+	private void addChild(VisualObject c) {
 		this.children.add(c);
 		this.children.sort(new VisualObjectComparator());
 	}

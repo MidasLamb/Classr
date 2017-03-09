@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import visualobjects.Container;
-import visualobjects.visualclass.VisualClass;
+import visualobjects.VisualClass;
 
 public class RealClassTest {
 

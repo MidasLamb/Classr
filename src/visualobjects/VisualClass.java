@@ -1,4 +1,4 @@
-package visualobjects.visualclass;
+package visualobjects;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -10,8 +10,6 @@ import objects.Association;
 import objects.Attribute;
 import objects.Method;
 import objects.RealClass;
-import visualobjects.PaddingBox;
-import visualobjects.VisualObject;
 
 public class VisualClass extends VisualObject {
 
@@ -20,13 +18,11 @@ public class VisualClass extends VisualObject {
 		setLogicalObject(new RealClass());
 		getLogicalObject().setVisualObject(this);
 		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
-		this.addChild(this.getName());
 		this.updateDimensions();
 
 		// AH should be child of visualClass, because it has no logical
 		// counterpart
 		AssociationHandle ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
-		this.addChild(ah);
 	}
 
 	public VisualClass(int x, int y, int z, VisualObject parent) {
@@ -94,7 +90,6 @@ public class VisualClass extends VisualObject {
 		Attribute attr = getLogicalObject().addAttribute();
 		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
 				"Nieuw Attribuut", attr);
-		this.getContainer().addChild(t);
 		attr.setVisualObject(t);
 		this.updateDimensions();
 		return t;
@@ -109,7 +104,6 @@ public class VisualClass extends VisualObject {
 		Method method = getLogicalObject().addMethod();
 		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
 				"Nieuwe Methode", method);
-		this.getContainer().addChild(t);
 		method.setVisualObject(t);
 		this.updateDimensions();
 		return t;
