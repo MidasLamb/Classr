@@ -128,5 +128,12 @@ public class VisualClassTest {
 		assertTrue(visualClass1.getLogicalObject().getAssociations().size() == 1);
 		assertTrue(visualClass2.getLogicalObject().getAssociations().size() == 1);
 	}
+	
+	@Test
+	public void getParentTest() {
+		Container container = new Container(0, 0, 100, 100);
+		VisualClass klasse = new VisualClass(5, 5, 0, container);
+		assertEquals(container, klasse.getParent());
+	}
 
 }

@@ -265,8 +265,10 @@ public abstract class VisualObject {
 	}
 
 	public void removeChild(VisualObject c) {
-		this.children.remove(c);
-		this.afterDeleteChild(c);
+		if(this.children.remove(c))
+			this.afterDeleteChild(c);
+		else
+			throw new IllegalArgumentException();
 	}
 
 	private ArrayList<VisualObject> children;
