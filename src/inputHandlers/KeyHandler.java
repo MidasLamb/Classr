@@ -13,7 +13,7 @@ public class KeyHandler {
 	public void handleInput(KeyEvent e){
 		if (e.getKeyCode() == 0)
 			return;
-		this.getContainer().sendKeyToSelected(e);
+		this.getContainer().handleKey(e);
 	}
 	
 	private Container getContainer() {

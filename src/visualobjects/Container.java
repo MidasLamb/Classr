@@ -18,7 +18,8 @@ public class Container extends VisualObject {
 	 * @effect If there is an element selected, let that element handle KeyEvent
 	 *         e
 	 */
-	public void sendKeyToSelected(KeyEvent e) {
+	@Override
+	public void handleKey(KeyEvent e) {
 		if (getSelected() != null)
 			getSelected().handleKey(e);
 	}

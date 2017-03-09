@@ -225,7 +225,7 @@ public class ContainerTest {
 		container.onClick(click3);
 		Canvas canvas = new Canvas();
 		KeyEvent ke = new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_DELETE, 'a');
-		container.sendKeyToSelected(ke);
+		container.handleKey(ke);
 		boolean found = false;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualClass){
