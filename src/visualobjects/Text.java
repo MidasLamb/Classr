@@ -91,8 +91,8 @@ public class Text extends VisualObject {
 		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")) {
 			this.removeLetter();
 			// Unselect this object
-		} else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			this.setSelected(false);
+		} else if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			this.getContainer().switchSelectedTo(null);
 			// if it isn't an action key write it down
 		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT && e.getKeyCode() != KeyEvent.VK_DELETE) {
 			this.addLetter(s.charAt(0));
@@ -133,7 +133,7 @@ public class Text extends VisualObject {
 
 	// Getters and setters
 
-	private String getText() {
+	String getText() {
 		return getLogicalObject().getName();
 	}
 

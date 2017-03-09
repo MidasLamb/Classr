@@ -2,6 +2,12 @@ package visualobjects;
 
 import static org.junit.Assert.*;
 
+import java.awt.AWTException;
+import java.awt.Canvas;
+import java.awt.Component;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 import org.junit.Test;
 
 import inputHandlers.clicks.DoubleClick;
@@ -145,6 +151,52 @@ public class VisualClassTest {
 		Container container = new Container(0, 0, 100, 100);
 		VisualClass klasse = new VisualClass(5, 5, 0, container);
 		assertEquals(container, klasse.getParent());
+	}
+	
+	@Test
+	public void createClassEditNameTest(){
+		Container container = new Container(0, 0, 100, 100);
+		container.onDoubleClick(new DoubleClick(10,10));
+		
+		KeyEvent ke = new KeyEvent(new Canvas(), KeyEvent.KEY_PRESSED, 
+                0,                          // When timeStamp
+                0,                          // Modifier
+                KeyEvent.VK_A,      // Key Code
+                'a' );
+		
+		container.sendKeyToSelected(ke);
+		
+		for (VisualObject v: container.getChildren()){
+			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
+			assertTrue(n.equals("a"));
+		}
+		
+		ke = new KeyEvent(new Canvas(), KeyEvent.KEY_PRESSED, 
+                0,                          // When timeStamp
+                0,                          // Modifier
+                KeyEvent.VK_B,      // Key Code
+                'b' );
+		
+		container.sendKeyToSelected(ke);
+		
+		for (VisualObject v: container.getChildren()){
+			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
+			assertTrue(n.equals("ab"));
+		}
+		
+		ke = new KeyEvent(new Canvas(), KeyEvent.KEY_PRESSED, 
+                0,                          // When timeStamp
+                0,                          // Modifier
+                KeyEvent.VK_BACK_SPACE,      // Key Code
+                '\b'
+                );
+		
+		container.sendKeyToSelected(ke);
+		
+		for (VisualObject v: container.getChildren()){
+			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
+			assertTrue(n.equals("a"));
+		}
 	}
 
 }
