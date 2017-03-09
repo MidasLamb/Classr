@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
-import main.Constants;
+import static main.Constants.*;
 import visualobjects.visualclass.VisualClass;
 
 public class Container extends VisualObject {
@@ -50,7 +50,7 @@ public class Container extends VisualObject {
 	 *         the children makes the text item of the class the selected item
 	 */
 	private void createNewClass(int x, int y) {
-		VisualClass c = new VisualClass(x, y, Constants.Z_CLASS, this);
+		VisualClass c = new VisualClass(x, y, Z_CLASS, this);
 		this.addChild(c);
 		VisualObject a = c.getName().getContent();
 		this.switchSelectedTo(a);

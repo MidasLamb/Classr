@@ -2,7 +2,7 @@ package visualobjects;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
-import main.Constants;
+import static main.Constants.*;
 import objects.Attribute;
 import objects.LogicalObject;
 import objects.Method;
@@ -74,23 +74,23 @@ public class PaddingBox extends VisualObject {
 
 	public PaddingBox(int x, int y, int z, int padding, VisualObject parent, String standardstring,
 			LogicalObject object) {
-		this(x, y, z, Constants.CLASS_WIDTH, Constants.STANDARD_TEXT_HEIGHT + padding + padding,
-				Constants.STANDARD_PADDING, parent, standardstring, object);
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding,
+				STANDARD_PADDING, parent, standardstring, object);
 	}
 
 	public PaddingBox(int x, int y, int z, int padding, VisualObject parent, LogicalObject object) {
-		this(x, y, z, Constants.CLASS_WIDTH, Constants.STANDARD_TEXT_HEIGHT + padding + padding,
-				Constants.STANDARD_PADDING, parent, "", object);
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding,
+				STANDARD_PADDING, parent, "", object);
 	}
 
 	public PaddingBox(int x, int y, int z, VisualObject parent, String standardstring, LogicalObject object) {
-		this(x, y, z, Constants.CLASS_WIDTH, Constants.STANDARD_TEXT_HEIGHT + (2 * Constants.STANDARD_PADDING),
-				Constants.STANDARD_PADDING, parent, standardstring, object);
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING),
+				STANDARD_PADDING, parent, standardstring, object);
 	}
 
 	public PaddingBox(int x, int y, int z, VisualObject parent, LogicalObject object) {
-		this(x, y, z, Constants.CLASS_WIDTH, Constants.STANDARD_TEXT_HEIGHT + (2 * Constants.STANDARD_PADDING),
-				Constants.STANDARD_PADDING, parent, "", object);
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING),
+				STANDARD_PADDING, parent, "", object);
 	}
 
 	@Override

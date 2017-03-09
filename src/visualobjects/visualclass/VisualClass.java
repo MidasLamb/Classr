@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import inputHandlers.clicks.DoubleClick;
-import main.Constants;
+import static main.Constants.*;
 import objects.Association;
 import objects.Attribute;
 import objects.Method;
@@ -49,7 +49,7 @@ public class VisualClass extends VisualObject {
 
 		// g.fillRect(this.getX(), y, this.getWidth(),
 		// Constants.CLASS_WHITE_SPACE);
-		y += Constants.CLASS_WHITE_SPACE;
+		y += CLASS_WHITE_SPACE;
 		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
 
 		for (VisualObject t : this.getMethods()) {
@@ -73,14 +73,14 @@ public class VisualClass extends VisualObject {
 			y += t.getHeight();
 		}
 
-		y += Constants.CLASS_WHITE_SPACE;
+		y += CLASS_WHITE_SPACE;
 
 		for (VisualObject t : this.getMethods()) {
 			t.setY(y);
 			y += t.getHeight();
 		}
 
-		y += Constants.CLASS_WHITE_SPACE;
+		y += CLASS_WHITE_SPACE;
 
 		this.setHeight(y - this.getY());
 	}
@@ -92,7 +92,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX, this.getContainer(),
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
 				"Nieuw Attribuut", attr);
 		this.getContainer().addChild(t);
 		attr.setVisualObject(t);
@@ -107,7 +107,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Constants.Z_PADDING_BOX, this.getContainer(),
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
 				"Nieuwe Methode", method);
 		this.getContainer().addChild(t);
 		method.setVisualObject(t);
@@ -135,7 +135,7 @@ public class VisualClass extends VisualObject {
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
-		bottom += Constants.CLASS_WHITE_SPACE;
+		bottom += CLASS_WHITE_SPACE;
 
 		return VisualClass.isBetween(left, right, x) && VisualClass.isBetween(top, bottom, y);
 	}
@@ -169,15 +169,15 @@ public class VisualClass extends VisualObject {
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
-		top += Constants.CLASS_WHITE_SPACE;
-		bottom += Constants.CLASS_WHITE_SPACE;
+		top += CLASS_WHITE_SPACE;
+		bottom += CLASS_WHITE_SPACE;
 
 		for (VisualObject t : this.getMethods()) {
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
 
-		bottom += Constants.CLASS_WHITE_SPACE;
+		bottom += CLASS_WHITE_SPACE;
 
 		return isBetween(left, right, x) && isBetween(top, bottom, y);
 	}
