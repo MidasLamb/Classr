@@ -56,5 +56,13 @@ public class VisualClassTest {
 		VisualClass visualClass = new VisualClass(0, 0, 0, container);
 		assertFalse(visualClass.isIn(10, visualClass.getHeight()+6));
 	}
+	
+	@Test
+	public void getParentTest() {
+		Container container = new Container(0, 0, 100, 100);
+		VisualClass klasse = new VisualClass(5, 5, 0, container);
+		container.addChild(klasse);
+		assertEquals(container, klasse.getParent());
+	}
 
 }
