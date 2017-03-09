@@ -132,7 +132,7 @@ public class VisualTests {
 		assertTrue(imagesEqual(getReferenceImage("deleteAttribute"),  actual));
 	}	
 	
-	private static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
+	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
 		try{
 			for (int x = 0; x < reference.getWidth(); x++) {
 	            for (int y = 0; y < reference.getHeight(); y++) {
@@ -147,7 +147,7 @@ public class VisualTests {
 		}
 	}
 	
-	private static BufferedImage getReferenceImage(String testName) throws IOException{
+	static BufferedImage getReferenceImage(String testName) throws IOException{
 		String pattern = ".*recording.image([0-9]*).png";
 		Pattern r = Pattern.compile(pattern);
 		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));

@@ -11,7 +11,7 @@ import visualobjects.Container;
 import visualobjects.VisualObject;
 import visualobjects.visualclass.VisualClass;
 
-public class canvasTests {
+public class CanvasTests {
 
 	@Test
 	public void isInTest1() {

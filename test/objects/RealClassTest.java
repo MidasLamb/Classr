@@ -3,6 +3,8 @@ package objects;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
 import visualobjects.Container;
@@ -30,12 +32,20 @@ public class RealClassTest {
 	}
 
 	@Test
-	public void testDeleteChildAttribute() {
+	public void testDeleteChildAttribute1() {
 		RealClass realclass = new RealClass();
 		Attribute attr = realclass.addAttribute();
 		
 		realclass.deleteChild(attr);
 		assertFalse(realclass.getAttributes().contains(attr));
+	}
+	
+	@Test(expected=NoSuchElementException.class)
+	public void testDeleteChildAttribute2() {
+		RealClass realclass = new RealClass();
+		Attribute attr = realclass.addAttribute();		
+		realclass.deleteChild(attr);
+		realclass.deleteChild(attr);
 	}
 
 	@Test
