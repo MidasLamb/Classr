@@ -26,7 +26,7 @@ public class Text extends VisualObject {
 	}
 
 	/**
-	 * @post removes one character from text if there is a character to remove
+	 * Removes one character from text if there is a character to remove
 	 */
 	private void removeLetter() {
 		if (this.getText().length() > 0)
@@ -43,7 +43,7 @@ public class Text extends VisualObject {
 	}
 
 	/**
-	 * @post shows the text frame
+	 * Shows the text frame
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -71,10 +71,9 @@ public class Text extends VisualObject {
 	}
 
 	/**
-	 * 
+	 * Draws the cursor
 	 * @param g
 	 *            Graphics
-	 * @post draws the cursor
 	 */
 	private void drawCursor(Graphics g) {
 		g.drawLine(this.getX() + this.getWidth() + 1, this.getY(), this.getX() + this.getWidth() + 1,
@@ -100,10 +99,9 @@ public class Text extends VisualObject {
 	}
 
 	/**
-	 * 
+	 * Cuts the text so it's not larger than the box
 	 * @param g
 	 *            Graphics
-	 * @post cuts the text so it's not larger than the box
 	 */
 	private void cutTextMaxWidth(Graphics g) {
 		FontMetrics m = g.getFontMetrics();

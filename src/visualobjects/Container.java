@@ -13,10 +13,9 @@ public class Container extends VisualObject {
 	}
 
 	/**
-	 * @param e
-	 *            KeyEvent that needs to be handled
-	 * @effect If there is an element selected, let that element handle KeyEvent
-	 *         e
+	 * If there is an element selected, let that element handle KeyEvent e
+	 * @param 	e
+	 * 			KeyEvent that needs to be handled
 	 */
 	@Override
 	public void handleKey(KeyEvent e) {
@@ -25,10 +24,9 @@ public class Container extends VisualObject {
 	}
 
 	/**
-	 * @param vo
-	 *            VisualObject that will be selected
-	 * @effect Unselects the selected item (if present), and sets VisualObject
-	 *         vo as selected
+	 * Unselects the selected item (if present), and sets VisualObject vo as selected
+	 * @param 	vo
+	 * 			VisualObject that will be selected
 	 */
 	public void switchSelectedTo(VisualObject vo) {
 		// Unselect previous selected item
@@ -41,13 +39,13 @@ public class Container extends VisualObject {
 	}
 
 	/**
+	 * Creates a new visual class in this container adds the class to
+	 * 	the children makes the text item of the class the selected item
 	 * 
 	 * @param x
 	 *            The x coordinate where the class needs to be showed
 	 * @param y
 	 *            The y coordinate where the class needs to be showed
-	 * @effect Creates a new visual class in this container adds the class to
-	 *         the children makes the text item of the class the selected item
 	 */
 	private void createNewClass(int x, int y) {
 		VisualClass c = new VisualClass(x, y, Z_CLASS, this);

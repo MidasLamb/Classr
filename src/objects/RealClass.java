@@ -126,9 +126,10 @@ public class RealClass extends LogicalObject {
 	}
 
 	/**
-	 * Generates a new association belonging to this RealClass, adds it to the associations of this RealClass and returns it.
+	 * Adds the given association to the list of associations
 	 * 
-	 * @return	The newly added Association
+	 * @param	association	
+	 * 			The association to be added
 	 */
 	public void addAssociation(Association association) {
 		this.associations.add(association);

@@ -56,7 +56,7 @@ public class VisualClass extends VisualObject {
 	}
 
 	/**
-	 * @post calculates the height of this object and sets it
+	 * Calculates the height of this object and sets it
 	 */
 	public void updateDimensions() {
 		// TODO update

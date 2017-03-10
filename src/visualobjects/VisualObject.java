@@ -26,11 +26,9 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * 
+	 * Shows this visual object and his children shows this object red if it is selected
 	 * @param g
 	 *            Graphics g
-	 * @post shows this visual object and his children shows this object red if
-	 *       it is selected
 	 */
 	public void show(Graphics g) {
 		// draw backgrounds first
@@ -48,7 +46,7 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * @post Deletes this visual object
+	 * Deletes this visual object
 	 */
 	public void delete() {
 		this.onDelete();
@@ -85,10 +83,9 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * 
+	 * Triggers the onClick function of the child object that is clicked
 	 * @param sc
 	 *            The single click object
-	 * @post triggers the onClick function of the child object that is clicked
 	 */
 	protected void onClick(SingleClick sc) {
 		for (VisualObject v : this.getChildren()) {
@@ -103,11 +100,9 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * 
+	 * Triggers the onDoubleClick function of the child object that is clicked
 	 * @param dc
 	 *            The double click object
-	 * @post triggers the onDoubleClick function of the child object that is
-	 *       clicked
 	 */
 	protected void onDoubleClick(DoubleClick dc) {
 		for (VisualObject v : this.getChildren()) {
@@ -118,11 +113,9 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * 
+	 * Triggers the onDragStart function of the child where the dragging starts
 	 * @param d
 	 *            The drag object
-	 * @post triggers the onDragStart function of the child where the dragging
-	 *       starts
 	 */
 	public void onDragStart(Drag d) {
 		for (VisualObject v : this.getChildren()) {
@@ -133,11 +126,9 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * 
+	 * Triggers the onDragEnd function of the child where there is dragged too
 	 * @param d
 	 *            The drag object
-	 * @post triggers the onDragEnd function of the child where there is dragged
-	 *       too
 	 */
 	public void onDragEnd(Drag d) {
 		for (VisualObject v : this.getChildren()) {
@@ -152,7 +143,7 @@ public abstract class VisualObject {
 	 * @param x
 	 *            the x-coordinate
 	 * @param y
-	 *            the t-coordinate
+	 *            the y-coordinate
 	 * @return true if this object is at the given coordinates otherwise false
 	 */
 	public boolean isIn(int x, int y) {
@@ -161,17 +152,16 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * checks if c is between a en b
+	 * Checks if c is between a en b
 	 */
 	protected static boolean isBetween(int a, int b, int c) {
 		return a <= c && b >= c;
 	}
 
 	/**
-	 * 
+	 * If delete is pressed this object will delete itself
 	 * @param e
 	 *            Key event
-	 * @post if delete is pressed this object will delete itself
 	 */
 	void handleKey(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DELETE)
@@ -190,10 +180,9 @@ public abstract class VisualObject {
 	}
 
 	/**
-	 * 
+	 * Actions to be executed after child is deleted: no actions
 	 * @param child
 	 *            The child that is deleted
-	 * @post does nothing
 	 */
 	protected void afterDeleteChild(VisualObject child) {
 
