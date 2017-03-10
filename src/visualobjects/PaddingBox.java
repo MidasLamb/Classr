@@ -53,6 +53,8 @@ public class PaddingBox extends VisualObject {
 	 *            Coordinate on the x-axis of the top-left corner
 	 * @param y
 	 *            Coordinate on the y-axis of the top-left corner
+	 * @param z
+	 * 			Coordinate on the z-axis
 	 * @param width
 	 *            Width of the TextBox
 	 * @param height
