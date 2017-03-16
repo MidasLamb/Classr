@@ -17,10 +17,21 @@ public class Attribute extends LogicalObject {
 		this.setRealClass(rc);
 	}
 
+	/**
+	 * Returns the RealClass belonging to this Attribute
+	 * 
+	 * @return the RealClass belonging to this Attribute
+	 */
 	public RealClass getRealClass() {
 		return realClass;
 	}
 
+	/**
+	 * Sets the RealClass belonging to this Attribute
+	 * 
+	 * @param 	rc
+	 * 			the RealClass to be set
+	 */
 	private void setRealClass(RealClass rc) {
 		this.realClass = rc;
 	}

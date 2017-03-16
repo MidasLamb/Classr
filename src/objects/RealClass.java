@@ -151,30 +151,63 @@ public class RealClass extends LogicalObject {
 
 	// getters and setters
 
+	/**
+	 * Returns the collection of Attributes belonging to this RealClass
+	 * 
+	 * @return the collection of Attributes belonging to this RealClass
+	 */
 	public Collection<Attribute> getAttributes() {
 		return new ArrayList<>(attributes);
 	}
 
+	/**
+	 * Sets the collection of Attributes belonging to this RealClass
+	 * 
+	 * @param 	attributes
+	 * 			the collection of Attributes to be set
+	 */
 	private void setAttributes(ArrayList<Attribute> attributes) {
 		this.attributes = attributes;
 	}
 
 	private ArrayList<Attribute> attributes = new ArrayList<>();
 
+	/**
+	 * Returns the collection of Methods belonging to this RealClass
+	 * 
+	 * @return the collection of Methods belonging to this RealClass
+	 */
 	public Collection<Method> getMethods() {
 		return new ArrayList<>(this.methods);
 	}
 
+	/**
+	 * Sets the collection of Methods belonging to this RealClass
+	 * 
+	 * @param 	attributes
+	 * 			the collection of Methods to be set
+	 */
 	private void setMethods(ArrayList<Method> methods) {
 		this.methods = methods;
 	}
 
 	private ArrayList<Method> methods = new ArrayList<>();
 
+	/**
+	 * Returns the collection of Associations belonging to this RealClass
+	 * 
+	 * @return the collection of Associations belonging to this RealClass
+	 */
 	public HashSet<Association> getAssociations() {
 		return new HashSet<>(this.associations);
 	}
 
+	/**
+	 * Sets the collection of Associations belonging to this RealClass
+	 * 
+	 * @param 	attributes
+	 * 			the collection of Associations to be set
+	 */
 	private void setAssociations(HashSet<Association> associations) {
 		this.associations = associations;
 	}

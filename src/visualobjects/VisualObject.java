@@ -190,69 +190,147 @@ public abstract class VisualObject {
 
 	// Getters and setters
 
+	/**
+	 * Returns the x-coordinate of this VisualObject
+	 * 
+	 * @return	the x-coordinate of this VisualObject
+	 */
 	public int getX() {
 		return this.x;
 	}
 
+	/**
+	 * Sets the x-coordinate of this VisualObject
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate to be set
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 
 	private int x;
 
+	/**
+	 * Sets the y-coordinate of this VisualObject
+	 * 
+	 * @param 	y
+	 * 			the y-coordinate to be set
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 
+	/**
+	 * Return the y-coordinate of this VisualObject
+	 * 
+	 * @return	the y-coordinate of this VisualObject
+	 */
 	public int getY() {
 		return this.y;
 	}
 
 	private int y;
 
+	/**
+	 * Returns the Width of this VisualObject
+	 * 
+	 * @return	the width of this VisualObject
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Sets the width of this VisualObject
+	 * 
+	 * @param 	width
+	 * 			the width to be set
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
 	private int width;
 
+	/**
+	 * Sets the height of this VisualObject
+	 * 
+	 * @param 	height
+	 * 			the height to be set
+	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
+	/**
+	 * Returns the height of this VisualObject
+	 * 
+	 * @return the height of this VisualObject
+	 */
 	public int getHeight() {
 		return height;
 	}
 
 	private int height;
 
+	/**
+	 * Sets the parent VisualObject of this VisualObject
+	 * 
+	 * @param 	parent
+	 * 			the parent VisualObject to be set
+	 */
 	private void setParent(VisualObject parent) {
 		this.parent = parent;
 	}
 
+	/**
+	 * Returns the parent VisualObject of this VisualObject
+	 * 
+	 * @return the parent VisualObject of this VisualObject
+	 */
 	public VisualObject getParent() {
 		return this.parent;
 	}
 
 	private VisualObject parent;
 
+	/**
+	 * Sets the list of children VisualObjects of this VisualObject
+	 * 
+	 * @param 	list
+	 * 			the list of children VisualObjects
+	 */
 	private void setChildren(ArrayList<VisualObject> list) {
 		this.children = list;
 	}
 
+	/**
+	 * Returns the list of children VisualObjects of this VisualObject
+	 * 
+	 * @return the list of children VisualObjects of this VisualObject
+	 */
 	ArrayList<VisualObject> getChildren() {
 		return new ArrayList<VisualObject>(this.children);
 	}
 
+	/**
+	 * Adds a child to the list of children
+	 * 
+	 * @param 	c
+	 * 			the child to be added
+	 */
 	private void addChild(VisualObject c) {
 		this.children.add(c);
 		this.children.sort(new VisualObjectComparator());
 	}
 
+	/**
+	 * Removes a child from the list of children
+	 * 
+	 * @param 	c
+	 * 			the child to be removed
+	 */
 	public void removeChild(VisualObject c) {
 		if(this.children.remove(c))
 			this.afterDeleteChild(c);
@@ -262,30 +340,63 @@ public abstract class VisualObject {
 
 	private ArrayList<VisualObject> children;
 
+	/**
+	 * Sets whether or not the selected state of this VisualObject is true
+	 * 
+	 * @param 	b
+	 * 			the boolean value denoting whether or not the selected state of this VisualObject is true
+	 */
 	public void setSelected(boolean b) {
 		this.isSelected = b;
 	}
 
+	/**
+	 * Returns whether or not the selected state of this VisualObject is true
+	 * 
+	 * @return whether or not the selected state of this VisualObject is true
+	 */
 	public boolean isSelected() {
 		return isSelected;
 	}
 
 	private boolean isSelected;
 
+	/**
+	 * Returns the LogicalObject belonging to this VisualObject
+	 * 
+	 * @return the LogicalObject belonging to this VisualObject
+	 */
 	protected LogicalObject getLogicalObject() {
 		return logicalObject;
 	}
 
+	/**
+	 * Sets the LogicalObject belonging to this VisualObject
+	 * 
+	 * @param 	object
+	 * 			the LogicalObject to be set
+	 */
 	protected void setLogicalObject(LogicalObject object) {
 		this.logicalObject = object;
 	}
 
 	private LogicalObject logicalObject;
 
+	/**
+	 * Returns the z-coordinate of this VisualObject
+	 * 
+	 * @return the z-coordinate of this VisualObject
+	 */
 	protected int getZ() {
 		return z;
 	}
 
+	/**
+	 * Sets the z-coordinate of this VisualObject
+	 * 
+	 * @param 	z
+	 * 			the z-coordinate to be set
+	 */
 	private void setZ(int z) {
 		this.z = z;
 	}

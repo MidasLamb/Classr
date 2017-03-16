@@ -17,10 +17,21 @@ public class Method extends LogicalObject {
 		this.setRealClass(rc);
 	}
 
+	/**
+	 * Returns the RealClass belonging to this Method
+	 * 
+	 * @return the RealClass belonging to this Method
+	 */
 	public RealClass getRealClass() {
 		return realClass;
 	}
 
+	/**
+	 * Sets the RealClass belonging to this Method
+	 * 
+	 * @param 	rc
+	 * 			the RealClass to be set
+	 */
 	private void setRealClass(RealClass rc) {
 		this.realClass = rc;
 	}

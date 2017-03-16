@@ -31,20 +31,42 @@ public class Association extends LogicalObject {
 		this.getClass2().deleteAssociation(this);
 	}
 
+	/**
+	 * Returns the first RealClass belonging to this Association
+	 * 	
+	 * @return the first RealClass belonging to this Association
+	 */
 	public RealClass getClass1() {
 		return class1;
 	}
 
+	/**
+	 * Sets the first RealClass belonging to this Association
+	 * 
+	 * @param 	class1
+	 * 			the RealClass to be set
+	 */
 	private void setClass1(RealClass class1) {
 		this.class1 = class1;
 	}
 
 	private RealClass class1;
 
+	/**
+	 * Returns the second RealClass belonging to this Association
+	 * 	
+	 * @return the second RealClass belonging to this Association
+	 */
 	public RealClass getClass2() {
 		return class2;
 	}
 
+	/**
+	 * Sets the second RealClass belonging to this Association
+	 * 
+	 * @param 	class1
+	 * 			the RealClass to be set
+	 */
 	private void setClass2(RealClass class2) {
 		this.class2 = class2;
 	}
