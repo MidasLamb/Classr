@@ -11,32 +11,32 @@ import canvaswindow.MyCanvasWindow;
  *
  */
 public class Recorder {
-	
+
 	public static void main(String[] args) {
 		String testName = "deleteAssociation4";
 		prepareDirectory(testName);
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		canvasWindow.recordSession("recordings/" + testName + "/recording");
 		java.awt.EventQueue.invokeLater(() -> {
-	         canvasWindow.show();
-	      });
+			canvasWindow.show();
+		});
 	}
-	
-	private static void prepareDirectory(String testName){
+
+	private static void prepareDirectory(String testName) {
 		String directoryPath = "recordings/" + testName;
 		removeDirectory(directoryPath);
 		new File(directoryPath).mkdir();
 	}
-	
+
 	private static void removeDirectory(String path) {
-		try{
-			File directory  = new File(path);
+		try {
+			File directory = new File(path);
 			File[] content = directory.listFiles();
-			for(File file : content){
+			for (File file : content) {
 				file.delete();
 			}
-		    directory.delete();
-		}catch(NullPointerException e){
+			directory.delete();
+		} catch (NullPointerException e) {
 			return;
 		}
 	}

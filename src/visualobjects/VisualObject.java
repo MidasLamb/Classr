@@ -15,6 +15,16 @@ import objects.LogicalObject;
 
 public abstract class VisualObject {
 	private Collection<DeleteListener> deleteListeners;
+	private int x;
+	private int y;
+	private int z;
+	private int width;
+	private int height;
+	private ArrayList<VisualObject> children;
+	private boolean isSelected;
+	private VisualObject parent;
+	private LogicalObject logicalObject;
+
 
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
 		setChildren(new ArrayList<VisualObject>());
@@ -237,8 +247,6 @@ public abstract class VisualObject {
 		this.x = x;
 	}
 
-	private int x;
-
 	/**
 	 * Sets the y-coordinate of this VisualObject
 	 * 
@@ -257,8 +265,6 @@ public abstract class VisualObject {
 	public int getY() {
 		return this.y;
 	}
-
-	private int y;
 
 	/**
 	 * Returns the Width of this VisualObject
@@ -279,8 +285,6 @@ public abstract class VisualObject {
 		this.width = width;
 	}
 
-	private int width;
-
 	/**
 	 * Sets the height of this VisualObject
 	 * 
@@ -300,8 +304,6 @@ public abstract class VisualObject {
 		return height;
 	}
 
-	private int height;
-
 	/**
 	 * Sets the parent VisualObject of this VisualObject
 	 * 
@@ -320,8 +322,6 @@ public abstract class VisualObject {
 	public VisualObject getParent() {
 		return this.parent;
 	}
-
-	private VisualObject parent;
 
 	/**
 	 * Sets the list of children VisualObjects of this VisualObject
@@ -366,8 +366,6 @@ public abstract class VisualObject {
 			throw new IllegalArgumentException();
 	}
 
-	private ArrayList<VisualObject> children;
-
 	/**
 	 * Sets whether or not the selected state of this VisualObject is true
 	 * 
@@ -388,8 +386,6 @@ public abstract class VisualObject {
 		return isSelected;
 	}
 
-	private boolean isSelected;
-
 	/**
 	 * Returns the LogicalObject belonging to this VisualObject
 	 * 
@@ -409,8 +405,6 @@ public abstract class VisualObject {
 		this.logicalObject = object;
 	}
 
-	private LogicalObject logicalObject;
-
 	/**
 	 * Returns the z-coordinate of this VisualObject
 	 * 
@@ -429,8 +423,6 @@ public abstract class VisualObject {
 	private void setZ(int z) {
 		this.z = z;
 	}
-
-	private int z;
 
 	private class VisualObjectComparator implements Comparator<VisualObject> {
 		@Override

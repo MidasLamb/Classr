@@ -7,6 +7,7 @@ import inputHandlers.clicks.SingleClick;
 import static main.Constants.*;
 
 public class Container extends VisualObject {
+	private VisualObject selected;
 
 	public Container(int x, int y, int width, int height) {
 		super(x, y, Integer.MIN_VALUE, width, height, null);
@@ -14,8 +15,9 @@ public class Container extends VisualObject {
 
 	/**
 	 * If there is an element selected, let that element handle KeyEvent e
-	 * @param 	e
-	 * 			KeyEvent that needs to be handled
+	 * 
+	 * @param e
+	 *            KeyEvent that needs to be handled
 	 */
 	@Override
 	public void handleKey(KeyEvent e) {
@@ -24,9 +26,11 @@ public class Container extends VisualObject {
 	}
 
 	/**
-	 * Unselects the selected item (if present), and sets VisualObject vo as selected
-	 * @param 	vo
-	 * 			VisualObject that will be selected
+	 * Unselects the selected item (if present), and sets VisualObject vo as
+	 * selected
+	 * 
+	 * @param vo
+	 *            VisualObject that will be selected
 	 */
 	public void switchSelectedTo(VisualObject vo) {
 		// Unselect previous selected item
@@ -39,8 +43,8 @@ public class Container extends VisualObject {
 	}
 
 	/**
-	 * Creates a new visual class in this container adds the class to
-	 * 	the children makes the text item of the class the selected item
+	 * Creates a new visual class in this container adds the class to the
+	 * children makes the text item of the class the selected item
 	 * 
 	 * @param x
 	 *            The x coordinate where the class needs to be showed
@@ -92,6 +96,4 @@ public class Container extends VisualObject {
 	private void setSelected(VisualObject selected) {
 		this.selected = selected;
 	}
-
-	private VisualObject selected;
 }

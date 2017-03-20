@@ -6,12 +6,12 @@ package objects;
  * @author team 11
  */
 public class Attribute extends ClassContent {
-	
+
 	/**
 	 * Constructs a new Attribute belonging to the stated RealClass.
 	 * 
-	 * @param 	rc	
-	 * 			The RealClass to which the Attribute belongs.
+	 * @param rc
+	 *            The RealClass to which the Attribute belongs.
 	 */
 	public Attribute(RealClass rc) {
 		super(rc);

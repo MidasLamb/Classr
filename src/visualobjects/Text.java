@@ -10,6 +10,8 @@ import java.awt.event.KeyEvent;
 import objects.LogicalObject;
 
 public class Text extends VisualObject {
+	private String standardTextString;
+	private boolean isStandardTextSet;
 
 	public Text(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
 			LogicalObject object) {
@@ -72,6 +74,7 @@ public class Text extends VisualObject {
 
 	/**
 	 * Draws the cursor
+	 * 
 	 * @param g
 	 *            Graphics
 	 */
@@ -100,6 +103,7 @@ public class Text extends VisualObject {
 
 	/**
 	 * Cuts the text so it's not larger than the box
+	 * 
 	 * @param g
 	 *            Graphics
 	 */
@@ -151,11 +155,7 @@ public class Text extends VisualObject {
 		this.standardTextString = standardTextString;
 	}
 
-	private String standardTextString;
-
 	private void setIsStandardTextSet(boolean isStandardText) {
 		this.isStandardTextSet = isStandardText;
 	}
-
-	private boolean isStandardTextSet;
 }

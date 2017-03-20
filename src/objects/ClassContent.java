@@ -6,8 +6,8 @@ public abstract class ClassContent extends LogicalObject {
 	/**
 	 * Constructs a new ClassContent belonging to the stated RealClass.
 	 * 
-	 * @param 	rc	
-	 * 			The RealClass to which the ClassContent belongs.
+	 * @param rc
+	 *            The RealClass to which the ClassContent belongs.
 	 */
 	public ClassContent(RealClass rc) {
 		this.setRealClass(rc);
@@ -25,13 +25,13 @@ public abstract class ClassContent extends LogicalObject {
 	/**
 	 * Sets the RealClass belonging to this ClassContent
 	 * 
-	 * @param 	rc
-	 * 			the RealClass to be set
+	 * @param rc
+	 *            the RealClass to be set
 	 */
 	private void setRealClass(RealClass rc) {
 		this.realClass = rc;
 	}
-	
+
 	@Override
 	public void onDelete() {
 		getRealClass().deleteChild(this);
