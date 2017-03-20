@@ -9,7 +9,7 @@ before_install:
  - chmod +x gradlew
  
 script: 
- - ./gradlew check --stacktrace
+ - ./gradlew check --stacktrace --debug
 
 jdk:
   - oraclejdk8
