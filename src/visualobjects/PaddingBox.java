@@ -6,6 +6,7 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
+import interfaces.DeleteListener;
 import objects.LogicalObject;
 
 public class PaddingBox extends VisualObject {
@@ -47,6 +48,15 @@ public class PaddingBox extends VisualObject {
 		this.setPaddingBottom(paddingBottom);
 		this.setContent(new Text(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
 				this.getZ() + 1, this, standardstring, getLogicalObject()));
+		
+		this.content.addDeleteListener(new DeleteListener() {
+			
+			@Override
+			public void notifyDelete() {
+				delete();
+				
+			}
+		});
 	}
 
 	/**
