@@ -5,9 +5,9 @@ before_install:
  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
 
 script:
- - ./gradlew test --tests objects.*
- - ./gradlew test --tests visualobjects.*
- - ./gradlew test --tests inputHandler.*
+ - ./gradlew test --tests objects.* --debug
+ - ./gradlew test --tests visualobjects.* --debug
+ - ./gradlew test --tests inputHandler.* --debug
 
 jdk:
   - oraclejdk8
