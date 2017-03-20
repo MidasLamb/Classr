@@ -30,24 +30,4 @@ public class LogicalObject {
 
 	private String name;
 
-	/**
-	 * Sets the VisualObject belonging to this LogicalObject
-	 * 
-	 * @param 	vo
-	 * 			the VisualObject to be set
-	 */
-	public void setVisualObject(VisualObject vo) {
-		this.visualObject = vo;
-	}
-
-	/**
-	 * Returns the VisualObject belonging to this LogicalObject
-	 * 
-	 * @return	the VisualObject belonging to this LogicalObject
-	 */
-	public VisualObject getVisualObject() {
-		return this.visualObject;
-	}
-
-	private VisualObject visualObject;
 }
