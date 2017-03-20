@@ -31,6 +31,10 @@ public abstract class VisualObject {
 	 *            Graphics g
 	 */
 	public void show(Graphics g) {
+		//TODO maybe move this into observer like stuff???
+		if (this.getLogicalObject() != null && this.getLogicalObject().isDeleted())
+			this.getLogicalObject().delete();
+		
 		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);

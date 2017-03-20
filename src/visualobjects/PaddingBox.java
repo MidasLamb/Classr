@@ -1,11 +1,12 @@
 package visualobjects;
 
+import static main.Constants.CLASS_WIDTH;
+import static main.Constants.STANDARD_PADDING;
+import static main.Constants.STANDARD_TEXT_HEIGHT;
+
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
-import static main.Constants.*;
-import objects.Attribute;
 import objects.LogicalObject;
-import objects.Method;
 
 public class PaddingBox extends VisualObject {
 
@@ -123,11 +124,6 @@ public class PaddingBox extends VisualObject {
 	@Override
 	public int getWidth() {
 		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
-	}
-
-	@Override
-	protected void onDelete() {
-		getLogicalObject().delete();
 	}
 
 	// Getters and setters

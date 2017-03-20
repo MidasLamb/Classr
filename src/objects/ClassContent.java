@@ -33,7 +33,7 @@ public abstract class ClassContent extends LogicalObject {
 	}
 	
 	@Override
-	public void delete() {
+	public void onDelete() {
 		getRealClass().deleteChild(this);
 	}
 }
