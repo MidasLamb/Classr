@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="visualobjects.TextTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-03-20T12:22:51" hostname="PJ-PC" time="0.002">
+<testsuite name="visualobjects.TextTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-03-20T14:37:46" hostname="DESKTOP-RV67H71" time="0.001">
   <properties/>
-  <testcase name="typeAaTest" classname="visualobjects.TextTest" time="0.001"/>
-  <testcase name="typeCapitalATest" classname="visualobjects.TextTest" time="0.0"/>
+  <testcase name="typeAaTest" classname="visualobjects.TextTest" time="0.0"/>
+  <testcase name="typeCapitalATest" classname="visualobjects.TextTest" time="0.001"/>
   <testcase name="typeAaBackspaceTest" classname="visualobjects.TextTest" time="0.0"/>
   <testcase name="typeShiftTest" classname="visualobjects.TextTest" time="0.0"/>
   <testcase name="standardTextTest" classname="visualobjects.TextTest" time="0.0"/>
