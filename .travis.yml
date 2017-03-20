@@ -3,9 +3,11 @@ language: java
 before_install:
  - chmod +x gradlew
  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
- 
-script: 
- - ./gradlew check --stacktrace --debug
+
+script:
+ - gradle test --"inputHandler"
+ - gradle test --"objects"
+ - gradle test --"visualobjects"
 
 jdk:
   - oraclejdk8

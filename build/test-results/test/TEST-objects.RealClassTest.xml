@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="objects.RealClassTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-03-20T14:37:46" hostname="DESKTOP-RV67H71" time="0.042">
+<testsuite name="objects.RealClassTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-03-20T15:58:25" hostname="DESKTOP-RV67H71" time="0.021">
   <properties/>
-  <testcase name="testAddAttributes" classname="objects.RealClassTest" time="0.001"/>
-  <testcase name="getMethodesTest1" classname="objects.RealClassTest" time="0.001"/>
-  <testcase name="getMethodesTest2" classname="objects.RealClassTest" time="0.002"/>
+  <testcase name="testAddAttributes" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="getMethodesTest1" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="getMethodesTest2" classname="objects.RealClassTest" time="0.0"/>
   <testcase name="getMethodesTest3" classname="objects.RealClassTest" time="0.001"/>
-  <testcase name="testDeleteChildMethod1" classname="objects.RealClassTest" time="0.001"/>
-  <testcase name="testDeleteChildMethod2" classname="objects.RealClassTest" time="0.003"/>
-  <testcase name="testAddAssociation" classname="objects.RealClassTest" time="0.002"/>
-  <testcase name="getAttributesTest1" classname="objects.RealClassTest" time="0.002"/>
+  <testcase name="testDeleteChildMethod1" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="testDeleteChildMethod2" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="testAddAssociation" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="getAttributesTest1" classname="objects.RealClassTest" time="0.003"/>
   <testcase name="getAttributesTest2" classname="objects.RealClassTest" time="0.0"/>
-  <testcase name="getAttributesTest3" classname="objects.RealClassTest" time="0.001"/>
-  <testcase name="testAddMethod" classname="objects.RealClassTest" time="0.004"/>
-  <testcase name="testDeleteChildAttribute1" classname="objects.RealClassTest" time="0.002"/>
+  <testcase name="getAttributesTest3" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="testAddMethod" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="testDeleteChildAttribute1" classname="objects.RealClassTest" time="0.001"/>
   <testcase name="testDeleteChildAttribute2" classname="objects.RealClassTest" time="0.0"/>
   <testcase name="testDeleteChildAssociation" classname="objects.RealClassTest" time="0.0"/>
   <testcase name="testDeleteAssociation" classname="objects.RealClassTest" time="0.0"/>

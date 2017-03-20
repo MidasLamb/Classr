@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="canvaswindow.VisualTests" tests="17" skipped="0" failures="0" errors="0" timestamp="2017-03-20T14:37:15" hostname="DESKTOP-RV67H71" time="29.577">
+<testsuite name="canvaswindow.VisualTests" tests="17" skipped="0" failures="0" errors="0" timestamp="2017-03-20T15:57:55" hostname="DESKTOP-RV67H71" time="28.55">
   <properties/>
-  <testcase name="deleteAttributeTest" classname="canvaswindow.VisualTests" time="1.589"/>
-  <testcase name="createTwoClassesTest" classname="canvaswindow.VisualTests" time="0.884"/>
-  <testcase name="addAttributeTest" classname="canvaswindow.VisualTests" time="1.201"/>
-  <testcase name="createAndSelectClassTest" classname="canvaswindow.VisualTests" time="0.483"/>
-  <testcase name="deleteAssociationTest1" classname="canvaswindow.VisualTests" time="3.349"/>
-  <testcase name="deleteAssociationTest2" classname="canvaswindow.VisualTests" time="3.707"/>
-  <testcase name="deleteAssociationTest3" classname="canvaswindow.VisualTests" time="3.033"/>
-  <testcase name="deleteAssociationTest4" classname="canvaswindow.VisualTests" time="5.447"/>
-  <testcase name="deleteClassWithAssAndMethTest" classname="canvaswindow.VisualTests" time="2.428"/>
-  <testcase name="addMethodeTest" classname="canvaswindow.VisualTests" time="0.888"/>
-  <testcase name="changeClassNameTest" classname="canvaswindow.VisualTests" time="1.361"/>
-  <testcase name="newClassTest" classname="canvaswindow.VisualTests" time="0.245"/>
-  <testcase name="selectMethodeTest" classname="canvaswindow.VisualTests" time="0.822"/>
-  <testcase name="deleteClassTest" classname="canvaswindow.VisualTests" time="0.086"/>
-  <testcase name="doubleClickTest" classname="canvaswindow.VisualTests" time="0.293"/>
-  <testcase name="addAssociationTest" classname="canvaswindow.VisualTests" time="2.847"/>
-  <testcase name="selectAttrTest" classname="canvaswindow.VisualTests" time="0.907"/>
+  <testcase name="deleteAttributeTest" classname="canvaswindow.VisualTests" time="1.529"/>
+  <testcase name="createTwoClassesTest" classname="canvaswindow.VisualTests" time="0.958"/>
+  <testcase name="addAttributeTest" classname="canvaswindow.VisualTests" time="1.161"/>
+  <testcase name="createAndSelectClassTest" classname="canvaswindow.VisualTests" time="1.274"/>
+  <testcase name="deleteAssociationTest1" classname="canvaswindow.VisualTests" time="3.264"/>
+  <testcase name="deleteAssociationTest2" classname="canvaswindow.VisualTests" time="3.439"/>
+  <testcase name="deleteAssociationTest3" classname="canvaswindow.VisualTests" time="2.694"/>
+  <testcase name="deleteAssociationTest4" classname="canvaswindow.VisualTests" time="4.846"/>
+  <testcase name="deleteClassWithAssAndMethTest" classname="canvaswindow.VisualTests" time="1.894"/>
+  <testcase name="addMethodeTest" classname="canvaswindow.VisualTests" time="0.909"/>
+  <testcase name="changeClassNameTest" classname="canvaswindow.VisualTests" time="1.392"/>
+  <testcase name="newClassTest" classname="canvaswindow.VisualTests" time="0.24"/>
+  <testcase name="selectMethodeTest" classname="canvaswindow.VisualTests" time="0.797"/>
+  <testcase name="deleteClassTest" classname="canvaswindow.VisualTests" time="0.087"/>
+  <testcase name="doubleClickTest" classname="canvaswindow.VisualTests" time="0.268"/>
+  <testcase name="addAssociationTest" classname="canvaswindow.VisualTests" time="2.806"/>
+  <testcase name="selectAttrTest" classname="canvaswindow.VisualTests" time="0.986"/>
   <system-out><![CDATA[This object is already deleted!
 This object is already deleted!
 This object is already deleted!
