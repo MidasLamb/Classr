@@ -12,6 +12,9 @@ public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox text;
+	
+	//FIXME maybe make this class implement DeleteListener?
+	private DeleteListener deleteListener;
 
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
 		super(0, 0, 0, 0, 0, parent);
@@ -28,17 +31,17 @@ public class VisualAssociation extends VisualObject {
 		this.text = new PaddingBox(centerX, centerY, Z_PADDING_BOX, this, "Nieuwe associatie", association);
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		
-		DeleteListener d = new DeleteListener() {
+		this.setDeleteListener(new DeleteListener() {
 
 			@Override
 			public void notifyDelete() {
 				delete();
 			}
-		};
+		});
 
-		this.text.addDeleteListener(d);
-		participant1.addDeleteListener(d);
-		participant2.addDeleteListener(d);
+		this.text.addDeleteListener(this.getDeleteListener());
+		participant1.addDeleteListener(this.getDeleteListener());
+		participant2.addDeleteListener(this.getDeleteListener());
 	}
 
 	@Override
@@ -63,6 +66,19 @@ public class VisualAssociation extends VisualObject {
 
 	public PaddingBox getText() {
 		return this.text;
+	}
+	
+	@Override
+	public void onDelete(){
+		getP1().removeDeleteListener(this.getDeleteListener());
+	}
+
+	private DeleteListener getDeleteListener() {
+		return deleteListener;
+	}
+
+	private void setDeleteListener(DeleteListener deleteListener) {
+		this.deleteListener = deleteListener;
 	}
 
 }

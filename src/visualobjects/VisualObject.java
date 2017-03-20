@@ -14,7 +14,6 @@ import interfaces.DeleteListener;
 import objects.LogicalObject;
 
 public abstract class VisualObject {
-	private Collection<DeleteListener> deleteListeners;
 	private int x;
 	private int y;
 	private int z;
@@ -24,6 +23,7 @@ public abstract class VisualObject {
 	private boolean isSelected;
 	private VisualObject parent;
 	private LogicalObject logicalObject;
+	private Collection<DeleteListener> deleteListeners;
 
 
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
@@ -78,7 +78,7 @@ public abstract class VisualObject {
 	/**
 	 * Deletes this visual object
 	 */
-	public void delete() {
+	public final void delete() {
 		this.onDelete();
 		if (this.getLogicalObject() != null)
 			this.getLogicalObject().delete();
