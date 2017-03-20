@@ -9,9 +9,9 @@ before_install:
  - chmod +x gradlew
 
 script:
- - ./gradlew test --tests objects.* --debug
- - ./gradlew test --tests visualobjects.* --debug
- - ./gradlew test --tests inputHandler.* --debug
+ - ./gradlew test --tests objects.*
+ - ./gradlew test --tests visualobjects.*
+ - ./gradlew test --tests inputHandler.*
 
 jdk:
   - oraclejdk8
