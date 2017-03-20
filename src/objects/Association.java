@@ -30,6 +30,12 @@ public class Association extends LogicalObject {
 		this.getClass1().deleteAssociation(this);
 		this.getClass2().deleteAssociation(this);
 	}
+	
+	@Override
+	public void delete() {
+		getClass1().deleteAssociation(this);
+		getClass2().deleteAssociation(this);
+	}
 
 	/**
 	 * Returns the first RealClass belonging to this Association

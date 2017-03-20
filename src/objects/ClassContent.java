@@ -31,4 +31,9 @@ public abstract class ClassContent extends LogicalObject {
 	private void setRealClass(RealClass rc) {
 		this.realClass = rc;
 	}
+	
+	@Override
+	public void delete() {
+		getRealClass().deleteChild(this);
+	}
 }
