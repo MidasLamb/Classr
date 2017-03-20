@@ -125,11 +125,6 @@ public class PaddingBox extends VisualObject {
 		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
 	}
 
-	@Override
-	protected void onDelete() {
-		getLogicalObject().delete();
-	}
-
 	// Getters and setters
 
 	private int getPaddingTop() {

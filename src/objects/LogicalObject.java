@@ -6,6 +6,7 @@ package objects;
  * @author team 11
  */
 public abstract class LogicalObject {
+	private boolean isDeleted = false;
 
 	private String name;
 
@@ -27,6 +28,25 @@ public abstract class LogicalObject {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void delete(){
+		if (this.isDeleted()){
+			System.out.println("This object is already deleted!");
+		} else {
+			this.onDelete();
+		}
+		this.setDeleted(true);
+	}
+	
+	
 
-	public abstract void delete();
+	protected abstract void onDelete();
+	
+	public boolean isDeleted(){
+		return this.isDeleted;
+	}
+
+	private void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 }

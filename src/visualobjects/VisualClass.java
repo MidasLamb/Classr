@@ -227,6 +227,7 @@ public class VisualClass extends VisualObject {
 	@Override
 	protected void onDelete() {
 		// TODO remove association
+		
 	}
 
 	// Getters and setters

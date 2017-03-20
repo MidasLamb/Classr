@@ -215,8 +215,10 @@ public class RealClass extends LogicalObject {
 	private HashSet<Association> associations = new HashSet<>();
 
 	@Override
-	public void delete() {
-		//TODO		
+	public void onDelete() {
+		//TODO	
+		for (Association a: this.getAssociations())
+			a.delete();
 	}
 
 }
