@@ -58,7 +58,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param g
 	 *            Graphics g
 	 */
-	public void show(Graphics g) {
+	public final void show(Graphics g) {
 		// draw backgrounds first
 		if (this.isSelected())
 			g.setColor(Color.red);
@@ -362,7 +362,6 @@ public abstract class VisualObject implements DeleteListener {
 	 *            the child to be removed
 	 */
 	public void removeChild(VisualObject c) {
-		System.out.println(c.getClass());
 		if (this.children.remove(c))
 			this.afterDeleteChild(c);
 		else

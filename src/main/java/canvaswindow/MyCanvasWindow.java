@@ -3,6 +3,7 @@ package canvaswindow;
 import static main.Constants.CONTAINER_HEIGHT;
 import static main.Constants.CONTAINER_WIDTH;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -13,11 +14,22 @@ import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
 
+	private KeyHandler keyHandler;
+
+	private MouseClickHandler mouseClickHandler;
+
+	private Container container;
+	
 	public MyCanvasWindow(String title) {
 		super(title);
 		setContainer(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT));
 		setMouseClickHandler(new MouseClickHandler(getContainer()));
 		setKeyHandler(new KeyHandler(getContainer()));
+	}
+	
+	private void setFont(Graphics g){
+		Font font = new Font("Dialog",Font.PLAIN, 12);
+		g.setFont(font);
 	}
 
 	/**
@@ -33,6 +45,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected void paint(Graphics g) {
+		this.setFont(g);
 		this.getContainer().show(g);
 	}
 
@@ -73,8 +86,6 @@ public class MyCanvasWindow extends CanvasWindow {
 		this.container = container;
 	}
 
-	private Container container;
-
 	private MouseClickHandler getMouseClickHandler() {
 		return mouseClickHandler;
 	}
@@ -83,8 +94,6 @@ public class MyCanvasWindow extends CanvasWindow {
 		this.mouseClickHandler = mouseClickHandler;
 	}
 
-	private MouseClickHandler mouseClickHandler;
-
 	public KeyHandler getKeyHandler() {
 		return keyHandler;
 	}
@@ -92,7 +101,5 @@ public class MyCanvasWindow extends CanvasWindow {
 	public void setKeyHandler(KeyHandler keyHandler) {
 		this.keyHandler = keyHandler;
 	}
-
-	private KeyHandler keyHandler;
 
 }
