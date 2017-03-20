@@ -7,13 +7,15 @@ import objects.Association;
 import objects.RealClass;
 
 public class VisualAssociation extends VisualObject {
+	private final VisualClass p1;
+	private final VisualClass p2;
+	private final PaddingBox text;
 
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
 		super(0, 0, 0, 0, 0, parent);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
 		((RealClass) association.getClass1()).addAssociation(association);
-
 
 		p1 = participant1;
 		p2 = participant2;
@@ -48,18 +50,12 @@ public class VisualAssociation extends VisualObject {
 		return p1;
 	}
 
-	private final VisualClass p1;
-
 	private VisualClass getP2() {
 		return p2;
 	}
 
-	private final VisualClass p2;
-
 	public PaddingBox getText() {
 		return this.text;
 	}
-
-	private final PaddingBox text;
 
 }

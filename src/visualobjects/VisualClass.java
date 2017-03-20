@@ -13,6 +13,7 @@ import objects.Method;
 import objects.RealClass;
 
 public class VisualClass extends VisualObject {
+	private PaddingBox name;
 
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
@@ -22,7 +23,7 @@ public class VisualClass extends VisualObject {
 
 		// AH should be child of visualClass, because it has no logical
 		// counterpart
-		
+
 		AssociationHandle ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
 	}
 
@@ -89,8 +90,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this,
-				"Nieuw Attribuut", attr);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this, "Nieuw Attribuut", attr);
 		this.updateDimensions();
 		return t;
 	}
@@ -102,8 +102,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this,
-				"Nieuwe Methode", method);
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this, "Nieuwe Methode", method);
 		this.updateDimensions();
 		return t;
 	}
@@ -135,7 +134,7 @@ public class VisualClass extends VisualObject {
 
 	private Collection<VisualObject> getAttributes() {
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
-		//TODO hacky whacky
+		// TODO hacky whacky
 		for (VisualObject v : this.getChildren()) {
 			if (v.getLogicalObject() instanceof Attribute)
 				vo.add(v);
@@ -178,7 +177,7 @@ public class VisualClass extends VisualObject {
 
 	private Collection<VisualObject> getMethods() {
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
-		//TODO hacky whacky
+		// TODO hacky whacky
 		for (VisualObject v : this.getChildren()) {
 			if (v.getLogicalObject() instanceof Method)
 				vo.add(v);
@@ -228,7 +227,7 @@ public class VisualClass extends VisualObject {
 	@Override
 	protected void onDelete() {
 		// TODO remove association
-		
+
 	}
 
 	// Getters and setters
@@ -240,7 +239,5 @@ public class VisualClass extends VisualObject {
 	private void setName(PaddingBox name) {
 		this.name = name;
 	}
-
-	private PaddingBox name;
 
 }
