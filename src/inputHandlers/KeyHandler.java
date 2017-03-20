@@ -5,17 +5,18 @@ import java.awt.event.KeyEvent;
 import visualobjects.Container;
 
 public class KeyHandler {
-	
-	public KeyHandler(Container container){
+	private Container container;
+
+	public KeyHandler(Container container) {
 		setContainer(container);
 	}
-	
-	public void handleInput(KeyEvent e){
+
+	public void handleInput(KeyEvent e) {
 		if (e.getKeyCode() == 0)
 			return;
 		this.getContainer().handleKey(e);
 	}
-	
+
 	private Container getContainer() {
 		return container;
 	}
@@ -23,6 +24,5 @@ public class KeyHandler {
 	private void setContainer(Container container) {
 		this.container = container;
 	}
-	
-	private Container container;
+
 }

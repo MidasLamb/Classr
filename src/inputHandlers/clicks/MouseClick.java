@@ -3,8 +3,8 @@ package inputHandlers.clicks;
 public class MouseClick {
 	private int x;
 	private int y;
-		
-	public MouseClick(int x, int y){
+
+	public MouseClick(int x, int y) {
 		this.setX(x);
 		this.setY(y);
 	}
@@ -24,6 +24,5 @@ public class MouseClick {
 	private void setY(int y) {
 		this.y = y;
 	}
-
 
 }

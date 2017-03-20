@@ -6,6 +6,4 @@ public class DoubleClick extends MouseClick {
 		super(x, y);
 	}
 
-
-
 }

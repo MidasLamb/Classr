@@ -12,8 +12,7 @@ public class Drag extends MouseClick {
 		this.setStartY(startY);
 		this.setEndX(endX);
 		this.setEndY(endY);
-		
-		
+
 	}
 
 	public int getStartX() {
