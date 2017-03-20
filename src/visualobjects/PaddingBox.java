@@ -127,15 +127,7 @@ public class PaddingBox extends VisualObject {
 
 	@Override
 	protected void onDelete() {
-		if (this.getLogicalObject() instanceof Attribute) {
-			((Attribute) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
-			((VisualClass) ((Attribute) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
-		}
-
-		if (this.getLogicalObject() instanceof Method) {
-			((Method) this.getLogicalObject()).getRealClass().deleteChild(this.getLogicalObject());
-			((VisualClass) ((Method) this.getLogicalObject()).getRealClass().getVisualObject()).updateDimensions();
-		}
+		
 	}
 
 	// Getters and setters

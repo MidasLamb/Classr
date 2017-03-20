@@ -13,7 +13,7 @@ public class VisualAssociation extends VisualObject {
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
 		((RealClass) association.getClass1()).addAssociation(association);
-		association.setVisualObject(this);
+
 
 		p1 = participant1;
 		p2 = participant2;
