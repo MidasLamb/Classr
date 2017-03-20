@@ -214,4 +214,9 @@ public class RealClass extends LogicalObject {
 
 	private HashSet<Association> associations = new HashSet<>();
 
+	@Override
+	public void delete() {
+		//TODO		
+	}
+
 }

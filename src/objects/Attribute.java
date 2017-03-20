@@ -37,4 +37,10 @@ public class Attribute extends LogicalObject {
 	}
 
 	private RealClass realClass;
+
+	@Override
+	public void delete() {
+		getRealClass().deleteChild(this);
+		
+	}
 }
