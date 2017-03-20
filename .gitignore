@@ -2,3 +2,4 @@
 observedImage*.png
 /.gradle/
 /build/
+/UML.ucls

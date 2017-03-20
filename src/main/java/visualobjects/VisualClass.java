@@ -202,8 +202,6 @@ public class VisualClass extends VisualObject {
 	@Override
 	protected void afterDeleteChild(VisualObject v) {
 		this.updateDimensions();
-		if (v.equals(this.getName()))
-			this.delete();
 	}
 
 	@Override

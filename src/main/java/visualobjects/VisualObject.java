@@ -13,7 +13,7 @@ import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import objects.LogicalObject;
 
-public abstract class VisualObject {
+public abstract class VisualObject implements DeleteListener {
 	private int x;
 	private int y;
 	private int z;
@@ -25,10 +25,12 @@ public abstract class VisualObject {
 	private LogicalObject logicalObject;
 	private Collection<DeleteListener> deleteListeners;
 
+	public boolean isDeleted;
 
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
 		setChildren(new ArrayList<VisualObject>());
 		this.setDeleteListeners(new ArrayList<DeleteListener>());
+		this.setDeleted(false);
 		setX(x);
 		setY(y);
 		setZ(z);
@@ -42,8 +44,8 @@ public abstract class VisualObject {
 	public void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);
 	}
-	
-	public void removeDeleteListener(DeleteListener deletelistener){
+
+	public void removeDeleteListener(DeleteListener deletelistener) {
 		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
@@ -79,20 +81,20 @@ public abstract class VisualObject {
 	 * Deletes this visual object
 	 */
 	public final void delete() {
-		this.onDelete();
-		if (this.getLogicalObject() != null)
-			this.getLogicalObject().delete();
-		Container c = this.getContainer();
-		if (c != null) {
-			if (c.getSelected() != null && c.getSelected().equals(this))
-				c.switchSelectedTo(null);
-		}
-	
-		setChildren(new ArrayList<VisualObject>());
-		getParent().removeChild(this);
-		
-		for (DeleteListener d: this.getDeleteListeners()){
-			d.notifyDelete();
+		if (!this.isDeleted()) {
+			this.setDeleted(true);
+			this.onDelete();
+			Container c = this.getContainer();
+			if (c != null) {
+				if (c.getSelected() != null && c.getSelected().equals(this))
+					c.switchSelectedTo(null);
+			}
+
+			this.getParent().removeChild(this);
+
+			for (DeleteListener d : this.getDeleteListeners()) {
+				d.notifyDelete();
+			}
 		}
 	}
 
@@ -202,7 +204,7 @@ public abstract class VisualObject {
 	 */
 	void handleKey(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DELETE)
-			this.delete();
+			this.getLogicalObject().delete();
 	}
 
 	/**
@@ -360,6 +362,7 @@ public abstract class VisualObject {
 	 *            the child to be removed
 	 */
 	public void removeChild(VisualObject c) {
+		System.out.println(c.getClass());
 		if (this.children.remove(c))
 			this.afterDeleteChild(c);
 		else
@@ -403,6 +406,7 @@ public abstract class VisualObject {
 	 */
 	protected void setLogicalObject(LogicalObject object) {
 		this.logicalObject = object;
+		this.logicalObject.addDeleteListener(this);
 	}
 
 	/**
@@ -439,6 +443,19 @@ public abstract class VisualObject {
 
 	private void setDeleteListeners(Collection<DeleteListener> deleteListeners) {
 		this.deleteListeners = deleteListeners;
+	}
+
+	@Override
+	public void notifyDelete() {
+		this.delete();
+	}
+
+	private boolean isDeleted() {
+		return isDeleted;
+	}
+
+	private void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 }

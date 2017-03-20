@@ -1,5 +1,10 @@
 package objects;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import interfaces.DeleteListener;
+
 /**
  * A class of logical objects, involving a name and visual object
  * 
@@ -7,8 +12,18 @@ package objects;
  */
 public abstract class LogicalObject {
 	private boolean isDeleted = false;
-
+	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name;
+	
+	public void addDeleteListener(DeleteListener deletelistener) {
+		this.getDeleteListeners().add(deletelistener);
+	}
+	
+	public void removeDeleteListener(DeleteListener deletelistener){
+		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
+		cd.remove(deletelistener);
+		this.setDeleteListeners(cd);
+	}
 
 	/**
 	 * Returns the name of this LogicalObject
@@ -34,6 +49,8 @@ public abstract class LogicalObject {
 			System.out.println("This object is already deleted!");
 		} else {
 			this.onDelete();
+			for (DeleteListener d: this.getDeleteListeners())
+				d.notifyDelete();
 		}
 		this.setDeleted(true);
 	}
@@ -46,5 +63,13 @@ public abstract class LogicalObject {
 
 	private void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+
+	private Collection<DeleteListener> getDeleteListeners() {
+		return deleteListeners;
+	}
+
+	private void setDeleteListeners(Collection<DeleteListener> deleteListeners) {
+		this.deleteListeners = deleteListeners;
 	}
 }
