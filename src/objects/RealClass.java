@@ -11,11 +11,12 @@ import java.util.NoSuchElementException;
  * @author team 11
  */
 public class RealClass extends LogicalObject {
-	
+
 	/**
-	 * Generates a new attribute belonging to this RealClass, adds it to the attributes of this RealClass and returns it.
+	 * Generates a new attribute belonging to this RealClass, adds it to the
+	 * attributes of this RealClass and returns it.
 	 * 
-	 * @return	The newly added Attribute
+	 * @return The newly added Attribute
 	 */
 	public Attribute addAttribute() {
 		Attribute attr = new Attribute(this);
@@ -26,10 +27,10 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Deletes a given attribute from the list of attributes.
 	 * 
-	 * @param 	attribute		
-	 * 			The attribute to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The attribute is not present
+	 * @param attribute
+	 *            The attribute to be deleted
+	 * @throws NoSuchElementException
+	 *             The attribute is not present
 	 */
 	private void deleteAttribute(Attribute attribute) throws NoSuchElementException {
 		if (!this.attributes.remove(attribute)) {
@@ -40,48 +41,50 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Deletes a given child, being an attribute, from the list of attributes.
 	 * 
-	 * @param 	attr	
-	 * 			The attribute to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The attribute is not present
+	 * @param attr
+	 *            The attribute to be deleted
+	 * @throws NoSuchElementException
+	 *             The attribute is not present
 	 */
-	private void deleteChild(Attribute attr) throws NoSuchElementException{
+	private void deleteChild(Attribute attr) throws NoSuchElementException {
 		deleteAttribute(attr);
 	}
 
 	/**
 	 * Deletes a given child, being a method, from the list of methods.
 	 * 
-	 * @param 	method	
-	 * 			The method to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The method is not present
+	 * @param method
+	 *            The method to be deleted
+	 * @throws NoSuchElementException
+	 *             The method is not present
 	 */
-	public void deleteChild(Method method) throws NoSuchElementException{
+	public void deleteChild(Method method) throws NoSuchElementException {
 		deleteMethod(method);
 	}
 
 	/**
-	 * Deletes a given child, being an association, from the list of associations.
+	 * Deletes a given child, being an association, from the list of
+	 * associations.
 	 * 
-	 * @param 	ass		
-	 * 			The association to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The association is not present
+	 * @param ass
+	 *            The association to be deleted
+	 * @throws NoSuchElementException
+	 *             The association is not present
 	 */
-	public void deleteChild(Association ass) throws NoSuchElementException{
+	public void deleteChild(Association ass) throws NoSuchElementException {
 		deleteAssociation(ass);
 	}
 
 	/**
-	 * Deletes a given child, being a logical object, from the appropriate list of logical objects.
+	 * Deletes a given child, being a logical object, from the appropriate list
+	 * of logical objects.
 	 * 
-	 * @param 	object		
-	 * 			The logical object to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The logical object is not present
+	 * @param object
+	 *            The logical object to be deleted
+	 * @throws NoSuchElementException
+	 *             The logical object is not present
 	 */
-	public void deleteChild(LogicalObject object) throws NoSuchElementException,IllegalStateException{
+	public void deleteChild(LogicalObject object) throws NoSuchElementException, IllegalStateException {
 		if (object instanceof Method) {
 			this.deleteChild((Method) object);
 			return;
@@ -101,9 +104,10 @@ public class RealClass extends LogicalObject {
 	}
 
 	/**
-	 * Generates a new method belonging to this RealClass, adds it to the methods of this RealClass and returns it.
+	 * Generates a new method belonging to this RealClass, adds it to the
+	 * methods of this RealClass and returns it.
 	 * 
-	 * @return	The newly added Method
+	 * @return The newly added Method
 	 */
 	public Method addMethod() {
 		Method method = new Method(this);
@@ -114,10 +118,10 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Deletes a given method from the list of methods.
 	 * 
-	 * @param 	method		
-	 * 			The method to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The method is not present
+	 * @param method
+	 *            The method to be deleted
+	 * @throws NoSuchElementException
+	 *             The method is not present
 	 */
 	private void deleteMethod(Method method) throws NoSuchElementException {
 		if (!this.methods.remove(method)) {
@@ -128,8 +132,8 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Adds the given association to the list of associations
 	 * 
-	 * @param	association	
-	 * 			The association to be added
+	 * @param association
+	 *            The association to be added
 	 */
 	public void addAssociation(Association association) {
 		this.associations.add(association);
@@ -138,10 +142,10 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Deletes a given association from the list of associations.
 	 * 
-	 * @param 	association		
-	 * 			The association to be deleted
-	 * @throws 	NoSuchElementException
-	 * 			The association is not present
+	 * @param association
+	 *            The association to be deleted
+	 * @throws NoSuchElementException
+	 *             The association is not present
 	 */
 	public void deleteAssociation(Association association) throws NoSuchElementException {
 		if (!this.associations.remove(association)) {
@@ -163,8 +167,8 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Sets the collection of Attributes belonging to this RealClass
 	 * 
-	 * @param 	attributes
-	 * 			the collection of Attributes to be set
+	 * @param attributes
+	 *            the collection of Attributes to be set
 	 */
 	private void setAttributes(ArrayList<Attribute> attributes) {
 		this.attributes = attributes;
@@ -184,8 +188,8 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Sets the collection of Methods belonging to this RealClass
 	 * 
-	 * @param 	attributes
-	 * 			the collection of Methods to be set
+	 * @param attributes
+	 *            the collection of Methods to be set
 	 */
 	private void setMethods(ArrayList<Method> methods) {
 		this.methods = methods;
@@ -205,8 +209,8 @@ public class RealClass extends LogicalObject {
 	/**
 	 * Sets the collection of Associations belonging to this RealClass
 	 * 
-	 * @param 	attributes
-	 * 			the collection of Associations to be set
+	 * @param attributes
+	 *            the collection of Associations to be set
 	 */
 	private void setAssociations(HashSet<Association> associations) {
 		this.associations = associations;
@@ -216,8 +220,8 @@ public class RealClass extends LogicalObject {
 
 	@Override
 	public void onDelete() {
-		//TODO	
-		for (Association a: this.getAssociations())
+		// TODO
+		for (Association a : this.getAssociations())
 			a.delete();
 	}
 

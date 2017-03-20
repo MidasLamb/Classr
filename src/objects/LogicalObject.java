@@ -28,21 +28,19 @@ public abstract class LogicalObject {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public void delete(){
-		if (this.isDeleted()){
+
+	public void delete() {
+		if (this.isDeleted()) {
 			System.out.println("This object is already deleted!");
 		} else {
 			this.onDelete();
 		}
 		this.setDeleted(true);
 	}
-	
-	
 
 	protected abstract void onDelete();
-	
-	public boolean isDeleted(){
+
+	public boolean isDeleted() {
 		return this.isDeleted;
 	}
 
