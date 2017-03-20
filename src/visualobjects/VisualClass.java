@@ -90,7 +90,6 @@ public class VisualClass extends VisualObject {
 		Attribute attr = getLogicalObject().addAttribute();
 		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
 				"Nieuw Attribuut", attr);
-		attr.setVisualObject(t);
 		this.updateDimensions();
 		return t;
 	}
@@ -104,7 +103,6 @@ public class VisualClass extends VisualObject {
 		Method method = getLogicalObject().addMethod();
 		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
 				"Nieuwe Methode", method);
-		method.setVisualObject(t);
 		this.updateDimensions();
 		return t;
 	}
