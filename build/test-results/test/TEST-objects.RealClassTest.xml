@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="objects.RealClassTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-03-20T12:22:51" hostname="PJ-PC" time="0.052">
+  <properties/>
+  <testcase name="testAddAttributes" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="getMethodesTest1" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="getMethodesTest2" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="getMethodesTest3" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="testDeleteChildMethod1" classname="objects.RealClassTest" time="0.0"/>
+  <testcase name="testDeleteChildMethod2" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="testAddAssociation" classname="objects.RealClassTest" time="0.005"/>
+  <testcase name="getAttributesTest1" classname="objects.RealClassTest" time="0.002"/>
+  <testcase name="getAttributesTest2" classname="objects.RealClassTest" time="0.003"/>
+  <testcase name="getAttributesTest3" classname="objects.RealClassTest" time="0.002"/>
+  <testcase name="testAddMethod" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="testDeleteChildAttribute1" classname="objects.RealClassTest" time="0.003"/>
+  <testcase name="testDeleteChildAttribute2" classname="objects.RealClassTest" time="0.001"/>
+  <testcase name="testDeleteChildAssociation" classname="objects.RealClassTest" time="0.002"/>
+  <testcase name="testDeleteAssociation" classname="objects.RealClassTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
