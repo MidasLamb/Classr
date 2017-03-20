@@ -1,12 +1,13 @@
 package visualobjects;
 
+import static main.Constants.CLASS_WHITE_SPACE;
+import static main.Constants.Z_PADDING_BOX;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import inputHandlers.clicks.DoubleClick;
-import static main.Constants.*;
-import objects.Association;
 import objects.Attribute;
 import objects.Method;
 import objects.RealClass;
