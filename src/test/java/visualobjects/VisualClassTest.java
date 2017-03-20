@@ -76,12 +76,12 @@ public class VisualClassTest {
 		int z = 0;
 		Container container = new Container(0, 0, 1000, 1000);
 		VisualClass visualClass = new VisualClass(x, y, z, container);
-		int numberOfChildren = container.getChildren().size();
+		int numberOfChildren = visualClass.getChildren().size();
 		int clickY = visualClass.getName().getHeight() + 2;
 		int clickX = x + 2;
 		
 		visualClass.onDoubleClick(new DoubleClick(clickX, clickY));
-		assertTrue((numberOfChildren + 1 )== container.getChildren().size());
+		assertTrue((numberOfChildren + 1 )== visualClass.getChildren().size());
 		
 		assertTrue(visualClass.getLogicalObject().getAttributes().size() == 1);
 	}
@@ -93,13 +93,13 @@ public class VisualClassTest {
 		int z = 0;
 		Container container = new Container(0, 0, 1000, 1000);
 		VisualClass visualClass = new VisualClass(x, y, z, container);
-		int numberOfChildren = container.getChildren().size();
+		int numberOfChildren = visualClass.getChildren().size();
 		int clickY = visualClass.getName().getHeight() + 2 + CLASS_WHITE_SPACE;
 		int clickX = x + 2;
 		
 		visualClass.onDoubleClick(new DoubleClick(clickX, clickY));
 		//Check if visual has updated.
-		assertTrue((numberOfChildren + 1 )== container.getChildren().size());
+		assertTrue((numberOfChildren + 1 )== visualClass.getChildren().size());
 		
 		//Check if logical has updated.
 		assertTrue(visualClass.getLogicalObject().getMethods().size() == 1);
