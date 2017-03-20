@@ -11,6 +11,9 @@ import java.util.NoSuchElementException;
  * @author team 11
  */
 public class RealClass extends LogicalObject {
+	private ArrayList<Attribute> attributes = new ArrayList<>();
+	private ArrayList<Method> methods = new ArrayList<>();
+	private HashSet<Association> associations = new HashSet<>();
 
 	/**
 	 * Generates a new attribute belonging to this RealClass, adds it to the
@@ -174,8 +177,6 @@ public class RealClass extends LogicalObject {
 		this.attributes = attributes;
 	}
 
-	private ArrayList<Attribute> attributes = new ArrayList<>();
-
 	/**
 	 * Returns the collection of Methods belonging to this RealClass
 	 * 
@@ -195,8 +196,6 @@ public class RealClass extends LogicalObject {
 		this.methods = methods;
 	}
 
-	private ArrayList<Method> methods = new ArrayList<>();
-
 	/**
 	 * Returns the collection of Associations belonging to this RealClass
 	 * 
@@ -215,8 +214,6 @@ public class RealClass extends LogicalObject {
 	private void setAssociations(HashSet<Association> associations) {
 		this.associations = associations;
 	}
-
-	private HashSet<Association> associations = new HashSet<>();
 
 	@Override
 	public void onDelete() {
