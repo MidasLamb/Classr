@@ -13,15 +13,6 @@ import visualobjects.VisualClass;
 public class RealClassTest {
 
 	@Test
-	public void testRealClass() {
-		Container container = new Container(0, 0, 10, 10);
-		VisualClass vc = new VisualClass(0, 0, 0, container);
-		RealClass realclass = new RealClass();
-		realclass.setVisualObject(vc);		
-		assertTrue(realclass.getVisualObject() == vc);
-	}
-
-	@Test
 	public void testAddAttributes() {
 		RealClass realclass = new RealClass();
 		int initialSize = realclass.getAttributes().size();

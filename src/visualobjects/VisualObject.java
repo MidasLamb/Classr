@@ -50,6 +50,8 @@ public abstract class VisualObject {
 	 */
 	public void delete() {
 		this.onDelete();
+		if (this.getLogicalObject() != null)
+			this.getLogicalObject().delete();
 		Container c = this.getContainer();
 		if (c != null) {
 			if (c.getSelected() != null && c.getSelected().equals(this))

@@ -16,12 +16,12 @@ public class VisualClass extends VisualObject {
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new RealClass());
-		getLogicalObject().setVisualObject(this);
 		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
 		this.updateDimensions();
 
 		// AH should be child of visualClass, because it has no logical
 		// counterpart
+		
 		AssociationHandle ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
 	}
 
@@ -88,7 +88,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this,
 				"Nieuw Attribuut", attr);
 		this.updateDimensions();
 		return t;
@@ -101,7 +101,7 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this.getContainer(),
+		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this,
 				"Nieuwe Methode", method);
 		this.updateDimensions();
 		return t;
@@ -133,10 +133,11 @@ public class VisualClass extends VisualObject {
 	}
 
 	private Collection<VisualObject> getAttributes() {
-		Collection<Attribute> co = ((RealClass) this.getLogicalObject()).getAttributes();
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
-		for (Attribute a : co) {
-			vo.add(a.getVisualObject());
+		//TODO hacky whacky
+		for (VisualObject v : this.getChildren()) {
+			if (v.getLogicalObject() instanceof Attribute)
+				vo.add(v);
 		}
 		return vo;
 	}
@@ -175,10 +176,11 @@ public class VisualClass extends VisualObject {
 	}
 
 	private Collection<VisualObject> getMethods() {
-		Collection<Method> co = ((RealClass) this.getLogicalObject()).getMethods();
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
-		for (Method m : co) {
-			vo.add(m.getVisualObject());
+		//TODO hacky whacky
+		for (VisualObject v : this.getChildren()) {
+			if (v.getLogicalObject() instanceof Method)
+				vo.add(v);
 		}
 		return vo;
 	}
@@ -224,21 +226,7 @@ public class VisualClass extends VisualObject {
 
 	@Override
 	protected void onDelete() {
-		Collection<Association> co = ((RealClass) this.getLogicalObject()).getAssociations();
-		for (Association a : co) {
-			((RealClass) this.getLogicalObject()).deleteAssociation(a);
-			a.getVisualObject().delete();
-		}
-
-		Collection<Attribute> ca = ((RealClass) this.getLogicalObject()).getAttributes();
-		for (Attribute a : ca) {
-			this.getContainer().removeChild(a.getVisualObject());
-		}
-
-		Collection<Method> cm = ((RealClass) this.getLogicalObject()).getMethods();
-		for (Method m : cm) {
-			this.getContainer().removeChild(m.getVisualObject());
-		}
+		// TODO remove association
 	}
 
 	// Getters and setters
