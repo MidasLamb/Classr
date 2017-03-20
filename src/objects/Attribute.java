@@ -5,7 +5,7 @@ package objects;
  * 
  * @author team 11
  */
-public class Attribute extends LogicalObject {
+public class Attribute extends ClassContent {
 	
 	/**
 	 * Constructs a new Attribute belonging to the stated RealClass.
@@ -14,27 +14,6 @@ public class Attribute extends LogicalObject {
 	 * 			The RealClass to which the Attribute belongs.
 	 */
 	public Attribute(RealClass rc) {
-		this.setRealClass(rc);
+		super(rc);
 	}
-
-	/**
-	 * Returns the RealClass belonging to this Attribute
-	 * 
-	 * @return the RealClass belonging to this Attribute
-	 */
-	public RealClass getRealClass() {
-		return realClass;
-	}
-
-	/**
-	 * Sets the RealClass belonging to this Attribute
-	 * 
-	 * @param 	rc
-	 * 			the RealClass to be set
-	 */
-	private void setRealClass(RealClass rc) {
-		this.realClass = rc;
-	}
-
-	private RealClass realClass;
 }
