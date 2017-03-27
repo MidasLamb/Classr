@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="inputHandler.MouseClickHandlerTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2017-03-20T14:37:44" hostname="DESKTOP-RV67H71" time="1.229">
+<testsuite name="inputHandler.MouseClickHandlerTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2017-03-27T09:36:32" hostname="PJ-PC" time="1.341">
   <properties/>
-  <testcase name="doubleClickTestTime1" classname="inputHandler.MouseClickHandlerTest" time="0.196"/>
-  <testcase name="doubleClickTestTime2" classname="inputHandler.MouseClickHandlerTest" time="0.197"/>
-  <testcase name="doubleClickTestTime3" classname="inputHandler.MouseClickHandlerTest" time="0.195"/>
+  <testcase name="doubleClickTestTime1" classname="inputHandler.MouseClickHandlerTest" time="0.198"/>
+  <testcase name="doubleClickTestTime2" classname="inputHandler.MouseClickHandlerTest" time="0.198"/>
+  <testcase name="doubleClickTestTime3" classname="inputHandler.MouseClickHandlerTest" time="0.196"/>
   <testcase name="doubleClickTestTime4" classname="inputHandler.MouseClickHandlerTest" time="0.206"/>
-  <testcase name="doubleClickTestTime5" classname="inputHandler.MouseClickHandlerTest" time="0.207"/>
-  <testcase name="doubleClickTestTime6" classname="inputHandler.MouseClickHandlerTest" time="0.206"/>
+  <testcase name="doubleClickTestTime5" classname="inputHandler.MouseClickHandlerTest" time="0.206"/>
+  <testcase name="doubleClickTestTime6" classname="inputHandler.MouseClickHandlerTest" time="0.205"/>
   <testcase name="doubleClickTest1" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
-  <testcase name="doubleClickTest2" classname="inputHandler.MouseClickHandlerTest" time="0.003"/>
-  <testcase name="doubleClickTest3" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
+  <testcase name="doubleClickTest2" classname="inputHandler.MouseClickHandlerTest" time="0.006"/>
+  <testcase name="doubleClickTest3" classname="inputHandler.MouseClickHandlerTest" time="0.002"/>
   <testcase name="doubleClickTest4" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
-  <testcase name="doubleClickTest5" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest6" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest7" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
-  <testcase name="doubleClickTest8" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
-  <testcase name="doubleClickTest9" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
-  <testcase name="dragTest1" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="dragTest2" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest10" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
-  <testcase name="doubleClickTest11" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest12" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest13" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest14" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest15" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest16" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="doubleClickTest17" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="singleClickTest1" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="singleClickTest2" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
-  <testcase name="singleClickTest3" classname="inputHandler.MouseClickHandlerTest" time="0.0"/>
+  <testcase name="doubleClickTest5" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
+  <testcase name="doubleClickTest6" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
+  <testcase name="doubleClickTest7" classname="inputHandler.MouseClickHandlerTest" time="0.002"/>
+  <testcase name="doubleClickTest8" classname="inputHandler.MouseClickHandlerTest" time="0.01"/>
+  <testcase name="doubleClickTest9" classname="inputHandler.MouseClickHandlerTest" time="0.002"/>
+  <testcase name="dragTest1" classname="inputHandler.MouseClickHandlerTest" time="0.006"/>
+  <testcase name="dragTest2" classname="inputHandler.MouseClickHandlerTest" time="0.003"/>
+  <testcase name="doubleClickTest10" classname="inputHandler.MouseClickHandlerTest" time="0.003"/>
+  <testcase name="doubleClickTest11" classname="inputHandler.MouseClickHandlerTest" time="0.004"/>
+  <testcase name="doubleClickTest12" classname="inputHandler.MouseClickHandlerTest" time="0.002"/>
+  <testcase name="doubleClickTest13" classname="inputHandler.MouseClickHandlerTest" time="0.006"/>
+  <testcase name="doubleClickTest14" classname="inputHandler.MouseClickHandlerTest" time="0.003"/>
+  <testcase name="doubleClickTest15" classname="inputHandler.MouseClickHandlerTest" time="0.003"/>
+  <testcase name="doubleClickTest16" classname="inputHandler.MouseClickHandlerTest" time="0.006"/>
+  <testcase name="doubleClickTest17" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
+  <testcase name="singleClickTest1" classname="inputHandler.MouseClickHandlerTest" time="0.002"/>
+  <testcase name="singleClickTest2" classname="inputHandler.MouseClickHandlerTest" time="0.002"/>
+  <testcase name="singleClickTest3" classname="inputHandler.MouseClickHandlerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
