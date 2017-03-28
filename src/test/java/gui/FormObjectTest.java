@@ -1,11 +1,10 @@
 package gui;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.awt.Graphics;
 
-import org.apache.commons.math3.exception.util.DummyLocalizable;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
