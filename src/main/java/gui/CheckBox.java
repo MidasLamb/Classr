@@ -20,7 +20,7 @@ public abstract class CheckBox extends FormObject {
 
 		@Override
 		void draw(Graphics g) {
-			g.fillOval(getX(), getY(), getWidth(), getHeight());
+			g.fillRect(getX(), getY(), getWidth(), getHeight());
 		}
 		
 	}
@@ -29,7 +29,7 @@ public abstract class CheckBox extends FormObject {
 
 		@Override
 		void draw(Graphics g) {
-			g.drawOval(getX(), getY(), getWidth(), getHeight());
+			g.drawRect(getX(), getY(), getWidth(), getHeight());
 		}
 		
 	}
