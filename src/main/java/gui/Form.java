@@ -1,13 +1,14 @@
 package gui;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Form {
+public class Form extends FormObject {
 	private ArrayList<FormObject> formObjects = new ArrayList<>();
 
-	public Form() {
-		// TODO Auto-generated constructor stub
+	public Form(int x, int y, int width, int height) {
+		super(x, y, width, height);
 	}
 	
 	private void sortFormObjects() {
@@ -32,5 +33,18 @@ public class Form {
 	
 	private ArrayList<FormObject> getFormObjects() {
 		return new ArrayList<>(this.formObjects);
+	}
+
+	@Override
+	void onClick() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void draw(Graphics g) {
+		for (FormObject fo : this.formObjects) {
+			fo.draw(g);
+		}
 	}
 }
