@@ -4,11 +4,16 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Form extends FormObject {
+public class Form {
 	private ArrayList<FormObject> formObjects = new ArrayList<>();
 
-	public Form(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	private final int x, y, width, height;
+	
+	public Form(int x, int y, int width, int height){
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
 	
 	private void sortFormObjects() {
@@ -34,17 +39,26 @@ public class Form extends FormObject {
 	private ArrayList<FormObject> getFormObjects() {
 		return new ArrayList<>(this.formObjects);
 	}
-
-	@Override
-	void onClick() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	
 	void draw(Graphics g) {
 		for (FormObject fo : this.formObjects) {
 			fo.draw(g);
 		}
+	}
+	
+	private int getX() {
+		return x;
+	}
+
+	private int getY() {
+		return y;
+	}
+
+	private int getWidth() {
+		return width;
+	}
+
+	private int getHeight() {
+		return height;
 	}
 }
