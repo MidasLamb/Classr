@@ -24,7 +24,7 @@ public abstract class FormObject {
 	 * @param 	click
 	 * 			the click
 	 */
-	void receiveClick(MouseClick click){
+	void handleClick(MouseClick click){
 		if(click.getX() >= getX() && click.getY() >= getY() 
 				&& click.getX() <= getX()+getWidth() && click.getY() <= getY()+getHeight())
 			onClick(click);

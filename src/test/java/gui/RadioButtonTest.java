@@ -33,7 +33,7 @@ public class RadioButtonTest {
 				action = true;
 			}
 		};
-		button.receiveClick(new MouseClick(0, 0));
+		button.handleClick(new MouseClick(0, 0));
 		assertTrue(action);
 	}
 	
@@ -96,7 +96,7 @@ public class RadioButtonTest {
 			@Override
 			public void onAction() {}
 		};
-		button.receiveClick(new MouseClick(0, 0));
+		button.handleClick(new MouseClick(0, 0));
 		assertTrue(button.isSelected());
 	}
 	
