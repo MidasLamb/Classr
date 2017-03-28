@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Graphics;
 
+import inputHandlers.clicks.MouseClick;
+
 public abstract class FormObject {
 
 	private final int x, y, width, height;
@@ -13,9 +15,20 @@ public abstract class FormObject {
 		this.height = height;
 	}
 	
-	abstract void onClick();
+	abstract void onClick(MouseClick click);
 	
 	abstract void draw(Graphics g);
+	
+	/**
+	 * Checks if the received click is for this object and handles it if it is for this object
+	 * @param 	click
+	 * 			the click
+	 */
+	void receiveClick(MouseClick click){
+		if(click.getX() >= getX() && click.getY() >= getY() 
+				&& click.getX() <= getX()+getWidth() && click.getY() <= getY()+getHeight())
+			onClick(click);
+	}
 	
 	int getX() {
 		return x;

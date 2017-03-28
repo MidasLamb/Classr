@@ -12,6 +12,7 @@ script:
  - ./gradlew test --tests objects.*
  - ./gradlew test --tests visualobjects.*
  - ./gradlew test --tests inputHandler.*
+ - ./gradlew test --tests gui.*
 
 jdk:
   - oraclejdk8
