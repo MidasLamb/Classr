@@ -144,9 +144,7 @@ public class VisualTests {
 	@Test
 	public void deleteAttributeTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteAttribute/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		assertTrue(imagesEqual(getReferenceImage("deleteAttribute"),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/deleteAttribute/recording", canvasWindow));
 	}	
 	
 	@Test
