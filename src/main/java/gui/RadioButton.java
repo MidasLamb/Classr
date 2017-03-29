@@ -23,7 +23,7 @@ public abstract class RadioButton extends FormObject {
 		this.group = group;
 	}
 
-	private class Selected extends State {
+	private class Selected extends RadioButtonState {
 
 		@Override
 		void draw(Graphics g) {
@@ -32,7 +32,7 @@ public abstract class RadioButton extends FormObject {
 		
 	}
 	
-	private class NotSelected extends State {
+	private class NotSelected extends RadioButtonState {
 
 		@Override
 		void draw(Graphics g) {
