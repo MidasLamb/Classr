@@ -3,6 +3,7 @@ package visualobjects;
 import java.awt.Graphics;
 
 import interfaces.DeleteListener;
+import interfaces.DeleteSubject;
 
 import static main.Constants.*;
 import objects.Association;
@@ -34,7 +35,7 @@ public class VisualAssociation extends VisualObject {
 		this.setDeleteListener(new DeleteListener() {
 
 			@Override
-			public void notifyDelete() {
+			public void notifyDelete(DeleteSubject subject) {
 				delete();
 			}
 		});

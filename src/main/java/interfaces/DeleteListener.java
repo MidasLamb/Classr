@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface DeleteListener {
-	public void notifyDelete();
+	public void notifyDelete(DeleteSubject subject);
 }

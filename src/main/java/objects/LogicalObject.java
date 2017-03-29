@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import interfaces.DeleteListener;
+import interfaces.DeleteSubject;
 
 /**
  * A class of logical objects, involving a name and visual object
  * 
  * @author team 11
  */
-public abstract class LogicalObject {
+public abstract class LogicalObject implements DeleteSubject{
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name;
@@ -50,7 +51,7 @@ public abstract class LogicalObject {
 		} else {
 			this.onDelete();
 			for (DeleteListener d: this.getDeleteListeners())
-				d.notifyDelete();
+				d.notifyDelete(this);
 		}
 		this.setDeleted(true);
 	}

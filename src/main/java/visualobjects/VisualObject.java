@@ -11,9 +11,10 @@ import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
+import interfaces.DeleteSubject;
 import objects.LogicalObject;
 
-public abstract class VisualObject implements DeleteListener {
+public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	private int x;
 	private int y;
 	private int z;
@@ -93,7 +94,7 @@ public abstract class VisualObject implements DeleteListener {
 			this.getParent().removeChild(this);
 
 			for (DeleteListener d : this.getDeleteListeners()) {
-				d.notifyDelete();
+				d.notifyDelete(this);
 			}
 		}
 	}
@@ -445,7 +446,7 @@ public abstract class VisualObject implements DeleteListener {
 	}
 
 	@Override
-	public void notifyDelete() {
+	public void notifyDelete(DeleteSubject subject) {
 		this.delete();
 	}
 
