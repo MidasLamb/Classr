@@ -16,4 +16,8 @@ public class Method extends ClassContent {
 	public Method(RealClass rc) {
 		super(rc);
 	}
+	
+	public void accept(RealClassVisitor rcv){
+		rcv.visitMethod(this);
+	}
 }
