@@ -28,7 +28,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	}
 	
 	private void setFont(Graphics g){
-		Font font = new Font("Dialog",Font.PLAIN, 12);
+		Font font = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
 		g.setFont(font);
 	}
 

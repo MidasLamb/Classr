@@ -13,6 +13,7 @@ script:
  - ./gradlew test --tests visualobjects.*
  - ./gradlew test --tests inputHandler.*
  - ./gradlew test --tests gui.*
+ - ./gradlew test --tests canvaswindow.*
 
 jdk:
   - oraclejdk8
