@@ -1,12 +1,14 @@
 package visualobjects;
 
+import static main.Constants.Z_CLASS;
+
 import java.awt.event.KeyEvent;
 
+import inputHandlers.Clickable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
-import static main.Constants.*;
 
-public class Container extends VisualObject {
+public class Container extends VisualObject  implements Clickable{
 	private VisualObject selected;
 
 	public Container(int x, int y, int width, int height) {
@@ -32,7 +34,7 @@ public class Container extends VisualObject {
 	 * @param vo
 	 *            VisualObject that will be selected
 	 */
-	public void switchSelectedTo(VisualObject vo) {
+	public final void switchSelectedTo(VisualObject vo) {
 		// Unselect previous selected item
 		if (getSelected() != null)
 			getSelected().setSelected(false);
@@ -86,7 +88,7 @@ public class Container extends VisualObject {
 	/**
 	 * @return VisualObject that is selected
 	 */
-	VisualObject getSelected() {
+	final VisualObject getSelected() {
 		return selected;
 	}
 

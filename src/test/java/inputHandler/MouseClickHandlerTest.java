@@ -17,12 +17,13 @@ import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 import visualobjects.Container;
+import visualobjects.TestContainer;
 
 public class MouseClickHandlerTest {
 	
 	@Test
 	public void singleClickTest1(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		assertEquals(1, container.amountRecievedClicks);
@@ -30,7 +31,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void singleClickTest2(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		assertTrue(container.recievedSingleClick);
@@ -38,7 +39,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void singleClickTest3(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		assertFalse(container.recievedDoubleClick);
@@ -46,7 +47,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest1(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		simulateSingleClick(handler);
@@ -55,7 +56,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest2(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		simulateSingleClick(handler);
@@ -64,7 +65,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest3(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		simulateSingleClick(handler);
@@ -73,7 +74,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest4(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(DOUBLECLICK_RANGE-1, 0, handler);
@@ -82,7 +83,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest5(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(DOUBLECLICK_RANGE-1, 0, handler);
@@ -91,7 +92,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest6(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(DOUBLECLICK_RANGE-1, 0, handler);
@@ -100,7 +101,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest7(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(DOUBLECLICK_RANGE, 0, handler);
@@ -109,7 +110,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest8(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(DOUBLECLICK_RANGE, 0, handler);
@@ -118,7 +119,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest9(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(DOUBLECLICK_RANGE, 0, handler);
@@ -127,7 +128,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest10(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE-1, handler);
@@ -136,7 +137,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest11(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE-1, handler);
@@ -145,7 +146,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest12(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE-1, handler);
@@ -154,7 +155,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest13(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE, handler);
@@ -163,7 +164,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest14(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE, handler);
@@ -172,7 +173,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest15(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(0,0, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE, handler);
@@ -181,7 +182,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest16(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(15,10, handler);
 		simulateSingleClick(0, DOUBLECLICK_RANGE, handler);
@@ -190,7 +191,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTest17(){
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(8,15, handler);
 		simulateSingleClick(0, 15+DOUBLECLICK_RANGE, handler);
@@ -199,7 +200,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTestTime1() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		Thread.sleep(DOUBLECLICK_TRESHOLD-5);
@@ -209,7 +210,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTestTime2() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		Thread.sleep(DOUBLECLICK_TRESHOLD-5);
@@ -219,7 +220,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTestTime3() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		Thread.sleep(DOUBLECLICK_TRESHOLD-5);
@@ -229,7 +230,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTestTime4() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		Thread.sleep(DOUBLECLICK_TRESHOLD+5);
@@ -239,7 +240,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTestTime5() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		Thread.sleep(DOUBLECLICK_TRESHOLD+5);
@@ -249,7 +250,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void doubleClickTestTime6() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateSingleClick(handler);
 		Thread.sleep(DOUBLECLICK_TRESHOLD+5);
@@ -259,7 +260,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void dragTest1() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		simulateDrag(0, 0, 1, 1, handler);
 		assertTrue(container.isDragged);
@@ -267,7 +268,7 @@ public class MouseClickHandlerTest {
 	
 	@Test
 	public void dragTest2() throws InterruptedException{
-		testContainer container = new testContainer();
+		TestContainer container = new TestContainer();
 		MouseClickHandler handler = new MouseClickHandler(container);
 		Component dummy = new List();
 		MouseEvent event = new MouseEvent(dummy,MouseEvent.MOUSE_DRAGGED,1,MouseEvent.BUTTON1,2,2,2,false);
@@ -292,35 +293,4 @@ public class MouseClickHandlerTest {
 		event = new MouseEvent(dummy,MouseEvent.MOUSE_RELEASED,1,MouseEvent.BUTTON1,x2,y2,2,false);
 		handler.handleInput(event);
 	}
-	
-	class testContainer extends Container{
-
-		public testContainer() {
-			super(0,0,100,100);
-		}
-		
-		@Override
-		public void onClick(SingleClick sc){
-			amountRecievedClicks++;
-			recievedSingleClick = true;
-		}
-		
-		@Override
-		public void onDoubleClick(DoubleClick dc){
-			amountRecievedClicks++;
-			recievedDoubleClick = true;
-		}
-		
-		@Override
-		public void onDragEnd(Drag d){
-			isDragged = true;
-		}
-		
-		public int amountRecievedClicks;
-		public boolean recievedSingleClick;
-		public boolean recievedDoubleClick;
-		public boolean isDragged;
-		
-	}
-
 }

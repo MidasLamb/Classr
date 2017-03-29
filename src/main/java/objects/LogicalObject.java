@@ -15,12 +15,12 @@ public abstract class LogicalObject implements DeleteSubject{
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name;
-	
-	public void addDeleteListener(DeleteListener deletelistener) {
+
+	public final void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);
 	}
-	
-	public void removeDeleteListener(DeleteListener deletelistener){
+
+	public final void removeDeleteListener(DeleteListener deletelistener) {
 		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
@@ -31,7 +31,7 @@ public abstract class LogicalObject implements DeleteSubject{
 	 * 
 	 * @return the name of this LogicalObject
 	 */
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
 
@@ -41,11 +41,11 @@ public abstract class LogicalObject implements DeleteSubject{
 	 * @param name
 	 *            the name to be set
 	 */
-	public void setName(String name) {
+	public final void setName(String name) {
 		this.name = name;
 	}
 
-	public void delete() {
+	public final void delete() {
 		if (this.isDeleted()) {
 			System.out.println("This object is already deleted!");
 		} else {
@@ -64,7 +64,7 @@ public abstract class LogicalObject implements DeleteSubject{
 
 	protected abstract void onDelete();
 
-	public boolean isDeleted() {
+	public final boolean isDeleted() {
 		return this.isDeleted;
 	}
 

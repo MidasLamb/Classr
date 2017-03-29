@@ -8,27 +8,28 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import gui.Form;
+import inputHandlers.Clickable;
 import inputHandlers.KeyHandler;
 import inputHandlers.MouseClickHandler;
 import visualobjects.Container;
 
-public class MyCanvasWindow extends CanvasWindow {
+public class FormWindow extends CanvasWindow {
 
 	private KeyHandler keyHandler;
 
 	private MouseClickHandler mouseClickHandler;
 
-	private Container container;
+	private Form form;
 	
-	public MyCanvasWindow(String title) {
+	public FormWindow(String title, Form form) {
 		super(title);
-		setContainer(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT));
-		setMouseClickHandler(new MouseClickHandler(getContainer()));
-		setKeyHandler(new KeyHandler(getContainer()));
+		setForm(form);
+		setMouseClickHandler(new MouseClickHandler(getForm()));
 	}
 	
 	private void setFont(Graphics g){
-		Font font = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
+		Font font = new Font("Dialog",Font.PLAIN, 12);
 		g.setFont(font);
 	}
 
@@ -46,7 +47,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	@Override
 	protected void paint(Graphics g) {
 		this.setFont(g);
-		this.getContainer().show(g);
+		this.getForm().draw(g);
 	}
 
 	/**
@@ -78,14 +79,6 @@ public class MyCanvasWindow extends CanvasWindow {
 
 	}
 
-	private Container getContainer() {
-		return container;
-	}
-
-	private void setContainer(Container container) {
-		this.container = container;
-	}
-
 	private MouseClickHandler getMouseClickHandler() {
 		return mouseClickHandler;
 	}
@@ -100,6 +93,14 @@ public class MyCanvasWindow extends CanvasWindow {
 
 	public void setKeyHandler(KeyHandler keyHandler) {
 		this.keyHandler = keyHandler;
+	}
+
+	private Form getForm() {
+		return form;
+	}
+
+	private void setForm(Form form) {
+		this.form = form;
 	}
 
 }

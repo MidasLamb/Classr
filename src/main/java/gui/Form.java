@@ -1,57 +1,38 @@
 package gui;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.TreeSet;
 
-public class Form {
-	private ArrayList<FormObject> formObjects = new ArrayList<>();
+import inputHandlers.Clickable;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.Drag;
+import inputHandlers.clicks.MouseClick;
+import inputHandlers.clicks.SingleClick;
 
-	private final int x, y, width, height;
+public class Form implements Clickable {
+	private TreeSet<FormObject> formObjects = new TreeSet<>();
+
+	private final int width, height;
 	
-	public Form(int x, int y, int width, int height){
-		this.x = x;
-		this.y = y;
+	public Form(int width, int height){
 		this.width = width;
 		this.height = height;
 	}
-	
-	private void sortFormObjects() {
-		this.formObjects.sort(new Comparator<FormObject>() {
 
-			@Override
-			public int compare(FormObject o1, FormObject o2) {
-				int diffY = o1.getY() - o2.getY();
-				if (diffY == 0) {
-					// sort by x
-					return o1.getX() - o2.getX();
-				} else {
-					return diffY;
-				}
-			}
-		});
-	}
-
-	private void addFormObject(FormObject formObject) {
-		this.formObjects.add(formObject);
+	public void addFormObject(FormObject formObject) {
+		getFormObjects().add(formObject);
 	}
 	
-	private ArrayList<FormObject> getFormObjects() {
-		return new ArrayList<>(this.formObjects);
+	private TreeSet<FormObject> getFormObjects() {
+		return formObjects;
 	}
 	
-	void draw(Graphics g) {
-		for (FormObject fo : this.formObjects) {
-			fo.draw(g);
-		}
+	public void handleClick(MouseClick click){
+		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
 	}
 	
-	private int getX() {
-		return x;
-	}
-
-	private int getY() {
-		return y;
+	public void draw(Graphics g){
+		this.getFormObjects().forEach(formObject -> formObject.draw(g));
 	}
 
 	private int getWidth() {
@@ -60,5 +41,18 @@ public class Form {
 
 	private int getHeight() {
 		return height;
+	}
+
+	@Override
+	public void onDoubleClick(DoubleClick click) {
+		handleClick(click);
+	}
+
+	@Override
+	public void onDragEnd(Drag drag) {}
+
+	@Override
+	public void onClick(SingleClick click) {
+		handleClick(click);		
 	}
 }

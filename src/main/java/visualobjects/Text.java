@@ -50,7 +50,7 @@ public class Text extends VisualObject {
 	 * Shows the text frame
 	 */
 	@Override
-	public void draw(Graphics g) {
+	public final void draw(Graphics g) {
 		// Limit the text size if it is to long
 		cutTextMaxWidth(g);
 		// Get and set the width/height based on font
@@ -96,9 +96,7 @@ public class Text extends VisualObject {
 		}
 	}
 
-	// Getters and setters
-
-	String getText() {
+	final String getText() {
 		return getLogicalObject().getName();
 	}
 

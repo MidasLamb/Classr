@@ -1,5 +1,7 @@
 package visualobjects;
 
+import static main.Constants.Z_PADDING_BOX;
+
 import java.awt.Graphics;
 
 import inputHandlers.clicks.SingleClick;
@@ -7,6 +9,7 @@ import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 
 import static main.Constants.*;
+
 import objects.Association;
 import objects.RealClass;
 
@@ -14,6 +17,7 @@ public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox text;
+
 
 
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
@@ -29,18 +33,16 @@ public class VisualAssociation extends VisualObject {
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
 		this.text = new PaddingBox(centerX, centerY, Z_PADDING_BOX, this, "Nieuwe associatie", association);
 		this.getContainer().switchSelectedTo(this.getText().getContent());
-	
-
 		this.text.addDeleteListener(this);
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public final void draw(Graphics g) {
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
 	}
 
 	@Override
-	public boolean isIn(int x, int y) {
+	public final boolean isIn(int x, int y) {
 		return getText().isIn(x, y);
 	}
 
@@ -54,10 +56,10 @@ public class VisualAssociation extends VisualObject {
 		return p2;
 	}
 
-	public PaddingBox getText() {
+	public final PaddingBox getText() {
 		return this.text;
 	}
-	
+
 	@Override
 	public void onDelete(){
 		getP1().removeDeleteListener(this);

@@ -5,7 +5,7 @@ package objects;
  * 
  * @author team 11
  */
-public class Association extends LogicalObject {
+public class Association extends ClassChild {
 	private RealClass class1;
 	private RealClass class2;
 
@@ -23,17 +23,27 @@ public class Association extends LogicalObject {
 		this.getClass1().addAssociation(this);
 		this.getClass2().addAssociation(this);
 	}
+	
+	/**
+	 * Accepts a RealClassVisitor and calls the correct concrete visitor
+	 * 
+	 * @param 	rcv
+	 * 			the RealClassVisitor to accept
+	 */
+	public void accept(RealClassVisitor rcv){
+		rcv.visitAssociation(this);
+	}
 
 	/**
 	 * Removes this association from it's participants.
 	 */
-	public void remove() {
+	public final void remove() {
 		this.getClass1().deleteAssociation(this);
 		this.getClass2().deleteAssociation(this);
 	}
 
 	@Override
-	public void onDelete() {
+	public final void onDelete() {
 		getClass1().deleteAssociation(this);
 		getClass2().deleteAssociation(this);
 	}
@@ -43,7 +53,7 @@ public class Association extends LogicalObject {
 	 * 
 	 * @return the first RealClass belonging to this Association
 	 */
-	public RealClass getClass1() {
+	public final RealClass getClass1() {
 		return class1;
 	}
 
@@ -62,7 +72,7 @@ public class Association extends LogicalObject {
 	 * 
 	 * @return the second RealClass belonging to this Association
 	 */
-	public RealClass getClass2() {
+	public final RealClass getClass2() {
 		return class2;
 	}
 

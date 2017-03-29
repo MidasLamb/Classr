@@ -53,14 +53,14 @@ public class PaddingBox extends VisualObject {
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
 		this.setContent(new Text(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
-				this.getZ() + 1, this, standardstring, object));
-		
+				this.getZ() + 1, this, standardstring, getLogicalObject()));
+
 		this.content.addDeleteListener(new DeleteListener() {
-			
+
 			@Override
 			public void notifySubjectDeleted(DeleteSubject subject) {
 				delete();
-				
+
 			}
 		});
 	}
@@ -111,19 +111,20 @@ public class PaddingBox extends VisualObject {
 	}
 
 	@Override
-	public void setY(int y) {
+
+	public final void setY(int y) {
 		super.setY(y);
 		if (getContent() != null)
 			this.getContent().setY(y + this.getPaddingTop());
 	}
 
 	@Override
-	public int getHeight() {
+	public final int getHeight() {
 		return this.getContent().getHeight() + this.getPaddingTop() + this.getPaddingBottom();
 	}
 
 	@Override
-	public int getWidth() {
+	public final int getWidth() {
 		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
 	}
 
@@ -161,7 +162,7 @@ public class PaddingBox extends VisualObject {
 		this.paddingRight = paddingRight;
 	}
 
-	public VisualObject getContent() {
+	public final VisualObject getContent() {
 		return content;
 	}
 

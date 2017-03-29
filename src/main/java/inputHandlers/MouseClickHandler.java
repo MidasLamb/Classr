@@ -1,32 +1,33 @@
 package inputHandlers;
 
-import static main.Constants.*;
+import static main.Constants.DOUBLECLICK_RANGE;
+import static main.Constants.DOUBLECLICK_TRESHOLD;
+
 import java.awt.event.MouseEvent;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
-import visualobjects.Container;
 
 public class MouseClickHandler {
 	private long lastClickTime;
 	private int lastClickX;
 	private int lastClickY;
-	private Container container;
+	private Clickable clickable;
 	private boolean isBeingDragged;
 
-	public MouseClickHandler(Container container) {
-		setContainer(container);
+	public MouseClickHandler(Clickable clickable) {
+		setClickable(clickable);
 	}
 
 	public void handleInput(MouseEvent e) {
 		if (e.getID() == MouseEvent.MOUSE_PRESSED) {
 			if (isDoubleClick(e)) {
 				// Let the container know that there was a double click
-				getContainer().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
+				getClickable().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
 			} else {
 				// Let the container know that there was a single click
-				getContainer().onClick(new SingleClick(e.getX(), e.getY()));
+				getClickable().onClick(new SingleClick(e.getX(), e.getY()));
 			}
 			// Save info about this click
 			setLastClickX(e.getX());
@@ -36,7 +37,7 @@ public class MouseClickHandler {
 
 		if (e.getID() == MouseEvent.MOUSE_RELEASED) {
 			if (isBeingDragged()) {
-				getContainer().onDragEnd(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
+				getClickable().onDragEnd(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
 			}
 			setBeingDragged(false);
 		}
@@ -85,20 +86,20 @@ public class MouseClickHandler {
 		this.lastClickY = lastClickY;
 	}
 
-	private Container getContainer() {
-		return container;
-	}
-
-	private void setContainer(Container container) {
-		this.container = container;
-	}
-
 	private boolean isBeingDragged() {
 		return isBeingDragged;
 	}
 
 	private void setBeingDragged(boolean isBeingDragged) {
 		this.isBeingDragged = isBeingDragged;
+	}
+
+	private Clickable getClickable() {
+		return clickable;
+	}
+
+	private void setClickable(Clickable clickable) {
+		this.clickable = clickable;
 	}
 
 }
