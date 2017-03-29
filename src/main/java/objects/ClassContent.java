@@ -18,7 +18,7 @@ public abstract class ClassContent extends LogicalObject {
 	 * 
 	 * @return the RealClass belonging to this ClassContent
 	 */
-	public RealClass getRealClass() {
+	public final RealClass getRealClass() {
 		return realClass;
 	}
 

@@ -30,7 +30,7 @@ public abstract class LogicalObject {
 	 * 
 	 * @return the name of this LogicalObject
 	 */
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
 
@@ -40,11 +40,11 @@ public abstract class LogicalObject {
 	 * @param name
 	 *            the name to be set
 	 */
-	public void setName(String name) {
+	public final void setName(String name) {
 		this.name = name;
 	}
 
-	public void delete() {
+	public final void delete() {
 		if (this.isDeleted()) {
 			System.out.println("This object is already deleted!");
 		} else {
@@ -57,7 +57,7 @@ public abstract class LogicalObject {
 
 	protected abstract void onDelete();
 
-	public boolean isDeleted() {
+	public final boolean isDeleted() {
 		return this.isDeleted;
 	}
 

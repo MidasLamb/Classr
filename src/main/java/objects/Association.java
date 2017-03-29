@@ -43,7 +43,7 @@ public class Association extends LogicalObject {
 	 * 
 	 * @return the first RealClass belonging to this Association
 	 */
-	public RealClass getClass1() {
+	public final RealClass getClass1() {
 		return class1;
 	}
 
@@ -62,7 +62,7 @@ public class Association extends LogicalObject {
 	 * 
 	 * @return the second RealClass belonging to this Association
 	 */
-	public RealClass getClass2() {
+	public final RealClass getClass2() {
 		return class2;
 	}
 
