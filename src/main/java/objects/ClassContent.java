@@ -18,7 +18,7 @@ public abstract class ClassContent extends ClassChild {
 	 * 
 	 * @return the RealClass belonging to this ClassContent
 	 */
-	public RealClass getRealClass() {
+	public final RealClass getRealClass() {
 		return realClass;
 	}
 
@@ -33,7 +33,7 @@ public abstract class ClassContent extends ClassChild {
 	}
 
 	@Override
-	public void onDelete() {
+	public final void onDelete() {
 		getRealClass().deleteChild(this);
 	}
 	

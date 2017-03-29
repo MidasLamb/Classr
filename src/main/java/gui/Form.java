@@ -1,11 +1,12 @@
 package gui;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.TreeSet;
+
+import inputHandlers.clicks.MouseClick;
 
 public class Form {
-	private ArrayList<FormObject> formObjects = new ArrayList<>();
+	private TreeSet<FormObject> formObjects = new TreeSet<>();
 
 	private final int x, y, width, height;
 	
@@ -15,35 +16,21 @@ public class Form {
 		this.width = width;
 		this.height = height;
 	}
-	
-	private void sortFormObjects() {
-		this.formObjects.sort(new Comparator<FormObject>() {
 
-			@Override
-			public int compare(FormObject o1, FormObject o2) {
-				int diffY = o1.getY() - o2.getY();
-				if (diffY == 0) {
-					// sort by x
-					return o1.getX() - o2.getX();
-				} else {
-					return diffY;
-				}
-			}
-		});
-	}
-
-	private void addFormObject(FormObject formObject) {
-		this.formObjects.add(formObject);
+	public void addFormObject(FormObject formObject) {
+		getFormObjects().add(formObject);
 	}
 	
-	private ArrayList<FormObject> getFormObjects() {
-		return new ArrayList<>(this.formObjects);
+	private TreeSet<FormObject> getFormObjects() {
+		return formObjects;
 	}
 	
-	void draw(Graphics g) {
-		for (FormObject fo : this.formObjects) {
-			fo.draw(g);
-		}
+	public void handleClick(MouseClick click){
+		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
+	}
+	
+	public void draw(Graphics g){
+		this.getFormObjects().forEach(formObject -> formObject.draw(g));
 	}
 	
 	private int getX() {

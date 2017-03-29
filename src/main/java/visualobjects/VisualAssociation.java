@@ -1,10 +1,10 @@
 package visualobjects;
 
+import static main.Constants.Z_PADDING_BOX;
+
 import java.awt.Graphics;
 
 import interfaces.DeleteListener;
-
-import static main.Constants.*;
 import objects.Association;
 import objects.RealClass;
 
@@ -12,13 +12,13 @@ public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox text;
-	
-	//FIXME maybe make this class implement DeleteListener?
+
+	// FIXME maybe make this class implement DeleteListener?
 	private DeleteListener deleteListener;
 
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
 		super(0, 0, 0, 0, 0, parent);
-		//TODO check this
+		// TODO check this
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
 		((RealClass) association.getClass1()).addAssociation(association);
@@ -30,7 +30,7 @@ public class VisualAssociation extends VisualObject {
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
 		this.text = new PaddingBox(centerX, centerY, Z_PADDING_BOX, this, "Nieuwe associatie", association);
 		this.getContainer().switchSelectedTo(this.getText().getContent());
-		
+
 		this.setDeleteListener(new DeleteListener() {
 
 			@Override
@@ -45,12 +45,12 @@ public class VisualAssociation extends VisualObject {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public final void draw(Graphics g) {
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
 	}
 
 	@Override
-	public boolean isIn(int x, int y) {
+	public final boolean isIn(int x, int y) {
 		return getText().isIn(x, y);
 	}
 
@@ -64,12 +64,12 @@ public class VisualAssociation extends VisualObject {
 		return p2;
 	}
 
-	public PaddingBox getText() {
+	public final PaddingBox getText() {
 		return this.text;
 	}
-	
+
 	@Override
-	public void onDelete(){
+	public final void onDelete() {
 		getP1().removeDeleteListener(this.getDeleteListener());
 	}
 

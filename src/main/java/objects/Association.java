@@ -31,13 +31,13 @@ public class Association extends ClassChild {
 	/**
 	 * Removes this association from it's participants.
 	 */
-	public void remove() {
+	public final void remove() {
 		this.getClass1().deleteAssociation(this);
 		this.getClass2().deleteAssociation(this);
 	}
 
 	@Override
-	public void onDelete() {
+	public final void onDelete() {
 		getClass1().deleteAssociation(this);
 		getClass2().deleteAssociation(this);
 	}
@@ -47,7 +47,7 @@ public class Association extends ClassChild {
 	 * 
 	 * @return the first RealClass belonging to this Association
 	 */
-	public RealClass getClass1() {
+	public final RealClass getClass1() {
 		return class1;
 	}
 
@@ -66,7 +66,7 @@ public class Association extends ClassChild {
 	 * 
 	 * @return the second RealClass belonging to this Association
 	 */
-	public RealClass getClass2() {
+	public final RealClass getClass2() {
 		return class2;
 	}
 

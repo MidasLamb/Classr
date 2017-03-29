@@ -41,11 +41,11 @@ public abstract class VisualObject implements DeleteListener {
 			parent.addChild(this);
 	}
 
-	public void addDeleteListener(DeleteListener deletelistener) {
+	public final void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);
 	}
 
-	public void removeDeleteListener(DeleteListener deletelistener) {
+	public final void removeDeleteListener(DeleteListener deletelistener) {
 		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
@@ -69,11 +69,11 @@ public abstract class VisualObject implements DeleteListener {
 		g.setColor(Color.black);
 	}
 
-	protected void draw(Graphics g) {
+	void draw(Graphics g) {
 
 	}
 
-	protected void onDelete() {
+	void onDelete() {
 
 	}
 
@@ -107,7 +107,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @return the visual object that is in this region it can be one of the
 	 *         children or this object itself
 	 */
-	public VisualObject select(int x, int y) {
+	public final VisualObject select(int x, int y) {
 		for (VisualObject v : this.getChildren()) {
 			if (v.isIn(x, y)) {
 				return v.select(x, y);
@@ -122,7 +122,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param sc
 	 *            The single click object
 	 */
-	protected void onClick(SingleClick sc) {
+	void onClick(SingleClick sc) {
 		for (VisualObject v : this.getChildren()) {
 			if (v.isIn(sc.getX(), sc.getY())) {
 				v.onClick(sc);
@@ -140,7 +140,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param dc
 	 *            The double click object
 	 */
-	protected void onDoubleClick(DoubleClick dc) {
+	void onDoubleClick(DoubleClick dc) {
 		for (VisualObject v : this.getChildren()) {
 			if (v.isIn(dc.getX(), dc.getY())) {
 				v.onDoubleClick(dc);
@@ -154,7 +154,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param d
 	 *            The drag object
 	 */
-	public void onDragStart(Drag d) {
+	void onDragStart(Drag d) {
 		for (VisualObject v : this.getChildren()) {
 			if (v.isIn(d.getStartX(), d.getStartY())) {
 				v.onDragStart(d);
@@ -184,7 +184,7 @@ public abstract class VisualObject implements DeleteListener {
 	 *            the y-coordinate
 	 * @return true if this object is at the given coordinates otherwise false
 	 */
-	public boolean isIn(int x, int y) {
+	boolean isIn(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}
@@ -192,7 +192,7 @@ public abstract class VisualObject implements DeleteListener {
 	/**
 	 * Checks if c is between a en b
 	 */
-	protected static boolean isBetween(int a, int b, int c) {
+	final static boolean isBetween(int a, int b, int c) {
 		return a <= c && b >= c;
 	}
 
@@ -211,7 +211,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the container where this object is in
 	 */
-	protected Container getContainer() {
+	final Container getContainer() {
 		VisualObject v = this;
 		while (v != null && !(v instanceof Container))
 			v = v.getParent();
@@ -224,7 +224,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param child
 	 *            The child that is deleted
 	 */
-	protected void afterDeleteChild(VisualObject child) {
+	void afterDeleteChild(VisualObject child) {
 
 	}
 
@@ -235,7 +235,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the x-coordinate of this VisualObject
 	 */
-	public int getX() {
+	final int getX() {
 		return this.x;
 	}
 
@@ -245,7 +245,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param x
 	 *            the x-coordinate to be set
 	 */
-	public void setX(int x) {
+	final void setX(int x) {
 		this.x = x;
 	}
 
@@ -255,7 +255,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param y
 	 *            the y-coordinate to be set
 	 */
-	public void setY(int y) {
+	void setY(int y) {
 		this.y = y;
 	}
 
@@ -264,7 +264,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the y-coordinate of this VisualObject
 	 */
-	public int getY() {
+	final int getY() {
 		return this.y;
 	}
 
@@ -273,7 +273,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the width of this VisualObject
 	 */
-	public int getWidth() {
+	int getWidth() {
 		return width;
 	}
 
@@ -283,7 +283,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param width
 	 *            the width to be set
 	 */
-	public void setWidth(int width) {
+	final void setWidth(int width) {
 		this.width = width;
 	}
 
@@ -293,7 +293,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param height
 	 *            the height to be set
 	 */
-	public void setHeight(int height) {
+	final void setHeight(int height) {
 		this.height = height;
 	}
 
@@ -302,7 +302,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the height of this VisualObject
 	 */
-	public int getHeight() {
+	int getHeight() {
 		return height;
 	}
 
@@ -312,7 +312,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param parent
 	 *            the parent VisualObject to be set
 	 */
-	private void setParent(VisualObject parent) {
+	final void setParent(VisualObject parent) {
 		this.parent = parent;
 	}
 
@@ -321,7 +321,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the parent VisualObject of this VisualObject
 	 */
-	public VisualObject getParent() {
+	final VisualObject getParent() {
 		return this.parent;
 	}
 
@@ -340,7 +340,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the list of children VisualObjects of this VisualObject
 	 */
-	ArrayList<VisualObject> getChildren() {
+	final ArrayList<VisualObject> getChildren() {
 		return new ArrayList<VisualObject>(this.children);
 	}
 
@@ -361,7 +361,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param c
 	 *            the child to be removed
 	 */
-	public void removeChild(VisualObject c) {
+	final void removeChild(VisualObject c) {
 		if (this.children.remove(c))
 			this.afterDeleteChild(c);
 		else
@@ -375,7 +375,7 @@ public abstract class VisualObject implements DeleteListener {
 	 *            the boolean value denoting whether or not the selected state
 	 *            of this VisualObject is true
 	 */
-	public void setSelected(boolean b) {
+	void setSelected(boolean b) {
 		this.isSelected = b;
 	}
 
@@ -384,7 +384,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return whether or not the selected state of this VisualObject is true
 	 */
-	public boolean isSelected() {
+	final boolean isSelected() {
 		return isSelected;
 	}
 
@@ -393,7 +393,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the LogicalObject belonging to this VisualObject
 	 */
-	protected LogicalObject getLogicalObject() {
+	LogicalObject getLogicalObject() {
 		return logicalObject;
 	}
 
@@ -403,7 +403,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * @param object
 	 *            the LogicalObject to be set
 	 */
-	protected void setLogicalObject(LogicalObject object) {
+	final void setLogicalObject(LogicalObject object) {
 		this.logicalObject = object;
 		this.logicalObject.addDeleteListener(this);
 	}
@@ -413,7 +413,7 @@ public abstract class VisualObject implements DeleteListener {
 	 * 
 	 * @return the z-coordinate of this VisualObject
 	 */
-	protected int getZ() {
+	final int getZ() {
 		return z;
 	}
 
