@@ -156,8 +156,6 @@ public class RealClass extends LogicalObject {
 		}
 	}
 
-	// getters and setters
-
 	/**
 	 * Returns the collection of Attributes belonging to this RealClass
 	 * 
@@ -217,7 +215,6 @@ public class RealClass extends LogicalObject {
 
 	@Override
 	public void onDelete() {
-		// TODO
 		for (Association a : this.getAssociations())
 			a.delete();
 	}

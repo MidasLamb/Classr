@@ -47,7 +47,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	}
 
 	public void removeDeleteListener(DeleteListener deletelistener) {
-		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
+		Collection<DeleteListener> cd = new ArrayList<DeleteListener>(this.getDeleteListeners());
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
 	}
@@ -60,14 +60,16 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	 *            Graphics g
 	 */
 	public final void show(Graphics g) {
-		// draw backgrounds first
-		if (this.isSelected())
+		if (this.isSelected() || this.hasSelectedAncestor()){
 			g.setColor(Color.red);
+		}
 		this.draw(g);
 		for (VisualObject v : this.getChildren()) {
 			v.show(g);
 		}
-		g.setColor(Color.black);
+		if (this.isSelected()){
+			g.setColor(Color.black);
+		}
 	}
 
 	protected void draw(Graphics g) {
@@ -91,10 +93,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 					c.switchSelectedTo(null);
 			}
 
-			this.getParent().removeChild(this);
-
 			for (DeleteListener d : this.getDeleteListeners()) {
-				d.notifyDelete(this);
+				d.notifySubjectDeleted(this);
 			}
 		}
 	}
@@ -353,6 +353,15 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	 */
 	private void addChild(VisualObject c) {
 		this.children.add(c);
+		c.addDeleteListener(new DeleteListener(){
+
+			@Override
+			public void notifySubjectDeleted(DeleteSubject subject) {
+				removeChild(c);
+				
+			}
+			
+		});
 		this.children.sort(new VisualObjectComparator());
 	}
 
@@ -446,7 +455,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	}
 
 	@Override
-	public void notifyDelete(DeleteSubject subject) {
+	public void notifySubjectDeleted(DeleteSubject subject) {
 		this.delete();
 	}
 
@@ -456,6 +465,16 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 
 	private void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+	
+	boolean hasSelectedAncestor(){
+		VisualObject v = this;
+		while (v != null){
+			if (v.isSelected())
+				return true;
+			v = v.getParent();
+		}
+		return false;
 	}
 
 }

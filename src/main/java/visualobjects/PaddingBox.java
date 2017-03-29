@@ -53,12 +53,12 @@ public class PaddingBox extends VisualObject {
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
 		this.setContent(new Text(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
-				this.getZ() + 1, this, standardstring, getLogicalObject()));
+				this.getZ() + 1, this, standardstring, object));
 		
 		this.content.addDeleteListener(new DeleteListener() {
 			
 			@Override
-			public void notifyDelete(DeleteSubject subject) {
+			public void notifySubjectDeleted(DeleteSubject subject) {
 				delete();
 				
 			}
@@ -108,19 +108,6 @@ public class PaddingBox extends VisualObject {
 
 	public PaddingBox(int x, int y, int z, VisualObject parent, LogicalObject object) {
 		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING, parent, "", object);
-	}
-
-	@Override
-	public void onClick(SingleClick sc) {
-		if (!this.isSelected() && !this.getContent().isSelected())
-			this.getContainer().switchSelectedTo(this);
-		else if (this.isSelected())
-			this.getContainer().switchSelectedTo(this.getContent());
-	}
-
-	@Override
-	public void onDoubleClick(DoubleClick dc) {
-		this.onClick(new SingleClick(dc.getX(), dc.getY()));
 	}
 
 	@Override
@@ -180,5 +167,12 @@ public class PaddingBox extends VisualObject {
 
 	private void setContent(VisualObject content) {
 		this.content = content;
+	}
+	
+	@Override
+	public void setSelected(boolean b) {
+		super.setSelected(b);
+		if (b)
+			this.getContainer().switchSelectedTo(this.getContent());
 	}
 }

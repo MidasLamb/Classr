@@ -50,10 +50,16 @@ public abstract class LogicalObject implements DeleteSubject{
 			System.out.println("This object is already deleted!");
 		} else {
 			this.onDelete();
-			for (DeleteListener d: this.getDeleteListeners())
-				d.notifyDelete(this);
+			this.notifySubjectDeleted(this);
 		}
 		this.setDeleted(true);
+	}
+	
+
+	@Override
+	public void notifySubjectDeleted(DeleteSubject subject) {
+		for (DeleteListener d: this.getDeleteListeners())
+			d.notifySubjectDeleted(this);
 	}
 
 	protected abstract void onDelete();

@@ -7,11 +7,13 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import inputHandlers.clicks.SingleClick;
 import objects.LogicalObject;
 
 public class Text extends VisualObject {
 	private String standardTextString;
 	private boolean isStandardTextSet;
+	private boolean editable;
 
 	public Text(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
 			LogicalObject object) {
@@ -60,16 +62,12 @@ public class Text extends VisualObject {
 		// Add the height with the Y value since drawing strings
 		// begins bottom left
 		Color s = g.getColor();
-		if (!this.getParent().isSelected() && this.isStandardTextSet())
+		if (this.isStandardTextSet() && !this.hasSelectedAncestor())
 			g.setColor(Color.gray);
 		g.drawString(this.getText(), this.getX(), this.getY() + this.getHeight());
 
-		if (!this.getParent().isSelected() && this.isStandardTextSet())
+		if (this.isStandardTextSet() && !this.hasSelectedAncestor())
 			g.setColor(s);
-
-		// If the text is selected draw the cursor
-		if (this.isSelected())
-			drawCursor(g);
 	}
 
 	/**
@@ -85,22 +83,6 @@ public class Text extends VisualObject {
 				this.getY() + this.getHeight());
 	}
 
-	@Override
-	public void handleKey(KeyEvent e) {
-		// Get the key and put it in a string
-		String s = Character.toString(e.getKeyChar());
-		// Delete letter if you press the backspace
-		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")) {
-			this.removeLetter();
-			// Unselect this object
-		} else if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			this.getContainer().switchSelectedTo(null);
-			// if it isn't an action key write it down
-		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT && e.getKeyCode() != KeyEvent.VK_DELETE) {
-			this.addLetter(s.charAt(0));
-		}
-	}
-
 	/**
 	 * Cuts the text so it's not larger than the box
 	 * 
@@ -111,25 +93,6 @@ public class Text extends VisualObject {
 		FontMetrics m = g.getFontMetrics();
 		while (m.stringWidth(getText()) > MAX_TEXT_WIDTH) {
 			removeLetter();
-		}
-	}
-
-	@Override
-	public void setSelected(boolean b) {
-		boolean prev = this.isSelected();
-		super.setSelected(b);
-		if (this.isSelected() == false && prev) {
-			if (this.getText().length() == 0) {
-				this.setText(this.getStandardTextString());
-				setIsStandardTextSet(true);
-			}
-		}
-
-		if (this.isSelected() && prev == false) {
-			if (isStandardTextSet()) {
-				this.setText("");
-				setIsStandardTextSet(false);
-			}
 		}
 	}
 

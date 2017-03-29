@@ -2,6 +2,7 @@ package visualobjects;
 
 import java.awt.Graphics;
 
+import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 
@@ -13,15 +14,12 @@ public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox text;
-	
-	//FIXME maybe make this class implement DeleteListener?
-	private DeleteListener deleteListener;
+
 
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
 		super(0, 0, 0, 0, 0, parent);
-		//TODO check this
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
-		this.setLogicalObject(association);
+		//this.setLogicalObject(association);
 		((RealClass) association.getClass1()).addAssociation(association);
 
 		p1 = participant1;
@@ -31,18 +29,9 @@ public class VisualAssociation extends VisualObject {
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
 		this.text = new PaddingBox(centerX, centerY, Z_PADDING_BOX, this, "Nieuwe associatie", association);
 		this.getContainer().switchSelectedTo(this.getText().getContent());
-		
-		this.setDeleteListener(new DeleteListener() {
+	
 
-			@Override
-			public void notifyDelete(DeleteSubject subject) {
-				delete();
-			}
-		});
-
-		this.text.addDeleteListener(this.getDeleteListener());
-		participant1.addDeleteListener(this.getDeleteListener());
-		participant2.addDeleteListener(this.getDeleteListener());
+		this.text.addDeleteListener(this);
 	}
 
 	@Override
@@ -71,15 +60,16 @@ public class VisualAssociation extends VisualObject {
 	
 	@Override
 	public void onDelete(){
-		getP1().removeDeleteListener(this.getDeleteListener());
+		getP1().removeDeleteListener(this);
+		getP2().removeDeleteListener(this);
 	}
 
-	private DeleteListener getDeleteListener() {
-		return deleteListener;
-	}
-
-	private void setDeleteListener(DeleteListener deleteListener) {
-		this.deleteListener = deleteListener;
+	@Override
+	protected void onClick(SingleClick sc) {
+		if (!this.isSelected() && !this.getText().getContent().isSelected())
+			this.getContainer().switchSelectedTo(this);
+		else if (this.isSelected())
+			this.getContainer().switchSelectedTo(this.getText().getContent());
 	}
 
 }

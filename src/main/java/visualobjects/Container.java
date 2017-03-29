@@ -37,9 +37,10 @@ public class Container extends VisualObject {
 		if (getSelected() != null)
 			getSelected().setSelected(false);
 		// Select current selected item
+		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
-		setSelected(vo);
+		
 	}
 
 	/**
