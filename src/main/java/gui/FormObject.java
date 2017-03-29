@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import inputHandlers.clicks.MouseClick;
 
-public abstract class FormObject {
+public abstract class FormObject implements Comparable<FormObject>{
 
 	private final int x, y, width, height;
 	
@@ -13,6 +13,17 @@ public abstract class FormObject {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+	}
+	
+	@Override
+	public int compareTo(FormObject formObj) {
+		int diffY = this.getY() - formObj.getY();
+		if (diffY == 0) {
+			// sort by x
+			return this.getX() - formObj.getX();
+		} else {
+			return diffY;
+		}
 	}
 	
 	abstract void onClick(MouseClick click);

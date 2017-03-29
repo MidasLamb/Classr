@@ -3,8 +3,6 @@ package gui;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-import static gui.Constants.*;
-
 import inputHandlers.clicks.MouseClick;
 
 public class Label extends FormObject {
