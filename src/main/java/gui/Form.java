@@ -3,16 +3,18 @@ package gui;
 import java.awt.Graphics;
 import java.util.TreeSet;
 
+import inputHandlers.Clickable;
+import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.MouseClick;
+import inputHandlers.clicks.SingleClick;
 
-public class Form {
+public class Form implements Clickable {
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 
-	private final int x, y, width, height;
+	private final int width, height;
 	
-	public Form(int x, int y, int width, int height){
-		this.x = x;
-		this.y = y;
+	public Form(int width, int height){
 		this.width = width;
 		this.height = height;
 	}
@@ -32,14 +34,6 @@ public class Form {
 	public void draw(Graphics g){
 		this.getFormObjects().forEach(formObject -> formObject.draw(g));
 	}
-	
-	private int getX() {
-		return x;
-	}
-
-	private int getY() {
-		return y;
-	}
 
 	private int getWidth() {
 		return width;
@@ -47,5 +41,18 @@ public class Form {
 
 	private int getHeight() {
 		return height;
+	}
+
+	@Override
+	public void onDoubleClick(DoubleClick click) {
+		handleClick(click);
+	}
+
+	@Override
+	public void onDragEnd(Drag drag) {}
+
+	@Override
+	public void onClick(SingleClick click) {
+		handleClick(click);		
 	}
 }

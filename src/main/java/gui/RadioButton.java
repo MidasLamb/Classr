@@ -8,7 +8,7 @@ import static gui.Constants.*;
 
 public abstract class RadioButton extends FormObject {
 	
-	private State state;
+	private RadioButtonState state;
 	private final RadioButtonGroup group;
 
 	public RadioButton(RadioButtonGroup group, int x, int y, int width, int height) {
@@ -63,11 +63,11 @@ public abstract class RadioButton extends FormObject {
 		return getState() instanceof Selected;
 	}
 	
-	private State getState() {
+	private RadioButtonState getState() {
 		return state;
 	}
 
-	private void setState(State state) {
+	private void setState(RadioButtonState state) {
 		this.state = state;
 	}
 

@@ -1,32 +1,26 @@
 package gui;
 
-import inputHandlers.clicks.MouseClick;
+import canvaswindow.FormWindow;
 
 public class Test {
+	
+	public static void main(String[] args) {
+		Form form = new Form(2000, 200);
+		form.addFormObject(new Label("Hello world", 10, 10));
+		form.addFormObject(new Button("hello", 20, 20, 50, 50) {
+			
+			@Override
+			void onAction() {
+				System.out.println("geklikt");
+				
+			}
+		});
+		
+		FormWindow window = new FormWindow("hello", form);
+		java.awt.EventQueue.invokeLater(() -> {
+			window.show();
+		});
 
-	public void main(){
-		CheckBox box = new CheckBox(1,1) {
-			
-			@Override
-			void onClick(MouseClick click) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onAction() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
-		RadioButtonGroup group = new RadioButtonGroup();
-		RadioButton button = new RadioButton(group,10,10) {
-			
-			@Override
-			public void onAction() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
 	}
+
 }
