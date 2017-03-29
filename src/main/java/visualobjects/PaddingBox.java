@@ -16,6 +16,45 @@ public class PaddingBox extends VisualObject {
 	private int paddingLeft;
 	private int paddingRight;
 	private VisualObject content;
+	
+	public PaddingBox(int x, int y, int z, int width, int height, int paddingLeft, int paddingRight, int paddingTop,
+			int paddingBottom,VisualObject content, VisualObject parent, String standardstring, LogicalObject object) {
+		super(x, y, -10, width, height, parent);
+		setLogicalObject(object);
+		this.setPaddingLeft(paddingLeft);
+		this.setPaddingRight(paddingRight);
+		this.setPaddingTop(paddingTop);
+		this.setPaddingBottom(paddingBottom);
+		this.setContent(content);
+		
+
+		this.content.addDeleteListener(this);
+	}
+	
+	public PaddingBox(int x, int y, int z, int width, int height, int padding,VisualObject content, VisualObject parent,
+			String standardstring, LogicalObject object) {
+		this(x, y, z, width, height, padding, padding, padding, padding,content, parent, standardstring, object);
+	}
+
+	public PaddingBox(int x, int y, int z, int padding,VisualObject content, VisualObject parent, String standardstring,
+			LogicalObject object) {
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding, STANDARD_PADDING,content, parent, standardstring,
+				object);
+	}
+
+	public PaddingBox(int x, int y, int z, int padding,VisualObject content, VisualObject parent, LogicalObject object) {
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding, STANDARD_PADDING,content, parent, "", object);
+	}
+
+	public PaddingBox(int x, int y, int z,VisualObject content, VisualObject parent, String standardstring, LogicalObject object) {
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent,
+				standardstring, object);
+	}
+
+	public PaddingBox(int x, int y, int z,VisualObject content, VisualObject parent, LogicalObject object) {
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent, "", object);
+	}
+	
 
 	/**
 	 * @param x
@@ -165,6 +204,14 @@ public class PaddingBox extends VisualObject {
 	public final VisualObject getContent() {
 		return content;
 	}
+	
+	public void changeContentToEditableText(String standardString){
+		this.getContent().removeDeleteListener(this);
+		EditableText t = new EditableText(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
+				this.getZ() + 1, this, standardString, getLogicalObject());
+		this.setContent(t);
+		t.addDeleteListener(this);
+	}
 
 	private void setContent(VisualObject content) {
 		this.content = content;
@@ -175,5 +222,10 @@ public class PaddingBox extends VisualObject {
 		super.setSelected(b);
 		if (b)
 			this.getContainer().switchSelectedTo(this.getContent());
+	}
+	
+	@Override
+	void onClick(SingleClick sc){
+		this.getContent().onClick(sc);
 	}
 }
