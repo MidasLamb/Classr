@@ -14,12 +14,12 @@ public abstract class LogicalObject {
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name;
-	
-	public void addDeleteListener(DeleteListener deletelistener) {
+
+	public final void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);
 	}
-	
-	public void removeDeleteListener(DeleteListener deletelistener){
+
+	public final void removeDeleteListener(DeleteListener deletelistener) {
 		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
@@ -49,7 +49,7 @@ public abstract class LogicalObject {
 			System.out.println("This object is already deleted!");
 		} else {
 			this.onDelete();
-			for (DeleteListener d: this.getDeleteListeners())
+			for (DeleteListener d : this.getDeleteListeners())
 				d.notifyDelete();
 		}
 		this.setDeleted(true);

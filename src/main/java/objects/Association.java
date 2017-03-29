@@ -27,13 +27,13 @@ public class Association extends LogicalObject {
 	/**
 	 * Removes this association from it's participants.
 	 */
-	public void remove() {
+	public final void remove() {
 		this.getClass1().deleteAssociation(this);
 		this.getClass2().deleteAssociation(this);
 	}
 
 	@Override
-	public void onDelete() {
+	public final void onDelete() {
 		getClass1().deleteAssociation(this);
 		getClass2().deleteAssociation(this);
 	}
