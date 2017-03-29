@@ -32,7 +32,7 @@ public class VisualClass extends VisualObject {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public final void draw(Graphics g) {
 		this.updateDimensions();
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int y = this.getY();
@@ -60,7 +60,7 @@ public class VisualClass extends VisualObject {
 	/**
 	 * Calculates the height of this object and sets it
 	 */
-	public void updateDimensions() {
+	public final void updateDimensions() {
 		// TODO update
 		int y = this.getY();
 
@@ -186,7 +186,7 @@ public class VisualClass extends VisualObject {
 	}
 
 	@Override
-	public void onDoubleClick(DoubleClick dc) {
+	public final void onDoubleClick(DoubleClick dc) {
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())) {
 			PaddingBox t = this.createAttribute();
 			this.getContainer().switchSelectedTo(t.getContent());
@@ -200,21 +200,21 @@ public class VisualClass extends VisualObject {
 	}
 
 	@Override
-	protected void afterDeleteChild(VisualObject v) {
+	protected final void afterDeleteChild(VisualObject v) {
 		this.updateDimensions();
 	}
 
 	@Override
-	public RealClass getLogicalObject() {
+	public final RealClass getLogicalObject() {
 		return (RealClass) super.getLogicalObject();
 	}
 
-	public void setLogicalObject(RealClass object) {
+	public final void setLogicalObject(RealClass object) {
 		super.setLogicalObject(object);
 	}
 
 	@Override
-	public boolean isIn(int x, int y) {
+	public final boolean isIn(int x, int y) {
 		for (VisualObject vo : this.getChildren()) {
 			if (vo.isIn(x, y))
 				return true;
@@ -223,14 +223,14 @@ public class VisualClass extends VisualObject {
 	}
 
 	@Override
-	protected void onDelete() {
+	protected final void onDelete() {
 		// TODO remove association
 
 	}
 
 	// Getters and setters
 
-	public PaddingBox getName() {
+	public final PaddingBox getName() {
 		return name;
 	}
 
