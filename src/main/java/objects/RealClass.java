@@ -35,7 +35,7 @@ public class RealClass extends LogicalObject {
 	 * @throws NoSuchElementException
 	 *             The attribute is not present
 	 */
-	private void deleteAttribute(Attribute attribute) throws NoSuchElementException {
+	void deleteAttribute(Attribute attribute) throws NoSuchElementException {
 		if (!this.attributes.remove(attribute)) {
 			throw new NoSuchElementException();
 		}
@@ -87,23 +87,8 @@ public class RealClass extends LogicalObject {
 	 * @throws NoSuchElementException
 	 *             The logical object is not present
 	 */
-	public void deleteChild(LogicalObject object) throws NoSuchElementException, IllegalStateException {
-		if (object instanceof Method) {
-			this.deleteChild((Method) object);
-			return;
-		}
-
-		if (object instanceof Association) {
-			this.deleteChild((Association) object);
-			return;
-		}
-
-		if (object instanceof Attribute) {
-			this.deleteChild((Attribute) object);
-			return;
-		}
-
-		throw new IllegalStateException();
+	public void deleteChild(ClassChild child) throws NoSuchElementException, IllegalStateException {
+		child.accept(new DeleteChildVisitor());
 	}
 
 	/**
@@ -126,7 +111,7 @@ public class RealClass extends LogicalObject {
 	 * @throws NoSuchElementException
 	 *             The method is not present
 	 */
-	private void deleteMethod(Method method) throws NoSuchElementException {
+	void deleteMethod(Method method) throws NoSuchElementException {
 		if (!this.methods.remove(method)) {
 			throw new NoSuchElementException();
 		}
@@ -150,7 +135,7 @@ public class RealClass extends LogicalObject {
 	 * @throws NoSuchElementException
 	 *             The association is not present
 	 */
-	public void deleteAssociation(Association association) throws NoSuchElementException {
+	void deleteAssociation(Association association) throws NoSuchElementException {
 		if (!this.associations.remove(association)) {
 			throw new NoSuchElementException();
 		}

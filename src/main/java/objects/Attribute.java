@@ -16,4 +16,8 @@ public class Attribute extends ClassContent {
 	public Attribute(RealClass rc) {
 		super(rc);
 	}
+	
+	public void accept(RealClassVisitor rcv){
+		rcv.visitAttribute(this);
+	}
 }

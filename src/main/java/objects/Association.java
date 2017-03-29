@@ -5,7 +5,7 @@ package objects;
  * 
  * @author team 11
  */
-public class Association extends LogicalObject {
+public class Association extends ClassChild {
 	private RealClass class1;
 	private RealClass class2;
 
@@ -22,6 +22,10 @@ public class Association extends LogicalObject {
 		setClass2(class2);
 		this.getClass1().addAssociation(this);
 		this.getClass2().addAssociation(this);
+	}
+	
+	public void accept(RealClassVisitor rcv){
+		rcv.visitAssociation(this);
 	}
 
 	/**

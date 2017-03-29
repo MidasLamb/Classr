@@ -1,6 +1,6 @@
 package objects;
 
-public abstract class ClassContent extends LogicalObject {
+public abstract class ClassContent extends ClassChild {
 	private RealClass realClass;
 
 	/**
@@ -36,4 +36,6 @@ public abstract class ClassContent extends LogicalObject {
 	public void onDelete() {
 		getRealClass().deleteChild(this);
 	}
+	
+	public abstract void accept(RealClassVisitor rcv);
 }
