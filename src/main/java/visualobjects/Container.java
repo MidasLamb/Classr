@@ -34,7 +34,7 @@ public class Container extends VisualObject  implements Clickable{
 	 * @param vo
 	 *            VisualObject that will be selected
 	 */
-	public void switchSelectedTo(VisualObject vo) {
+	public final void switchSelectedTo(VisualObject vo) {
 		// Unselect previous selected item
 		if (getSelected() != null)
 			getSelected().setSelected(false);
@@ -87,7 +87,7 @@ public class Container extends VisualObject  implements Clickable{
 	/**
 	 * @return VisualObject that is selected
 	 */
-	VisualObject getSelected() {
+	final VisualObject getSelected() {
 		return selected;
 	}
 

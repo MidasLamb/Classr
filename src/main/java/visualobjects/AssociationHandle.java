@@ -13,12 +13,12 @@ public class AssociationHandle extends VisualObject {
 	}
 
 	@Override
-	public void draw(Graphics g) {
+	public final void draw(Graphics g) {
 		g.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 
 	@Override
-	public void onDragEnd(Drag d) {
+	public final void onDragEnd(Drag d) {
 		VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
 		if (otherHandle instanceof AssociationHandle) {
 			VisualClass other = (VisualClass) otherHandle.getParent();

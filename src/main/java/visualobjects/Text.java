@@ -48,7 +48,7 @@ public class Text extends VisualObject {
 	 * Shows the text frame
 	 */
 	@Override
-	public void draw(Graphics g) {
+	public final void draw(Graphics g) {
 		// Limit the text size if it is to long
 		cutTextMaxWidth(g);
 		// Get and set the width/height based on font
@@ -86,7 +86,7 @@ public class Text extends VisualObject {
 	}
 
 	@Override
-	public void handleKey(KeyEvent e) {
+	public final void handleKey(KeyEvent e) {
 		// Get the key and put it in a string
 		String s = Character.toString(e.getKeyChar());
 		// Delete letter if you press the backspace
@@ -115,7 +115,7 @@ public class Text extends VisualObject {
 	}
 
 	@Override
-	public void setSelected(boolean b) {
+	public final void setSelected(boolean b) {
 		boolean prev = this.isSelected();
 		super.setSelected(b);
 		if (this.isSelected() == false && prev) {
@@ -135,7 +135,7 @@ public class Text extends VisualObject {
 
 	// Getters and setters
 
-	String getText() {
+	final String getText() {
 		return getLogicalObject().getName();
 	}
 
