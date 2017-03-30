@@ -1,18 +1,13 @@
 package canvaswindow;
 
-import static main.Constants.CONTAINER_HEIGHT;
-import static main.Constants.CONTAINER_WIDTH;
-
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import gui.Form;
-import inputHandlers.Clickable;
 import inputHandlers.KeyHandler;
 import inputHandlers.MouseClickHandler;
-import visualobjects.Container;
 
 public class FormWindow extends CanvasWindow {
 

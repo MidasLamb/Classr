@@ -41,10 +41,10 @@ public abstract class Button extends FormObject {
 		@Override
 		void draw(Graphics g) {
 			Color color = g.getColor();
-			g.setColor(Color.LIGHT_GRAY);
+			g.setColor(Color.GREEN);
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
 			g.setColor(Color.BLACK);
-			getText().draw(g);
+			drawText(g);
 			g.setColor(color);
 		}
 
@@ -60,16 +60,24 @@ public abstract class Button extends FormObject {
 		@Override
 		void draw(Graphics g) {
 			Color color = g.getColor();
-			g.setColor(Color.LIGHT_GRAY);
+			g.setColor(Color.RED);
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
 			g.setColor(Color.DARK_GRAY);
-			getText().draw(g);
+			drawText(g);
 			g.setColor(color);
 		}
 
 		@Override
 		void onClick(MouseClick click) {}
 		
+	}
+	
+	private void drawText(Graphics g){
+		int height = getText().getHeight(g);
+		int width = getText().getWidth(g);
+		int middleX = getWidth()/2 + getX();
+		int middleY = getHeight()/2 + getY();
+		getText().draw(g, middleX-width/2, middleY-height/2);
 	}
 	
 	abstract void onAction();

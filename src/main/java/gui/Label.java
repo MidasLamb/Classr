@@ -19,9 +19,23 @@ public class Label extends FormObject {
 
 	@Override
 	void draw(Graphics g) {
+		draw(g, getX(), getY());
+	}
+	
+	void draw(Graphics g, int x, int y) {
 		FontMetrics m = g.getFontMetrics();
-		int height = m.getHeight();
-		g.drawString(getText(), getX(), getY()+height);
+		int height = m.getAscent();
+		g.drawString(getText(), x, y+height);
+	}
+	
+	int getHeight(Graphics g){
+		FontMetrics m = g.getFontMetrics();
+		return m.getHeight();
+	}
+	
+	int getWidth(Graphics g){
+		FontMetrics m = g.getFontMetrics();
+		return m.stringWidth(getText());
 	}
 
 	private String getText() {
