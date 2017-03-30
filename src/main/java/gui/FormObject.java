@@ -59,8 +59,8 @@ public abstract class FormObject implements Comparable<FormObject>{
 		}
 		return new Label(text, x, y) {
 			@Override
-			void onClick(MouseClick click) {
-				this.onClick(click);
+			void onAction() {
+				this.onAction();
 			}
 		};
 	}
