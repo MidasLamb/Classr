@@ -60,7 +60,7 @@ public abstract class FormObject implements Comparable<FormObject>{
 		return new Label(text, x, y) {
 			@Override
 			void onAction() {
-				this.onAction();
+				FormObject.this.onAction();
 			}
 		};
 	}
