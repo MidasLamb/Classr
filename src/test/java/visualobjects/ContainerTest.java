@@ -392,6 +392,7 @@ public class ContainerTest {
 	
 	@Test
 	public void deleteAttributeTest(){
+		//TODO update this test with the new use case
 		Container container = new Container(0, 0, 1000, 1000);
 		DoubleClick click1 = new DoubleClick(182,162);
 		DoubleClick click2 = new DoubleClick(210,196);
@@ -413,6 +414,7 @@ public class ContainerTest {
 	
 	@Test
 	public void deleteMethodeTest(){
+		//TODO update this test with the new use case
 		Container container = new Container(0, 0, 1000, 1000);
 		DoubleClick click1 = new DoubleClick(149,118);
 		DoubleClick click2 = new DoubleClick(201,164);
