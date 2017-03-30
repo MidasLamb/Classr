@@ -124,7 +124,7 @@ public class EditableText extends Text {
 	}
 
 	@Override
-	public final void handleKey(KeyEvent e) {
+	public final void handleKeyEvent(KeyEvent e) {
 		// Get the key and put it in a string
 		String s = Character.toString(e.getKeyChar());
 		// Delete letter if you press the backspace

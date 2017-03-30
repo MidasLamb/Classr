@@ -164,7 +164,7 @@ public class VisualClassTest {
                 KeyEvent.VK_A,      // Key Code
                 'a' );
 		
-		container.handleKey(ke);
+		container.handleKeyEvent(ke);
 		
 		for (VisualObject v: container.getChildren()){
 			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
@@ -177,7 +177,7 @@ public class VisualClassTest {
                 KeyEvent.VK_B,      // Key Code
                 'b' );
 		
-		container.handleKey(ke);
+		container.handleKeyEvent(ke);
 		
 		for (VisualObject v: container.getChildren()){
 			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
@@ -191,7 +191,7 @@ public class VisualClassTest {
                 '\b'
                 );
 		
-		container.handleKey(ke);
+		container.handleKeyEvent(ke);
 		
 		for (VisualObject v: container.getChildren()){
 			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();

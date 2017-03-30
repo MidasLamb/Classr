@@ -41,7 +41,7 @@ public class TextTest {
 				KeyEvent.VK_A, // Key Code
 				'a');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		assertTrue(t.getText().equals("a"));
 
@@ -64,14 +64,14 @@ public class TextTest {
 				KeyEvent.VK_A, // Key Code
 				'a');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		ke = new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, // When timeStamp
 				0, // Modifier
 				KeyEvent.VK_A, // Key Code
 				'a');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		assertTrue(t.getText().equals("aa"));
 	}
@@ -93,21 +93,21 @@ public class TextTest {
 				KeyEvent.VK_A, // Key Code
 				'a');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		ke = new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, // When timeStamp
 				0, // Modifier
 				KeyEvent.VK_A, // Key Code
 				'a');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		ke = new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, // When timeStamp
 				0, // Modifier
 				KeyEvent.VK_BACK_SPACE, // Key Code
 				'\b');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		assertTrue(t.getText().equals("a"));
 
@@ -130,7 +130,7 @@ public class TextTest {
 				KeyEvent.VK_SHIFT, // Key Code
 				Character.MIN_VALUE);
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		assertTrue(t.getText().equals(""));
 		
@@ -153,7 +153,7 @@ public class TextTest {
 				KeyEvent.VK_A, // Key Code
 				'A');
 
-		t.handleKey(ke);
+		t.handleKeyEvent(ke);
 
 		assertTrue(t.getText().equals("A"));
 	}

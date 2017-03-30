@@ -378,7 +378,7 @@ public class ContainerTest {
 		//klik op klasse
 		container.onClick(click3);
 		KeyEvent ke = getDeleteKey();
-		container.handleKey(ke);
+		container.handleKeyEvent(ke);
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualClass){
@@ -399,7 +399,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKey(getDeleteKey());
+		container.handleKeyEvent(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof PaddingBox){
@@ -420,7 +420,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKey(getDeleteKey());
+		container.handleKeyEvent(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof PaddingBox){
@@ -445,7 +445,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKey(getDeleteKey());
+		container.handleKeyEvent(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -470,7 +470,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKey(getDeleteKey());
+		container.handleKeyEvent(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -495,7 +495,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKey(getDeleteKey());
+		container.handleKeyEvent(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -523,7 +523,7 @@ public class ContainerTest {
 		container.onDragStart(drag2);
 		container.onDragEnd(drag2);
 		container.onClick(click4);
-		container.handleKey(getDeleteKey());
+		container.handleKeyEvent(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){

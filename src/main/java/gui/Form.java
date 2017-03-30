@@ -9,7 +9,7 @@ import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.MouseClick;
 import inputHandlers.clicks.SingleClick;
 
-public class Form implements Clickable {
+public class Form{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 
 	private final int width, height;
@@ -43,15 +43,12 @@ public class Form implements Clickable {
 		return height;
 	}
 
-	@Override
 	public void onDoubleClick(DoubleClick click) {
 		handleClick(click);
 	}
 
-	@Override
 	public void onDragEnd(Drag drag) {}
 
-	@Override
 	public void onClick(SingleClick click) {
 		handleClick(click);		
 	}

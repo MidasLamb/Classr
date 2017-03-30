@@ -19,7 +19,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	private class TypeState extends InputBoxState{
 
 		@Override
-		public void HandleKeyEvent(KeyEvent e) {
+		public void handleKeyEvent(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
@@ -47,7 +47,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	private class PassiveState extends InputBoxState{
 
 		@Override
-		public void HandleKeyEvent(KeyEvent e) {
+		public void handleKeyEvent(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
@@ -75,8 +75,8 @@ public abstract class InputBox extends FormObject implements Typable {
 	}
 
 	@Override
-	public void HandleKeyEvent(KeyEvent e) {
-		getState().HandleKeyEvent(e);
+	public void handleKeyEvent(KeyEvent e) {
+		getState().handleKeyEvent(e);
 	}
 
 	private InputBoxState getState() {

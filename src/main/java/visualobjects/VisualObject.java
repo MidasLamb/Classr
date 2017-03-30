@@ -204,7 +204,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	 * @param e
 	 *            Key event
 	 */
-	void handleKey(KeyEvent e) {
+	void handleKeyEvent(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_DELETE)
 			this.getLogicalObject().delete();
 	}

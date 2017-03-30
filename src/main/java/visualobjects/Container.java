@@ -4,13 +4,21 @@ import static main.Constants.Z_CLASS;
 
 import java.awt.event.KeyEvent;
 
+import canvaswindow.MyCanvasWindow;
+import inputHandlers.CanvasContent;
 import inputHandlers.Clickable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 
-public class Container extends VisualObject  implements Clickable{
+public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
+	private MyCanvasWindow window;
 
+	public Container(int x, int y, int width, int height, MyCanvasWindow window) {
+		super(x, y, Integer.MIN_VALUE, width, height, null);
+		this.setCanvasWindow(window);
+	}
+	
 	public Container(int x, int y, int width, int height) {
 		super(x, y, Integer.MIN_VALUE, width, height, null);
 	}
@@ -22,9 +30,9 @@ public class Container extends VisualObject  implements Clickable{
 	 *            KeyEvent that needs to be handled
 	 */
 	@Override
-	public void handleKey(KeyEvent e) {
+	public void handleKeyEvent(KeyEvent e) {
 		if (getSelected() != null)
-			getSelected().handleKey(e);
+			getSelected().handleKeyEvent(e);
 	}
 
 	/**
@@ -98,5 +106,13 @@ public class Container extends VisualObject  implements Clickable{
 	 */
 	private void setSelected(VisualObject selected) {
 		this.selected = selected;
+	}
+
+	MyCanvasWindow getCanvasWindow() {
+		return window;
+	}
+
+	private void setCanvasWindow(MyCanvasWindow window) {
+		this.window = window;
 	}
 }

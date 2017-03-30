@@ -5,24 +5,24 @@ import java.awt.event.KeyEvent;
 import visualobjects.Container;
 
 public class KeyHandler {
-	private Container container;
+	private CanvasContent content;
 
-	public KeyHandler(Container container) {
-		setContainer(container);
+	public KeyHandler(CanvasContent content) {
+		setCanvasContent(content);
 	}
 
 	public void handleInput(KeyEvent e) {
 		if (e.getKeyCode() == 0)
 			return;
-		this.getContainer().handleKey(e);
+		this.getContainer().handleKeyEvent(e);
 	}
 
-	private Container getContainer() {
-		return container;
+	private CanvasContent getContainer() {
+		return content;
 	}
 
-	private void setContainer(Container container) {
-		this.container = container;
+	private void setCanvasContent(CanvasContent content) {
+		this.content = content;
 	}
 
 }

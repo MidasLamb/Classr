@@ -3,8 +3,10 @@ package visualobjects;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
+import formBuilder.AttributeFormBuilder;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
+import objects.Attribute;
 import objects.LogicalObject;
 
 public class Text extends VisualObject {
@@ -60,6 +62,8 @@ public class Text extends VisualObject {
 	@Override
 	void onDoubleClick(DoubleClick sc){
 		System.out.println("I should open a form about now");
+		AttributeFormBuilder builder = new AttributeFormBuilder((Attribute) this.getLogicalObject());
+		this.getContainer().getCanvasWindow().setContent(builder.getForm());
 	}
 
 }

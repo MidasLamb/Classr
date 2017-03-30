@@ -20,7 +20,7 @@ public class FormWindow extends CanvasWindow {
 	public FormWindow(String title, Form form) {
 		super(title);
 		setForm(form);
-		setMouseClickHandler(new MouseClickHandler(getForm()));
+		//setMouseClickHandler(new MouseClickHandler(getForm()));
 	}
 	
 	private void setFont(Graphics g){
