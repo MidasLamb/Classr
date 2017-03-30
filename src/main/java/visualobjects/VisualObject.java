@@ -11,9 +11,10 @@ import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
+import interfaces.DeleteSubject;
 import objects.LogicalObject;
 
-public abstract class VisualObject implements DeleteListener {
+public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	private int x;
 	private int y;
 	private int z;
@@ -46,7 +47,8 @@ public abstract class VisualObject implements DeleteListener {
 	}
 
 	public final void removeDeleteListener(DeleteListener deletelistener) {
-		Collection<DeleteListener> cd = new ArrayList<DeleteListener>();
+		Collection<DeleteListener> cd = new ArrayList<DeleteListener>(this.getDeleteListeners());
+
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
 	}
@@ -59,14 +61,16 @@ public abstract class VisualObject implements DeleteListener {
 	 *            Graphics g
 	 */
 	public final void show(Graphics g) {
-		// draw backgrounds first
-		if (this.isSelected())
+		if (this.isSelected() || this.hasSelectedAncestor()){
 			g.setColor(Color.red);
+		}
 		this.draw(g);
 		for (VisualObject v : this.getChildren()) {
 			v.show(g);
 		}
-		g.setColor(Color.black);
+		if (this.isSelected()){
+			g.setColor(Color.black);
+		}
 	}
 
 	void draw(Graphics g) {
@@ -90,10 +94,8 @@ public abstract class VisualObject implements DeleteListener {
 					c.switchSelectedTo(null);
 			}
 
-			this.getParent().removeChild(this);
-
 			for (DeleteListener d : this.getDeleteListeners()) {
-				d.notifyDelete();
+				d.notifySubjectDeleted(this);
 			}
 		}
 	}
@@ -352,6 +354,15 @@ public abstract class VisualObject implements DeleteListener {
 	 */
 	private void addChild(VisualObject c) {
 		this.children.add(c);
+		c.addDeleteListener(new DeleteListener(){
+
+			@Override
+			public void notifySubjectDeleted(DeleteSubject subject) {
+				removeChild(c);
+				
+			}
+			
+		});
 		this.children.sort(new VisualObjectComparator());
 	}
 
@@ -445,7 +456,7 @@ public abstract class VisualObject implements DeleteListener {
 	}
 
 	@Override
-	public void notifyDelete() {
+	public void notifySubjectDeleted(DeleteSubject subject) {
 		this.delete();
 	}
 
@@ -455,6 +466,16 @@ public abstract class VisualObject implements DeleteListener {
 
 	private void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
+	}
+	
+	boolean hasSelectedAncestor(){
+		VisualObject v = this;
+		while (v != null){
+			if (v.isSelected())
+				return true;
+			v = v.getParent();
+		}
+		return false;
 	}
 
 }

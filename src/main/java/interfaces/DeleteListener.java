@@ -1,5 +1,9 @@
 package interfaces;
 
 public interface DeleteListener {
-	public void notifyDelete();
+	/**
+	 * Called when subject is deleted.
+	 * @param subject
+	 */
+	public void notifySubjectDeleted(DeleteSubject subject);
 }

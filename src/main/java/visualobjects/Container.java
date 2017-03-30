@@ -39,9 +39,10 @@ public class Container extends VisualObject  implements Clickable{
 		if (getSelected() != null)
 			getSelected().setSelected(false);
 		// Select current selected item
+		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
-		setSelected(vo);
+		
 	}
 
 	/**

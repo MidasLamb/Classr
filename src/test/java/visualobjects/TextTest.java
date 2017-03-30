@@ -18,7 +18,7 @@ public class TextTest {
 		RealClass r = new RealClass();
 		Attribute a = new Attribute(r);
 
-		Text t = new Text(0, 0, 0, c, "Standaard", a);
+		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
 
 		assertTrue(t.getText().equals("Standaard"));
 	}
@@ -29,7 +29,7 @@ public class TextTest {
 		RealClass r = new RealClass();
 		Attribute a = new Attribute(r);
 
-		Text t = new Text(0, 0, 0, c, "Standaard", a);
+		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
 
 		Canvas canvas = new Canvas();
 
@@ -54,7 +54,7 @@ public class TextTest {
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
-		Text t = new Text(0, 0, 0, c, "Standaard", a);
+		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
 
 		t.setSelected(true);
 
@@ -83,7 +83,7 @@ public class TextTest {
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
-		Text t = new Text(0, 0, 0, c, "Standaard", a);
+		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
 
 		t.setSelected(true);
 
@@ -120,7 +120,7 @@ public class TextTest {
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
-		Text t = new Text(0, 0, 0, c, "Standaard", a);
+		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
 
 		t.setSelected(true);
 
@@ -144,7 +144,7 @@ public class TextTest {
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
-		Text t = new Text(0, 0, 0, c, "Standaard", a);
+		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
 
 		t.setSelected(true);
 		

@@ -456,12 +456,15 @@ public class CanvasWindow {
 		frame.setVisible(true);
 	}
 
-	public static void replayRecording(String path, CanvasWindow window) {
+	public static boolean replayRecording(String path, CanvasWindow window) {
 		try {
 			new CanvasWindowRecording(path).replay(window);
+		} catch (RuntimeException e) {
+			return false;
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException();
 		}
+		return true;
 	}
 
 }

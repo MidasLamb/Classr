@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import inputHandlers.clicks.DoubleClick;
+import inputHandlers.clicks.SingleClick;
 import objects.Attribute;
 import objects.Method;
 import objects.RealClass;
@@ -19,11 +20,10 @@ public class VisualClass extends VisualObject {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new RealClass());
 		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
+		this.getName().changeContentToEditableText("Nieuwe klasse");
 		this.updateDimensions();
 
-		// AH should be child of visualClass, because it has no logical
-		// counterpart
-
+		this.getName().addDeleteListener(this);
 		AssociationHandle ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
 	}
 
@@ -236,6 +236,24 @@ public class VisualClass extends VisualObject {
 
 	private void setName(PaddingBox name) {
 		this.name = name;
+	}
+
+	@Override
+	protected void onClick(SingleClick sc) {
+		if (!this.isSelected() && !this.getName().getContent().isSelected()) {
+			if (this.getName().isIn(sc.getX(), sc.getY()))
+				this.getContainer().switchSelectedTo(this);
+			else
+				super.onClick(sc);
+		}
+
+		else if (this.isSelected()){
+			if (this.getName().isIn(sc.getX(), sc.getY()))
+				this.getContainer().switchSelectedTo(this.getName().getContent());
+			else
+				super.onClick(sc);
+		}
+
 	}
 
 }

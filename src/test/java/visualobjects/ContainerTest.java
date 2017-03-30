@@ -190,7 +190,7 @@ public class ContainerTest {
 				klasse = (VisualClass) child;
 			}
 		}
-		assertTrue(klasse.getChildren().contains(selected));
+		assertTrue(klasse.equals(selected));
 	}
 	
 	@Test
@@ -203,7 +203,7 @@ public class ContainerTest {
 		container.onClick(click2);
 		container.onClick(click3);
 		VisualClass klasse = null;
-		VisualObject padding = container.getSelected();
+		VisualObject selectedClass = container.getSelected();
 		container.onClick(click3);
 		VisualObject text = container.getSelected();
 		for(VisualObject child : container.getChildren()){
@@ -211,7 +211,12 @@ public class ContainerTest {
 				klasse = (VisualClass) child;
 			}
 		}
-		assertTrue(klasse.getChildren().contains(padding) && padding.getChildren().contains(text));
+		assertTrue(klasse.equals(selectedClass));
+		for (VisualObject v: selectedClass.getChildren()){
+			if (v instanceof PaddingBox){
+				assertTrue(v.getChildren().contains(text));
+			}
+		}
 	}
 	
 	@Test
@@ -327,7 +332,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		assertTrue(container.getSelected() instanceof PaddingBox);
+		assertTrue(container.getSelected() instanceof Text);
 	}
 	
 	@Test
@@ -341,7 +346,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		assertTrue(container.getSelected() instanceof PaddingBox);
+		assertTrue(container.getSelected() instanceof Text);
 	}
 	
 	@Test
@@ -358,7 +363,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		assertTrue(container.getSelected() instanceof PaddingBox);
+		assertTrue(container.getSelected() instanceof VisualAssociation);
 	}
 	
 	@Test
