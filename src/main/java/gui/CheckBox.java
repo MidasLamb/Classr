@@ -52,9 +52,7 @@ public abstract class CheckBox extends FormObject {
 		getState().onClick(click);
 		onAction();
 	}
-	
-	public abstract void onAction();
-	
+		
 	void draw(Graphics g){
 		getState().draw(g);
 	}
