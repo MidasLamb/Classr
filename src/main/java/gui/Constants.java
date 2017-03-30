@@ -2,8 +2,10 @@ package gui;
 
 public final class Constants {
 	
-	public static final int STANDARD_RADIOBUTTON_WIDTH = 20;
-	public static final int STANDARD_RADIOBUTTON_HEIGHT = 20;
+	public static final int STANDARD_RADIOBUTTON_WIDTH = 10;
+	public static final int STANDARD_RADIOBUTTON_HEIGHT = 10;
+	public static final int STANDARD_CHECKBOX_HEIGHT = 10;
+	public static final int STANDARD_CHECKBOX_WIDTH = 10;
 	public static final int STANDARD_BUTTON_TEXT_PADDING = 5;
 
 }

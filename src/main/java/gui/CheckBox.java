@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Graphics;
 
+import static gui.Constants.*;
+
 import inputHandlers.clicks.MouseClick;
 
 public abstract class CheckBox extends FormObject {
@@ -14,7 +16,7 @@ public abstract class CheckBox extends FormObject {
 	}
 	
 	public CheckBox(int x, int y) {
-		super(x, y, 10, 10);
+		super(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
 		setState(new NotSelected());
 	}
 

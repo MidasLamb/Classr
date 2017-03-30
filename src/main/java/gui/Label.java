@@ -30,7 +30,7 @@ public class Label extends FormObject {
 	
 	int getHeight(Graphics g){
 		FontMetrics m = g.getFontMetrics();
-		return m.getHeight();
+		return m.getMaxAscent();
 	}
 	
 	int getWidth(Graphics g){
