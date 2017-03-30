@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Graphics;
+import static gui.Constants.*;
 
 import inputHandlers.clicks.MouseClick;
 
@@ -41,6 +42,21 @@ public abstract class FormObject implements Comparable<FormObject>{
 			onClick(click);
 	}
 	
+	Label createLabel(LabelPosition position, String text) {
+		int x = 0, y = 0;
+		switch (position) {
+			case RIGHT:
+				x = this.getX() + this.getWidth();
+				y = this.getY();
+				break;
+			case TOP:
+				x = this.getX();
+				y = this.getY() - STANDARD_TEXT_HEIGHT;
+				break;
+		}
+		return new Label(text, x, y);
+	}
+	
 	int getX() {
 		return x;
 	}
@@ -55,5 +71,9 @@ public abstract class FormObject implements Comparable<FormObject>{
 
 	int getHeight() {
 		return height;
+	}
+	
+	private enum LabelPosition {
+		RIGHT, TOP;
 	}
 }

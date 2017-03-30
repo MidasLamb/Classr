@@ -7,5 +7,8 @@ public final class Constants {
 	public static final int STANDARD_CHECKBOX_HEIGHT = 10;
 	public static final int STANDARD_CHECKBOX_WIDTH = 10;
 	public static final int STANDARD_BUTTON_TEXT_PADDING = 5;
-
+	
+	// TODO: hoogte label
+	public static final int STANDARD_TEXT_HEIGHT = 16;
+	
 }
