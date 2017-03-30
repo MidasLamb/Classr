@@ -11,10 +11,15 @@ public abstract class InputBox extends FormObject implements Typable {
 
 	private InputBoxState state;
 	private String text;
-
-	public InputBox(int x, int y, int width, int height) {
+	
+	public InputBox(String text, int x, int y, int width, int height){
 		super(x, y, width, height);
 		setState(new PassiveState());
+		this.text = text;
+	}
+
+	public InputBox(int x, int y, int width, int height) {
+		this("", x,y,width,height);
 	}
 	
 	private class TypeState extends InputBoxState{

@@ -9,6 +9,8 @@ import gui.base.InputBox;
 import gui.base.Label;
 import gui.base.RadioButton;
 import gui.base.RadioButtonGroup;
+import gui.utility.OkButton;
+import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import objects.Attribute;
 
@@ -19,12 +21,13 @@ public class AttributeFormBuilder extends FormBuilder {
 	public AttributeFormBuilder(Attribute attribute, MyCanvasWindow window) {
 		this.attribute = attribute;
 		this.window = window;
+		
 	}
 
 	@Override
-	protected FormWrapper buildForm() {
-		FormWrapper form = new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window);
-		InputBox attrName = new InputBox(10, 10, 100, 16) {
+	protected void buildForm() {
+		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
+		RegexCheckedInputBox attrName = new RegexCheckedInputBox(".*", 10, 10, 100, 16){
 			@Override
 			public void onAction() {
 				// TODO Should check conditions
@@ -33,7 +36,7 @@ public class AttributeFormBuilder extends FormBuilder {
 		this.addFormObject(attrName);
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		InputBox attrType = new InputBox(10, 100, 100, 16) {
+		RegexCheckedInputBox attrType = new RegexCheckedInputBox("$a", 10, 100, 100, 16) {
 			@Override
 			public void onAction() {
 				// TODO Should check conditions
@@ -63,7 +66,23 @@ public class AttributeFormBuilder extends FormBuilder {
 			}
 		});
 		this.addLabelToRightOfLostFormObject("Package");
-		return form;
+		
+		OkButton ok = new OkButton(10, 500, 50, 50){
+
+			@Override
+			protected void onOk() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		
+		ok.addCheckableConstraint(attrName);
+		ok.addCheckableConstraint(attrType);
+		
+		this.addFormObject(ok);
+		
+		
 	}
 
 }

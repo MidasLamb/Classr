@@ -61,7 +61,7 @@ public class Text extends VisualObject {
 
 	@Override
 	void onDoubleClick(DoubleClick sc){
-		AttributeFormBuilder builder = new AttributeFormBuilder((Attribute) this.getLogicalObject());
+		AttributeFormBuilder builder = new AttributeFormBuilder((Attribute) this.getLogicalObject(), this.getContainer().getCanvasWindow());
 		this.getContainer().getCanvasWindow().switchContent(builder.getForm());
 	}
 

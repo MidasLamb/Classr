@@ -9,7 +9,7 @@ public abstract class FormBuilder {
 	private FormWrapper form;
 	private FormObject lastAddedFormObject;
 
-	protected abstract FormWrapper buildForm();
+	protected abstract void buildForm();
 
 	protected final void addFormObject(FormObject f) {
 		this.setLastAddedFormObject(f);
@@ -29,10 +29,15 @@ public abstract class FormBuilder {
 	protected final Form getInternalForm() {
 		return this.form;
 	}
+	
+	protected final void setForm(FormWrapper form){
+		this.form = form;
+	}
+	
 
 	public FormWrapper getForm() {
 		if (this.form == null) {
-			this.form = buildForm();
+			this.buildForm();
 		}
 		return this.form;
 	}
