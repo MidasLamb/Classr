@@ -2,11 +2,12 @@ package gui;
 
 import canvaswindow.FormWindow;
 import gui.FormObject.LabelPosition;
+import guiToApplication.FormWrapper;
 
 public class Test {
 	
 	public static void main(String[] args) {
-		Form form = new Form(100,200);
+		FormWrapper form = new FormWrapper(100,200);
 		form.addFormObject(new Label("Hello world", 10, 10));
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton radioButton = new RadioButton(group, 10, 250) {

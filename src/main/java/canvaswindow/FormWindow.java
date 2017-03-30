@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import gui.Form;
+import guiToApplication.FormWrapper;
 import inputHandlers.KeyHandler;
 import inputHandlers.MouseClickHandler;
 
@@ -15,12 +16,12 @@ public class FormWindow extends CanvasWindow {
 
 	private MouseClickHandler mouseClickHandler;
 
-	private Form form;
+	private FormWrapper form;
 	
-	public FormWindow(String title, Form form) {
+	public FormWindow(String title, FormWrapper form) {
 		super(title);
 		setForm(form);
-		//setMouseClickHandler(new MouseClickHandler(getForm()));
+		setMouseClickHandler(new MouseClickHandler(getForm()));
 	}
 	
 	private void setFont(Graphics g){
@@ -90,11 +91,11 @@ public class FormWindow extends CanvasWindow {
 		this.keyHandler = keyHandler;
 	}
 
-	private Form getForm() {
+	private FormWrapper getForm() {
 		return form;
 	}
 
-	private void setForm(Form form) {
+	private void setForm(FormWrapper form) {
 		this.form = form;
 	}
 
