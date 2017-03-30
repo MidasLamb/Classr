@@ -83,8 +83,14 @@ public class MyCanvasWindow extends CanvasWindow {
 		return content;
 	}
 
-	public void setContent(CanvasContent content) {
+	private void setContent(CanvasContent content) {
 		this.content = content;
+	}
+	
+	public void switchContent(CanvasContent content){
+		this.setContent(content);
+		setMouseClickHandler(new MouseClickHandler(getContent()));
+		setKeyHandler(new KeyHandler(getContent()));
 	}
 
 	private MouseClickHandler getMouseClickHandler() {
