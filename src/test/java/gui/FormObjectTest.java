@@ -24,6 +24,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(0, 0));
 		assertFalse(clicked);
@@ -41,6 +47,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(15, 0));
 		assertFalse(clicked);
@@ -58,6 +70,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(0, 25));
 		assertFalse(clicked);
@@ -75,6 +93,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(15, 25));
 		assertTrue(clicked);
@@ -92,6 +116,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(10, 20));
 		assertTrue(clicked);
@@ -109,6 +139,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(40, 60));
 		assertTrue(clicked);
@@ -126,6 +162,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(40, 61));
 		assertFalse(clicked);
@@ -143,6 +185,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(41, 60));
 		assertFalse(clicked);
@@ -160,6 +208,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(50, 70));
 		assertFalse(clicked);
@@ -177,6 +231,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(15, 70));
 		assertFalse(clicked);
@@ -194,6 +254,12 @@ public class FormObjectTest {
 			
 			@Override
 			void draw(Graphics g) {}
+
+			@Override
+			void onAction() {
+				// TODO Auto-generated method stub
+				
+			}
 		};
 		dummy.handleClick(new MouseClick(60, 30));
 		assertFalse(clicked);
