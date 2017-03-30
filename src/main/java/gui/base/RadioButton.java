@@ -1,10 +1,10 @@
-package gui;
+package gui.base;
+
+import static gui.base.Constants.*;
 
 import java.awt.Graphics;
 
 import inputHandlers.clicks.MouseClick;
-
-import static gui.Constants.*;
 
 public abstract class RadioButton extends FormObject {
 	

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import gui.Form;
+import gui.base.Form;
 import guiToApplication.FormWrapper;
 import inputHandlers.KeyHandler;
 import inputHandlers.MouseClickHandler;

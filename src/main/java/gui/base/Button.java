@@ -1,9 +1,9 @@
-package gui;
+package gui.base;
+
+import static gui.base.Constants.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
-import static gui.Constants.*;
 
 import inputHandlers.clicks.MouseClick;
 

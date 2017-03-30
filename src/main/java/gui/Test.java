@@ -1,7 +1,12 @@
 package gui;
 
 import canvaswindow.FormWindow;
-import gui.FormObject.LabelPosition;
+import gui.base.Button;
+import gui.base.CheckBox;
+import gui.base.Label;
+import gui.base.RadioButton;
+import gui.base.RadioButtonGroup;
+import gui.base.FormObject.LabelPosition;
 import guiToApplication.FormWrapper;
 
 public class Test {

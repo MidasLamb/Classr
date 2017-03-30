@@ -1,4 +1,4 @@
-package gui;
+package gui.base;
 
 import java.awt.Graphics;
 import java.util.TreeSet;

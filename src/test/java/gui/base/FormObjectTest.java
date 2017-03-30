@@ -1,4 +1,4 @@
-package gui;
+package gui.base;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import org.junit.Before;
 import org.junit.Test;
 
+import gui.base.FormObject;
 import inputHandlers.clicks.MouseClick;
 
 public class FormObjectTest {

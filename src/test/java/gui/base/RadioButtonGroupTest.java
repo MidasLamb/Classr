@@ -1,10 +1,12 @@
-package gui;
+package gui.base;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import gui.base.RadioButton;
+import gui.base.RadioButtonGroup;
 import inputHandlers.clicks.MouseClick;
 
 public class RadioButtonGroupTest {

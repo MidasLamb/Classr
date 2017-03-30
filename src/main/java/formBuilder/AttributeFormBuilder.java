@@ -1,52 +1,68 @@
 package formBuilder;
 
-import gui.Form;
-import gui.InputBox;
-import gui.RadioButton;
-import gui.RadioButtonGroup;
+import static main.Constants.CONTAINER_HEIGHT;
+import static main.Constants.CONTAINER_WIDTH;
+
+import gui.base.FormObject;
+import gui.base.InputBox;
+import gui.base.Label;
+import gui.base.RadioButton;
+import gui.base.RadioButtonGroup;
+import gui.utility.FormBuilder;
 import guiToApplication.FormWrapper;
-import objects.Association;
 import objects.Attribute;
 
-import static main.Constants.*;
-
-public class AttributeFormBuilder {
+public class AttributeFormBuilder extends FormBuilder {
 	private Attribute attribute;
-	private FormWrapper form;
-	public AttributeFormBuilder(Attribute attribute){
+
+	public AttributeFormBuilder(Attribute attribute) {
 		this.attribute = attribute;
-		form = new FormWrapper(CONTAINER_WIDTH,CONTAINER_HEIGHT);
-//		InputBox attrName = new InputBox(10,10, 100,16){
-//			@Override
-//			public void onAction() {
-//				//TODO Should check conditions
-//			}
-//		};
-//		
-//		form.addFormObject(attrName);
-//		
-//		InputBox attrType = new InputBox(10,100, 100,16){
-//			@Override
-//			public void onAction() {
-//				//TODO Should check conditions
-//			}
-//		};
-//		
-//		form.addFormObject(attrType);
-		
+
+	}
+
+	@Override
+	protected FormWrapper buildForm() {
+		FormWrapper form = new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT);
+		InputBox attrName = new InputBox(10, 10, 100, 16) {
+			@Override
+			public void onAction() {
+				// TODO Should check conditions
+			}
+		};
+		this.addFormObject(attrName);
+		this.addLabelToTopOfLastFormObject("Attribute name");
+
+		InputBox attrType = new InputBox(10, 100, 100, 16) {
+			@Override
+			public void onAction() {
+				// TODO Should check conditions
+			}
+		};
+		this.addFormObject(attrType);
+		this.addLabelToTopOfLastFormObject("Attribute type");
+
 		RadioButtonGroup group = new RadioButtonGroup();
-		form.addFormObject(new RadioButton(group, 10, 250) {
+		this.addFormObject(new RadioButton(group, 10, 250) {
 			@Override
-			public void onAction() {}
+			public void onAction() {
+			}
 		});
-		form.addFormObject(new RadioButton(group, 10, 300) {
+
+		this.addLabelToRightOfLostFormObject("Public");
+		this.addFormObject(new RadioButton(group, 10, 300) {
 			@Override
-			public void onAction() {}
+			public void onAction() {
+			}
 		});
-		
+		this.addLabelToRightOfLostFormObject("Private");
+
+		this.addFormObject(new RadioButton(group, 10, 350) {
+			@Override
+			public void onAction() {
+			}
+		});
+		this.addLabelToRightOfLostFormObject("Package");
+		return form;
 	}
-	
-	public FormWrapper getForm(){
-		return this.form;
-	}
+
 }

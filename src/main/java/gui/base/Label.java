@@ -1,8 +1,8 @@
-package gui;
+package gui.base;
 
-import static gui.Constants.STANDARD_FONT;
-import static gui.Constants.STANDARD_TEXT_ASCEND;
-import static gui.Constants.STANDARD_TEXT_HEIGHT;
+import static gui.base.Constants.STANDARD_FONT;
+import static gui.base.Constants.STANDARD_TEXT_ASCEND;
+import static gui.base.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Canvas;
 import java.awt.FontMetrics;

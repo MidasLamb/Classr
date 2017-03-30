@@ -1,5 +1,6 @@
-package gui;
+package gui.base;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
@@ -13,7 +14,7 @@ public abstract class InputBox extends FormObject implements Typable {
 
 	public InputBox(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		setState(state);
+		setState(new PassiveState());
 	}
 	
 	private class TypeState extends InputBoxState{
@@ -26,7 +27,9 @@ public abstract class InputBox extends FormObject implements Typable {
 
 		@Override
 		void draw(Graphics g) {
-			
+			g.setColor(Color.RED);
+			g.drawRect(getX(), getY(), getWidth(), getHeight());
+			g.setColor(Color.BLACK);
 		}
 
 		@Override
@@ -54,7 +57,7 @@ public abstract class InputBox extends FormObject implements Typable {
 
 		@Override
 		void draw(Graphics g) {
-			
+			g.drawRect(getX(), getY(), getWidth(), getHeight());
 		}
 
 		@Override

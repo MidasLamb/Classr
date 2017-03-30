@@ -1,7 +1,8 @@
-package gui;
+package gui.base;
+
+import static gui.base.Constants.*;
 
 import java.awt.Graphics;
-import static gui.Constants.*;
 
 import inputHandlers.clicks.MouseClick;
 
@@ -44,7 +45,7 @@ public abstract class FormObject implements Comparable<FormObject>{
 			onClick(click);
 	}
 	
-	Label createLabel(LabelPosition position, String text) {
+	public Label createLabel(LabelPosition position, String text) {
 		int x = 0, y = 0;
 		switch (position) {
 			case RIGHT:
@@ -82,7 +83,7 @@ public abstract class FormObject implements Comparable<FormObject>{
 		return height;
 	}
 	
-	enum LabelPosition {
+	static public enum LabelPosition {
 		RIGHT, TOP;
 	}
 }

@@ -3,7 +3,7 @@ package guiToApplication;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import gui.Form;
+import gui.base.Form;
 import inputHandlers.CanvasContent;
 import inputHandlers.Clickable;
 import inputHandlers.Typable;

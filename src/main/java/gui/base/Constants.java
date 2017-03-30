@@ -1,4 +1,4 @@
-package gui;
+package gui.base;
 
 import java.awt.Canvas;
 import java.awt.Font;

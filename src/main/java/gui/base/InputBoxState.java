@@ -1,4 +1,4 @@
-package gui;
+package gui.base;
 
 import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
