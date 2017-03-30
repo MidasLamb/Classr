@@ -61,7 +61,6 @@ public class Text extends VisualObject {
 
 	@Override
 	void onDoubleClick(DoubleClick sc){
-		System.out.println("I should open a form about now");
 		AttributeFormBuilder builder = new AttributeFormBuilder((Attribute) this.getLogicalObject());
 		this.getContainer().getCanvasWindow().switchContent(builder.getForm());
 	}

@@ -90,7 +90,7 @@ public abstract class InputBox extends FormObject implements Typable {
 		this.state = state;
 	}
 
-	private String getText() {
+	public final String getText() {
 		return text;
 	}
 

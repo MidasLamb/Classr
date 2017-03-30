@@ -12,7 +12,7 @@ import guiToApplication.FormWrapper;
 public class Test {
 	
 	public static void main(String[] args) {
-		FormWrapper form = new FormWrapper(100,200);
+		FormWrapper form = new FormWrapper(100,200, null);
 		form.addFormObject(new Label("Hello world", 10, 10));
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton radioButton = new RadioButton(group, 10, 250) {
