@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import inputHandlers.clicks.MouseClick;
 
-public abstract class Label extends FormObject {
+public class Label extends FormObject {
 	
 	final private String text;
 
@@ -41,5 +41,8 @@ public abstract class Label extends FormObject {
 	private String getText() {
 		return text;
 	}
+
+	@Override
+	void onAction() {}
 	
 }
