@@ -10,5 +10,8 @@ public final class Constants {
 	
 	// TODO: hoogte label
 	public static final int STANDARD_TEXT_HEIGHT = 16;
+	public static final int STANDARD_TEXT_ASCEND = 13;
+	
+	public static final int STANDARD_LABEL_PADDING = 5;
 	
 }

@@ -46,15 +46,21 @@ public abstract class FormObject implements Comparable<FormObject>{
 		int x = 0, y = 0;
 		switch (position) {
 			case RIGHT:
-				x = this.getX() + this.getWidth();
-				y = this.getY();
+				x = this.getX() + this.getWidth() + STANDARD_LABEL_PADDING;
+				int midY = (this.getY() + this.getY() + this.getHeight()) / 2;
+				y = midY - STANDARD_TEXT_HEIGHT / 2;
 				break;
 			case TOP:
 				x = this.getX();
 				y = this.getY() - STANDARD_TEXT_HEIGHT;
 				break;
 		}
-		return new Label(text, x, y);
+		return new Label(text, x, y) {
+			@Override
+			void onClick(MouseClick click) {
+				this.onClick(click);
+			}
+		};
 	}
 	
 	int getX() {
@@ -73,7 +79,7 @@ public abstract class FormObject implements Comparable<FormObject>{
 		return height;
 	}
 	
-	private enum LabelPosition {
+	enum LabelPosition {
 		RIGHT, TOP;
 	}
 }

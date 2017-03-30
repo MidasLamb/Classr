@@ -1,6 +1,7 @@
 package gui;
 
 import canvaswindow.FormWindow;
+import gui.FormObject.LabelPosition;
 
 public class Test {
 	
@@ -8,10 +9,13 @@ public class Test {
 		Form form = new Form(100,200);
 		form.addFormObject(new Label("Hello world", 10, 10));
 		RadioButtonGroup group = new RadioButtonGroup();
-		form.addFormObject(new RadioButton(group, 10, 250) {
+		RadioButton radioButton = new RadioButton(group, 10, 250) {
 			@Override
 			public void onAction() {}
-		});
+		};
+		form.addFormObject(radioButton);
+		form.addFormObject(radioButton.createLabel(LabelPosition.RIGHT, "Pieter-Jan"));
+		
 		form.addFormObject(new RadioButton(group, 10, 300) {
 			@Override
 			public void onAction() {}
