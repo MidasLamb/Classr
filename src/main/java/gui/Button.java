@@ -15,11 +15,7 @@ public abstract class Button extends FormObject {
 	public Button(String text, int x, int y, int width, int height) {
 		super(x, y, width, height);
 		this.text = new Label(text, x + STANDARD_BUTTON_TEXT_PADDING, 
-				y + STANDARD_BUTTON_TEXT_PADDING) {
-			
-			@Override
-			void onAction() {}
-		};
+				y + STANDARD_BUTTON_TEXT_PADDING);
 		setEnabled(true);
 	}
 	
