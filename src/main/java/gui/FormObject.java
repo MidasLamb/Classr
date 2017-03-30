@@ -31,7 +31,7 @@ public abstract class FormObject implements Comparable<FormObject>{
 	
 	abstract void draw(Graphics g);
 	
-	abstract void onAction();
+	protected abstract void onAction();
 	
 	/**
 	 * Checks if the received click is for this object and handles it if it is for this object
@@ -60,7 +60,7 @@ public abstract class FormObject implements Comparable<FormObject>{
 		FormObject thisFormObject = this;
 		return new Label(text, x, y) {
 			@Override
-			void onAction() {
+			protected void onAction() {
 				thisFormObject.onClick(new MouseClick(0, 0));
 			}
 		};

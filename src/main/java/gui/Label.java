@@ -54,6 +54,6 @@ public class Label extends FormObject {
 	}
 
 	@Override
-	void onAction() {}
+	protected void onAction() {}
 	
 }

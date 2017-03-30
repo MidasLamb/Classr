@@ -33,7 +33,7 @@ public class Test {
 		Button button1 = new Button("Hello", 50, 50, 50, 50) {
 			
 			@Override
-			void onAction() {
+			protected void onAction() {
 				System.out.println("geklikt");
 				
 			}
@@ -41,7 +41,7 @@ public class Test {
 		Button button2 = new Button("Enable/disable", 200, 200, 100, 100) {
 			
 			@Override
-			void onAction() {
+			protected void onAction() {
 				button1.setEnabled(false);
 			}
 		};
