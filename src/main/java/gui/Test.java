@@ -7,7 +7,10 @@ public class Test {
 	
 	public static void main(String[] args) {
 		Form form = new Form(100,200);
-		form.addFormObject(new Label("Hello world", 10, 10));
+		form.addFormObject(new Label("Hello world", 10, 10){
+			@Override
+			void onAction() {}
+		});
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton radioButton = new RadioButton(group, 10, 250) {
 			@Override

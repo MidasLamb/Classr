@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import inputHandlers.clicks.MouseClick;
 
-public class Label extends FormObject {
+public abstract class Label extends FormObject {
 	
 	final private String text;
 
@@ -15,7 +15,9 @@ public class Label extends FormObject {
 	}
 
 	@Override
-	void onClick(MouseClick click) {}
+	void onClick(MouseClick click) {
+		onAction();
+	}
 
 	@Override
 	void draw(Graphics g) {
@@ -23,14 +25,12 @@ public class Label extends FormObject {
 	}
 	
 	void draw(Graphics g, int x, int y) {
-		FontMetrics m = g.getFontMetrics();
-		int height = m.getAscent();
-		g.drawString(getText(), x, y+height);
+		g.drawString(getText(), x, y+getHeight(g));
 	}
 	
 	int getHeight(Graphics g){
 		FontMetrics m = g.getFontMetrics();
-		return m.getMaxAscent();
+		return m.getAscent();
 	}
 	
 	int getWidth(Graphics g){

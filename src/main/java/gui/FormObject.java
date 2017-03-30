@@ -31,6 +31,8 @@ public abstract class FormObject implements Comparable<FormObject>{
 	
 	abstract void draw(Graphics g);
 	
+	abstract void onAction();
+	
 	/**
 	 * Checks if the received click is for this object and handles it if it is for this object
 	 * @param 	click
