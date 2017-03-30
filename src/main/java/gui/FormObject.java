@@ -57,10 +57,11 @@ public abstract class FormObject implements Comparable<FormObject>{
 				y = this.getY() - STANDARD_TEXT_HEIGHT;
 				break;
 		}
+		FormObject thisFormObject = this;
 		return new Label(text, x, y) {
 			@Override
 			void onAction() {
-				
+				thisFormObject.onClick(new MouseClick(0, 0));
 			}
 		};
 	}
