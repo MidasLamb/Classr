@@ -143,4 +143,23 @@ public class EditableText extends Text {
 	void onClick(SingleClick sc){
 		this.getContainer().switchSelectedTo(this);
 	}
+	
+	@Override
+	public final void setSelected(boolean b) {
+		boolean prev = this.isSelected();
+		super.setSelected(b);
+		if (this.isSelected() == false && prev) {
+			if (this.getText().length() == 0) {
+				this.setText(this.getStandardTextString());
+				setIsStandardTextSet(true);
+			}
+		}
+
+		if (this.isSelected() && prev == false) {
+			if (isStandardTextSet()) {
+				this.setText("");
+				setIsStandardTextSet(false);
+			}
+		}
+	}
 }
