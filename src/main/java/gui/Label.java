@@ -1,5 +1,10 @@
 package gui;
 
+import static gui.Constants.STANDARD_FONT;
+import static gui.Constants.STANDARD_TEXT_ASCEND;
+import static gui.Constants.STANDARD_TEXT_HEIGHT;
+
+import java.awt.Canvas;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
@@ -25,16 +30,22 @@ public class Label extends FormObject {
 	}
 	
 	void draw(Graphics g, int x, int y) {
-		g.drawString(getText(), x, y+getHeight(g));
+		g.drawString(getText(), x, y+getHeight());
 	}
 	
-	int getHeight(Graphics g){
-		FontMetrics m = g.getFontMetrics();
-		return m.getAscent();
+	@Override
+	int getHeight(){
+		return STANDARD_TEXT_HEIGHT;
 	}
 	
-	int getWidth(Graphics g){
-		FontMetrics m = g.getFontMetrics();
+	int getAscent(){
+		return STANDARD_TEXT_ASCEND;
+	}
+	
+	@Override
+	int getWidth(){
+		Canvas c = new Canvas();
+		FontMetrics m = c.getFontMetrics(STANDARD_FONT);
 		return m.stringWidth(getText());
 	}
 

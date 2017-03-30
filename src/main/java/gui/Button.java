@@ -73,8 +73,8 @@ public abstract class Button extends FormObject {
 	}
 	
 	private void drawText(Graphics g){
-		int height = getText().getHeight(g);
-		int width = getText().getWidth(g);
+		int height = getText().getAscent();
+		int width = getText().getAscent();
 		int middleX = getWidth()/2 + getX();
 		int middleY = getHeight()/2 + getY();
 		getText().draw(g, middleX-width/2, middleY-height/2);
