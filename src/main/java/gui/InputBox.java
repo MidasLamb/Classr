@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
 
-public class InputBox extends FormObject implements Typable {
+public abstract class InputBox extends FormObject implements Typable {
 
 	private InputBoxState state;
 	private String text;
