@@ -45,9 +45,7 @@ public abstract class RadioButton extends FormObject {
 		this.getGroup().radioButtonIsClicked(this);
 		onAction();
 	}
-	
-	public abstract void onAction();
-	
+		
 	void draw(Graphics g){
 		getState().draw(g);
 	}

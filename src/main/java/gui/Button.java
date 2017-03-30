@@ -83,9 +83,7 @@ public abstract class Button extends FormObject {
 		int middleY = getHeight()/2 + getY();
 		getText().draw(g, middleX-width/2, middleY-height/2);
 	}
-	
-	abstract void onAction();
-	
+		
 	private ButtonState getState() {
 		return state;
 	}
