@@ -1,4 +1,6 @@
-package objects;
+package logicalobjects;
+
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of logical objects, involving a real class
@@ -13,17 +15,12 @@ public class Method extends ClassContent {
 	 * @param rc
 	 *            The RealClass to which the Method belongs.
 	 */
-	public Method(RealClass rc) {
+	public Method(LogicalClass rc) {
 		super(rc);
 	}
 	
-	/**
-	 * Accepts a RealClassVisitor and calls the correct concrete visitor
-	 * 
-	 * @param 	rcv
-	 * 			the RealClassVisitor to accept
-	 */
-	public void accept(RealClassVisitor rcv){
-		rcv.visitMethod(this);
+	@Override
+	public void accept(LogicalObjectVisitor v) {
+		v.visit(this);	
 	}
 }

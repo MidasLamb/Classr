@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import formBuilder.AttributeFormBuilder;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
-import objects.Attribute;
-import objects.LogicalObject;
+import logicalobjects.Attribute;
+import logicalobjects.LogicalObject;
 
 public class Text extends VisualObject {
 

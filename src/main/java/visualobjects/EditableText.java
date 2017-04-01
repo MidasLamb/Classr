@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import inputHandlers.clicks.SingleClick;
-import objects.LogicalObject;
+import logicalobjects.LogicalObject;
 
 public class EditableText extends Text {
 	private String standardTextString;

@@ -7,15 +7,15 @@ import java.awt.event.KeyEvent;
 
 import org.junit.Test;
 
-import objects.Attribute;
-import objects.RealClass;
+import logicalobjects.Attribute;
+import logicalobjects.LogicalClass;
 
 public class TextTest {
 
 	@Test
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100);
-		RealClass r = new RealClass();
+		LogicalClass r = new LogicalClass();
 		Attribute a = new Attribute(r);
 
 		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
@@ -26,7 +26,7 @@ public class TextTest {
 	@Test
 	public void typeATest() {
 		Container c = new Container(0, 0, 100, 100);
-		RealClass r = new RealClass();
+		LogicalClass r = new LogicalClass();
 		Attribute a = new Attribute(r);
 
 		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
@@ -50,7 +50,7 @@ public class TextTest {
 	@Test
 	public void typeAaTest() {
 		Container c = new Container(0, 0, 100, 100);
-		RealClass r = new RealClass();
+		LogicalClass r = new LogicalClass();
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
@@ -79,7 +79,7 @@ public class TextTest {
 	@Test
 	public void typeAaBackspaceTest() {
 		Container c = new Container(0, 0, 100, 100);
-		RealClass r = new RealClass();
+		LogicalClass r = new LogicalClass();
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
@@ -116,7 +116,7 @@ public class TextTest {
 	@Test
 	public void typeShiftTest() {
 		Container c = new Container(0, 0, 100, 100);
-		RealClass r = new RealClass();
+		LogicalClass r = new LogicalClass();
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 
@@ -140,7 +140,7 @@ public class TextTest {
 	@Test
 	public void typeCapitalATest() {
 		Container c = new Container(0, 0, 100, 100);
-		RealClass r = new RealClass();
+		LogicalClass r = new LogicalClass();
 		Attribute a = new Attribute(r);
 		Canvas canvas = new Canvas();
 

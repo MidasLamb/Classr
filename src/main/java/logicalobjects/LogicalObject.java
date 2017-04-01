@@ -1,17 +1,18 @@
-package objects;
+package logicalobjects;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
+import interfaces.LogicalObjectElement;
 
 /**
  * A class of logical objects, involving a name and visual object
  * 
  * @author team 11
  */
-public abstract class LogicalObject implements DeleteSubject{
+public abstract class LogicalObject implements DeleteSubject, LogicalObjectElement{
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name;

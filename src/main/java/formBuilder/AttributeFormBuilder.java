@@ -12,7 +12,7 @@ import gui.base.RadioButtonGroup;
 import gui.utility.OkButton;
 import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
-import objects.Attribute;
+import logicalobjects.Attribute;
 
 public class AttributeFormBuilder extends FormBuilder {
 	private Attribute attribute;
@@ -36,7 +36,7 @@ public class AttributeFormBuilder extends FormBuilder {
 		this.addFormObject(attrName);
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		RegexCheckedInputBox attrType = new RegexCheckedInputBox("$a", 10, 100, 100, 16) {
+		RegexCheckedInputBox attrType = new RegexCheckedInputBox(".*", 10, 100, 100, 16) {
 			@Override
 			public void onAction() {
 				// TODO Should check conditions

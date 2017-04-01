@@ -1,6 +1,8 @@
-package objects;
+package logicalobjects;
 
-public class DeleteChildVisitor extends RealClassVisitor {
+import interfaces.LogicalObjectVisitor;
+
+public class DeleteChildVisitor implements LogicalObjectVisitor{
 
 	@Override
 	/**
@@ -9,7 +11,7 @@ public class DeleteChildVisitor extends RealClassVisitor {
 	 * @param	association
 	 * 			the Association to remove
 	 */
-	public void visitAssociation(Association association) {
+	public void visit(Association association) {
 		association.remove();
 	}
 
@@ -20,7 +22,7 @@ public class DeleteChildVisitor extends RealClassVisitor {
 	 * @param	attribute
 	 * 			the Attribute to remove
 	 */
-	public void visitAttribute(Attribute attribute) {
+	public void visit(Attribute attribute) {
 		attribute.getRealClass().deleteAttribute(attribute);
 	}
 
@@ -31,8 +33,16 @@ public class DeleteChildVisitor extends RealClassVisitor {
 	 * 			the Method to remove
 	 */
 	@Override
-	public void visitMethod(Method method) {
+	public void visit(Method method) {
 		method.getRealClass().deleteMethod(method);
+	}
+
+	/**
+	 * 
+	 */
+	@Override
+	public void visit(LogicalClass c) {
+		//Do nothing
 	}
 
 }

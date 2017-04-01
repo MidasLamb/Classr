@@ -1,13 +1,15 @@
-package objects;
+package logicalobjects;
+
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of associations, involving two real classes
  * 
  * @author team 11
  */
-public class Association extends ClassChild {
-	private RealClass class1;
-	private RealClass class2;
+public class Association extends LogicalObject{
+	private LogicalClass class1;
+	private LogicalClass class2;
 
 	/**
 	 * Constructs a new Association within the two stated RealClasses.
@@ -17,22 +19,13 @@ public class Association extends ClassChild {
 	 * @param class2
 	 *            The other RealClass which is linked by the association.
 	 */
-	public Association(RealClass class1, RealClass class2) {
+	public Association(LogicalClass class1, LogicalClass class2) {
 		setClass1(class1);
 		setClass2(class2);
 		this.getClass1().addAssociation(this);
 		this.getClass2().addAssociation(this);
 	}
 	
-	/**
-	 * Accepts a RealClassVisitor and calls the correct concrete visitor
-	 * 
-	 * @param 	rcv
-	 * 			the RealClassVisitor to accept
-	 */
-	public void accept(RealClassVisitor rcv){
-		rcv.visitAssociation(this);
-	}
 
 	/**
 	 * Removes this association from it's participants.
@@ -53,7 +46,7 @@ public class Association extends ClassChild {
 	 * 
 	 * @return the first RealClass belonging to this Association
 	 */
-	public final RealClass getClass1() {
+	public final LogicalClass getClass1() {
 		return class1;
 	}
 
@@ -63,7 +56,7 @@ public class Association extends ClassChild {
 	 * @param class1
 	 *            the RealClass to be set
 	 */
-	private void setClass1(RealClass class1) {
+	private void setClass1(LogicalClass class1) {
 		this.class1 = class1;
 	}
 
@@ -72,7 +65,7 @@ public class Association extends ClassChild {
 	 * 
 	 * @return the second RealClass belonging to this Association
 	 */
-	public final RealClass getClass2() {
+	public final LogicalClass getClass2() {
 		return class2;
 	}
 
@@ -82,8 +75,13 @@ public class Association extends ClassChild {
 	 * @param class1
 	 *            the RealClass to be set
 	 */
-	private void setClass2(RealClass class2) {
+	private void setClass2(LogicalClass class2) {
 		this.class2 = class2;
+	}
+
+	@Override
+	public void accept(LogicalObjectVisitor v) {
+		v.visit(this);	
 	}
 
 }

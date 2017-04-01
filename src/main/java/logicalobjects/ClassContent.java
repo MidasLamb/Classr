@@ -1,7 +1,9 @@
-package objects;
+package logicalobjects;
 
-public abstract class ClassContent extends ClassChild {
-	private RealClass realClass;
+import interfaces.LogicalObjectVisitor;
+
+public abstract class ClassContent extends LogicalObject{
+	private LogicalClass realClass;
 
 	/**
 	 * Constructs a new ClassContent belonging to the stated RealClass.
@@ -9,7 +11,7 @@ public abstract class ClassContent extends ClassChild {
 	 * @param rc
 	 *            The RealClass to which the ClassContent belongs.
 	 */
-	public ClassContent(RealClass rc) {
+	public ClassContent(LogicalClass rc) {
 		this.setRealClass(rc);
 	}
 
@@ -18,7 +20,7 @@ public abstract class ClassContent extends ClassChild {
 	 * 
 	 * @return the RealClass belonging to this ClassContent
 	 */
-	public final RealClass getRealClass() {
+	public final LogicalClass getRealClass() {
 		return realClass;
 	}
 
@@ -28,7 +30,7 @@ public abstract class ClassContent extends ClassChild {
 	 * @param rc
 	 *            the RealClass to be set
 	 */
-	private void setRealClass(RealClass rc) {
+	private void setRealClass(LogicalClass rc) {
 		this.realClass = rc;
 	}
 
@@ -37,5 +39,4 @@ public abstract class ClassContent extends ClassChild {
 		getRealClass().deleteChild(this);
 	}
 	
-	public abstract void accept(RealClassVisitor rcv);
 }

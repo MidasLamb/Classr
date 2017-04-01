@@ -7,11 +7,10 @@ import java.awt.Graphics;
 import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
+import logicalobjects.Association;
+import logicalobjects.LogicalClass;
 
 import static main.Constants.*;
-
-import objects.Association;
-import objects.RealClass;
 
 public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
@@ -24,7 +23,7 @@ public class VisualAssociation extends VisualObject {
 		super(0, 0, 0, 0, 0, parent);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
-		((RealClass) association.getClass1()).addAssociation(association);
+		((LogicalClass) association.getClass1()).addAssociation(association);
 
 		p1 = participant1;
 		p2 = participant2;

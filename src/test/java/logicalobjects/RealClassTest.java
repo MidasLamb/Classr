@@ -1,4 +1,4 @@
-package objects;
+package logicalobjects;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,10 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
+import logicalobjects.Association;
+import logicalobjects.Attribute;
+import logicalobjects.LogicalClass;
+import logicalobjects.Method;
 import visualobjects.Container;
 import visualobjects.VisualClass;
 
@@ -14,7 +18,7 @@ public class RealClassTest {
 
 	@Test
 	public void testAddAttributes() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		int initialSize = realclass.getAttributes().size();
 		Attribute attr = realclass.addAttribute();
 		int finalSize = realclass.getAttributes().size();
@@ -23,7 +27,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildAttribute1() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Attribute attr = realclass.addAttribute();		
 		realclass.deleteChild(attr);
 		assertFalse(realclass.getAttributes().contains(attr));
@@ -31,7 +35,7 @@ public class RealClassTest {
 	
 	@Test(expected=NoSuchElementException.class)
 	public void testDeleteChildAttribute2() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Attribute attr = realclass.addAttribute();		
 		realclass.deleteChild(attr);
 		realclass.deleteChild(attr);
@@ -39,7 +43,7 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildMethod1() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Method meth = realclass.addMethod();		
 		realclass.deleteChild(meth);
 		assertFalse(realclass.getMethods().contains(meth));
@@ -47,7 +51,7 @@ public class RealClassTest {
 	
 	@Test(expected=NoSuchElementException.class)
 	public void testDeleteChildMethod2() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Method meth = realclass.addMethod();		
 		realclass.deleteChild(meth);
 		realclass.deleteChild(meth);
@@ -55,8 +59,8 @@ public class RealClassTest {
 
 	@Test
 	public void testDeleteChildAssociation() {
-		RealClass rc1 = new RealClass();
-		RealClass rc2 = new RealClass();
+		LogicalClass rc1 = new LogicalClass();
+		LogicalClass rc2 = new LogicalClass();
 		Association ass = new Association(rc1, rc2);		
 		rc1.deleteChild(ass);
 		assertFalse(rc1.getAssociations().contains(ass));
@@ -64,7 +68,7 @@ public class RealClassTest {
 
 	@Test
 	public void testAddMethod() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		int initialSize = realclass.getMethods().size();
 		Method meth = realclass.addMethod();
 		int finalSize = realclass.getMethods().size();
@@ -73,16 +77,16 @@ public class RealClassTest {
 
 	@Test
 	public void testAddAssociation() {
-		RealClass rc1 = new RealClass();
-		RealClass rc2 = new RealClass();
+		LogicalClass rc1 = new LogicalClass();
+		LogicalClass rc2 = new LogicalClass();
 		Association ass = new Association(rc1, rc2);
 		assertTrue(rc1.getAssociations().contains(ass) && rc2.getAssociations().contains(ass));
 	}
 
 	@Test
 	public void testDeleteAssociation() {
-		RealClass rc1 = new RealClass();
-		RealClass rc2 = new RealClass();
+		LogicalClass rc1 = new LogicalClass();
+		LogicalClass rc2 = new LogicalClass();
 		Association ass = new Association(rc1, rc2);
 		
 		rc1.deleteAssociation(ass);
@@ -91,7 +95,7 @@ public class RealClassTest {
 	
 	@Test
 	public void getAttributesTest1() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		realclass.addAttribute();
 		realclass.addAttribute();
 		realclass.addAttribute();
@@ -100,7 +104,7 @@ public class RealClassTest {
 	
 	@Test
 	public void getAttributesTest2() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Attribute attr = realclass.addAttribute();
 		realclass.addAttribute();
 		realclass.addAttribute();
@@ -111,7 +115,7 @@ public class RealClassTest {
 	
 	@Test
 	public void getAttributesTest3() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Attribute attr = realclass.addAttribute();
 		realclass.addAttribute();
 		realclass.addAttribute();
@@ -122,7 +126,7 @@ public class RealClassTest {
 	
 	@Test
 	public void getMethodesTest1() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		realclass.addMethod();
 		realclass.addMethod();
 		realclass.addMethod();
@@ -131,7 +135,7 @@ public class RealClassTest {
 	
 	@Test
 	public void getMethodesTest2() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Method meth = realclass.addMethod();
 		realclass.addMethod();
 		realclass.addMethod();
@@ -142,7 +146,7 @@ public class RealClassTest {
 	
 	@Test
 	public void getMethodesTest3() {
-		RealClass realclass = new RealClass();
+		LogicalClass realclass = new LogicalClass();
 		Method meth = realclass.addMethod();
 		realclass.addMethod();
 		realclass.addMethod();

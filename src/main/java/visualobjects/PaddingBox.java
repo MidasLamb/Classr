@@ -8,7 +8,7 @@ import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
-import objects.LogicalObject;
+import logicalobjects.LogicalObject;
 
 public class PaddingBox extends VisualObject {
 	private int paddingTop;

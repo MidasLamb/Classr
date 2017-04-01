@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
-import objects.Association;
+import logicalobjects.Association;
 
 import static main.Constants.*;
 import visualobjects.Container;

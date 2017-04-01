@@ -9,16 +9,16 @@ import java.util.Collection;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
-import objects.Attribute;
-import objects.Method;
-import objects.RealClass;
+import logicalobjects.Attribute;
+import logicalobjects.LogicalClass;
+import logicalobjects.Method;
 
 public class VisualClass extends VisualObject {
 	private PaddingBox name;
 
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
-		setLogicalObject(new RealClass());
+		setLogicalObject(new LogicalClass());
 		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
 		this.getName().changeContentToEditableText("Nieuwe klasse");
 		this.updateDimensions();
@@ -205,11 +205,11 @@ public class VisualClass extends VisualObject {
 	}
 
 	@Override
-	public final RealClass getLogicalObject() {
-		return (RealClass) super.getLogicalObject();
+	public final LogicalClass getLogicalObject() {
+		return (LogicalClass) super.getLogicalObject();
 	}
 
-	public final void setLogicalObject(RealClass object) {
+	public final void setLogicalObject(LogicalClass object) {
 		super.setLogicalObject(object);
 	}
 

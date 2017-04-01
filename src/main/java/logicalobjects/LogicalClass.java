@@ -1,16 +1,18 @@
-package objects;
+package logicalobjects;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
+import interfaces.LogicalObjectVisitor;
+
 /**
  * A class of real classes, involving associations, attributes and methods
  * 
  * @author team 11
  */
-public class RealClass extends LogicalObject {
+public class LogicalClass extends LogicalObject {
 	private ArrayList<Attribute> attributes = new ArrayList<>();
 	private ArrayList<Method> methods = new ArrayList<>();
 	private HashSet<Association> associations = new HashSet<>();
@@ -88,7 +90,7 @@ public class RealClass extends LogicalObject {
 	 *             The logical object is not present
 	 */
 
-	public void deleteChild(ClassChild child) throws NoSuchElementException, IllegalStateException {
+	public void deleteChild(LogicalObject child) throws NoSuchElementException, IllegalStateException {
 		child.accept(new DeleteChildVisitor());
 	}
 
@@ -204,6 +206,11 @@ public class RealClass extends LogicalObject {
 	public final void onDelete() {
 		for (Association a : this.getAssociations())
 			a.delete();
+	}
+	
+	@Override
+	public void accept(LogicalObjectVisitor v) {
+		v.visit(this);	
 	}
 
 }

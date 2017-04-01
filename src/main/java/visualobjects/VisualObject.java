@@ -12,7 +12,7 @@ import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
-import objects.LogicalObject;
+import logicalobjects.LogicalObject;
 
 public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	private int x;
