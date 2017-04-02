@@ -1,12 +1,12 @@
-package formBuilder;
+package gui.utility;
 
 import gui.base.Form;
 import gui.base.FormObject;
 import gui.base.Label;
 import guiToApplication.FormWrapper;
 
-public abstract class FormBuilder {
-	private FormWrapper form;
+public abstract class FormBuilder<T extends Form> {
+	private T form;
 	private FormObject lastAddedFormObject;
 
 	protected abstract void buildForm();
@@ -30,12 +30,12 @@ public abstract class FormBuilder {
 		return this.form;
 	}
 	
-	protected final void setForm(FormWrapper form){
+	protected final void setForm(T form){
 		this.form = form;
 	}
 	
 
-	public FormWrapper getForm() {
+	public T getForm() {
 		if (this.form == null) {
 			this.buildForm();
 		}

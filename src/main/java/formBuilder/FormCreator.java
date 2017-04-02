@@ -1,6 +1,7 @@
 package formBuilder;
 
 import canvaswindow.MyCanvasWindow;
+import gui.utility.FormBuilder;
 import guiToApplication.FormWrapper;
 import interfaces.LogicalObjectVisitor;
 import logicalobjects.Association;
@@ -10,7 +11,7 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 
 public class FormCreator implements LogicalObjectVisitor{
-	private FormBuilder formBuilder;
+	private FormBuilder<FormWrapper> formBuilder;
 	private MyCanvasWindow window;
 	
 	public FormCreator(LogicalObject o, MyCanvasWindow window){
@@ -42,11 +43,11 @@ public class FormCreator implements LogicalObjectVisitor{
 		
 	}
 
-	private FormBuilder getFormBuilder() {
+	private FormBuilder<FormWrapper> getFormBuilder() {
 		return formBuilder;
 	}
 
-	private void setFormBuilder(FormBuilder formBuilder) {
+	private void setFormBuilder(FormBuilder<FormWrapper> formBuilder) {
 		this.formBuilder = formBuilder;
 	}
 

@@ -9,12 +9,13 @@ import gui.base.InputBox;
 import gui.base.Label;
 import gui.base.RadioButton;
 import gui.base.RadioButtonGroup;
+import gui.utility.FormBuilder;
 import gui.utility.OkButton;
 import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
 
-public class AttributeFormBuilder extends FormBuilder {
+public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
 	private MyCanvasWindow window;
 
