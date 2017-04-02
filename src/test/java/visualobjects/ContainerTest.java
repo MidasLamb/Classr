@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 
 import org.junit.Test;
 
+import canvaswindow.MyCanvasWindow;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
@@ -324,7 +325,8 @@ public class ContainerTest {
 	@Test
 	public void selectAttributeTest(){
 		//TODO update this test with the new use case
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow window = new MyCanvasWindow("Test");
+		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(182,162);
 		DoubleClick click2 = new DoubleClick(210,196);
 		SingleClick click3 = new SingleClick(1,1);
@@ -333,7 +335,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		//assertTrue(container.getSelected() instanceof Text);
+		assertTrue(container.getSelected() instanceof Text);
 	}
 	
 	@Test
@@ -393,7 +395,8 @@ public class ContainerTest {
 	@Test
 	public void deleteAttributeTest(){
 		//TODO update this test with the new use case
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow window = new MyCanvasWindow("Test");
+		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(182,162);
 		DoubleClick click2 = new DoubleClick(210,196);
 		SingleClick click3 = new SingleClick(1,1);

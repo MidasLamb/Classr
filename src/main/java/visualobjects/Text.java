@@ -4,6 +4,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import formBuilder.AttributeFormBuilder;
+import formBuilder.FormCreator;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import logicalobjects.Attribute;
@@ -61,8 +62,8 @@ public class Text extends VisualObject {
 
 	@Override
 	void onDoubleClick(DoubleClick sc){
-		AttributeFormBuilder builder = new AttributeFormBuilder((Attribute) this.getLogicalObject(), this.getContainer().getCanvasWindow());
-		this.getContainer().getCanvasWindow().switchContent(builder.getForm());
+		FormCreator creator = new FormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
+		this.getContainer().getCanvasWindow().switchContent(creator.getForm());
 	}
 
 }
