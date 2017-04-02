@@ -49,7 +49,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 *            canvas.
 	 */
 	@Override
-	protected void paint(Graphics g) {
+	protected final void paint(Graphics g) {
 		this.setFont(g);
 		this.getContent().show(g);
 	}
@@ -63,7 +63,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 *            Details about the event
 	 */
 	@Override
-	protected void handleMouseEvent(MouseEvent e) {
+	protected final void handleMouseEvent(MouseEvent e) {
 		getMouseClickHandler().handleInput(e);
 		this.repaint();
 
@@ -76,7 +76,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 * @param e
 	 */
 	@Override
-	protected void handleKeyEvent(KeyEvent e) {
+	protected final void handleKeyEvent(KeyEvent e) {
 		getKeyHandler().handleInput(e);
 		this.repaint();
 		// TODO Handle shift keys and such
@@ -91,17 +91,48 @@ public class MyCanvasWindow extends CanvasWindow {
 		this.content = content;
 	}
 	
-	public void addContent(CanvasContent content){
+	/**
+	 * Switches to the passed in content.
+	 * @param content
+	 */
+	public final void addContentAndSwitchTo(CanvasContent content){
 		this.getContentQueue().addFirst(this.getContent());
-		this.switchContent(content);
+		this.switchToContent(content);
 	}
 	
-	public void closeCurrentContent(){
+	/**
+	 * Puts the content as the next one to be displayed if the currently showed one is closed.
+	 * @param content
+	 */
+	public final void addContentAsNext(CanvasContent content){
+		this.getContentQueue().add(content);
+	}
+	
+	/**
+	 * Closes the current displayed content and switches in the previous content.
+	 */
+	private void closeCurrentContent(){
 		CanvasContent prev = this.getContentQueue().pop();
-		this.switchContent(prev);
+		this.switchToContent(prev);
 	}
 	
-	private void switchContent(CanvasContent content){
+	/**
+	 * Closes the passed in content. If that content is the currently displayed content, we switch it out with the previous content.
+	 * @param content
+	 */
+	public final void closeContent(CanvasContent content){
+		if (content.equals(this.getContent())){
+			this.closeCurrentContent();
+		} else {
+			this.getContentQueue().remove(content);
+		}
+	}
+	
+	/**
+	 * Switches the canvas to display the passed in content.
+	 * @param content
+	 */
+	private void switchToContent(CanvasContent content){
 		this.setContent(content);
 		setMouseClickHandler(new MouseClickHandler(getContent()));
 		setKeyHandler(new KeyHandler(getContent()));

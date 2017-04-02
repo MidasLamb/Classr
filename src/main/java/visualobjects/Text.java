@@ -63,7 +63,7 @@ public class Text extends VisualObject {
 	@Override
 	void onDoubleClick(DoubleClick sc){
 		FormCreator creator = new FormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
-		this.getContainer().getCanvasWindow().addContent(creator.getForm());
+		this.getContainer().getCanvasWindow().addContentAndSwitchTo(creator.getForm());
 	}
 
 }

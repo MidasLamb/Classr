@@ -3,11 +3,7 @@ package gui.base;
 import java.awt.Graphics;
 import java.util.TreeSet;
 
-import inputHandlers.Clickable;
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.MouseClick;
-import inputHandlers.clicks.SingleClick;
 
 public class Form{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
@@ -42,5 +38,13 @@ public class Form{
 
 	private int getHeight() {
 		return height;
+	}
+
+	private FormObject getFocusedObject() {
+		return focusedObject;
+	}
+
+	private void setFocusedObject(FormObject focusedObject) {
+		this.focusedObject = focusedObject;
 	}
 }

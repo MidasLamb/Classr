@@ -46,8 +46,7 @@ public class FormWrapper extends Form implements CanvasContent {
 	}
 
 	public void close() {
-		// TODO make canvaswindow have a queue of contents which to display.
-		this.canvasWindow.closeCurrentContent();
+		this.canvasWindow.closeContent(this);
 	}
 
 }
