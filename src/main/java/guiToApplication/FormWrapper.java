@@ -10,48 +10,44 @@ import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
 
-public class FormWrapper extends Form implements CanvasContent{
+public class FormWrapper extends Form implements CanvasContent {
 	private MyCanvasWindow canvasWindow;
-	
-	public FormWrapper(int width, int height, MyCanvasWindow canvasWindow){
+
+	public FormWrapper(int width, int height, MyCanvasWindow canvasWindow) {
 		super(width, height);
 		this.canvasWindow = canvasWindow;
 	}
 
 	@Override
 	public void handleKeyEvent(KeyEvent e) {
-		//TODO handle keys;
-		
+		// TODO handle keys;
+
 	}
 
 	@Override
 	public void onClick(SingleClick click) {
-		super.onClick(click);
-		
+		super.handleClick(click);
+
 	}
 
 	@Override
 	public void onDoubleClick(DoubleClick click) {
-		super.onDoubleClick(click);
-		
+		super.handleClick(click);
+
 	}
 
 	@Override
 	public void onDragEnd(Drag drag) {
-		super.onDragEnd(drag);
-		
 	}
-
-
 
 	@Override
 	public void show(Graphics g) {
 		super.draw(g);
 	}
-	
-	public void close(){
-		//TODO make canvaswindow have a queue of contents which to display.
-		this.canvasWindow.switchContent(null);
+
+	public void close() {
+		// TODO make canvaswindow have a queue of contents which to display.
+		this.canvasWindow.closeCurrentContent();
 	}
 
 }

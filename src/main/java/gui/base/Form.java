@@ -11,6 +11,7 @@ import inputHandlers.clicks.SingleClick;
 
 public class Form{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
+	private FormObject focusedObject;
 
 	private final int width, height;
 	
@@ -41,15 +42,5 @@ public class Form{
 
 	private int getHeight() {
 		return height;
-	}
-
-	public void onDoubleClick(DoubleClick click) {
-		handleClick(click);
-	}
-
-	public void onDragEnd(Drag drag) {}
-
-	public void onClick(SingleClick click) {
-		handleClick(click);		
 	}
 }

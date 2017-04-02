@@ -72,7 +72,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onOk() {
-				// TODO Auto-generated method stub
+				getForm().close();
 				
 			}
 			

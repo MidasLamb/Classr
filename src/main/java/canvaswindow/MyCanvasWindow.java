@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 import inputHandlers.CanvasContent;
 import inputHandlers.KeyHandler;
@@ -20,12 +22,14 @@ public class MyCanvasWindow extends CanvasWindow {
 	private MouseClickHandler mouseClickHandler;
 
 	private CanvasContent content;
+	private ArrayDeque<CanvasContent> contentQueue;
 	
 	public MyCanvasWindow(String title) {
 		super(title);
 		setContent(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT, this));
 		setMouseClickHandler(new MouseClickHandler(getContent()));
 		setKeyHandler(new KeyHandler(getContent()));
+		this.setContentQueue(new ArrayDeque<CanvasContent>());
 	}
 	
 	private void setFont(Graphics g){
@@ -87,7 +91,17 @@ public class MyCanvasWindow extends CanvasWindow {
 		this.content = content;
 	}
 	
-	public void switchContent(CanvasContent content){
+	public void addContent(CanvasContent content){
+		this.getContentQueue().addFirst(this.getContent());
+		this.switchContent(content);
+	}
+	
+	public void closeCurrentContent(){
+		CanvasContent prev = this.getContentQueue().pop();
+		this.switchContent(prev);
+	}
+	
+	private void switchContent(CanvasContent content){
 		this.setContent(content);
 		setMouseClickHandler(new MouseClickHandler(getContent()));
 		setKeyHandler(new KeyHandler(getContent()));
@@ -107,6 +121,14 @@ public class MyCanvasWindow extends CanvasWindow {
 
 	public void setKeyHandler(KeyHandler keyHandler) {
 		this.keyHandler = keyHandler;
+	}
+
+	private ArrayDeque<CanvasContent> getContentQueue() {
+		return contentQueue;
+	}
+
+	private void setContentQueue(ArrayDeque<CanvasContent> contentQueue) {
+		this.contentQueue = contentQueue;
 	}
 
 }

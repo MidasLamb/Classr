@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import gui.base.Button;
+import gui.base.Form;
 
 public abstract class OkButton extends Button {
 	private Collection<Checkable> constraints;
@@ -11,7 +12,6 @@ public abstract class OkButton extends Button {
 	public OkButton(int x, int y, int width, int height) {
 		super("Ok", x, y, width, height);
 		this.constraints = new ArrayList<Checkable>();
-		
 	}
 
 	@Override
@@ -37,5 +37,4 @@ public abstract class OkButton extends Button {
 		}
 		this.setEnabled(true);
 	}
-
 }
