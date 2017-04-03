@@ -20,7 +20,7 @@ public class FormWrapper extends Form implements CanvasContent {
 
 	@Override
 	public void handleKeyEvent(KeyEvent e) {
-		// TODO handle keys;
+		super.handleKeyEvent(e);
 
 	}
 

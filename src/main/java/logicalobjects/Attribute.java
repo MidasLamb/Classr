@@ -17,6 +17,7 @@ public class Attribute extends ClassContent {
 	 */
 	public Attribute(LogicalClass rc) {
 		super(rc);
+		this.setName("New attribute");
 	}
 		
 	@Override

@@ -12,7 +12,7 @@ public class RadioButtonGroup {
 		return selectedButton;
 	}
 
-	private void setSelectedButton(RadioButton selectedButton) {
+	public void setSelectedButton(RadioButton selectedButton) {
 		if(getSelectedButton()!= null)
 			getSelectedButton().setSelected(false);
 		selectedButton.setSelected(true);

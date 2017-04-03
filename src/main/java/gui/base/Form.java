@@ -1,6 +1,7 @@
 package gui.base;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.TreeSet;
 
 import inputHandlers.clicks.MouseClick;
@@ -26,6 +27,14 @@ public class Form{
 	
 	public void handleClick(MouseClick click){
 		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
+	}
+	
+	public void handleKeyEvent(KeyEvent e) {
+		if (false) //if tab
+			; //cycle through
+		else {
+			this.getFormObjects().forEach(formObject -> formObject.handleKeyEvent(e));
+		}
 	}
 	
 	public void draw(Graphics g){

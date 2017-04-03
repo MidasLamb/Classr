@@ -4,6 +4,9 @@ import interfaces.LogicalObjectVisitor;
 
 public abstract class ClassContent extends LogicalObject{
 	private LogicalClass realClass;
+	private Visibility visibility;
+	private String type;
+	
 
 	/**
 	 * Constructs a new ClassContent belonging to the stated RealClass.
@@ -13,6 +16,8 @@ public abstract class ClassContent extends LogicalObject{
 	 */
 	public ClassContent(LogicalClass rc) {
 		this.setRealClass(rc);
+		this.setVisibility(Visibility.PRIVATE);
+		this.setType("void");
 	}
 
 	/**
@@ -37,6 +42,22 @@ public abstract class ClassContent extends LogicalObject{
 	@Override
 	public final void onDelete() {
 		getRealClass().deleteChild(this);
+	}
+
+	public final Visibility getVisibility() {
+		return visibility;
+	}
+
+	public final void setVisibility(Visibility visibility) {
+		this.visibility = visibility;
+	}
+
+	public final String getType() {
+		return type;
+	}
+
+	public final void setType(String type) {
+		this.type = type;
 	}
 	
 }

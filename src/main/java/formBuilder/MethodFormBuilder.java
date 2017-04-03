@@ -24,7 +24,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
 
-		RegexCheckedInputBox methName = new RegexCheckedInputBox(".*", 10, 10, 100, 16){
+		RegexCheckedInputBox methName = new RegexCheckedInputBox(method.getName(),".*", 10, 10, 100, 16){
 			@Override
 			public void onAction() {
 				// TODO Should check conditions
@@ -33,7 +33,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(".*", 10, 100, 100, 16) {
+		RegexCheckedInputBox methType = new RegexCheckedInputBox(method.getType(),".*", 10, 100, 100, 16) {
 			@Override
 			public void onAction() {
 				// TODO Should check conditions
