@@ -31,21 +31,11 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
-		RegexCheckedInputBox attrName = new RegexCheckedInputBox(attribute.getName(), ".*", 10, 10, 100, 16){
-			@Override
-			public void onAction() {
-				// TODO Should check conditions
-			}
-		};
+		RegexCheckedInputBox attrName = new RegexCheckedInputBox(attribute.getName(), "\\p{Lower}.*", 10, 10, 100, 16);
 		this.addFormObject(attrName);
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		RegexCheckedInputBox attrType = new RegexCheckedInputBox(attribute.getType(), ".*", 10, 100, 100, 16) {
-			@Override
-			public void onAction() {
-				// TODO Should check conditions
-			}
-		};
+		RegexCheckedInputBox attrType = new RegexCheckedInputBox(attribute.getType(), "\\p{Lower}.*", 10, 100, 100, 16);
 		this.addFormObject(attrType);
 		this.addLabelToTopOfLastFormObject("Attribute type");
 

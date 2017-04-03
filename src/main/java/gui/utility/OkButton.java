@@ -6,7 +6,7 @@ import java.util.Collection;
 import gui.base.Button;
 import gui.base.Form;
 
-public abstract class OkButton extends Button {
+public abstract class OkButton extends Button implements Checker{
 	private Collection<Checkable> constraints;
 
 	public OkButton(int x, int y, int width, int height) {
@@ -26,6 +26,7 @@ public abstract class OkButton extends Button {
 	public void addCheckableConstraint(Checkable c){
 		this.constraints.add(c);
 		this.checkConstraints();
+		c.addChecker(this);
 	}
 	
 	public void checkConstraints(){

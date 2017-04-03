@@ -38,6 +38,7 @@ public abstract class InputBox extends FormObject{
 			} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT && e.getKeyCode() != KeyEvent.VK_DELETE) {
 				addLetter(s.charAt(0));
 			}
+			onAction();
 			
 		}
 
