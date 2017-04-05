@@ -45,4 +45,9 @@ public class DeleteChildVisitor implements LogicalObjectVisitor{
 		//Do nothing
 	}
 
+	@Override
+	public void visit(Parameter parameter) {
+		//TODO implement
+	}
+
 }

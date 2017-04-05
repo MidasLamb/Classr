@@ -9,6 +9,7 @@ import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
 import logicalobjects.Method;
+import logicalobjects.Parameter;
 
 public class FormCreator implements LogicalObjectVisitor{
 	private FormBuilder<FormWrapper> formBuilder;
@@ -61,6 +62,12 @@ public class FormCreator implements LogicalObjectVisitor{
 	
 	public FormWrapper getForm(){
 		return this.getFormBuilder().getForm();
+	}
+
+	@Override
+	public void visit(Parameter parameter) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

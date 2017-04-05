@@ -7,4 +7,5 @@ public interface LogicalObjectVisitor {
 	public void visit(Method c);
 	public void visit(Attribute c);
 	public void visit(Association c);
+	public void visit(Parameter parameter);
 }

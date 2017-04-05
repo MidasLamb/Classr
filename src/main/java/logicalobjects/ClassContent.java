@@ -6,6 +6,7 @@ public abstract class ClassContent extends LogicalObject{
 	private LogicalClass realClass;
 	private Visibility visibility;
 	private String type;
+	private boolean isStatic;
 	
 
 	/**
@@ -58,6 +59,14 @@ public abstract class ClassContent extends LogicalObject{
 
 	public final void setType(String type) {
 		this.type = type;
+	}
+
+	public final boolean isStatic() {
+		return isStatic;
+	}
+
+	public final void setStatic(boolean isStatic) {
+		this.isStatic = isStatic;
 	}
 	
 }

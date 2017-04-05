@@ -31,6 +31,11 @@ public abstract class CheckBox extends FormObject {
 		void onClick(MouseClick click) {
 			setState(new NotSelected());			
 		}
+
+		@Override
+		public boolean isChecked() {
+			return true;
+		}
 		
 	}
 	
@@ -44,6 +49,11 @@ public abstract class CheckBox extends FormObject {
 		@Override
 		void onClick(MouseClick click) {
 			setState(new Selected());
+		}
+
+		@Override
+		public boolean isChecked() {
+			return false;
 		}
 		
 	}
@@ -63,6 +73,17 @@ public abstract class CheckBox extends FormObject {
 
 	private void setState(CheckBoxState state) {
 		this.state = state;
+	}
+	
+	public boolean isChecked(){
+		return this.getState().isChecked();
+	}
+	
+	public void setChecked(boolean b){
+		if (b)
+			this.setState(new Selected());
+		else
+			this.setState(new NotSelected());
 	}
 
 }

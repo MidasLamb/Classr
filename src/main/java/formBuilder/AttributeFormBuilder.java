@@ -5,11 +5,13 @@ import static main.Constants.CONTAINER_WIDTH;
 
 import canvaswindow.MyCanvasWindow;
 import gui.base.Button;
+import gui.base.CheckBox;
 import gui.base.FormObject;
 import gui.base.InputBox;
 import gui.base.Label;
 import gui.base.RadioButton;
 import gui.base.RadioButtonGroup;
+import gui.utility.DefaultCheckBox;
 import gui.utility.DefaultRadioButton;
 import gui.utility.FormBuilder;
 import gui.utility.OkButton;
@@ -51,6 +53,14 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
 		
+		
+		// Static checkbox
+		
+		CheckBox staticCheckbox = new DefaultCheckBox(10, 400);
+		
+		this.addFormObject(staticCheckbox);
+		this.addLabelToRightOfLostFormObject("Static");
+		
 		OkButton ok = new OkButton(10, 500, 50, 50){
 
 			@Override
@@ -63,6 +73,8 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 					attribute.setVisibility(Visibility.PACKAGE);
 				if (group.getSelectedButton().equals(privateButton))
 					attribute.setVisibility(Visibility.PRIVATE);
+				
+				attribute.setStatic(staticCheckbox.isChecked());
 				
 				getForm().close();
 			}
@@ -99,6 +111,8 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 				group.setSelectedButton(packageButton);
 				break;
 		}
+		
+		staticCheckbox.setChecked(attribute.isStatic());
 		
 		
 	}
