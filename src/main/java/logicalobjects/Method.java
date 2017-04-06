@@ -1,5 +1,8 @@
 package logicalobjects;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -8,6 +11,7 @@ import interfaces.LogicalObjectVisitor;
  * @author team 11
  */
 public class Method extends ClassContent {
+	private Collection<Parameter> parameters;
 
 	/**
 	 * Constructs a new Method belonging to the stated RealClass.
@@ -18,10 +22,27 @@ public class Method extends ClassContent {
 	public Method(LogicalClass rc) {
 		super(rc);
 		this.setName("New method");
+		this.setParameters(new ArrayList<Parameter>());
 	}
 	
 	@Override
 	public void accept(LogicalObjectVisitor v) {
 		v.visit(this);	
+	}
+
+	public final Collection<Parameter> getParameters() {
+		return parameters;
+	}
+
+	private final void setParameters(Collection<Parameter> parameters) {
+		this.parameters = parameters;
+	}
+	
+	public void addParameter(Parameter p){
+		this.parameters.add(p);
+	}
+	
+	public void removeParameter(Parameter p){
+		this.parameters.remove(p);
 	}
 }
