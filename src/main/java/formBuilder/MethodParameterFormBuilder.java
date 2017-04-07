@@ -18,7 +18,7 @@ import logicalobjects.Method;
 import logicalobjects.Parameter;
 import logicalobjects.Visibility;
 
-public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
+public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 	private MyCanvasWindow window;
 	private Parameter parameter;
 	private boolean closedByOk;
@@ -41,13 +41,14 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(parType);
 		this.addLabelToTopOfLastFormObject("Parameter type");	
 		
+		MethodParameterFormBuilder t = this;
 		OkButton ok = new OkButton(10, 500, 50, 50){
 
 			@Override
 			protected void onOk() {
 				parameter.setName(parName.getText());
 				parameter.setType(parType.getText());
-				closedByOk = true;
+				t.onOk();
 				getForm().close();
 			}
 			
@@ -63,10 +64,17 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				getForm().close();
+				onCancel();
 			}
 		};
 		
 		this.addFormObject(cancel);
+	}
+	
+	public abstract void onOk();
+	
+	public void onCancel(){
+		// Default behavior is to do nothing
 	}
 
 }
