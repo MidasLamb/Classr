@@ -26,7 +26,7 @@ public class KeyHandler {
 		}
 	}
 	
-	static FunctionKey getFunctionKey(KeyEvent e){
+	 static FunctionKey getFunctionKey(KeyEvent e){
 		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
 			return new FunctionKey(FunctionKeyType.BACKSPACE);
 		}
@@ -39,7 +39,7 @@ public class KeyHandler {
 	}
 	
 	private static boolean isAscii(char c){
-		return !new String(new char[] {c}).matches("[^\\x20-\\x7E]");
+		return new String(new char[] {c}).matches("[A-Z]|[0-9]|[a-z]|_");
 		
 	}
 
