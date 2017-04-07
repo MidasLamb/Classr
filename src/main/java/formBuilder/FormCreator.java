@@ -3,7 +3,7 @@ package formBuilder;
 import canvaswindow.MyCanvasWindow;
 import gui.utility.FormBuilder;
 import guiToApplication.FormWrapper;
-import interfaces.LogicalObjectVisitor;
+import interfaces.LogicalObjectDeleteVisitor;
 import logicalobjects.Association;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
@@ -11,7 +11,7 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-public class FormCreator implements LogicalObjectVisitor{
+public class FormCreator implements LogicalObjectDeleteVisitor{
 	private FormBuilder<FormWrapper> formBuilder;
 	private MyCanvasWindow window;
 	

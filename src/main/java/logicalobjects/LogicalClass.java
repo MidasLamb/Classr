@@ -5,7 +5,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
-import interfaces.LogicalObjectVisitor;
+import interfaces.LogicalObjectDeleteVisitor;
+import interfaces.LogicalObjectStringVisitor;
 
 /**
  * A class of real classes, involving associations, attributes and methods
@@ -209,8 +210,13 @@ public class LogicalClass extends LogicalObject {
 	}
 	
 	@Override
-	public void accept(LogicalObjectVisitor v) {
+	public void accept(LogicalObjectDeleteVisitor v) {
 		v.visit(this);	
+	}
+
+	@Override
+	public void accept(LogicalObjectStringVisitor v) {
+		v.visit(this);
 	}
 
 }

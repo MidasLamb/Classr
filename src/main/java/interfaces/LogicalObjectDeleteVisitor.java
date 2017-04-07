@@ -2,7 +2,7 @@ package interfaces;
 
 import logicalobjects.*;
 
-public interface LogicalObjectVisitor {
+public interface LogicalObjectDeleteVisitor{
 	public void visit(LogicalClass c);
 	public void visit(Method c);
 	public void visit(Attribute c);

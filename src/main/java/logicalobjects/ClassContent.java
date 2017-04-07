@@ -1,7 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectVisitor;
-
 public abstract class ClassContent extends LogicalObject{
 	private LogicalClass realClass;
 	private Visibility visibility;

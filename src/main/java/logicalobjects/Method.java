@@ -3,7 +3,8 @@ package logicalobjects;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import interfaces.LogicalObjectVisitor;
+import interfaces.LogicalObjectDeleteVisitor;
+import interfaces.LogicalObjectStringVisitor;
 
 /**
  * A class of logical objects, involving a real class
@@ -26,7 +27,7 @@ public class Method extends ClassContent {
 	}
 	
 	@Override
-	public void accept(LogicalObjectVisitor v) {
+	public void accept(LogicalObjectDeleteVisitor v) {
 		v.visit(this);	
 	}
 
@@ -44,5 +45,10 @@ public class Method extends ClassContent {
 	
 	public void removeParameter(Parameter p){
 		this.parameters.remove(p);
+	}
+
+	@Override
+	public void accept(LogicalObjectStringVisitor v) {
+		v.visit(this);
 	}
 }

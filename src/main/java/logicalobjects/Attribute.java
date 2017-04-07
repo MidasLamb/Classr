@@ -1,6 +1,7 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectVisitor;
+import interfaces.LogicalObjectDeleteVisitor;
+import interfaces.LogicalObjectStringVisitor;
 
 /**
  * A class of attributes, involving a real class.
@@ -21,7 +22,12 @@ public class Attribute extends ClassContent {
 	}
 		
 	@Override
-	public void accept(LogicalObjectVisitor v) {
+	public void accept(LogicalObjectDeleteVisitor v) {
 		v.visit(this);	
+	}
+
+	@Override
+	public void accept(LogicalObjectStringVisitor v) {
+		v.visit(this);
 	}
 }

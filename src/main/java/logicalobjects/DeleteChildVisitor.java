@@ -1,13 +1,13 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectVisitor;
+import interfaces.LogicalObjectDeleteVisitor;
 
 /**
  * A visitor to delete a child of a LogicalClass
  * @author midas
  *
  */
-public class DeleteChildVisitor implements LogicalObjectVisitor{
+public class DeleteChildVisitor implements LogicalObjectDeleteVisitor{
 
 	@Override
 	/**

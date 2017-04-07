@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface LogicalObjectElement {
+public interface DeletableLogicalObject {
 	/**
 	 * The accept method for the visitor pattern.
 	 * It is important that you implement this in the lowest possible level of the hierarchy,
@@ -10,5 +10,5 @@ public interface LogicalObjectElement {
 	 * 
 	 * @param v
 	 */
-	public void accept(LogicalObjectVisitor v);
+	public void accept(LogicalObjectDeleteVisitor v);
 }
