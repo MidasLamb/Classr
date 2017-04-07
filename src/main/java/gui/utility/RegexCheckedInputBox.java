@@ -2,7 +2,6 @@ package gui.utility;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -27,11 +26,6 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 		for (Checker c : this.getCheckers()) {
 			c.checkConstraints();
 		}
-	}
-
-	@Override
-	public void handleKeyEvent(KeyEvent e) {
-		super.handleKeyEvent(e);
 	}
 
 	@Override

@@ -1,9 +1,9 @@
 package gui.base;
 
-import static gui.base.Constants.*;
+import static gui.base.Constants.STANDARD_LABEL_PADDING;
+import static gui.base.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import inputHandlers.clicks.MouseClick;
 
@@ -35,9 +35,6 @@ public abstract class FormObject implements Comparable<FormObject>{
 	
 	protected abstract void onAction();
 	
-	protected void handleKeyEvent(KeyEvent e){
-		
-	}
 	
 	/**
 	 * Checks if the received click is for this object and handles it if it is for this object

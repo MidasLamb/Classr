@@ -1,12 +1,14 @@
 package gui.base;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.TreeSet;
 
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
+import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
 
-public class Form{
+public class Form implements Typable{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
@@ -29,17 +31,23 @@ public class Form{
 		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
 	}
 	
-	public void handleKeyEvent(KeyEvent e) {
-		if (false) //if tab
-			; //cycle through
-		else {
-			this.getFormObjects().forEach(formObject -> formObject.handleKeyEvent(e));
-		}
-	}
-	
 	public void draw(Graphics g){
 		this.getFormObjects().forEach(formObject -> formObject.draw(g));
 	}
+	
+	@Override
+	public void handleAsciiKey(AsciiKey key) {
+		getFormObjects().stream().filter(x -> x instanceof Typable)
+			.map(x -> (Typable) x).forEach(x -> x.handleAsciiKey(key));
+	}
+
+	@Override
+	public void handleFunctionKey(FunctionKey key) {
+		getFormObjects().stream().filter(x -> x instanceof Typable)
+		.map(x -> (Typable) x).forEach(x -> x.handleFunctionKey(key));
+	}
+	
+	//Getters and setters
 
 	private int getWidth() {
 		return width;

@@ -1,12 +1,15 @@
 package visualobjects;
 
 import static main.Constants.MAX_TEXT_WIDTH;
+import static inputHandler.keys.FunctionKey.FunctionKeyType;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
 import inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
 
@@ -122,20 +125,24 @@ public class EditableText extends Text {
 	private void setIsStandardTextSet(boolean isStandardText) {
 		this.isStandardTextSet = isStandardText;
 	}
-
+	
 	@Override
-	public final void handleKeyEvent(KeyEvent e) {
-		// Get the key and put it in a string
-		String s = Character.toString(e.getKeyChar());
-		// Delete letter if you press the backspace
-		if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE || s.equals("\b")) {
+	public void handleAsciiKey(AsciiKey key){
+		this.addLetter(key.getValue());
+	}
+	
+	@Override
+	public void handleFunctionKey(FunctionKey key){
+		switch(key.getKeyType()){
+		case BACKSPACE:
 			this.removeLetter();
-			// Unselect this object
-		} else if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			break;
+		case ENTER:
 			this.getContainer().switchSelectedTo(null);
-			// if it isn't an action key write it down
-		} else if (!e.isActionKey() && e.getKeyCode() != KeyEvent.VK_SHIFT && e.getKeyCode() != KeyEvent.VK_DELETE) {
-			this.addLetter(s.charAt(0));
+			break;
+		case ESCAPE:
+			this.getContainer().switchSelectedTo(null);
+			break;
 		}
 	}
 	

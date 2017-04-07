@@ -7,9 +7,12 @@ import java.awt.Canvas;
 import java.awt.Component;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import static inputHandler.keys.FunctionKey.FunctionKeyType.*;
 
 import org.junit.Test;
 
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import logicalobjects.Association;
@@ -157,45 +160,20 @@ public class VisualClassTest {
 	public void createClassEditNameTest(){
 		Container container = new Container(0, 0, 100, 100);
 		container.onDoubleClick(new DoubleClick(10,10));
-		
-		KeyEvent ke = new KeyEvent(new Canvas(), KeyEvent.KEY_PRESSED, 
-                0,                          // When timeStamp
-                0,                          // Modifier
-                KeyEvent.VK_A,      // Key Code
-                'a' );
-		
-		container.handleKeyEvent(ke);
-		
+		container.handleAsciiKey(new AsciiKey('a'));		
 		for (VisualObject v: container.getChildren()){
 			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
-			assertTrue(n.equals("a"));
+			assertEquals("a", n);
 		}
-		
-		ke = new KeyEvent(new Canvas(), KeyEvent.KEY_PRESSED, 
-                0,                          // When timeStamp
-                0,                          // Modifier
-                KeyEvent.VK_B,      // Key Code
-                'b' );
-		
-		container.handleKeyEvent(ke);
-		
+		container.handleAsciiKey(new AsciiKey('b'));		
 		for (VisualObject v: container.getChildren()){
 			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
-			assertTrue(n.equals("ab"));
+			assertEquals("ab", n);
 		}
-		
-		ke = new KeyEvent(new Canvas(), KeyEvent.KEY_PRESSED, 
-                0,                          // When timeStamp
-                0,                          // Modifier
-                KeyEvent.VK_BACK_SPACE,      // Key Code
-                '\b'
-                );
-		
-		container.handleKeyEvent(ke);
-		
+		container.handleFunctionKey(new FunctionKey(BACKSPACE));		
 		for (VisualObject v: container.getChildren()){
 			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
-			assertTrue(n.equals("a"));
+			assertEquals("a", n);
 		}
 	}
 

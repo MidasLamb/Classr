@@ -5,6 +5,8 @@ import static main.Constants.Z_CLASS;
 import java.awt.event.KeyEvent;
 
 import canvaswindow.MyCanvasWindow;
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
 import inputHandlers.CanvasContent;
 import inputHandlers.Clickable;
 import inputHandlers.clicks.DoubleClick;
@@ -21,18 +23,6 @@ public class Container extends VisualObject  implements CanvasContent{
 	
 	public Container(int x, int y, int width, int height) {
 		super(x, y, Integer.MIN_VALUE, width, height, null);
-	}
-
-	/**
-	 * If there is an element selected, let that element handle KeyEvent e
-	 * 
-	 * @param e
-	 *            KeyEvent that needs to be handled
-	 */
-	@Override
-	public void handleKeyEvent(KeyEvent e) {
-		if (getSelected() != null)
-			getSelected().handleKeyEvent(e);
 	}
 
 	/**
@@ -114,5 +104,17 @@ public class Container extends VisualObject  implements CanvasContent{
 
 	private void setCanvasWindow(MyCanvasWindow window) {
 		this.window = window;
+	}
+
+	@Override
+	public void handleAsciiKey(AsciiKey key) {
+		if(getSelected() != null)
+			getSelected().handleAsciiKey(key);
+	}
+
+	@Override
+	public void handleFunctionKey(FunctionKey key) {
+		if(getSelected() != null)
+			getSelected().handleFunctionKey(key);
 	}
 }

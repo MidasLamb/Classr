@@ -4,17 +4,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.awt.Canvas;
 import java.awt.event.KeyEvent;
 
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
+import inputHandler.keys.FunctionKey;
+import static inputHandler.keys.FunctionKey.FunctionKeyType.*;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
-import visualobjects.Container;
-import visualobjects.VisualClass;
 
 public class ContainerTest {
 
@@ -381,8 +380,7 @@ public class ContainerTest {
 		container.onClick(click2);
 		//klik op klasse
 		container.onClick(click3);
-		KeyEvent ke = getDeleteKey();
-		container.handleKeyEvent(ke);
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualClass){
@@ -405,7 +403,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKeyEvent(getDeleteKey());
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof PaddingBox){
@@ -427,7 +425,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKeyEvent(getDeleteKey());
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof PaddingBox){
@@ -452,7 +450,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKeyEvent(getDeleteKey());
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -477,7 +475,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKeyEvent(getDeleteKey());
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -502,7 +500,7 @@ public class ContainerTest {
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
-		container.handleKeyEvent(getDeleteKey());
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -530,7 +528,7 @@ public class ContainerTest {
 		container.onDragStart(drag2);
 		container.onDragEnd(drag2);
 		container.onClick(click4);
-		container.handleKeyEvent(getDeleteKey());
+		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
 			if(child instanceof VisualAssociation){
@@ -540,9 +538,8 @@ public class ContainerTest {
 		assertEquals(0,count);
 	}
 	
-	private static KeyEvent getDeleteKey(){
-		Canvas canvas = new Canvas();
-		return new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_DELETE, 'a');
+	private static FunctionKey getDeleteKey(){
+		return new FunctionKey(DELETE);
 	}
 	
 }

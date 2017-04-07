@@ -1,7 +1,9 @@
 package inputHandlers;
 
-import java.awt.event.KeyEvent;
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
 
 public interface Typable {
-	public void handleKeyEvent(KeyEvent e);
+	public void handleAsciiKey(AsciiKey key);
+	public void handleFunctionKey(FunctionKey key);
 }

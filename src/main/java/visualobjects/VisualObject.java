@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
+import static inputHandler.keys.FunctionKey.FunctionKeyType.*;
+import inputHandlers.Typable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
@@ -14,7 +18,7 @@ import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 import logicalobjects.LogicalObject;
 
-public abstract class VisualObject implements DeleteListener, DeleteSubject {
+public abstract class VisualObject implements DeleteListener, DeleteSubject, Typable {
 	private int x;
 	private int y;
 	private int z;
@@ -196,17 +200,6 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 	 */
 	final static boolean isBetween(int a, int b, int c) {
 		return a <= c && b >= c;
-	}
-
-	/**
-	 * If delete is pressed this object will delete itself
-	 * 
-	 * @param e
-	 *            Key event
-	 */
-	void handleKeyEvent(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_DELETE)
-			this.getLogicalObject().delete();
 	}
 
 	/**
@@ -446,6 +439,12 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject {
 		}
 
 	}
+	
+	public void handleAsciiKey(AsciiKey key){};
+	public void handleFunctionKey(FunctionKey key){
+		if(key.getKeyType() == DELETE)
+			this.getLogicalObject().delete();
+	};
 
 	private Collection<DeleteListener> getDeleteListeners() {
 		return deleteListeners;

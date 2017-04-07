@@ -1,10 +1,11 @@
 package guiToApplication;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import canvaswindow.MyCanvasWindow;
 import gui.base.Form;
+import inputHandler.keys.AsciiKey;
+import inputHandler.keys.FunctionKey;
 import inputHandlers.CanvasContent;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
@@ -16,12 +17,6 @@ public class FormWrapper extends Form implements CanvasContent {
 	public FormWrapper(int width, int height, MyCanvasWindow canvasWindow) {
 		super(width, height);
 		this.canvasWindow = canvasWindow;
-	}
-
-	@Override
-	public void handleKeyEvent(KeyEvent e) {
-		super.handleKeyEvent(e);
-
 	}
 
 	@Override
@@ -47,6 +42,17 @@ public class FormWrapper extends Form implements CanvasContent {
 
 	public void close() {
 		this.canvasWindow.closeContent(this);
+	}
+
+	@Override
+	public void handleAsciiKey(AsciiKey key) {
+		super.handleAsciiKey(key);
+		
+	}
+
+	@Override
+	public void handleFunctionKey(FunctionKey key) {
+		super.handleFunctionKey(key);		
 	}
 
 }

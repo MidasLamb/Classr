@@ -1,11 +1,8 @@
 package gui.base;
 
-import java.awt.event.KeyEvent;
-
 import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
 
-public abstract class InputBoxState extends State{
+public abstract class InputBoxState extends State implements Typable{
 	abstract void onClick(MouseClick click);
-	public abstract void handleKeyEvent(KeyEvent e);
 }
