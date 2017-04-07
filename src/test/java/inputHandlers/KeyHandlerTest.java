@@ -26,6 +26,12 @@ public class KeyHandlerTest {
 	}
 	
 	@Test
+	public void isAsciiTest3(){
+		KeyEvent e = generateKey(KeyEvent.VK_SPACE);
+		assertTrue(KeyHandler.keyEventIsAscii(e));
+	}
+	
+	@Test
 	public void getFuntionKeyTest(){
 		Canvas canvas = new Canvas();
 		KeyEvent ke = new KeyEvent(canvas, KeyEvent.KEY_PRESSED, 0, 

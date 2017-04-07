@@ -35,7 +35,8 @@ public class KeyHandler {
 	
 	static boolean keyEventIsAscii(KeyEvent e){
 		char c = e.getKeyChar();
-		return !e.isActionKey() && c != KeyEvent.CHAR_UNDEFINED && isAscii(c);
+		return !e.isActionKey() && c != KeyEvent.CHAR_UNDEFINED 
+				&& (isAscii(c) || e.getKeyCode() == KeyEvent.VK_SPACE);
 	}
 	
 	private static boolean isAscii(char c){
