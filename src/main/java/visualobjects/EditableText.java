@@ -14,8 +14,7 @@ import logicalobjects.LogicalObject;
 public class EditableText extends Text {
 	private String standardTextString;
 	private boolean isStandardTextSet;
-	private boolean editable;
-
+	
 	public EditableText(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
 			LogicalObject object) {
 		super(x, y, z, width, height, parent);
