@@ -2,6 +2,7 @@ package gui.base;
 
 import java.awt.Canvas;
 import java.awt.Font;
+import java.awt.FontMetrics;
 
 public final class Constants {
 	
@@ -13,8 +14,9 @@ public final class Constants {
 	
 	// TODO: hoogte label
 	public static final Font STANDARD_FONT = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
-	public static final int STANDARD_TEXT_HEIGHT = new Canvas().getFontMetrics(STANDARD_FONT).getHeight();
-	public static final int STANDARD_TEXT_ASCEND = new Canvas().getFontMetrics(STANDARD_FONT).getAscent();
+	public static final FontMetrics STANDARD_FONTMETRICS = new Canvas().getFontMetrics(STANDARD_FONT);
+	public static final int STANDARD_TEXT_HEIGHT = STANDARD_FONTMETRICS.getHeight();
+	public static final int STANDARD_TEXT_ASCEND = STANDARD_FONTMETRICS.getAscent();
 	
 	public static final int STANDARD_LABEL_PADDING = 5;
 	

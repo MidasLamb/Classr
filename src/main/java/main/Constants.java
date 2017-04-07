@@ -1,5 +1,9 @@
 package main;
 
+import java.awt.Canvas;
+import java.awt.Font;
+import java.awt.FontMetrics;
+
 public final class Constants {
 
 	public static final String CANVAS_TITLE = "Classr"; 
@@ -27,11 +31,14 @@ public final class Constants {
 
 	public static final int STANDARD_PADDING = 5;
 
-	public static final int STANDARD_TEXT_HEIGHT = 16;
-
 	public static final int Z_CLASS = 0;
 	public static final int Z_PADDING_BOX = -10;
 	public static final int Z_ASSOCIATION = -5;
+	
+	public static final Font STANDARD_FONT = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
+	public static final FontMetrics STANDARD_FONTMETRICS = new Canvas().getFontMetrics(STANDARD_FONT);
+	public static final int STANDARD_TEXT_HEIGHT = STANDARD_FONTMETRICS.getHeight();
+	public static final int STANDARD_TEXT_ASCEND = STANDARD_FONTMETRICS.getAscent();
 
 	private Constants() {
 		throw new AssertionError();

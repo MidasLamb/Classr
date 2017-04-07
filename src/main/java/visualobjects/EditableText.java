@@ -1,12 +1,10 @@
 package visualobjects;
 
-import static main.Constants.MAX_TEXT_WIDTH;
-import static inputHandler.keys.FunctionKey.FunctionKeyType;
+import static main.Constants.*;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import inputHandler.keys.AsciiKey;
 import inputHandler.keys.FunctionKey;
@@ -43,10 +41,11 @@ public class EditableText extends Text {
 	/**
 	 * 
 	 * @param c
-	 *            add character to the text
+	 *            add character to the text if the text is not already too long
 	 */
 	private void addLetter(char c) {
-		this.setText(this.getText() + c);
+		if (STANDARD_FONTMETRICS.stringWidth(getText() + c) <= MAX_TEXT_WIDTH)
+			this.setText(this.getText() + c);
 	}
 
 	/**
@@ -54,8 +53,6 @@ public class EditableText extends Text {
 	 */
 	@Override
 	public final void draw(Graphics g) {
-		// Limit the text size if it is to long
-		cutTextMaxWidth(g);
 		// Get and set the width/height based on font
 		FontMetrics m = g.getFontMetrics();
 		this.setWidth(m.stringWidth(this.getText()));
@@ -87,19 +84,6 @@ public class EditableText extends Text {
 				this.getY() + this.getHeight());
 		g.drawLine(this.getX() + this.getWidth() + 2, this.getY(), this.getX() + this.getWidth() + 2,
 				this.getY() + this.getHeight());
-	}
-
-	/**
-	 * Cuts the text so it's not larger than the box
-	 * 
-	 * @param g
-	 *            Graphics
-	 */
-	private void cutTextMaxWidth(Graphics g) {
-		FontMetrics m = g.getFontMetrics();
-		while (m.stringWidth(getText()) > MAX_TEXT_WIDTH) {
-			removeLetter();
-		}
 	}
 
 	final String getText() {
@@ -142,6 +126,8 @@ public class EditableText extends Text {
 			break;
 		case ESCAPE:
 			this.getContainer().switchSelectedTo(null);
+			break;
+		default:
 			break;
 		}
 	}
