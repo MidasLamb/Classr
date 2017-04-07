@@ -6,6 +6,7 @@ import static main.Constants.CONTAINER_WIDTH;
 import canvaswindow.MyCanvasWindow;
 import gui.base.Button;
 import gui.base.CheckBox;
+import gui.base.ListBox;
 import gui.base.RadioButton;
 import gui.base.RadioButtonGroup;
 import gui.utility.DefaultCheckBox;
@@ -16,11 +17,16 @@ import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
 import logicalobjects.Method;
+import logicalobjects.Parameter;
 import logicalobjects.Visibility;
 
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
 	private MyCanvasWindow window;
+	
+	private Button editParameter;
+	private Button removeParameter;
+	private ListBox<ParameterWrapper> parameters;
 
 	public MethodFormBuilder(Method method, MyCanvasWindow window) {
 		this.method = method;
@@ -41,7 +47,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(methType);
 		this.addLabelToTopOfLastFormObject("Method type");
 
-		// Radio buttons for visibility.
+		// Radio buttons for visibility. ---------------------------------------------------------------
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton publicButton = new DefaultRadioButton(group, 10, 250);
 		this.addFormObject(publicButton);
@@ -53,14 +59,84 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
 
-		// Static checkbox
+		// Static checkbox ---------------------------------------------------------------
 		CheckBox staticCheckbox = new DefaultCheckBox(10, 400);
+
 
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLostFormObject("Static");
+		
+		
+		// Parameters ---------------------------------------------------------------
+		parameters = new ListBox<ParameterWrapper>(10,450,100,100){
+
+			@Override
+			protected void onAction() {
+				checkEditAndCancelButtons();
+			}
+			
+		};
+		
+		this.addFormObject(parameters);
+		this.addLabelToTopOfLastFormObject("Parameters");
+		
+		Button addParameter = new Button("Add", 150,450, 50, 50){
+
+			@Override
+			protected void onAction() {
+				Parameter p = new Parameter("name", "type");
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window){
+
+					@Override
+					public void onOk() {
+						parameters.addElement(new ParameterWrapper(p));
+						checkEditAndCancelButtons();
+					}
+					
+				};
+				getForm().getCanvasWindow().addContentAndSwitchTo(parabuilder.getForm());
+			}
+			
+		};
+		
+		this.addFormObject(addParameter);
+		
+		editParameter = new Button("Edit", 250,450, 50, 50){
+
+			@Override
+			protected void onAction() {
+				Parameter p = parameters.getSelectedObject().getParameter();
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window){
+
+					@Override
+					public void onOk() {
+						
+					}
+					
+				};
+				getForm().getCanvasWindow().addContentAndSwitchTo(parabuilder.getForm());
+				
+			}
+			
+		};
+		
+		this.addFormObject(editParameter);
+		
+		removeParameter = new Button("Remove", 350,450, 50, 50){
+
+			@Override
+			protected void onAction() {
+				parameters.removeSelectedElement();
+				checkEditAndCancelButtons();
+			}
+			
+		};
+		
+		this.addFormObject(removeParameter);
+		
 
 		
-		// OK and cancel
+		// OK and cancel ---------------------------------------------------------------
 		OkButton ok = new OkButton(10, 500, 50, 50) {
 
 			@Override
@@ -112,7 +188,13 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		}
 		
 		staticCheckbox.setChecked(method.isStatic());
+		checkEditAndCancelButtons();
+	}
 
+	
+	private void checkEditAndCancelButtons(){
+		editParameter.setEnabled(parameters.getSelectedObject() != null);
+		removeParameter.setEnabled(parameters.getSelectedObject() != null);
 	}
 
 }

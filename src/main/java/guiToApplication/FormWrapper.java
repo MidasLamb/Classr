@@ -43,6 +43,10 @@ public class FormWrapper extends Form implements CanvasContent {
 	public void close() {
 		this.canvasWindow.closeContent(this);
 	}
+	
+	public MyCanvasWindow getCanvasWindow(){
+		return this.canvasWindow;
+	}
 
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
