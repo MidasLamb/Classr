@@ -18,7 +18,10 @@ import gui.utility.OkButton;
 import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
-import logicalobjects.Visibility;
+import visibilities.Package;
+import visibilities.Private;
+import visibilities.Public;
+import visibilities.Visibility;
 
 public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
@@ -68,11 +71,11 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 				attribute.setName(attrName.getText());
 				attribute.setType(attrType.getText());
 				if (group.getSelectedButton().equals(publicButton))
-					attribute.setVisibility(Visibility.PUBLIC);
+					attribute.setVisibility(new Public());
 				if (group.getSelectedButton().equals(packageButton))
-					attribute.setVisibility(Visibility.PACKAGE);
+					attribute.setVisibility(new Package());
 				if (group.getSelectedButton().equals(privateButton))
-					attribute.setVisibility(Visibility.PRIVATE);
+					attribute.setVisibility(new Private());
 				
 				attribute.setStatic(staticCheckbox.isChecked());
 				
@@ -100,18 +103,12 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		// Initialize all objects with correct startinput.
 		
 		Visibility v = attribute.getVisibility();
-		switch (v){
-			case PRIVATE:
-				group.setSelectedButton(privateButton);
-				break;
-			case PUBLIC:
-				group.setSelectedButton(publicButton);
-				break;
-			case PACKAGE:
-				group.setSelectedButton(packageButton);
-				break;
-		}
-		
+		if(v instanceof Private)
+			group.setSelectedButton(privateButton);
+		else if(v instanceof Public)
+			group.setSelectedButton(publicButton);
+		else if(v instanceof Package)
+			group.setSelectedButton(packageButton);		
 		staticCheckbox.setChecked(attribute.isStatic());
 		
 		

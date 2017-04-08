@@ -16,7 +16,7 @@ import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
-import logicalobjects.Visibility;
+import visibilities.Visibility;
 
 public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 	private MyCanvasWindow window;

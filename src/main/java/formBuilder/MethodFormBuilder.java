@@ -18,7 +18,10 @@ import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
-import logicalobjects.Visibility;
+import visibilities.Package;
+import visibilities.Private;
+import visibilities.Public;
+import visibilities.Visibility;
 
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
@@ -58,6 +61,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButton packageButton = new DefaultRadioButton(group, 10, 350);
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
+		//TODO protected missing
 
 		// Static checkbox ---------------------------------------------------------------
 		CheckBox staticCheckbox = new DefaultCheckBox(10, 400);
@@ -144,11 +148,11 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 				method.setName(methName.getText());
 				method.setType(methType.getText());
 				if (group.getSelectedButton().equals(publicButton))
-					method.setVisibility(Visibility.PUBLIC);
+					method.setVisibility(new Public());
 				if (group.getSelectedButton().equals(packageButton))
-					method.setVisibility(Visibility.PACKAGE);
+					method.setVisibility(new Package());
 				if (group.getSelectedButton().equals(privateButton))
-					method.setVisibility(Visibility.PRIVATE);
+					method.setVisibility(new Private());
 				
 				method.setStatic(staticCheckbox.isChecked());
 
@@ -175,17 +179,12 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		// Initialize all objects with correct startinput.
 
 		Visibility v = method.getVisibility();
-		switch (v) {
-		case PRIVATE:
+		if(v instanceof Private)
 			group.setSelectedButton(privateButton);
-			break;
-		case PUBLIC:
+		else if(v instanceof Public)
 			group.setSelectedButton(publicButton);
-			break;
-		case PACKAGE:
-			group.setSelectedButton(packageButton);
-			break;
-		}
+		else if(v instanceof Package)
+			group.setSelectedButton(packageButton);	
 		
 		staticCheckbox.setChecked(method.isStatic());
 		checkEditAndCancelButtons();
