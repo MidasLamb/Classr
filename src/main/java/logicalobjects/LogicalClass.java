@@ -8,8 +8,6 @@ import java.util.NoSuchElementException;
 
 import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectStringVisitor;
-import visibilities.Public;
-import visibilities.Visibility;
 
 /**
  * A class of real classes, involving associations, attributes and methods

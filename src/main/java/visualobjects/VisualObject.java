@@ -1,15 +1,15 @@
 package visualobjects;
 
+import static inputHandler.keys.FunctionKey.FunctionKeyType.DELETE;
+
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
 import inputHandler.keys.AsciiKey;
 import inputHandler.keys.FunctionKey;
-import static inputHandler.keys.FunctionKey.FunctionKeyType.*;
 import inputHandlers.Typable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;

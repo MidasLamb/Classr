@@ -1,9 +1,9 @@
 package visualobjects;
 
-import static main.Constants.*;
+import static main.Constants.MAX_TEXT_WIDTH;
+import static main.Constants.STANDARD_FONTMETRICS;
 
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import inputHandler.keys.AsciiKey;
@@ -33,8 +33,8 @@ public class EditableText extends Text {
 	 * Removes one character from text if there is a character to remove
 	 */
 	private void removeLetter() {
-		if (this.getText().length() > 0)
-			this.setText(getText().substring(0, getText().length() - 1));
+		if (getLogicalObject().getName().length() > 0)
+			this.setText(getLogicalObject().getName().substring(0, getLogicalObject().getName().length() - 1));
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class EditableText extends Text {
 	 *            add character to the text if the text is not already too long
 	 */
 	private void addLetter(char c) {
-		if (STANDARD_FONTMETRICS.stringWidth(getText() + c) <= MAX_TEXT_WIDTH)
-			this.setText(this.getText() + c);
+		if (STANDARD_FONTMETRICS.stringWidth(getString() + c) <= MAX_TEXT_WIDTH)
+			this.setText(getLogicalObject().getName() + c);
 	}
 
 	/**
@@ -52,18 +52,13 @@ public class EditableText extends Text {
 	 */
 	@Override
 	public final void draw(Graphics g) {
-		// Get and set the width/height based on font
-		FontMetrics m = g.getFontMetrics();
-		this.setWidth(m.stringWidth(this.getText()));
-		this.setHeight(m.getHeight());
-
 		// Draw the string
 		// Add the height with the Y value since drawing strings
 		// begins bottom left
 		Color s = g.getColor();
 		if (this.isStandardTextSet() && !this.hasSelectedAncestor())
 			g.setColor(Color.gray);
-		g.drawString(this.getText(), this.getX(), this.getY() + this.getHeight());
+		g.drawString(getText().getIterator(), this.getX(), this.getY() + this.getHeight());
 
 		if (this.isSelected())
 			this.drawCursor(g);
@@ -83,10 +78,6 @@ public class EditableText extends Text {
 				this.getY() + this.getHeight());
 		g.drawLine(this.getX() + this.getWidth() + 2, this.getY(), this.getX() + this.getWidth() + 2,
 				this.getY() + this.getHeight());
-	}
-
-	final String getText() {
-		return getLogicalObject().getName();
 	}
 
 	private void setText(String text) {
@@ -141,7 +132,7 @@ public class EditableText extends Text {
 		boolean prev = this.isSelected();
 		super.setSelected(b);
 		if (this.isSelected() == false && prev) {
-			if (this.getText().length() == 0) {
+			if (getString().length() == 0) {
 				this.setText(this.getStandardTextString());
 				setIsStandardTextSet(true);
 			}

@@ -1,13 +1,10 @@
 package visualobjects;
 
-import static org.junit.Assert.*;
-
-import java.awt.AWTException;
-import java.awt.Canvas;
-import java.awt.Component;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
-import static inputHandler.keys.FunctionKey.FunctionKeyType.*;
+import static inputHandler.keys.FunctionKey.FunctionKeyType.BACKSPACE;
+import static main.Constants.CLASS_WHITE_SPACE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -16,10 +13,6 @@ import inputHandler.keys.FunctionKey;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import logicalobjects.Association;
-
-import static main.Constants.*;
-import visualobjects.Container;
-import visualobjects.VisualClass;
 
 public class VisualClassTest {
 
@@ -162,17 +155,17 @@ public class VisualClassTest {
 		container.onDoubleClick(new DoubleClick(10,10));
 		container.handleAsciiKey(new AsciiKey('a'));		
 		for (VisualObject v: container.getChildren()){
-			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
+			String n = ((Text) ((VisualClass) v).getName().getContent()).getString();
 			assertEquals("a", n);
 		}
 		container.handleAsciiKey(new AsciiKey('b'));		
 		for (VisualObject v: container.getChildren()){
-			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
+			String n = ((Text) ((VisualClass) v).getName().getContent()).getString();
 			assertEquals("ab", n);
 		}
 		container.handleFunctionKey(new FunctionKey(BACKSPACE));		
 		for (VisualObject v: container.getChildren()){
-			String n = ((Text) ((VisualClass) v).getName().getContent()).getText();
+			String n = ((Text) ((VisualClass) v).getName().getContent()).getString();
 			assertEquals("a", n);
 		}
 	}
