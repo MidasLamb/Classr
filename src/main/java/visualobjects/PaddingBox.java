@@ -4,7 +4,6 @@ import static main.Constants.CLASS_WIDTH;
 import static main.Constants.STANDARD_PADDING;
 import static main.Constants.STANDARD_TEXT_HEIGHT;
 
-import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
@@ -92,7 +91,7 @@ public class PaddingBox extends VisualObject {
 		this.setPaddingTop(paddingTop);
 		this.setPaddingBottom(paddingBottom);
 		this.setContent(new Text(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop(),
-				this.getZ() + 1, this, standardstring, getLogicalObject()));
+				this.getZ() + 1, this, getLogicalObject()));
 
 		this.content.addDeleteListener(new DeleteListener() {
 

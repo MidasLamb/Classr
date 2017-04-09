@@ -2,6 +2,7 @@ package visualobjects;
 
 import static main.Constants.STANDARD_FONTMETRICS;
 import static main.Constants.STANDARD_TEXT_HEIGHT;
+import static main.Constants.MAX_TEXT_WIDTH;
 
 import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
@@ -16,21 +17,10 @@ import logicalobjects.StringVisitor;
 public class Text extends VisualObject {
 
 
-	public Text(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
-			LogicalObject object) {
-		super(x, y, z, width, height, parent);
+	public Text(int x, int y, int z, VisualObject parent, LogicalObject object) {
+		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent);
 		setLogicalObject(object);
 	}
-
-	public Text(int x, int y, int z, VisualObject parent, String standardstring, LogicalObject object) {
-		// 50, 16 is the standard size of the font if the text is "New Text"
-		this(x, y, z, 50, 16, parent, standardstring, object);
-	}
-
-	Text(int x, int y, int z, int width, int height, VisualObject parent) {
-		super(x,y,z,width,height,parent);
-	}
-
 
 	/**
 	 * Shows the text frame

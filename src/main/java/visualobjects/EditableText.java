@@ -15,18 +15,12 @@ public class EditableText extends Text {
 	private String standardTextString;
 	private boolean isStandardTextSet;
 	
-	public EditableText(int x, int y, int z, int width, int height, VisualObject parent, String standardstring,
+	public EditableText(int x, int y, int z, VisualObject parent, String standardstring,
 			LogicalObject object) {
-		super(x, y, z, width, height, parent);
-		setLogicalObject(object);
+		super(x, y, z, parent, object);
 		setStandardTextString(standardstring);
-		setText(getStandardTextString());
+		setString(getStandardTextString());
 		setIsStandardTextSet(true);
-	}
-
-	public EditableText(int x, int y, int z, VisualObject parent, String standardstring, LogicalObject object) {
-		// 50, 16 is the standard size of the font if the text is "New Text"
-		this(x, y, z, 50, 16, parent, standardstring, object);
 	}
 
 	/**
@@ -34,7 +28,7 @@ public class EditableText extends Text {
 	 */
 	private void removeLetter() {
 		if (getLogicalObject().getName().length() > 0)
-			this.setText(getLogicalObject().getName().substring(0, getLogicalObject().getName().length() - 1));
+			this.setString(getLogicalObject().getName().substring(0, getLogicalObject().getName().length() - 1));
 	}
 
 	/**
@@ -44,7 +38,7 @@ public class EditableText extends Text {
 	 */
 	private void addLetter(char c) {
 		if (STANDARD_FONTMETRICS.stringWidth(getString() + c) <= MAX_TEXT_WIDTH)
-			this.setText(getLogicalObject().getName() + c);
+			this.setString(getLogicalObject().getName() + c);
 	}
 
 	/**
@@ -80,7 +74,7 @@ public class EditableText extends Text {
 				this.getY() + this.getHeight());
 	}
 
-	private void setText(String text) {
+	private void setString(String text) {
 		getLogicalObject().setName(text);
 	}
 
@@ -133,14 +127,14 @@ public class EditableText extends Text {
 		super.setSelected(b);
 		if (this.isSelected() == false && prev) {
 			if (getString().length() == 0) {
-				this.setText(this.getStandardTextString());
+				this.setString(this.getStandardTextString());
 				setIsStandardTextSet(true);
 			}
 		}
 
 		if (this.isSelected() && prev == false) {
 			if (isStandardTextSet()) {
-				this.setText("");
+				this.setString("");
 				setIsStandardTextSet(false);
 			}
 		}

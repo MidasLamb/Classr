@@ -6,7 +6,6 @@ import java.util.Collection;
 import interfaces.DeletableLogicalObject;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
-import interfaces.LogicalObjectStringVisitor;
 import interfaces.StringObject;
 
 /**
