@@ -13,6 +13,7 @@ import interfaces.LogicalObjectStringVisitor;
  */
 public class Method extends ClassContent {
 	private Collection<Parameter> parameters;
+	private boolean isAbstract;
 
 	/**
 	 * Constructs a new Method belonging to the stated RealClass.
@@ -50,5 +51,13 @@ public class Method extends ClassContent {
 	@Override
 	public void accept(LogicalObjectStringVisitor v) {
 		v.visit(this);
+	}
+
+	public boolean isAbstract() {
+		return isAbstract;
+	}
+
+	public void setAbstract(boolean isAbstract) {
+		this.isAbstract = isAbstract;
 	}
 }

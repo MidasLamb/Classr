@@ -15,11 +15,11 @@ import gui.utility.FormBuilder;
 import gui.utility.OkButton;
 import gui.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
-import logicalobjects.Attribute;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 import visibilities.Package;
 import visibilities.Private;
+import visibilities.Protected;
 import visibilities.Public;
 import visibilities.Visibility;
 
@@ -41,11 +41,11 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
 
-		RegexCheckedInputBox methName = new RegexCheckedInputBox(method.getName(), ".*", 10, 10, 100, 16);
+		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), ".*", 10, 10, 100, 16);
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(method.getType(), ".*", 10, 100, 100, 16);
+		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), ".*", 10, 100, 100, 16);
 
 		this.addFormObject(methType);
 		this.addLabelToTopOfLastFormObject("Method type");
@@ -61,14 +61,18 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButton packageButton = new DefaultRadioButton(group, 10, 350);
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
-		//TODO protected missing
-
+		RadioButton protectedButton = new DefaultRadioButton(group, 10, 400);
+		this.addFormObject(protectedButton);
+		this.addLabelToRightOfLostFormObject("Protected");
 		// Static checkbox ---------------------------------------------------------------
-		CheckBox staticCheckbox = new DefaultCheckBox(10, 400);
-
-
+		CheckBox staticCheckbox = new DefaultCheckBox(10, 450);
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLostFormObject("Static");
+		
+		//Abstract checkbox ----------------------------------------------------------
+		CheckBox abstractCheckbox = new DefaultCheckBox(10, 500);
+		this.addFormObject(abstractCheckbox);
+		this.addLabelToRightOfLostFormObject("Abstract");
 		
 		
 		// Parameters ---------------------------------------------------------------
@@ -145,16 +149,19 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onOk() {
-				method.setName(methName.getText());
-				method.setType(methType.getText());
+				getMethod().setName(methName.getText());
+				getMethod().setType(methType.getText());
 				if (group.getSelectedButton().equals(publicButton))
-					method.setVisibility(new Public());
-				if (group.getSelectedButton().equals(packageButton))
-					method.setVisibility(new Package());
-				if (group.getSelectedButton().equals(privateButton))
-					method.setVisibility(new Private());
+					getMethod().setVisibility(new Public());
+				else if (group.getSelectedButton().equals(packageButton))
+					getMethod().setVisibility(new Package());
+				else if (group.getSelectedButton().equals(privateButton))
+					getMethod().setVisibility(new Private());
+				else if (group.getSelectedButton().equals(protectedButton))
+					getMethod().setVisibility(new Protected());
 				
-				method.setStatic(staticCheckbox.isChecked());
+				getMethod().setStatic(staticCheckbox.isChecked());
+				getMethod().setAbstract(abstractCheckbox.isChecked());
 
 				getForm().close();
 			}
@@ -178,15 +185,18 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Initialize all objects with correct startinput.
 
-		Visibility v = method.getVisibility();
+		Visibility v = getMethod().getVisibility();
 		if(v instanceof Private)
 			group.setSelectedButton(privateButton);
 		else if(v instanceof Public)
 			group.setSelectedButton(publicButton);
 		else if(v instanceof Package)
 			group.setSelectedButton(packageButton);	
+		else if(v instanceof Protected)
+			group.setSelectedButton(protectedButton);
 		
-		staticCheckbox.setChecked(method.isStatic());
+		staticCheckbox.setChecked(getMethod().isStatic());
+		abstractCheckbox.setChecked(getMethod().isAbstract());
 		checkEditAndCancelButtons();
 	}
 
@@ -194,6 +204,10 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private void checkEditAndCancelButtons(){
 		editParameter.setEnabled(parameters.getSelectedObject() != null);
 		removeParameter.setEnabled(parameters.getSelectedObject() != null);
+	}
+	
+	private Method getMethod() {
+		return method;
 	}
 
 }

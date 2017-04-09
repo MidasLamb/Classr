@@ -6,9 +6,6 @@ import static main.Constants.CONTAINER_WIDTH;
 import canvaswindow.MyCanvasWindow;
 import gui.base.Button;
 import gui.base.CheckBox;
-import gui.base.FormObject;
-import gui.base.InputBox;
-import gui.base.Label;
 import gui.base.RadioButton;
 import gui.base.RadioButtonGroup;
 import gui.utility.DefaultCheckBox;
@@ -20,6 +17,7 @@ import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
 import visibilities.Package;
 import visibilities.Private;
+import visibilities.Protected;
 import visibilities.Public;
 import visibilities.Visibility;
 
@@ -36,11 +34,11 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
-		RegexCheckedInputBox attrName = new RegexCheckedInputBox(attribute.getName(), "\\p{Lower}.*", 10, 10, 100, 16);
+		RegexCheckedInputBox attrName = new RegexCheckedInputBox(getAttribute().getName(), "\\p{Lower}.*", 10, 10, 100, 16);
 		this.addFormObject(attrName);
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		RegexCheckedInputBox attrType = new RegexCheckedInputBox(attribute.getType(), "\\p{Lower}.*", 10, 100, 100, 16);
+		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "\\p{Lower}.*", 10, 100, 100, 16);
 		this.addFormObject(attrType);
 		this.addLabelToTopOfLastFormObject("Attribute type");
 
@@ -55,7 +53,10 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButton packageButton = new DefaultRadioButton(group, 10, 350);
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
-		
+		this.addLabelToRightOfLostFormObject("Private");
+		RadioButton protectedButton = new DefaultRadioButton(group, 10, 350);
+		this.addFormObject(protectedButton);
+		this.addLabelToRightOfLostFormObject("ProtectedButton");
 		
 		// Static checkbox
 		
@@ -68,16 +69,18 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onOk() {
-				attribute.setName(attrName.getText());
-				attribute.setType(attrType.getText());
+				getAttribute().setName(attrName.getText());
+				getAttribute().setType(attrType.getText());
 				if (group.getSelectedButton().equals(publicButton))
-					attribute.setVisibility(new Public());
-				if (group.getSelectedButton().equals(packageButton))
-					attribute.setVisibility(new Package());
-				if (group.getSelectedButton().equals(privateButton))
-					attribute.setVisibility(new Private());
+					getAttribute().setVisibility(new Public());
+				else if (group.getSelectedButton().equals(packageButton))
+					getAttribute().setVisibility(new Package());
+				else if (group.getSelectedButton().equals(privateButton))
+					getAttribute().setVisibility(new Private());
+				else if (group.getSelectedButton().equals(protectedButton))
+					getAttribute().setVisibility(new Protected());
 				
-				attribute.setStatic(staticCheckbox.isChecked());
+				getAttribute().setStatic(staticCheckbox.isChecked());
 				
 				getForm().close();
 			}
@@ -99,19 +102,20 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		
 		this.addFormObject(cancel);
 		
-		
 		// Initialize all objects with correct startinput.
-		
-		Visibility v = attribute.getVisibility();
+		Visibility v = getAttribute().getVisibility();
 		if(v instanceof Private)
 			group.setSelectedButton(privateButton);
 		else if(v instanceof Public)
 			group.setSelectedButton(publicButton);
 		else if(v instanceof Package)
-			group.setSelectedButton(packageButton);		
-		staticCheckbox.setChecked(attribute.isStatic());
-		
-		
+			group.setSelectedButton(packageButton);	
+		else if(v instanceof Protected)
+			group.setSelectedButton(protectedButton);
+		staticCheckbox.setChecked(getAttribute().isStatic());
 	}
 
+	private Attribute getAttribute() {
+		return attribute;
+	}
 }
