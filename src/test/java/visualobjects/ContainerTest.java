@@ -340,7 +340,8 @@ public class ContainerTest {
 	@Test
 	public void selectMethodeTest(){
 		//TODO update this test with the new use case
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow window = new MyCanvasWindow("Test");
+		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(149,118);
 		DoubleClick click2 = new DoubleClick(201,164);
 		SingleClick click3 = new SingleClick(1,1);
@@ -416,7 +417,8 @@ public class ContainerTest {
 	@Test
 	public void deleteMethodeTest(){
 		//TODO update this test with the new use case
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow window = new MyCanvasWindow("Test");
+		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(149,118);
 		DoubleClick click2 = new DoubleClick(201,164);
 		SingleClick click3 = new SingleClick(1,1);
