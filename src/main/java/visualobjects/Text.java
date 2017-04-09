@@ -50,10 +50,12 @@ public class Text extends VisualObject {
 		StringBuilder string = new StringBuilder();
 		StringVisitor strVis = new StringVisitor();
 		AttributedCharacterIterator itr = getLogicalObject().accept(strVis).getIterator();
+		string.append(itr.current());
 		while (itr.getIndex() < itr.getEndIndex())
 		        string.append(itr.next());
-		//string.delete(string.length()-1, string.length());
-		return string.toString();
+		if(string.length() > 0)
+			string.delete(string.length()-1, string.length());
+		return string.toString().replaceAll("#", "");
 	}
 	
 	@Override
