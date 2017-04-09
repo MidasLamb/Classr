@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import canvaswindow.MyCanvasWindow;
 import inputHandler.keys.AsciiKey;
 import inputHandler.keys.FunctionKey;
 import inputHandlers.clicks.DoubleClick;
@@ -70,7 +71,8 @@ public class VisualClassTest {
 		int x = 0;
 		int y = 0;
 		int z = 0;
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow window = new MyCanvasWindow("Test");
+		Container container = new Container(0, 0, 1000, 1000, window);
 		VisualClass visualClass = new VisualClass(x, y, z, container);
 		int numberOfChildren = visualClass.getChildren().size();
 		int clickY = visualClass.getName().getHeight() + 2;
@@ -87,7 +89,8 @@ public class VisualClassTest {
 		int x = 0;
 		int y = 0;
 		int z = 0;
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow window = new MyCanvasWindow("Test");
+		Container container = new Container(0, 0, 1000, 1000, window);
 		VisualClass visualClass = new VisualClass(x, y, z, container);
 		int numberOfChildren = visualClass.getChildren().size();
 		int clickY = visualClass.getName().getHeight() + 2 + CLASS_WHITE_SPACE;

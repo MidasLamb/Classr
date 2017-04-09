@@ -64,15 +64,15 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param g
 	 *            Graphics g
 	 */
-	public final void show(Graphics g) {
-		if (this.isSelected() || this.hasSelectedAncestor()){
+	public void show(Graphics g) {
+		if (this.isSelected() || this.hasSelectedAncestor()) {
 			g.setColor(Color.red);
 		}
 		this.draw(g);
 		for (VisualObject v : this.getChildren()) {
 			v.show(g);
 		}
-		if (this.isSelected()){
+		if (this.isSelected()) {
 			g.setColor(Color.black);
 		}
 	}
@@ -345,16 +345,16 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param c
 	 *            the child to be added
 	 */
-	private void addChild(VisualObject c) {
+	final void addChild(VisualObject c) {
 		this.children.add(c);
-		c.addDeleteListener(new DeleteListener(){
+		c.addDeleteListener(new DeleteListener() {
 
 			@Override
 			public void notifySubjectDeleted(DeleteSubject subject) {
 				removeChild(c);
-				
+
 			}
-			
+
 		});
 		this.children.sort(new VisualObjectComparator());
 	}
@@ -439,10 +439,13 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		}
 
 	}
-	
-	public void handleAsciiKey(AsciiKey key){};
-	public void handleFunctionKey(FunctionKey key){
-		if(key.getKeyType() == DELETE)
+
+	public void handleAsciiKey(AsciiKey key) {
+
+	};
+
+	public void handleFunctionKey(FunctionKey key) {
+		if (key.getKeyType() == DELETE)
 			this.getLogicalObject().delete();
 	};
 
@@ -466,10 +469,10 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	private void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	
-	boolean hasSelectedAncestor(){
+
+	boolean hasSelectedAncestor() {
 		VisualObject v = this;
-		while (v != null){
+		while (v != null) {
 			if (v.isSelected())
 				return true;
 			v = v.getParent();

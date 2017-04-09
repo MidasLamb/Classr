@@ -1,7 +1,6 @@
 package visualobjects;
 
-import static main.Constants.CLASS_WHITE_SPACE;
-import static main.Constants.Z_PADDING_BOX;
+import static main.Constants.*;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -14,13 +13,13 @@ import logicalobjects.LogicalClass;
 import logicalobjects.Method;
 
 public class VisualClass extends VisualObject {
-	private PaddingBox name;
+	private PaddingBox<EditableText> name;
 
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
-		this.setName(new PaddingBox(this.getX(), this.getY(), 5, this, "Nieuwe klasse", getLogicalObject()));
-		this.getName().changeContentToEditableText("Nieuwe klasse");
+		this.setName(new PaddingBox<EditableText>(this.getX(), this.getY(), 0,  new EditableText(0,0,0,null,"Klasse" ,getLogicalObject()), this, getLogicalObject()));
+		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
 
 		this.getName().addDeleteListener(this);
@@ -88,11 +87,12 @@ public class VisualClass extends VisualObject {
 	 * 
 	 * @return PaddingBox of the attribute that was created
 	 */
-	private PaddingBox createAttribute() {
+	private PaddingBox<Text> createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this, "Nieuw Attribuut", attr);
+		Text t = new Text(0,0,0, null, attr);
+		PaddingBox<Text> tbox = new PaddingBox<Text>(this.getX(), this.getY(), Z_PADDING_BOX, t,  this, attr);
 		this.updateDimensions();
-		return t;
+		return tbox;
 	}
 
 	/**
@@ -100,11 +100,12 @@ public class VisualClass extends VisualObject {
 	 * 
 	 * @return PaddingBox of the method that was created
 	 */
-	private PaddingBox createMethod() {
+	private PaddingBox<Text> createMethod() {
 		Method method = getLogicalObject().addMethod();
-		PaddingBox t = new PaddingBox(this.getX(), this.getY(), Z_PADDING_BOX, this, "Nieuwe Methode", method);
+		Text t = new Text(0,0,0, null, method);
+		PaddingBox<Text> tbox = new PaddingBox<Text>(this.getX(), this.getY(), Z_PADDING_BOX, t, this, method);
 		this.updateDimensions();
-		return t;
+		return tbox;
 	}
 
 	/**
@@ -188,15 +189,16 @@ public class VisualClass extends VisualObject {
 	@Override
 	public final void onDoubleClick(DoubleClick dc) {
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())) {
-			PaddingBox t = this.createAttribute();
+			PaddingBox<Text> t = this.createAttribute();
 			this.getContainer().switchSelectedTo(t.getContent());
+			t.getContent().openForm();
 
-		}
-		if (this.isInEmptyMethod(dc.getX(), dc.getY())) {
-			PaddingBox t = this.createMethod();
+		} else if (this.isInEmptyMethod(dc.getX(), dc.getY())) {
+			PaddingBox<Text> t = this.createMethod();
 			this.getContainer().switchSelectedTo(t.getContent());
-		}
-		super.onDoubleClick(dc);
+			t.getContent().openForm();
+		} else
+			super.onDoubleClick(dc);
 	}
 
 	@Override
@@ -230,11 +232,11 @@ public class VisualClass extends VisualObject {
 
 	// Getters and setters
 
-	public final PaddingBox getName() {
+	public final PaddingBox<EditableText> getName() {
 		return name;
 	}
 
-	private void setName(PaddingBox name) {
+	private void setName(PaddingBox<EditableText> name) {
 		this.name = name;
 	}
 
@@ -247,7 +249,7 @@ public class VisualClass extends VisualObject {
 				super.onClick(sc);
 		}
 
-		else if (this.isSelected()){
+		else if (this.isSelected()) {
 			if (this.getName().isIn(sc.getX(), sc.getY()))
 				this.getContainer().switchSelectedTo(this.getName().getContent());
 			else

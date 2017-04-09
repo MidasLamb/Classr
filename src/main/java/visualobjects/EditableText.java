@@ -111,6 +111,9 @@ public class EditableText extends Text {
 		case ESCAPE:
 			this.getContainer().switchSelectedTo(null);
 			break;
+		case DELETE:
+			this.getLogicalObject().delete();
+			break;
 		default:
 			break;
 		}

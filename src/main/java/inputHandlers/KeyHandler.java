@@ -30,6 +30,9 @@ public class KeyHandler {
 		if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
 			return new FunctionKey(FunctionKeyType.BACKSPACE);
 		}
+		if (e.getKeyCode() == KeyEvent.VK_DELETE){
+			return new FunctionKey(FunctionKeyType.DELETE);
+		}
 		return null;
 	}
 	

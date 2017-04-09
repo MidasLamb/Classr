@@ -519,7 +519,7 @@ public class ContainerTest {
 		DoubleClick click1 = new DoubleClick(129,94);
 		DoubleClick click2 = new DoubleClick(198,285);
 		DoubleClick click3 = new DoubleClick(462,259);
-		SingleClick click4 = new SingleClick(258,300);
+		SingleClick click4 = new SingleClick(217,300); //Really close so it works with short names
 		Drag drag1 = new Drag(129,125, 198,318);
 		Drag drag2 = new Drag(198,318, 461,292);
 		container.onDoubleClick(click1);
