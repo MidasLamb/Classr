@@ -1,51 +1,53 @@
 package logicalobjects;
 
-import static visibilities.Visibility.*;
+import static java.awt.font.TextAttribute.FONT;
+import static java.awt.font.TextAttribute.UNDERLINE;
+import static java.awt.Font.ITALIC;
+import java.text.AttributedString;
 
 import interfaces.LogicalObjectStringVisitor;
 
 public class StringVisitor implements LogicalObjectStringVisitor {
 
 	@Override
-	public String visit(LogicalClass c) {
-		// TODO Auto-generated method stub
-		return null;
+	public AttributedString visit(LogicalClass c) {
+		String text = c.getName();
+		AttributedString string = new AttributedString(text);
+		return string;
 	}
 
 	@Override
-	public String visit(Method c) {
-		/*Each method is
-			represented using the standard UML textual representation for a method,
-			including its name, return type, parameters, and visibility, and whether it
-			is static or abstract*/
-		// TODO Auto-generated method stub
-		return null;
+	public AttributedString visit(Method c) {
+		String text = c.getVisibility().getUMLRepresentation() + c.getName();
+		AttributedString string = new AttributedString(text);
+		if(c.isStatic())
+			string.addAttribute(UNDERLINE, UNDERLINE);
+		if(c.isAbstract())
+			string.addAttribute(FONT, ITALIC);
+		return string;
 	}
 
 	@Override
-	public String visit(Attribute c) {
-		StringBuilder builder = new StringBuilder();
-		//Add visibility
-		builder.append(c.getVisibility().getUMLRepresentation());
-		builder.append(" ");
-		builder.append(c.getName());
-		return builder.toString();
-		/*Each attribute is represented using the standard UML textual representation
-		for an attribute, including its name, type, and visibility (private, packageaccessible,
-				protected, or public), and whether it is static*/
-		// TODO Auto-generated method stub
+	public AttributedString visit(Attribute c) {
+		String text = c.getVisibility().getUMLRepresentation() + c.getName();
+		AttributedString string = new AttributedString(text);
+		if(c.isStatic())
+			string.addAttribute(UNDERLINE, UNDERLINE);
+		return string;
 	}
 
 	@Override
-	public String visit(Association c) {
-		// TODO Auto-generated method stub
-		return null;
+	public AttributedString visit(Association c) {
+		String text = c.getName();
+		AttributedString string = new AttributedString(text);
+		return string;
 	}
 
 	@Override
-	public String visit(Parameter parameter) {
-		// TODO Auto-generated method stub
-		return null;
+	public AttributedString visit(Parameter c) {
+		String text = c.getName();
+		AttributedString string = new AttributedString(text);
+		return string;
 	}
 
 }

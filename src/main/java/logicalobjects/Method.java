@@ -1,5 +1,6 @@
 package logicalobjects;
 
+import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -49,8 +50,8 @@ public class Method extends ClassContent {
 	}
 
 	@Override
-	public void accept(LogicalObjectStringVisitor v) {
-		v.visit(this);
+	public AttributedString accept(LogicalObjectStringVisitor v) {
+		return v.visit(this);
 	}
 
 	public boolean isAbstract() {

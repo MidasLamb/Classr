@@ -1,5 +1,6 @@
 package logicalobjects;
 
+import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -7,6 +8,8 @@ import java.util.NoSuchElementException;
 
 import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectStringVisitor;
+import visibilities.Public;
+import visibilities.Visibility;
 
 /**
  * A class of real classes, involving associations, attributes and methods
@@ -215,8 +218,8 @@ public class LogicalClass extends LogicalObject {
 	}
 
 	@Override
-	public void accept(LogicalObjectStringVisitor v) {
-		v.visit(this);
+	public AttributedString accept(LogicalObjectStringVisitor v) {
+		return v.visit(this);
 	}
 
 }
