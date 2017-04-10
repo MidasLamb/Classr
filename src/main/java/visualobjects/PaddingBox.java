@@ -48,14 +48,6 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	public PaddingBox(int x, int y, int z,T content, VisualObject parent, LogicalObject object) {
 		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent, object);
 	}
-	
-
-	@Override
-	public final void setY(int y) {
-		super.setY(y);
-		if (getContent() != null)
-			this.getContent().setY(y + this.getPaddingTop());
-	}
 
 	@Override
 	public final int getHeight() {
