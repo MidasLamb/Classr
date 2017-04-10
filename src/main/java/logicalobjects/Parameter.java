@@ -4,6 +4,7 @@ import java.text.AttributedString;
 
 import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 public class Parameter extends LogicalObject {
 	private String type;
@@ -36,4 +37,9 @@ public class Parameter extends LogicalObject {
 		return v.visit(this);
 	}
 
+
+	@Override
+	public Object accept(LogicalObjectVisitor v) {
+		return v.visit(this);
+	}
 }

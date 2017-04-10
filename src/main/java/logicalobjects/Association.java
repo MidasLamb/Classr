@@ -4,6 +4,7 @@ import java.text.AttributedString;
 
 import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of associations, involving two real classes
@@ -90,6 +91,12 @@ public class Association extends LogicalObject{
 
 	@Override
 	public AttributedString accept(LogicalObjectStringVisitor v) {
+		return v.visit(this);
+	}
+
+
+	@Override
+	public Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);
 	}
 

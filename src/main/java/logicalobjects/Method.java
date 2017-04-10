@@ -6,6 +6,7 @@ import java.util.Collection;
 
 import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of logical objects, involving a real class
@@ -60,5 +61,11 @@ public class Method extends ClassContent {
 
 	public void setAbstract(boolean isAbstract) {
 		this.isAbstract = isAbstract;
+	}
+	
+
+	@Override
+	public Object accept(LogicalObjectVisitor v) {
+		return v.visit(this);
 	}
 }

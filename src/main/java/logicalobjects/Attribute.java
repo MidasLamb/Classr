@@ -4,6 +4,7 @@ import java.text.AttributedString;
 
 import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of attributes, involving a real class.
@@ -30,6 +31,12 @@ public class Attribute extends ClassContent {
 
 	@Override
 	public AttributedString accept(LogicalObjectStringVisitor v) {
+		return v.visit(this);
+	}
+	
+
+	@Override
+	public Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);
 	}
 }
