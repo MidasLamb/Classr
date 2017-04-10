@@ -1,7 +1,5 @@
 package interfaces;
 
-import java.text.AttributedString;
-
 import logicalobjects.Association;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;

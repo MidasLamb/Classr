@@ -1,9 +1,6 @@
 package logicalobjects;
 
-import java.text.AttributedString;
-
 import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -87,13 +84,6 @@ public class Association extends LogicalObject{
 	public void accept(LogicalObjectDeleteVisitor v) {
 		v.visit(this);	
 	}
-
-
-	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
-		return v.visit(this);
-	}
-
 
 	@Override
 	public Object accept(LogicalObjectVisitor v) {

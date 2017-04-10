@@ -1,13 +1,14 @@
 package logicalobjects;
 
+import static java.awt.Font.ITALIC;
 import static java.awt.font.TextAttribute.FONT;
 import static java.awt.font.TextAttribute.UNDERLINE;
-import static java.awt.Font.ITALIC;
+
 import java.text.AttributedString;
 
-import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
-public class StringVisitor implements LogicalObjectStringVisitor {
+public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 
 	@Override
 	public AttributedString visit(LogicalClass c) {

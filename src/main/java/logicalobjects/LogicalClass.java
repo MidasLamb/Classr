@@ -1,13 +1,11 @@
 package logicalobjects;
 
-import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
 import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -214,11 +212,6 @@ public class LogicalClass extends LogicalObject {
 	@Override
 	public void accept(LogicalObjectDeleteVisitor v) {
 		v.visit(this);	
-	}
-
-	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
-		return v.visit(this);
 	}
 	
 

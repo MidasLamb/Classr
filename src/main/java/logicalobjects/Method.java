@@ -1,11 +1,9 @@
 package logicalobjects;
 
-import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Collection;
 
 import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -48,11 +46,6 @@ public class Method extends ClassContent {
 	
 	public void removeParameter(Parameter p){
 		this.parameters.remove(p);
-	}
-
-	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
-		return v.visit(this);
 	}
 
 	public boolean isAbstract() {

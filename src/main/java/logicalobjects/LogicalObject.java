@@ -6,7 +6,6 @@ import java.util.Collection;
 import interfaces.DeletableLogicalObject;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
-import interfaces.StringObject;
 import interfaces.Visitee;
 
 /**
@@ -14,7 +13,7 @@ import interfaces.Visitee;
  * 
  * @author team 11
  */
-public abstract class LogicalObject implements DeleteSubject, DeletableLogicalObject, StringObject, Visitee{
+public abstract class LogicalObject implements DeleteSubject, DeletableLogicalObject, Visitee{
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name;
