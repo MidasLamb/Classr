@@ -3,7 +3,6 @@ package gui.base;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import inputHandlers.clicks.MouseClick;
 

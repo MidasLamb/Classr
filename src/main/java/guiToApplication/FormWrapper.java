@@ -4,12 +4,12 @@ import java.awt.Graphics;
 
 import canvaswindow.MyCanvasWindow;
 import gui.base.Form;
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
 import inputHandlers.CanvasContent;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
 
 public class FormWrapper extends Form implements CanvasContent {
 	private MyCanvasWindow canvasWindow;

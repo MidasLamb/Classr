@@ -6,9 +6,9 @@ import static main.Constants.STANDARD_FONTMETRICS;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
 import inputHandlers.clicks.SingleClick;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
 import logicalobjects.LogicalObject;
 
 public class EditableText extends Text {

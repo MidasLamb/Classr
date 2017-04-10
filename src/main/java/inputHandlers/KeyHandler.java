@@ -2,9 +2,9 @@ package inputHandlers;
 
 import java.awt.event.KeyEvent;
 
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
-import inputHandler.keys.FunctionKey.FunctionKeyType;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
+import inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 public class KeyHandler {
 	private CanvasContent content;

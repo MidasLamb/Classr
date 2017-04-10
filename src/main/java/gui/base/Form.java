@@ -3,12 +3,12 @@ package gui.base;
 import java.awt.Graphics;
 import java.util.TreeSet;
 
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
 import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
 
-public class Form implements Typable{
+public class Form{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
@@ -35,13 +35,11 @@ public class Form implements Typable{
 		this.getFormObjects().forEach(formObject -> formObject.draw(g));
 	}
 	
-	@Override
 	public void handleAsciiKey(AsciiKey key) {
 		getFormObjects().stream().filter(x -> x instanceof Typable)
 			.map(x -> (Typable) x).forEach(x -> x.handleAsciiKey(key));
 	}
 
-	@Override
 	public void handleFunctionKey(FunctionKey key) {
 		getFormObjects().stream().filter(x -> x instanceof Typable)
 		.map(x -> (Typable) x).forEach(x -> x.handleFunctionKey(key));

@@ -1,4 +1,4 @@
-package inputHandler.keys;
+package inputHandlers.keys;
 
 public class AsciiKey extends Key {
 

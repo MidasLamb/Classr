@@ -1,6 +1,6 @@
 package visualobjects;
 
-import static inputHandler.keys.FunctionKey.FunctionKeyType.BACKSPACE;
+import static inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
 import static main.Constants.CLASS_WHITE_SPACE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -9,10 +9,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
 import logicalobjects.Association;
 
 public class VisualClassTest {

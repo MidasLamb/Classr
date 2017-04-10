@@ -3,10 +3,10 @@ package gui.base;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
 import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
 
 public abstract class InputBox extends FormObject implements Typable{
 

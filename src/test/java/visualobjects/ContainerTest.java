@@ -1,5 +1,6 @@
 package visualobjects;
 
+import static inputHandlers.keys.FunctionKey.FunctionKeyType.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,11 +10,10 @@ import java.awt.event.KeyEvent;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
-import inputHandler.keys.FunctionKey;
-import static inputHandler.keys.FunctionKey.FunctionKeyType.*;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
+import inputHandlers.keys.FunctionKey;
 
 public class ContainerTest {
 

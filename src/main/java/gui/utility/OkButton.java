@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import gui.base.Button;
-import gui.base.Form;
 
 public abstract class OkButton extends Button implements Checker{
 	private Collection<Checkable> constraints;

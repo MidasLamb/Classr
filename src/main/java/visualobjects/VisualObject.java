@@ -1,6 +1,6 @@
 package visualobjects;
 
-import static inputHandler.keys.FunctionKey.FunctionKeyType.DELETE;
+import static inputHandlers.keys.FunctionKey.FunctionKeyType.DELETE;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
-import inputHandler.keys.AsciiKey;
-import inputHandler.keys.FunctionKey;
 import inputHandlers.Typable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;
+import inputHandlers.keys.AsciiKey;
+import inputHandlers.keys.FunctionKey;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 import logicalobjects.LogicalObject;

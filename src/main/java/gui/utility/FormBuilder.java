@@ -3,7 +3,6 @@ package gui.utility;
 import gui.base.Form;
 import gui.base.FormObject;
 import gui.base.Label;
-import guiToApplication.FormWrapper;
 
 public abstract class FormBuilder<T extends Form> {
 	private T form;
