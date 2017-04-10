@@ -1,6 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -80,10 +79,6 @@ public class Association extends LogicalObject{
 		this.class2 = class2;
 	}
 
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
-	}
 
 	@Override
 	public Object accept(LogicalObjectVisitor v) {

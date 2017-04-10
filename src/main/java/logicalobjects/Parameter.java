@@ -1,6 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectVisitor;
 
 public class Parameter extends LogicalObject {
@@ -11,10 +10,6 @@ public class Parameter extends LogicalObject {
 		this.setType(type);
 	}
 
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);
-	}
 
 	@Override
 	protected void onDelete() {

@@ -1,6 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -20,11 +19,7 @@ public class Attribute extends ClassContent {
 		super(rc);
 		this.setName("New attribute");
 	}
-		
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
-	}
+
 
 	@Override
 	public Object accept(LogicalObjectVisitor v) {

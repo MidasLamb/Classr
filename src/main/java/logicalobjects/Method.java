@@ -3,7 +3,6 @@ package logicalobjects;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -26,11 +25,7 @@ public class Method extends ClassContent {
 		this.setName("New method");
 		this.setParameters(new ArrayList<Parameter>());
 	}
-	
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
-	}
+
 
 	public final Collection<Parameter> getParameters() {
 		return parameters;

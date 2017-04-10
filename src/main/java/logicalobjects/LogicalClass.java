@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
-import interfaces.LogicalObjectDeleteVisitor;
 import interfaces.LogicalObjectVisitor;
 
 /**
@@ -91,8 +90,8 @@ public class LogicalClass extends LogicalObject {
 	 *             The logical object is not present
 	 */
 
-	public void deleteChild(LogicalObject child) throws NoSuchElementException, IllegalStateException {
-		child.accept(new DeleteChildVisitor());
+	public void deleteChild(LogicalObject child){
+		new DeleteChildVisitor().startVisit(child);
 	}
 
 	/**
@@ -207,11 +206,6 @@ public class LogicalClass extends LogicalObject {
 	public final void onDelete() {
 		for (Association a : this.getAssociations())
 			a.delete();
-	}
-	
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
 	}
 	
 

@@ -3,7 +3,7 @@ package formBuilder;
 import canvaswindow.MyCanvasWindow;
 import gui.utility.FormBuilder;
 import guiToApplication.FormWrapper;
-import interfaces.LogicalObjectDeleteVisitor;
+import interfaces.LogicalObjectVisitor;
 import logicalobjects.Association;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
@@ -11,7 +11,7 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-public class FormCreator implements LogicalObjectDeleteVisitor{
+public class FormCreator implements LogicalObjectVisitor<Void>{
 	private FormBuilder<FormWrapper> formBuilder;
 	private MyCanvasWindow window;
 	
@@ -21,27 +21,27 @@ public class FormCreator implements LogicalObjectDeleteVisitor{
 	}
 
 	@Override
-	public void visit(LogicalClass c) {
+	public Void visit(LogicalClass c) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void visit(Method c) {
+	public Void visit(Method c) {
 		this.setFormBuilder(new MethodFormBuilder(c, this.getWindow()));
-		
+		return null;
 	}
 
 	@Override
-	public void visit(Attribute c) {
+	public Void visit(Attribute c) {
 		this.setFormBuilder(new AttributeFormBuilder(c, this.getWindow()));
-		
+		return null;
 	}
 
 	@Override
-	public void visit(Association c) {
+	public Void visit(Association c) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	private FormBuilder<FormWrapper> getFormBuilder() {
@@ -65,9 +65,9 @@ public class FormCreator implements LogicalObjectDeleteVisitor{
 	}
 
 	@Override
-	public void visit(Parameter parameter) {
+	public Void visit(Parameter parameter) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }
