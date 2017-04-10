@@ -7,8 +7,6 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 import java.awt.Graphics;
 
 import inputHandlers.clicks.SingleClick;
-import interfaces.DeleteListener;
-import interfaces.DeleteSubject;
 import logicalobjects.LogicalObject;
 
 public class PaddingBox<T extends VisualObject> extends VisualObject {
@@ -32,6 +30,9 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 			tp.removeChild(content);
 		content.setParent(this);
 		this.addChild(content);
+		
+		content.setX(0);
+		content.setY(0);
 
 		this.content.addDeleteListener(this);
 	}
