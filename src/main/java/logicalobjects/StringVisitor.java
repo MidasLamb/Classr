@@ -23,7 +23,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		String text = c.getVisibility().getUMLRepresentation() + c.getName();
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
-			string.addAttribute(UNDERLINE, UNDERLINE_ON);
+			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
 		if(c.isAbstract())
 			string.addAttribute(FONT, ITALIC);
 		return string;
@@ -34,7 +34,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		String text = c.getVisibility().getUMLRepresentation() + c.getName();
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
-			string.addAttribute(UNDERLINE, UNDERLINE_ON);
+			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
 		return string;
 	}
 
