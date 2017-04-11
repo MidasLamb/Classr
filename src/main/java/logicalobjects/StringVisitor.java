@@ -3,6 +3,7 @@ package logicalobjects;
 import static java.awt.Font.ITALIC;
 import static java.awt.font.TextAttribute.FONT;
 import static java.awt.font.TextAttribute.UNDERLINE;
+import static java.awt.font.TextAttribute.UNDERLINE_ON;
 
 import java.text.AttributedString;
 
@@ -22,7 +23,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		String text = c.getVisibility().getUMLRepresentation() + c.getName();
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
-			string.addAttribute(UNDERLINE, UNDERLINE);
+			string.addAttribute(UNDERLINE, UNDERLINE_ON);
 		if(c.isAbstract())
 			string.addAttribute(FONT, ITALIC);
 		return string;
@@ -33,7 +34,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		String text = c.getVisibility().getUMLRepresentation() + c.getName();
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
-			string.addAttribute(UNDERLINE, UNDERLINE);
+			string.addAttribute(UNDERLINE, UNDERLINE_ON);
 		return string;
 	}
 
