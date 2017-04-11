@@ -6,9 +6,16 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
 
+import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
 
+/**
+ * A box in which the content can be padded.
+ * @author midas
+ *
+ * @param <T>
+ */
 public class PaddingBox<T extends VisualObject> extends VisualObject {
 	private int paddingTop;
 	private int paddingBottom;
@@ -120,5 +127,10 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	@Override
 	void onClick(SingleClick sc){
 		this.getContent().onClick(sc);
+	}
+
+	@Override
+	void onDoubleClick(DoubleClick dc){
+		this.getContent().onDoubleClick(dc);
 	}
 }

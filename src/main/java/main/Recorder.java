@@ -13,7 +13,7 @@ import canvaswindow.MyCanvasWindow;
 public class Recorder {
 
 	public static void main(String[] args) {
-		String testName = "deleteAssociation4";
+		String testName = "useCase1";
 		prepareDirectory(testName);
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		canvasWindow.recordSession("recordings/" + testName + "/recording");

@@ -45,32 +45,32 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), ".*", 10, 100, 100, 16);
+		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), ".*", 10, 60, 100, 16);
 
 		this.addFormObject(methType);
 		this.addLabelToTopOfLastFormObject("Method type");
 
 		// Radio buttons for visibility. ---------------------------------------------------------------
 		RadioButtonGroup group = new RadioButtonGroup();
-		RadioButton publicButton = new DefaultRadioButton(group, 10, 250);
+		RadioButton publicButton = new DefaultRadioButton(group, 10, 110);
 		this.addFormObject(publicButton);
 		this.addLabelToRightOfLostFormObject("Public");
-		RadioButton privateButton = new DefaultRadioButton(group, 10, 300);
+		RadioButton privateButton = new DefaultRadioButton(group, 10, 160);
 		this.addFormObject(privateButton);
 		this.addLabelToRightOfLostFormObject("Private");
-		RadioButton packageButton = new DefaultRadioButton(group, 10, 350);
+		RadioButton packageButton = new DefaultRadioButton(group, 10, 210);
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
-		RadioButton protectedButton = new DefaultRadioButton(group, 10, 400);
+		RadioButton protectedButton = new DefaultRadioButton(group, 10, 260);
 		this.addFormObject(protectedButton);
 		this.addLabelToRightOfLostFormObject("Protected");
 		// Static checkbox ---------------------------------------------------------------
-		CheckBox staticCheckbox = new DefaultCheckBox(10, 450);
+		CheckBox staticCheckbox = new DefaultCheckBox(10, 310);
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLostFormObject("Static");
 		
 		//Abstract checkbox ----------------------------------------------------------
-		CheckBox abstractCheckbox = new DefaultCheckBox(10, 500);
+		CheckBox abstractCheckbox = new DefaultCheckBox(10, 360);
 		this.addFormObject(abstractCheckbox);
 		this.addLabelToRightOfLostFormObject("Abstract");
 		

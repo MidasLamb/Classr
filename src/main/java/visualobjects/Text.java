@@ -26,12 +26,9 @@ public class Text extends VisualObject {
 	 * Shows the text frame
 	 */
 	@Override
-	public void draw(Graphics g) {
-
-		// Get and set the width/height based on font
-		if (this.getLogicalObject() == null)
-			System.out.println("No logic");
-
+	public void draw(Graphics g) {	
+		
+		
 		// Draw the string
 		// Add the height with the Y value since drawing strings
 		// begins bottom left

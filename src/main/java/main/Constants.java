@@ -36,6 +36,9 @@ public final class Constants {
 	public static final int Z_ASSOCIATION = -5;
 	
 	public static final Font STANDARD_FONT = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
+	public static final String STANDARD_FONT_NAME = Font.SANS_SERIF;
+	public static final int STANDARD_FONT_STYLE = Font.PLAIN;
+	public static final int STANDARD_FONT_SIZE = 12;
 	public static final FontMetrics STANDARD_FONTMETRICS = new Canvas().getFontMetrics(STANDARD_FONT);
 	public static final int STANDARD_TEXT_HEIGHT = STANDARD_FONTMETRICS.getHeight();
 	public static final int STANDARD_TEXT_ASCEND = STANDARD_FONTMETRICS.getAscent();
