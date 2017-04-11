@@ -9,6 +9,7 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
 import formBuilder.FormCreator;
+import formBuilder.NewObjectFormCreator;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
@@ -67,6 +68,11 @@ public class Text extends VisualObject {
 	
 	public final void openForm(){
 		FormCreator creator = new FormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
+		this.getContainer().getCanvasWindow().addContentAndSwitchTo(creator.getForm());
+	}
+	
+	public final void openNewForm(){
+		NewObjectFormCreator creator = new NewObjectFormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
 		this.getContainer().getCanvasWindow().addContentAndSwitchTo(creator.getForm());
 	}
 	

@@ -24,11 +24,12 @@ import visibilities.Visibility;
 public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
 	private MyCanvasWindow window;
+	private boolean isNew;
 
-	public AttributeFormBuilder(Attribute attribute, MyCanvasWindow window) {
+	public AttributeFormBuilder(Attribute attribute, MyCanvasWindow window, boolean isNew) {
 		this.attribute = attribute;
 		this.window = window;
-		
+		this.isNew = isNew;
 	}
 
 	@Override
@@ -96,6 +97,8 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onAction() {
+				if (isNew)
+					attribute.delete();
 				getForm().close();
 			}
 		};

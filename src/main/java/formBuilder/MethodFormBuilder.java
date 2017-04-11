@@ -26,15 +26,16 @@ import visibilities.Visibility;
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
 	private MyCanvasWindow window;
+	private boolean isNew;
 	
 	private Button editParameter;
 	private Button removeParameter;
 	private ListBox<ParameterWrapper> parameters;
 
-	public MethodFormBuilder(Method method, MyCanvasWindow window) {
+	public MethodFormBuilder(Method method, MyCanvasWindow window, boolean isNew) {
 		this.method = method;
 		this.window = window;
-
+		this.isNew = isNew;
 	}
 
 	@Override
@@ -177,6 +178,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onAction() {
+				if (isNew)
+					method.delete();
 				getForm().close();
 			}
 		};

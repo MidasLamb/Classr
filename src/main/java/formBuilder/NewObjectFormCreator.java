@@ -11,11 +11,11 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-public class FormCreator implements LogicalObjectVisitor<Void>{
+public class NewObjectFormCreator implements LogicalObjectVisitor<Void>{
 	private FormBuilder<FormWrapper> formBuilder;
 	private MyCanvasWindow window;
 	
-	public FormCreator(LogicalObject o, MyCanvasWindow window){
+	public NewObjectFormCreator(LogicalObject o, MyCanvasWindow window){
 		this.setWindow(window);
 		o.accept(this);
 	}
@@ -28,13 +28,13 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 
 	@Override
 	public Void visit(Method c) {
-		this.setFormBuilder(new MethodFormBuilder(c, this.getWindow(), false));
+		this.setFormBuilder(new MethodFormBuilder(c, this.getWindow(), true));
 		return null;
 	}
 
 	@Override
 	public Void visit(Attribute c) {
-		this.setFormBuilder(new AttributeFormBuilder(c, this.getWindow(), false));
+		this.setFormBuilder(new AttributeFormBuilder(c, this.getWindow(), true));
 		return null;
 	}
 

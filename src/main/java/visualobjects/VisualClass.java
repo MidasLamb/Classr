@@ -191,12 +191,12 @@ public class VisualClass extends VisualObject {
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())) {
 			PaddingBox<Text> t = this.createAttribute();
 			this.getContainer().switchSelectedTo(t.getContent());
-			t.getContent().openForm();
+			t.getContent().openNewForm();
 
 		} else if (this.isInEmptyMethod(dc.getX(), dc.getY())) {
 			PaddingBox<Text> t = this.createMethod();
 			this.getContainer().switchSelectedTo(t.getContent());
-			t.getContent().openForm();
+			t.getContent().openNewForm();
 		} else
 			super.onDoubleClick(dc);
 	}
