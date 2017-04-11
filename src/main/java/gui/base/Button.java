@@ -7,23 +7,39 @@ import java.awt.Graphics;
 
 import inputHandlers.clicks.MouseClick;
 
+/**
+ * Button that can be added to a Form
+ */
 public abstract class Button extends FormObject {
-	
+
 	private final Label text;
 	private ButtonState state;
 
+	/**
+	 * Create a new Button and set its text, coordinates and dimensions.
+	 * 
+	 * @param text
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public Button(String text, int x, int y, int width, int height) {
 		super(x, y, width, height);
-		this.text = new Label(text, x + STANDARD_BUTTON_TEXT_PADDING, 
-				y + STANDARD_BUTTON_TEXT_PADDING);
+		this.text = new Label(text, x + STANDARD_BUTTON_TEXT_PADDING, y + STANDARD_BUTTON_TEXT_PADDING);
 		setEnabled(true);
 	}
-	
-	public void setEnabled(boolean bool){
-		if(bool)
+
+	/**
+	 * Enable or disable the Button
+	 * 
+	 * @param bool
+	 */
+	public void setEnabled(boolean bool) {
+		if (bool)
 			setState(new Enabled());
 		else
-			setState(new Disabled());			
+			setState(new Disabled());
 	}
 
 	@Override
@@ -35,7 +51,7 @@ public abstract class Button extends FormObject {
 	void draw(Graphics g) {
 		getState().draw(g);
 	}
-	
+
 	private class Enabled extends ButtonState {
 
 		@Override
@@ -52,9 +68,9 @@ public abstract class Button extends FormObject {
 		void onClick(MouseClick click) {
 			onAction();
 		}
-		
+
 	}
-	
+
 	private class Disabled extends ButtonState {
 
 		@Override
@@ -68,18 +84,19 @@ public abstract class Button extends FormObject {
 		}
 
 		@Override
-		void onClick(MouseClick click) {}
-		
+		void onClick(MouseClick click) {
+		}
+
 	}
-	
-	private void drawText(Graphics g){
+
+	private void drawText(Graphics g) {
 		int height = getText().getAscent();
 		int width = getText().getWidth();
-		int middleX = getWidth()/2 + getX();
-		int middleY = getHeight()/2 + getY();
-		getText().draw(g, middleX-width/2, middleY-height);
+		int middleX = getWidth() / 2 + getX();
+		int middleY = getHeight() / 2 + getY();
+		getText().draw(g, middleX - width / 2, middleY - height);
 	}
-		
+
 	private ButtonState getState() {
 		return state;
 	}

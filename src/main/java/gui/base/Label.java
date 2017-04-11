@@ -10,10 +10,19 @@ import java.awt.Graphics;
 
 import inputHandlers.clicks.MouseClick;
 
+/**
+ * Label that can be added to a Form.
+ */
 public class Label extends FormObject {
 	
 	final private String text;
 
+	/**
+	 * Create a new Label and set its text and coordinates.
+	 * @param text
+	 * @param x
+	 * @param y
+	 */
 	public Label(String text, int x, int y) {
 		super(x, y, 0, 0);
 		this.text = text;		
