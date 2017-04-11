@@ -1,9 +1,6 @@
 package logicalobjects;
 
-import java.text.AttributedString;
-
-import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of associations, involving two real classes
@@ -82,14 +79,9 @@ public class Association extends LogicalObject{
 		this.class2 = class2;
 	}
 
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
-	}
-
 
 	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
+	public Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);
 	}
 

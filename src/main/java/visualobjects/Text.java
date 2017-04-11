@@ -40,13 +40,13 @@ public class Text extends VisualObject {
 	 */
 	protected AttributedString getText(){
 		StringVisitor strVis = new StringVisitor();
-		return getLogicalObject().accept(strVis);
+		return strVis.startVisit(this.getLogicalObject());
 	}
 	
 	protected String getString(){
 		StringBuilder string = new StringBuilder();
 		StringVisitor strVis = new StringVisitor();
-		AttributedCharacterIterator itr = getLogicalObject().accept(strVis).getIterator();
+		AttributedCharacterIterator itr = strVis.startVisit(getLogicalObject()).getIterator();
 		string.append(itr.current());
 		while (itr.getIndex() < itr.getEndIndex())
 		        string.append(itr.next());

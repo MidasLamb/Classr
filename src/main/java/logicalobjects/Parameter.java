@@ -1,9 +1,6 @@
 package logicalobjects;
 
-import java.text.AttributedString;
-
-import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 public class Parameter extends LogicalObject {
 	private String type;
@@ -13,10 +10,6 @@ public class Parameter extends LogicalObject {
 		this.setType(type);
 	}
 
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);
-	}
 
 	@Override
 	protected void onDelete() {
@@ -31,9 +24,9 @@ public class Parameter extends LogicalObject {
 		this.type = type;
 	}
 
+
 	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
+	public Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);
 	}
-
 }

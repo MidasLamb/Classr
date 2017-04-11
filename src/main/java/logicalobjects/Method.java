@@ -1,11 +1,9 @@
 package logicalobjects;
 
-import java.text.AttributedString;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of logical objects, involving a real class
@@ -27,11 +25,7 @@ public class Method extends ClassContent {
 		this.setName("New method");
 		this.setParameters(new ArrayList<Parameter>());
 	}
-	
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
-	}
+
 
 	public final Collection<Parameter> getParameters() {
 		return parameters;
@@ -49,16 +43,17 @@ public class Method extends ClassContent {
 		this.parameters.remove(p);
 	}
 
-	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
-		return v.visit(this);
-	}
-
 	public boolean isAbstract() {
 		return isAbstract;
 	}
 
 	public void setAbstract(boolean isAbstract) {
 		this.isAbstract = isAbstract;
+	}
+	
+
+	@Override
+	public Object accept(LogicalObjectVisitor v) {
+		return v.visit(this);
 	}
 }

@@ -1,9 +1,6 @@
 package logicalobjects;
 
-import java.text.AttributedString;
-
-import interfaces.LogicalObjectDeleteVisitor;
-import interfaces.LogicalObjectStringVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A class of attributes, involving a real class.
@@ -22,14 +19,10 @@ public class Attribute extends ClassContent {
 		super(rc);
 		this.setName("New attribute");
 	}
-		
-	@Override
-	public void accept(LogicalObjectDeleteVisitor v) {
-		v.visit(this);	
-	}
+
 
 	@Override
-	public AttributedString accept(LogicalObjectStringVisitor v) {
+	public Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);
 	}
 }

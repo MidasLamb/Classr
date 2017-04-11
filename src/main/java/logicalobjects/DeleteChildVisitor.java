@@ -1,13 +1,13 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectDeleteVisitor;
+import interfaces.LogicalObjectVisitor;
 
 /**
  * A visitor to delete a child of a LogicalClass
  * @author midas
  *
  */
-public class DeleteChildVisitor implements LogicalObjectDeleteVisitor{
+public class DeleteChildVisitor implements LogicalObjectVisitor<Void>{
 
 	@Override
 	/**
@@ -16,8 +16,9 @@ public class DeleteChildVisitor implements LogicalObjectDeleteVisitor{
 	 * @param	association
 	 * 			the Association to remove
 	 */
-	public void visit(Association association) {
+	public Void visit(Association association) {
 		association.remove();
+		return null;
 	}
 
 	@Override
@@ -27,8 +28,9 @@ public class DeleteChildVisitor implements LogicalObjectDeleteVisitor{
 	 * @param	attribute
 	 * 			the Attribute to remove
 	 */
-	public void visit(Attribute attribute) {
+	public Void visit(Attribute attribute) {
 		attribute.getRealClass().deleteAttribute(attribute);
+		return null;
 	}
 
 	/**
@@ -38,21 +40,24 @@ public class DeleteChildVisitor implements LogicalObjectDeleteVisitor{
 	 * 			the Method to remove
 	 */
 	@Override
-	public void visit(Method method) {
+	public Void visit(Method method) {
 		method.getRealClass().deleteMethod(method);
+		return null;
 	}
 
 	/**
 	 * 
 	 */
 	@Override
-	public void visit(LogicalClass c) {
+	public Void visit(LogicalClass c) {
 		//Do nothing
+		return null;
 	}
 
 	@Override
-	public void visit(Parameter parameter) {
+	public Void visit(Parameter parameter) {
 		//Do nothing
+		return null;
 	}
 
 }
