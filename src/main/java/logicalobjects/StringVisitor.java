@@ -1,13 +1,13 @@
 package logicalobjects;
 
 import static java.awt.Font.ITALIC;
+import static java.awt.font.TextAttribute.FONT;
 import static java.awt.font.TextAttribute.UNDERLINE;
 import static java.awt.font.TextAttribute.UNDERLINE_ON;
 import static main.Constants.STANDARD_FONT_NAME;
 import static main.Constants.STANDARD_FONT_SIZE;
 
 import java.awt.Font;
-import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 
 import interfaces.LogicalObjectVisitor;
@@ -28,7 +28,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		if(c.isStatic())
 			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
 		if(c.isAbstract())
-			string.addAttribute(TextAttribute.FONT, new Font(STANDARD_FONT_NAME, ITALIC, STANDARD_FONT_SIZE));
+			string.addAttribute(FONT, new Font(STANDARD_FONT_NAME, ITALIC, STANDARD_FONT_SIZE), 1, text.length());
 		return string;
 	}
 
