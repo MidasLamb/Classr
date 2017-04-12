@@ -50,11 +50,14 @@ public abstract class InputBox extends FormObject implements Typable {
 
 		@Override
 		void draw(Graphics g) {
-			Color prev = g.getColor();
-			g.setColor(Color.RED);
+			
 			g.drawRect(getX(), getY(), getWidth(), getHeight());
 			g.drawString(getText(), getX(), getY() + getHeight());
-			g.setColor(prev);
+			
+			g.drawLine(getX() + getTextWidth(g) + 1, getY(), getX() + getTextWidth(g) + 1,
+					getY() + getHeight());
+			g.drawLine(getX() + getTextWidth(g) + 2, getY(), getX() + getTextWidth(g) + 2,
+					getY() + getHeight());
 		}
 
 		@Override
@@ -90,8 +93,13 @@ public abstract class InputBox extends FormObject implements Typable {
 		this.setText(this.getText() + s);
 	}
 
+	public int getTextWidth(Graphics g) {
+		return g.getFontMetrics().stringWidth(this.getText());
+	}
+
 	private void deleteChar() {
-		this.setText(this.getText().substring(0, this.getText().length() - 1));
+		if (this.getText().length() > 0)
+			this.setText(this.getText().substring(0, this.getText().length() - 1));
 	}
 
 	private class PassiveState extends InputBoxState {

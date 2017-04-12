@@ -54,14 +54,13 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButton packageButton = new DefaultRadioButton(group, 10, 350);
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLostFormObject("Package");
-		this.addLabelToRightOfLostFormObject("Private");
-		RadioButton protectedButton = new DefaultRadioButton(group, 10, 350);
+		RadioButton protectedButton = new DefaultRadioButton(group, 10, 400);
 		this.addFormObject(protectedButton);
-		this.addLabelToRightOfLostFormObject("ProtectedButton");
+		this.addLabelToRightOfLostFormObject("Protected");
 		
 		// Static checkbox
 		
-		CheckBox staticCheckbox = new DefaultCheckBox(10, 400);
+		CheckBox staticCheckbox = new DefaultCheckBox(10, 450);
 		
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLostFormObject("Static");
