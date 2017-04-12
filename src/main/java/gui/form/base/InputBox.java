@@ -3,6 +3,9 @@ package gui.form.base;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gui.text.Text;
+import gui.text.state.EditableState;
+import gui.text.state.PassiveState;
 import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
 import inputHandlers.keys.AsciiKey;
@@ -13,8 +16,7 @@ import inputHandlers.keys.FunctionKey;
  */
 public abstract class InputBox extends FormObject implements Typable {
 
-	private InputBoxState state;
-	private String text;
+	private Text textObject;
 
 	/**
 	 * Create a new InputBox and set its text, coordinates and dimensions.
@@ -30,8 +32,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	 */
 	public InputBox(String text, int x, int y, int width, int height) {
 		super(x, y, width, height);
-		setState(new PassiveState());
-		this.text = text;
+		this.setTextObject(new Text(text, new PassiveState()));
 	}
 
 	/**
@@ -46,128 +47,50 @@ public abstract class InputBox extends FormObject implements Typable {
 		this("", x, y, width, height);
 	}
 
-	private class TypeState extends InputBoxState {
-
-		@Override
-		void draw(Graphics g) {
-			
-			g.drawRect(getX(), getY(), getWidth(), getHeight());
-			g.drawString(getText(), getX(), getY() + getHeight());
-			
-			g.drawLine(getX() + getTextWidth(g) + 1, getY(), getX() + getTextWidth(g) + 1,
-					getY() + getHeight());
-			g.drawLine(getX() + getTextWidth(g) + 2, getY(), getX() + getTextWidth(g) + 2,
-					getY() + getHeight());
-		}
-
-		@Override
-		void onClick(MouseClick click) {
-		}
-
-		@Override
-		public void handleAsciiKey(AsciiKey key) {
-			addLetter(key.getValue());
-			onAction();
-		}
-
-		@Override
-		public void handleFunctionKey(FunctionKey key) {
-			switch (key.getKeyType()) {
-			case BACKSPACE:
-				deleteChar();
-				onAction();
-				break;
-			case ENTER:
-				setState(new PassiveState());
-				break;
-			case ESCAPE:
-				setState(new PassiveState());
-				break;
-			}
-
-		}
-
-	}
-
-	private void addLetter(char s) {
-		this.setText(this.getText() + s);
-	}
-
-	public int getTextWidth(Graphics g) {
-		return g.getFontMetrics().stringWidth(this.getText());
-	}
-
-	private void deleteChar() {
-		if (this.getText().length() > 0)
-			this.setText(this.getText().substring(0, this.getText().length() - 1));
-	}
-
-	private class PassiveState extends InputBoxState {
-
-		@Override
-		void draw(Graphics g) {
-			g.drawRect(getX(), getY(), getWidth(), getHeight());
-			g.drawString(getText(), getX(), getY() + getHeight());
-		}
-
-		@Override
-		void onClick(MouseClick click) {
-			setState(new TypeState());
-		}
-
-		@Override
-		public void handleAsciiKey(AsciiKey key) {
-		}
-
-		@Override
-		public void handleFunctionKey(FunctionKey key) {
-		}
-
-	}
-
 	@Override
 	void handleClick(MouseClick click) {
 		if (click.getX() >= getX() && click.getY() >= getY() && click.getX() <= getX() + getWidth()
 				&& click.getY() <= getY() + getHeight())
 			onClick(click);
 		else
-			setState(new PassiveState());
+			this.getTextObject().switchState(new PassiveState());
 	}
 
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
-		getState().handleAsciiKey(key);
+		this.getTextObject().handleAsciiKey(key);
+		onAction();
 	}
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
-		getState().handleFunctionKey(key);
+		this.getTextObject().handleFunctionKey(key);
+		onAction();
 	}
 
 	@Override
 	void onClick(MouseClick click) {
-		getState().onClick(click);
+		this.getTextObject().switchState(new EditableState());
+		onAction();
 	}
 
 	@Override
 	protected void draw(Graphics g) {
-		getState().draw(g);
+		g.drawRect(getX(), getY(), getWidth(), getHeight());
+		getTextObject().draw(g, this.getX(), this.getY());
 	}
 
-	private InputBoxState getState() {
-		return state;
+
+	protected final Text getTextObject() {
+		return textObject;
 	}
 
-	private void setState(InputBoxState state) {
-		this.state = state;
+	private final void setTextObject(Text textObject) {
+		this.textObject = textObject;
 	}
-
-	public final String getText() {
-		return text;
-	}
-
-	private void setText(String text) {
-		this.text = text;
+	
+	public String getText(){
+		return this.getTextObject().getText();
 	}
 
 }

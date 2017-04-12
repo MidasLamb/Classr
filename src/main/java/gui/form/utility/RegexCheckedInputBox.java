@@ -30,7 +30,7 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 
 	@Override
 	public boolean check() {
-		return super.getText().matches(this.getRegex());
+		return super.getTextObject().getText().matches(this.getRegex());
 	}
 
 	@Override

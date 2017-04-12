@@ -13,9 +13,9 @@ import logicalobjects.StringVisitor;
 
 public class Text implements Typable{
 	private TextState state;
-	private AttributedString text;
+	private String text;
 
-	public Text(AttributedString text, TextState startState) {
+	public Text(String text, TextState startState) {
 		this.setText(text);
 		this.setState(startState);
 		startState.setText(this);
@@ -34,22 +34,12 @@ public class Text implements Typable{
 		this.state = state;
 	}
 	
-	public final String getString(){
-		StringBuilder string = new StringBuilder();
-		AttributedCharacterIterator itr = getText().getIterator();
-		string.append(itr.current());
-		while (itr.getIndex() < itr.getEndIndex())
-		        string.append(itr.next());
-		if(string.length() > 0)
-			string.delete(string.length()-1, string.length());
-		return string.toString().replaceAll("#", "");
-	}
 
-	public final AttributedString getText() {
+	public final String getText() {
 		return text;
 	}
 
-	public final void setText(AttributedString text) {
+	public final void setText(String text) {
 		this.text = text;
 	}
 
