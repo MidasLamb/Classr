@@ -8,7 +8,7 @@ import inputHandlers.keys.FunctionKey;
 public class EditableState extends TextState {
 
 	public EditableState() {
-		
+
 	}
 
 	@Override
@@ -29,13 +29,17 @@ public class EditableState extends TextState {
 			break;
 		}
 
-
 	}
 
 	@Override
 	public void draw(Graphics g, int x, int y) {
-		g.drawString(getText().getText(), x, y + g.getFontMetrics().getAscent());
-		
+		if (getText().isAttributed()) {
+			g.drawString(getText().getAttributedText().getIterator(), x, y + g.getFontMetrics().getAscent());
+
+		} else {
+			g.drawString(getText().getText(), x, y + g.getFontMetrics().getAscent());
+
+		}
 		g.drawLine(x + getText().getTextWidth(g) + 1, y, x + getText().getTextWidth(g) + 1,
 				y + g.getFontMetrics().getAscent());
 		g.drawLine(x + getText().getTextWidth(g) + 2, y, x + getText().getTextWidth(g) + 2,

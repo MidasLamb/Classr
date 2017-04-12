@@ -16,56 +16,53 @@ public class TextTest {
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		Attribute a = new Attribute(r);
-		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
-		assertEquals("Standaard", t.getString());
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", c , r);
+		assertEquals("", t.getCurrentDisplayedString());
+		t.setSelected(false);
+		assertEquals("Standaard", t.getCurrentDisplayedString());
 	}
 
 	@Test
 	public void typeATest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		Attribute a = new Attribute(r);
-		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('a'));
-		assertEquals("a", t.getString());
+		assertEquals("a", t.getCurrentDisplayedString());
 	}
 
 	@Test
 	public void typeAaTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		Attribute a = new Attribute(r);
-		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
-		assertEquals("aa", t.getString());
+		assertEquals("aa", t.getCurrentDisplayedString());
 	}
 
 	@Test
 	public void typeAaBackspaceTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		Attribute a = new Attribute(r);
-		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleFunctionKey(new FunctionKey(BACKSPACE));
-		assertEquals("a", t.getString());
+		assertEquals("a", t.getCurrentDisplayedString());
 	}	
 	
 	@Test
 	public void typeCapitalATest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		Attribute a = new Attribute(r);
-		EditableText t = new EditableText(0, 0, 0, c, "Standaard", a);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('A'));
-		assertEquals("A", t.getString());
+		assertEquals("A", t.getCurrentDisplayedString());
 	}
 
 }

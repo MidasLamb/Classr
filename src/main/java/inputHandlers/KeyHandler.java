@@ -33,6 +33,12 @@ public class KeyHandler {
 		if (e.getKeyCode() == KeyEvent.VK_DELETE){
 			return new FunctionKey(FunctionKeyType.DELETE);
 		}
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			return new FunctionKey(FunctionKeyType.ESCAPE);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_ENTER){
+			return new FunctionKey(FunctionKeyType.ENTER);
+		}
 		return null;
 	}
 	

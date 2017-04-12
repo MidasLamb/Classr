@@ -13,12 +13,12 @@ import logicalobjects.LogicalClass;
 import logicalobjects.Method;
 
 public class VisualClass extends VisualObject {
-	private PaddingBox<EditableText> name;
+	private PaddingBox<EditableTextWrapper> name;
 
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
-		this.setName(new PaddingBox<EditableText>(this.getX(), this.getY(), 0,  new EditableText(0,0,0,null,"Klasse" ,getLogicalObject()), this, getLogicalObject()));
+		this.setName(new PaddingBox<EditableTextWrapper>(this.getX(), this.getY(), 0,  new EditableTextWrapper(0,0,0,"Klasse" ,null,getLogicalObject()), this, getLogicalObject()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
 
@@ -232,12 +232,12 @@ public class VisualClass extends VisualObject {
 
 	// Getters and setters
 
-	public final PaddingBox<EditableText> getName() {
+	public final PaddingBox<EditableTextWrapper> getName() {
 		return name;
 	}
 
-	private void setName(PaddingBox<EditableText> name) {
-		this.name = name;
+	private void setName(PaddingBox<EditableTextWrapper> paddingBox) {
+		this.name = paddingBox;
 	}
 
 	@Override

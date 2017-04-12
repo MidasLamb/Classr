@@ -15,7 +15,7 @@ import interfaces.Visitee;
 public abstract class LogicalObject implements DeleteSubject, Visitee{
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
-	private String name;
+	private String name = "";
 
 	public final void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);

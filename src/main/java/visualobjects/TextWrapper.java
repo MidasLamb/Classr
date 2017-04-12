@@ -23,7 +23,7 @@ public class TextWrapper extends VisualObject {
 	public TextWrapper(int x, int y, int z, VisualObject parent, LogicalObject object) {
 		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent);
 		setLogicalObject(object);
-		this.setTextObject(new Text("", new PassiveState()));
+		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 	}
 
 	/**
@@ -31,12 +31,9 @@ public class TextWrapper extends VisualObject {
 	 */
 	@Override
 	public void draw(Graphics g) {	
-		
+		// Other things can change the logical object, so check if it has changed.
+		this.getTextObject().setAttributedText(getText());
 		this.getTextObject().draw(g, this.getX(), this.getY());
-		// Draw the string
-		// Add the height with the Y value since drawing strings
-		// begins bottom left
-		//g.drawString(getText().getIterator(), getX(), getY() + getHeight());
 	}
 	
 	/**
@@ -89,11 +86,11 @@ public class TextWrapper extends VisualObject {
 		return STANDARD_TEXT_HEIGHT;
 	}
 
-	private final Text getTextObject() {
+	protected final Text getTextObject() {
 		return textObject;
 	}
 
-	private final void setTextObject(Text textObject) {
+	protected final void setTextObject(Text textObject) {
 		this.textObject = textObject;
 	}
 

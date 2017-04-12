@@ -15,7 +15,7 @@ import static main.Constants.*;
 public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
 	private final VisualClass p2;
-	private final PaddingBox<EditableText> text;
+	private final PaddingBox<EditableTextWrapper> text;
 
 
 
@@ -30,7 +30,7 @@ public class VisualAssociation extends VisualObject {
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<EditableText>(centerX, centerY, Z_PADDING_BOX, new EditableText(0,0,0, null,"Associatie", association), this, association);
+		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0,0,0,"Associatie", null, association), this, association);
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.text.addDeleteListener(this);
 	}
@@ -55,7 +55,7 @@ public class VisualAssociation extends VisualObject {
 		return p2;
 	}
 
-	public final PaddingBox<EditableText> getText() {
+	public final PaddingBox<EditableTextWrapper> getText() {
 		return this.text;
 	}
 

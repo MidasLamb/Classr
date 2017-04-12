@@ -54,8 +54,7 @@ public class Container extends VisualObject  implements CanvasContent{
 	 */
 	private void createNewClass(int x, int y) {
 		VisualClass c = new VisualClass(x, y, Z_CLASS, this);
-		VisualObject a = c.getName().getContent();
-		this.switchSelectedTo(a);
+
 	}
 
 	@Override
