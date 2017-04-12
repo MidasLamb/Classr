@@ -87,10 +87,10 @@ public class VisualClass extends VisualObject {
 	 * 
 	 * @return PaddingBox of the attribute that was created
 	 */
-	private PaddingBox<Text> createAttribute() {
+	private PaddingBox<TextWrapper> createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		Text t = new Text(0,0,0, null, attr);
-		PaddingBox<Text> tbox = new PaddingBox<Text>(this.getX(), this.getY(), Z_PADDING_BOX, t,  this, attr);
+		TextWrapper t = new TextWrapper(0,0,0, null, attr);
+		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t,  this, attr);
 		this.updateDimensions();
 		return tbox;
 	}
@@ -100,10 +100,10 @@ public class VisualClass extends VisualObject {
 	 * 
 	 * @return PaddingBox of the method that was created
 	 */
-	private PaddingBox<Text> createMethod() {
+	private PaddingBox<TextWrapper> createMethod() {
 		Method method = getLogicalObject().addMethod();
-		Text t = new Text(0,0,0, null, method);
-		PaddingBox<Text> tbox = new PaddingBox<Text>(this.getX(), this.getY(), Z_PADDING_BOX, t, this, method);
+		TextWrapper t = new TextWrapper(0,0,0, null, method);
+		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this, method);
 		this.updateDimensions();
 		return tbox;
 	}
@@ -189,12 +189,12 @@ public class VisualClass extends VisualObject {
 	@Override
 	public final void onDoubleClick(DoubleClick dc) {
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())) {
-			PaddingBox<Text> t = this.createAttribute();
+			PaddingBox<TextWrapper> t = this.createAttribute();
 			this.getContainer().switchSelectedTo(t.getContent());
 			t.getContent().openNewForm();
 
 		} else if (this.isInEmptyMethod(dc.getX(), dc.getY())) {
-			PaddingBox<Text> t = this.createMethod();
+			PaddingBox<TextWrapper> t = this.createMethod();
 			this.getContainer().switchSelectedTo(t.getContent());
 			t.getContent().openNewForm();
 		} else

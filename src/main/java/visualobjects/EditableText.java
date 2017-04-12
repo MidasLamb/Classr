@@ -11,7 +11,7 @@ import inputHandlers.keys.AsciiKey;
 import inputHandlers.keys.FunctionKey;
 import logicalobjects.LogicalObject;
 
-public class EditableText extends Text {
+public class EditableText extends TextWrapper {
 	private String standardTextString;
 	private boolean isStandardTextSet;
 	

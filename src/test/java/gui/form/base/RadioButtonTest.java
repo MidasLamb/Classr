@@ -1,4 +1,4 @@
-package gui.base;
+package gui.form.base;
 
 import static gui.form.base.Constants.*;
 import static org.junit.Assert.assertEquals;

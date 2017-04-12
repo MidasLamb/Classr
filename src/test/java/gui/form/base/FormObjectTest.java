@@ -1,4 +1,4 @@
-package gui.base;
+package gui.form.base;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

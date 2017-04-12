@@ -1,18 +1,21 @@
 package gui.text;
 
 import java.awt.Graphics;
+import java.text.AttributedCharacterIterator;
+import java.text.AttributedString;
 
 import gui.text.state.PassiveState;
 import gui.text.state.TextState;
 import inputHandlers.Typable;
 import inputHandlers.keys.AsciiKey;
 import inputHandlers.keys.FunctionKey;
+import logicalobjects.StringVisitor;
 
 public class Text implements Typable{
 	private TextState state;
-	private String text;
+	private AttributedString text;
 
-	public Text(String text, TextState startState) {
+	public Text(AttributedString text, TextState startState) {
 		this.setText(text);
 		this.setState(startState);
 		startState.setText(this);
@@ -30,12 +33,23 @@ public class Text implements Typable{
 	private final void setState(TextState state) {
 		this.state = state;
 	}
+	
+	public final String getString(){
+		StringBuilder string = new StringBuilder();
+		AttributedCharacterIterator itr = getText().getIterator();
+		string.append(itr.current());
+		while (itr.getIndex() < itr.getEndIndex())
+		        string.append(itr.next());
+		if(string.length() > 0)
+			string.delete(string.length()-1, string.length());
+		return string.toString().replaceAll("#", "");
+	}
 
-	public final String getText() {
+	public final AttributedString getText() {
 		return text;
 	}
 
-	public final void setText(String text) {
+	public final void setText(AttributedString text) {
 		this.text = text;
 	}
 

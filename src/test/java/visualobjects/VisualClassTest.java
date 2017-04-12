@@ -158,17 +158,17 @@ public class VisualClassTest {
 		container.onDoubleClick(new DoubleClick(10,10));
 		container.handleAsciiKey(new AsciiKey('a'));		
 		for (VisualObject v: container.getChildren()){
-			String n = ((Text) ((VisualClass) v).getName().getContent()).getString();
+			String n = ((TextWrapper) ((VisualClass) v).getName().getContent()).getString();
 			//assertEquals("a", n);
 		}
 		container.handleAsciiKey(new AsciiKey('b'));		
 		for (VisualObject v: container.getChildren()){
-			String n = ((Text) ((VisualClass) v).getName().getContent()).getString();
+			String n = ((TextWrapper) ((VisualClass) v).getName().getContent()).getString();
 			assertEquals("ab", n);
 		}
 		container.handleFunctionKey(new FunctionKey(BACKSPACE));		
 		for (VisualObject v: container.getChildren()){
-			String n = ((Text) ((VisualClass) v).getName().getContent()).getString();
+			String n = ((TextWrapper) ((VisualClass) v).getName().getContent()).getString();
 			assertEquals("a", n);
 		}
 	}
