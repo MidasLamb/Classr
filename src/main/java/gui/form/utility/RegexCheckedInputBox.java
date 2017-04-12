@@ -1,11 +1,11 @@
-package gui.utility;
+package gui.form.utility;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import gui.base.InputBox;
+import gui.form.base.InputBox;
 
 public class RegexCheckedInputBox extends InputBox implements Checkable {
 	private String regex;

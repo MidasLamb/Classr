@@ -1,4 +1,4 @@
-package gui.utility;
+package gui.form.utility;
 
 public interface Checkable {
 	public boolean check();

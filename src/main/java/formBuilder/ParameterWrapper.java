@@ -1,6 +1,6 @@
 package formBuilder;
 
-import gui.base.Displayable;
+import gui.form.base.Displayable;
 import logicalobjects.Parameter;
 
 public class ParameterWrapper implements Displayable {

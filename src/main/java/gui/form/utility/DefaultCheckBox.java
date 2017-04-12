@@ -1,6 +1,6 @@
-package gui.utility;
+package gui.form.utility;
 
-import gui.base.CheckBox;
+import gui.form.base.CheckBox;
 
 public class DefaultCheckBox extends CheckBox {
 

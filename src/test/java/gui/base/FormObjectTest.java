@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.base.FormObject;
+import gui.form.base.FormObject;
 import inputHandlers.clicks.MouseClick;
 
 public class FormObjectTest {

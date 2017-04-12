@@ -3,7 +3,7 @@ package guiToApplication;
 import java.awt.Graphics;
 
 import canvaswindow.MyCanvasWindow;
-import gui.base.Form;
+import gui.form.base.Form;
 import inputHandlers.CanvasContent;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;

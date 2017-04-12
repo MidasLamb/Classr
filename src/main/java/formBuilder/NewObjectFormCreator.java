@@ -1,7 +1,7 @@
 package formBuilder;
 
 import canvaswindow.MyCanvasWindow;
-import gui.utility.FormBuilder;
+import gui.form.utility.FormBuilder;
 import guiToApplication.FormWrapper;
 import interfaces.LogicalObjectVisitor;
 import logicalobjects.Association;

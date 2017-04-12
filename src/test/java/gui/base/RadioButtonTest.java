@@ -1,6 +1,6 @@
 package gui.base;
 
-import static gui.base.Constants.*;
+import static gui.form.base.Constants.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -8,8 +8,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.base.RadioButton;
-import gui.base.RadioButtonGroup;
+import gui.form.base.RadioButton;
+import gui.form.base.RadioButtonGroup;
 import inputHandlers.clicks.MouseClick;
 
 public class RadioButtonTest {

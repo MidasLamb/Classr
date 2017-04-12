@@ -1,8 +1,8 @@
-package gui.utility;
+package gui.form.utility;
 
-import gui.base.Form;
-import gui.base.FormObject;
-import gui.base.Label;
+import gui.form.base.Form;
+import gui.form.base.FormObject;
+import gui.form.base.Label;
 
 public abstract class FormBuilder<T extends Form> {
 	private T form;

@@ -1,12 +1,12 @@
 package gui;
 
 import canvaswindow.FormWindow;
-import gui.base.Button;
-import gui.base.CheckBox;
-import gui.base.Label;
-import gui.base.RadioButton;
-import gui.base.RadioButtonGroup;
-import gui.base.FormObject.LabelPosition;
+import gui.form.base.Button;
+import gui.form.base.CheckBox;
+import gui.form.base.Label;
+import gui.form.base.RadioButton;
+import gui.form.base.RadioButtonGroup;
+import gui.form.base.FormObject.LabelPosition;
 import guiToApplication.FormWrapper;
 
 public class Test {

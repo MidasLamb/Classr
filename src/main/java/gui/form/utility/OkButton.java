@@ -1,9 +1,9 @@
-package gui.utility;
+package gui.form.utility;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import gui.base.Button;
+import gui.form.base.Button;
 
 public abstract class OkButton extends Button implements Checker{
 	private Collection<Checkable> constraints;

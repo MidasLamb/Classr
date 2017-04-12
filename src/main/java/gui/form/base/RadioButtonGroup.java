@@ -1,4 +1,4 @@
-package gui.base;
+package gui.form.base;
 
 public class RadioButtonGroup {
 

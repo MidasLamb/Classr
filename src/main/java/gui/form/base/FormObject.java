@@ -1,7 +1,7 @@
-package gui.base;
+package gui.form.base;
 
-import static gui.base.Constants.STANDARD_LABEL_PADDING;
-import static gui.base.Constants.STANDARD_TEXT_HEIGHT;
+import static gui.form.base.Constants.STANDARD_LABEL_PADDING;
+import static gui.form.base.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
 

@@ -1,6 +1,6 @@
-package gui.base;
+package gui.form.base;
 
-import static gui.base.Constants.*;
+import static gui.form.base.Constants.*;
 
 import java.awt.Color;
 import java.awt.Graphics;

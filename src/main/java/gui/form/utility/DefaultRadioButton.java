@@ -1,7 +1,7 @@
-package gui.utility;
+package gui.form.utility;
 
-import gui.base.RadioButton;
-import gui.base.RadioButtonGroup;
+import gui.form.base.RadioButton;
+import gui.form.base.RadioButtonGroup;
 
 public class DefaultRadioButton extends RadioButton {
 

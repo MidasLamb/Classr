@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import gui.base.RadioButton;
-import gui.base.RadioButtonGroup;
+import gui.form.base.RadioButton;
+import gui.form.base.RadioButtonGroup;
 import inputHandlers.clicks.MouseClick;
 
 public class RadioButtonGroupTest {
