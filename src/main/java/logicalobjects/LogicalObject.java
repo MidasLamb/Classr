@@ -11,7 +11,7 @@ import interfaces.DeleteSubject;
  * 
  * @author team 11
  */
-public abstract class LogicalObject implements DeleteSubject, Visitee{
+public abstract class LogicalObject implements DeleteSubject{
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name = "";
@@ -79,4 +79,6 @@ public abstract class LogicalObject implements DeleteSubject, Visitee{
 	private void setDeleteListeners(Collection<DeleteListener> deleteListeners) {
 		this.deleteListeners = deleteListeners;
 	}
+	
+	abstract Object accept(LogicalObjectVisitor v);
 }

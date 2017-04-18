@@ -17,7 +17,7 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 	
 	public FormCreator(LogicalObject o, MyCanvasWindow window){
 		this.setWindow(window);
-		o.accept(this);
+		this.startVisit(o);
 	}
 
 	@Override
