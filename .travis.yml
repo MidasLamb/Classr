@@ -11,7 +11,6 @@ before_install:
 script:
  - ./gradlew test --tests logicalobjects.*
  - ./gradlew test --tests visualobjects.*
- - ./gradlew test --tests inputHandlers.*
  - ./gradlew test --tests gui.*
 
 jdk:

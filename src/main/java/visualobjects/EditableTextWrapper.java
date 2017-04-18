@@ -95,9 +95,10 @@ public class EditableTextWrapper extends TextWrapper {
 		this.getTextObject().handleFunctionKey(key);
 		switch(key.getKeyType()){
 		case ENTER:
-			this.getLogicalObject().setName(this.getTextObject().getText());
+			this.quitAndSave();
+			break;
 		case ESCAPE:
-			this.getContainer().switchSelectedTo(null);
+			this.quitAndDiscard();
 			break;
 		case DELETE:
 			this.getLogicalObject().delete();
