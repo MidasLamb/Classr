@@ -1,4 +1,4 @@
-package inputHandlers;
+package gui.inputHandlers;
 
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;

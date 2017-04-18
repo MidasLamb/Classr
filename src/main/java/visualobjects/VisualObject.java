@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
-import inputHandlers.Typable;
+import gui.inputHandlers.Typable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;

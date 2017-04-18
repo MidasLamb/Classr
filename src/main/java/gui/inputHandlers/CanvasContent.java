@@ -1,4 +1,4 @@
-package inputHandlers;
+package gui.inputHandlers;
 
 import java.awt.Graphics;
 

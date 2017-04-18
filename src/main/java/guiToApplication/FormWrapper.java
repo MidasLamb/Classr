@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import canvaswindow.MyCanvasWindow;
 import gui.form.base.Form;
-import inputHandlers.CanvasContent;
+import gui.inputHandlers.CanvasContent;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.Drag;
 import inputHandlers.clicks.SingleClick;

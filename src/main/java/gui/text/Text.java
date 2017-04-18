@@ -4,9 +4,9 @@ import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
+import gui.inputHandlers.Typable;
 import gui.text.state.PassiveState;
 import gui.text.state.TextState;
-import inputHandlers.Typable;
 import inputHandlers.keys.AsciiKey;
 import inputHandlers.keys.FunctionKey;
 import logicalobjects.StringVisitor;

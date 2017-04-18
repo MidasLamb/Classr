@@ -3,10 +3,10 @@ package gui.form.base;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gui.inputHandlers.Typable;
 import gui.text.Text;
 import gui.text.state.EditableState;
 import gui.text.state.PassiveState;
-import inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
 import inputHandlers.keys.AsciiKey;
 import inputHandlers.keys.FunctionKey;

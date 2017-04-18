@@ -3,7 +3,7 @@ package gui.form.base;
 import java.awt.Graphics;
 import java.util.TreeSet;
 
-import inputHandlers.Typable;
+import gui.inputHandlers.Typable;
 import inputHandlers.clicks.MouseClick;
 import inputHandlers.keys.AsciiKey;
 import inputHandlers.keys.FunctionKey;

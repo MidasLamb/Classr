@@ -1,4 +1,4 @@
-package inputHandlers;
+package gui.inputHandlers;
 
 import inputHandlers.keys.AsciiKey;
 import inputHandlers.keys.FunctionKey;

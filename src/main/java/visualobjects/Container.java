@@ -5,8 +5,8 @@ import static main.Constants.Z_CLASS;
 import java.awt.event.KeyEvent;
 
 import canvaswindow.MyCanvasWindow;
-import inputHandlers.CanvasContent;
-import inputHandlers.Clickable;
+import gui.inputHandlers.CanvasContent;
+import gui.inputHandlers.Clickable;
 import inputHandlers.clicks.DoubleClick;
 import inputHandlers.clicks.SingleClick;
 import inputHandlers.keys.AsciiKey;

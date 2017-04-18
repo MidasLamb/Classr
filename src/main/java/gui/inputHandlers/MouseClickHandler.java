@@ -1,4 +1,4 @@
-package inputHandlers;
+package gui.inputHandlers;
 
 import static main.Constants.DOUBLECLICK_RANGE;
 import static main.Constants.DOUBLECLICK_TRESHOLD;
