@@ -5,24 +5,23 @@ import java.awt.event.KeyEvent;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
-import interfaces.CanvasContent;
 
 public class KeyHandler {
-	private CanvasContent content;
+	private Typable content;
 
-	public KeyHandler(CanvasContent content) {
-		setCanvasContent(content);
+	public KeyHandler(Typable content) {
+		setTypable(content);
 	}
 
 	public void handleInput(KeyEvent e) {
 		if(e.getID()==KeyEvent.KEY_PRESSED && e.getKeyCode() != 0){
 			if(keyEventIsAscii(e)){
-				getContainer().handleAsciiKey(new AsciiKey(e.getKeyChar()));
+				getTypable().handleAsciiKey(new AsciiKey(e.getKeyChar()));
 			} else {
 				FunctionKey key = getFunctionKey(e);
 				if(key == null)
 					return;
-				getContainer().handleFunctionKey(key);
+				getTypable().handleFunctionKey(key);
 			}
 		}
 	}
@@ -54,11 +53,11 @@ public class KeyHandler {
 		
 	}
 
-	private CanvasContent getContainer() {
+	private Typable getTypable() {
 		return content;
 	}
 
-	private void setCanvasContent(CanvasContent content) {
+	private void setTypable(Typable content) {
 		this.content = content;
 	}
 
