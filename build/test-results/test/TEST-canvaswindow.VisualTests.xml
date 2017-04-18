@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="canvaswindow.VisualTests" tests="17" skipped="0" failures="16" errors="0" timestamp="2017-04-12T17:30:00" hostname="DESKTOP-RV67H71" time="9.904">
+<testsuite name="canvaswindow.VisualTests" tests="17" skipped="0" failures="16" errors="0" timestamp="2017-04-18T07:43:54" hostname="DESKTOP-RV67H71" time="8.987">
   <properties/>
-  <testcase name="deleteAttributeTest" classname="canvaswindow.VisualTests" time="0.75">
+  <testcase name="deleteAttributeTest" classname="canvaswindow.VisualTests" time="0.796">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -54,7 +54,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="createTwoClassesTest" classname="canvaswindow.VisualTests" time="0.474">
+  <testcase name="createTwoClassesTest" classname="canvaswindow.VisualTests" time="0.388">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -107,7 +107,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="addAttributeTest" classname="canvaswindow.VisualTests" time="0.338">
+  <testcase name="addAttributeTest" classname="canvaswindow.VisualTests" time="0.33">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -160,7 +160,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="createAndSelectClassTest" classname="canvaswindow.VisualTests" time="0.307">
+  <testcase name="createAndSelectClassTest" classname="canvaswindow.VisualTests" time="0.233">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -213,7 +213,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="deleteAssociationTest1" classname="canvaswindow.VisualTests" time="0.871">
+  <testcase name="deleteAssociationTest1" classname="canvaswindow.VisualTests" time="1.311">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -266,7 +266,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="deleteAssociationTest2" classname="canvaswindow.VisualTests" time="0.889">
+  <testcase name="deleteAssociationTest2" classname="canvaswindow.VisualTests" time="0.845">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -319,7 +319,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="deleteAssociationTest3" classname="canvaswindow.VisualTests" time="0.993">
+  <testcase name="deleteAssociationTest3" classname="canvaswindow.VisualTests" time="0.778">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -372,7 +372,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="deleteAssociationTest4" classname="canvaswindow.VisualTests" time="1.347">
+  <testcase name="deleteAssociationTest4" classname="canvaswindow.VisualTests" time="1.109">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -425,7 +425,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="deleteClassWithAssAndMethTest" classname="canvaswindow.VisualTests" time="0.52">
+  <testcase name="deleteClassWithAssAndMethTest" classname="canvaswindow.VisualTests" time="0.496">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -478,7 +478,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="addMethodeTest" classname="canvaswindow.VisualTests" time="0.332">
+  <testcase name="addMethodeTest" classname="canvaswindow.VisualTests" time="0.297">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -531,7 +531,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="changeClassNameTest" classname="canvaswindow.VisualTests" time="0.481">
+  <testcase name="changeClassNameTest" classname="canvaswindow.VisualTests" time="0.403">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -584,7 +584,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="newClassTest" classname="canvaswindow.VisualTests" time="0.167">
+  <testcase name="newClassTest" classname="canvaswindow.VisualTests" time="0.176">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -637,7 +637,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="selectMethodeTest" classname="canvaswindow.VisualTests" time="0.276">
+  <testcase name="selectMethodeTest" classname="canvaswindow.VisualTests" time="0.272">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -690,8 +690,8 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="deleteClassTest" classname="canvaswindow.VisualTests" time="0.146"/>
-  <testcase name="doubleClickTest" classname="canvaswindow.VisualTests" time="0.271">
+  <testcase name="deleteClassTest" classname="canvaswindow.VisualTests" time="0.175"/>
+  <testcase name="doubleClickTest" classname="canvaswindow.VisualTests" time="0.248">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -744,7 +744,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="addAssociationTest" classname="canvaswindow.VisualTests" time="1.444">
+  <testcase name="addAssociationTest" classname="canvaswindow.VisualTests" time="0.818">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -797,7 +797,7 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
-  <testcase name="selectAttrTest" classname="canvaswindow.VisualTests" time="0.294">
+  <testcase name="selectAttrTest" classname="canvaswindow.VisualTests" time="0.3">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
