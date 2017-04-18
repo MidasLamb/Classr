@@ -1,4 +1,4 @@
-package inputHandlers.clicks;
+package gui.inputHandlers.clicks;
 
 public class SingleClick extends MouseClick {
 

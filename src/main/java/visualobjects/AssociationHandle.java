@@ -4,7 +4,7 @@ import static main.Constants.ASSOCIATIONHANDLE_SIZE;
 
 import java.awt.Graphics;
 
-import inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.Drag;
 
 public class AssociationHandle extends VisualObject {
 

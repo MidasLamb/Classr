@@ -13,9 +13,9 @@ import java.awt.event.MouseEvent;
 import org.junit.Test;
 
 import gui.inputHandlers.MouseClickHandler;
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.Drag;
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.SingleClick;
 import visualobjects.Container;
 import visualobjects.TestContainer;
 

@@ -5,7 +5,7 @@ import static gui.form.base.Constants.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 /**
  * Button that can be added to a Form

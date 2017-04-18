@@ -4,7 +4,7 @@ import static gui.form.base.Constants.*;
 
 import java.awt.Graphics;
 
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 public abstract class RadioButton extends FormObject {
 	

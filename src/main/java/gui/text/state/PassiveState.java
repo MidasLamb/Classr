@@ -2,9 +2,9 @@ package gui.text.state;
 
 import java.awt.Graphics;
 
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 import gui.text.Text;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
 
 public class PassiveState extends TextState {
 

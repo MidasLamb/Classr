@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.Method;

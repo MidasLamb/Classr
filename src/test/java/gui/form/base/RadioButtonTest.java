@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 public class RadioButtonTest {
 

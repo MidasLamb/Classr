@@ -1,8 +1,8 @@
 package visualobjects;
 
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.Drag;
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.SingleClick;
 
 public class TestContainer extends Container {
 	public TestContainer() {

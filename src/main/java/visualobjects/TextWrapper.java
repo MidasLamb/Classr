@@ -10,10 +10,10 @@ import java.text.AttributedString;
 
 import formBuilder.FormCreator;
 import formBuilder.NewObjectFormCreator;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
 import gui.text.state.PassiveState;
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
 import logicalobjects.StringVisitor;
 

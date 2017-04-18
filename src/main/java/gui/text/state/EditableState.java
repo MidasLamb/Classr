@@ -2,8 +2,8 @@ package gui.text.state;
 
 import java.awt.Graphics;
 
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 
 public class EditableState extends TextState {
 

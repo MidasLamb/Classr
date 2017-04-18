@@ -1,4 +1,4 @@
-package inputHandlers.keys;
+package gui.inputHandlers.keys;
 
 public class FunctionKey extends Key {
 	

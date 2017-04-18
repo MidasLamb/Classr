@@ -6,8 +6,8 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
 
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
 
 /**

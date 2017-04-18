@@ -10,13 +10,13 @@ import java.text.AttributedString;
 
 import formBuilder.FormCreator;
 import formBuilder.NewObjectFormCreator;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 import gui.text.Text;
 import gui.text.state.EditableState;
 import gui.text.state.PassiveState;
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.SingleClick;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
 import logicalobjects.LogicalObject;
 import logicalobjects.StringVisitor;
 
@@ -113,5 +113,14 @@ public class EditableTextWrapper extends TextWrapper {
 
 	private final void setStandardString(String standardString) {
 		this.standardString = standardString;
+	}
+	
+	private void quitAndSave(){
+		this.getLogicalObject().setName(this.getTextObject().getText());
+		this.getContainer().switchSelectedTo(null);
+	}
+	
+	private void quitAndDiscard(){
+		this.getContainer().switchSelectedTo(null);
 	}
 }

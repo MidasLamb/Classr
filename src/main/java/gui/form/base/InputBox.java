@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import gui.inputHandlers.Typable;
+import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 import gui.text.Text;
 import gui.text.state.EditableState;
 import gui.text.state.PassiveState;
-import inputHandlers.clicks.MouseClick;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
 
 /**
  * InputBox that can be added to a Form.

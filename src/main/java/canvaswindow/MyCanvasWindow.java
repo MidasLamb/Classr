@@ -10,9 +10,9 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import gui.inputHandlers.CanvasContent;
 import gui.inputHandlers.KeyHandler;
 import gui.inputHandlers.MouseClickHandler;
+import interfaces.CanvasContent;
 import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {

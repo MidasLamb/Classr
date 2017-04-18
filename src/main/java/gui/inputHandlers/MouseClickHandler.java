@@ -5,9 +5,9 @@ import static main.Constants.DOUBLECLICK_TRESHOLD;
 
 import java.awt.event.MouseEvent;
 
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.Drag;
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.SingleClick;
 
 public class MouseClickHandler {
 	private long lastClickTime;

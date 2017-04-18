@@ -1,6 +1,6 @@
 package gui.form.base;
 
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 public abstract class ButtonState extends State {
 

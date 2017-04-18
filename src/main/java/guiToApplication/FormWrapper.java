@@ -4,12 +4,12 @@ import java.awt.Graphics;
 
 import canvaswindow.MyCanvasWindow;
 import gui.form.base.Form;
-import gui.inputHandlers.CanvasContent;
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.Drag;
-import inputHandlers.clicks.SingleClick;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
+import interfaces.CanvasContent;
 
 public class FormWrapper extends Form implements CanvasContent {
 	private MyCanvasWindow canvasWindow;
@@ -21,18 +21,18 @@ public class FormWrapper extends Form implements CanvasContent {
 
 	@Override
 	public void onClick(SingleClick click) {
-		super.handleClick(click);
-
+		super.onClick(click);
 	}
 
 	@Override
 	public void onDoubleClick(DoubleClick click) {
-		super.handleClick(click);
+		super.onDoubleClick(click);
 
 	}
 
 	@Override
 	public void onDragEnd(Drag drag) {
+		super.onDragEnd(drag);
 	}
 
 	@Override
