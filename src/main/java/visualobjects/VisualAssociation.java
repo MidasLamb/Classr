@@ -30,7 +30,7 @@ public class VisualAssociation extends VisualObject {
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0,0,0,"Associatie", null, association), this, association);
+		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0,0,0,"Associatie","^[a-z][a-zA-Z0-9_]*" , null, association), this, association);
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.text.addDeleteListener(this);
 	}

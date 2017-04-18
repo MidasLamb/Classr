@@ -22,12 +22,18 @@ import logicalobjects.StringVisitor;
 
 public class EditableTextWrapper extends TextWrapper {
 	private String standardString;
+	private String regex;
 
-	public EditableTextWrapper(int x, int y, int z, String string, VisualObject parent, LogicalObject object) {
+	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent, LogicalObject object) {
 		super(x,y,z, parent, object);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 		this.setStandardString(string);
+		this.setRegex(regex);
+	}
+	
+	public EditableTextWrapper(int x, int y, int z, String string,VisualObject parent, LogicalObject object) {
+		this(x,y,z,string, ".*", parent, object);
 	}
 
 	/**
@@ -63,8 +69,10 @@ public class EditableTextWrapper extends TextWrapper {
 			this.getTextObject().switchState(new EditableState());
 		} else {
 			this.getTextObject().switchState(new PassiveState());
-			if (this.getTextObject().getText().length() == 0)
+			if (this.getTextObject().getText().length() == 0){
 				this.getLogicalObject().setName(this.getStandardString());
+				this.getTextObject().setAttributedText(getText());
+			}
 		}
 		
 		this.getTextObject().setAttributedText(getText());
@@ -92,18 +100,24 @@ public class EditableTextWrapper extends TextWrapper {
 	
 	@Override
 	public void handleFunctionKey(FunctionKey key){
-		this.getTextObject().handleFunctionKey(key);
+		
 		switch(key.getKeyType()){
 		case ENTER:
-			this.quitAndSave();
+			if (this.satisfiesRegex()){
+				this.quitAndSave();
+				this.getTextObject().handleFunctionKey(key);
+				}
 			break;
 		case ESCAPE:
+			this.getTextObject().handleFunctionKey(key);
 			this.quitAndDiscard();
 			break;
 		case DELETE:
+			this.getTextObject().handleFunctionKey(key);
 			this.getLogicalObject().delete();
 			break;
 		default:
+			this.getTextObject().handleFunctionKey(key);
 			break;
 		}
 	}
@@ -123,5 +137,17 @@ public class EditableTextWrapper extends TextWrapper {
 	
 	private void quitAndDiscard(){
 		this.getContainer().switchSelectedTo(null);
+	}
+
+	private final String getRegex() {
+		return regex;
+	}
+
+	private final void setRegex(String regex) {
+		this.regex = regex;
+	}
+	
+	private final boolean satisfiesRegex(){
+		return this.getCurrentDisplayedString().matches(this.getRegex());
 	}
 }

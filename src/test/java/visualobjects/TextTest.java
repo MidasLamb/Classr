@@ -16,7 +16,7 @@ public class TextTest {
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".*", c , r);
 		assertEquals("", t.getCurrentDisplayedString());
 		t.setSelected(false);
 		assertEquals("Standaard", t.getCurrentDisplayedString());
@@ -26,7 +26,7 @@ public class TextTest {
 	public void typeATest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('a'));
 		assertEquals("a", t.getCurrentDisplayedString());
@@ -36,7 +36,7 @@ public class TextTest {
 	public void typeAaTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
@@ -47,7 +47,7 @@ public class TextTest {
 	public void typeAaBackspaceTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
@@ -59,7 +59,7 @@ public class TextTest {
 	public void typeCapitalATest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
 		t.handleAsciiKey(new AsciiKey('A'));
 		assertEquals("A", t.getCurrentDisplayedString());

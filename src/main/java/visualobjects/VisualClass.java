@@ -18,7 +18,7 @@ public class VisualClass extends VisualObject {
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
-		this.setName(new PaddingBox<EditableTextWrapper>(this.getX(), this.getY(), 0,  new EditableTextWrapper(0,0,0,"Klasse" ,null,getLogicalObject()), this, getLogicalObject()));
+		this.setName(new PaddingBox<EditableTextWrapper>(this.getX(), this.getY(), 0,  new EditableTextWrapper(0,0,0,"Klasse", "^[A-Z][a-zA-Z0-9_]*" ,null,getLogicalObject()), this, getLogicalObject()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
 
