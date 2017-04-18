@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
-import interfaces.LogicalObjectVisitor;
-
 /**
  * A class of real classes, involving associations, attributes and methods
  * 

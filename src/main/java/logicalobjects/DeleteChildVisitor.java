@@ -1,7 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectVisitor;
-
 /**
  * A visitor to delete a child of a LogicalClass
  * @author midas

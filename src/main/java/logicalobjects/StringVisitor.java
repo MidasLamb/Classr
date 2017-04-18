@@ -10,8 +10,6 @@ import static main.Constants.STANDARD_FONT_SIZE;
 import java.awt.Font;
 import java.text.AttributedString;
 
-import interfaces.LogicalObjectVisitor;
-
 public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 
 	@Override

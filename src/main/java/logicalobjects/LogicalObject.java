@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
-import interfaces.Visitee;
 
 /**
  * A class of logical objects, involving a name and visual object

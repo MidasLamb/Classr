@@ -3,11 +3,11 @@ package formBuilder;
 import canvaswindow.MyCanvasWindow;
 import gui.form.utility.FormBuilder;
 import guiToApplication.FormWrapper;
-import interfaces.LogicalObjectVisitor;
 import logicalobjects.Association;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
+import logicalobjects.LogicalObjectVisitor;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 

@@ -1,7 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectVisitor;
-
 public class Parameter extends LogicalObject {
 	private String type;
 	

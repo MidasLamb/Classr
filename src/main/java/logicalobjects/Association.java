@@ -1,7 +1,5 @@
 package logicalobjects;
 
-import interfaces.LogicalObjectVisitor;
-
 /**
  * A class of associations, involving two real classes
  * 
@@ -81,8 +79,10 @@ public class Association extends LogicalObject{
 
 
 	@Override
-	public Object accept(LogicalObjectVisitor v) {
+	Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);
 	}
+
+
 
 }

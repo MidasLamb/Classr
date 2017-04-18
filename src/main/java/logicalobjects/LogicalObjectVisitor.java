@@ -1,11 +1,4 @@
-package interfaces;
-
-import logicalobjects.Association;
-import logicalobjects.Attribute;
-import logicalobjects.LogicalClass;
-import logicalobjects.LogicalObject;
-import logicalobjects.Method;
-import logicalobjects.Parameter;
+package logicalobjects;
 
 public interface LogicalObjectVisitor<T> {
 	public default T startVisit(LogicalObject lo){

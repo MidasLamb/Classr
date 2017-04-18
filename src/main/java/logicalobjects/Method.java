@@ -3,8 +3,6 @@ package logicalobjects;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import interfaces.LogicalObjectVisitor;
-
 /**
  * A class of logical objects, involving a real class
  * 
