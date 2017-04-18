@@ -1,6 +1,9 @@
-package inputHandlers;
+package interfaces;
 
 import java.awt.Graphics;
+
+import gui.inputHandlers.Clickable;
+import gui.inputHandlers.Typable;
 
 public interface CanvasContent extends Typable, Clickable {
 

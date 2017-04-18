@@ -4,11 +4,11 @@ import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
+import gui.inputHandlers.Typable;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 import gui.text.state.PassiveState;
 import gui.text.state.TextState;
-import inputHandlers.Typable;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
 import logicalobjects.StringVisitor;
 
 public class Text implements Typable {

@@ -4,7 +4,7 @@ import static main.Constants.Z_PADDING_BOX;
 
 import java.awt.Graphics;
 
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.SingleClick;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 import logicalobjects.Association;

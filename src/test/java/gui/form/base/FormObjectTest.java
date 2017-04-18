@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import gui.form.base.FormObject;
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 public class FormObjectTest {
 

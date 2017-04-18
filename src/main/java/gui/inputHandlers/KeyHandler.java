@@ -1,10 +1,11 @@
-package inputHandlers;
+package gui.inputHandlers;
 
 import java.awt.event.KeyEvent;
 
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
-import inputHandlers.keys.FunctionKey.FunctionKeyType;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
+import interfaces.CanvasContent;
 
 public class KeyHandler {
 	private CanvasContent content;

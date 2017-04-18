@@ -1,8 +1,8 @@
-package inputHandlers;
+package gui.inputHandlers;
 
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.Drag;
-import inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.SingleClick;
 
 public interface Clickable {
 	public void onClick(SingleClick click);

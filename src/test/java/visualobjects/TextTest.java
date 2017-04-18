@@ -1,12 +1,12 @@
 package visualobjects;
 
-import static inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 

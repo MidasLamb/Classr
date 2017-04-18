@@ -1,4 +1,4 @@
-package inputHandlers.clicks;
+package gui.inputHandlers.clicks;
 
 public class MouseClick {
 	private int x;

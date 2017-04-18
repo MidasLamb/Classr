@@ -8,7 +8,7 @@ import java.awt.Canvas;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 /**
  * Label that can be added to a Form.

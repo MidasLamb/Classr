@@ -5,12 +5,12 @@ import static main.Constants.Z_CLASS;
 import java.awt.event.KeyEvent;
 
 import canvaswindow.MyCanvasWindow;
-import inputHandlers.CanvasContent;
-import inputHandlers.Clickable;
-import inputHandlers.clicks.DoubleClick;
-import inputHandlers.clicks.SingleClick;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.Clickable;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
+import interfaces.CanvasContent;
 
 public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;

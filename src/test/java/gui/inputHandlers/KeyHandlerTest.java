@@ -1,4 +1,4 @@
-package inputHandlers;
+package gui.inputHandlers;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 import org.junit.Test;
 
-import inputHandlers.KeyHandler;
+import gui.inputHandlers.KeyHandler;
 
 public class KeyHandlerTest {
 	

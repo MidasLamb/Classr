@@ -1,4 +1,4 @@
-package inputHandlers.clicks;
+package gui.inputHandlers.clicks;
 
 public class Drag extends MouseClick {
 	private int startX;

@@ -2,8 +2,8 @@ package gui.text.state;
 
 import java.awt.Graphics;
 
+import gui.inputHandlers.Typable;
 import gui.text.Text;
-import inputHandlers.Typable;
 
 public abstract class TextState implements Typable{
 	private Text text;

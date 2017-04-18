@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.MouseClick;
 
 public abstract class ListBox<T extends Displayable> extends FormObject {
 	ArrayList<ListBoxElement<T>> elements;

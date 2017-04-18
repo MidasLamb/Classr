@@ -3,15 +3,19 @@ package gui.form.base;
 import java.awt.Graphics;
 import java.util.TreeSet;
 
-import inputHandlers.Typable;
-import inputHandlers.clicks.MouseClick;
-import inputHandlers.keys.AsciiKey;
-import inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.Clickable;
+import gui.inputHandlers.Typable;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.SingleClick;
+import gui.inputHandlers.keys.AsciiKey;
+import gui.inputHandlers.keys.FunctionKey;
 
 /**
  * Form in which FormObjects can be placed.
  */
-public class Form {
+public class Form implements Typable, Clickable{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
@@ -65,6 +69,7 @@ public class Form {
 	 * 
 	 * @param key
 	 */
+	@Override
 	public void handleAsciiKey(AsciiKey key) {
 		getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
 				.forEach(x -> x.handleAsciiKey(key));
@@ -75,6 +80,7 @@ public class Form {
 	 * 
 	 * @param key
 	 */
+	@Override
 	public void handleFunctionKey(FunctionKey key) {
 		getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
 				.forEach(x -> x.handleFunctionKey(key));
@@ -96,5 +102,22 @@ public class Form {
 
 	private void setFocusedObject(FormObject focusedObject) {
 		this.focusedObject = focusedObject;
+	}
+	
+	@Override
+	public void onClick(SingleClick click) {
+		this.handleClick(click);
+
+	}
+
+	@Override
+	public void onDoubleClick(DoubleClick click) {
+		this.handleClick(click);
+
+	}
+
+	@Override
+	public void onDragEnd(Drag drag) {
+		
 	}
 }
