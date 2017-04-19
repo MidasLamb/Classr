@@ -3,6 +3,9 @@ package formBuilder;
 import static main.Constants.CONTAINER_HEIGHT;
 import static main.Constants.CONTAINER_WIDTH;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import canvaswindow.MyCanvasWindow;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
@@ -163,7 +166,16 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 				
 				getMethod().setStatic(staticCheckbox.isChecked());
 				getMethod().setAbstract(abstractCheckbox.isChecked());
-
+				
+				Collection<Parameter> c = new ArrayList<Parameter>(getMethod().getParameters());
+				for (Parameter p: c){
+					getMethod().removeParameter(p);
+				}
+					
+				for (ParameterWrapper p: parameters.getElements())
+					getMethod().addParameter(p.getParameter());
+				
+				
 				getForm().close();
 			}
 
@@ -197,6 +209,9 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			group.setSelectedButton(packageButton);	
 		else if(v instanceof Protected)
 			group.setSelectedButton(protectedButton);
+		
+		for (Parameter p: getMethod().getParameters())
+			parameters.addElement(new ParameterWrapper(p));
 		
 		staticCheckbox.setChecked(getMethod().isStatic());
 		abstractCheckbox.setChecked(getMethod().isAbstract());
