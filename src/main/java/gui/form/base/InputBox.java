@@ -70,6 +70,8 @@ public abstract class InputBox extends FormObject implements Typable {
 
 	@Override
 	void onClick(MouseClick click) {
+		this.setFocused(true);
+		
 		this.getTextObject().switchState(new EditableState());
 		onAction();
 	}

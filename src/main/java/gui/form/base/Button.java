@@ -47,6 +47,7 @@ public abstract class Button extends FormObject implements FunctionTypable {
 
 	@Override
 	void onClick(MouseClick click) {
+		setFocused(true);
 		getState().onClick(click);
 	}
 
