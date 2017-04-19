@@ -38,8 +38,7 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 	 * @param y
 	 */
 	public CheckBox(int x, int y) {
-		super(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
-		setState(new NotSelected());
+		this(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
 	}
 
 	private class Selected extends CheckBoxState {

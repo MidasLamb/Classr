@@ -164,6 +164,23 @@ public class VisualTests {
 		assertTrue(imagesEqual(getReferenceImage("methodePrivate"),  actual));
 	}
 	
+	@Test
+	public void focusCheckBoxTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/focusCheckBox/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("focusCheckBox"),  actual));
+	}
+	
+	@Test
+	public void removeParameterTest() throws IOException {
+		//Add a parameter, save everything and delete it again
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/removeParameter/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("removeParameter"),  actual));
+	}
+	
 	
 	
 	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
