@@ -33,13 +33,14 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append(c.getVisibility().getUMLRepresentation());
 		strBuilder.append(c.getName());
-		strBuilder.append(" (");
+		strBuilder.append("(");
 		for (String parameter : parameters) {
 			if(!parameter.equals(parameters.get(0)))
 				strBuilder.append(", ");
 			strBuilder.append(parameter);
 		}
-		strBuilder.append(")");
+		strBuilder.append(") : ");
+		strBuilder.append(c.getType());
 		String text = strBuilder.toString();
 		text = trimString(text);
 		AttributedString string = new AttributedString(text);
