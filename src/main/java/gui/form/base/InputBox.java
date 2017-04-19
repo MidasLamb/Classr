@@ -71,7 +71,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	@Override
 	void onClick(MouseClick click) {
 		this.setFocused(true);
-		
+
 		this.getTextObject().switchState(new EditableState());
 		onAction();
 	}
@@ -98,6 +98,9 @@ public abstract class InputBox extends FormObject implements Typable {
 		onAction();
 	}
 
+	/**
+	 * @return Text object that contains the value of this InputBox.
+	 */
 	protected final Text getTextObject() {
 		return textObject;
 	}
@@ -106,6 +109,9 @@ public abstract class InputBox extends FormObject implements Typable {
 		this.textObject = textObject;
 	}
 
+	/**
+	 * @return Text entered in this InputBox.
+	 */
 	public String getText() {
 		return this.getTextObject().getText();
 	}

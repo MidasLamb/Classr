@@ -46,8 +46,18 @@ public abstract class FormObject implements Comparable<FormObject> {
 		}
 	}
 
+	/**
+	 * Called when a click is registered on this FormObject.
+	 * 
+	 * @param click
+	 *            Registered MouseClick
+	 */
 	abstract void onClick(MouseClick click);
 
+	/**
+	 * Draw this FormObject.
+	 * @param g
+	 */
 	abstract void draw(Graphics g);
 
 	protected abstract void onAction();
@@ -125,6 +135,7 @@ public abstract class FormObject implements Comparable<FormObject> {
 
 	/**
 	 * Indicates the focused property of this FormObject.
+	 * 
 	 * @return Returns true if this FormObject is focused, false otherwise.
 	 */
 	boolean isFocused() {
