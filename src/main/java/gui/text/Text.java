@@ -116,7 +116,7 @@ public class Text implements Typable {
 		this.isAttributed = isAttributed;
 	}
 
-	private String getStringFromAttributedString(AttributedString as) {
+	public static String getStringFromAttributedString(AttributedString as) {
 		StringBuilder string = new StringBuilder();
 		AttributedCharacterIterator itr = as.getIterator();
 		string.append(itr.current());

@@ -8,7 +8,6 @@ public class Parameter extends LogicalObject {
 		this.setType(type);
 	}
 
-
 	@Override
 	protected void onDelete() {
 
