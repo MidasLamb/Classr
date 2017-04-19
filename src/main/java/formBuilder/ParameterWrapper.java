@@ -11,7 +11,7 @@ public class ParameterWrapper implements Displayable {
 
 	@Override
 	public String getDisplayableString() {
-		return getParameter().getName();
+		return getParameter().getName() + ": " + getParameter().getType();
 	}
 
 	public final Parameter getParameter() {

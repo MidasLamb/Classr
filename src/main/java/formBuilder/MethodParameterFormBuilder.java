@@ -33,11 +33,11 @@ public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
 		
-		RegexCheckedInputBox parName = new RegexCheckedInputBox(parameter.getName(), "\\p{Lower}.*", 10, 10, 100, 16);
+		RegexCheckedInputBox parName = new RegexCheckedInputBox(parameter.getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10, 100, 16);
 		this.addFormObject(parName);
 		this.addLabelToTopOfLastFormObject("Parameter name");
 
-		RegexCheckedInputBox parType = new RegexCheckedInputBox(parameter.getType(), "\\p{Lower}.*", 10, 100, 100, 16);
+		RegexCheckedInputBox parType = new RegexCheckedInputBox(parameter.getType(), "^[a-z][a-zA-Z0-9_]*", 10, 100, 100, 16);
 		this.addFormObject(parType);
 		this.addLabelToTopOfLastFormObject("Parameter type");	
 		

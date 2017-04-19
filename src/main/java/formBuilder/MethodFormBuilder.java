@@ -42,11 +42,11 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
 
-		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), ".*", 10, 10, 100, 16);
+		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10, 100, 16);
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), ".*", 10, 60, 100, 16);
+		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), "^[a-z][a-zA-Z0-9_]*", 10, 60, 100, 16);
 
 		this.addFormObject(methType);
 		this.addLabelToTopOfLastFormObject("Method type");

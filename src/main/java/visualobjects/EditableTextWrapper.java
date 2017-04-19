@@ -27,6 +27,9 @@ public class EditableTextWrapper extends TextWrapper {
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 		this.setStandardString(string);
 		this.setRegex(regex);
+		if (!this.getStandardString().matches(this.getRegex())){
+			throw new RuntimeException();
+		}
 	}
 	
 	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent, LogicalObject object, int maxWidth) {
