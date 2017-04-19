@@ -87,7 +87,7 @@ public class Form implements Typable, Clickable {
 			// Handle key in form
 			if (key.getKeyType().equals(FunctionKeyType.LEFT) || key.getKeyType().equals(FunctionKeyType.UP)) {
 				FormObject previous;
-				if (getFocusedObject() != null && ((previous = getFormObjects().lower(getFocusedObject())) != null)) {
+				if (getFocusedObject() != null && ((previous = getPreviousFormObject(getFocusedObject())) != null)) {
 					setFocusedObject(previous);
 				}
 			} else if (key.getKeyType().equals(FunctionKeyType.RIGHT) || key.getKeyType().equals(FunctionKeyType.DOWN)) {
@@ -95,7 +95,14 @@ public class Form implements Typable, Clickable {
 				if (getFocusedObject() != null && ((next = getNextFormObject(getFocusedObject())) != null)) {
 					setFocusedObject(next);
 				} else if (getFocusedObject() == null) {
-					setFocusedObject(getFormObjects().first());
+					FormObject first = getFormObjects().first();
+					if (first != null && !first.isFocusable()) {
+						if ((first = getNextFormObject(first)) != null) {
+							setFocusedObject(first);
+						}
+					} else {
+						setFocusedObject(first);
+					}
 				}
 			}
 		} else {
@@ -103,6 +110,14 @@ public class Form implements Typable, Clickable {
 			getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
 					.forEach(x -> x.handleFunctionKey(key));
 		}
+	}
+	
+	private FormObject getPreviousFormObject(FormObject current) {
+		FormObject previous = getFormObjects().lower(current);
+		while (previous != null && !previous.isFocusable()) {
+			previous = getFormObjects().lower(previous);
+		}
+		return previous;
 	}
 	
 	private FormObject getNextFormObject(FormObject current) {
