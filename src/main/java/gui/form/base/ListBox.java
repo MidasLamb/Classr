@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import gui.inputHandlers.clicks.MouseClick;
 
-public abstract class ListBox<T extends Displayable> extends FormObject {
+public abstract class ListBox<T extends Displayable> extends FormObject implements FormObjectWithChildren{
 	ArrayList<ListBoxElement<T>> elements;
 	ListBoxElement<T> selectedElement;
 
@@ -49,13 +49,9 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 		int sumOfVerticalTranslations = 0;
 		g.translate(translatedX, translatedY);
 		for (ListBoxElement<T> e : this.getListboxElements()) {
-			Color c = g.getColor();
-			if (e.equals(this.getSelectedElement()))
-				g.setColor(Color.RED);
 			e.draw(g);
 			sumOfVerticalTranslations += e.getHeight();
 			g.translate(0, e.getHeight());
-			g.setColor(c);
 		}
 		g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
 	}
@@ -63,7 +59,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		getListboxElements().add(lbe);
-		this.setSelectedElement(lbe);
 	}
 
 	/**
@@ -72,7 +67,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 	 * @param e
 	 */
 	public void removeElement(T e) {
-		// TODO update because remove won't work
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		getListboxElements().remove(lbe);
 	}
@@ -110,7 +104,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 	}
 
 	private final ListBoxElement<T> getSelectedElement() {
-		return selectedElement;
+		for (ListBoxElement<T> l: this.getListboxElements()){
+			if (l.isFocused())
+				return l;
+		}
+			
+		return null;
 	}
 
 	public final T getSelectedObject() {
@@ -121,14 +120,50 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 	}
 
 	private final void setSelectedElement(ListBoxElement<T> selectedElement) {
+		if (this.selectedElement != null)
+			this.selectedElement.setFocused(false);
 		this.selectedElement = selectedElement;
+		if (selectedElement != null)
+			selectedElement.setFocused(true);
+	}
+	
+	
+	
+	@Override
+	public FormObject getNextChild(){
+		ListBoxElement<T> s = this.getSelectedElement();
+		int currentIndex = getListboxElements().indexOf(s);
+		this.setSelectedElement(getListboxElements().get(currentIndex + 1));
+		return getListboxElements().get(currentIndex + 1);
+	}
+	
+	@Override
+	public FormObject getPreviousChild(){
+		ListBoxElement<T> s = this.getSelectedElement();
+		int currentIndex = getListboxElements().indexOf(s);
+		this.setSelectedElement(getListboxElements().get(currentIndex - 1));
+		return getListboxElements().get(currentIndex - 1);
+	}
+	
+	@Override
+	public boolean hasNextChild(){
+		ListBoxElement<T> s = this.getSelectedElement();
+		int currentIndex = getListboxElements().indexOf(s);
+		return (currentIndex + 1) < getListboxElements().size();
+	}
+	@Override
+	public boolean hasPreviousChild(){
+		ListBoxElement<T> s = this.getSelectedElement();
+		int currentIndex = getListboxElements().indexOf(s);
+		return (currentIndex - 1) >= 0; 
 	}
 
-	class ListBoxElement<T extends Displayable> {
+	class ListBoxElement<T extends Displayable> extends FormObject implements FormObjectChild{
 		private T obj;
 		private int height;
 
 		ListBoxElement(T obj) {
+			super(0,0,0,0);
 			this.obj = obj;
 		}
 
@@ -142,9 +177,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 		 * @param g
 		 */
 		void draw(Graphics g) {
+			Color c = g.getColor();
+			if (this.isFocused())
+				g.setColor(Color.BLUE);
 			height = g.getFontMetrics().getHeight();
 			int descent = g.getFontMetrics().getDescent();
 			g.drawString(obj.getDisplayableString(), 0, height - descent);
+			g.setColor(c);
 		}
 
 		public int getHeight() {
@@ -153,6 +192,38 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 
 		public T getObject() {
 			return this.obj;
+		}
+
+		@Override
+		void onClick(MouseClick click) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		protected void onAction() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public FormObject getNextChild() {
+			return ListBox.this.getNextChild();
+		}
+
+		@Override
+		public FormObject getPreviousChild() {
+			return ListBox.this.getPreviousChild();
+		}
+
+		@Override
+		public boolean hasNextChild() {
+			return ListBox.this.hasNextChild();
+		}
+
+		@Override
+		public boolean hasPreviousChild() {
+			return ListBox.this.hasPreviousChild();
 		}
 
 	}
