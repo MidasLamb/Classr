@@ -18,6 +18,15 @@ import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 import logicalobjects.LogicalObject;
 
+/**
+ * A class of Visual objects, involving three coordinates, a width and height, a
+ * list of children, a parent, a logical object, a collection of
+ * deleteListeners, a selected state and a deleted state. This is a class for
+ * the objects that will visually represent the logical objects of our program
+ * and thus will be drawn on a canvas.
+ * 
+ * @author team 11
+ */
 public abstract class VisualObject implements DeleteListener, DeleteSubject, Typable {
 	private int x;
 	private int y;
@@ -25,13 +34,30 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	private int width;
 	private int height;
 	private ArrayList<VisualObject> children;
-	private boolean isSelected;
 	private VisualObject parent;
 	private LogicalObject logicalObject;
 	private Collection<DeleteListener> deleteListeners;
-
+	private boolean isSelected;
 	public boolean isDeleted;
 
+	/**
+	 * Constructs a new visual object with the stated coordinates, width, height
+	 * and parent. Also updates the children of the stated parent, if it is not
+	 * null.
+	 * 
+	 * @param x
+	 *            the x-coordinate of the visual object
+	 * @param y
+	 *            the y-coordinate of the visual object
+	 * @param z
+	 *            the z-coordinate of the visual object
+	 * @param width
+	 *            the width of the visual object
+	 * @param height
+	 *            the height of the visual object
+	 * @param parent
+	 *            the parent visual object of this visual object
+	 */
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
 		setChildren(new ArrayList<VisualObject>());
 		this.setDeleteListeners(new ArrayList<DeleteListener>());
@@ -46,10 +72,22 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 			parent.addChild(this);
 	}
 
+	/**
+	 * Adds a deletelistener to the list of deletelisteners
+	 * 
+	 * @param deletelistener
+	 *            the deletelistener to add
+	 */
 	public final void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);
 	}
 
+	/**
+	 * Removes a deletelistener from to the list of deletelisteners
+	 * 
+	 * @param deletelistener
+	 *            the deletelistener to remove
+	 */
 	public final void removeDeleteListener(DeleteListener deletelistener) {
 		Collection<DeleteListener> cd = new ArrayList<DeleteListener>(this.getDeleteListeners());
 
@@ -183,6 +221,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	}
 
 	/**
+	 * Returns whether a coordinate is in the visual object
 	 * 
 	 * @param x
 	 *            the x-coordinate
@@ -431,6 +470,12 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		this.z = z;
 	}
 
+	/**
+	 * A class of VisualObjectComparators which compares visual objects by their
+	 * z-coordinates.
+	 * 
+	 * @author team 11
+	 */
 	private class VisualObjectComparator implements Comparator<VisualObject> {
 		@Override
 		public int compare(VisualObject x, VisualObject y) {
@@ -444,32 +489,71 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 
 	};
 
+	/**
+	 * Handles function keys which effect this visual object, more specifically
+	 * the delete key.
+	 * 
+	 * @param key
+	 *            the function key to handle
+	 */
 	public void handleFunctionKey(FunctionKey key) {
 		if (key.getKeyType() == DELETE)
 			this.getLogicalObject().delete();
 	};
 
+	/**
+	 * Returns the deletelisteners of this visual object.
+	 * 
+	 * @return the deletelisteners of this visual object
+	 */
 	private Collection<DeleteListener> getDeleteListeners() {
 		return deleteListeners;
 	}
 
+	/**
+	 * Sets the deletelisteners of this visual object
+	 * 
+	 * @param deleteListeners
+	 *            the deletelisteners to be set
+	 */
 	private void setDeleteListeners(Collection<DeleteListener> deleteListeners) {
 		this.deleteListeners = deleteListeners;
 	}
 
+	/**
+	 * Notifies the listeners that this visual object is being deleted by
+	 * calling the delete method.
+	 * 
+	 */
 	@Override
 	public void notifySubjectDeleted(DeleteSubject subject) {
 		this.delete();
 	}
 
+	/**
+	 * 
+	 * @return whether the visual object is deleted.
+	 */
 	private boolean isDeleted() {
 		return isDeleted;
 	}
 
+	/**
+	 * Sets the deleted state of this visual object
+	 * 
+	 * @param isDeleted
+	 *            a boolean value indicating whether the visual object is
+	 *            deleted.
+	 */
 	private void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
 
+	/**
+	 *
+	 * @return whether this visual object has an ancestor cisual object that is
+	 *         selected
+	 */
 	boolean hasSelectedAncestor() {
 		VisualObject v = this;
 		while (v != null) {
