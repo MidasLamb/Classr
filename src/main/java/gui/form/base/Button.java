@@ -6,9 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import gui.inputHandlers.FunctionTypable;
-import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.MouseClick;
-import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
