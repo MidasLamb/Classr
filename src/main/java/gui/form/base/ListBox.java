@@ -27,7 +27,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 		int x = this.getX();
 		int y = this.getY();
 		int sumOfVerticalMovement = 0;
-		for (ListBoxElement<T> e : this.getElements()) {
+		for (ListBoxElement<T> e : this.getListboxElements()) {
 			boolean isin = isInElement(e, click.getX(), click.getY(), x, y + sumOfVerticalMovement);
 			if (isin) {
 				this.setSelectedElement(e);
@@ -48,7 +48,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 		int translatedY = this.getY();
 		int sumOfVerticalTranslations = 0;
 		g.translate(translatedX, translatedY);
-		for (ListBoxElement<T> e : this.getElements()) {
+		for (ListBoxElement<T> e : this.getListboxElements()) {
 			Color c = g.getColor();
 			if (e.equals(this.getSelectedElement()))
 				g.setColor(Color.RED);
@@ -62,7 +62,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
-		getElements().add(lbe);
+		getListboxElements().add(lbe);
 		this.setSelectedElement(lbe);
 	}
 
@@ -74,14 +74,14 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 	public void removeElement(T e) {
 		// TODO update because remove won't work
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
-		getElements().remove(lbe);
+		getListboxElements().remove(lbe);
 	}
 
 	public void removeSelectedElement() {
-		int index = getElements().indexOf(this.getSelectedElement());
-		getElements().remove(this.getSelectedElement());
-		if (index < getElements().size()) {
-			this.setSelectedElement(getElements().get(index));
+		int index = getListboxElements().indexOf(this.getSelectedElement());
+		getListboxElements().remove(this.getSelectedElement());
+		if (index < getListboxElements().size()) {
+			this.setSelectedElement(getListboxElements().get(index));
 		} else {
 			this.setSelectedElement(null);
 		}
@@ -89,13 +89,20 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 
 	public void switchSelectedElementWith(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
-		int index = getElements().indexOf(this.getSelectedElement());
-		getElements().set(index, lbe);
+		int index = getListboxElements().indexOf(this.getSelectedElement());
+		getListboxElements().set(index, lbe);
 		this.setSelectedElement(lbe);
 	}
 
-	private final ArrayList<ListBoxElement<T>> getElements() {
+	private final ArrayList<ListBoxElement<T>> getListboxElements() {
 		return elements;
+	}
+	
+	public final ArrayList<T> getElements(){
+		ArrayList<T> c = new ArrayList<T>();
+		for (ListBoxElement<T> t: this.getListboxElements())
+			c.add(t.getObject());
+		return c;
 	}
 
 	private final void setElements(ArrayList<ListBoxElement<T>> elements) {

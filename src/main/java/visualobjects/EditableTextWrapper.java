@@ -16,6 +16,11 @@ import gui.text.state.PassiveState;
 import logicalobjects.LogicalObject;
 import logicalobjects.StringVisitor;
 
+/**
+ * A wrapper for the GUI Text to adapt it to the application part.
+ * @author midas
+ *
+ */
 public class EditableTextWrapper extends TextWrapper {
 	private String standardString;
 	private String regex;
