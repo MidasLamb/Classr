@@ -37,10 +37,8 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 			tp.removeChild(content);
 		content.setParent(this);
 		this.addChild(content);
-		
 		content.setX(0);
 		content.setY(0);
-
 		this.content.addDeleteListener(this);
 	}
 	

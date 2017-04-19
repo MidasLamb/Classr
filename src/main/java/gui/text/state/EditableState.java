@@ -14,7 +14,6 @@ public class EditableState extends TextState {
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
 		getText().addLetter(key.getValue());
-
 	}
 
 	@Override
@@ -24,6 +23,7 @@ public class EditableState extends TextState {
 			getText().deleteChar();
 			break;
 		case ENTER:
+			break;
 		case ESCAPE:
 			getText().switchState(new PassiveState());
 			break;
@@ -35,7 +35,6 @@ public class EditableState extends TextState {
 	public void draw(Graphics g, int x, int y) {
 		if (getText().isAttributed()) {
 			g.drawString(getText().getAttributedText().getIterator(), x, y + g.getFontMetrics().getAscent());
-
 		} else {
 			g.drawString(getText().getText(), x, y + g.getFontMetrics().getAscent());
 
