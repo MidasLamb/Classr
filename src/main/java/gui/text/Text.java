@@ -1,5 +1,7 @@
 package gui.text;
 
+import static main.Constants.*;
+
 import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
@@ -7,20 +9,24 @@ import java.text.AttributedString;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
-import gui.text.state.PassiveState;
 import gui.text.state.TextState;
-import logicalobjects.StringVisitor;
 
 public class Text implements Typable {
 	private TextState state;
 	private String text;
 	private AttributedString attributedText;
 	private boolean isAttributed;
+	private int maxWidth = -1;
 
 	public Text(String text, TextState startState) {
 		this.setText(text);
 		this.switchState(startState);
 		this.setAttributed(false);
+	}
+	
+	public Text(String text, TextState startState, int maxWidth) {
+		this(text, startState);
+		setMaxWidth(maxWidth);
 	}
 
 	public Text(AttributedString as, TextState startState) {
@@ -29,7 +35,12 @@ public class Text implements Typable {
 		this.setAttributed(true);
 		this.switchState(startState);
 	}
-
+	
+	public Text(AttributedString as, TextState startState, int maxWidth) {
+		this(as, startState);
+		setMaxWidth(maxWidth);		
+	}
+	
 	public final void switchState(TextState state) {
 		this.setState(state);
 		state.setText(this);
@@ -68,18 +79,18 @@ public class Text implements Typable {
 	}
 
 	public void addLetter(char c) {
+		if(getMaxWidth() > 0 && getDrawLength(getText() + c) > getMaxWidth())
+			return;
 		this.setText(this.getText() + c);
-		if (isAttributed) {
+		if (isAttributed()) {
 			this.setAttributedText(new AttributedString(this.getText()));
 		}
-		
-
 	}
 
 	public void deleteChar() {
 		if (this.getText().length() > 0)
 			this.setText(this.getText().substring(0, this.getText().length() - 1));
-		if (isAttributed) {
+		if (isAttributed()) {
 			this.setAttributedText(new AttributedString(this.getText()));
 		}
 	}
@@ -106,13 +117,25 @@ public class Text implements Typable {
 	}
 
 	private String getStringFromAttributedString(AttributedString as) {
-		AttributedCharacterIterator x = as.getIterator();
-		String a = "";
+		StringBuilder string = new StringBuilder();
+		AttributedCharacterIterator itr = as.getIterator();
+		string.append(itr.current());
+		while (itr.getIndex() < itr.getEndIndex())
+		        string.append(itr.next());
+		if(string.length() > 0)
+			string.delete(string.length()-1, string.length());
+		return string.toString().replaceAll("#", "");
+	}
+	
+	private int getDrawLength(String text){
+		return STANDARD_FONTMETRICS.stringWidth(text);
+	}
 
-		a += x.current();
-		while (x.getIndex() < x.getEndIndex())
-			a += x.next();
-		a = a.substring(0, a.length() - 1);
-		return a;
+	public int getMaxWidth() {
+		return maxWidth;
+	}
+
+	public void setMaxWidth(int maxWidth) {
+		this.maxWidth = maxWidth;
 	}
 }

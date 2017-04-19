@@ -2,14 +2,10 @@ package visualobjects;
 
 import static main.Constants.STANDARD_FONTMETRICS;
 import static main.Constants.STANDARD_TEXT_HEIGHT;
-import static main.Constants.MAX_TEXT_WIDTH;
 
 import java.awt.Graphics;
-import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
-import formBuilder.FormCreator;
-import formBuilder.NewObjectFormCreator;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -28,6 +24,14 @@ public class EditableTextWrapper extends TextWrapper {
 		super(x,y,z, parent, object);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
+		this.setStandardString(string);
+		this.setRegex(regex);
+	}
+	
+	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent, LogicalObject object, int maxWidth) {
+		super(x,y,z, parent, object);
+		setLogicalObject(object);
+		this.setTextObject(new Text(new AttributedString(""), new PassiveState(), maxWidth));
 		this.setStandardString(string);
 		this.setRegex(regex);
 	}
