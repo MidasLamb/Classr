@@ -104,7 +104,6 @@ public class EditableTextWrapper extends TextWrapper {
 				this.quitAndSave();
 				this.getTextObject().handleFunctionKey(key);
 			}
-
 			break;
 		case ESCAPE:
 			this.getTextObject().handleFunctionKey(key);
