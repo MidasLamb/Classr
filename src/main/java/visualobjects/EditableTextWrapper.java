@@ -104,6 +104,7 @@ public class EditableTextWrapper extends TextWrapper {
 				this.quitAndSave();
 				this.getTextObject().handleFunctionKey(key);
 			}
+
 			break;
 		case ESCAPE:
 			this.getTextObject().handleFunctionKey(key);
@@ -126,18 +127,21 @@ public class EditableTextWrapper extends TextWrapper {
 	private final void setStandardString(String standardString) {
 		this.standardString = standardString;
 	}
-	
+
 	/**
-	 * Saves the currently displayed text to the logical object if the Regex is satisfied and length is > 0.
+	 * Saves the currently displayed text to the logical object if the Regex is
+	 * satisfied and length is > 0.
 	 */
-	private void save(){
+	private void save() {
 		if (this.getCurrentDisplayedString().length() == 0 || !this.satisfiesRegex()) {
 			this.getLogicalObject().setName(this.getStandardString());
 			this.getTextObject().setAttributedText(getText());
+		} else {
+			this.getLogicalObject().setName(this.getCurrentDisplayedString());
 		}
-		
+
 	}
-	
+
 	private void quit() {
 		this.getContainer().switchSelectedTo(null);
 	}
