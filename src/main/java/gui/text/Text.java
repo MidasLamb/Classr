@@ -11,6 +11,11 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import gui.text.state.TextState;
 
+/**
+ * A class to aid in handling and displaying text.
+ * @author midas
+ *
+ */
 public class Text implements Typable {
 	private TextState state;
 	private String text;
@@ -116,7 +121,7 @@ public class Text implements Typable {
 		this.isAttributed = isAttributed;
 	}
 
-	private String getStringFromAttributedString(AttributedString as) {
+	public static String getStringFromAttributedString(AttributedString as) {
 		StringBuilder string = new StringBuilder();
 		AttributedCharacterIterator itr = as.getIterator();
 		string.append(itr.current());
