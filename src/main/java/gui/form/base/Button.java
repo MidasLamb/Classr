@@ -51,6 +51,11 @@ public abstract class Button extends FormObject {
 	void draw(Graphics g) {
 		getState().draw(g);
 	}
+	
+	@Override
+	boolean isFocusable() {
+		return this.getState().isFocusable();
+	}
 
 	private class Enabled extends ButtonState {
 
@@ -61,12 +66,21 @@ public abstract class Button extends FormObject {
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
 			g.setColor(Color.BLACK);
 			drawText(g);
+			if (isFocused()) {
+				g.setColor(Color.BLUE);
+				g.drawRect(getX(), getY(), getWidth(), getHeight());
+			}
 			g.setColor(color);
 		}
 
 		@Override
 		void onClick(MouseClick click) {
 			onAction();
+		}
+		
+		@Override
+		boolean isFocusable() {
+			return true;
 		}
 
 	}
@@ -85,6 +99,11 @@ public abstract class Button extends FormObject {
 
 		@Override
 		void onClick(MouseClick click) {
+		}
+		
+		@Override
+		boolean isFocusable() {
+			return false;
 		}
 
 	}

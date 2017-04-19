@@ -76,7 +76,12 @@ public abstract class InputBox extends FormObject implements Typable {
 
 	@Override
 	protected void draw(Graphics g) {
+		Color c = g.getColor();
+		if (this.isFocused()) {
+			g.setColor(Color.BLUE);
+		}
 		g.drawRect(getX(), getY(), getWidth(), getHeight());
+		g.setColor(c);
 		getTextObject().draw(g, this.getX(), this.getY());
 	}
 
