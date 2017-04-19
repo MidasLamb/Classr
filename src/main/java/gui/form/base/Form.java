@@ -1,9 +1,11 @@
 package gui.form.base;
 
 import java.awt.Graphics;
+import java.util.Optional;
 import java.util.TreeSet;
 
 import gui.inputHandlers.Clickable;
+import gui.inputHandlers.FunctionTypable;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -43,6 +45,9 @@ public class Form implements Typable, Clickable {
 		getFormObjects().add(formObject);
 	}
 
+	/**
+	 * @return TreeSet of all FormObjects in this Form.
+	 */
 	private TreeSet<FormObject> getFormObjects() {
 		return formObjects;
 	}
@@ -53,7 +58,16 @@ public class Form implements Typable, Clickable {
 	 * @param click
 	 */
 	public void handleClick(MouseClick click) {
+		setFocusedObject(null);
+		
 		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
+		
+		Optional<FormObject> maybeFocused = getFormObjects().stream().filter(s -> s.isFocused()).findFirst();
+		if (maybeFocused.isPresent()) {
+			this.setFocusedObject(maybeFocused.get());
+		} else {
+			this.setFocusedObject(null);
+		}
 	}
 
 	/**
@@ -108,7 +122,7 @@ public class Form implements Typable, Clickable {
 			}
 		} else {
 			// Send keystroke to children
-			getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
+			getFormObjects().stream().filter(x -> x instanceof FunctionTypable).map(x -> (FunctionTypable) x)
 					.forEach(x -> x.handleFunctionKey(key));
 		}
 	}
@@ -155,7 +169,6 @@ public class Form implements Typable, Clickable {
 		if (focusedObject != null) {
 			focusedObject.setFocused(true);
 		}
-		System.out.println("New object focussed.");
 	}
 
 	@Override

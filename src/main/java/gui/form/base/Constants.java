@@ -4,6 +4,9 @@ import java.awt.Canvas;
 import java.awt.Font;
 import java.awt.FontMetrics;
 
+/**
+ * Useful constants
+ */
 public final class Constants {
 	
 	public static final int STANDARD_RADIOBUTTON_WIDTH = 10;

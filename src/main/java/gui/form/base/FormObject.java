@@ -46,8 +46,18 @@ public abstract class FormObject implements Comparable<FormObject> {
 		}
 	}
 
+	/**
+	 * Called when a click is registered on this FormObject.
+	 * 
+	 * @param click
+	 *            Registered MouseClick
+	 */
 	abstract void onClick(MouseClick click);
 
+	/**
+	 * Draw this FormObject.
+	 * @param g
+	 */
 	abstract void draw(Graphics g);
 
 	protected abstract void onAction();
@@ -96,18 +106,38 @@ public abstract class FormObject implements Comparable<FormObject> {
 		};
 	}
 
+	/**
+	 * @return Returns true if this FormObject is focusable, false otherwise.
+	 */
 	boolean isFocusable() {
 		return focusable;
 	}
 
+	/**
+	 * Set the focusable property of this FormObject.
+	 * 
+	 * @param focusable
+	 *            true if this FormObject is focusable, false otherwise.
+	 */
 	protected final void setFocusable(boolean focusable) {
 		this.focusable = focusable;
 	}
 
+	/**
+	 * Set this FormObject's focused property.
+	 * 
+	 * @param focused
+	 *            true if this FormObject is focused, false otherwise.
+	 */
 	void setFocused(boolean focused) {
 		this.focused = focused;
 	}
 
+	/**
+	 * Indicates the focused property of this FormObject.
+	 * 
+	 * @return Returns true if this FormObject is focused, false otherwise.
+	 */
 	boolean isFocused() {
 		return this.focused;
 	}

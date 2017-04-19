@@ -1,13 +1,13 @@
 Paint
-MouseEvent MOUSE_PRESSED 81 86 1
+MouseEvent MOUSE_PRESSED 139 98 1
 Paint
-MouseEvent MOUSE_RELEASED 81 86 1
-MouseEvent MOUSE_CLICKED 81 86 1
+MouseEvent MOUSE_RELEASED 139 98 1
+MouseEvent MOUSE_CLICKED 139 98 1
 Paint
-MouseEvent MOUSE_PRESSED 81 86 2
+MouseEvent MOUSE_PRESSED 139 98 2
 Paint
-MouseEvent MOUSE_RELEASED 81 86 2
-MouseEvent MOUSE_CLICKED 81 86 2
+MouseEvent MOUSE_RELEASED 139 98 2
+MouseEvent MOUSE_CLICKED 139 98 2
 Paint
 KeyEvent KEY_PRESSED 16 65535
 Paint
@@ -29,25 +29,71 @@ Paint
 KeyEvent KEY_PRESSED 69 101
 KeyEvent KEY_TYPED 0 101
 Paint
-MouseEvent MOUSE_PRESSED 346 315 1
+MouseEvent MOUSE_PRESSED 176 144 1
 Paint
-MouseEvent MOUSE_RELEASED 346 315 1
-MouseEvent MOUSE_CLICKED 346 315 1
+MouseEvent MOUSE_RELEASED 176 144 1
+MouseEvent MOUSE_CLICKED 176 144 1
 Paint
-MouseEvent MOUSE_PRESSED 136 135 1
+MouseEvent MOUSE_PRESSED 176 144 2
 Paint
-MouseEvent MOUSE_RELEASED 136 135 1
-MouseEvent MOUSE_CLICKED 136 135 1
+MouseEvent MOUSE_RELEASED 176 144 2
+MouseEvent MOUSE_CLICKED 176 144 2
 Paint
-MouseEvent MOUSE_PRESSED 136 135 2
+MouseEvent MOUSE_PRESSED 91 20 1
 Paint
-MouseEvent MOUSE_RELEASED 136 135 2
-MouseEvent MOUSE_CLICKED 136 135 2
+MouseEvent MOUSE_RELEASED 91 20 1
+MouseEvent MOUSE_CLICKED 91 20 1
 Paint
-KeyEvent KEY_PRESSED 16 65535
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
 Paint
-KeyEvent KEY_PRESSED 77 77
-KeyEvent KEY_TYPED 0 77
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 77 109
+KeyEvent KEY_TYPED 0 109
 Paint
 KeyEvent KEY_PRESSED 69 101
 KeyEvent KEY_TYPED 0 101
@@ -67,20 +113,334 @@ Paint
 KeyEvent KEY_PRESSED 69 101
 KeyEvent KEY_TYPED 0 101
 Paint
-KeyEvent KEY_PRESSED 32 32
-KeyEvent KEY_TYPED 0 32
+MouseEvent MOUSE_PRESSED 51 69 1
 Paint
-KeyEvent KEY_PRESSED 78 110
-KeyEvent KEY_TYPED 0 110
+MouseEvent MOUSE_RELEASED 51 69 1
+MouseEvent MOUSE_CLICKED 51 69 1
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 86 118
+KeyEvent KEY_TYPED 0 118
+Paint
+KeyEvent KEY_PRESSED 79 111
+KeyEvent KEY_TYPED 0 111
 Paint
 KeyEvent KEY_PRESSED 73 105
 KeyEvent KEY_TYPED 0 105
 Paint
+KeyEvent KEY_PRESSED 68 100
+KeyEvent KEY_TYPED 0 100
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 82 114
+KeyEvent KEY_TYPED 0 114
+Paint
 KeyEvent KEY_PRESSED 69 101
 KeyEvent KEY_TYPED 0 101
 Paint
-MouseEvent MOUSE_PRESSED 264 290 1
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
 Paint
-MouseEvent MOUSE_RELEASED 264 290 1
-MouseEvent MOUSE_CLICKED 264 290 1
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 84 116
+KeyEvent KEY_TYPED 0 116
+Paint
+KeyEvent KEY_PRESSED 89 121
+KeyEvent KEY_TYPED 0 121
+Paint
+KeyEvent KEY_PRESSED 80 112
+KeyEvent KEY_TYPED 0 112
+Paint
+KeyEvent KEY_PRESSED 69 101
+KeyEvent KEY_TYPED 0 101
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 84 116
+KeyEvent KEY_TYPED 0 116
+Paint
+KeyEvent KEY_PRESSED 89 121
+KeyEvent KEY_TYPED 0 121
+Paint
+KeyEvent KEY_PRESSED 80 112
+KeyEvent KEY_TYPED 0 112
+Paint
+KeyEvent KEY_PRESSED 69 101
+KeyEvent KEY_TYPED 0 101
+Paint
+MouseEvent MOUSE_PRESSED 23 318 1
+Paint
+MouseEvent MOUSE_RELEASED 23 318 1
+MouseEvent MOUSE_CLICKED 23 318 1
+Paint
+MouseEvent MOUSE_PRESSED 14 310 1
+Paint
+MouseEvent MOUSE_RELEASED 14 310 1
+MouseEvent MOUSE_CLICKED 14 310 1
+Paint
+MouseEvent MOUSE_PRESSED 16 371 1
+Paint
+MouseEvent MOUSE_RELEASED 16 371 1
+MouseEvent MOUSE_CLICKED 16 371 1
+Paint
+MouseEvent MOUSE_PRESSED 14 361 1
+Paint
+MouseEvent MOUSE_RELEASED 14 361 1
+MouseEvent MOUSE_CLICKED 14 361 1
+Paint
+MouseEvent MOUSE_PRESSED 171 472 1
+Paint
+MouseEvent MOUSE_RELEASED 171 472 1
+MouseEvent MOUSE_CLICKED 171 472 1
+Paint
+MouseEvent MOUSE_PRESSED 50 17 1
+Paint
+MouseEvent MOUSE_RELEASED 50 17 1
+MouseEvent MOUSE_CLICKED 50 17 1
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 85 117
+KeyEvent KEY_TYPED 0 117
+Paint
+MouseEvent MOUSE_PRESSED 35 109 1
+Paint
+MouseEvent MOUSE_RELEASED 35 109 1
+MouseEvent MOUSE_CLICKED 35 109 1
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 8 8
+KeyEvent KEY_TYPED 0 8
+Paint
+KeyEvent KEY_PRESSED 65 97
+KeyEvent KEY_TYPED 0 97
+Paint
+KeyEvent KEY_PRESSED 65 97
+KeyEvent KEY_TYPED 0 97
+Paint
+KeyEvent KEY_PRESSED 80 112
+KeyEvent KEY_TYPED 0 112
+Paint
+MouseEvent MOUSE_PRESSED 33 529 1
+Paint
+MouseEvent MOUSE_RELEASED 33 529 1
+MouseEvent MOUSE_CLICKED 33 529 1
+Paint
+MouseEvent MOUSE_PRESSED 29 523 1
+Paint
+MouseEvent MOUSE_RELEASED 29 523 1
+MouseEvent MOUSE_CLICKED 29 523 1
+Paint
+MouseEvent MOUSE_PRESSED 251 395 1
+Paint
+MouseEvent MOUSE_RELEASED 251 395 1
+MouseEvent MOUSE_CLICKED 251 395 1
 Paint

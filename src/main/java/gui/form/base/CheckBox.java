@@ -5,12 +5,15 @@ import static gui.form.base.Constants.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gui.inputHandlers.FunctionTypable;
 import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 /**
  * TextBox that can be added to a Form
  */
-public abstract class CheckBox extends FormObject {
+public abstract class CheckBox extends FormObject implements FunctionTypable {
 
 	private CheckBoxState state;
 
@@ -35,8 +38,7 @@ public abstract class CheckBox extends FormObject {
 	 * @param y
 	 */
 	public CheckBox(int x, int y) {
-		super(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
-		setState(new NotSelected());
+		this(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
 	}
 
 	private class Selected extends CheckBoxState {
@@ -88,9 +90,21 @@ public abstract class CheckBox extends FormObject {
 
 	}
 
+	@Override
 	void onClick(MouseClick click) {
+		setFocused(true);
+
 		getState().onClick(click);
 		onAction();
+	}
+
+	@Override
+	public void handleFunctionKey(FunctionKey key) {
+		if (this.isFocused()) {
+			if (key.getKeyType().equals(FunctionKeyType.ENTER)) {
+				onClick(new MouseClick(0, 0));
+			}
+		}
 	}
 
 	void draw(Graphics g) {

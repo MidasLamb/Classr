@@ -21,6 +21,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 	@Override
 	public AttributedString visit(LogicalClass c) {
 		String text = c.getName();
+		text = trimString(text);
 		AttributedString string = new AttributedString(text);
 		return string;
 	}
@@ -61,7 +62,13 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 
 	@Override
 	public AttributedString visit(Attribute c) {
-		String text = c.getVisibility().getUMLRepresentation() + c.getName();
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append(c.getVisibility().getUMLRepresentation());
+		strBuilder.append(c.getName());
+		strBuilder.append(" : ");
+		strBuilder.append(c.getType());
+		String text = strBuilder.toString();
+		text = trimString(text);
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
 			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());

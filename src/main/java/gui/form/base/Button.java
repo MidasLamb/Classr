@@ -5,12 +5,15 @@ import static gui.form.base.Constants.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gui.inputHandlers.FunctionTypable;
 import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 /**
  * Button that can be added to a Form
  */
-public abstract class Button extends FormObject {
+public abstract class Button extends FormObject implements FunctionTypable {
 
 	private final Label text;
 	private ButtonState state;
@@ -44,6 +47,7 @@ public abstract class Button extends FormObject {
 
 	@Override
 	void onClick(MouseClick click) {
+		setFocused(true);
 		getState().onClick(click);
 	}
 
@@ -51,10 +55,22 @@ public abstract class Button extends FormObject {
 	void draw(Graphics g) {
 		getState().draw(g);
 	}
-	
+
 	@Override
 	boolean isFocusable() {
 		return this.getState().isFocusable();
+	}
+
+	/*
+	 * When Button is focused and enter key is typed, execute the onAction() method.
+	 */
+	@Override
+	public void handleFunctionKey(FunctionKey key) {
+		if (this.isFocused()) {
+			if (key.getKeyType().equals(FunctionKeyType.ENTER)) {
+				this.onAction();
+			}
+		}
 	}
 
 	private class Enabled extends ButtonState {
@@ -77,7 +93,7 @@ public abstract class Button extends FormObject {
 		void onClick(MouseClick click) {
 			onAction();
 		}
-		
+
 		@Override
 		boolean isFocusable() {
 			return true;
@@ -100,7 +116,7 @@ public abstract class Button extends FormObject {
 		@Override
 		void onClick(MouseClick click) {
 		}
-		
+
 		@Override
 		boolean isFocusable() {
 			return false;
@@ -113,7 +129,7 @@ public abstract class Button extends FormObject {
 		int width = getText().getWidth();
 		int middleX = getWidth() / 2 + getX();
 		int middleY = getHeight() / 2 + getY();
-		
+
 		getText().draw(g);
 	}
 

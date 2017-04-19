@@ -70,6 +70,8 @@ public abstract class InputBox extends FormObject implements Typable {
 
 	@Override
 	void onClick(MouseClick click) {
+		this.setFocused(true);
+
 		this.getTextObject().switchState(new EditableState());
 		onAction();
 	}
@@ -85,7 +87,20 @@ public abstract class InputBox extends FormObject implements Typable {
 		getTextObject().draw(g, this.getX(), this.getY());
 	}
 
+	@Override
+	void setFocused(boolean focused) {
+		super.setFocused(focused);
+		if (focused) {
+			this.getTextObject().switchState(new EditableState());
+		} else {
+			this.getTextObject().switchState(new PassiveState());
+		}
+		onAction();
+	}
 
+	/**
+	 * @return Text object that contains the value of this InputBox.
+	 */
 	protected final Text getTextObject() {
 		return textObject;
 	}
@@ -93,8 +108,11 @@ public abstract class InputBox extends FormObject implements Typable {
 	private final void setTextObject(Text textObject) {
 		this.textObject = textObject;
 	}
-	
-	public String getText(){
+
+	/**
+	 * @return Text entered in this InputBox.
+	 */
+	public String getText() {
 		return this.getTextObject().getText();
 	}
 

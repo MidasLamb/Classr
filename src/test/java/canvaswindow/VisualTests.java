@@ -110,6 +110,7 @@ public class VisualTests {
 	
 	@Test
 	public void deleteAssociationTest1() throws IOException {
+		//Associatie zelf verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/deleteAssociation1/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
@@ -118,6 +119,7 @@ public class VisualTests {
 	
 	@Test
 	public void deleteAssociationTest2() throws IOException {
+		//Klasse 1 verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/deleteAssociation2/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
@@ -126,6 +128,7 @@ public class VisualTests {
 	
 	@Test
 	public void deleteAssociationTest3() throws IOException {
+		//Klasse 2 verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		MyCanvasWindow.replayRecording("recordings/deleteAssociation3/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
@@ -139,12 +142,6 @@ public class VisualTests {
 		MyCanvasWindow.replayRecording("recordings/deleteAssociation4/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
 		assertTrue(imagesEqual(getReferenceImage("deleteAssociation4"),  actual));
-	}
-	
-	@Test
-	public void deleteAttributeTest() throws IOException {
-		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		assertTrue(MyCanvasWindow.replayRecording("recordings/deleteAttribute/recording", canvasWindow));
 	}	
 	
 	@Test
@@ -155,6 +152,33 @@ public class VisualTests {
 		MyCanvasWindow.replayRecording("recordings/doubleClick/recording", canvasWindow);
 		BufferedImage actual = canvasWindow.captureImage();
 		assertTrue(imagesEqual(getReferenceImage("doubleClick"),  actual));
+	}
+	
+	@Test
+	public void methodePrivateTest() throws IOException {
+		//Klasse maken, methode toevoegen private maken, opslaan
+		// Terug op methode klikken en kijken of private is aangeklikt
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/methodePrivate/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("methodePrivate"),  actual));
+	}
+	
+	@Test
+	public void focusCheckBoxTest() throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/focusCheckBox/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("focusCheckBox"),  actual));
+	}
+	
+	@Test
+	public void removeParameterTest() throws IOException {
+		//Add a parameter, save everything and delete it again
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/removeParameter/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("removeParameter"),  actual));
 	}
 	
 	
@@ -178,6 +202,7 @@ public class VisualTests {
 		String pattern = ".*recording.image([0-9]*).png";
 		Pattern r = Pattern.compile(pattern);
 		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
+		@SuppressWarnings("resource")
 		OptionalInt max = directory.mapToInt(file ->{
 			Matcher m = r.matcher(file.toString());
 			if (m.find())
