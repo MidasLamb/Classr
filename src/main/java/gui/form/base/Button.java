@@ -94,7 +94,8 @@ public abstract class Button extends FormObject {
 		int width = getText().getWidth();
 		int middleX = getWidth() / 2 + getX();
 		int middleY = getHeight() / 2 + getY();
-		getText().draw(g, middleX - width / 2, middleY - height);
+		
+		getText().draw(g);
 	}
 
 	private ButtonState getState() {

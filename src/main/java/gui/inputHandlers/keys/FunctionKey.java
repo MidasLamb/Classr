@@ -1,7 +1,7 @@
 package gui.inputHandlers.keys;
 
 public class FunctionKey extends Key {
-	
+
 	private final FunctionKeyType keyType;
 
 	public FunctionKey(FunctionKeyType keyType) {
@@ -12,6 +12,13 @@ public class FunctionKey extends Key {
 		return keyType;
 	}
 
-	public static enum FunctionKeyType {ENTER, BACKSPACE, ESCAPE, DELETE};
+	public boolean isArrowKey() {
+		return this.getKeyType() == FunctionKeyType.RIGHT || this.getKeyType() == FunctionKeyType.LEFT
+				|| this.getKeyType() == FunctionKeyType.UP || this.getKeyType() == FunctionKeyType.RIGHT;
+	}
+
+	public static enum FunctionKeyType {
+		ENTER, BACKSPACE, ESCAPE, DELETE, RIGHT, LEFT, UP, DOWN
+	};
 
 }

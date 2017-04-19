@@ -11,11 +11,12 @@ import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 /**
  * Form in which FormObjects can be placed.
  */
-public class Form implements Typable, Clickable{
+public class Form implements Typable, Clickable {
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
@@ -82,8 +83,34 @@ public class Form implements Typable, Clickable{
 	 */
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
-		getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
-				.forEach(x -> x.handleFunctionKey(key));
+		if (key.isArrowKey()) {
+			// Handle key in form
+			if (key.getKeyType().equals(FunctionKeyType.LEFT) || key.getKeyType().equals(FunctionKeyType.UP)) {
+				FormObject previous;
+				if (getFocusedObject() != null && ((previous = getFormObjects().lower(getFocusedObject())) != null)) {
+					setFocusedObject(previous);
+				}
+			} else if (key.getKeyType().equals(FunctionKeyType.RIGHT) || key.getKeyType().equals(FunctionKeyType.DOWN)) {
+				FormObject next;
+				if (getFocusedObject() != null && ((next = getNextFormObject(getFocusedObject())) != null)) {
+					setFocusedObject(next);
+				} else if (getFocusedObject() == null) {
+					setFocusedObject(getFormObjects().first());
+				}
+			}
+		} else {
+			// Send keystroke to children
+			getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
+					.forEach(x -> x.handleFunctionKey(key));
+		}
+	}
+	
+	private FormObject getNextFormObject(FormObject current) {
+		FormObject next = getFormObjects().higher(current);
+		while (next != null && !next.isFocusable()) {
+			next = getFormObjects().higher(next);
+		}
+		return next;
 	}
 
 	// Getters and setters
@@ -101,9 +128,16 @@ public class Form implements Typable, Clickable{
 	}
 
 	private void setFocusedObject(FormObject focusedObject) {
+		if (this.getFocusedObject() != null) {
+			this.getFocusedObject().setFocused(false);
+		}
 		this.focusedObject = focusedObject;
+		if (focusedObject != null) {
+			focusedObject.setFocused(true);
+		}
+		System.out.println("New object focussed.");
 	}
-	
+
 	@Override
 	public void onClick(SingleClick click) {
 		this.handleClick(click);
@@ -118,6 +152,6 @@ public class Form implements Typable, Clickable{
 
 	@Override
 	public void onDragEnd(Drag drag) {
-		
+
 	}
 }
