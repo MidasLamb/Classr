@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="visualobjects.VisualClassTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-04-18T07:44:05" hostname="DESKTOP-RV67H71" time="0.005">
+<testsuite name="visualobjects.VisualClassTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-04-19T18:53:15" hostname="DESKTOP-RV67H71" time="0.103">
   <properties/>
-  <testcase name="addAttributeTest" classname="visualobjects.VisualClassTest" time="0.001"/>
-  <testcase name="addMethodTest" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="getParentTest" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="createClassEditNameTest" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="isInTest1" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="isInTest2" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="isInTest3" classname="visualobjects.VisualClassTest" time="0.001"/>
-  <testcase name="isInTest4" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="isInTest5" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="isInTest6" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="isInTest7" classname="visualobjects.VisualClassTest" time="0.0"/>
-  <testcase name="addAssociationTest" classname="visualobjects.VisualClassTest" time="0.0"/>
+  <testcase name="addAttributeTest" classname="visualobjects.VisualClassTest" time="0.028"/>
+  <testcase name="addMethodTest" classname="visualobjects.VisualClassTest" time="0.011"/>
+  <testcase name="getParentTest" classname="visualobjects.VisualClassTest" time="0.002"/>
+  <testcase name="createClassEditNameTest" classname="visualobjects.VisualClassTest" time="0.003"/>
+  <testcase name="isInTest1" classname="visualobjects.VisualClassTest" time="0.002"/>
+  <testcase name="isInTest2" classname="visualobjects.VisualClassTest" time="0.001"/>
+  <testcase name="isInTest3" classname="visualobjects.VisualClassTest" time="0.002"/>
+  <testcase name="isInTest4" classname="visualobjects.VisualClassTest" time="0.001"/>
+  <testcase name="isInTest5" classname="visualobjects.VisualClassTest" time="0.002"/>
+  <testcase name="isInTest6" classname="visualobjects.VisualClassTest" time="0.003"/>
+  <testcase name="isInTest7" classname="visualobjects.VisualClassTest" time="0.001"/>
+  <testcase name="addAssociationTest" classname="visualobjects.VisualClassTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

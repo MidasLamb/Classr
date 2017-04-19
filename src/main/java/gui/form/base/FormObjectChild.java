@@ -5,4 +5,5 @@ public interface FormObjectChild{
 	FormObject getPreviousChild();
 	boolean hasNextChild();
 	boolean hasPreviousChild();
+	FormObject getParent();
 }

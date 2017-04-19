@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import gui.inputHandlers.FunctionTypable;
 import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.keys.FunctionKey;
+import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 public abstract class ListBox<T extends Displayable> extends FormObject implements FormObjectWithChildren{
 	ArrayList<ListBoxElement<T>> elements;
@@ -24,7 +27,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	@Override
 	void onClick(MouseClick click) {
 		this.setFocused(true);
-		
+
 		// Check on which element there has been clicked.
 		int x = this.getX();
 		int y = this.getY();
@@ -51,7 +54,11 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		int sumOfVerticalTranslations = 0;
 		g.translate(translatedX, translatedY);
 		for (ListBoxElement<T> e : this.getListboxElements()) {
+			Color c = g.getColor();
+			if (e.equals(this.getSelectedElement()))
+				g.setColor(Color.RED);
 			e.draw(g);
+			g.setColor(c);
 			sumOfVerticalTranslations += e.getHeight();
 			g.translate(0, e.getHeight());
 		}
@@ -61,6 +68,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		getListboxElements().add(lbe);
+		setSelectedElement(lbe);
 	}
 
 	/**
@@ -93,10 +101,10 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	private final ArrayList<ListBoxElement<T>> getListboxElements() {
 		return elements;
 	}
-	
-	public final ArrayList<T> getElements(){
+
+	public final ArrayList<T> getElements() {
 		ArrayList<T> c = new ArrayList<T>();
-		for (ListBoxElement<T> t: this.getListboxElements())
+		for (ListBoxElement<T> t : this.getListboxElements())
 			c.add(t.getObject());
 		return c;
 	}
@@ -106,12 +114,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	private final ListBoxElement<T> getSelectedElement() {
-		for (ListBoxElement<T> l: this.getListboxElements()){
-			if (l.isFocused())
-				return l;
-		}
-			
-		return null;
+		return this.selectedElement;
 	}
 
 	public final T getSelectedObject() {
@@ -121,43 +124,67 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return lb.getObject();
 	}
 
-	private final void setSelectedElement(ListBoxElement<T> selectedElement) {
-		if (this.selectedElement != null)
-			this.selectedElement.setFocused(false);
+	final void setSelectedElement(ListBoxElement<T> selectedElement) {
 		this.selectedElement = selectedElement;
-		if (selectedElement != null)
-			selectedElement.setFocused(true);
 	}
-	
-	
-	
+
 	@Override
-	public FormObject getNextChild(){
-		ListBoxElement<T> s = this.getSelectedElement();
+	public FormObject getNextChild() {
+		ListBoxElement<T> s = this.getFocusedChild();
 		int currentIndex = getListboxElements().indexOf(s);
 		this.setSelectedElement(getListboxElements().get(currentIndex + 1));
 		return getListboxElements().get(currentIndex + 1);
 	}
 	
-	@Override
-	public FormObject getPreviousChild(){
-		ListBoxElement<T> s = this.getSelectedElement();
-		int currentIndex = getListboxElements().indexOf(s);
-		this.setSelectedElement(getListboxElements().get(currentIndex - 1));
-		return getListboxElements().get(currentIndex - 1);
+	/**
+	 * Necesarry so we can access it from the internal classes.
+	 * @param o
+	 */
+	private final void setSelectedHelper(Object o){
+		this.setSelectedElement((ListBox<T>.ListBoxElement<T>) o);
 	}
 	
+	private boolean isChildFocused(){
+		for (ListBoxElement<T> l: this.getListboxElements()){
+			if (l.isFocused())
+				return true;
+		}
+			
+		return false;
+	}
+	
+	private ListBoxElement<T> getFocusedChild(){
+		for (ListBoxElement<T> l: this.getListboxElements()){
+			if (l.isFocused())
+				return l;
+		}
+		return null;
+	}
+
 	@Override
-	public boolean hasNextChild(){
-		ListBoxElement<T> s = this.getSelectedElement();
+	public FormObject getPreviousChild() {
+		if (this.getFocusedChild() != null) {
+			ListBoxElement<T> s = this.getFocusedChild();
+			int currentIndex = getListboxElements().indexOf(s);
+			this.setSelectedElement(getListboxElements().get(currentIndex - 1));
+			return getListboxElements().get(currentIndex - 1);
+		} else {
+			return getListboxElements().get(getListboxElements().size() - 1);
+		}
+	}
+
+	@Override
+	public boolean hasNextChild() {
+		ListBoxElement<T> s = this.getFocusedChild();
 		int currentIndex = getListboxElements().indexOf(s);
 		return (currentIndex + 1) < getListboxElements().size();
 	}
+
 	@Override
-	public boolean hasPreviousChild(){
-		ListBoxElement<T> s = this.getSelectedElement();
+	public boolean hasPreviousChild() {
+		ListBoxElement<T> s = this.getFocusedChild();
 		int currentIndex = getListboxElements().indexOf(s);
-		return (currentIndex - 1) >= 0; 
+		return (currentIndex - 1) >= 0 || (currentIndex == -1 && getListboxElements().size() > 0);
 	}
 
 	class ListBoxElement<T extends Displayable> extends FormObject implements FormObjectChild{
@@ -165,7 +192,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		private int height;
 
 		ListBoxElement(T obj) {
-			super(0,0,0,0);
+			super(0, 0, 0, 0);
 			this.obj = obj;
 		}
 
@@ -187,6 +214,16 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 			g.drawString(obj.getDisplayableString(), 0, height - descent);
 			g.setColor(c);
 		}
+		
+		@Override
+		void setFocused(boolean b){
+			super.setFocused(b);
+		
+			if(b) {
+				setSelectedHelper(this);
+			}
+			onAction();
+		}
 
 		public int getHeight() {
 			return this.height;
@@ -199,13 +236,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		@Override
 		void onClick(MouseClick click) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		@Override
 		protected void onAction() {
-			// TODO Auto-generated method stub
-			
+			ListBox.this.onAction();
+
 		}
 
 		@Override
@@ -228,6 +265,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 			return ListBox.this.hasPreviousChild();
 		}
 
+		@Override
+		public FormObject getParent() {
+			return ListBox.this;
+		}
+
 	}
+
 
 }

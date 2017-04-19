@@ -128,21 +128,48 @@ public class Form implements Typable, Clickable {
 	}
 
 	private FormObject getPreviousFormObject(FormObject current) {
+		if (current instanceof FormObjectChild){
+			FormObjectChild foc = (FormObjectChild) current;
+			if (foc.hasPreviousChild())
+				return foc.getPreviousChild();
+			else {
+				current = foc.getParent();
+			}
+		}
 		FormObject previous = getFormObjects().lower(current);
 		while (previous != null && !previous.isFocusable()) {
 			previous = getFormObjects().lower(previous);
+		}
+		if (previous instanceof FormObjectWithChildren){
+			FormObjectWithChildren fowc = (FormObjectWithChildren) previous;
+			if(fowc.hasPreviousChild())
+				return fowc.getPreviousChild();
+			else 
+				return getPreviousFormObject(previous);
 		}
 		return previous;
 	}
 
 	private FormObject getNextFormObject(FormObject current) {
-
+		if (current instanceof FormObjectChild){
+			FormObjectChild foc = (FormObjectChild) current;
+			if (foc.hasNextChild())
+				return foc.getNextChild();
+			else {
+				current = foc.getParent();
+			}
+		}
+			
 		FormObject next = getFormObjects().higher(current);
 		while (next != null && !next.isFocusable()) {
 			next = getFormObjects().higher(next);
 		}
 		if (next instanceof FormObjectWithChildren){
-			
+			FormObjectWithChildren fowc = (FormObjectWithChildren) next;
+			if(fowc.hasNextChild())
+				return fowc.getNextChild();
+			else 
+				return getNextFormObject(next);
 		}
 		return next;
 	}
