@@ -60,7 +60,10 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	boolean isFocusable() {
 		return this.getState().isFocusable();
 	}
-	
+
+	/*
+	 * When Button is focused and enter key is typed, execute the onAction() method.
+	 */
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
 		if (this.isFocused()) {
