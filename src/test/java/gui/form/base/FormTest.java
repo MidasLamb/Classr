@@ -1,14 +1,18 @@
 package gui.form.base;
 
-import static org.junit.Assert.*;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.DOWN;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.ENTER;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.LEFT;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.RIGHT;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.UP;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import gui.form.utility.DefaultCheckBox;
 import gui.inputHandlers.keys.FunctionKey;
-import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.*;
 
 public class FormTest {
 
@@ -203,5 +207,73 @@ public class FormTest {
 		form.handleFunctionKey(new FunctionKey(RIGHT));
 		assertTrue(box.isFocused());
 	}
+	
+	@Test
+	public void checkBoxTest1() {
+		Form form = new Form(0, 0);
+		CheckBox box = new DefaultCheckBox(0, 0);
+		form.addFormObject(box);
+		form.handleFunctionKey(new FunctionKey(DOWN));
+		assertTrue(box.isFocused());
+	}
+	
+	@Test
+	public void checkBoxTest2() {
+		Form form = new Form(0, 0);
+		CheckBox box = new DefaultCheckBox(0, 0);
+		form.addFormObject(box);
+		form.handleFunctionKey(new FunctionKey(DOWN));
+		form.handleFunctionKey(new FunctionKey(ENTER));
+		assertTrue(box.isChecked());
+	}
+	
+	@Test
+	public void checkBoxTest3() {
+		Form form = new Form(0, 0);
+		CheckBox box = new DefaultCheckBox(0, 0);
+		form.addFormObject(box);
+		form.handleFunctionKey(new FunctionKey(DOWN));
+		form.handleFunctionKey(new FunctionKey(ENTER));
+		form.handleFunctionKey(new FunctionKey(ENTER));
+		assertFalse(box.isChecked());
+	}
+	
+	@Test
+	public void buttonTest1() {
+		Form form = new Form(0, 0);
+		Button button = new Button("", 0, 0, 0, 0) {
+			@Override
+			protected void onAction() {
+				action = !action;			
+			}
+		};
+		form.addFormObject(button);
+		form.handleFunctionKey(new FunctionKey(DOWN));
+		form.handleFunctionKey(new FunctionKey(ENTER));
+		assertTrue(action);
+	}
+	
+	@Test
+	public void buttonTest2() {
+		Form form = new Form(0, 0);
+		Button button = new Button("", 0, 0, 0, 0) {
+			@Override
+			protected void onAction() {
+				action = !action;				
+			}
+		};
+		form.addFormObject(button);
+		form.handleFunctionKey(new FunctionKey(DOWN));
+		form.handleFunctionKey(new FunctionKey(ENTER));
+		form.handleFunctionKey(new FunctionKey(ENTER));
+		assertFalse(action);
+	}
+	
+	@Before
+	public void resetAction(){
+		action = false;
+	}
+	
+	private boolean action;
 
 }
