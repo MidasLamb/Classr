@@ -45,6 +45,9 @@ public class Form implements Typable, Clickable {
 		getFormObjects().add(formObject);
 	}
 
+	/**
+	 * @return TreeSet of all FormObjects in this Form.
+	 */
 	private TreeSet<FormObject> getFormObjects() {
 		return formObjects;
 	}
