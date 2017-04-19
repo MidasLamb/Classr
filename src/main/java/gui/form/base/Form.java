@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.TreeSet;
 
 import gui.inputHandlers.Clickable;
+import gui.inputHandlers.FunctionTypable;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -107,7 +108,7 @@ public class Form implements Typable, Clickable {
 			}
 		} else {
 			// Send keystroke to children
-			getFormObjects().stream().filter(x -> x instanceof Typable).map(x -> (Typable) x)
+			getFormObjects().stream().filter(x -> x instanceof FunctionTypable).map(x -> (FunctionTypable) x)
 					.forEach(x -> x.handleFunctionKey(key));
 		}
 	}
