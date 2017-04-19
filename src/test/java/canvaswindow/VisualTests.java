@@ -154,6 +154,16 @@ public class VisualTests {
 		assertTrue(imagesEqual(getReferenceImage("doubleClick"),  actual));
 	}
 	
+	@Test
+	public void methodePrivateTest() throws IOException {
+		//Klasse maken, methode toevoegen private maken, opslaan
+		// Terug op methode klikken en kijken of private is aangeklikt
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/methodePrivate/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		assertTrue(imagesEqual(getReferenceImage("methodePrivate"),  actual));
+	}
+	
 	
 	
 	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
