@@ -13,6 +13,8 @@ import gui.inputHandlers.clicks.MouseClick;
 public abstract class FormObject implements Comparable<FormObject> {
 
 	private final int x, y, width, height;
+	private boolean focused;
+	private boolean focusable = true;
 
 	/**
 	 * Default constructor for a FormObject. Creates a new FormObject and sets
@@ -92,6 +94,22 @@ public abstract class FormObject implements Comparable<FormObject> {
 				thisFormObject.onClick(new MouseClick(0, 0));
 			}
 		};
+	}
+
+	boolean isFocusable() {
+		return focusable;
+	}
+
+	protected final void setFocusable(boolean focusable) {
+		this.focusable = focusable;
+	}
+
+	void setFocused(boolean focused) {
+		this.focused = focused;
+	}
+
+	boolean isFocused() {
+		return this.focused;
 	}
 
 	/**

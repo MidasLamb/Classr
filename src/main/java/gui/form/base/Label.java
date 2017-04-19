@@ -5,6 +5,7 @@ import static gui.form.base.Constants.STANDARD_TEXT_ASCEND;
 import static gui.form.base.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
@@ -25,7 +26,8 @@ public class Label extends FormObject {
 	 */
 	public Label(String text, int x, int y) {
 		super(x, y, 0, 0);
-		this.text = text;		
+		this.text = text;
+		setFocusable(false);
 	}
 
 	@Override
@@ -35,11 +37,12 @@ public class Label extends FormObject {
 
 	@Override
 	void draw(Graphics g) {
-		draw(g, getX(), getY());
-	}
-	
-	void draw(Graphics g, int x, int y) {
-		g.drawString(getText(), x, y+getHeight());
+		Color c = g.getColor();
+		if (this.isFocused()) {
+			g.setColor(Color.BLUE);
+		}
+		g.drawString(getText(), this.getX(), this.getY()+this.getHeight());
+		g.setColor(c);
 	}
 	
 	@Override
