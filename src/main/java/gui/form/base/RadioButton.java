@@ -2,6 +2,7 @@ package gui.form.base;
 
 import static gui.form.base.Constants.*;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.MouseClick;
@@ -28,6 +29,12 @@ public abstract class RadioButton extends FormObject {
 		@Override
 		void draw(Graphics g) {
 			g.fillOval(getX(), getY(), getWidth(), getHeight());
+			Color color = g.getColor();
+			if (isFocused()) {
+				g.setColor(Color.BLUE);
+				g.drawOval(getX(), getY(), getWidth(), getHeight());
+			}
+			g.setColor(color);
 		}
 		
 	}
@@ -36,7 +43,12 @@ public abstract class RadioButton extends FormObject {
 
 		@Override
 		void draw(Graphics g) {
+			Color color = g.getColor();
+			if (isFocused()) {
+				g.setColor(Color.BLUE);
+			}
 			g.drawOval(getX(), getY(), getWidth(), getHeight());
+			g.setColor(color);
 		}
 		
 	}

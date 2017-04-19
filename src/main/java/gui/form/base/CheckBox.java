@@ -2,6 +2,7 @@ package gui.form.base;
 
 import static gui.form.base.Constants.*;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.MouseClick;
@@ -43,6 +44,12 @@ public abstract class CheckBox extends FormObject {
 		@Override
 		void draw(Graphics g) {
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
+			Color color = g.getColor();
+			if (isFocused()) {
+				g.setColor(Color.BLUE);
+				g.drawRect(getX(), getY(), getWidth(), getHeight());
+			}
+			g.setColor(color);
 		}
 
 		@Override
@@ -61,7 +68,12 @@ public abstract class CheckBox extends FormObject {
 
 		@Override
 		void draw(Graphics g) {
+			Color color = g.getColor();
+			if (isFocused()) {
+				g.setColor(Color.BLUE);
+			}
 			g.drawRect(getX(), getY(), getWidth(), getHeight());
+			g.setColor(color);
 		}
 
 		@Override

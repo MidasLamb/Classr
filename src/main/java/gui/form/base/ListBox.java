@@ -145,7 +145,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 			height = g.getFontMetrics().getHeight();
 			int descent = g.getFontMetrics().getDescent();
 			g.drawString(obj.getDisplayableString(), 0, height - descent);
-
 		}
 
 		public int getHeight() {

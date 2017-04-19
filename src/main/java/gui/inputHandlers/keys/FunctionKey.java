@@ -14,7 +14,7 @@ public class FunctionKey extends Key {
 
 	public boolean isArrowKey() {
 		return this.getKeyType() == FunctionKeyType.RIGHT || this.getKeyType() == FunctionKeyType.LEFT
-				|| this.getKeyType() == FunctionKeyType.UP || this.getKeyType() == FunctionKeyType.RIGHT;
+				|| this.getKeyType() == FunctionKeyType.UP || this.getKeyType() == FunctionKeyType.DOWN;
 	}
 
 	public static enum FunctionKeyType {
