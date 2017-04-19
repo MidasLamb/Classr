@@ -1,6 +1,7 @@
 package gui.form.base;
 
 import java.awt.Graphics;
+import java.util.Optional;
 import java.util.TreeSet;
 
 import gui.inputHandlers.Clickable;
@@ -54,7 +55,16 @@ public class Form implements Typable, Clickable {
 	 * @param click
 	 */
 	public void handleClick(MouseClick click) {
+		setFocusedObject(null);
+		
 		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
+		
+		Optional<FormObject> maybeFocused = getFormObjects().stream().filter(s -> s.isFocused()).findFirst();
+		if (maybeFocused.isPresent()) {
+			this.setFocusedObject(maybeFocused.get());
+		} else {
+			this.setFocusedObject(null);
+		}
 	}
 
 	/**
@@ -151,7 +161,6 @@ public class Form implements Typable, Clickable {
 		if (focusedObject != null) {
 			focusedObject.setFocused(true);
 		}
-		System.out.println("New object focussed.");
 	}
 
 	@Override

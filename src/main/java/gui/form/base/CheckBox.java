@@ -92,6 +92,8 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 
 	@Override
 	void onClick(MouseClick click) {
+		setFocused(true);
+		
 		getState().onClick(click);
 		onAction();
 	}

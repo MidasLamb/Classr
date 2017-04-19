@@ -23,6 +23,8 @@ public abstract class ListBox<T extends Displayable> extends FormObject {
 
 	@Override
 	void onClick(MouseClick click) {
+		this.setFocused(true);
+		
 		// Check on which element there has been clicked.
 		int x = this.getX();
 		int y = this.getY();

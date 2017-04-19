@@ -58,6 +58,8 @@ public abstract class RadioButton extends FormObject implements FunctionTypable 
 
 	@Override
 	void onClick(MouseClick click) {
+		this.setFocused(true);
+		
 		this.getGroup().radioButtonIsClicked(this);
 		onAction();
 	}
