@@ -161,7 +161,6 @@ public class Form implements Typable, Clickable {
 		if (focusedObject != null) {
 			focusedObject.setFocused(true);
 		}
-		System.out.println("New object focussed.");
 	}
 
 	@Override
