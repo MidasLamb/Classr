@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
-import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 
 public class TextTest {

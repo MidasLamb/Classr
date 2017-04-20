@@ -36,7 +36,7 @@ public class DefaultCheckBox extends CheckBox {
 		super(x, y);
 	}
 
-	/*
+	/**
 	 * Empty onAction() method.
 	 */
 	@Override

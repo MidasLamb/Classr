@@ -28,7 +28,7 @@ public abstract class OkButton extends Button implements Checker {
 		this.constraints = new ArrayList<Checkable>();
 	}
 
-	/*
+	/**
 	 * Check the constraints and execute onOk().
 	 */
 	@Override

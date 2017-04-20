@@ -23,7 +23,7 @@ public class DefaultRadioButton extends RadioButton {
 		super(group, x, y);
 	}
 
-	/*
+	/**
 	 * Empty onAction() method.
 	 */
 	@Override

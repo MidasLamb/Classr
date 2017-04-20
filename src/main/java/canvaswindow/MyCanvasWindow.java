@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayDeque;
-import java.util.Queue;
 
 import gui.inputHandlers.KeyHandler;
 import gui.inputHandlers.MouseClickHandler;

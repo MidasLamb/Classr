@@ -2,16 +2,12 @@ package visualobjects;
 
 import static main.Constants.Z_CLASS;
 
-import java.awt.event.KeyEvent;
-
 import canvaswindow.MyCanvasWindow;
-import gui.inputHandlers.Clickable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import interfaces.CanvasContent;
-import interfaces.DeleteSubject;
 
 public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
@@ -54,7 +50,7 @@ public class Container extends VisualObject  implements CanvasContent{
 	 *            The y coordinate where the class needs to be showed
 	 */
 	private void createNewClass(int x, int y) {
-		VisualClass c = new VisualClass(x, y, Z_CLASS, this);
+		new VisualClass(x, y, Z_CLASS, this);
 
 	}
 

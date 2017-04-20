@@ -1,11 +1,9 @@
 package visualobjects;
 
-import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.*;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.DELETE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.awt.event.KeyEvent;
 
 import org.junit.Test;
 
@@ -338,7 +336,6 @@ public class ContainerTest {
 	
 	@Test
 	public void selectMethodeTest(){
-		//TODO update this test with the new use case
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(149,118);
@@ -392,7 +389,6 @@ public class ContainerTest {
 	
 	@Test
 	public void deleteAttributeTest(){
-		//TODO update this test with the new use case
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(182,162);
@@ -415,7 +411,6 @@ public class ContainerTest {
 	
 	@Test
 	public void deleteMethodeTest(){
-		//TODO update this test with the new use case
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(149,118);
