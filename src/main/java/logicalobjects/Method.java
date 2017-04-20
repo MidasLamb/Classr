@@ -21,6 +21,7 @@ public class Method extends ClassContent {
 	public Method(LogicalClass rc) {
 		super(rc);
 		this.setName("New method");
+		this.setType("void");
 		this.setParameters(new ArrayList<Parameter>());
 	}
 

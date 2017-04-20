@@ -19,7 +19,6 @@ public abstract class ClassContent extends LogicalObject{
 	public ClassContent(LogicalClass rc) {
 		this.setRealClass(rc);
 		this.setVisibility(new Private());
-		this.setType("void");
 	}
 
 	/**
