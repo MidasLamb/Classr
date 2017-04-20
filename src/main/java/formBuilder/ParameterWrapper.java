@@ -3,9 +3,19 @@ package formBuilder;
 import gui.form.base.Displayable;
 import logicalobjects.Parameter;
 
+/**
+ * A wrapper to be able to display a parameter in a ListBox
+ */
 public class ParameterWrapper implements Displayable {
 	public Parameter parameter;
-	public ParameterWrapper(Parameter p){
+
+	/**
+	 * Create a new ParameterWrapper.
+	 * 
+	 * @param p
+	 *            Parameter that needs to be wrapped
+	 */
+	public ParameterWrapper(Parameter p) {
 		this.setParameter(p);
 	}
 
@@ -14,6 +24,11 @@ public class ParameterWrapper implements Displayable {
 		return getParameter().getName() + ": " + getParameter().getType();
 	}
 
+	/**
+	 * Get the Parameter of this ParameterWrapper
+	 * 
+	 * @return Parameter of this ParameterWrapper
+	 */
 	public final Parameter getParameter() {
 		return parameter;
 	}

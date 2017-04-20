@@ -11,11 +11,22 @@ import logicalobjects.LogicalObjectVisitor;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-public class NewObjectFormCreator implements LogicalObjectVisitor<Void>{
+/**
+ * Builds a Form when a new object is created
+ */
+public class NewObjectFormCreator implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
 	private MyCanvasWindow window;
-	
-	public NewObjectFormCreator(LogicalObject o, MyCanvasWindow window){
+
+	/**
+	 * Create a new NewObjectFormCreator.
+	 * 
+	 * @param o
+	 *            LogicalObject for which this Form is to be created
+	 * @param window
+	 *            MyCanvasWindow where the Form needs to be drawn
+	 */
+	public NewObjectFormCreator(LogicalObject o, MyCanvasWindow window) {
 		this.setWindow(window);
 		this.startVisit(o);
 	}
@@ -59,8 +70,12 @@ public class NewObjectFormCreator implements LogicalObjectVisitor<Void>{
 	private void setWindow(MyCanvasWindow window) {
 		this.window = window;
 	}
-	
-	public FormWrapper getForm(){
+
+	/**
+	 * Get the FormWrapper of this NewObjectFormBuilder
+	 * @return FormWrapper of this NewObjectFormBuilder
+	 */
+	public FormWrapper getForm() {
 		return this.getFormBuilder().getForm();
 	}
 
