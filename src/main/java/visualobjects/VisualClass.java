@@ -5,6 +5,8 @@ import static main.Constants.*;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -18,9 +20,8 @@ public class VisualClass extends VisualObject {
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
-		this.setName(new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, 
-				new EditableTextWrapper(0,0,0,"Klasse", "^[A-Z][a-zA-Z0-9_]*",
-						null,getLogicalObject(), MAX_TEXT_WIDTH), this, getLogicalObject()));
+		this.setName(new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, new EditableTextWrapper(0, 0, 0, "Klasse",
+				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), MAX_TEXT_WIDTH), this, getLogicalObject()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
 
@@ -90,8 +91,9 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox<TextWrapper> createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		TextWrapper t = new TextWrapper(0,0,0, null, attr);
-		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t,  this, attr);
+		TextWrapper t = new TextWrapper(0, 0, 0, null, attr);
+		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
+				attr);
 		this.updateDimensions();
 		return tbox;
 	}
@@ -103,8 +105,9 @@ public class VisualClass extends VisualObject {
 	 */
 	private PaddingBox<TextWrapper> createMethod() {
 		Method method = getLogicalObject().addMethod();
-		TextWrapper t = new TextWrapper(0,0,0, null, method);
-		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this, method);
+		TextWrapper t = new TextWrapper(0, 0, 0, null, method);
+		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
+				method);
 		this.updateDimensions();
 		return tbox;
 	}
@@ -135,14 +138,11 @@ public class VisualClass extends VisualObject {
 	}
 
 	private Collection<VisualObject> getAttributes() {
-		Collection<VisualObject> vo = new ArrayList<VisualObject>();
-		
-		// TODO hacky whacky
-		for (VisualObject v : this.getChildren()) {
-			if (v.getLogicalObject() instanceof Attribute)
-				vo.add(v);
-		}
-		return vo;
+		Collection<Attribute> attr = ((LogicalClass) this.getLogicalObject()).getAttributes();
+		return getChildren()
+				.stream()
+				.filter(x -> attr.contains(x.getLogicalObject()))
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -179,13 +179,11 @@ public class VisualClass extends VisualObject {
 	}
 
 	private Collection<VisualObject> getMethods() {
-		Collection<VisualObject> vo = new ArrayList<VisualObject>();
-		// TODO hacky whacky
-		for (VisualObject v : this.getChildren()) {
-			if (v.getLogicalObject() instanceof Method)
-				vo.add(v);
-		}
-		return vo;
+		Collection<Method> meth = ((LogicalClass) this.getLogicalObject()).getMethods();
+		return getChildren()
+				.stream()
+				.filter(x -> meth.contains(x.getLogicalObject()))
+				.collect(Collectors.toList());
 	}
 
 	@Override
