@@ -1,6 +1,6 @@
 package gui.text;
 
-import static main.Constants.STANDARD_FONTMETRICS;
+import static gui.form.base.Constants.STANDARD_FONTMETRICS;
 
 import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
