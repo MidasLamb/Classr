@@ -22,7 +22,7 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 
 	@Override
 	public Void visit(LogicalClass c) {
-		// TODO Auto-generated method stub
+		//No form for LogicalClass exists.
 		return null;
 	}
 
@@ -40,7 +40,7 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 
 	@Override
 	public Void visit(Association c) {
-		// TODO Auto-generated method stub
+		//No form exists for an association.
 		return null;
 	}
 
@@ -66,7 +66,7 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 
 	@Override
 	public Void visit(Parameter parameter) {
-		// TODO Auto-generated method stub
+		// No  form for parameter exists.
 		return null;
 	}
 

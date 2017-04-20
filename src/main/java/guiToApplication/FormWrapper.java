@@ -51,10 +51,17 @@ public class FormWrapper extends Form implements CanvasContent {
 		super.draw(g);
 	}
 
+	/**
+	 * Closes this form.
+	 */
 	public void close() {
 		this.canvasWindow.closeContent(this);
 	}
 	
+	/**
+	 * Returns the CanvasWindow.
+	 * @return
+	 */
 	public MyCanvasWindow getCanvasWindow(){
 		return this.canvasWindow;
 	}

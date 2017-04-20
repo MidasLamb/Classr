@@ -26,15 +26,28 @@ import visibilities.Protected;
 import visibilities.Public;
 import visibilities.Visibility;
 
+/**
+ * Builds a form managing a method
+ */
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
 	private MyCanvasWindow window;
 	private boolean isNew;
-	
+
 	private Button editParameter;
 	private Button removeParameter;
 	private ListBox<ParameterWrapper> parameters;
 
+	/**
+	 * Create a new MethodFormBuilder.
+	 * 
+	 * @param method
+	 *            Method for which a form must be created
+	 * @param window
+	 *            MyCanvasWindow where the Form needs to be drawn
+	 * @param isNew
+	 *            indicates whether this is a newly created method
+	 */
 	public MethodFormBuilder(Method method, MyCanvasWindow window, boolean isNew) {
 		this.method = method;
 		this.window = window;
@@ -45,16 +58,19 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
 
-		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10, 100, 16);
+		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10,
+				100, 16);
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), "^[a-z][a-zA-Z0-9_]*", 10, 60, 100, 16);
+		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), "^[a-z][a-zA-Z0-9_]*", 10, 60,
+				100, 16);
 
 		this.addFormObject(methType);
 		this.addLabelToTopOfLastFormObject("Method type");
 
-		// Radio buttons for visibility. ---------------------------------------------------------------
+		// Radio buttons for visibility.
+		// ---------------------------------------------------------------
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton publicButton = new DefaultRadioButton(group, 10, 110);
 		this.addFormObject(publicButton);
@@ -68,87 +84,88 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButton protectedButton = new DefaultRadioButton(group, 10, 260);
 		this.addFormObject(protectedButton);
 		this.addLabelToRightOfLostFormObject("Protected");
-		// Static checkbox ---------------------------------------------------------------
+		// Static checkbox
+		// ---------------------------------------------------------------
 		CheckBox staticCheckbox = new DefaultCheckBox(10, 310);
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLostFormObject("Static");
-		
-		//Abstract checkbox ----------------------------------------------------------
+
+		// Abstract checkbox
+		// ----------------------------------------------------------
 		CheckBox abstractCheckbox = new DefaultCheckBox(10, 360);
 		this.addFormObject(abstractCheckbox);
 		this.addLabelToRightOfLostFormObject("Abstract");
-		
-		
-		// Parameters ---------------------------------------------------------------
-		parameters = new ListBox<ParameterWrapper>(10,450,100,100){
+
+		// Parameters
+		// ---------------------------------------------------------------
+		parameters = new ListBox<ParameterWrapper>(10, 450, 100, 100) {
 
 			@Override
 			protected void onAction() {
 				checkEditAndCancelButtons();
 			}
-			
+
 		};
-		
+
 		this.addFormObject(parameters);
 		this.addLabelToTopOfLastFormObject("Parameters");
-		
-		Button addParameter = new Button("Add", 150,450, 50, 50){
+
+		Button addParameter = new Button("Add", 150, 450, 50, 50) {
 
 			@Override
 			protected void onAction() {
 				Parameter p = new Parameter("name", "type");
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window){
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window) {
 
 					@Override
 					public void onOk() {
 						parameters.addElement(new ParameterWrapper(p));
 						checkEditAndCancelButtons();
 					}
-					
+
 				};
 				getForm().getCanvasWindow().addContentAndSwitchTo(parabuilder.getForm());
 			}
-			
+
 		};
-		
+
 		this.addFormObject(addParameter);
-		
-		editParameter = new Button("Edit", 250,450, 50, 50){
+
+		editParameter = new Button("Edit", 250, 450, 50, 50) {
 
 			@Override
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window){
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window) {
 
 					@Override
 					public void onOk() {
-						
+
 					}
-					
+
 				};
 				getForm().getCanvasWindow().addContentAndSwitchTo(parabuilder.getForm());
-				
+
 			}
-			
+
 		};
-		
+
 		this.addFormObject(editParameter);
-		
-		removeParameter = new Button("Remove", 350,450, 50, 50){
+
+		removeParameter = new Button("Remove", 350, 450, 50, 50) {
 
 			@Override
 			protected void onAction() {
 				parameters.removeSelectedElement();
 				checkEditAndCancelButtons();
 			}
-			
-		};
-		
-		this.addFormObject(removeParameter);
-		
 
-		
-		// OK and cancel ---------------------------------------------------------------
+		};
+
+		this.addFormObject(removeParameter);
+
+		// OK and cancel
+		// ---------------------------------------------------------------
 		OkButton ok = new OkButton(10, 500, 50, 50) {
 
 			@Override
@@ -163,19 +180,18 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					getMethod().setVisibility(new Private());
 				else if (group.getSelectedButton().equals(protectedButton))
 					getMethod().setVisibility(new Protected());
-				
+
 				getMethod().setStatic(staticCheckbox.isChecked());
 				getMethod().setAbstract(abstractCheckbox.isChecked());
-				
+
 				Collection<Parameter> c = new ArrayList<Parameter>(getMethod().getParameters());
-				for (Parameter p: c){
+				for (Parameter p : c) {
 					getMethod().removeParameter(p);
 				}
-					
-				for (ParameterWrapper p: parameters.getElements())
+
+				for (ParameterWrapper p : parameters.getElements())
 					getMethod().addParameter(p.getParameter());
-				
-				
+
 				getForm().close();
 			}
 
@@ -201,29 +217,28 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		// Initialize all objects with correct startinput.
 
 		Visibility v = getMethod().getVisibility();
-		if(v instanceof Private)
+		if (v instanceof Private)
 			group.setSelectedButton(privateButton);
-		else if(v instanceof Public)
+		else if (v instanceof Public)
 			group.setSelectedButton(publicButton);
-		else if(v instanceof Package)
-			group.setSelectedButton(packageButton);	
-		else if(v instanceof Protected)
+		else if (v instanceof Package)
+			group.setSelectedButton(packageButton);
+		else if (v instanceof Protected)
 			group.setSelectedButton(protectedButton);
-		
-		for (Parameter p: getMethod().getParameters())
+
+		for (Parameter p : getMethod().getParameters())
 			parameters.addElement(new ParameterWrapper(p));
-		
+
 		staticCheckbox.setChecked(getMethod().isStatic());
 		abstractCheckbox.setChecked(getMethod().isAbstract());
 		checkEditAndCancelButtons();
 	}
 
-	
-	private void checkEditAndCancelButtons(){
+	private void checkEditAndCancelButtons() {
 		editParameter.setEnabled(parameters.getSelectedObject() != null);
 		removeParameter.setEnabled(parameters.getSelectedObject() != null);
 	}
-	
+
 	private Method getMethod() {
 		return method;
 	}

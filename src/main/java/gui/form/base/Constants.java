@@ -15,7 +15,6 @@ public final class Constants {
 	public static final int STANDARD_CHECKBOX_WIDTH = 10;
 	public static final int STANDARD_BUTTON_TEXT_PADDING = 5;
 	
-	// TODO: hoogte label
 	public static final Font STANDARD_FONT = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
 	public static final FontMetrics STANDARD_FONTMETRICS = new Canvas().getFontMetrics(STANDARD_FONT);
 	public static final int STANDARD_TEXT_HEIGHT = STANDARD_FONTMETRICS.getHeight();

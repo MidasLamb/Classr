@@ -79,8 +79,6 @@ public class MyCanvasWindow extends CanvasWindow {
 	protected final void handleKeyEvent(KeyEvent e) {
 		getKeyHandler().handleInput(e);
 		this.repaint();
-		// TODO Handle shift keys and such
-
 	}
 
 	private CanvasContent getContent() {

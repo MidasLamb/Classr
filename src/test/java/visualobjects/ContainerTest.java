@@ -323,7 +323,6 @@ public class ContainerTest {
 	
 	@Test
 	public void selectAttributeTest(){
-		//TODO update this test with the new use case
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
 		DoubleClick click1 = new DoubleClick(182,162);
