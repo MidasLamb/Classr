@@ -13,11 +13,35 @@ public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			The x-coordinate of the container
+	 * @param 	y
+	 * 			The y-coordinate of the container
+	 * @param 	width
+	 * 			the width of the container
+	 * @param 	height
+	 * 			the height of the container
+	 * @param 	window
+	 * 			the canvas window in this container
+	 */
 	public Container(int x, int y, int width, int height, MyCanvasWindow window) {
 		super(x, y, Integer.MIN_VALUE, width, height, null);
 		this.setCanvasWindow(window);
 	}
 	
+	/**
+	 * 
+	 * @param 	x
+	 * 			The x-coordinate of the container
+	 * @param 	y
+	 * 			The y-coordinate of the container
+	 * @param 	width
+	 * 			the width of the container
+	 * @param 	height
+	 * 			the height of the container
+	 */
 	public Container(int x, int y, int width, int height) {
 		super(x, y, Integer.MIN_VALUE, width, height, null);
 	}
@@ -51,7 +75,6 @@ public class Container extends VisualObject  implements CanvasContent{
 	 */
 	private void createNewClass(int x, int y) {
 		new VisualClass(x, y, Z_CLASS, this);
-
 	}
 
 	@Override
@@ -94,10 +117,17 @@ public class Container extends VisualObject  implements CanvasContent{
 		this.selected = selected;
 	}
 
+	/**
+	 * @return the canvasWindow
+	 */
 	MyCanvasWindow getCanvasWindow() {
 		return window;
 	}
 
+	/**
+	 * @param 	window
+	 * 			the canvas window
+	 */
 	private void setCanvasWindow(MyCanvasWindow window) {
 		this.window = window;
 	}
