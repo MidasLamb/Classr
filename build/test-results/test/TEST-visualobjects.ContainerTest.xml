@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="visualobjects.ContainerTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2017-04-19T18:53:14" hostname="DESKTOP-RV67H71" time="0.907">
+<testsuite name="visualobjects.ContainerTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2017-04-20T13:19:37" hostname="DESKTOP-RV67H71" time="0.118">
   <properties/>
-  <testcase name="deleteTwoAssTest" classname="visualobjects.ContainerTest" time="0.03"/>
-  <testcase name="deleteAttributeTest" classname="visualobjects.ContainerTest" time="0.004"/>
-  <testcase name="createClassTest" classname="visualobjects.ContainerTest" time="0.013"/>
-  <testcase name="selectContainerTest" classname="visualobjects.ContainerTest" time="0.002"/>
-  <testcase name="deleteTest1" classname="visualobjects.ContainerTest" time="0.002"/>
-  <testcase name="deleteTest2" classname="visualobjects.ContainerTest" time="0.011"/>
-  <testcase name="deleteTest3" classname="visualobjects.ContainerTest" time="0.001"/>
-  <testcase name="deleteTest4" classname="visualobjects.ContainerTest" time="0.01"/>
-  <testcase name="deleteTest5" classname="visualobjects.ContainerTest" time="0.002"/>
-  <testcase name="deleteTest6" classname="visualobjects.ContainerTest" time="0.015"/>
-  <testcase name="deleteMethodeTest" classname="visualobjects.ContainerTest" time="0.001"/>
-  <testcase name="getParentTest" classname="visualobjects.ContainerTest" time="0.001"/>
-  <testcase name="selectAttributeTest" classname="visualobjects.ContainerTest" time="0.003"/>
-  <testcase name="constructorTest1" classname="visualobjects.ContainerTest" time="0.019"/>
-  <testcase name="constructorTest2" classname="visualobjects.ContainerTest" time="0.01"/>
-  <testcase name="clickOnClassTest1" classname="visualobjects.ContainerTest" time="0.007"/>
-  <testcase name="clickOnClassTest2" classname="visualobjects.ContainerTest" time="0.01"/>
-  <testcase name="selectAssTest" classname="visualobjects.ContainerTest" time="0.128"/>
-  <testcase name="createClassesTest" classname="visualobjects.ContainerTest" time="0.013"/>
-  <testcase name="selectMethodeTest" classname="visualobjects.ContainerTest" time="0.009"/>
-  <testcase name="deleteClassTest" classname="visualobjects.ContainerTest" time="0.008"/>
-  <testcase name="createTwoAssTest" classname="visualobjects.ContainerTest" time="0.031"/>
-  <testcase name="isInTest1" classname="visualobjects.ContainerTest" time="0.019"/>
-  <testcase name="isInTest2" classname="visualobjects.ContainerTest" time="0.01"/>
-  <testcase name="isInTest3" classname="visualobjects.ContainerTest" time="0.001"/>
-  <testcase name="isInTest4" classname="visualobjects.ContainerTest" time="0.011"/>
-  <testcase name="selectedTest1" classname="visualobjects.ContainerTest" time="0.014"/>
-  <testcase name="selectedTest2" classname="visualobjects.ContainerTest" time="0.002"/>
-  <testcase name="selectedTest3" classname="visualobjects.ContainerTest" time="0.017"/>
-  <testcase name="createClassTest2" classname="visualobjects.ContainerTest" time="0.008"/>
-  <testcase name="createAssTest" classname="visualobjects.ContainerTest" time="0.008"/>
-  <testcase name="deleteAssTest1" classname="visualobjects.ContainerTest" time="0.002"/>
-  <testcase name="deleteAssTest2" classname="visualobjects.ContainerTest" time="0.002"/>
+  <testcase name="deleteTwoAssTest" classname="visualobjects.ContainerTest" time="0.01"/>
+  <testcase name="deleteAttributeTest" classname="visualobjects.ContainerTest" time="0.033"/>
+  <testcase name="createClassTest" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="selectContainerTest" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteTest1" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteTest2" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteTest3" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteTest4" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteTest5" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteTest6" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="deleteMethodeTest" classname="visualobjects.ContainerTest" time="0.034"/>
+  <testcase name="getParentTest" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="selectAttributeTest" classname="visualobjects.ContainerTest" time="0.001"/>
+  <testcase name="constructorTest1" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="constructorTest2" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="clickOnClassTest1" classname="visualobjects.ContainerTest" time="0.001"/>
+  <testcase name="clickOnClassTest2" classname="visualobjects.ContainerTest" time="0.001"/>
+  <testcase name="selectAssTest" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="createClassesTest" classname="visualobjects.ContainerTest" time="0.001"/>
+  <testcase name="selectMethodeTest" classname="visualobjects.ContainerTest" time="0.005"/>
+  <testcase name="deleteClassTest" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="createTwoAssTest" classname="visualobjects.ContainerTest" time="0.001"/>
+  <testcase name="isInTest1" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="isInTest2" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="isInTest3" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="isInTest4" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="selectedTest1" classname="visualobjects.ContainerTest" time="0.001"/>
+  <testcase name="selectedTest2" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="selectedTest3" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="createClassTest2" classname="visualobjects.ContainerTest" time="0.0"/>
+  <testcase name="createAssTest" classname="visualobjects.ContainerTest" time="0.011"/>
+  <testcase name="deleteAssTest1" classname="visualobjects.ContainerTest" time="0.003"/>
+  <testcase name="deleteAssTest2" classname="visualobjects.ContainerTest" time="0.003"/>
   <testcase name="deleteAssTest3" classname="visualobjects.ContainerTest" time="0.002"/>
   <testcase name="notCreateDoubleClassTest" classname="visualobjects.ContainerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
