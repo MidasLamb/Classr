@@ -7,10 +7,30 @@ import java.util.Collection;
 
 import gui.form.base.InputBox;
 
+/**
+ * InputBox of which the contents can be validated with a regular expression.
+ */
 public class RegexCheckedInputBox extends InputBox implements Checkable {
 	private String regex;
 	private Collection<Checker> checkers;
 
+	/**
+	 * Construct a new RegexCheckedInputBox given its text, regex, coordinates
+	 * and dimensions.
+	 * 
+	 * @param text
+	 *            text that should be displayed in the InputBox
+	 * @param regex
+	 *            regular expression used to validate the InputBox
+	 * @param x
+	 *            x-coordinate
+	 * @param y
+	 *            y-coordinate
+	 * @param width
+	 *            width
+	 * @param height
+	 *            height
+	 */
 	public RegexCheckedInputBox(String text, String regex, int x, int y, int width, int height) {
 		super(text, x, y, width, height);
 		this.setRegex(regex);
@@ -22,6 +42,10 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 		this.notifyUpdate();
 	}
 
+	
+	/**
+	 * Notify checkers that the constraints should be checked again.
+	 */
 	protected final void notifyUpdate() {
 		for (Checker c : this.getCheckers()) {
 			c.checkConstraints();
