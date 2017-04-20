@@ -8,13 +8,23 @@ import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.Association;
 import logicalobjects.LogicalClass;
 
+/**
+ * The visualisation of a logical association
+ */
 public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox<EditableTextWrapper> text;
 
-
-
+	/**
+	 * 
+	 * @param 	participant1
+	 * 			one VisualClass of the association
+	 * @param 	participant2
+	 * 			the second visualClass of the association
+	 * @param 	parent
+	 * 			The parent object of this VisualObject
+	 */
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
 		super(0, 0, 0, 0, 0, parent);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
@@ -43,14 +53,23 @@ public class VisualAssociation extends VisualObject {
 
 	// Getters and setters
 
+	/**
+	 * @return the first visualClass from this association
+	 */
 	private VisualClass getP1() {
 		return p1;
 	}
 
+	/**
+	 * @return the second VisualClass from this association
+	 */
 	private VisualClass getP2() {
 		return p2;
 	}
 
+	/**
+	 * @return the paddingBox in which the text object is placed
+	 */
 	public final PaddingBox<EditableTextWrapper> getText() {
 		return this.text;
 	}
