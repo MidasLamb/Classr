@@ -79,10 +79,8 @@ public class Association extends LogicalObject{
 
 
 	@Override
-	Object accept(LogicalObjectVisitor v) {
+	Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
-
-
-
+	
 }

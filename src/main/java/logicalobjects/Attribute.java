@@ -21,7 +21,7 @@ public class Attribute extends ClassContent {
 
 
 	@Override
-	Object accept(LogicalObjectVisitor v) {
+	Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
 }

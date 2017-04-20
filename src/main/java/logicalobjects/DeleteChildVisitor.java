@@ -2,7 +2,6 @@ package logicalobjects;
 
 /**
  * A visitor to delete a child of a LogicalClass
- * @author midas
  *
  */
 public class DeleteChildVisitor implements LogicalObjectVisitor<Void>{
@@ -43,18 +42,13 @@ public class DeleteChildVisitor implements LogicalObjectVisitor<Void>{
 		return null;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public Void visit(LogicalClass c) {
-		//Do nothing
 		return null;
 	}
 
 	@Override
 	public Void visit(Parameter parameter) {
-		//Do nothing
 		return null;
 	}
 
