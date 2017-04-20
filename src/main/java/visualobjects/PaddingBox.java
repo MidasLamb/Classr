@@ -143,56 +143,6 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	public final int getWidth() {
 		return this.getContent().getWidth() + this.getPaddingLeft() + this.getPaddingRight();
 	}
-
-	// Getters and setters
-
-	private int getPaddingTop() {
-		return paddingTop;
-	}
-
-	private void setPaddingTop(int paddingTop) {
-		this.paddingTop = paddingTop;
-	}
-
-	private int getPaddingBottom() {
-		return paddingBottom;
-	}
-
-	private void setPaddingBottom(int paddingBottom) {
-		this.paddingBottom = paddingBottom;
-	}
-
-	private int getPaddingLeft() {
-		return paddingLeft;
-	}
-	
-	@Override
-	public void show(Graphics g) {
-		g.translate(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop());
-		super.show(g);
-		g.translate(-(this.getX() + this.getPaddingLeft()), -(this.getY() + this.getPaddingTop()));
-		
-	}
-
-	private void setPaddingLeft(int paddingLeft) {
-		this.paddingLeft = paddingLeft;
-	}
-
-	private int getPaddingRight() {
-		return paddingRight;
-	}
-
-	private void setPaddingRight(int paddingRight) {
-		this.paddingRight = paddingRight;
-	}
-
-	public final T getContent() {
-		return content;
-	}
-
-	private void setContent(T content) {
-		this.content = content;
-	}
 	
 	@Override
 	public void setSelected(boolean b) {
@@ -209,5 +159,93 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	@Override
 	void onDoubleClick(DoubleClick dc){
 		this.getContent().onDoubleClick(dc);
+	}
+	
+	@Override
+	public void show(Graphics g) {
+		g.translate(this.getX() + this.getPaddingLeft(), this.getY() + this.getPaddingTop());
+		super.show(g);
+		g.translate(-(this.getX() + this.getPaddingLeft()), -(this.getY() + this.getPaddingTop()));
+		
+	}
+	
+	// Getters and setters
+
+	/**
+	 * @return the top padding
+	 */
+	private int getPaddingTop() {
+		return paddingTop;
+	}
+
+	/**
+	 * @param 	paddingTop
+	 * 			the new top padding
+	 */
+	private void setPaddingTop(int paddingTop) {
+		this.paddingTop = paddingTop;
+	}
+
+	/**
+	 * @return the bottom padding
+	 */
+	private int getPaddingBottom() {
+		return paddingBottom;
+	}
+
+	/**
+	 * @param 	paddingBottom
+	 * 			the new paddingBottom
+	 */
+	private void setPaddingBottom(int paddingBottom) {
+		this.paddingBottom = paddingBottom;
+	}
+
+	/**
+	 * @return the left padding
+	 */
+	private int getPaddingLeft() {
+		return paddingLeft;
+	}
+
+	/**
+	 * 
+	 * @param 	paddingLeft
+	 * 			the new left padding
+	 */
+	private void setPaddingLeft(int paddingLeft) {
+		this.paddingLeft = paddingLeft;
+	}
+
+	/**
+	 * 
+	 * @return the right padding
+	 */
+	private int getPaddingRight() {
+		return paddingRight;
+	}
+
+	/**
+	 * @param 	paddingRight
+	 * 			the new right padding
+	 */
+	private void setPaddingRight(int paddingRight) {
+		this.paddingRight = paddingRight;
+	}
+
+	/**
+	 * @return the content that is in the paddingBox
+	 */
+	public final T getContent() {
+		return content;
+	}
+
+	/**
+	 * 
+	 * @param 	content
+	 * 			the content that needs to be in the paddingbox
+	 */
+	private void setContent(T content) {
+		this.content = content;
 	}
 }
