@@ -1,6 +1,7 @@
 package gui.form.base;
 
-import static gui.form.base.Constants.*;
+import static gui.form.base.Constants.STANDARD_RADIOBUTTON_HEIGHT;
+import static gui.form.base.Constants.STANDARD_RADIOBUTTON_WIDTH;
 
 import java.awt.Color;
 import java.awt.Graphics;

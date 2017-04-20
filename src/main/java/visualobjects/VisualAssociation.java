@@ -5,12 +5,8 @@ import static main.Constants.Z_PADDING_BOX;
 import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.SingleClick;
-import interfaces.DeleteListener;
-import interfaces.DeleteSubject;
 import logicalobjects.Association;
 import logicalobjects.LogicalClass;
-
-import static main.Constants.*;
 
 public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;

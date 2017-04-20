@@ -11,9 +11,17 @@ import java.util.NoSuchElementException;
  * @author team 11
  */
 public class LogicalClass extends LogicalObject {
-	private ArrayList<Attribute> attributes = new ArrayList<>();
-	private ArrayList<Method> methods = new ArrayList<>();
-	private HashSet<Association> associations = new HashSet<>();
+	private ArrayList<Attribute> attributes;
+	private ArrayList<Method> methods;
+	private HashSet<Association> associations;
+	
+
+	public LogicalClass() {
+		super();
+		this.setAttributes(new ArrayList<>());
+		this.setMethods(new ArrayList<>());
+		this.setAssociations(new HashSet<>());
+	}
 
 	/**
 	 * Generates a new attribute belonging to this RealClass, adds it to the
@@ -39,43 +47,6 @@ public class LogicalClass extends LogicalObject {
 		if (!this.attributes.remove(attribute)) {
 			throw new NoSuchElementException();
 		}
-	}
-
-	/**
-	 * Deletes a given child, being an attribute, from the list of attributes.
-	 * 
-	 * @param attr
-	 *            The attribute to be deleted
-	 * @throws NoSuchElementException
-	 *             The attribute is not present
-	 */
-	private void deleteChild(Attribute attr) throws NoSuchElementException {
-		deleteAttribute(attr);
-	}
-
-	/**
-	 * Deletes a given child, being a method, from the list of methods.
-	 * 
-	 * @param method
-	 *            The method to be deleted
-	 * @throws NoSuchElementException
-	 *             The method is not present
-	 */
-	public final void deleteChild(Method method) throws NoSuchElementException {
-		deleteMethod(method);
-	}
-
-	/**
-	 * Deletes a given child, being an association, from the list of
-	 * associations.
-	 * 
-	 * @param ass
-	 *            The association to be deleted
-	 * @throws NoSuchElementException
-	 *             The association is not present
-	 */
-	public final void deleteChild(Association ass) throws NoSuchElementException {
-		deleteAssociation(ass);
 	}
 
 	/**
@@ -207,6 +178,7 @@ public class LogicalClass extends LogicalObject {
 	}
 	
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object accept(LogicalObjectVisitor v) {
 		return v.visit(this);

@@ -17,7 +17,7 @@ public class RadioButtonTest {
 	@Test
 	public void actionTest1() {
 		RadioButtonGroup group = new RadioButtonGroup();
-		RadioButton button = new RadioButton(group, 0, 0, 10, 10) {
+		new RadioButton(group, 0, 0, 10, 10) {
 			@Override
 			public void onAction() {
 				action = true;

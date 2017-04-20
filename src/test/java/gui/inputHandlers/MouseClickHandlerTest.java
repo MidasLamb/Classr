@@ -12,11 +12,6 @@ import java.awt.event.MouseEvent;
 
 import org.junit.Test;
 
-import gui.inputHandlers.MouseClickHandler;
-import gui.inputHandlers.clicks.DoubleClick;
-import gui.inputHandlers.clicks.Drag;
-import gui.inputHandlers.clicks.SingleClick;
-import visualobjects.Container;
 import visualobjects.TestContainer;
 
 public class MouseClickHandlerTest {

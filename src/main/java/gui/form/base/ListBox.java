@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import gui.inputHandlers.FunctionTypable;
 import gui.inputHandlers.clicks.MouseClick;
-import gui.inputHandlers.keys.FunctionKey;
-import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 public abstract class ListBox<T extends Displayable> extends FormObject implements FormObjectWithChildren {
 	ArrayList<ListBoxElement<T>> elements;
@@ -132,24 +129,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return this.getSelectedElement();
 	}
 
-	/**
-	 * Necesarry so we can access it from the internal classes.
-	 * 
-	 * @param o
-	 */
-	private final void setSelectedHelper(Object o) {
-		this.setSelectedElement((ListBox<T>.ListBoxElement<T>) o);
-	}
-
-	private boolean isChildFocused() {
-		for (ListBoxElement<T> l : this.getListboxElements()) {
-			if (l.isFocused())
-				return true;
-		}
-
-		return false;
-	}
-
 	private ListBoxElement<T> getFocusedChild() {
 		for (ListBoxElement<T> l : this.getListboxElements()) {
 			if (l.isFocused())
@@ -202,12 +181,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 			g.setColor(c);
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
 		void setFocused(boolean b) {
 			super.setFocused(b);
 
 			if (b) {
-				setSelectedHelper(this);
+				setSelectedElement((ListBox<T>.ListBoxElement<T>) this);
 			}
 			onAction();
 		}

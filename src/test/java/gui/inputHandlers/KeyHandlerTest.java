@@ -39,6 +39,7 @@ public class KeyHandlerTest {
 		assertEquals(null, KeyHandler.getFunctionKey(ke));
 	}
 	
+	@SuppressWarnings("deprecation")
 	private KeyEvent generateKey(int keyCode){
 		Canvas canvas = new Canvas();
 		return new KeyEvent(canvas, 0, 0, 0, keyCode);

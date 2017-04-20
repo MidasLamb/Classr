@@ -1,6 +1,6 @@
 package gui.form.base;
 
-import static gui.form.base.Constants.*;
+import static gui.form.base.Constants.STANDARD_BUTTON_TEXT_PADDING;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -125,11 +125,6 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	}
 
 	private void drawText(Graphics g) {
-		int height = getText().getAscent();
-		int width = getText().getWidth();
-		int middleX = getWidth() / 2 + getX();
-		int middleY = getHeight() / 2 + getY();
-
 		getText().draw(g);
 	}
 

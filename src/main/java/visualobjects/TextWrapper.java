@@ -1,8 +1,8 @@
 package visualobjects;
 
+import static main.Constants.MAX_TEXT_WIDTH;
 import static main.Constants.STANDARD_FONTMETRICS;
 import static main.Constants.STANDARD_TEXT_HEIGHT;
-import static main.Constants.MAX_TEXT_WIDTH;
 
 import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;

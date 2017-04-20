@@ -18,7 +18,7 @@ public class RadioButtonGroupTest {
 			@Override
 			public void onAction() {}
 		};
-		RadioButton button2 = new RadioButton(group, 0, 0) {
+		new RadioButton(group, 0, 0) {
 			@Override
 			public void onAction() {}
 		};

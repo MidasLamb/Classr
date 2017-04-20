@@ -183,10 +183,12 @@ public class Form implements Typable, Clickable {
 
 	// Getters and setters
 
+	@SuppressWarnings("unused")
 	private int getWidth() {
 		return width;
 	}
 
+	@SuppressWarnings("unused")
 	private int getHeight() {
 		return height;
 	}

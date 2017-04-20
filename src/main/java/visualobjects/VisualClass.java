@@ -1,11 +1,13 @@
 package visualobjects;
 
-import static main.Constants.*;
+import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;
+import static main.Constants.CLASS_WHITE_SPACE;
+import static main.Constants.CLASS_WIDTH;
+import static main.Constants.MAX_TEXT_WIDTH;
+import static main.Constants.Z_PADDING_BOX;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import gui.inputHandlers.clicks.DoubleClick;
@@ -26,7 +28,7 @@ public class VisualClass extends VisualObject {
 		this.updateDimensions();
 
 		this.getName().addDeleteListener(this);
-		AssociationHandle ah = new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
+		new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
 	}
 
 	public VisualClass(int x, int y, int z, VisualObject parent) {
