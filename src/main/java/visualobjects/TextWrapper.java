@@ -17,9 +17,25 @@ import gui.text.state.PassiveState;
 import logicalobjects.LogicalObject;
 import logicalobjects.StringVisitor;
 
+/**
+ * A wrapper to use the Text box from the GUI as a VisualObject
+ */
 public class TextWrapper extends VisualObject {
 	private Text textObject;
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	parent
+	 * 			the parent of this visualObject
+	 * @param 	object
+	 * 			the corresponding logicalObject
+	 */
 	public TextWrapper(int x, int y, int z, VisualObject parent, LogicalObject object) {
 		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent);
 		setLogicalObject(object);
@@ -44,6 +60,9 @@ public class TextWrapper extends VisualObject {
 		return strVis.startVisit(this.getLogicalObject());
 	}
 	
+	/**
+	 * @return the text inside the wrapper
+	 */
 	protected String getString(){
 		StringBuilder string = new StringBuilder();
 		StringVisitor strVis = new StringVisitor();
@@ -66,11 +85,17 @@ public class TextWrapper extends VisualObject {
 		openForm();
 	}
 	
+	/**
+	 * Opens the form to edit this text
+	 */
 	public final void openForm(){
 		FormCreator creator = new FormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
 		this.getContainer().getCanvasWindow().addContentAndSwitchTo(creator.getForm());
 	}
 	
+	/**
+	 * Opens the form to add new text
+	 */
 	public final void openNewForm(){
 		NewObjectFormCreator creator = new NewObjectFormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
 		this.getContainer().getCanvasWindow().addContentAndSwitchTo(creator.getForm());
@@ -86,10 +111,19 @@ public class TextWrapper extends VisualObject {
 		return STANDARD_TEXT_HEIGHT;
 	}
 
+	/**
+	 * 
+	 * @return the corresponding textObject
+	 */
 	protected final Text getTextObject() {
 		return textObject;
 	}
 
+	/**
+	 * Sets the textObject
+	 * @param 	textObject
+	 * 			The new textObject
+	 */
 	protected final void setTextObject(Text textObject) {
 		this.textObject = textObject;
 	}

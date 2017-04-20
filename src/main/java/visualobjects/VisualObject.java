@@ -236,10 +236,20 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		}
 	}
 	
+	/**
+	 * @param c
+	 * 			the color for this VisualObject
+	 */
 	protected final void setColor(Color c){
 		this.color = c;
 	}
 	
+	/**
+	 * 
+	 * @param 	c
+	 * 			the color that all the children of 
+	 * 				this VisualObject are forced to use
+	 */
 	protected final void forceColor(Color c){
 		this.forcedColor = c;
 		for (VisualObject v: this.getChildren())

@@ -16,9 +16,27 @@ import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.Method;
 
+/**
+ * The visualisation of a logicalClass
+ */
 public class VisualClass extends VisualObject {
 	private PaddingBox<EditableTextWrapper> name;
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	width
+	 * 			the width
+	 * @param 	height
+	 * 			the height
+	 * @param 	parent
+	 * 			the parent of this VisualObject
+	 */
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
@@ -31,6 +49,17 @@ public class VisualClass extends VisualObject {
 		new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
 	}
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	parent
+	 * 			the parent of this VisualObject
+	 */
 	public VisualClass(int x, int y, int z, VisualObject parent) {
 		this(x, y, z, CLASS_WIDTH, CLASS_BODY_INITIAL_HEIGHT, parent);
 	}
@@ -139,6 +168,9 @@ public class VisualClass extends VisualObject {
 		return VisualClass.isBetween(left, right, x) && VisualClass.isBetween(top, bottom, y);
 	}
 
+	/**
+	 * @return the attributes from this VisualClass
+	 */
 	private Collection<VisualObject> getAttributes() {
 		Collection<Attribute> attr = ((LogicalClass) this.getLogicalObject()).getAttributes();
 		return getChildren()
@@ -180,6 +212,10 @@ public class VisualClass extends VisualObject {
 		return isBetween(left, right, x) && isBetween(top, bottom, y);
 	}
 
+	/**
+	 * 
+	 * @return the methodes inside this VisualClass
+	 */
 	private Collection<VisualObject> getMethods() {
 		Collection<Method> meth = ((LogicalClass) this.getLogicalObject()).getMethods();
 		return getChildren()
@@ -213,6 +249,11 @@ public class VisualClass extends VisualObject {
 		return (LogicalClass) super.getLogicalObject();
 	}
 
+	/**
+	 * 
+	 * @param 	object
+	 * 			the logicalObject to which this VisualObject is associated
+	 */
 	public final void setLogicalObject(LogicalClass object) {
 		super.setLogicalObject(object);
 	}
@@ -231,10 +272,19 @@ public class VisualClass extends VisualObject {
 
 	}
 
+	/**
+	 * @return the paddingBox inside which the className is stored
+	 */
 	public final PaddingBox<EditableTextWrapper> getName() {
 		return name;
 	}
 
+	/**
+	 * 
+	 * @param 	paddingBox
+	 * 			the new paddingBox inside which 
+	 * 				the className needs to be stored
+	 */
 	private void setName(PaddingBox<EditableTextWrapper> paddingBox) {
 		this.name = paddingBox;
 	}
