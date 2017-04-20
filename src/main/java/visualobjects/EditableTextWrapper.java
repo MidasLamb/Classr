@@ -3,6 +3,7 @@ package visualobjects;
 import static main.Constants.STANDARD_FONTMETRICS;
 import static main.Constants.STANDARD_TEXT_HEIGHT;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.text.AttributedString;
 
@@ -48,12 +49,30 @@ public class EditableTextWrapper extends TextWrapper {
 	public EditableTextWrapper(int x, int y, int z, String string,VisualObject parent, LogicalObject object) {
 		this(x,y,z,string, ".*", parent, object);
 	}
+	
+	@Override
+	public void determinColors(Graphics g){
+		if (!satisfiesRegex())
+			this.setColor(Color.RED);
+		else 
+			this.setColor(Color.BLACK);
+		
+		if (this.isSelected()){
+			if (!satisfiesRegex())
+				this.forceColor(Color.RED);
+			else 
+				this.forceColor(Color.BLACK);
+		}
+	}
 
 	/**
 	 * Shows the text frame
 	 */
 	@Override
 	public void draw(Graphics g) {
+		
+		
+		
 		this.getTextObject().draw(g, this.getX(), this.getY());
 	}
 

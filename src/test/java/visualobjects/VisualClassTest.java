@@ -1,7 +1,8 @@
 package visualobjects;
 
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
-import static main.Constants.CLASS_WHITE_SPACE;
+
+import static main.Constants.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -28,7 +29,7 @@ public class VisualClassTest {
 	public void isInTest2() {
 		Container container = new Container(0, 0, 1000, 1000);
 		VisualClass visualClass = new VisualClass(0, 0, 0, container);
-		assertFalse(visualClass.isIn(101, 0));
+		assertFalse(visualClass.isIn(CLASS_WIDTH + 1, 0));
 	}
 
 	@Test

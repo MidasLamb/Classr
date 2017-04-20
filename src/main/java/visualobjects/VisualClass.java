@@ -29,7 +29,7 @@ public class VisualClass extends VisualObject {
 	}
 
 	public VisualClass(int x, int y, int z, VisualObject parent) {
-		this(x, y, z, 100, 200, parent);
+		this(x, y, z, CLASS_WIDTH, CLASS_BODY_INITIAL_HEIGHT, parent);
 	}
 
 	@Override

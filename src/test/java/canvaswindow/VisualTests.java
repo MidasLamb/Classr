@@ -252,6 +252,6 @@ public class VisualTests {
 		ImageIO.write(actual, "png", outputfile);
 	}
 	
-	private boolean update = false;
+	public boolean update = false;
 
 }

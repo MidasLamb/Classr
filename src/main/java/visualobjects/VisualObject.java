@@ -39,6 +39,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	private Collection<DeleteListener> deleteListeners;
 	private boolean isSelected;
 	public boolean isDeleted;
+	private Color color;
+	private Color forcedColor;
 
 	/**
 	 * Constructs a new visual object with the stated coordinates, width, height
@@ -103,16 +105,30 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *            Graphics g
 	 */
 	public void show(Graphics g) {
+		
+		Color c = g.getColor();
 		if (this.isSelected() || this.hasSelectedAncestor()) {
-			g.setColor(Color.red);
+			this.forceColor(Color.RED);
+		} else {
+			this.forceColor(null);
 		}
+		this.determinColors(g);
+		if (this.getColor() != null)
+			g.setColor(this.getColor());
+		if (this.getForcedColor() != null)
+			g.setColor(this.getForcedColor());
+		
 		this.draw(g);
 		for (VisualObject v : this.getChildren()) {
 			v.show(g);
 		}
 		if (this.isSelected()) {
-			g.setColor(Color.black);
+			g.setColor(c);
 		}
+	}
+	
+	protected void determinColors(Graphics g){
+		
 	}
 
 	void draw(Graphics g) {
@@ -218,6 +234,16 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 				v.onDragEnd(d);
 			}
 		}
+	}
+	
+	protected final void setColor(Color c){
+		this.color = c;
+	}
+	
+	protected final void forceColor(Color c){
+		this.forcedColor = c;
+		for (VisualObject v: this.getChildren())
+			v.forceColor(c);
 	}
 
 	/**
@@ -562,6 +588,14 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 			v = v.getParent();
 		}
 		return false;
+	}
+
+	protected final Color getForcedColor() {
+		return forcedColor;
+	}
+
+	protected final Color getColor() {
+		return color;
 	}
 
 }
