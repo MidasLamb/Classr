@@ -6,13 +6,25 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.*;
 
+/**
+ * Handles the input keystrokes and converts them Key objects.
+ */
 public class KeyHandler {
 	private Typable content;
 
+	/**
+	 * Create a new KeyHandler and set its Typable.
+	 * 
+	 * @param content
+	 *            Typable to which the keystrokes are passed
+	 */
 	public KeyHandler(Typable content) {
 		setTypable(content);
 	}
 
+	/**
+	 * @param e
+	 */
 	public void handleInput(KeyEvent e) {
 		if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() != 0) {
 			if (keyEventIsAscii(e)) {
@@ -28,24 +40,24 @@ public class KeyHandler {
 
 	static FunctionKey getFunctionKey(KeyEvent e) {
 		switch (e.getKeyCode()) {
-			case KeyEvent.VK_BACK_SPACE:
-				return new FunctionKey(BACKSPACE);
-			case KeyEvent.VK_DELETE:
-				return new FunctionKey(DELETE);
-			case KeyEvent.VK_ESCAPE:
-				return new FunctionKey(ESCAPE);
-			case KeyEvent.VK_ENTER:
-				return new FunctionKey(ENTER);
-			case KeyEvent.VK_RIGHT:
-				return new FunctionKey(RIGHT);
-			case KeyEvent.VK_LEFT:
-				return new FunctionKey(LEFT);
-			case KeyEvent.VK_UP:
-				return new FunctionKey(UP);
-			case KeyEvent.VK_DOWN:
-				return new FunctionKey(DOWN);
-			default:
-				return null;
+		case KeyEvent.VK_BACK_SPACE:
+			return new FunctionKey(BACKSPACE);
+		case KeyEvent.VK_DELETE:
+			return new FunctionKey(DELETE);
+		case KeyEvent.VK_ESCAPE:
+			return new FunctionKey(ESCAPE);
+		case KeyEvent.VK_ENTER:
+			return new FunctionKey(ENTER);
+		case KeyEvent.VK_RIGHT:
+			return new FunctionKey(RIGHT);
+		case KeyEvent.VK_LEFT:
+			return new FunctionKey(LEFT);
+		case KeyEvent.VK_UP:
+			return new FunctionKey(UP);
+		case KeyEvent.VK_DOWN:
+			return new FunctionKey(DOWN);
+		default:
+			return null;
 		}
 	}
 
