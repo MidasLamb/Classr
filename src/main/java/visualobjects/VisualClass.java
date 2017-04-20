@@ -62,7 +62,6 @@ public class VisualClass extends VisualObject {
 	 * Calculates the height of this object and sets it
 	 */
 	public final void updateDimensions() {
-		// TODO update
 		int y = this.getY();
 
 		y += this.getName().getHeight();
@@ -137,6 +136,7 @@ public class VisualClass extends VisualObject {
 
 	private Collection<VisualObject> getAttributes() {
 		Collection<VisualObject> vo = new ArrayList<VisualObject>();
+		
 		// TODO hacky whacky
 		for (VisualObject v : this.getChildren()) {
 			if (v.getLogicalObject() instanceof Attribute)
@@ -228,11 +228,8 @@ public class VisualClass extends VisualObject {
 
 	@Override
 	protected final void onDelete() {
-		// TODO remove association
 
 	}
-
-	// Getters and setters
 
 	public final PaddingBox<EditableTextWrapper> getName() {
 		return name;

@@ -222,7 +222,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 
 		@Override
 		void onClick(MouseClick click) {
-			// TODO Auto-generated method stub
 
 		}
 

@@ -70,8 +70,6 @@ public class FormWindow extends CanvasWindow {
 	protected void handleKeyEvent(KeyEvent e) {
 		getKeyHandler().handleInput(e);
 		this.repaint();
-		// TODO Handle shift keys and such
-
 	}
 
 	private MouseClickHandler getMouseClickHandler() {

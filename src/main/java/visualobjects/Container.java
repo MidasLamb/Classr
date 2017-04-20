@@ -118,9 +118,4 @@ public class Container extends VisualObject  implements CanvasContent{
 			getSelected().handleFunctionKey(key);
 	}
 
-	@Override
-	public void getNotifiedSubjectDeleted(DeleteSubject subject) {
-		// TODO Auto-generated method stub
-		
-	}
 }

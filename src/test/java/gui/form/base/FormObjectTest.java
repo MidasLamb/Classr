@@ -29,7 +29,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -53,8 +52,7 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
-
+				
 			}
 		};
 		dummy.handleClick(new MouseClick(15, 0));
@@ -77,8 +75,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
-
 			}
 		};
 		dummy.handleClick(new MouseClick(0, 25));
@@ -101,8 +97,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
-
 			}
 		};
 		dummy.handleClick(new MouseClick(15, 25));
@@ -125,7 +119,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -149,7 +142,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -173,7 +165,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -197,7 +188,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -221,7 +211,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -245,7 +234,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
@@ -269,7 +257,6 @@ public class FormObjectTest {
 
 			@Override
 			protected void onAction() {
-				// TODO Auto-generated method stub
 
 			}
 		};
