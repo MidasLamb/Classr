@@ -6,6 +6,9 @@ import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.Drag;
 
+/**
+ * A handle on VisualClasses to help create VisualObjects
+ */
 public class AssociationHandle extends VisualObject {
 
 	public AssociationHandle(int x, int y, int z, VisualClass parent) {
@@ -26,9 +29,14 @@ public class AssociationHandle extends VisualObject {
 		}
 	}
 
+	/**
+	 * Creates an association with the VisualClass where 
+	 * 		this association handle is attached to and the given visualClass
+	 * @param 	other
+	 * 			The other visualClass to which the link needs to be made
+	 */
 	private void createAssociation(VisualClass other) {
 		VisualClass parent = (VisualClass) this.getParent();
-
-		VisualAssociation a = new VisualAssociation(parent, other, this.getContainer());
+		new VisualAssociation(parent, other, this.getContainer());
 	}
 }
