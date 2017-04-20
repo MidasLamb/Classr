@@ -21,11 +21,24 @@ import visibilities.Protected;
 import visibilities.Public;
 import visibilities.Visibility;
 
+/**
+ * Builds a Form for managing an attribute
+ */
 public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
 	private MyCanvasWindow window;
 	private boolean isNew;
 
+	/**
+	 * Create a new AttributeFormBuilder.
+	 * 
+	 * @param attribute
+	 *            Attribute for which a Form must be created
+	 * @param window
+	 *            MyCanvasWindow where the Form needs to be drawn
+	 * @param isNew
+	 *            indicates whether this is a newly created attribute
+	 */
 	public AttributeFormBuilder(Attribute attribute, MyCanvasWindow window, boolean isNew) {
 		this.attribute = attribute;
 		this.window = window;
@@ -35,11 +48,13 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
-		RegexCheckedInputBox attrName = new RegexCheckedInputBox(getAttribute().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10, 100, 16);
+		RegexCheckedInputBox attrName = new RegexCheckedInputBox(getAttribute().getName(), "^[a-z][a-zA-Z0-9_]*", 10,
+				10, 100, 16);
 		this.addFormObject(attrName);
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "^[a-z][a-zA-Z0-9_]*", 10, 100, 100, 16);
+		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "^[a-z][a-zA-Z0-9_]*", 10,
+				100, 100, 16);
 		this.addFormObject(attrType);
 		this.addLabelToTopOfLastFormObject("Attribute type");
 
@@ -57,15 +72,15 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButton protectedButton = new DefaultRadioButton(group, 10, 400);
 		this.addFormObject(protectedButton);
 		this.addLabelToRightOfLostFormObject("Protected");
-		
+
 		// Static checkbox
-		
+
 		CheckBox staticCheckbox = new DefaultCheckBox(10, 450);
-		
+
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLostFormObject("Static");
-		
-		OkButton ok = new OkButton(10, 500, 50, 50){
+
+		OkButton ok = new OkButton(10, 500, 50, 50) {
 
 			@Override
 			protected void onOk() {
@@ -79,20 +94,20 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 					getAttribute().setVisibility(new Private());
 				else if (group.getSelectedButton().equals(protectedButton))
 					getAttribute().setVisibility(new Protected());
-				
+
 				getAttribute().setStatic(staticCheckbox.isChecked());
-				
+
 				getForm().close();
 			}
-			
+
 		};
-		
+
 		ok.addCheckableConstraint(attrName);
 		ok.addCheckableConstraint(attrType);
-		
+
 		this.addFormObject(ok);
-		
-		Button cancel = new Button("Cancel", 110,500,50,50){
+
+		Button cancel = new Button("Cancel", 110, 500, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -101,18 +116,18 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 				getForm().close();
 			}
 		};
-		
+
 		this.addFormObject(cancel);
-		
+
 		// Initialize all objects with correct startinput.
 		Visibility v = getAttribute().getVisibility();
-		if(v instanceof Private)
+		if (v instanceof Private)
 			group.setSelectedButton(privateButton);
-		else if(v instanceof Public)
+		else if (v instanceof Public)
 			group.setSelectedButton(publicButton);
-		else if(v instanceof Package)
-			group.setSelectedButton(packageButton);	
-		else if(v instanceof Protected)
+		else if (v instanceof Package)
+			group.setSelectedButton(packageButton);
+		else if (v instanceof Protected)
 			group.setSelectedButton(protectedButton);
 		staticCheckbox.setChecked(getAttribute().isStatic());
 	}
