@@ -16,7 +16,7 @@ public class TextTest {
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100);
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".*", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".+", c , r);
 		assertEquals("", t.getCurrentDisplayedString());
 		t.setSelected(false);
 		assertEquals("Standaard", t.getCurrentDisplayedString());
