@@ -45,26 +45,49 @@ public abstract class ClassContent extends LogicalObject{
 		getRealClass().deleteChild(this);
 	}
 
+	/**
+	 * @return the visibility of this object
+	 */
 	public final Visibility getVisibility() {
 		return visibility;
 	}
 
+	/**
+	 * @param 	visibility
+	 * 			The new visibility for this object
+	 */
 	public final void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
 	}
 
+	/**
+	 * @return the type 
+	 */
 	public final String getType() {
 		return type;
 	}
 
+	/**
+	 * Sets the type
+	 * @param 	type
+	 * 			the new type
+	 */
 	public final void setType(String type) {
 		this.type = type;
 	}
 
+	/**
+	 * @return True if it is static otherwise false
+	 */
 	public final boolean isStatic() {
 		return isStatic;
 	}
 
+	/**
+	 * Changes the isStatic attribute
+	 * @param 	isStatic
+	 * 			The new value for the isStatic attribute
+	 */
 	public final void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
 	}
