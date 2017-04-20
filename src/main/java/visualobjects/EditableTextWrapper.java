@@ -142,7 +142,8 @@ public class EditableTextWrapper extends TextWrapper {
 			break;
 		case DELETE:
 			this.getTextObject().handleFunctionKey(key);
-			this.getLogicalObject().delete();
+			if (!(getTextObject().getState() instanceof EditableState))
+				this.getLogicalObject().delete();
 			break;
 		default:
 			this.getTextObject().handleFunctionKey(key);

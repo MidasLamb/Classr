@@ -592,6 +592,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	
 	public void notifyListeners(){
 		getDeleteListeners().forEach(x -> x.notify());
+		System.out.println("We're here");
 	}
 
 	protected final Color getForcedColor() {

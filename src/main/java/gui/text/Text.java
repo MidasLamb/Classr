@@ -193,7 +193,7 @@ public class Text implements Typable {
 	 * Get state returns the current state of the object
 	 * @return current state of the object
 	 */
-	private final TextState getState() {
+	public final TextState getState() {
 		return state;
 	}
 	
