@@ -16,6 +16,13 @@ import java.util.stream.Collectors;
 
 import gui.text.Text;
 
+/**
+ * A visitor to visit logical objects and creates an attributed string
+ * 		containing the data in UML representation of that logicalObject
+ * 
+ * @author group11
+ *
+ */
 public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 
 	@Override
@@ -52,6 +59,12 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		return string;
 	}
 	
+	/**
+	 * Trims the string to the max text width
+	 * @param 	string
+	 * 			the string that needs to be trimmed
+	 * @return	the trimmed string
+	 */
 	private String trimString(String string){
 		int i = string.length();
 		while(STANDARD_FONTMETRICS.stringWidth(string.substring(0, i)) > MAX_TEXT_WIDTH){
