@@ -20,7 +20,7 @@ public final class Constants {
 	public static final int ASSOCIATIONHANDLE_SIZE = 10;
 
 
-	public static final int CLASS_WIDTH = 100;
+	public static final int CLASS_WIDTH = 200;
 	public static final int CLASS_WHITE_SPACE = 16;
 	public static final int CLASS_BODY_INITIAL_HEIGHT = 40;
 
