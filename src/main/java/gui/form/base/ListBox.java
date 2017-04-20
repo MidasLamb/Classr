@@ -20,11 +20,15 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		boolean isInVertical = clickY >= elementY && clickY < elementY + e.getHeight();
 		return isInHorizontal && isInVertical;
 	}
+	
+	@Override
+	public void unfocusChildren(){
+		System.out.println("Unfocusing Children");
+		this.getListboxElements().stream().forEach(x -> x.setFocused(false));
+	}
 
 	@Override
 	void onClick(MouseClick click) {
-		this.setFocused(true);
-
 		// Check on which element there has been clicked.
 		int x = this.getX();
 		int y = this.getY();
@@ -33,6 +37,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 			boolean isin = isInElement(e, click.getX(), click.getY(), x, y + sumOfVerticalMovement);
 			if (isin) {
 				this.setSelectedElement(e);
+				e.setFocused(true);
 				this.onAction();
 				return;
 			}
@@ -61,11 +66,18 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		}
 		g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
 	}
+	@Override
+	void setFocused(boolean b) {
+		super.setFocused(b);
+		System.out.println("Ok");
+	}
+	
 
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		getListboxElements().add(lbe);
-		setSelectedElement(lbe);
+		if (!getListboxElements().stream().anyMatch(x -> x.isFocused()))
+			setSelectedElement(lbe);
 	}
 
 	/**
@@ -129,7 +141,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return this.getSelectedElement();
 	}
 
-	private ListBoxElement<T> getFocusedChild() {
+	public FormObject getFocusedChild() {
 		for (ListBoxElement<T> l : this.getListboxElements()) {
 			if (l.isFocused())
 				return l;
@@ -213,7 +225,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 
 		@Override
 		public FormObject getNextSibling() {
-			ListBoxElement<T> s = getFocusedChild();
+			FormObject s = getFocusedChild();
 			int currentIndex = getListboxElements().indexOf(s);
 			setSelectedElement(getListboxElements().get(currentIndex + 1));
 			return getListboxElements().get(currentIndex + 1);
@@ -222,7 +234,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		@Override
 		public FormObject getPreviousSibling() {
 			if (getFocusedChild() != null) {
-				ListBoxElement<T> s = getFocusedChild();
+				FormObject s = getFocusedChild();
 				int currentIndex = getListboxElements().indexOf(s);
 				setSelectedElement(getListboxElements().get(currentIndex - 1));
 				return getListboxElements().get(currentIndex - 1);
@@ -233,14 +245,14 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 
 		@Override
 		public boolean hasNextSibling() {
-			ListBoxElement<T> s = getFocusedChild();
+			FormObject s = getFocusedChild();
 			int currentIndex = getListboxElements().indexOf(s);
 			return (currentIndex + 1) < getListboxElements().size();
 		}
 
 		@Override
 		public boolean hasPreviousSibling() {
-			ListBoxElement<T> s = getFocusedChild();
+			FormObject s = getFocusedChild();
 			int currentIndex = getListboxElements().indexOf(s);
 			return (currentIndex - 1) >= 0 || (currentIndex == -1 && getListboxElements().size() > 0);
 		}

@@ -41,8 +41,10 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	public void setEnabled(boolean bool) {
 		if (bool)
 			setState(new Enabled());
-		else
+		else {
 			setState(new Disabled());
+			this.setFocused(false);
+		}
 	}
 
 	@Override

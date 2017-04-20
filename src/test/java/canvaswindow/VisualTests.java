@@ -20,6 +20,66 @@ import javax.imageio.ImageIO;
 import org.junit.Test;
 
 public class VisualTests {
+	
+	public boolean update = false;
+	
+	public void testVisually(String name) throws IOException {
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		update(actual, name);
+		assertTrue(imagesEqual(getReferenceImage(name),  actual));
+	}
+
+	private void update(BufferedImage actual, String testName) throws IOException {
+		if(!update) return;
+		String pattern = ".*recording.image([0-9]*).png";
+		Pattern r = Pattern.compile(pattern);
+		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
+		@SuppressWarnings("resource")
+		OptionalInt max = directory.mapToInt(file ->{
+			Matcher m = r.matcher(file.toString());
+			if (m.find())
+				return Integer.parseInt(m.group(1));
+			return -1;
+		}).max();
+		directory.close();
+		String referenceDirectory =  "recordings/" + testName + "/recording.image" + Integer.toString(max.getAsInt())+ ".png";
+		File outputfile = new File(referenceDirectory);
+		ImageIO.write(actual, "png", outputfile);
+	}
+
+	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
+		try{
+			for (int x = 0; x < reference.getWidth(); x++) {
+	            for (int y = 0; y < reference.getHeight(); y++) {
+	                if (reference.getRGB(x, y) != actual.getRGB(x, y)){
+	                	return false;
+	                }
+	            }
+	        }
+		    return true;
+		} catch (IndexOutOfBoundsException e){
+			return false;
+		}
+	}
+
+
+	static BufferedImage getReferenceImage(String testName) throws IOException{
+		String pattern = ".*recording.image([0-9]*).png";
+		Pattern r = Pattern.compile(pattern);
+		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
+		@SuppressWarnings("resource")
+		OptionalInt max = directory.mapToInt(file ->{
+			Matcher m = r.matcher(file.toString());
+			if (m.find())
+				return Integer.parseInt(m.group(1));
+			return -1;
+		}).max();
+		directory.close();
+		String referenceDirectory =  "recordings/" + testName + "/recording.image" + Integer.toString(max.getAsInt())+ ".png";
+		return ImageIO.read(new FileInputStream(referenceDirectory));
+	}
 
 	@Test
 	public void newClassTest() throws IOException {
@@ -201,57 +261,22 @@ public class VisualTests {
 		assertTrue(imagesEqual(getReferenceImage("removeParameter"),  actual));
 	}
 	
-	
-	
-	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
-		try{
-			for (int x = 0; x < reference.getWidth(); x++) {
-	            for (int y = 0; y < reference.getHeight(); y++) {
-	                if (reference.getRGB(x, y) != actual.getRGB(x, y)){
-	                	return false;
-	                }
-	            }
-	        }
-		    return true;
-		} catch (IndexOutOfBoundsException e){
-			return false;
-		}
+	/**
+	 * Press delete while typing.
+	 * @throws IOException
+	 */
+	@Test
+	public void pressDeleteWhileTyping() throws IOException {
+		testVisually("pressDeleteWhileTyping");
 	}
 	
-	static BufferedImage getReferenceImage(String testName) throws IOException{
-		String pattern = ".*recording.image([0-9]*).png";
-		Pattern r = Pattern.compile(pattern);
-		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
-		@SuppressWarnings("resource")
-		OptionalInt max = directory.mapToInt(file ->{
-			Matcher m = r.matcher(file.toString());
-			if (m.find())
-				return Integer.parseInt(m.group(1));
-			return -1;
-		}).max();
-		directory.close();
-		String referenceDirectory =  "recordings/" + testName + "/recording.image" + Integer.toString(max.getAsInt())+ ".png";
-		return ImageIO.read(new FileInputStream(referenceDirectory));
+	/**
+	 * Checks moving through the listbox in MethodForm with mouse and keyboard.
+	 * @throws IOException
+	 */
+	@Test
+	public void keyAndMouseFocusListBox() throws IOException {
+		testVisually("keyAndMouseFocusListBox");
 	}
-	
-	private void update(BufferedImage actual, String testName) throws IOException {
-		if(!update) return;
-		String pattern = ".*recording.image([0-9]*).png";
-		Pattern r = Pattern.compile(pattern);
-		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
-		@SuppressWarnings("resource")
-		OptionalInt max = directory.mapToInt(file ->{
-			Matcher m = r.matcher(file.toString());
-			if (m.find())
-				return Integer.parseInt(m.group(1));
-			return -1;
-		}).max();
-		directory.close();
-		String referenceDirectory =  "recordings/" + testName + "/recording.image" + Integer.toString(max.getAsInt())+ ".png";
-		File outputfile = new File(referenceDirectory);
-		ImageIO.write(actual, "png", outputfile);
-	}
-	
-	public boolean update = false;
 
 }
