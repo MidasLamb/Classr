@@ -19,14 +19,29 @@ import logicalobjects.StringVisitor;
 
 /**
  * A wrapper for the GUI Text to adapt it to the application part.
- * 
- * @author midas
  *
  */
 public class EditableTextWrapper extends TextWrapper {
 	private String standardString;
 	private String regex;
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	string
+	 * 			the text
+	 * @param 	regex
+	 * 			the regex to which the text needs to match
+	 * @param 	parent
+	 * 			the VisualObject which is the parent of this object
+	 * @param 	object
+	 * 			the logicalObject which is linked to this text
+	 */
 	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
 			LogicalObject object) {
 		super(x, y, z, parent, object);
@@ -39,6 +54,25 @@ public class EditableTextWrapper extends TextWrapper {
 		}
 	}
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	string
+	 * 			the text
+	 * @param 	regex
+	 * 			the regex to which the text needs to match
+	 * @param 	parent
+	 * 			the VisualObject which is the parent of this object
+	 * @param 	object
+	 * 			the logicalObject which is linked to this text
+	 * @param 	maxWidth
+	 * 			the maxWidth that this text may have
+	 */
 	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
 			LogicalObject object, int maxWidth) {
 		super(x, y, z, parent, object);
@@ -48,6 +82,20 @@ public class EditableTextWrapper extends TextWrapper {
 		this.setRegex(regex);
 	}
 
+	/**
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	string
+	 * 			the text
+	 * @param 	parent
+	 * 			the VisualObject which is the parent of this object
+	 * @param 	object
+	 * 			the logicalObject which is linked to this text
+	 */
 	public EditableTextWrapper(int x, int y, int z, String string, VisualObject parent, LogicalObject object) {
 		this(x, y, z, string, ".*", parent, object);
 	}
@@ -84,6 +132,9 @@ public class EditableTextWrapper extends TextWrapper {
 		return strVis.startVisit(this.getLogicalObject());
 	}
 
+	/**
+	 * @return The current displayed String
+	 */
 	public final String getCurrentDisplayedString() {
 		return this.getTextObject().getText();
 	}
@@ -128,7 +179,6 @@ public class EditableTextWrapper extends TextWrapper {
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
-
 		switch (key.getKeyType()) {
 		case ENTER:
 			if (this.satisfiesRegex()) {
@@ -175,6 +225,9 @@ public class EditableTextWrapper extends TextWrapper {
 
 	}
 
+	/**
+	 * If the string doesn't match the regex, the string will be discarded
+	 */
 	private void quit() {
 		if (!this.getLogicalObject().getName().matches(this.regex)) {
 			this.getLogicalObject().setName(this.getStandardString());
@@ -182,24 +235,42 @@ public class EditableTextWrapper extends TextWrapper {
 		}
 	}
 	
+	/**
+	 * To safely deselect this object
+	 */
 	private void exit(){
 		this.quit();
 		this.getContainer().switchSelectedTo(null);
 	}
 
+	/**
+	 * Saves the text if it matches the constraints and exits
+	 */
 	private void saveAndExit() {
 		this.save();
 		this.exit();
 	}
 
+	/**
+	 * @return the regex of this text
+	 */
 	private final String getRegex() {
 		return regex;
 	}
 
+	/**
+	 * Sets the regex for this text
+	 * @param 	regex
+	 * 			the new regex
+	 */
 	private final void setRegex(String regex) {
 		this.regex = regex;
 	}
 
+	/**
+	 * Checks if the text satisfies the regex
+	 * @return	true if the text matches the regex, false otherwise
+	 */
 	private final boolean satisfiesRegex() {
 		return this.getCurrentDisplayedString().matches(this.getRegex());
 	}

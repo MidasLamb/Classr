@@ -12,9 +12,8 @@ import logicalobjects.LogicalObject;
 
 /**
  * A box in which the content can be padded.
- * @author midas
- *
- * @param <T>
+ * @param 	<T>
+ * 			The VisualObject that the paddingBox contains
  */
 public class PaddingBox<T extends VisualObject> extends VisualObject {
 	private int paddingTop;
@@ -23,6 +22,33 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	private int paddingRight;
 	private T content;
 	
+	/**
+	 *
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	width
+	 * 			the width
+	 * @param 	height
+	 * 			the height
+	 * @param 	paddingLeft
+	 * 			the padding on the left	
+	 * @param 	paddingRight
+	 * 			the padding on the right
+	 * @param 	paddingTop
+	 * 			the padding on the top
+	 * @param 	paddingBottom
+	 * 			the padding on the bottom
+	 * @param 	content
+	 * 			the content that needs to be padded
+	 * @param 	parent
+	 * 			the parent object for this object
+	 * @param 	object
+	 * 			the corresponding logicalObject
+	 */
 	public PaddingBox(int x, int y, int z, int width, int height, int paddingLeft, int paddingRight, int paddingTop,
 			int paddingBottom,T content, VisualObject parent, LogicalObject object) {
 		super(x, y, -10, width, height, parent);
@@ -42,15 +68,68 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 		this.content.addDeleteListener(this);
 	}
 	
+	/**
+	 * 
+	 *
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	width
+	 * 			the width
+	 * @param 	height
+	 * 			the height
+	 * @param 	padding
+	 * 			the wanted padding left, right, top en down
+	 * @param 	content
+	 * 			the content that needs to be padded
+	 * @param 	parent
+	 * 			the parent object for this object
+	 * @param 	object
+	 * 			the corresponding logicalObject
+	 */
 	public PaddingBox(int x, int y, int z, int width, int height, int padding,T content, VisualObject parent, LogicalObject object) {
 		this(x, y, z, width, height, padding, padding, padding, padding,content, parent, object);
 	}
 
-
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	padding
+	 * 			the wanted padding left, right, top en down
+	 * @param 	content
+	 * 			the content that needs to be padded
+	 * @param 	parent
+	 * 			the parent object for this object
+	 * @param 	object
+	 * 			the corresponding logicalObject
+	 */
 	public PaddingBox(int x, int y, int z, int padding,T content, VisualObject parent, LogicalObject object) {
 		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding, STANDARD_PADDING,content, parent, object);
 	}
 
+	/**
+	 * 
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @param 	z
+	 * 			the z-coordinate
+	 * @param 	content
+	 * 			the content that needs to be padded
+	 * @param 	parent
+	 * 			the parent object for this object
+	 * @param 	object
+	 * 			the corresponding logicalObject
+	 */
 	public PaddingBox(int x, int y, int z,T content, VisualObject parent, LogicalObject object) {
 		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent, object);
 	}
