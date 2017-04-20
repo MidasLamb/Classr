@@ -153,7 +153,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 			}
 
 			for (DeleteListener d : this.getDeleteListeners()) {
-				d.notifySubjectDeleted(this);
+				d.getNotifiedSubjectDeleted(this);
 			}
 		}
 	}
@@ -415,7 +415,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		c.addDeleteListener(new DeleteListener() {
 
 			@Override
-			public void notifySubjectDeleted(DeleteSubject subject) {
+			public void getNotifiedSubjectDeleted(DeleteSubject subject) {
 				removeChild(c);
 
 			}
@@ -552,7 +552,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 */
 	@Override
-	public void notifySubjectDeleted(DeleteSubject subject) {
+	public void getNotifiedSubjectDeleted(DeleteSubject subject) {
 		this.delete();
 	}
 
@@ -588,6 +588,10 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 			v = v.getParent();
 		}
 		return false;
+	}
+	
+	public void notifyListeners(){
+		getDeleteListeners().forEach(x -> x.notify());
 	}
 
 	protected final Color getForcedColor() {
