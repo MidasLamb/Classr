@@ -5,11 +5,11 @@ import java.awt.Graphics;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 
+/**
+ * A state for the text object in 
+ * 	which the text object is editable
+ */
 public class EditableState extends TextState {
-
-	public EditableState() {
-
-	}
 
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
@@ -26,6 +26,8 @@ public class EditableState extends TextState {
 			break;
 		case ESCAPE:
 			getText().switchState(new PassiveState());
+			break;
+		default:
 			break;
 		}
 
