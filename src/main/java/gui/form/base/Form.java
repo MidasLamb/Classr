@@ -64,7 +64,14 @@ public class Form implements Typable, Clickable {
 		
 		Optional<FormObject> maybeFocused = getFormObjects().stream().filter(s -> s.isFocused()).findFirst();
 		if (maybeFocused.isPresent()) {
-			this.setFocusedObject(maybeFocused.get());
+			FormObject focused = maybeFocused.get();
+			if (focused instanceof FormObjectWithChildren){
+				FormObjectWithChildren fowc = (FormObjectWithChildren) focused;
+				this.setFocusedObject(fowc.getClickedChild());
+			} else {
+				this.setFocusedObject(focused);
+			}
+			
 		} else {
 			this.setFocusedObject(null);
 		}
@@ -130,8 +137,8 @@ public class Form implements Typable, Clickable {
 	private FormObject getPreviousFormObject(FormObject current) {
 		if (current instanceof FormObjectChild){
 			FormObjectChild foc = (FormObjectChild) current;
-			if (foc.hasPreviousChild())
-				return foc.getPreviousChild();
+			if (foc.hasPreviousSibling())
+				return foc.getPreviousSibling();
 			else {
 				current = foc.getParent();
 			}
@@ -142,8 +149,8 @@ public class Form implements Typable, Clickable {
 		}
 		if (previous instanceof FormObjectWithChildren){
 			FormObjectWithChildren fowc = (FormObjectWithChildren) previous;
-			if(fowc.hasPreviousChild())
-				return fowc.getPreviousChild();
+			if(fowc.hasChildren())
+				return fowc.getLastChild();
 			else 
 				return getPreviousFormObject(previous);
 		}
@@ -153,8 +160,8 @@ public class Form implements Typable, Clickable {
 	private FormObject getNextFormObject(FormObject current) {
 		if (current instanceof FormObjectChild){
 			FormObjectChild foc = (FormObjectChild) current;
-			if (foc.hasNextChild())
-				return foc.getNextChild();
+			if (foc.hasNextSibling())
+				return foc.getNextSibling();
 			else {
 				current = foc.getParent();
 			}
@@ -166,8 +173,8 @@ public class Form implements Typable, Clickable {
 		}
 		if (next instanceof FormObjectWithChildren){
 			FormObjectWithChildren fowc = (FormObjectWithChildren) next;
-			if(fowc.hasNextChild())
-				return fowc.getNextChild();
+			if(fowc.hasChildren())
+				return fowc.getFirstChild();
 			else 
 				return getNextFormObject(next);
 		}
