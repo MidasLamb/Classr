@@ -11,18 +11,29 @@ import logicalobjects.LogicalObjectVisitor;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-public class FormCreator implements LogicalObjectVisitor<Void>{
+/**
+ * A visitor to create the Form for the corresponding logical object.
+ */
+public class FormCreator implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
 	private MyCanvasWindow window;
-	
-	public FormCreator(LogicalObject o, MyCanvasWindow window){
+
+	/**
+	 * Creates a new FormCreator
+	 * 
+	 * @param o
+	 *            LogicalObject for which a Form needs to be created
+	 * @param window
+	 *            MyCanvasWindow where the Form needs to be drawn
+	 */
+	public FormCreator(LogicalObject o, MyCanvasWindow window) {
 		this.setWindow(window);
 		this.startVisit(o);
 	}
 
 	@Override
 	public Void visit(LogicalClass c) {
-		//No form for LogicalClass exists.
+		// No form for LogicalClass exists.
 		return null;
 	}
 
@@ -40,7 +51,7 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 
 	@Override
 	public Void visit(Association c) {
-		//No form exists for an association.
+		// No form exists for an association.
 		return null;
 	}
 
@@ -59,14 +70,18 @@ public class FormCreator implements LogicalObjectVisitor<Void>{
 	private void setWindow(MyCanvasWindow window) {
 		this.window = window;
 	}
-	
-	public FormWrapper getForm(){
+
+	/**
+	 * Get the FormWrapper of this FormCreator
+	 * @return FormWrapper of this FormCreator
+	 */
+	public FormWrapper getForm() {
 		return this.getFormBuilder().getForm();
 	}
 
 	@Override
 	public Void visit(Parameter parameter) {
-		// No  form for parameter exists.
+		// No form for parameter exists.
 		return null;
 	}
 
