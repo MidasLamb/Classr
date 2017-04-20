@@ -19,6 +19,7 @@ import logicalobjects.StringVisitor;
 
 /**
  * A wrapper for the GUI Text to adapt it to the application part.
+ * 
  * @author midas
  *
  */
@@ -33,34 +34,35 @@ public class EditableTextWrapper extends TextWrapper {
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 		this.setStandardString(string);
 		this.setRegex(regex);
-		if (!this.getStandardString().matches(this.getRegex())){
+		if (!this.getStandardString().matches(this.getRegex())) {
 			throw new RuntimeException();
 		}
 	}
-	
-	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent, LogicalObject object, int maxWidth) {
-		super(x,y,z, parent, object);
+
+	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
+			LogicalObject object, int maxWidth) {
+		super(x, y, z, parent, object);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState(), maxWidth));
 		this.setStandardString(string);
 		this.setRegex(regex);
 	}
 
-	public EditableTextWrapper(int x, int y, int z, String string,VisualObject parent, LogicalObject object) {
-		this(x,y,z,string, ".*", parent, object);
+	public EditableTextWrapper(int x, int y, int z, String string, VisualObject parent, LogicalObject object) {
+		this(x, y, z, string, ".*", parent, object);
 	}
-	
+
 	@Override
-	public void determinColors(Graphics g){
+	public void determinColors(Graphics g) {
 		if (!satisfiesRegex())
 			this.setColor(Color.RED);
-		else 
+		else
 			this.setColor(Color.BLACK);
-		
-		if (this.isSelected()){
+
+		if (this.isSelected()) {
 			if (!satisfiesRegex())
 				this.forceColor(Color.RED);
-			else 
+			else
 				this.forceColor(Color.BLACK);
 		}
 	}
@@ -70,9 +72,7 @@ public class EditableTextWrapper extends TextWrapper {
 	 */
 	@Override
 	public void draw(Graphics g) {
-		
-		
-		
+
 		this.getTextObject().draw(g, this.getX(), this.getY());
 	}
 
@@ -100,7 +100,7 @@ public class EditableTextWrapper extends TextWrapper {
 			this.getTextObject().switchState(new EditableState());
 		} else {
 			this.getTextObject().switchState(new PassiveState());
-			this.save();
+			this.quit();
 		}
 
 		this.getTextObject().setAttributedText(getText());
@@ -132,13 +132,13 @@ public class EditableTextWrapper extends TextWrapper {
 		switch (key.getKeyType()) {
 		case ENTER:
 			if (this.satisfiesRegex()) {
-				this.quitAndSave();
+				this.saveAndExit();
 				this.getTextObject().handleFunctionKey(key);
 			}
 			break;
 		case ESCAPE:
 			this.getTextObject().handleFunctionKey(key);
-			this.quit();
+			this.exit();
 			break;
 		case DELETE:
 			this.getTextObject().handleFunctionKey(key);
@@ -163,22 +163,32 @@ public class EditableTextWrapper extends TextWrapper {
 	 * satisfied and length is > 0.
 	 */
 	private void save() {
-		if (this.getCurrentDisplayedString().length() == 0 || !this.satisfiesRegex()) {
+		if (!this.getLogicalObject().getName().matches(this.regex) && !this.satisfiesRegex()) {
 			this.getLogicalObject().setName(this.getStandardString());
-			this.getTextObject().setAttributedText(getText());
+		} else if (!this.satisfiesRegex()) {
+			//It should just reset to the previous
 		} else {
 			this.getLogicalObject().setName(this.getCurrentDisplayedString());
 		}
+		this.getTextObject().setAttributedText(getText());
 
 	}
 
 	private void quit() {
+		if (!this.getLogicalObject().getName().matches(this.regex)) {
+			this.getLogicalObject().setName(this.getStandardString());
+			this.getTextObject().setAttributedText(getText());
+		}
+	}
+	
+	private void exit(){
+		this.quit();
 		this.getContainer().switchSelectedTo(null);
 	}
 
-	private void quitAndSave() {
+	private void saveAndExit() {
 		this.save();
-		this.quit();
+		this.exit();
 	}
 
 	private final String getRegex() {

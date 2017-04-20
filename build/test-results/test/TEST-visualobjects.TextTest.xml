@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="visualobjects.TextTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-04-19T18:53:15" hostname="DESKTOP-RV67H71" time="0.026">
+<testsuite name="visualobjects.TextTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-04-20T13:19:37" hostname="DESKTOP-RV67H71" time="0.009">
   <properties/>
-  <testcase name="typeAaTest" classname="visualobjects.TextTest" time="0.018"/>
-  <testcase name="typeCapitalATest" classname="visualobjects.TextTest" time="0.0"/>
-  <testcase name="typeAaBackspaceTest" classname="visualobjects.TextTest" time="0.003"/>
-  <testcase name="standardTextTest" classname="visualobjects.TextTest" time="0.001"/>
+  <testcase name="typeAaTest" classname="visualobjects.TextTest" time="0.002"/>
+  <testcase name="typeCapitalATest" classname="visualobjects.TextTest" time="0.001"/>
+  <testcase name="typeAaBackspaceTest" classname="visualobjects.TextTest" time="0.004"/>
+  <testcase name="standardTextTest" classname="visualobjects.TextTest" time="0.002"/>
   <testcase name="typeATest" classname="visualobjects.TextTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

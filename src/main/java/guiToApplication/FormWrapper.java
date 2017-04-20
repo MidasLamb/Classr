@@ -11,9 +11,20 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import interfaces.CanvasContent;
 
+/**
+ * A bridge to let a form be displayed in a canvas window
+ */
 public class FormWrapper extends Form implements CanvasContent {
 	private MyCanvasWindow canvasWindow;
 
+	/**
+	 * @param 	width
+	 * 			the width of the form 
+	 * @param 	height
+	 * 			the heigth of the form
+	 * @param 	canvasWindow
+	 * 			the canvas window in which the form needs to be displayed
+	 */
 	public FormWrapper(int width, int height, MyCanvasWindow canvasWindow) {
 		super(width, height);
 		this.canvasWindow = canvasWindow;
