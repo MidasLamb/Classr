@@ -59,21 +59,23 @@ public class Form implements Typable, Clickable {
 	 */
 	public void handleClick(MouseClick click) {
 		setFocusedObject(null);
-		
+
 		this.getFormObjects().forEach(formObject -> formObject.handleClick(click));
-		
+
 		Optional<FormObject> maybeFocused = getFormObjects().stream().filter(s -> s.isFocused()).findFirst();
 		if (maybeFocused.isPresent()) {
 			FormObject focused = maybeFocused.get();
-			if (focused instanceof FormObjectWithChildren){
-				FormObjectWithChildren fowc = (FormObjectWithChildren) focused;
-				this.setFocusedObject(fowc.getClickedChild());
-			} else {
-				this.setFocusedObject(focused);
-			}
-			
+			this.setFocusedObject(focused);
+
 		} else {
-			this.setFocusedObject(null);
+			// Check for the children of formobjectswithchildren.
+			maybeFocused = getFormObjects().stream().filter(s -> (s instanceof FormObjectWithChildren))
+					.filter(x -> ((FormObjectWithChildren) x).getFocusedChild() != null).findFirst();
+			if (maybeFocused.isPresent()) {
+				FormObjectWithChildren focused = (FormObjectWithChildren) maybeFocused.get();
+				this.setFocusedObject(focused.getFocusedChild());
+			} else
+				this.setFocusedObject(null);
 		}
 	}
 
@@ -135,7 +137,7 @@ public class Form implements Typable, Clickable {
 	}
 
 	private FormObject getPreviousFormObject(FormObject current) {
-		if (current instanceof FormObjectChild){
+		if (current instanceof FormObjectChild) {
 			FormObjectChild foc = (FormObjectChild) current;
 			if (foc.hasPreviousSibling())
 				return foc.getPreviousSibling();
@@ -147,18 +149,18 @@ public class Form implements Typable, Clickable {
 		while (previous != null && !previous.isFocusable()) {
 			previous = getFormObjects().lower(previous);
 		}
-		if (previous instanceof FormObjectWithChildren){
+		if (previous instanceof FormObjectWithChildren) {
 			FormObjectWithChildren fowc = (FormObjectWithChildren) previous;
-			if(fowc.hasChildren())
+			if (fowc.hasChildren())
 				return fowc.getLastChild();
-			else 
+			else
 				return getPreviousFormObject(previous);
 		}
 		return previous;
 	}
 
 	private FormObject getNextFormObject(FormObject current) {
-		if (current instanceof FormObjectChild){
+		if (current instanceof FormObjectChild) {
 			FormObjectChild foc = (FormObjectChild) current;
 			if (foc.hasNextSibling())
 				return foc.getNextSibling();
@@ -166,16 +168,16 @@ public class Form implements Typable, Clickable {
 				current = foc.getParent();
 			}
 		}
-			
+
 		FormObject next = getFormObjects().higher(current);
 		while (next != null && !next.isFocusable()) {
 			next = getFormObjects().higher(next);
 		}
-		if (next instanceof FormObjectWithChildren){
+		if (next instanceof FormObjectWithChildren) {
 			FormObjectWithChildren fowc = (FormObjectWithChildren) next;
-			if(fowc.hasChildren())
+			if (fowc.hasChildren())
 				return fowc.getFirstChild();
-			else 
+			else
 				return getNextFormObject(next);
 		}
 		return next;

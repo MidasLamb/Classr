@@ -15,7 +15,6 @@ import gui.text.Text;
 import gui.text.state.EditableState;
 import gui.text.state.PassiveState;
 import logicalobjects.LogicalObject;
-import logicalobjects.StringVisitor;
 
 /**
  * A wrapper for the GUI Text to adapt it to the application part.

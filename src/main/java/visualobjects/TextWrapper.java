@@ -15,7 +15,6 @@ import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
 import gui.text.state.PassiveState;
 import logicalobjects.LogicalObject;
-import logicalobjects.StringVisitor;
 
 /**
  * A wrapper to use the Text box from the GUI as a VisualObject

@@ -1,4 +1,4 @@
-package logicalobjects;
+package visualobjects;
 
 import static java.awt.Font.ITALIC;
 import static java.awt.font.TextAttribute.FONT;
@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import gui.text.Text;
+import logicalobjects.Association;
+import logicalobjects.Attribute;
+import logicalobjects.LogicalClass;
+import logicalobjects.LogicalObjectVisitor;
+import logicalobjects.Method;
+import logicalobjects.Parameter;
 
 /**
  * A visitor to visit logical objects and creates an attributed string
