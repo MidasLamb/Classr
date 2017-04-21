@@ -6,6 +6,11 @@ package logicalobjects;
  */
 public interface LogicalObjectVisitor<T> {
 	
+	/**
+	 * 
+	 * @param lo
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public default T startVisit(LogicalObject lo){
 		return ((T) lo.accept(this));
