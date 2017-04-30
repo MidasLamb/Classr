@@ -1,5 +1,7 @@
 package logicalobjects;
 
+import static main.Constants.REGEX_START_NO_CAPITAL;
+
 /**
  * Parameter which can be added to methodes
  * 
@@ -44,5 +46,10 @@ public class Parameter extends LogicalObject {
 	@Override
 	public Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
+	}
+	
+	@Override
+	boolean hasValidName() {
+		return this.getName().matches(REGEX_START_NO_CAPITAL);
 	}
 }

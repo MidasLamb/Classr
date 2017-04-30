@@ -1,5 +1,7 @@
 package logicalobjects;
 
+import static main.Constants.REGEX_START_NO_CAPITAL;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -80,5 +82,10 @@ public class Method extends ClassContent {
 	@Override
 	public Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
+	}
+	
+	@Override
+	boolean hasValidName() {
+		return this.getName().matches(REGEX_START_NO_CAPITAL);
 	}
 }

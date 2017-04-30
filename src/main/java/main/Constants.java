@@ -43,6 +43,9 @@ public final class Constants {
 	public static final FontMetrics STANDARD_FONTMETRICS = new Canvas().getFontMetrics(STANDARD_FONT);
 	public static final int STANDARD_TEXT_HEIGHT = STANDARD_FONTMETRICS.getHeight();
 	public static final int STANDARD_TEXT_ASCEND = STANDARD_FONTMETRICS.getAscent();
+	
+	public static final String REGEX_START_CAPITAL = "^[A-Z][a-zA-Z0-9_]*";
+	public static final String REGEX_START_NO_CAPITAL = "^[a-z][a-zA-Z0-9_]*";
 
 	private Constants() {
 		throw new AssertionError();

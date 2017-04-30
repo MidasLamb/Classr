@@ -1,4 +1,5 @@
 package logicalobjects;
+import static main.Constants.REGEX_START_NO_CAPITAL;
 
 /**
  * A class of associations, involving two real classes
@@ -81,6 +82,12 @@ public class Association extends LogicalObject{
 	@Override
 	Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
+	}
+
+
+	@Override
+	boolean hasValidName() {
+		return this.getName().matches(REGEX_START_NO_CAPITAL);
 	}
 	
 }

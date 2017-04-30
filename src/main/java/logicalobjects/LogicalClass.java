@@ -1,5 +1,7 @@
 package logicalobjects;
 
+import static main.Constants.REGEX_START_CAPITAL;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -184,4 +186,9 @@ public class LogicalClass extends LogicalObject {
 		return v.visit(this);
 	}
 
+	@Override
+	boolean hasValidName() {
+		return this.getName().matches(REGEX_START_CAPITAL);
+	}
+	
 }

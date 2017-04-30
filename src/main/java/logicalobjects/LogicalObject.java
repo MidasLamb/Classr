@@ -112,4 +112,11 @@ public abstract class LogicalObject implements DeleteSubject{
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
 	}
+	
+	/**
+	 * Returns whether or not the logical objeects name follows the rules concerning its name
+	 * 
+	 * @return	true if name is valid, false otherwise
+	 */
+	abstract boolean hasValidName();
 }

@@ -1,5 +1,7 @@
 package logicalobjects;
 
+import static main.Constants.REGEX_START_NO_CAPITAL;
+
 /**
  * A class of attributes, involving a real class.
  * 
@@ -23,5 +25,10 @@ public class Attribute extends ClassContent {
 	@Override
 	Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
+	}
+	
+	@Override
+	boolean hasValidName() {
+		return this.getName().matches(REGEX_START_NO_CAPITAL);
 	}
 }
