@@ -187,8 +187,8 @@ public class LogicalClass extends LogicalObject {
 	}
 
 	@Override
-	boolean hasValidName() {
-		return this.getName().matches(REGEX_START_CAPITAL);
+	boolean canHaveAsName(String name) {
+		return name.matches(REGEX_START_CAPITAL);
 	}
 	
 }

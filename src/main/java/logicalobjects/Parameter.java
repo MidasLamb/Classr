@@ -49,7 +49,7 @@ public class Parameter extends LogicalObject {
 	}
 	
 	@Override
-	boolean hasValidName() {
-		return this.getName().matches(REGEX_START_NO_CAPITAL);
+	boolean canHaveAsName(String name) {
+		return name.matches(REGEX_START_NO_CAPITAL);
 	}
 }

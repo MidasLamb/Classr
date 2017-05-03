@@ -118,5 +118,5 @@ public abstract class LogicalObject implements DeleteSubject{
 	 * 
 	 * @return	true if name is valid, false otherwise
 	 */
-	abstract boolean hasValidName();
+	abstract boolean canHaveAsName(String string);
 }
