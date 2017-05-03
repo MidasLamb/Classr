@@ -11,7 +11,7 @@ import interfaces.DeleteSubject;
  * 
  * @author team 11
  */
-public abstract class LogicalObject implements DeleteSubject{
+public abstract class LogicalObject implements DeleteSubject {
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private String name = "";
@@ -47,16 +47,16 @@ public abstract class LogicalObject implements DeleteSubject{
 		}
 		this.setDeleted(true);
 	}
-	
+
 	@Override
 	public void notifyListeners() {
-		for (DeleteListener d: this.getDeleteListeners())
+		for (DeleteListener d : this.getDeleteListeners())
 			d.getNotifiedSubjectDeleted(this);
 	}
 
 	/**
-	 * Function that contains the actions that need to be 
-	 * 		done when this object will be deleted
+	 * Function that contains the actions that need to be done when this object
+	 * will be deleted
 	 */
 	protected abstract void onDelete();
 
@@ -69,8 +69,9 @@ public abstract class LogicalObject implements DeleteSubject{
 
 	/**
 	 * Sets the isDeleted parameter
+	 * 
 	 * @param isDeleted
-	 * 			The new value for the isDeleted value
+	 *            The new value for the isDeleted value
 	 */
 	private void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
@@ -86,21 +87,22 @@ public abstract class LogicalObject implements DeleteSubject{
 	/**
 	 * Sets the deleteListeners to the given deleteListeners
 	 * 
-	 * @param 	deleteListeners
-	 * 			the new deleteListeners
+	 * @param deleteListeners
+	 *            the new deleteListeners
 	 */
 	private void setDeleteListeners(Collection<DeleteListener> deleteListeners) {
 		this.deleteListeners = deleteListeners;
 	}
-	
+
 	/**
 	 * Accepts a LogicalObjectVisitor
-	 * @param 	v
-	 * 			the logicalObjectVisitor
-	 * @return	an object as defined by the LogicalObjectVisitor
+	 * 
+	 * @param v
+	 *            the logicalObjectVisitor
+	 * @return an object as defined by the LogicalObjectVisitor
 	 */
 	abstract Object accept(LogicalObjectVisitor<?> v);
-	
+
 	@Override
 	public final void addDeleteListener(DeleteListener deletelistener) {
 		this.getDeleteListeners().add(deletelistener);
@@ -112,11 +114,12 @@ public abstract class LogicalObject implements DeleteSubject{
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
 	}
-	
+
 	/**
-	 * Returns whether or not the logical objeects name follows the rules concerning its name
+	 * Returns whether this logical object can have the provided string as a
+	 * valid name
 	 * 
-	 * @return	true if name is valid, false otherwise
+	 * @return true if the string would be a valid name, false otherwise
 	 */
 	abstract boolean canHaveAsName(String string);
 }
