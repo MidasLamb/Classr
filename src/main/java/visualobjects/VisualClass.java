@@ -21,6 +21,7 @@ import logicalobjects.Method;
  */
 public class VisualClass extends ResizableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
+	private AssociationHandle associationHandle;
 
 	/**
 	 * 
@@ -46,7 +47,7 @@ public class VisualClass extends ResizableVisualObject {
 		this.updateDimensions();
 
 		this.getName().addDeleteListener(this);
-		new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this);
+		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this));
 	}
 
 	/**
@@ -305,6 +306,23 @@ public class VisualClass extends ResizableVisualObject {
 				super.onClick(sc);
 		}
 
+	}
+	
+	@Override
+	public boolean isOnLeftSide(int x, int y) {
+		if (!this.getAssociationHandle().isIn(x, y)){
+			return super.isOnLeftSide(x, y);
+		} else {
+			return false;
+		}
+	}
+
+	private final AssociationHandle getAssociationHandle() {
+		return associationHandle;
+	}
+
+	private final void setAssociationHandle(AssociationHandle associationHandle) {
+		this.associationHandle = associationHandle;
 	}
 
 }

@@ -42,6 +42,7 @@ public abstract class ResizableVisualObject extends VisualObject {
 
 	@Override
 	public void onDragEnd(Drag drag) {
+		super.onDragEnd(drag);
 		this.setBeingDraggedFromBottom(false);
 		this.setBeingDraggedFromLeft(false);
 		this.setBeingDraggedFromRight(false);

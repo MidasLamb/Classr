@@ -22,18 +22,21 @@ public class AssociationHandle extends VisualObject {
 
 	@Override
 	public final void onDragEnd(Drag d) {
-		VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
-		if (otherHandle instanceof AssociationHandle) {
-			VisualClass other = (VisualClass) otherHandle.getParent();
-			this.createAssociation(other);
+		if (isIn(d.getEndX(), d.getEndY())) {
+			VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
+			if (otherHandle instanceof AssociationHandle) {
+				VisualClass other = (VisualClass) otherHandle.getParent();
+				this.createAssociation(other);
+			}
 		}
 	}
 
 	/**
-	 * Creates an association with the VisualClass where 
-	 * 		this association handle is attached to and the given visualClass
-	 * @param 	other
-	 * 			The other visualClass to which the link needs to be made
+	 * Creates an association with the VisualClass where this association handle
+	 * is attached to and the given visualClass
+	 * 
+	 * @param other
+	 *            The other visualClass to which the link needs to be made
 	 */
 	private void createAssociation(VisualClass other) {
 		VisualClass parent = (VisualClass) this.getParent();
