@@ -19,7 +19,7 @@ import logicalobjects.Method;
 /**
  * The visualisation of a logicalClass
  */
-public class VisualClass extends ResizableVisualObject {
+public class VisualClass extends ResizableAndMovableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
 	private AssociationHandle associationHandle;
 
@@ -323,6 +323,11 @@ public class VisualClass extends ResizableVisualObject {
 
 	private final void setAssociationHandle(AssociationHandle associationHandle) {
 		this.associationHandle = associationHandle;
+	}
+
+	@Override
+	protected boolean isInMoveActivator(int x, int y) {
+		return getName().isIn(x, y);
 	}
 
 }
