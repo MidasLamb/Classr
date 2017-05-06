@@ -43,6 +43,7 @@ public class MouseClickHandler {
 		}
 
 		if (e.getID() == MouseEvent.MOUSE_DRAGGED) {
+			getClickable().onDragUpdate(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
 			setBeingDragged(true);
 		}
 	}

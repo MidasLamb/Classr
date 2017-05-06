@@ -275,7 +275,6 @@ public class ContainerTest {
 		Drag drag = new Drag(137,135, 225,333);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		container.onDragStart(drag);
 		container.onDragEnd(drag);
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
@@ -297,9 +296,7 @@ public class ContainerTest {
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onDoubleClick(click3);
-		container.onDragStart(drag1);
 		container.onDragEnd(drag1);
-		container.onDragStart(drag2);
 		container.onDragEnd(drag2);
 		int count = 0;
 		for(VisualObject child : container.getChildren()){
@@ -359,7 +356,6 @@ public class ContainerTest {
 		SingleClick click4 = new SingleClick(243,256);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		container.onDragStart(drag);
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
@@ -442,7 +438,6 @@ public class ContainerTest {
 		SingleClick click4 = new SingleClick(243,256);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		container.onDragStart(drag);
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
@@ -467,7 +462,6 @@ public class ContainerTest {
 		SingleClick click4 = new SingleClick(103,108);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		container.onDragStart(drag);
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
@@ -492,7 +486,6 @@ public class ContainerTest {
 		SingleClick click4 = new SingleClick(326,369);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		container.onDragStart(drag);
 		container.onDragEnd(drag);
 		container.onClick(click3);
 		container.onClick(click4);
@@ -519,9 +512,7 @@ public class ContainerTest {
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onDoubleClick(click3);
-		container.onDragStart(drag1);
 		container.onDragEnd(drag1);
-		container.onDragStart(drag2);
 		container.onDragEnd(drag2);
 		container.onClick(click4);
 		container.handleFunctionKey(getDeleteKey());

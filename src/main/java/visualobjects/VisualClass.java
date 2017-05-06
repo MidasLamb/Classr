@@ -19,7 +19,7 @@ import logicalobjects.Method;
 /**
  * The visualisation of a logicalClass
  */
-public class VisualClass extends VisualObject {
+public class VisualClass extends ResizableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
 
 	/**

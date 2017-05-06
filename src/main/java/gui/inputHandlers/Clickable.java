@@ -27,11 +27,19 @@ public interface Clickable {
 	public void onDoubleClick(DoubleClick click);
 
 	/**
-	 * Implement to choose the expected behavior on a mouse drag.
+	 * Implement to choose the expected behavior when a mouse drag ends.
 	 * 
 	 * @param drag
 	 *            Drag containing information about the positions of the drag
 	 */
 	public void onDragEnd(Drag drag);
+	
+	/**
+	 * Implement to choose the expected behavior when a the mouse is being dragged.
+	 * 
+	 * @param drag
+	 *            Drag containing information about the positions of the drag
+	 */
+	public void onDragUpdate(Drag drag);
 
 }

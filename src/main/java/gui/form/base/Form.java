@@ -74,8 +74,9 @@ public class Form implements Typable, Clickable {
 			if (maybeFocused.isPresent()) {
 				FormObjectWithChildren focused = (FormObjectWithChildren) maybeFocused.get();
 				this.setFocusedObject(focused.getFocusedChild());
-			} else
+			} else {
 				this.setFocusedObject(null);
+			}
 		}
 	}
 
@@ -223,6 +224,11 @@ public class Form implements Typable, Clickable {
 
 	@Override
 	public void onDragEnd(Drag drag) {
+
+	}
+
+	@Override
+	public void onDragUpdate(Drag drag) {
 
 	}
 }

@@ -209,20 +209,6 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	}
 
 	/**
-	 * Triggers the onDragStart function of the child where the dragging starts
-	 * 
-	 * @param d
-	 *            The drag object
-	 */
-	void onDragStart(Drag d) {
-		for (VisualObject v : this.getChildren()) {
-			if (v.isIn(d.getStartX(), d.getStartY())) {
-				v.onDragStart(d);
-			}
-		}
-	}
-
-	/**
 	 * Triggers the onDragEnd function of the child where there is dragged too
 	 * 
 	 * @param d
@@ -230,9 +216,13 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 */
 	public void onDragEnd(Drag d) {
 		for (VisualObject v : this.getChildren()) {
-			if (v.isIn(d.getEndX(), d.getEndY())) {
-				v.onDragEnd(d);
-			}
+			v.onDragEnd(d);
+		}
+	}
+	
+	public void onDragUpdate(Drag drag) {
+		for (VisualObject v : this.getChildren()) {
+			v.onDragUpdate(drag);
 		}
 	}
 	

@@ -4,6 +4,7 @@ import static main.Constants.Z_CLASS;
 
 import canvaswindow.MyCanvasWindow;
 import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -143,5 +144,7 @@ public class Container extends VisualObject  implements CanvasContent{
 		if(getSelected() != null)
 			getSelected().handleFunctionKey(key);
 	}
+
+
 
 }
