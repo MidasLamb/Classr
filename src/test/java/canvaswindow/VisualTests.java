@@ -20,41 +20,7 @@ import javax.imageio.ImageIO;
 import org.junit.Test;
 
 public class VisualTests {
-	
-	public boolean update = false;
 
-	private void update(BufferedImage actual, String testName) throws IOException {
-		if(!update) return;
-		String pattern = ".*recording.image([0-9]*).png";
-		Pattern r = Pattern.compile(pattern);
-		Stream<Path> directory = Files.walk(Paths.get("recordings/" + testName));
-		@SuppressWarnings("resource")
-		OptionalInt max = directory.mapToInt(file ->{
-			Matcher m = r.matcher(file.toString());
-			if (m.find())
-				return Integer.parseInt(m.group(1));
-			return -1;
-		}).max();
-		directory.close();
-		String referenceDirectory =  "recordings/" + testName + "/recording.image" + Integer.toString(max.getAsInt())+ ".png";
-		File outputfile = new File(referenceDirectory);
-		ImageIO.write(actual, "png", outputfile);
-	}
-
-	static boolean imagesEqual(BufferedImage reference, BufferedImage actual) {
-		try{
-			for (int x = 0; x < reference.getWidth(); x++) {
-	            for (int y = 0; y < reference.getHeight(); y++) {
-	                if (reference.getRGB(x, y) != actual.getRGB(x, y)){
-	                	return false;
-	                }
-	            }
-	        }
-		    return true;
-		} catch (IndexOutOfBoundsException e){
-			return false;
-		}
-	}
 
 
 	static BufferedImage getReferenceImage(String testName) throws IOException{
@@ -75,141 +41,111 @@ public class VisualTests {
 
 	@Test
 	public void newClassTest() throws IOException {
+		String name = "newClass";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/newClass/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "newClass");
-		assertTrue(imagesEqual(getReferenceImage("newClass"),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 
 	@Test
 	public void createTwoClassesTest() throws IOException {
+		String name = "createTwoClasses";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/createTwoClasses/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "createTwoClasses");
-		assertTrue(imagesEqual(getReferenceImage("createTwoClasses"),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void createAndSelectClassTest() throws IOException {
+		String name = "createAndSelectClass";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/createAndSelectClass/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "createAndSelectClass");
-		assertTrue(imagesEqual(getReferenceImage("createAndSelectClass"),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void changeClassNameTest() throws IOException {
+		String name = "changeClassName";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/changeClassName/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "changeClassName");
-		assertTrue(imagesEqual(getReferenceImage("changeClassName"),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void addAttributeTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/addAttribute/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "addAttribute");
-		assertTrue(imagesEqual(getReferenceImage("addAttribute"),  actual));
+		String name = "addAttribute";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void addMethodeTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/addMethode/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "addMethode");
-		assertTrue(imagesEqual(getReferenceImage("addMethode"),  actual));
+		String name = "addMethode";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void addAssociationTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/addAssociation/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "addAssociation");
-		assertTrue(imagesEqual(getReferenceImage("addAssociation"),  actual));
+		String name = "addAssociation";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void deleteClassTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteClass/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "deleteClass");
-		assertTrue(imagesEqual(getReferenceImage("deleteClass"),  actual));
+		String name = "deleteClass";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void selectAttrTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/selectAttr/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "selectAttr");
-		assertTrue(imagesEqual(getReferenceImage("selectAttr"),  actual));
+		String name = "selectAttr";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void selectMethodeTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/selectMethode/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "selectMethode");
-		assertTrue(imagesEqual(getReferenceImage("selectMethode"),  actual));
+		String name = "selectMethode";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void deleteClassWithAssAndMethTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteClassWithAssAndMeth/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "deleteClassWithAssAndMeth");
-		assertTrue(imagesEqual(getReferenceImage("deleteClassWithAssAndMeth"),  actual));
+		String name = "deleteClassWithAssAndMeth";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void deleteAssociationTest1() throws IOException {
 		//Associatie zelf verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteAssociation1/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "deleteAssociation1");
-		assertTrue(imagesEqual(getReferenceImage("deleteAssociation1"),  actual));
+		String name = "deleteAssociation1";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void deleteAssociationTest2() throws IOException {
 		//Klasse 1 verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteAssociation2/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "deleteAssociation2");
-		assertTrue(imagesEqual(getReferenceImage("deleteAssociation2"),  actual));
+		String name = "deleteAssociation2";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void deleteAssociationTest3() throws IOException {
 		//Klasse 2 verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteAssociation3/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "deleteAssociation3");
-		assertTrue(imagesEqual(getReferenceImage("deleteAssociation3"),  actual));
+		String name = "deleteAssociation3";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void deleteAssociationTest4() throws IOException {
 		//Drie klassen associatie van 1 -> 2 van 2 ->3 en dan 2 verwijderen
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/deleteAssociation4/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "deleteAssociation4");
-		assertTrue(imagesEqual(getReferenceImage("deleteAssociation4"),  actual));
+		String name = "deleteAssociation4";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}	
 	
 	@Test
@@ -217,10 +153,8 @@ public class VisualTests {
 		//Twee keer klikken op dezelfde plaats in container
 		// zou geen twee klassen mogen maken
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/doubleClick/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "doubleClick");
-		assertTrue(imagesEqual(getReferenceImage("doubleClick"),  actual));
+		String name = "doubleClick";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
@@ -228,29 +162,23 @@ public class VisualTests {
 		//Klasse maken, methode toevoegen private maken, opslaan
 		// Terug op methode klikken en kijken of private is aangeklikt
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/methodePrivate/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "methodePrivate");
-		assertTrue(imagesEqual(getReferenceImage("methodePrivate"),  actual));
+		String name = "methodePrivate";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void focusCheckBoxTest() throws IOException {
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/focusCheckBox/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "focusCheckBox");
-		assertTrue(imagesEqual(getReferenceImage("focusCheckBox"),  actual));
+		String name = "focusCheckBox";
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	@Test
 	public void removeParameterTest() throws IOException {
 		//Add a parameter, save everything and delete it again
+		String name = "removeParameter";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/removeParameter/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, "removeParameter");
-		assertTrue(imagesEqual(getReferenceImage("removeParameter"),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	/**
@@ -261,10 +189,7 @@ public class VisualTests {
 	public void pressDeleteWhileTyping() throws IOException {
 		String name = "pressDeleteWhileTyping";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, name);
-		assertTrue(imagesEqual(getReferenceImage(name),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
 	/**
@@ -275,10 +200,8 @@ public class VisualTests {
 	public void keyAndMouseFocusListBox() throws IOException {
 		String name = "keyAndMouseFocusListBox";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, name);
-		assertTrue(imagesEqual(getReferenceImage(name),  actual));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
+
 	}
 
 }

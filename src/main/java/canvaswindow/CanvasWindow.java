@@ -25,6 +25,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.VisualTestUpdater;
+
 /**
  * A window for custom drawing.
  *
@@ -45,7 +47,7 @@ import javax.swing.JPanel;
 abstract class RecordingItem {
 	abstract void save(String path, int itemIndex, PrintWriter writer) throws IOException;
 
-	abstract void replay(int itemIndex, CanvasWindow window);
+	abstract void replay(int itemIndex, CanvasWindow window, String path);
 }
 
 class MouseEventItem extends RecordingItem {
@@ -85,7 +87,7 @@ class MouseEventItem extends RecordingItem {
 	}
 
 	@Override
-	void replay(int itemIndex, CanvasWindow window) {
+	void replay(int itemIndex, CanvasWindow window, String path) {
 		window.handleMouseEvent(new MouseEvent(new JPanel(), id, 0, 0, x, y, x, y, clickCount, false, 0));
 	}
 }
@@ -119,7 +121,7 @@ class KeyEventItem extends RecordingItem {
 	}
 
 	@Override
-	void replay(int itemIndex, CanvasWindow window) {
+	void replay(int itemIndex, CanvasWindow window, String path) {
 		window.handleKeyEvent(new KeyEvent(new JPanel(), id, 0, 0, keyCode, keyChar));
 	}
 }
@@ -141,25 +143,41 @@ class PaintItem extends RecordingItem {
 		writer.println("Paint");
 	}
 
-	void replay(int itemIndex, CanvasWindow window) {
+	void save(String path, int itemIndex, BufferedImage image) throws IOException {
+		String imagePath = imagePathOf(path, itemIndex);
+		javax.imageio.ImageIO.write(image, "PNG", new File(imagePath));
+	}
+
+	void replay(int itemIndex, CanvasWindow window, String path) {
+
 		BufferedImage observedImage = window.captureImage();
-		for (int y = 0; y < observedImage.getHeight(); y++) {
-			for (int x = 0; x < observedImage.getWidth(); x++) {
-				if (observedImage.getRGB(x, y) != image.getRGB(x, y)) {
-					try {
-						ImageIO.write(observedImage, "PNG", new File("observedImage" + itemIndex + ".png"));
-					} catch (IOException e) {
-						throw new RuntimeException(e);
+		if (!VisualTestUpdater.update) {
+			for (int y = 0; y < observedImage.getHeight(); y++) {
+				for (int x = 0; x < observedImage.getWidth(); x++) {
+					if (observedImage.getRGB(x, y) != image.getRGB(x, y)) {
+						try {
+							ImageIO.write(observedImage, "PNG", new File("observedImage" + itemIndex + ".png"));
+						} catch (IOException e) {
+							throw new RuntimeException(e);
+						}
+						throw new RuntimeException(
+								"Replay: Paint item " + itemIndex + " does not match at x=" + x + " and y=" + y + ".");
 					}
-					throw new RuntimeException(
-							"Replay: Paint item " + itemIndex + " does not match at x=" + x + " and y=" + y + ".");
+
 				}
+			}
+		} else {
+			try {
+				this.save(path, itemIndex, observedImage);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
 }
 
 class CanvasWindowRecording {
+	private String path;
 
 	ArrayList<RecordingItem> items = new ArrayList<>();
 
@@ -168,6 +186,7 @@ class CanvasWindowRecording {
 
 	CanvasWindowRecording(String path) throws IOException {
 		load(path);
+		this.path = path;
 	}
 
 	void save(String path) throws IOException {
@@ -250,8 +269,9 @@ class CanvasWindowRecording {
 
 	void replay(CanvasWindow window) {
 		int itemIndex = 0;
-		for (RecordingItem item : items) {
-			item.replay(itemIndex++, window);
+		for (int i = 0; i < items.size(); i++) {
+			RecordingItem item = items.get(i);
+			item.replay(i, window, path);
 		}
 	}
 
