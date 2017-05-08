@@ -22,7 +22,16 @@ public class Method extends ClassContent {
 	 */
 	public Method(LogicalClass rc) {
 		super(rc);
-		this.setName("newMethod");
+		String originalName = "newMethod";
+		String name = originalName;
+		if (getRealClass().methodNameAlreadyExists(name, this)) {
+			int i = 1;
+			do {
+				name = originalName + i;
+				i++;
+			} while (getRealClass().methodNameAlreadyExists(name, this));
+		}
+		this.setName(name);
 		this.setType("void");
 		this.setParameters(new ArrayList<Parameter>());
 	}
