@@ -150,4 +150,28 @@ public class RealClassTest {
 		assertTrue(realclass.getMethods().contains(meth));
 	}	
 
+	@Test
+	public void setClassName() {
+		LogicalClass logicalClass = new LogicalClass();
+		logicalClass.setName("MyClass");
+		assertEquals("MyClass", logicalClass.getName());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setInvalidClassName1() {
+		LogicalClass logicalClass = new LogicalClass();
+		logicalClass.setName("myClass");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setInvalidClassName2() {
+		LogicalClass logicalClass = new LogicalClass();
+		logicalClass.setName("My Class");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setInvalidClassName3() {
+		LogicalClass logicalClass = new LogicalClass();
+		logicalClass.setName("1NewClass");
+	}
 }

@@ -3,7 +3,7 @@ package logicalobjects;
 import static main.Constants.REGEX_START_NO_CAPITAL;
 
 /**
- * Parameter which can be added to methodes
+ * Parameter which can be added to methods
  * 
  * @author group11
  */

@@ -88,7 +88,7 @@ public abstract class ClassContent extends LogicalObject{
 	 * @param 	isStatic
 	 * 			The new value for the isStatic attribute
 	 */
-	public final void setStatic(boolean isStatic) {
+	public void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
 	}
 	
