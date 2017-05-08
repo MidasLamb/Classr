@@ -42,7 +42,7 @@ public class FunctionKey extends Key {
 	 * Enumeration of supported function keys.
 	 */
 	public static enum FunctionKeyType {
-		ENTER, BACKSPACE, ESCAPE, DELETE, RIGHT, LEFT, UP, DOWN
+		ENTER, BACKSPACE, ESCAPE, DELETE, RIGHT, LEFT, UP, DOWN, CTRL_Z
 	};
 
 }

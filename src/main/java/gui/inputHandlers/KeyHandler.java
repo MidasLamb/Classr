@@ -7,8 +7,9 @@ import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.ENTER;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.ESCAPE;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.LEFT;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.RIGHT;
-import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.UP;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.*;
 
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import gui.inputHandlers.keys.AsciiKey;
@@ -64,6 +65,9 @@ public class KeyHandler {
 			return new FunctionKey(UP);
 		case KeyEvent.VK_DOWN:
 			return new FunctionKey(DOWN);
+		case 90:
+			if(InputEvent.CTRL_MASK == e.getModifiers())
+				return new FunctionKey(CTRL_Z);
 		default:
 			return null;
 		}

@@ -22,7 +22,6 @@ public class LogicalClass extends LogicalObject {
 
 	public LogicalClass() {
 		this(DEFAULT_CLASS_NAME);
-		
 	}
 	
 	public LogicalClass(String name) {
