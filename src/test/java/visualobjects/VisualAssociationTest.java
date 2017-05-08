@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import canvaswindow.MyCanvasWindow;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
@@ -14,7 +15,8 @@ public class VisualAssociationTest {
 
 	@Test
 	public void deleteOnDeleteClassTest() {
-		Container container = new Container(0, 0, 1000, 1000);
+		MyCanvasWindow canvas = new MyCanvasWindow("test");
+		Container container = new Container(0, 0, 1000, 1000, canvas);
 		// Create new class
 		DoubleClick click1 = new DoubleClick(103,108);
 		// Create new association

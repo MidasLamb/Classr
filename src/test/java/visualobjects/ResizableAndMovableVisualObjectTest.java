@@ -4,14 +4,17 @@ import static org.junit.Assert.*;
 import static main.Constants.*;
 import org.junit.Test;
 
+import canvaswindow.CanvasWindow;
+import canvaswindow.MyCanvasWindow;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 
 public class ResizableAndMovableVisualObjectTest {
 
 	@Test
-	public void testTwoClassesChangeWidth() {
-		Container container = new Container(0, 0, 1000, 1000);
+	public void twoClassesChangeWidthTest() {
+		MyCanvasWindow canvas = new MyCanvasWindow("test");
+		Container container = new Container(0, 0, 1000, 1000, canvas);
 		DoubleClick click1 = new DoubleClick(100, 100);
 		DoubleClick click2 = new DoubleClick(100, 500);
 
@@ -36,8 +39,9 @@ public class ResizableAndMovableVisualObjectTest {
 
 	}
 
-	public void testCorrectPositiveWidthChange(int w) {
-		Container container = new Container(0, 0, 1000, 1000);
+	public void correctPositiveWidthChangeTest(int w) {
+		MyCanvasWindow canvas = new MyCanvasWindow("test");
+		Container container = new Container(0, 0, 1000, 1000, canvas);
 		DoubleClick click1 = new DoubleClick(100, 500);
 
 		container.onDoubleClick(click1);
@@ -63,11 +67,11 @@ public class ResizableAndMovableVisualObjectTest {
 	@Test
 	public void testMultipleCorrectPositiveWidthChanges() {
 		for (int i = 0; i < 20; i++){
-			testCorrectPositiveWidthChange(i);
+			correctPositiveWidthChangeTest(i);
 		}
 		
 		for (int i = 20; i < 100; i+= 9){
-			testCorrectPositiveWidthChange(i);
+			correctPositiveWidthChangeTest(i);
 		}
 	}
 
