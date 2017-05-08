@@ -8,12 +8,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
-import command.AddClassCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.FunctionKey;
 import main.Constants;
+import command.AddClassCommand;
 import command.Command;
 import command.Controller;
 
