@@ -166,7 +166,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	class ListBoxElement<T2 extends Displayable> extends FormObject implements FormObjectChild {
-		private T2 obj;
+		protected T2 obj;
 		private int height;
 
 		ListBoxElement(T2 obj) {

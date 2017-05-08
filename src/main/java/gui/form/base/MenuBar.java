@@ -42,14 +42,14 @@ public class MenuBar extends FormObject {
 
 	@Override
 	void draw(Graphics g) {
-		// TODO Auto-generated method stub
+		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		for (MenuHeader header : this.getMenuHeaders()) {
+			header.draw(g);
+		}
 
 	}
 
 	@Override
-	protected void onAction() {
-		// TODO Auto-generated method stub
-
-	}
+	protected void onAction() {}
 
 }
