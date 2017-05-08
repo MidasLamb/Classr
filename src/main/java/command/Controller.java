@@ -17,6 +17,8 @@ public class Controller {
 	 * 			The command that needs to be executed
 	 */
 	public void executeCommand(Command command){
+		if(getUndoStack().contains(command) || getRedoStack().contains(command))
+			throw new IllegalArgumentException("You cannot run the same command twice");
 		command.execute();
 		emptyRedoStack();
 		getUndoStack().add(command);		

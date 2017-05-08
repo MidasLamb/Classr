@@ -8,10 +8,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
+import command.AddClassCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.FunctionKey;
+import main.Constants;
+import command.Command;
+import command.Controller;
 
 public class ContainerTest {
 
@@ -523,6 +527,124 @@ public class ContainerTest {
 			}
 		}
 		assertEquals(0,count);
+	}
+	
+	@Test
+	public void createNewClassTest1(){
+		Container container = new Container(0, 0, 1000, 1000);
+		VisualClass klasse = container.createNewClass();
+		assertEquals(10, klasse.getX());
+	}
+	
+	@Test
+	public void createNewClassTest2(){
+		Container container = new Container(0, 0, 1000, 1000);
+		VisualClass klasse = container.createNewClass();
+		assertEquals(10, klasse.getY());
+	}
+	
+	@Test
+	public void createNewClassTest3(){
+		Container container = new Container(0, 0, 1000, 1000);
+		container.createNewClass();
+		VisualClass klasse = container.createNewClass();
+		assertEquals(10+Constants.CLASS_WIDTH+1, klasse.getX());
+	}
+	
+	@Test
+	public void createNewClassTest4(){
+		Container container = new Container(0, 0, 1000, 1000);
+		container.createNewClass();
+		VisualClass klasse = container.createNewClass();
+		assertEquals(10, klasse.getY());
+	}
+	
+	@Test
+	public void AddClassCommandTest1(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		assertEquals(1, container.getChildren().size());
+	}
+	
+	@Test
+	public void AddClassCommandTest2(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.undo();
+		assertEquals(0, container.getChildren().size());
+	}
+	
+	@Test
+	public void AddClassCommandTest3(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.undo();
+		controller.redo();
+		assertEquals(1, container.getChildren().size());
+	}
+	
+	@Test
+	public void AddClassCommandTest4(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		Command c2 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.executeCommand(c2);
+		assertEquals(2, container.getChildren().size());
+	}
+	
+	@Test
+	public void AddClassCommandTest5(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		Command c2 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.executeCommand(c2);
+		controller.undo();
+		assertEquals(1, container.getChildren().size());
+	}
+	
+	@Test
+	public void AddClassCommandTest6(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		Command c2 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.undo();
+		controller.executeCommand(c2);
+		controller.undo();
+		assertEquals(0, container.getChildren().size());
+	}
+	
+	@Test
+	public void AddClassCommandTest7(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		Command c2 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.executeCommand(c2);
+		controller.undo();
+		controller.undo();
+		assertEquals(0, container.getChildren().size());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void AddClassCommandTest8(){
+		Controller controller = new Controller();
+		Container container = new Container(0, 0, 1000, 1000);
+		Command c1 = new AddClassCommand(container);
+		controller.executeCommand(c1);
+		controller.executeCommand(c1);
 	}
 	
 	private static FunctionKey getDeleteKey(){
