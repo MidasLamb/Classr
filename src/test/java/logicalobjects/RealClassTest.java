@@ -174,4 +174,13 @@ public class RealClassTest {
 		LogicalClass logicalClass = new LogicalClass();
 		logicalClass.setName("1NewClass");
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setDuplicateMethodName() {
+		LogicalClass logicalClass = new LogicalClass();
+		Method method1 = logicalClass.addMethod();
+		method1.setName("myMethod");
+		Method method2 = logicalClass.addMethod();
+		method2.setName("myMethod");
+	}
 }
