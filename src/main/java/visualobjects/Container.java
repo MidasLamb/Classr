@@ -1,10 +1,10 @@
 package visualobjects;
 
 import static main.Constants.Z_CLASS;
+import static main.Constants.CLASS_WIDTH;
 
 import canvaswindow.MyCanvasWindow;
 import gui.inputHandlers.clicks.DoubleClick;
-import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -73,9 +73,61 @@ public class Container extends VisualObject  implements CanvasContent{
 	 *            The x coordinate where the class needs to be showed
 	 * @param y
 	 *            The y coordinate where the class needs to be showed
+	 * @return the created visualClass
 	 */
-	private void createNewClass(int x, int y) {
-		new VisualClass(x, y, Z_CLASS, this);
+	public VisualClass createNewClass(int x, int y) {
+		return new VisualClass(x, y, Z_CLASS, this);
+	}
+	
+	/**
+	 * Creates a new visual class in this container when no location is given
+	 *  adds the class to the children makes the text item of the class the selected item
+	 * The location for this class will be an empty location in the container
+	 * If there is no empty location, no class will be created
+	 * 
+	 * @return the created visualClass, null if there is no empty space
+	 */
+	public VisualClass createNewClass(){
+		try{
+			int[] coordinates = findEmptyPosition();
+			return createNewClass(coordinates[0], coordinates[1]);
+		} catch (IllegalStateException e){
+			return null;
+		}
+	}
+	
+	/**
+	 * Finds an empty position in the container
+	 * @return	coordinates [x,y] if there exists a position
+	 * @throws 	IllegalStateException
+	 * 			if there is no empty position
+	 */
+	private int[] findEmptyPosition() throws IllegalStateException{
+		int startPos = 10;
+		int x = startPos;
+		int y = startPos;
+		while(isChildIn(x, y)){
+			if(x+CLASS_WIDTH > getWidth()){
+				x = startPos;
+				y++;
+			} else {
+				x++;
+			}
+			if(y > getHeight()) throw new IllegalStateException();
+		}
+		return new int[]{x,y};
+	}
+	
+	/**
+	 * @param 	x
+	 * 			the x-coordinate
+	 * @param 	y
+	 * 			the y-coordinate
+	 * @return	True if there is a child in the given coordinates,
+	 * 				otherwise false
+	 */
+	private boolean isChildIn(int x, int y){
+		return getChildren().stream().anyMatch(child -> child.isIn(x, y));
 	}
 
 	@Override

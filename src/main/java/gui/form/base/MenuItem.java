@@ -10,6 +10,7 @@ import gui.inputHandlers.clicks.MouseClick;
 public class MenuItem extends FormObject {
 	private MenuHeader menuHeader;
 	private String name;
+	private boolean enabled;
 
 	public MenuItem(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -29,6 +30,14 @@ public class MenuItem extends FormObject {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Override
