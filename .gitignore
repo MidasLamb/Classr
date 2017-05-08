@@ -1,6 +1,7 @@
 /bin/
 observedImage*.png
 /UML.ucls
+Thumbs.db
 
 ############
 ## Gradle ##

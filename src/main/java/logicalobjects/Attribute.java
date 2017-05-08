@@ -17,7 +17,16 @@ public class Attribute extends ClassContent {
 	 */
 	public Attribute(LogicalClass rc) {
 		super(rc);
-		this.setName("newAttribute");
+		String originalName = "newAttribute";
+		String name = originalName;
+		if (getRealClass().attributeNameAlreadyExists(name, this)) {
+			int i = 1;
+			do {
+				name = originalName + i;
+				i++;
+			} while (getRealClass().attributeNameAlreadyExists(name, this));
+		}
+		this.setName(name);
 		this.setType("string");
 	}
 
@@ -29,6 +38,6 @@ public class Attribute extends ClassContent {
 	
 	@Override
 	public boolean canHaveAsName(String name) {
-		return name.matches(REGEX_START_NO_CAPITAL);
+		return (name.matches(REGEX_START_NO_CAPITAL) && !getRealClass().attributeNameAlreadyExists(name, this));
 	}
 }
