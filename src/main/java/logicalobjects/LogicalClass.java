@@ -199,4 +199,13 @@ public class LogicalClass extends LogicalObject {
 		}
 		return false;
 	}
+	
+	boolean attributeNameAlreadyExists(String name, Attribute attribute) {
+		for (Attribute a : this.getAttributes()) {
+			if (a.getName().equals(name) && !a.equals(attribute)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
