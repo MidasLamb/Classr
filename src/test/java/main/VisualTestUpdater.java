@@ -19,6 +19,9 @@ public class VisualTestUpdater {
 			t.update = true;
 			Class<?> test = Class.forName("canvaswindow.VisualTests");
 			Method[] methods = test.getMethods();
+			for (Method m: methods){
+				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
