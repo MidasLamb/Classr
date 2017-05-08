@@ -112,7 +112,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		} else {
 			this.forceColor(null);
 		}
-		this.determinColors(g);
+		this.determineColors(g);
 		if (this.getColor() != null)
 			g.setColor(this.getColor());
 		if (this.getForcedColor() != null)
@@ -127,7 +127,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		}
 	}
 	
-	protected void determinColors(Graphics g){
+	protected void determineColors(Graphics g){
 		
 	}
 

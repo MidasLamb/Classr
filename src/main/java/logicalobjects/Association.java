@@ -37,7 +37,8 @@ public class Association extends LogicalObject{
 	@Override
 	public final void onDelete() {
 		getClass1().deleteAssociation(this);
-		getClass2().deleteAssociation(this);
+		if (!getClass1().equals(getClass2()))
+			getClass2().deleteAssociation(this);
 	}
 
 	/**
