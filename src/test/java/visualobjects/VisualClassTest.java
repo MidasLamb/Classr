@@ -162,13 +162,19 @@ public class VisualClassTest {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
 		container.onDoubleClick(new DoubleClick(10, 10));
-		container.handleAsciiKey(new AsciiKey('a'));
-
+		
 		VisualClass vc = null;
 		for (VisualObject v : container.getChildren()) {
 			if (v instanceof VisualClass)
 				vc = (VisualClass) v;
 		}
+		
+		while (!vc.getName().getContent().getCurrentDisplayedString().equals("")) {
+			container.handleFunctionKey(new FunctionKey(BACKSPACE));
+		}
+		
+		container.handleAsciiKey(new AsciiKey('a'));
+
 		String current = vc.getName().getContent().getCurrentDisplayedString();
 		assertEquals("a", current);
 		container.handleAsciiKey(new AsciiKey('b'));

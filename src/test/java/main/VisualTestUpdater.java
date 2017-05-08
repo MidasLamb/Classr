@@ -2,8 +2,12 @@ package main;
 
 import java.lang.reflect.Method;
 
+import org.junit.runner.Computer;
+import org.junit.runner.JUnitCore;
+
 import canvaswindow.VisualTests;
 import junit.framework.Test;
+
 
 /**
  * A Class to update all visual tests. Mostly used to automatically recreate all
@@ -13,14 +17,16 @@ import junit.framework.Test;
  *
  */
 public class VisualTestUpdater {
+
+	public static boolean update = false;
+	
 	public static void main(String[] args) {
-		try {
-			VisualTests t = new VisualTests();
-			t.update = true;
-			Class<?> test = Class.forName("canvaswindow.VisualTests");
-			Method[] methods = test.getMethods();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		VisualTestUpdater.update = true;
+		
+		Computer computer = new Computer();
+
+		JUnitCore jUnitCore = new JUnitCore();
+		jUnitCore.run(computer, canvaswindow.VisualTests.class);
 	}
 }
