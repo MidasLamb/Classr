@@ -2,6 +2,7 @@ package visualobjects;
 
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
 import static org.junit.Assert.assertEquals;
+import static main.Constants.*;
 
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class TextTest {
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".+", c , r);
 		assertEquals("", t.getCurrentDisplayedString());
 		t.setSelected(false);
-		assertEquals("Standaard", t.getCurrentDisplayedString());
+		assertEquals(DEFAULT_CLASS_NAME, t.getCurrentDisplayedString());
 	}
 
 	@Test
@@ -28,6 +29,9 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
+		while(!t.getCurrentDisplayedString().equals("")) {
+			t.handleFunctionKey(new FunctionKey(BACKSPACE));
+		}		
 		t.handleAsciiKey(new AsciiKey('a'));
 		assertEquals("a", t.getCurrentDisplayedString());
 	}
@@ -38,6 +42,9 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r);
 		t.setSelected(true);
+		while(!t.getCurrentDisplayedString().equals("")) {
+			t.handleFunctionKey(new FunctionKey(BACKSPACE));
+		}
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
 		assertEquals("aa", t.getCurrentDisplayedString());
@@ -49,6 +56,9 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
+		while(!t.getCurrentDisplayedString().equals("")) {
+			t.handleFunctionKey(new FunctionKey(BACKSPACE));
+		}
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleFunctionKey(new FunctionKey(BACKSPACE));
@@ -61,6 +71,9 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
+		while(!t.getCurrentDisplayedString().equals("")) {
+			t.handleFunctionKey(new FunctionKey(BACKSPACE));
+		}
 		t.handleAsciiKey(new AsciiKey('A'));
 		assertEquals("A", t.getCurrentDisplayedString());
 	}
