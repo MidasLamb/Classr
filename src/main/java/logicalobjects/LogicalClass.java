@@ -187,8 +187,16 @@ public class LogicalClass extends LogicalObject {
 	}
 
 	@Override
-	boolean canHaveAsName(String name) {
+	public boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_CAPITAL);
 	}
 	
+	boolean methodNameAlreadyExists(String name, Method method) {
+		for (Method m : this.getMethods()) {
+			if (m.getName().equals(name) && !m.equals(method)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

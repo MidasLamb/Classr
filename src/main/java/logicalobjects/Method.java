@@ -101,7 +101,7 @@ public class Method extends ClassContent {
 	}
 
 	@Override
-	boolean canHaveAsName(String name) {
-		return name.matches(REGEX_START_NO_CAPITAL);
+	public boolean canHaveAsName(String name) {
+		return (name.matches(REGEX_START_NO_CAPITAL) && !getRealClass().methodNameAlreadyExists(name, this));
 	}
 }

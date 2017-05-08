@@ -28,7 +28,7 @@ public class Attribute extends ClassContent {
 	}
 	
 	@Override
-	boolean canHaveAsName(String name) {
+	public boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_NO_CAPITAL);
 	}
 }
