@@ -4,6 +4,7 @@ import static main.Constants.Z_CLASS;
 import static main.Constants.CLASS_WIDTH;
 
 import canvaswindow.MyCanvasWindow;
+import command.AddClassCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -31,21 +32,6 @@ public class Container extends VisualObject  implements CanvasContent{
 		super(x, y, Integer.MIN_VALUE, width, height, null);
 		this.setCanvasWindow(window);
 	}
-	
-	/**
-	 * 
-	 * @param 	x
-	 * 			The x-coordinate of the container
-	 * @param 	y
-	 * 			The y-coordinate of the container
-	 * @param 	width
-	 * 			the width of the container
-	 * @param 	height
-	 * 			the height of the container
-	 */
-	public Container(int x, int y, int width, int height) {
-		super(x, y, Integer.MIN_VALUE, width, height, null);
-	}
 
 	/**
 	 * Unselects the selected item (if present), and sets VisualObject vo as
@@ -62,7 +48,6 @@ public class Container extends VisualObject  implements CanvasContent{
 		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
-		
 	}
 
 	/**
@@ -134,7 +119,8 @@ public class Container extends VisualObject  implements CanvasContent{
 	public void onDoubleClick(DoubleClick dc) {
 		if (this.select(dc.getX(), dc.getY()).equals(this)) {
 			// Double click on empty
-			createNewClass(dc.getX(), dc.getY());
+			getCanvasWindow().getController()
+				.executeCommand(new AddClassCommand(this,dc.getX(), dc.getY()));
 		} else {
 			super.onDoubleClick(dc);
 		}

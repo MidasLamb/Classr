@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
+import static main.Constants.DEFAULT_CLASS_NAME;
+
 /**
  * A class of real classes, involving associations, attributes and methods
  * 
@@ -19,10 +21,16 @@ public class LogicalClass extends LogicalObject {
 	
 
 	public LogicalClass() {
+		this(DEFAULT_CLASS_NAME);
+		
+	}
+	
+	public LogicalClass(String name) {
 		super();
 		this.setAttributes(new ArrayList<>());
 		this.setMethods(new ArrayList<>());
 		this.setAssociations(new HashSet<>());
+		this.setName(name);
 	}
 
 	/**
@@ -194,6 +202,15 @@ public class LogicalClass extends LogicalObject {
 	boolean methodNameAlreadyExists(String name, Method method) {
 		for (Method m : this.getMethods()) {
 			if (m.getName().equals(name) && !m.equals(method)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	boolean attributeNameAlreadyExists(String name, Attribute attribute) {
+		for (Attribute a : this.getAttributes()) {
+			if (a.getName().equals(name) && !a.equals(attribute)) {
 				return true;
 			}
 		}

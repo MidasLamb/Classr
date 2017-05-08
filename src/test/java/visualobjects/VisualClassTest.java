@@ -20,49 +20,49 @@ public class VisualClassTest {
 
 	@Test
 	public void isInTest1() {
-		Container container = new Container(0, 0, 1000, 1000);
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(0, 0, 0, container);
 		assertTrue(visualClass.isIn(0, 0));
 	}
 
 	@Test
 	public void isInTest2() {
-		Container container = new Container(0, 0, 1000, 1000);
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(0, 0, 0, container);
 		assertFalse(visualClass.isIn(CLASS_WIDTH + 1, 0));
 	}
 
 	@Test
 	public void isInTest3() {
-		Container container = new Container(0, 0, 1000, 1000);
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(10, 5, 0, container);
 		assertTrue(visualClass.isIn(10, 5));
 	}
 
 	@Test
 	public void isInTest4() {
-		Container container = new Container(0, 0, 1000, 1000);
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(10, 5, 0, container);
 		assertTrue(visualClass.isIn(visualClass.getWidth() + 10, 5));
 	}
 
 	@Test
 	public void isInTest5() {
-		Container container = new Container(0, 0, 1000, 1000);
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(10, 5, 0, container);
 		assertTrue(visualClass.isIn(10, visualClass.getHeight() + 4));
 	}
 
 	@Test
 	public void isInTest6() {
-		Container container = new Container(10, 5, 100, 100);
+		Container container = new Container(10, 5, 100, 100, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(10, 5, 0, container);
 		assertFalse(visualClass.isIn(visualClass.getWidth() + 11, 5));
 	}
 
 	@Test
 	public void isInTest7() {
-		Container container = new Container(10, 5, 100, 100);
+		Container container = new Container(10, 5, 100, 100, new MyCanvasWindow("test"));
 		VisualClass visualClass = new VisualClass(0, 0, 0, container);
 		assertFalse(visualClass.isIn(10, visualClass.getHeight() + 6));
 	}
@@ -107,7 +107,7 @@ public class VisualClassTest {
 
 	@Test
 	public void addAssociationTest() {
-		Container container = new Container(0, 0, 1000, 1000);
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
 		int x1 = 0;
 		int y1 = 0;
 		int z1 = 0;
@@ -152,22 +152,29 @@ public class VisualClassTest {
 
 	@Test
 	public void getParentTest() {
-		Container container = new Container(0, 0, 100, 100);
+		Container container = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		VisualClass klasse = new VisualClass(5, 5, 0, container);
 		assertEquals(container, klasse.getParent());
 	}
 
 	@Test
 	public void createClassEditNameTest() {
-		Container container = new Container(0, 0, 100, 100);
+		MyCanvasWindow canvas = new MyCanvasWindow("test");
+		Container container = new Container(0, 0, 1000, 1000, canvas);
 		container.onDoubleClick(new DoubleClick(10, 10));
-		container.handleAsciiKey(new AsciiKey('a'));
-
+		
 		VisualClass vc = null;
 		for (VisualObject v : container.getChildren()) {
 			if (v instanceof VisualClass)
 				vc = (VisualClass) v;
 		}
+		
+		while (!vc.getName().getContent().getCurrentDisplayedString().equals("")) {
+			container.handleFunctionKey(new FunctionKey(BACKSPACE));
+		}
+		
+		container.handleAsciiKey(new AsciiKey('a'));
+
 		String current = vc.getName().getContent().getCurrentDisplayedString();
 		assertEquals("a", current);
 		container.handleAsciiKey(new AsciiKey('b'));

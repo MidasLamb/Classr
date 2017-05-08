@@ -28,10 +28,12 @@ public abstract class LogicalObject implements DeleteSubject {
 	/**
 	 * Sets the name of this LogicalObject
 	 * 
-	 * @param name
-	 *            the name to be set
+	 * @param 	name
+	 *         	the name to be set
+	 * @throws 	IllegalArgumentException
+	 * 			if the given name is not allowed
 	 */
-	public final void setName(String name) {
+	public final void setName(String name) throws IllegalArgumentException {
 		if (this.canHaveAsName(name)) {
 			this.name = name;
 		} else {

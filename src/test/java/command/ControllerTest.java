@@ -169,6 +169,37 @@ public class ControllerTest {
 		controller.redo();
 		assertEquals("ab", text);	
 	}
+	
+	@Test
+	public void redoTest9(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(addB);
+		controller.undo();
+		controller.undo();
+		controller.redo();
+		controller.redo();
+		controller.undo();
+		assertEquals("a", text);	
+	}
+	
+	@Test
+	public void redoTest10(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(addB);
+		controller.undo();
+		controller.undo();
+		controller.redo();
+		controller.redo();
+		controller.undo();
+		controller.undo();
+		assertEquals("", text);	
+	}
 
 	private class addACommand extends Command{
 
