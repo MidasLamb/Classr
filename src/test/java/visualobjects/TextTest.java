@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import canvaswindow.MyCanvasWindow;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import logicalobjects.LogicalClass;
@@ -13,7 +14,7 @@ public class TextTest {
 
 	@Test
 	public void standardTextTest() {
-		Container c = new Container(0, 0, 100, 100);
+		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".+", c , r);
 		assertEquals("", t.getCurrentDisplayedString());
@@ -23,7 +24,7 @@ public class TextTest {
 
 	@Test
 	public void typeATest() {
-		Container c = new Container(0, 0, 100, 100);
+		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
@@ -33,7 +34,7 @@ public class TextTest {
 
 	@Test
 	public void typeAaTest() {
-		Container c = new Container(0, 0, 100, 100);
+		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r);
 		t.setSelected(true);
@@ -44,7 +45,7 @@ public class TextTest {
 
 	@Test
 	public void typeAaBackspaceTest() {
-		Container c = new Container(0, 0, 100, 100);
+		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
@@ -56,7 +57,7 @@ public class TextTest {
 	
 	@Test
 	public void typeCapitalATest() {
-		Container c = new Container(0, 0, 100, 100);
+		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
 		t.setSelected(true);
