@@ -32,7 +32,11 @@ public abstract class LogicalObject implements DeleteSubject {
 	 *            the name to be set
 	 */
 	public final void setName(String name) {
-		this.name = name;
+		if (this.canHaveAsName(name)) {
+			this.name = name;
+		} else {
+			throw new IllegalArgumentException("Invalid name. Check if the name is valid with canHaveAsName(name).");
+		}
 	}
 
 	/**

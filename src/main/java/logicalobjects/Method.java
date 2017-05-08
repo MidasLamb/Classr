@@ -22,68 +22,84 @@ public class Method extends ClassContent {
 	 */
 	public Method(LogicalClass rc) {
 		super(rc);
-		this.setName("New method");
+		this.setName("newMethod");
 		this.setType("void");
 		this.setParameters(new ArrayList<Parameter>());
 	}
 
 	/**
-	 * To get the parameters of this methode
-	 * @return	the parameters of this methode
+	 * To get the parameters of this method
+	 * 
+	 * @return the parameters of this method
 	 */
 	public final Collection<Parameter> getParameters() {
 		return parameters;
 	}
 
 	/**
-	 * Sets the parameters of this methode
-	 * @param 	parameters
-	 * 			the new parameters
+	 * Sets the parameters of this method
+	 * 
+	 * @param parameters
+	 *            the new parameters
 	 */
 	private final void setParameters(Collection<Parameter> parameters) {
 		this.parameters = parameters;
 	}
-	
+
 	/**
-	 * To add a parameter to this methode
-	 * @param 	p
-	 * 			the parameter that needs to be added
+	 * To add a parameter to this method
+	 * 
+	 * @param p
+	 *            the parameter that needs to be added
 	 */
-	public void addParameter(Parameter p){
+	public void addParameter(Parameter p) {
 		this.parameters.add(p);
 	}
-	
+
 	/**
-	 * Removes a parameter from this methode
-	 * @param	p
-	 * 			the parameter that needs to be removed
+	 * Removes a parameter from this method
+	 * 
+	 * @param p
+	 *            the parameter that needs to be removed
 	 */
-	public void removeParameter(Parameter p){
+	public void removeParameter(Parameter p) {
 		this.parameters.remove(p);
 	}
 
 	/**
-	 * Returns if this methode is abstract
-	 * @return true if this methode is abstract, false otherwise
+	 * Returns if this method is abstract
+	 * 
+	 * @return true if this method is abstract, false otherwise
 	 */
 	public boolean isAbstract() {
 		return isAbstract;
 	}
 
 	/**
-	 * @param 	isAbstract
-	 * 			the value for the isAbstract attribute
+	 * @param isAbstract
+	 *            the value for the isAbstract attribute
 	 */
 	public void setAbstract(boolean isAbstract) {
+		if (this.isStatic() && isAbstract) {
+			throw new IllegalStateException("Methods cannot be both static and abstract.");
+		}
 		this.isAbstract = isAbstract;
 	}
-	
+
+	@Override
+	public void setStatic(boolean isStatic) {
+		if (this.isAbstract && isStatic) {
+			throw new IllegalStateException("Methods cannot be both static and abstract.");
+		} else {
+			super.setStatic(isStatic);
+		}
+	}
 
 	@Override
 	public Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
-	
+
 	@Override
 	boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_NO_CAPITAL);
