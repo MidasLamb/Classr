@@ -100,7 +100,7 @@ public class EditableTextWrapper extends TextWrapper {
 	}
 
 	@Override
-	public void determinColors(Graphics g) {
+	public void determineColors(Graphics g) {
 		if (!satisfiesRegex())
 			this.setColor(Color.RED);
 		else

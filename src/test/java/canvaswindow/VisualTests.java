@@ -22,14 +22,6 @@ import org.junit.Test;
 public class VisualTests {
 	
 	public boolean update = false;
-	
-	public void testVisually(String name) throws IOException {
-		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow);
-		BufferedImage actual = canvasWindow.captureImage();
-		update(actual, name);
-		assertTrue(imagesEqual(getReferenceImage(name),  actual));
-	}
 
 	private void update(BufferedImage actual, String testName) throws IOException {
 		if(!update) return;
@@ -267,7 +259,12 @@ public class VisualTests {
 	 */
 	@Test
 	public void pressDeleteWhileTyping() throws IOException {
-		testVisually("pressDeleteWhileTyping");
+		String name = "pressDeleteWhileTyping";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		update(actual, name);
+		assertTrue(imagesEqual(getReferenceImage(name),  actual));
 	}
 	
 	/**
@@ -276,7 +273,12 @@ public class VisualTests {
 	 */
 	@Test
 	public void keyAndMouseFocusListBox() throws IOException {
-		testVisually("keyAndMouseFocusListBox");
+		String name = "keyAndMouseFocusListBox";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow);
+		BufferedImage actual = canvasWindow.captureImage();
+		update(actual, name);
+		assertTrue(imagesEqual(getReferenceImage(name),  actual));
 	}
 
 }

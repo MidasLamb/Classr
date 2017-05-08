@@ -29,19 +29,23 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	}
 
 	public boolean isOnLeftSide(int x, int y) {
-		return (x >= this.getX() - deadzone && x <= this.getX() + deadzone);
+		return (x >= this.getX() - deadzone && x <= this.getX() + deadzone)
+				&& (y > this.getY() - deadzone && y < this.getY() + this.getHeight() + deadzone);
 	}
 
 	public boolean isOnTopSide(int x, int y) {
-		return (y >= this.getY() - deadzone && y <= this.getY() + deadzone);
+		return (y >= this.getY() - deadzone && y <= this.getY() + deadzone)
+				&& (x > this.getX() - deadzone && x < this.getX() + this.getWidth() + deadzone);
 	}
 
 	public boolean isOnRightSide(int x, int y) {
-		return (x >= this.getX() + this.getWidth() - deadzone && x <= this.getX() + this.getWidth() + deadzone);
+		return (x >= this.getX() + this.getWidth() - deadzone && x <= this.getX() + this.getWidth() + deadzone)
+				&& (y > this.getY() - deadzone && y < this.getY() + this.getHeight() + deadzone);
 	}
 
 	public boolean isOnBottomSide(int x, int y) {
-		return (y >= this.getY() + this.getHeight() - deadzone && y <= this.getY() + this.getHeight() + deadzone);
+		return (y >= this.getY() + this.getHeight() - deadzone && y <= this.getY() + this.getHeight() + deadzone)
+				&& (x > this.getX() - deadzone && x < this.getX() + this.getWidth() + deadzone);
 	}
 
 	@Override
@@ -142,7 +146,6 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 			this.changeChildrenY(yDiff);
 		}
 
-		
 	}
 
 	@Override
