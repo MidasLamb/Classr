@@ -9,7 +9,7 @@ public class MenuBarTest {
 	@Test
 	public void addMenuHeaderSizeTest() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header);
 		assertEquals(1, bar.getMenuHeaders().size());
 	}
@@ -17,8 +17,8 @@ public class MenuBarTest {
 	@Test
 	public void addTwoMenuHeadersSizeTest() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		assertEquals(2, bar.getMenuHeaders().size());
@@ -27,8 +27,8 @@ public class MenuBarTest {
 	@Test
 	public void addAndRemoveTwoMenuHeadersSizeTest() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header1);
@@ -39,8 +39,8 @@ public class MenuBarTest {
 	@Test
 	public void addAndRemoveFirstHeadersSizeTest() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header1);
@@ -50,8 +50,8 @@ public class MenuBarTest {
 	@Test
 	public void addAndRemoveSecondHeadersSizeTest() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header2);
@@ -61,8 +61,8 @@ public class MenuBarTest {
 	@Test
 	public void addTwoIdenticalMenuHeadersTest1() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header2);
@@ -72,8 +72,8 @@ public class MenuBarTest {
 	@Test
 	public void addTwoIdenticalMenuHeadersTest2() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header1);
@@ -83,8 +83,8 @@ public class MenuBarTest {
 	@Test
 	public void addTwoNonIdenticalMenuHeadersTest1() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 1);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 1);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header2);
@@ -94,8 +94,8 @@ public class MenuBarTest {
 	@Test
 	public void addTwoNonIdenticalMenuHeadersTest2() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header1 = new MenuHeader(0, 0, 0, 0);
-		MenuHeader header2 = new MenuHeader(0, 0, 0, 2);
+		MenuHeader header1 = new MenuHeader("AAA", 0, 0, 0, 0);
+		MenuHeader header2 = new MenuHeader("AAA", 0, 0, 0, 2);
 		bar.addMenuHeader(header1);
 		bar.addMenuHeader(header2);
 		bar.deleteMenuHeader(header1);
@@ -105,7 +105,7 @@ public class MenuBarTest {
 	@Test
 	public void addMenuHeaderCheckParentMenuBarTest() {
 		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		bar.addMenuHeader(header);
 		assertEquals(bar, header.getMenuBar());
 	}

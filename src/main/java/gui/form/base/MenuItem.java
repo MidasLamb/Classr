@@ -48,8 +48,7 @@ public class MenuItem extends FormObject {
 
 	@Override
 	void draw(Graphics g) {
-		// TODO Auto-generated method stub
-
+		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}
 
 	@Override

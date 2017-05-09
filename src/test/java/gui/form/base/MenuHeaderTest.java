@@ -8,7 +8,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addMenuItemSizeTest() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item);
 		assertEquals(1, header.getMenuItems().size());
@@ -16,7 +16,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoMenuItemsSizeTest() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader(null, 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item1);
@@ -26,7 +26,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addAndRemoveTwoMenuItemsSizeTest() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item1);
@@ -38,7 +38,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoAndRemoveFirstMenuItemSizeTest() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item1);
@@ -49,7 +49,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoAndRemoveSecondMenuItemSizeTest() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item1);
@@ -60,7 +60,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoIdenticalMenuItemsDeleteTest1() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item1);
@@ -71,7 +71,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoIdenticalMenuItemsDeleteTest2() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item1);
@@ -82,7 +82,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoNonIdenticalMenuItemsDeleteTest1() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 1);
 		header.addMenuItem(item1);
@@ -93,7 +93,7 @@ public class MenuHeaderTest {
 
 	@Test
 	public void addTwoNonIdenticalMenuItemsDeleteTest2() {
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = new MenuItem(0, 0, 0, 0);
 		MenuItem item2 = new MenuItem(0, 0, 0, 1);
 		header.addMenuItem(item1);
@@ -104,7 +104,7 @@ public class MenuHeaderTest {
 	
 	@Test
 	public void AddMenuItemCheckParentMenuHeaderTest(){
-		MenuHeader header = new MenuHeader(0, 0, 0, 0);
+		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item = new MenuItem(0, 0, 0, 0);
 		header.addMenuItem(item);
 		assertEquals(header, item.getMenuHeader());

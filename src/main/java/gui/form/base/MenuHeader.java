@@ -9,13 +9,16 @@ import gui.inputHandlers.clicks.MouseClick;
  * A class that represents a Header in a MenuBar
  *
  */
-public class MenuHeader extends FormObject {
+public class MenuHeader extends Button {
 	private MenuBar menuBar;
 	private ArrayList<MenuItem> menuItems;
 	private String name;
+	private boolean droppedDown;
 
-	public MenuHeader(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	
+
+	public MenuHeader(String name, int x, int y, int width, int height) {
+		super(name, x, y, width, height);
 		this.setMenuItems(new ArrayList<MenuItem>());
 	}
 
@@ -52,6 +55,14 @@ public class MenuHeader extends FormObject {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public boolean isDroppedDown() {
+		return droppedDown;
+	}
+
+	public void setDroppedDown(boolean droppedDown) {
+		this.droppedDown = droppedDown;
+	}
 
 	@Override
 	void onClick(MouseClick click) {
@@ -59,15 +70,19 @@ public class MenuHeader extends FormObject {
 
 	}
 
-	@Override
+	/*@Override
 	void draw(Graphics g) {
-		// TODO Auto-generated method stub
-
-	}
+		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		for (MenuItem item : this.getMenuItems()) {
+			item.draw(g);
+		}
+	}*/
 
 	@Override
 	protected void onAction() {
 		// TODO Auto-generated method stub
+		// dropped down true
+		// draw listbox beneath with MenuItems
 
 	}
 
