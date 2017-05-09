@@ -1,12 +1,13 @@
 package command;
 
-import logicalobjects.Method;
+import visualobjects.PaddingBox;
+import visualobjects.TextWrapper;
 import visualobjects.VisualClass;
 
 public class CreateMethodCommand extends Command {
 
 	private final VisualClass visualClass;
-	private Method method;
+	private PaddingBox<TextWrapper> methodPaddingBox;
 	
 	public CreateMethodCommand(VisualClass visualClass) {
 		this.visualClass = visualClass;
@@ -14,20 +15,20 @@ public class CreateMethodCommand extends Command {
 
 	@Override
 	void execute() {
-		setMethod(this.getVisualClass().getLogicalObject().addMethod());
+		setMethodPaddingBox(this.getVisualClass().createMethod());
 	}
 
 	@Override
 	void unexecute() {
-		this.getMethod().delete();
+		this.getMethodPaddingBox().delete();
 	}
 
-	private final Method getMethod() {
-		return method;
+	private final PaddingBox<TextWrapper> getMethodPaddingBox() {
+		return methodPaddingBox;
 	}
 
-	private final void setMethod(Method method) {
-		this.method = method;
+	private final void setMethodPaddingBox(PaddingBox<TextWrapper> methodPaddingBox) {
+		this.methodPaddingBox = methodPaddingBox;
 	}
 
 	private final VisualClass getVisualClass() {

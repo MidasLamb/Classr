@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import command.Command;
+import command.CreateMethodCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.Attribute;
@@ -135,12 +137,14 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * 
 	 * @return PaddingBox of the method that was created
 	 */
-	private PaddingBox<TextWrapper> createMethod() {
+	public PaddingBox<TextWrapper> createMethod() {
 		Method method = getLogicalObject().addMethod();
 		TextWrapper t = new TextWrapper(0, 0, 0, null, method);
 		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				method);
 		this.updateDimensions();
+		this.getContainer().switchSelectedTo(tbox.getContent());
+		tbox.getContent().openNewForm();
 		return tbox;
 	}
 
@@ -233,9 +237,8 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 			t.getContent().openNewForm();
 
 		} else if (this.isInEmptyMethod(dc.getX(), dc.getY())) {
-			PaddingBox<TextWrapper> t = this.createMethod();
-			this.getContainer().switchSelectedTo(t.getContent());
-			t.getContent().openNewForm();
+			Command c = new CreateMethodCommand(this);
+			this.getContainer().getCanvasWindow().getController().executeCommand(c);
 		} else
 			super.onDoubleClick(dc);
 	}
