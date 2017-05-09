@@ -63,7 +63,7 @@ public class CreateAssociationCommand extends Command {
 	 * Returns the container in which this association is made
 	 * @return the container in which this association is made
 	 */
-	public Container getContainer() {
+	private Container getContainer() {
 		return container;
 	}
 
