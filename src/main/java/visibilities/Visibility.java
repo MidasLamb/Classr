@@ -1,12 +1,15 @@
 package visibilities;
 
-/**
- * An interface for representing visibilities
- */
-public interface Visibility {
+public enum Visibility {
+	PACKAGE("~"), PRIVATE("-"), PROTECTED("#"), PUBLIC("+");
 	
-	/**
-	 * @return the UML representation of this visibility
-	 */
-	public String getUMLRepresentation();
+	private final String umlRepresentation;
+
+	private Visibility(String umlRepresentation) {
+		this.umlRepresentation = umlRepresentation;
+	}
+	
+	public String getUMLRepresentation() {
+		return this.umlRepresentation;
+	}
 }
