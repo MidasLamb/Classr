@@ -104,8 +104,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param g
 	 *            Graphics g
 	 */
-	public void show(Graphics g) {
-		
+	public void show(Graphics g) {		
 		Color c = g.getColor();
 		if (this.isSelected() || this.hasSelectedAncestor()) {
 			this.forceColor(Color.RED);
@@ -145,13 +144,14 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	public final void delete() {
 		if (!this.isDeleted()) {
 			this.setDeleted(true);
+			this.getLogicalObject().delete();
 			this.onDelete();
 			Container c = this.getContainer();
 			if (c != null) {
 				if (c.getSelected() != null && c.getSelected().equals(this))
 					c.switchSelectedTo(null);
 			}
-
+			
 			for (DeleteListener d : this.getDeleteListeners()) {
 				d.getNotifiedSubjectDeleted(this);
 			}

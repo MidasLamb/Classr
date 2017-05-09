@@ -169,6 +169,11 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 		
 	}
 	
+	@Override
+	void onDelete(){
+		this.getContent().delete();
+	}
+	
 	// Getters and setters
 
 	/**

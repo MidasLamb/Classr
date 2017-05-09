@@ -45,13 +45,11 @@ public abstract class LogicalObject implements DeleteSubject {
 	 * Delete this LogicalObject
 	 */
 	public final void delete() {
-		if (this.isDeleted()) {
-			System.out.println("This object is already deleted!");
-		} else {
+		if (!isDeleted()) {
+			setDeleted(true);
 			onDelete();
 			notifyListeners();
 		}
-		this.setDeleted(true);
 	}
 
 	@Override

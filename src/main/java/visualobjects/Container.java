@@ -180,9 +180,6 @@ public class Container extends VisualObject  implements CanvasContent{
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
-		if(key.getKeyType() == FunctionKeyType.CTRL_Z){
-			getCanvasWindow().getController().undo();
-		}
 		if(getSelected() != null)
 			getSelected().handleFunctionKey(key);
 	}
