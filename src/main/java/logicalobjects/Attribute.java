@@ -1,6 +1,6 @@
 package logicalobjects;
 
-import static main.Constants.REGEX_START_NO_CAPITAL;
+import static main.Constants.*;
 
 /**
  * A class of attributes, involving a real class.
@@ -17,7 +17,7 @@ public class Attribute extends ClassContent {
 	 */
 	public Attribute(LogicalClass rc) {
 		super(rc);
-		String originalName = "newAttribute";
+		String originalName = DEFAULT_ATTRIBUTE_NAME;
 		String name = originalName;
 		if (getRealClass().attributeNameAlreadyExists(name, this)) {
 			int i = 1;

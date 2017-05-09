@@ -1,6 +1,5 @@
 package logicalobjects;
 
-import visibilities.Private;
 import visibilities.Visibility;
 
 public abstract class ClassContent extends LogicalObject{
@@ -18,7 +17,7 @@ public abstract class ClassContent extends LogicalObject{
 	 */
 	public ClassContent(LogicalClass rc) {
 		this.setRealClass(rc);
-		this.setVisibility(new Private());
+		this.setVisibility(Visibility.PRIVATE);
 	}
 
 	/**

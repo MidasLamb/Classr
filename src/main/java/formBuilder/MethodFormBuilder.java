@@ -20,10 +20,6 @@ import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
-import visibilities.Package;
-import visibilities.Private;
-import visibilities.Protected;
-import visibilities.Public;
 import visibilities.Visibility;
 
 /**
@@ -173,13 +169,13 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 				getMethod().setName(methName.getText());
 				getMethod().setType(methType.getText());
 				if (group.getSelectedButton().equals(publicButton))
-					getMethod().setVisibility(new Public());
+					getMethod().setVisibility(Visibility.PUBLIC);
 				else if (group.getSelectedButton().equals(packageButton))
-					getMethod().setVisibility(new Package());
+					getMethod().setVisibility(Visibility.PACKAGE);
 				else if (group.getSelectedButton().equals(privateButton))
-					getMethod().setVisibility(new Private());
+					getMethod().setVisibility(Visibility.PRIVATE);
 				else if (group.getSelectedButton().equals(protectedButton))
-					getMethod().setVisibility(new Protected());
+					getMethod().setVisibility(Visibility.PROTECTED);
 
 				getMethod().setStatic(staticCheckbox.isChecked());
 				getMethod().setAbstract(abstractCheckbox.isChecked());
@@ -217,14 +213,22 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		// Initialize all objects with correct startinput.
 
 		Visibility v = getMethod().getVisibility();
-		if (v instanceof Private)
-			group.setSelectedButton(privateButton);
-		else if (v instanceof Public)
-			group.setSelectedButton(publicButton);
-		else if (v instanceof Package)
-			group.setSelectedButton(packageButton);
-		else if (v instanceof Protected)
-			group.setSelectedButton(protectedButton);
+		switch (v) {
+			case PUBLIC:
+				group.setSelectedButton(publicButton);
+				break;
+			case PROTECTED:
+				group.setSelectedButton(protectedButton);
+				break;
+			case PACKAGE:
+				group.setSelectedButton(packageButton);
+				break;
+			case PRIVATE:
+				group.setSelectedButton(privateButton);
+				break;
+			default:
+				throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+		}
 
 		for (Parameter p : getMethod().getParameters())
 			parameters.addElement(new ParameterWrapper(p));

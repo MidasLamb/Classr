@@ -15,10 +15,6 @@ import gui.form.utility.OkButton;
 import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
-import visibilities.Package;
-import visibilities.Private;
-import visibilities.Protected;
-import visibilities.Public;
 import visibilities.Visibility;
 
 /**
@@ -87,13 +83,13 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 				getAttribute().setName(attrName.getText());
 				getAttribute().setType(attrType.getText());
 				if (group.getSelectedButton().equals(publicButton))
-					getAttribute().setVisibility(new Public());
+					getAttribute().setVisibility(Visibility.PUBLIC);
 				else if (group.getSelectedButton().equals(packageButton))
-					getAttribute().setVisibility(new Package());
+					getAttribute().setVisibility(Visibility.PACKAGE);
 				else if (group.getSelectedButton().equals(privateButton))
-					getAttribute().setVisibility(new Private());
+					getAttribute().setVisibility(Visibility.PRIVATE);
 				else if (group.getSelectedButton().equals(protectedButton))
-					getAttribute().setVisibility(new Protected());
+					getAttribute().setVisibility(Visibility.PROTECTED);
 
 				getAttribute().setStatic(staticCheckbox.isChecked());
 
@@ -121,14 +117,22 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Initialize all objects with correct startinput.
 		Visibility v = getAttribute().getVisibility();
-		if (v instanceof Private)
-			group.setSelectedButton(privateButton);
-		else if (v instanceof Public)
-			group.setSelectedButton(publicButton);
-		else if (v instanceof Package)
-			group.setSelectedButton(packageButton);
-		else if (v instanceof Protected)
-			group.setSelectedButton(protectedButton);
+		switch (v) {
+			case PUBLIC: 
+				group.setSelectedButton(publicButton);
+				break;
+			case PROTECTED:
+				group.setSelectedButton(protectedButton);
+				break;
+			case PACKAGE:
+				group.setSelectedButton(packageButton);
+				break;
+			case PRIVATE:
+				group.setSelectedButton(privateButton);
+				break;
+			default:
+				throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+		}
 		staticCheckbox.setChecked(getAttribute().isStatic());
 	}
 
