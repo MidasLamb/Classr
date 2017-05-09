@@ -3,6 +3,7 @@ package guiToApplication;
 import java.awt.Graphics;
 
 import canvaswindow.MyCanvasWindow;
+import gui.form.base.FormContainer;
 import gui.form.base.Form;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -10,12 +11,14 @@ import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import interfaces.CanvasContent;
+import visualobjects.Container;
+import visualobjects.ContentBox;
 
 /**
  * A bridge to let a form be displayed in a canvas window
  */
-public class FormWrapper extends Form implements CanvasContent {
-	private MyCanvasWindow canvasWindow;
+public class FormWrapper extends Form implements CanvasContent{
+	private FormContainer formContainer;
 
 	/**
 	 * @param 	width
@@ -25,9 +28,9 @@ public class FormWrapper extends Form implements CanvasContent {
 	 * @param 	canvasWindow
 	 * 			the canvas window in which the form needs to be displayed
 	 */
-	public FormWrapper(int width, int height, MyCanvasWindow canvasWindow) {
+	public FormWrapper(int width, int height, FormContainer formContainer) {
 		super(width, height);
-		this.canvasWindow = canvasWindow;
+		this.formContainer = formContainer;
 	}
 
 	@Override
@@ -55,15 +58,15 @@ public class FormWrapper extends Form implements CanvasContent {
 	 * Closes this form.
 	 */
 	public void close() {
-		this.canvasWindow.closeContent(this);
+		this.getFormContainer().close();
 	}
 	
 	/**
 	 * Returns the CanvasWindow.
 	 * @return
 	 */
-	public MyCanvasWindow getCanvasWindow(){
-		return this.canvasWindow;
+	public FormContainer getFormContainer(){
+		return this.formContainer;
 	}
 
 	@Override

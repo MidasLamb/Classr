@@ -6,6 +6,7 @@ import static main.Constants.CONTAINER_WIDTH;
 import canvaswindow.MyCanvasWindow;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
+import gui.form.base.FormContainer;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
 import gui.form.utility.DefaultCheckBox;
@@ -22,7 +23,7 @@ import visibilities.Visibility;
  */
 public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
-	private MyCanvasWindow window;
+	private FormContainer formContainer;
 	private boolean isNew;
 
 	/**
@@ -35,15 +36,15 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	 * @param isNew
 	 *            indicates whether this is a newly created attribute
 	 */
-	public AttributeFormBuilder(Attribute attribute, MyCanvasWindow window, boolean isNew) {
+	public AttributeFormBuilder(Attribute attribute, FormContainer formContainer, boolean isNew) {
 		this.attribute = attribute;
-		this.window = window;
+		this.formContainer = formContainer;
 		this.isNew = isNew;
 	}
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
+		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.formContainer));
 		RegexCheckedInputBox attrName = new RegexCheckedInputBox(getAttribute().getName(), "^[a-z][a-zA-Z0-9_]*", 10,
 				10, 100, 16);
 		this.addFormObject(attrName);

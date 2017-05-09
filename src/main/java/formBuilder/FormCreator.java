@@ -1,6 +1,7 @@
 package formBuilder;
 
 import canvaswindow.MyCanvasWindow;
+import gui.form.base.FormContainer;
 import gui.form.utility.FormBuilder;
 import guiToApplication.FormWrapper;
 import logicalobjects.Association;
@@ -16,7 +17,8 @@ import logicalobjects.Parameter;
  */
 public class FormCreator implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
-	private MyCanvasWindow window;
+	private FormContainer formContainer;
+	private boolean isNew;
 
 	/**
 	 * Creates a new FormCreator
@@ -26,8 +28,9 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public FormCreator(LogicalObject o, MyCanvasWindow window) {
-		this.setWindow(window);
+	public FormCreator(LogicalObject o, FormContainer formContainer, boolean isNew) {
+		this.setFormContainer(formContainer);
+		this.setNew(isNew);
 		this.startVisit(o);
 	}
 
@@ -39,13 +42,13 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	@Override
 	public Void visit(Method c) {
-		this.setFormBuilder(new MethodFormBuilder(c, this.getWindow(), false));
+		this.setFormBuilder(new MethodFormBuilder(c, this.getFormContainer(), isNew()));
 		return null;
 	}
 
 	@Override
 	public Void visit(Attribute c) {
-		this.setFormBuilder(new AttributeFormBuilder(c, this.getWindow(), false));
+		this.setFormBuilder(new AttributeFormBuilder(c, this.getFormContainer(), isNew()));
 		return null;
 	}
 
@@ -63,12 +66,12 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 		this.formBuilder = formBuilder;
 	}
 
-	private MyCanvasWindow getWindow() {
-		return window;
+	private FormContainer getFormContainer() {
+		return formContainer;
 	}
 
-	private void setWindow(MyCanvasWindow window) {
-		this.window = window;
+	private void setFormContainer(FormContainer formContainer) {
+		this.formContainer = formContainer;
 	}
 
 	/**
@@ -83,6 +86,14 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	public Void visit(Parameter parameter) {
 		// No form for parameter exists.
 		return null;
+	}
+
+	private final boolean isNew() {
+		return isNew;
+	}
+
+	private final void setNew(boolean isNew) {
+		this.isNew = isNew;
 	}
 
 }

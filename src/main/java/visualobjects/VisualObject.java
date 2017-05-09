@@ -144,7 +144,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	public final void delete() {
 		if (!this.isDeleted()) {
 			this.setDeleted(true);
-			this.getLogicalObject().delete();
+			if (this.getLogicalObject() != null)
+				this.getLogicalObject().delete();
 			this.onDelete();
 			Container c = this.getContainer();
 			if (c != null) {

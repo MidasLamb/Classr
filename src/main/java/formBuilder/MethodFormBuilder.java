@@ -9,6 +9,7 @@ import java.util.Collection;
 import canvaswindow.MyCanvasWindow;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
+import gui.form.base.FormContainer;
 import gui.form.base.ListBox;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
@@ -27,7 +28,7 @@ import visibilities.Visibility;
  */
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
-	private MyCanvasWindow window;
+	private FormContainer container;
 	private boolean isNew;
 
 	private Button editParameter;
@@ -44,15 +45,15 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	 * @param isNew
 	 *            indicates whether this is a newly created method
 	 */
-	public MethodFormBuilder(Method method, MyCanvasWindow window, boolean isNew) {
+	public MethodFormBuilder(Method method, FormContainer container, boolean isNew) {
 		this.method = method;
-		this.window = window;
+		this.container = container;
 		this.isNew = isNew;
 	}
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
+		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.container));
 
 		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10,
 				100, 16);
@@ -111,7 +112,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = new Parameter("name", "type");
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window) {
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, container) {
 
 					@Override
 					public void onOk() {
@@ -120,7 +121,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					}
 
 				};
-				getForm().getCanvasWindow().addContentAndSwitchTo(parabuilder.getForm());
+				//TODO update for switching
+				//getForm().getContentBox().addContentAndSwitchTo(parabuilder.getForm());
 			}
 
 		};
@@ -132,7 +134,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, window) {
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, container) {
 
 					@Override
 					public void onOk() {
@@ -140,7 +142,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					}
 
 				};
-				getForm().getCanvasWindow().addContentAndSwitchTo(parabuilder.getForm());
+				//TODO update for switching
+				//getForm().getContentBox().addContentAndSwitchTo(parabuilder.getForm());
 
 			}
 

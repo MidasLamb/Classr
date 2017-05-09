@@ -3,18 +3,19 @@ package visualobjects;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gui.form.base.Form;
+import gui.form.base.FormContainer;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import interfaces.CanvasContent;
 
-public class ContentBox extends ResizableAndMovableVisualObject {
+public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer{
 	private CanvasContent content;
 
-	public ContentBox(CanvasContent content, int x, int y, int z, int width, int height, VisualObject parent) {
+	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
-		this.setContent(content);
 
 	}
 
@@ -53,7 +54,7 @@ public class ContentBox extends ResizableAndMovableVisualObject {
 		return content;
 	}
 
-	private final void setContent(CanvasContent content) {
+	public final void setContent(CanvasContent content) {
 		this.content = content;
 	}
 
@@ -73,6 +74,16 @@ public class ContentBox extends ResizableAndMovableVisualObject {
 		g.translate(-this.getX(), -this.getY());
 		
 		
+	}
+
+	@Override
+	public void close() {
+		this.delete();
+	}
+
+	@Override
+	public void switchTo(Form f) {
+				
 	}
 	
 	

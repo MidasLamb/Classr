@@ -9,7 +9,6 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
 import formBuilder.FormCreator;
-import formBuilder.NewObjectFormCreator;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
@@ -88,16 +87,19 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		FormCreator creator = new FormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
-		new ContentBox(creator.getForm(), 10, 10, 0, 200, 200, this.getContainer());
+		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer());
+		FormCreator creator = new FormCreator(this.getLogicalObject(), b, false);
+		b.setContent(creator.getForm());
+		
 	}
 	
 	/**
 	 * Opens the form to add new text
 	 */
 	public final void openNewForm(){
-		NewObjectFormCreator creator = new NewObjectFormCreator(this.getLogicalObject(), this.getContainer().getCanvasWindow());
-		new ContentBox(creator.getForm(), 10, 10, 0, 200, 200, this.getContainer());
+		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer());
+		FormCreator creator = new FormCreator(this.getLogicalObject(), b, true);
+		b.setContent(creator.getForm());
 	}
 	
 	@Override

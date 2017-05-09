@@ -5,6 +5,7 @@ import static main.Constants.CONTAINER_WIDTH;
 
 import canvaswindow.MyCanvasWindow;
 import gui.form.base.Button;
+import gui.form.base.FormContainer;
 import gui.form.utility.FormBuilder;
 import gui.form.utility.OkButton;
 import gui.form.utility.RegexCheckedInputBox;
@@ -15,7 +16,7 @@ import logicalobjects.Parameter;
  * Builds a Form for managing the parameter for a method
  */
 public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
-	private MyCanvasWindow window;
+	private FormContainer formContainer;
 	private Parameter parameter;
 
 	/**
@@ -26,14 +27,14 @@ public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public MethodParameterFormBuilder(Parameter parameter, MyCanvasWindow window) {
-		this.window = window;
+	public MethodParameterFormBuilder(Parameter parameter, FormContainer formContainer) {
+		this.formContainer = formContainer;
 		this.parameter = parameter;
 	}
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.window));
+		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.formContainer));
 
 		RegexCheckedInputBox parName = new RegexCheckedInputBox(parameter.getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10, 100,
 				16);
