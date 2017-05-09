@@ -16,6 +16,7 @@ import main.Constants;
 import command.CreateClassCommand;
 import command.Command;
 import command.Controller;
+import command.CreateAssociationCommand;
 
 public class ContainerTest {
 
@@ -660,6 +661,39 @@ public class ContainerTest {
 		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.executeCommand(c1);
+	}
+	
+	@Test
+	public void createAssTest1(){
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		VisualClass class1 = new VisualClass(0, 0, 0, container);
+		VisualClass class2 = new VisualClass(0, 0, 0, container);
+		Command command = new CreateAssociationCommand(class1, class2, container);
+		container.getCanvasWindow().getController().executeCommand(command);
+		assertEquals(3, container.getChildren().size());
+	}
+	
+	@Test
+	public void createAssTest2(){
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		VisualClass class1 = new VisualClass(0, 0, 0, container);
+		VisualClass class2 = new VisualClass(0, 0, 0, container);
+		Command command = new CreateAssociationCommand(class1, class2, container);
+		container.getCanvasWindow().getController().executeCommand(command);
+		container.getCanvasWindow().getController().undo();
+		assertEquals(2, container.getChildren().size());
+	}
+	
+	@Test
+	public void createAssTest3(){
+		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		VisualClass class1 = new VisualClass(0, 0, 0, container);
+		VisualClass class2 = new VisualClass(0, 0, 0, container);
+		Command command = new CreateAssociationCommand(class1, class2, container);
+		container.getCanvasWindow().getController().executeCommand(command);
+		container.getCanvasWindow().getController().undo();
+		container.getCanvasWindow().getController().redo();
+		assertEquals(3, container.getChildren().size());
 	}
 	
 	private static FunctionKey getDeleteKey(){
