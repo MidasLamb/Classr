@@ -8,8 +8,10 @@ public final class Constants {
 
 	public static final String CANVAS_TITLE = "Classr"; 
 	
-	public static final String DEFAULT_CLASS_NAME = "Nieuwe_Klasse";
+	public static final String DEFAULT_CLASS_NAME = "NewClass";
 	public static final String DEFAULT_ASS_NAME = "newAssociation";
+	public static final String DEFAULT_METHOD_NAME = "newMethod";
+	public static final String DEFAULT_ATTRIBUTE_NAME = "newAttribute";
 
 
 	public static final int CONTAINER_WIDTH = 600;

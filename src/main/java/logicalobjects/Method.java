@@ -1,6 +1,7 @@
 package logicalobjects;
 
 import static main.Constants.REGEX_START_NO_CAPITAL;
+import static main.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,7 +23,7 @@ public class Method extends ClassContent {
 	 */
 	public Method(LogicalClass rc) {
 		super(rc);
-		String originalName = "newMethod";
+		String originalName = DEFAULT_METHOD_NAME;
 		String name = originalName;
 		if (getRealClass().methodNameAlreadyExists(name, this)) {
 			int i = 1;
