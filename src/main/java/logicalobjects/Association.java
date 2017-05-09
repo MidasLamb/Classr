@@ -1,5 +1,6 @@
 package logicalobjects;
 import static main.Constants.REGEX_START_NO_CAPITAL;
+import static main.Constants.*;
 
 /**
  * A class of associations, involving two real classes
@@ -23,6 +24,7 @@ public class Association extends LogicalObject{
 		setClass2(class2);
 		this.getClass1().addAssociation(this);
 		this.getClass2().addAssociation(this);
+		this.setName(DEFAULT_ASS_NAME);
 	}
 	
 
