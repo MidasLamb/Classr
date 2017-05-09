@@ -34,7 +34,5 @@ public class CreateMethodCommand extends Command {
 	private final VisualClass getVisualClass() {
 		return visualClass;
 	}
-	
-	
 
 }
