@@ -66,8 +66,7 @@ public class KeyHandler {
 		case KeyEvent.VK_DOWN:
 			return new FunctionKey(DOWN);
 		case 90:
-			if(InputEvent.CTRL_MASK == e.getModifiers())
-				return new FunctionKey(CTRL_Z);
+			
 		default:
 			return null;
 		}

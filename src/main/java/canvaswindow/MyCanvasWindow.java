@@ -5,6 +5,7 @@ import static main.Constants.CONTAINER_WIDTH;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayDeque;
@@ -79,6 +80,15 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected final void handleKeyEvent(KeyEvent e) {
+		if(InputEvent.CTRL_MASK == e.getModifiers()){
+			switch(KeyEvent.getKeyText(e.getKeyCode())){
+			case "Y": 	getController().redo();
+						break;
+			case "Z": 	getController().undo();
+						break;
+			}
+			System.out.println("ontvangen !!");
+		}
 		getKeyHandler().handleInput(e);
 		this.repaint();
 	}
