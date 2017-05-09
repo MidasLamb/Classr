@@ -87,7 +87,6 @@ public class MyCanvasWindow extends CanvasWindow {
 			case "Z": 	getController().undo();
 						break;
 			}
-			System.out.println("ontvangen !!");
 		}
 		getKeyHandler().handleInput(e);
 		this.repaint();
