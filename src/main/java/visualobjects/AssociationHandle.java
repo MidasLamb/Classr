@@ -4,15 +4,18 @@ import static main.Constants.ASSOCIATIONHANDLE_SIZE;
 
 import java.awt.Graphics;
 
+import command.CreateAssociationCommand;
 import gui.inputHandlers.clicks.Drag;
 
 /**
  * A handle on VisualClasses to help create VisualObjects
  */
 public class AssociationHandle extends VisualObject {
+	private final VisualClass parent;
 
 	public AssociationHandle(int x, int y, int z, VisualClass parent) {
 		super(x, y, z, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
+		this.parent = parent;
 	}
 
 	@Override
@@ -39,7 +42,11 @@ public class AssociationHandle extends VisualObject {
 	 *            The other visualClass to which the link needs to be made
 	 */
 	private void createAssociation(VisualClass other) {
-		VisualClass parent = (VisualClass) this.getParent();
-		new VisualAssociation(parent, other, this.getContainer());
+		CreateAssociationCommand command = new CreateAssociationCommand(getParent(), other, getContainer());
+		getContainer().getCanvasWindow().getController().executeCommand(command);
+	}
+	
+	VisualClass getParent(){
+		return parent;
 	}
 }

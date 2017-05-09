@@ -13,7 +13,7 @@ import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.FunctionKey;
 import main.Constants;
-import command.AddClassCommand;
+import command.CreateClassCommand;
 import command.Command;
 import command.Controller;
 
@@ -578,7 +578,7 @@ public class ContainerTest {
 	public void AddClassCommandTest1(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		assertEquals(1, container.getChildren().size());
 	}
@@ -587,7 +587,7 @@ public class ContainerTest {
 	public void AddClassCommandTest2(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.undo();
 		assertEquals(0, container.getChildren().size());
@@ -597,7 +597,7 @@ public class ContainerTest {
 	public void AddClassCommandTest3(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.undo();
 		controller.redo();
@@ -608,8 +608,8 @@ public class ContainerTest {
 	public void AddClassCommandTest4(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
-		Command c2 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
+		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.executeCommand(c2);
 		assertEquals(2, container.getChildren().size());
@@ -619,8 +619,8 @@ public class ContainerTest {
 	public void AddClassCommandTest5(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
-		Command c2 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
+		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.executeCommand(c2);
 		controller.undo();
@@ -631,8 +631,8 @@ public class ContainerTest {
 	public void AddClassCommandTest6(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
-		Command c2 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
+		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.undo();
 		controller.executeCommand(c2);
@@ -644,8 +644,8 @@ public class ContainerTest {
 	public void AddClassCommandTest7(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
-		Command c2 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
+		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.executeCommand(c2);
 		controller.undo();
@@ -657,7 +657,7 @@ public class ContainerTest {
 	public void AddClassCommandTest8(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		Command c1 = new AddClassCommand(container);
+		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.executeCommand(c1);
 	}

@@ -6,7 +6,6 @@ import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.Association;
-import logicalobjects.LogicalClass;
 
 /**
  * The visualisation of a logical association
@@ -29,8 +28,7 @@ public class VisualAssociation extends VisualObject {
 		super(0, 0, 0, 0, 0, parent);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
-		((LogicalClass) association.getClass1()).addAssociation(association);
-
+		
 		p1 = participant1;
 		p2 = participant2;
 

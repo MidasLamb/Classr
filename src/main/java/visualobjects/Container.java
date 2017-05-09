@@ -4,7 +4,7 @@ import static main.Constants.Z_CLASS;
 import static main.Constants.CLASS_WIDTH;
 
 import canvaswindow.MyCanvasWindow;
-import command.AddClassCommand;
+import command.CreateClassCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -121,7 +121,7 @@ public class Container extends VisualObject  implements CanvasContent{
 		if (this.select(dc.getX(), dc.getY()).equals(this)) {
 			// Double click on empty
 			getCanvasWindow().getController()
-				.executeCommand(new AddClassCommand(this,dc.getX(), dc.getY()));
+				.executeCommand(new CreateClassCommand(this,dc.getX(), dc.getY()));
 		} else {
 			super.onDoubleClick(dc);
 		}

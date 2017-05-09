@@ -7,7 +7,7 @@ import visualobjects.VisualClass;
  * A command for adding a class to a container
  *
  */
-public class AddClassCommand extends Command {
+public class CreateClassCommand extends Command {
 
 	private final Container container;
 	private VisualClass createdClass;
@@ -19,7 +19,7 @@ public class AddClassCommand extends Command {
 	 * @param 	container
 	 * 			the container in which the class needs to be added
 	 */
-	public AddClassCommand(Container container){
+	public CreateClassCommand(Container container){
 		this.container = container;
 	}
 	
@@ -28,7 +28,7 @@ public class AddClassCommand extends Command {
 	 * @param 	container
 	 * 			the container in which the class needs to be added
 	 */
-	public AddClassCommand(Container container, int x, int y){
+	public CreateClassCommand(Container container, int x, int y){
 		this(container);
 		setX(x);
 		setY(y);		

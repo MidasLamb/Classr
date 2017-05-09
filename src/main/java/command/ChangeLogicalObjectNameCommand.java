@@ -19,7 +19,7 @@ public class ChangeLogicalObjectNameCommand extends Command {
 	 * @param 	newName
 	 * 			the new name for the logical object
 	 */
-	public ChangeLogicalObjectNameCommand(LogicalClass logicalObject, String newName){
+	public ChangeLogicalObjectNameCommand(LogicalObject logicalObject, String newName){
 		this.logicalObject = logicalObject;
 		this.newText = newName;
 		this.oldText = logicalObject.getName();

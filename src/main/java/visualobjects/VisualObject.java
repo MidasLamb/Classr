@@ -381,7 +381,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the parent VisualObject of this VisualObject
 	 */
-	final VisualObject getParent() {
+	VisualObject getParent() {
 		return this.parent;
 	}
 
