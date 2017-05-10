@@ -2,7 +2,8 @@ package gui.form.base;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
+import gui.form.base.ListBox;
+import gui.form.base.ListBox.ListBoxElement;
 import gui.form.base.DropDownMenu.DropDownMenuElement;
 import gui.inputHandlers.clicks.MouseClick;
 
