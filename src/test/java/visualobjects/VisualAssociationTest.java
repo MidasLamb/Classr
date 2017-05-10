@@ -17,6 +17,7 @@ public class VisualAssociationTest {
 	public void deleteOnDeleteClassTest() {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().get(0).delete();
 		// Create new class
 		DoubleClick click1 = new DoubleClick(103,108);
 		// Create new association
