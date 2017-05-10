@@ -46,16 +46,23 @@ public class ResizableAndMovableVisualObjectTest {
 
 		container.onDoubleClick(click1);
 
-		VisualClass vc = (VisualClass) container.getChildren().get(0);
+		VisualClass vc = null;
+		for (VisualObject v : container.getChildren()) {
+			if (v instanceof VisualClass) {
+				vc = (VisualClass) v;
+				break;
+			}
+		}
 		int startWidth = vc.getWidth();
 
-		Drag drag1 = new Drag(99, 505, 99-w, 505);
+		Drag drag1 = new Drag(99, 505, 99 - w, 505);
 		container.onDragUpdate(drag1);
 		container.onDragEnd(drag1);
 
-		// + 1 because the absolute change and we start dragging 1 pixel more to the left.
+		// + 1 because the absolute change and we start dragging 1 pixel more to
+		// the left.
 		assertEquals(startWidth + w + 1, vc.getWidth());
-		
+
 		startWidth = vc.getWidth();
 		Drag drag2 = new Drag(100 + CLASS_WIDTH, 502, 100 + CLASS_WIDTH + w, 502);
 		container.onDragUpdate(drag2);
@@ -67,11 +74,11 @@ public class ResizableAndMovableVisualObjectTest {
 
 	@Test
 	public void testMultipleCorrectPositiveWidthChanges() {
-		for (int i = 0; i < 20; i++){
+		for (int i = 0; i < 20; i++) {
 			correctPositiveWidthChangeTest(i);
 		}
-		
-		for (int i = 20; i < 100; i+= 9){
+
+		for (int i = 20; i < 100; i += 9) {
 			correctPositiveWidthChangeTest(i);
 		}
 	}
