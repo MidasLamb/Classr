@@ -109,13 +109,13 @@ public class VisualClassTest {
 	@Test
 	public void addAssociationTest() {
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		int x1 = 0;
-		int y1 = 0;
+		int x1 = 300;
+		int y1 = 300;
 		int z1 = 0;
 		VisualClass visualClass1 = new VisualClass(x1, y1, z1, container, new Controller());
 
-		int x2 = 0;
-		int y2 = 0;
+		int x2 = 300;
+		int y2 = 600;
 		int z2 = 0;
 		VisualClass visualClass2 = new VisualClass(x2, y2, z2, container, new Controller());
 
@@ -162,7 +162,7 @@ public class VisualClassTest {
 	public void createClassEditNameTest() {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
-		container.onDoubleClick(new DoubleClick(10, 10));
+		container.onDoubleClick(new DoubleClick(300, 300));
 		
 		VisualClass vc = null;
 		for (VisualObject v : container.getChildren()) {
