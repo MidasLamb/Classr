@@ -278,7 +278,9 @@ public class MouseClickHandlerTest {
 	private static void simulateSingleClick(int x, int y, MouseClickHandler handler){
 		Component dummy = new List();
 		MouseEvent event = new MouseEvent(dummy,MouseEvent.MOUSE_PRESSED,1,MouseEvent.BUTTON1,x,y,2,false);
+		MouseEvent event2 = new MouseEvent(dummy,MouseEvent.MOUSE_RELEASED,1,MouseEvent.BUTTON1,x,y,2,false);
 		handler.handleInput(event);
+		handler.handleInput(event2);
 	}
 	
 	private static void simulateDrag(int x1, int y1, int x2, int y2, MouseClickHandler handler){

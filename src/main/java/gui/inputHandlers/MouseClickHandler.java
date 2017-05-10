@@ -11,8 +11,12 @@ import gui.inputHandlers.clicks.SingleClick;
 
 public class MouseClickHandler {
 	private long lastClickTime;
-	private int lastClickX;
-	private int lastClickY;
+	private int lastClickXForDrag;
+	private int lastClickYForDrag;
+	
+	private int lastClickXForDoubleClick;
+	private int lastClickYForDoubleClick;
+	
 	private Clickable clickable;
 	private boolean isBeingDragged;
 
@@ -22,28 +26,36 @@ public class MouseClickHandler {
 
 	public void handleInput(MouseEvent e) {
 		if (e.getID() == MouseEvent.MOUSE_PRESSED) {
-			if (isDoubleClick(e)) {
-				// Let the container know that there was a double click
-				getClickable().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
-			} else {
-				// Let the container know that there was a single click
-				getClickable().onClick(new SingleClick(e.getX(), e.getY()));
-			}
-			// Save info about this click
-			setLastClickX(e.getX());
-			setLastClickY(e.getY());
-			setLastClickTime(System.currentTimeMillis());
+			
+			// Save info about this click to know where a drag started.
+			setLastClickXForDrag(e.getX());
+			setLastClickYForDrag(e.getY());
+
 		}
 
 		if (e.getID() == MouseEvent.MOUSE_RELEASED) {
+			
+
 			if (isBeingDragged()) {
-				getClickable().onDragEnd(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
+				getClickable().onDragEnd(new Drag(getLastClickXForDrag(), getLastClickYForDrag(), e.getX(), e.getY()));
+			} else {
+				if (isDoubleClick(e)) {
+					// Let the container know that there was a double click
+					getClickable().onDoubleClick(new DoubleClick(e.getX(), e.getY()));
+				} else {
+					// Let the container know that there was a single click
+					getClickable().onClick(new SingleClick(e.getX(), e.getY()));
+				}
 			}
+			setLastClickTime(System.currentTimeMillis());
+
+			setLastClickXForDoubleClick(e.getX());
+			setLastClickYForDoubleClick(e.getY());
 			setBeingDragged(false);
 		}
 
 		if (e.getID() == MouseEvent.MOUSE_DRAGGED) {
-			getClickable().onDragUpdate(new Drag(getLastClickX(), getLastClickY(), e.getX(), e.getY()));
+			getClickable().onDragUpdate(new Drag(getLastClickXForDrag(), getLastClickYForDrag(), e.getX(), e.getY()));
 			setBeingDragged(true);
 		}
 	}
@@ -57,8 +69,8 @@ public class MouseClickHandler {
 	 */
 	private boolean isDoubleClick(MouseEvent e) {
 		return System.currentTimeMillis() - getLastClickTime() < DOUBLECLICK_TRESHOLD
-				&& Math.abs(e.getX() - getLastClickX()) < DOUBLECLICK_RANGE
-				&& Math.abs(e.getY() - getLastClickY()) < DOUBLECLICK_RANGE;
+				&& Math.abs(e.getX() - getLastClickXForDoubleClick()) < DOUBLECLICK_RANGE
+				&& Math.abs(e.getY() - getLastClickYForDoubleClick()) < DOUBLECLICK_RANGE;
 	}
 
 	// Getters and setters
@@ -71,20 +83,20 @@ public class MouseClickHandler {
 		this.lastClickTime = lastClickTime;
 	}
 
-	private int getLastClickX() {
-		return lastClickX;
+	private int getLastClickXForDrag() {
+		return lastClickXForDrag;
 	}
 
-	private void setLastClickX(int lastClickX) {
-		this.lastClickX = lastClickX;
+	private void setLastClickXForDrag(int lastClickX) {
+		this.lastClickXForDrag = lastClickX;
 	}
 
-	private int getLastClickY() {
-		return lastClickY;
+	private int getLastClickYForDrag() {
+		return lastClickYForDrag;
 	}
 
-	private void setLastClickY(int lastClickY) {
-		this.lastClickY = lastClickY;
+	private void setLastClickYForDrag(int lastClickY) {
+		this.lastClickYForDrag = lastClickY;
 	}
 
 	private boolean isBeingDragged() {
@@ -101,6 +113,22 @@ public class MouseClickHandler {
 
 	private void setClickable(Clickable clickable) {
 		this.clickable = clickable;
+	}
+
+	private final int getLastClickXForDoubleClick() {
+		return lastClickXForDoubleClick;
+	}
+
+	private final void setLastClickXForDoubleClick(int lastClickXForDoubleClick) {
+		this.lastClickXForDoubleClick = lastClickXForDoubleClick;
+	}
+
+	private final int getLastClickYForDoubleClick() {
+		return lastClickYForDoubleClick;
+	}
+
+	private final void setLastClickYForDoubleClick(int lastClickYForDoubleClick) {
+		this.lastClickYForDoubleClick = lastClickYForDoubleClick;
 	}
 
 }
