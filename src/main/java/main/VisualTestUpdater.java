@@ -1,5 +1,5 @@
 package main;
-
+//
 //import java.lang.reflect.Method;
 //
 //import org.junit.runner.Computer;
@@ -21,7 +21,7 @@ public class VisualTestUpdater {
 	public static boolean update = false;
 	
 	public static void main(String[] args) {
-//		
+		
 //		VisualTestUpdater.update = true;
 //		
 //		Computer computer = new Computer();
