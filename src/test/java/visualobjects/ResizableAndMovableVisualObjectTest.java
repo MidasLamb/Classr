@@ -53,14 +53,15 @@ public class ResizableAndMovableVisualObjectTest {
 		container.onDragUpdate(drag1);
 		container.onDragEnd(drag1);
 
-		assertEquals(startWidth + w, vc.getWidth());
+		// + 1 because the absolute change and we start dragging 1 pixel more to the left.
+		assertEquals(startWidth + w + 1, vc.getWidth());
+		
 		startWidth = vc.getWidth();
-
 		Drag drag2 = new Drag(100 + CLASS_WIDTH, 502, 100 + CLASS_WIDTH + w, 502);
 		container.onDragUpdate(drag2);
 		container.onDragEnd(drag2);
 
-		assertEquals(vc.getWidth(), startWidth + w);
+		assertEquals(startWidth + w, vc.getWidth());
 
 	}
 
