@@ -3,7 +3,6 @@ package visualobjects;
 import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;
 import static main.Constants.CLASS_WHITE_SPACE;
 import static main.Constants.CLASS_WIDTH;
-import static main.Constants.MAX_TEXT_WIDTH;
 import static main.Constants.Z_PADDING_BOX;
 
 import java.awt.Graphics;
@@ -11,6 +10,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import command.Command;
+import command.Controller;
 import command.CreateAttributeCommand;
 import command.CreateMethodCommand;
 import gui.inputHandlers.clicks.DoubleClick;
@@ -25,6 +25,7 @@ import logicalobjects.Method;
 public class VisualClass extends ResizableAndMovableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
 	private AssociationHandle associationHandle;
+	private final Controller controller;
 
 	/**
 	 * 
@@ -41,7 +42,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * @param 	parent
 	 * 			the parent of this VisualObject
 	 */
-	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
+	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
 		// TODO clean up this -1 to indicate nog max width exists.
@@ -49,9 +50,12 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), -1), this, getLogicalObject()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
+		this.controller = controller;
 
 		this.getName().addDeleteListener(this);
-		this.setAssociationHandle(new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this));
+		this.setAssociationHandle(new AssociationHandle(
+				this.getX() - 5, this.getY() + this.getHeight() / 2,
+				0, this, getController()));
 	}
 
 	/**
@@ -65,8 +69,8 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * @param 	parent
 	 * 			the parent of this VisualObject
 	 */
-	public VisualClass(int x, int y, int z, VisualObject parent) {
-		this(x, y, z, CLASS_WIDTH, CLASS_BODY_INITIAL_HEIGHT, parent);
+	public VisualClass(int x, int y, int z, VisualObject parent, Controller controller) {
+		this(x, y, z, CLASS_WIDTH, CLASS_BODY_INITIAL_HEIGHT, parent, controller);
 	}
 
 	@Override
@@ -237,10 +241,10 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	public final void onDoubleClick(DoubleClick dc) {
 		if (this.isInEmptyAttribute(dc.getX(), dc.getY())) {
 			Command c = new CreateAttributeCommand(this);
-			getContainer().getCanvasWindow().getController().executeCommand(c);
+			getController().executeCommand(c);
 		} else if (this.isInEmptyMethod(dc.getX(), dc.getY())) {
 			Command c = new CreateMethodCommand(this);
-			getContainer().getCanvasWindow().getController().executeCommand(c);
+			getController().executeCommand(c);
 		} else
 			super.onDoubleClick(dc);
 	}
@@ -347,6 +351,14 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	public int getMinimumHeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	/**
+	 * Returns the controller
+	 * @return the controller
+	 */
+	private Controller getController() {
+		return controller;
 	}
 
 }

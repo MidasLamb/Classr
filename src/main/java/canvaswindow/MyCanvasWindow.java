@@ -5,21 +5,16 @@ import static main.Constants.CONTAINER_WIDTH;
 
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayDeque;
 
-import command.Controller;
 import gui.inputHandlers.KeyHandler;
 import gui.inputHandlers.MouseClickHandler;
 import interfaces.CanvasContent;
 import visualobjects.Container;
 
 public class MyCanvasWindow extends CanvasWindow {
-
-	
-	private final Controller controller = new Controller();
 	private KeyHandler keyHandler;
 
 	private MouseClickHandler mouseClickHandler;
@@ -80,14 +75,6 @@ public class MyCanvasWindow extends CanvasWindow {
 	 */
 	@Override
 	protected final void handleKeyEvent(KeyEvent e) {
-		if(InputEvent.CTRL_MASK == e.getModifiers()){
-			switch(KeyEvent.getKeyText(e.getKeyCode())){
-			case "Y": 	getController().redo();
-						break;
-			case "Z": 	getController().undo();
-						break;
-			}
-		}
 		getKeyHandler().handleInput(e);
 		this.repaint();
 	}
@@ -169,10 +156,6 @@ public class MyCanvasWindow extends CanvasWindow {
 
 	private void setContentQueue(ArrayDeque<CanvasContent> contentQueue) {
 		this.contentQueue = contentQueue;
-	}
-
-	public Controller getController() {
-		return controller;
 	}
 
 }

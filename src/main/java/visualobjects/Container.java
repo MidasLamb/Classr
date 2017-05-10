@@ -1,9 +1,10 @@
 package visualobjects;
 
-import static main.Constants.Z_CLASS;
 import static main.Constants.CLASS_WIDTH;
+import static main.Constants.Z_CLASS;
 
 import canvaswindow.MyCanvasWindow;
+import command.Controller;
 import command.CreateClassCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -15,6 +16,7 @@ import interfaces.CanvasContent;
 public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
+	private final Controller controller;
 
 	/**
 	 * 
@@ -32,6 +34,7 @@ public class Container extends VisualObject  implements CanvasContent{
 	public Container(int x, int y, int width, int height, MyCanvasWindow window) {
 		super(x, y, Integer.MIN_VALUE, width, height, null);
 		this.setCanvasWindow(window);
+		controller = new Controller();
 	}
 
 	/**
@@ -62,7 +65,7 @@ public class Container extends VisualObject  implements CanvasContent{
 	 * @return the created visualClass
 	 */
 	public VisualClass createNewClass(int x, int y) {
-		return new VisualClass(x, y, Z_CLASS, this);
+		return new VisualClass(x, y, Z_CLASS, this, getController());
 	}
 	
 	/**
@@ -120,8 +123,7 @@ public class Container extends VisualObject  implements CanvasContent{
 	public void onDoubleClick(DoubleClick dc) {
 		if (this.select(dc.getX(), dc.getY()).equals(this)) {
 			// Double click on empty
-			getCanvasWindow().getController()
-				.executeCommand(new CreateClassCommand(this,dc.getX(), dc.getY()));
+			getController().executeCommand(new CreateClassCommand(this,dc.getX(), dc.getY()));
 		} else {
 			super.onDoubleClick(dc);
 		}
@@ -180,10 +182,20 @@ public class Container extends VisualObject  implements CanvasContent{
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
+		if(key.getKeyType() == FunctionKeyType.CTRL_Z)
+			getController().undo();
+		if(key.getKeyType() == FunctionKeyType.CTRL_Y)
+			getController().redo();
 		if(getSelected() != null)
 			getSelected().handleFunctionKey(key);
 	}
 
-
-
+	/**
+	 * Returns the controller
+	 * @return the controller
+	 */
+	Controller getController() {
+		return controller;
+	}
+	
 }

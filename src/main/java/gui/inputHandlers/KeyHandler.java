@@ -48,6 +48,14 @@ public class KeyHandler {
 	}
 
 	static FunctionKey getFunctionKey(KeyEvent e) {
+		if(InputEvent.CTRL_MASK == e.getModifiers()){
+			switch(KeyEvent.getKeyText(e.getKeyCode())){
+			case "Z":
+				return new FunctionKey(CTRL_Z);
+			case "Y":
+				return new FunctionKey(CTRL_Y);
+			}
+		}
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_BACK_SPACE:
 			return new FunctionKey(BACKSPACE);
@@ -65,8 +73,6 @@ public class KeyHandler {
 			return new FunctionKey(UP);
 		case KeyEvent.VK_DOWN:
 			return new FunctionKey(DOWN);
-		case 90:
-			
 		default:
 			return null;
 		}

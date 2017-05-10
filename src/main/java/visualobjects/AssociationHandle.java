@@ -4,6 +4,7 @@ import static main.Constants.ASSOCIATIONHANDLE_SIZE;
 
 import java.awt.Graphics;
 
+import command.Controller;
 import command.CreateAssociationCommand;
 import gui.inputHandlers.clicks.Drag;
 
@@ -12,10 +13,12 @@ import gui.inputHandlers.clicks.Drag;
  */
 public class AssociationHandle extends VisualObject {
 	private final VisualClass parent;
+	private final Controller controller;
 
-	public AssociationHandle(int x, int y, int z, VisualClass parent) {
+	public AssociationHandle(int x, int y, int z, VisualClass parent, Controller controller) {
 		super(x, y, z, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
 		this.parent = parent;
+		this.controller = controller;
 	}
 
 	@Override
@@ -43,10 +46,18 @@ public class AssociationHandle extends VisualObject {
 	 */
 	private void createAssociation(VisualClass other) {
 		CreateAssociationCommand command = new CreateAssociationCommand(getParent(), other, getContainer());
-		getContainer().getCanvasWindow().getController().executeCommand(command);
+		getController().executeCommand(command);
 	}
 	
 	VisualClass getParent(){
 		return parent;
+	}
+	
+	/**
+	 * Returns the controller
+	 * @return the controller
+	 */
+	private Controller getController() {
+		return controller;
 	}
 }

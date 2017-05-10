@@ -53,15 +53,15 @@ public class ContainerTest {
 	@Test
 	public void deleteTest2() {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
-		new VisualClass(0, 0, 0, container);
-		VisualClass klasse2 = new VisualClass(1, 1, 1, container);
+		new VisualClass(0, 0, 0, container, container.getController());
+		VisualClass klasse2 = new VisualClass(1, 1, 1, container, container.getController());
 		container.removeChild(klasse2);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deleteTest3() {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
-		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
+		VisualClass klasse1 = new VisualClass(0, 0, 0, container, container.getController());
 		container.removeChild(klasse1);
 		container.removeChild(klasse1);
 	}
@@ -69,8 +69,8 @@ public class ContainerTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void deleteTest4() {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
-		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
-		new VisualClass(1, 1, 1, container);
+		VisualClass klasse1 = new VisualClass(0, 0, 0, container, container.getController());
+		new VisualClass(1, 1, 1, container, container.getController());
 		container.removeChild(klasse1);
 		container.removeChild(klasse1);
 	}
@@ -78,8 +78,8 @@ public class ContainerTest {
 	@Test
 	public void deleteTest5() {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
-		VisualClass klasse1 = new VisualClass(0, 0, 0, container);
-		VisualClass klasse2 = new VisualClass(1, 1, 1, container);
+		VisualClass klasse1 = new VisualClass(0, 0, 0, container, container.getController());
+		VisualClass klasse2 = new VisualClass(1, 1, 1, container, container.getController());
 		container.removeChild(klasse1);
 		container.removeChild(klasse2);
 	}
@@ -87,7 +87,7 @@ public class ContainerTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void deleteTest6() {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
-		VisualClass klasse = new VisualClass(0, 0, 0, container);
+		VisualClass klasse = new VisualClass(0, 0, 0, container, container.getController());
 		klasse.delete();
 		container.removeChild(klasse);
 	}
@@ -666,33 +666,33 @@ public class ContainerTest {
 	@Test
 	public void createAssTest1(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass class1 = new VisualClass(0, 0, 0, container);
-		VisualClass class2 = new VisualClass(0, 0, 0, container);
+		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
+		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
 		Command command = new CreateAssociationCommand(class1, class2, container);
-		container.getCanvasWindow().getController().executeCommand(command);
+		container.getController().executeCommand(command);
 		assertEquals(3, container.getChildren().size());
 	}
 	
 	@Test
 	public void createAssTest2(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass class1 = new VisualClass(0, 0, 0, container);
-		VisualClass class2 = new VisualClass(0, 0, 0, container);
+		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
+		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
 		Command command = new CreateAssociationCommand(class1, class2, container);
-		container.getCanvasWindow().getController().executeCommand(command);
-		container.getCanvasWindow().getController().undo();
+		container.getController().executeCommand(command);
+		container.getController().undo();
 		assertEquals(2, container.getChildren().size());
 	}
 	
 	@Test
 	public void createAssTest3(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass class1 = new VisualClass(0, 0, 0, container);
-		VisualClass class2 = new VisualClass(0, 0, 0, container);
+		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
+		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
 		Command command = new CreateAssociationCommand(class1, class2, container);
-		container.getCanvasWindow().getController().executeCommand(command);
-		container.getCanvasWindow().getController().undo();
-		container.getCanvasWindow().getController().redo();
+		container.getController().executeCommand(command);
+		container.getController().undo();
+		container.getController().redo();
 		assertEquals(3, container.getChildren().size());
 	}
 	

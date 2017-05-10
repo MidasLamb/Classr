@@ -10,6 +10,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
+import command.Controller;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.keys.AsciiKey;
@@ -21,49 +22,49 @@ public class VisualClassTest {
 	@Test
 	public void isInTest1() {
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(0, 0, 0, container);
+		VisualClass visualClass = new VisualClass(0, 0, 0, container, new Controller());
 		assertTrue(visualClass.isIn(0, 0));
 	}
 
 	@Test
 	public void isInTest2() {
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(0, 0, 0, container);
+		VisualClass visualClass = new VisualClass(0, 0, 0, container, new Controller());
 		assertFalse(visualClass.isIn(CLASS_WIDTH + 1, 0));
 	}
 
 	@Test
 	public void isInTest3() {
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(10, 5, 0, container);
+		VisualClass visualClass = new VisualClass(10, 5, 0, container, new Controller());
 		assertTrue(visualClass.isIn(10, 5));
 	}
 
 	@Test
 	public void isInTest4() {
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(10, 5, 0, container);
+		VisualClass visualClass = new VisualClass(10, 5, 0, container, new Controller());
 		assertTrue(visualClass.isIn(visualClass.getWidth() + 10, 5));
 	}
 
 	@Test
 	public void isInTest5() {
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(10, 5, 0, container);
+		VisualClass visualClass = new VisualClass(10, 5, 0, container, new Controller());
 		assertTrue(visualClass.isIn(10, visualClass.getHeight() + 4));
 	}
 
 	@Test
 	public void isInTest6() {
 		Container container = new Container(10, 5, 100, 100, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(10, 5, 0, container);
+		VisualClass visualClass = new VisualClass(10, 5, 0, container, new Controller());
 		assertFalse(visualClass.isIn(visualClass.getWidth() + 11, 5));
 	}
 
 	@Test
 	public void isInTest7() {
 		Container container = new Container(10, 5, 100, 100, new MyCanvasWindow("test"));
-		VisualClass visualClass = new VisualClass(0, 0, 0, container);
+		VisualClass visualClass = new VisualClass(0, 0, 0, container, new Controller());
 		assertFalse(visualClass.isIn(10, visualClass.getHeight() + 6));
 	}
 
@@ -74,7 +75,7 @@ public class VisualClassTest {
 		int z = 0;
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
-		VisualClass visualClass = new VisualClass(x, y, z, container);
+		VisualClass visualClass = new VisualClass(x, y, z, container, new Controller());
 		int numberOfChildren = visualClass.getChildren().size();
 		int clickY = visualClass.getName().getHeight() + 2;
 		int clickX = x + 2;
@@ -92,7 +93,7 @@ public class VisualClassTest {
 		int z = 0;
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
-		VisualClass visualClass = new VisualClass(x, y, z, container);
+		VisualClass visualClass = new VisualClass(x, y, z, container, new Controller());
 		int numberOfChildren = visualClass.getChildren().size();
 		int clickY = visualClass.getName().getHeight() + 2 + CLASS_WHITE_SPACE;
 		int clickX = x + 2;
@@ -111,12 +112,12 @@ public class VisualClassTest {
 		int x1 = 0;
 		int y1 = 0;
 		int z1 = 0;
-		VisualClass visualClass1 = new VisualClass(x1, y1, z1, container);
+		VisualClass visualClass1 = new VisualClass(x1, y1, z1, container, new Controller());
 
 		int x2 = 0;
 		int y2 = 0;
 		int z2 = 0;
-		VisualClass visualClass2 = new VisualClass(x2, y2, z2, container);
+		VisualClass visualClass2 = new VisualClass(x2, y2, z2, container, new Controller());
 
 		int dragEndX = x2;
 		int dragEndY = y2 + (visualClass2.getHeight() / 2) + 2;
@@ -153,7 +154,7 @@ public class VisualClassTest {
 	@Test
 	public void getParentTest() {
 		Container container = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
-		VisualClass klasse = new VisualClass(5, 5, 0, container);
+		VisualClass klasse = new VisualClass(5, 5, 0, container, new Controller());
 		assertEquals(container, klasse.getParent());
 	}
 
