@@ -85,6 +85,18 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	public void switchTo(Form f) {
 				
 	}
+
+	@Override
+	public int getMinimumWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMinimumHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 	

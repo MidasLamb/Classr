@@ -78,33 +78,38 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 		int xDiff = drag.getEndX() - x;
 		int yDiff = drag.getEndY() - y;
 
-		int xChange = 0;
-		int yChange = 0;
-		int widthChange = 0;
-		int heightChange = 0;
+		int newX = this.getX();
+		int newY = this.getY();
+		int newWidth = this.getWidth();
+		int newHeight = this.getHeight();
+
 
 		if ((isOnLeftSide(x, y) && !this.isBeingResized()) || isBeingResizedFromLeft()) {
-			xChange = xDiff;
-			widthChange = -xDiff;
+			newX = drag.getEndX();
+			newWidth = this.getWidth() + (this.getX() - drag.getEndX());
+	
+			
 			if (!this.isBeingResized())
 				this.setBeingResizedFromLeft(true);
 		}
 
 		if ((isOnTopSide(x, y) && !this.isBeingResized()) || isBeingResizedFromTop()) {
-			yChange = yDiff;
-			heightChange = -yDiff;
+			newY = drag.getEndY();
+			newHeight = this.getHeight() + (this.getY() - drag.getEndY());
 			if (!this.isBeingResized())
 				this.setBeingResizedFromTop(true);
 		}
 
 		if ((isOnRightSide(x, y) && !this.isBeingResized()) || isBeingResizedFromRight()) {
-			widthChange = xDiff;
+			
+			newWidth = drag.getEndX() - this.getX();
 			if (!this.isBeingResized())
 				this.setBeingResizedFromRight(true);
 		}
 
 		if ((isOnBottomSide(x, y) && !this.isBeingResized()) || isBeingResizedFromBottom()) {
-			heightChange = yDiff;
+			newHeight = drag.getEndY() - this.getY();
+			
 			if (!this.isBeingResized())
 				this.setBeingResizedFromBottom(true);
 		}
@@ -113,14 +118,17 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 				|| isBeingResizedFromTop()) {
 			this.setBeingResized(true);
 		}
+		
+		//Change children relative, because their position is relative to this.
+		this.changeChildrenX(newX - this.getX());
+		this.changeChildrenY(newY - this.getY());
 
-		this.changeX(xChange);
-		this.changeY(yChange);
-		this.changeChildrenX(xChange);
-		this.changeChildrenY(yChange);
-
-		this.changeWidth(widthChange);
-		this.changeHeight(heightChange);
+		// Change yourself absolute, so resizing follows the mouse, not the change of the mouse.
+		this.setX(newX);
+		this.setY(newY);
+		this.setWidth(newWidth);
+		this.setHeight(newHeight);
+		
 	}
 
 	private void handleMove(Drag drag) {
@@ -162,14 +170,6 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 
 	private void changeY(int y) {
 		this.setY(this.getY() + y);
-	}
-
-	private void changeWidth(int width) {
-		this.setWidth(this.getWidth() + width);
-	}
-
-	private void changeHeight(int height) {
-		this.setHeight(this.getHeight() + height);
 	}
 
 	private void changeChildrenX(int x) {
@@ -246,6 +246,32 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 
 	private final void setBeingMoved(boolean isBeingMoved) {
 		this.isBeingMoved = isBeingMoved;
+	}
+
+	/**
+	 * A method to return the minimum width this VisualObject must have.
+	 * 
+	 * @return The minimum width this VisualObject must have.
+	 */
+	public abstract int getMinimumWidth();
+
+	/**
+	 * A method to return the minimum height this VisualObject must have.
+	 * 
+	 * @return The minimum height this VisualObject must have.
+	 */
+	public abstract int getMinimumHeight();
+
+	@Override
+	void setWidth(int width) {
+		if (width >= this.getMinimumWidth())
+			super.setWidth(width);
+	}
+
+	@Override
+	void setHeight(int height) {
+		if (height >= this.getMinimumHeight())
+			super.setHeight(height);
 	}
 
 }

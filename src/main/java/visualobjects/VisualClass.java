@@ -20,7 +20,7 @@ import logicalobjects.LogicalClass;
 import logicalobjects.Method;
 
 /**
- * The visualisation of a logicalClass
+ * The visualization of a logicalClass
  */
 public class VisualClass extends ResizableAndMovableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
@@ -332,6 +332,18 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	@Override
 	protected boolean isInMoveActivator(int x, int y) {
 		return getName().isIn(x, y);
+	}
+
+	@Override
+	public int getMinimumWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMinimumHeight() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

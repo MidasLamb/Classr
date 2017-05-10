@@ -344,7 +344,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param width
 	 *            the width to be set
 	 */
-	final void setWidth(int width) {
+	void setWidth(int width) {
 		this.width = width;
 	}
 
@@ -354,7 +354,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param height
 	 *            the height to be set
 	 */
-	final void setHeight(int height) {
+	void setHeight(int height) {
 		this.height = height;
 	}
 
@@ -609,5 +609,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	private final Color getColor() {
 		return color;
 	}
+	
+	
 
 }

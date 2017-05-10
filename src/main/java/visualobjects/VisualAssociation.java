@@ -8,7 +8,7 @@ import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.Association;
 
 /**
- * The visualisation of a logical association
+ * The visualization of a logical association
  */
 public class VisualAssociation extends VisualObject {
 	private final VisualClass p1;
