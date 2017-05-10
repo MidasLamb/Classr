@@ -278,4 +278,11 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 			super.setHeight(this.getMinimumHeight());
 	}
 
+	public void moveTo(int x, int y){	
+		this.changeChildrenX(x - this.getX());
+		this.changeChildrenY(y - this.getY());
+		
+		this.setX(x);
+		this.setY(y);
+	}
 }
