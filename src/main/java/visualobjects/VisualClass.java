@@ -44,8 +44,9 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent) {
 		super(x, y, z, width, height, parent);
 		setLogicalObject(new LogicalClass());
+		// TODO clean up this -1 to indicate nog max width exists.
 		this.setName(new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, new EditableTextWrapper(0, 0, 0, "Klasse",
-				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), MAX_TEXT_WIDTH), this, getLogicalObject()));
+				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), -1), this, getLogicalObject()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
 
@@ -336,7 +337,9 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 	@Override
 	public int getMinimumWidth() {
-		// TODO Auto-generated method stub
+		//TODO also implement for other stuff.
+		if( this.getName() != null)
+			return this.getName().getWidth();
 		return 0;
 	}
 

@@ -23,7 +23,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	
 	@Override
 	public void unfocusChildren(){
-		System.out.println("Unfocusing Children");
 		this.getListboxElements().stream().forEach(x -> x.setFocused(false));
 	}
 

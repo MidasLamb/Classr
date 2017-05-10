@@ -266,12 +266,16 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	void setWidth(int width) {
 		if (width >= this.getMinimumWidth())
 			super.setWidth(width);
+		else 
+			super.setWidth(this.getMinimumWidth());
 	}
 
 	@Override
 	void setHeight(int height) {
 		if (height >= this.getMinimumHeight())
 			super.setHeight(height);
+		else 
+			super.setHeight(this.getMinimumHeight());
 	}
 
 }
