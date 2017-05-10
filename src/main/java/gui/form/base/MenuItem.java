@@ -51,6 +51,7 @@ public class MenuItem extends FormObject implements Displayable, Clickable {
 	}
 
 	@Override
+	public
 	void draw(Graphics g) {
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 	}

@@ -26,6 +26,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	}
 
 	@Override
+	public
 	void draw(Graphics g) {
 		if (this.isEnabled()) {
 			int translatedX = this.getX();

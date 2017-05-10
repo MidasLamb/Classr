@@ -60,7 +60,7 @@ public abstract class FormObject implements Comparable<FormObject> {
 	 * 
 	 * @param g
 	 */
-	abstract void draw(Graphics g);
+	public abstract void draw(Graphics g);
 
 	protected abstract void onAction();
 

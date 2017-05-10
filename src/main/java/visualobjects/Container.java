@@ -6,6 +6,8 @@ import static main.Constants.Z_CLASS;
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
+import gui.form.base.MenuBar;
+import gui.form.base.MenuHeader;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -17,6 +19,7 @@ public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
 	private final Controller controller;
+
 
 	/**
 	 * 
@@ -35,6 +38,20 @@ public class Container extends VisualObject  implements CanvasContent{
 		super(x, y, Integer.MIN_VALUE, width, height, null);
 		this.setCanvasWindow(window);
 		controller = new Controller();
+		
+		this.createMenuBar();
+		this.createToolBar();
+	}
+	
+	private void createMenuBar(){
+		MenuBar menu = new MenuBar(0,0,100, 100);
+		menu.addMenuHeader(new MenuHeader("test", 0, 0, 100, 100));
+		
+		new FormObjectWrapper<MenuBar>(menu, 0,0, 0, 100,100, this);
+	}
+	
+	private void createToolBar(){
+		
 	}
 
 	/**

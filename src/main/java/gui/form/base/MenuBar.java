@@ -41,6 +41,7 @@ public class MenuBar extends FormObject {
 	}
 
 	@Override
+	public
 	void draw(Graphics g) {
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		for (MenuHeader header : this.getMenuHeaders()) {

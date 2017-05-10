@@ -36,6 +36,7 @@ public class Label extends FormObject {
 	}
 
 	@Override
+	public
 	void draw(Graphics g) {
 		Color c = g.getColor();
 		if (this.isFocused()) {

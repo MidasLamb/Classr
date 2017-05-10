@@ -58,7 +58,7 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 	}
 
 	@Override
-	protected void draw(Graphics g) {
+	public void draw(Graphics g) {
 		Color prev = g.getColor();
 		if (!this.check())
 			g.setColor(Color.RED);

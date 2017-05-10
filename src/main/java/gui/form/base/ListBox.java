@@ -47,6 +47,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	@Override
+	public
 	void draw(Graphics g) {
 		// We use translating, so it's easier to remove an element from the
 		// middle of the list.
@@ -182,7 +183,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		 * 
 		 * @param g
 		 */
-		void draw(Graphics g) {
+		public void draw(Graphics g) {
 			Color c = g.getColor();
 			if (this.isFocused())
 				g.setColor(Color.BLUE);

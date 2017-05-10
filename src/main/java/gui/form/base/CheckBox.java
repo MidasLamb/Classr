@@ -108,7 +108,7 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 		}
 	}
 
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		getState().draw(g);
 	}
 

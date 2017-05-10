@@ -54,6 +54,7 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	}
 
 	@Override
+	public
 	void draw(Graphics g) {
 		getState().draw(g);
 	}

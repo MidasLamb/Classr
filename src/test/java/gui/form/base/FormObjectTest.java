@@ -24,6 +24,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -47,6 +48,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -70,6 +72,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -92,6 +95,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -114,6 +118,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -137,6 +142,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -160,6 +166,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -183,6 +190,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -206,6 +214,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -229,6 +238,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
@@ -252,6 +262,7 @@ public class FormObjectTest {
 			}
 
 			@Override
+			public
 			void draw(Graphics g) {
 			}
 
