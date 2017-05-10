@@ -1,6 +1,5 @@
 package gui.form.base;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import gui.inputHandlers.clicks.MouseClick;
@@ -13,9 +12,7 @@ public class MenuHeader extends Button {
 	private MenuBar menuBar;
 	private ArrayList<MenuItem> menuItems;
 	private String name;
-	private boolean droppedDown;
-
-	
+	private DropDownMenu<MenuItem> dropDownMenu;
 
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
@@ -55,13 +52,13 @@ public class MenuHeader extends Button {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public boolean isDroppedDown() {
-		return droppedDown;
+
+	public DropDownMenu<MenuItem> getDropDownMenu() {
+		return dropDownMenu;
 	}
 
-	public void setDroppedDown(boolean droppedDown) {
-		this.droppedDown = droppedDown;
+	public void setDropDownMenu(DropDownMenu<MenuItem> dropDownMenu) {
+		this.dropDownMenu = dropDownMenu;
 	}
 
 	@Override
@@ -70,18 +67,16 @@ public class MenuHeader extends Button {
 
 	}
 
-	/*@Override
-	void draw(Graphics g) {
-		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		for (MenuItem item : this.getMenuItems()) {
-			item.draw(g);
-		}
-	}*/
+	/*
+	 * @Override void draw(Graphics g) { g.fillRect(this.getX(), this.getY(),
+	 * this.getWidth(), this.getHeight()); for (MenuItem item :
+	 * this.getMenuItems()) { item.draw(g); } }
+	 */
 
 	@Override
 	protected void onAction() {
-		// TODO Auto-generated method stub
-		// dropped down true
+		// TODO
+		this.getDropDownMenu().toggle();
 		// draw listbox beneath with MenuItems
 
 	}

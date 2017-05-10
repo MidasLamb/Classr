@@ -2,12 +2,16 @@ package gui.form.base;
 
 import java.awt.Graphics;
 
+import gui.inputHandlers.Clickable;
+import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.SingleClick;
 
 /**
  * A class representing a MenuItem in a drop down menu of a MenuHeader
  */
-public class MenuItem extends FormObject {
+public class MenuItem extends FormObject implements Displayable, Clickable {
 	private MenuHeader menuHeader;
 	private String name;
 	private boolean enabled;
@@ -42,8 +46,8 @@ public class MenuItem extends FormObject {
 
 	@Override
 	void onClick(MouseClick click) {
-		// TODO Auto-generated method stub
-
+		this.getMenuHeader().getDropDownMenu().setEnabled(false);
+		this.onAction();
 	}
 
 	@Override
@@ -53,8 +57,29 @@ public class MenuItem extends FormObject {
 
 	@Override
 	protected void onAction() {
-		// TODO Auto-generated method stub
+		// TODO actually do stuff
+	}
 
+	@Override
+	public String getDisplayableString() {
+		return this.getName();
+	}
+
+	@Override
+	public void onClick(SingleClick click) {
+		this.onClick(click);
+	}
+
+	@Override
+	public void onDoubleClick(DoubleClick click) {
+	}
+
+	@Override
+	public void onDragEnd(Drag drag) {
+	}
+
+	@Override
+	public void onDragUpdate(Drag drag) {
 	}
 
 }
