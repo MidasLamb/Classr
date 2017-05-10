@@ -5,7 +5,6 @@ import static gui.form.base.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
 
-import gui.inputHandlers.Clickable;
 import gui.inputHandlers.clicks.MouseClick;
 
 /**
@@ -53,11 +52,12 @@ public abstract class FormObject implements Comparable<FormObject> {
 	 * @param click
 	 *            Registered MouseClick
 	 */
-	
+
 	abstract void onClick(MouseClick click);
 
 	/**
 	 * Draw this FormObject.
+	 * 
 	 * @param g
 	 */
 	abstract void draw(Graphics g);

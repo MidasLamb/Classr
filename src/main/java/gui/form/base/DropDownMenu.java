@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import gui.form.base.ListBox;
 import gui.form.base.ListBox.ListBoxElement;
-import gui.form.base.DropDownMenu.DropDownMenuElement;
 import gui.inputHandlers.clicks.MouseClick;
 
-public class DropDownMenu<T extends Displayable> extends ListBox<DropDownMenuElement> {
+public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	private boolean enabled;
 
 	public DropDownMenu(int x, int y, int width, int height) {
@@ -33,7 +32,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<DropDownMenuEle
 			int translatedY = this.getY();
 			int sumOfVerticalTranslations = 0;
 			g.translate(translatedX, translatedY);
-			for (DropDownMenuElement e : this.getElements()) {
+			for (MenuItem e : this.getElements()) {
 				Color c = g.getColor();
 				e.draw(g);
 				g.setColor(c);
@@ -47,27 +46,6 @@ public class DropDownMenu<T extends Displayable> extends ListBox<DropDownMenuEle
 	@Override
 	protected void onAction() {
 		
-	}
-
-	class DropDownMenuElement extends ListBoxElement<MenuItem> implements Displayable {
-		private MenuItem menuItem;
-
-		DropDownMenuElement(MenuItem obj) {
-			super(obj);
-		}
-
-		public MenuItem getMenuItem() {
-			return menuItem;
-		}
-
-		public void setMenuItem(MenuItem menuItem) {
-			this.menuItem = menuItem;
-		}
-
-		@Override
-		void onClick(MouseClick click) {
-			// TODO
-		}
 	}
 
 }
