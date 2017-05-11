@@ -19,8 +19,8 @@ public class Controller {
 	public void executeCommand(Command command){
 		if(getUndoStack().contains(command) || getRedoStack().contains(command))
 			throw new IllegalArgumentException("You cannot run the same command twice");
-		command.execute();
 		emptyRedoStack();
+		command.execute();
 		getUndoStack().add(command);		
 	}
 	
@@ -48,6 +48,7 @@ public class Controller {
 	 * Empty's the redo stack
 	 */
 	private void emptyRedoStack(){
+		getRedoStack().stream().forEach(x -> x.cleanup());
 		setRedoStack(new Stack<Command>());
 	}
 

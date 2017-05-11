@@ -213,6 +213,12 @@ public class ControllerTest {
 		void unexecute() {
 			text =  text.substring(0, text.length()-1);
 		}
+
+		@Override
+		void cleanup() {
+			// TODO Auto-generated method stub
+			
+		}
 		
 	}
 	
@@ -227,6 +233,12 @@ public class ControllerTest {
 		@Override
 		void unexecute() {
 			text =  text.substring(0, text.length()-1);
+		}
+
+		@Override
+		void cleanup() {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}

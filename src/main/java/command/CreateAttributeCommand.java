@@ -56,4 +56,10 @@ public class CreateAttributeCommand extends Command {
 		return visualClass;
 	}
 
+	@Override
+	void cleanup() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

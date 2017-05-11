@@ -9,4 +9,5 @@ public abstract class Command {
 	 
 	 abstract void unexecute();
 
+	 abstract void cleanup();
 }

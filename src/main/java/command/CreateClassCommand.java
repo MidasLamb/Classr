@@ -13,39 +13,51 @@ public class CreateClassCommand extends Command {
 	private VisualClass createdClass;
 	private int x = -1;
 	private int y = -1;
-	
+
 	/**
 	 * Creates the command
-	 * @param 	container
-	 * 			the container in which the class needs to be added
+	 * 
+	 * @param container
+	 *            the container in which the class needs to be added
 	 */
-	public CreateClassCommand(Container container){
+	public CreateClassCommand(Container container) {
 		this.container = container;
+		createdClass = null;
 	}
-	
+
 	/**
 	 * Creates the command
-	 * @param 	container
-	 * 			the container in which the class needs to be added
+	 * 
+	 * @param container
+	 *            the container in which the class needs to be added
 	 */
-	public CreateClassCommand(Container container, int x, int y){
+	public CreateClassCommand(Container container, int x, int y) {
 		this(container);
 		setX(x);
-		setY(y);		
+		setY(y);
 	}
 
 	@Override
 	void execute() {
-		if(getX() >= 0 && getY() >= 0)
-			setCreatedClass(getContainer().createNewClass(getX(), getY()));
-		else
-			setCreatedClass(getContainer().createNewClass());
+		if (getCreatedClass() == null) {
+			if (getX() >= 0 && getY() >= 0)
+				setCreatedClass(getContainer().createNewClass(getX(), getY()));
+			else
+				setCreatedClass(getContainer().createNewClass());
+		} else {
+			getContainer().addChild(getCreatedClass());
+		}
 	}
 
 	@Override
 	void unexecute() {
-		if(getCreatedClass() != null)
-			getCreatedClass().getLogicalObject().delete();
+		if (getCreatedClass() != null)
+			getContainer().removeChild(getCreatedClass());
+	}
+
+	@Override
+	void cleanup() {
+		getCreatedClass().delete();
 	}
 
 	/**
@@ -57,6 +69,7 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * Returns the created class
+	 * 
 	 * @return the created class
 	 */
 	private VisualClass getCreatedClass() {
@@ -65,8 +78,9 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * Sets the createdClass
-	 * @param 	createdClass
-	 * 			the new created class
+	 * 
+	 * @param createdClass
+	 *            the new created class
 	 */
 	private void setCreatedClass(VisualClass createdClass) {
 		this.createdClass = createdClass;
@@ -74,6 +88,7 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * Return the x-coordinate where the class is created
+	 * 
 	 * @return the x-coordinate where the class is created
 	 */
 	private int getX() {
@@ -82,8 +97,9 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * The x-coordinate where the class needs to be set
-	 * @param 	x
-	 * 			the x-coordinate where the class needs to be set
+	 * 
+	 * @param x
+	 *            the x-coordinate where the class needs to be set
 	 */
 	private void setX(int x) {
 		this.x = x;
@@ -91,6 +107,7 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * Return the x-coordinate where the class is created
+	 * 
 	 * @return the x-coordinate where the class is created
 	 */
 	private int getY() {
@@ -99,11 +116,13 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * The y-coordinate where the class needs to be set
-	 * @param 	y
-	 * 			the y-coordinate where the class needs to be set
+	 * 
+	 * @param y
+	 *            the y-coordinate where the class needs to be set
 	 */
 	private void setY(int y) {
 		this.y = y;
 	}
+
 
 }

@@ -415,7 +415,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param c
 	 *            the child to be added
 	 */
-	final void addChild(VisualObject c) {
+	public final void addChild(VisualObject c) {
 		this.children.add(c);
 		c.addDeleteListener(new DeleteListener() {
 
@@ -435,11 +435,9 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param c
 	 *            the child to be removed
 	 */
-	final void removeChild(VisualObject c) {
+	public final void removeChild(VisualObject c) {
 		if (this.children.remove(c))
 			this.afterDeleteChild(c);
-		else
-			throw new IllegalArgumentException();
 	}
 
 	/**

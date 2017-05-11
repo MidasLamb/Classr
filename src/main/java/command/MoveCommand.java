@@ -44,4 +44,10 @@ public class MoveCommand extends Command {
 		return object;
 	}
 
+	@Override
+	void cleanup() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

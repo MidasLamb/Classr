@@ -1,6 +1,7 @@
 package visualobjects;
 
 import command.Controller;
+import command.MoveCommand;
 import gui.inputHandlers.clicks.Drag;
 
 public abstract class ResizableAndMovableVisualObject extends VisualObject {
@@ -52,6 +53,14 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	@Override
 	public void onDragEnd(Drag drag) {
 		super.onDragEnd(drag);
+		
+		if (isBeingMoved()){
+			int xDiff = drag.getEndX() - this.getX();
+			int yDiff = drag.getEndY() - this.getY();
+			getController().executeCommand(new MoveCommand(this, drag.getStartX(), drag.getStartY(),drag.getEndX() - xDiff, drag.getEndY() - yDiff));
+		} else if ( isBeingResized()){
+			
+		}
 		this.setBeingResizedFromBottom(false);
 		this.setBeingResizedFromLeft(false);
 		this.setBeingResizedFromRight(false);
@@ -75,9 +84,6 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 
 		this.setLastX(drag.getEndX());
 		this.setLastY(drag.getEndY());
-
-		int xDiff = drag.getEndX() - x;
-		int yDiff = drag.getEndY() - y;
 
 		int newX = this.getX();
 		int newY = this.getY();
