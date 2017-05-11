@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
+import command.Controller;
 import formBuilder.FormCreator;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -34,8 +35,8 @@ public class TextWrapper extends VisualObject {
 	 * @param 	object
 	 * 			the corresponding logicalObject
 	 */
-	public TextWrapper(int x, int y, int z, VisualObject parent, LogicalObject object) {
-		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent);
+	public TextWrapper(int x, int y, int z, VisualObject parent, LogicalObject object, Controller controller) {
+		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent, controller);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 	}
@@ -87,7 +88,7 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer());
+		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
 		FormCreator creator = new FormCreator(this.getLogicalObject(), b, false);
 		b.setContent(creator.getForm());
 		
@@ -97,7 +98,7 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to add new text
 	 */
 	public final void openNewForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer());
+		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
 		FormCreator creator = new FormCreator(this.getLogicalObject(), b, true);
 		b.setContent(creator.getForm());
 	}

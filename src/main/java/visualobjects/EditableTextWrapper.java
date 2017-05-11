@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.text.AttributedString;
 
+import command.Controller;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -42,8 +43,8 @@ public class EditableTextWrapper extends TextWrapper {
 	 * 			the logicalObject which is linked to this text
 	 */
 	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
-			LogicalObject object) {
-		super(x, y, z, parent, object);
+			LogicalObject object, Controller controller) {
+		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 		this.setStandardString(string);
@@ -73,8 +74,8 @@ public class EditableTextWrapper extends TextWrapper {
 	 * 			the maxWidth that this text may have
 	 */
 	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
-			LogicalObject object, int maxWidth) {
-		super(x, y, z, parent, object);
+			LogicalObject object, int maxWidth, Controller controller) {
+		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState(), maxWidth));
 		this.setStandardString(string);
@@ -95,8 +96,8 @@ public class EditableTextWrapper extends TextWrapper {
 	 * @param 	object
 	 * 			the logicalObject which is linked to this text
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, VisualObject parent, LogicalObject object) {
-		this(x, y, z, string, ".*", parent, object);
+	public EditableTextWrapper(int x, int y, int z, String string, VisualObject parent, LogicalObject object, Controller controller) {
+		this(x, y, z, string, ".*", parent, object, controller);
 	}
 
 	@Override

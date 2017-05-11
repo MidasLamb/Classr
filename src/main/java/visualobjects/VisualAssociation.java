@@ -4,6 +4,7 @@ import static main.Constants.Z_PADDING_BOX;
 
 import java.awt.Graphics;
 
+import command.Controller;
 import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.Association;
 
@@ -24,8 +25,8 @@ public class VisualAssociation extends VisualObject {
 	 * @param 	parent
 	 * 			The parent object of this VisualObject
 	 */
-	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent) {
-		super(0, 0, 0, 0, 0, parent);
+	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent, Controller controller) {
+		super(0, 0, 0, 0, 0, parent, controller);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
 		
@@ -34,7 +35,7 @@ public class VisualAssociation extends VisualObject {
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0,0,0,"associatie","^[a-z][a-zA-Z0-9_]*" , null, association), this, association);
+		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0,0,0,"associatie","^[a-z][a-zA-Z0-9_]*" , null, association, getController()), this, association, getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.text.addDeleteListener(this);
 	}

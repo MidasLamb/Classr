@@ -684,7 +684,7 @@ public class ContainerTest {
 		container.getChildren().get(0).delete();
 		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
-		Command command = new CreateAssociationCommand(class1, class2, container);
+		Command command = new CreateAssociationCommand(class1, class2, container, new Controller());
 		container.getController().executeCommand(command);
 		assertEquals(3, container.getChildren().size());
 	}
@@ -695,7 +695,7 @@ public class ContainerTest {
 		container.getChildren().get(0).delete();
 		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
-		Command command = new CreateAssociationCommand(class1, class2, container);
+		Command command = new CreateAssociationCommand(class1, class2, container, new Controller());
 		container.getController().executeCommand(command);
 		container.getController().undo();
 		assertEquals(2, container.getChildren().size());
@@ -707,7 +707,7 @@ public class ContainerTest {
 		container.getChildren().get(0).delete();
 		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
-		Command command = new CreateAssociationCommand(class1, class2, container);
+		Command command = new CreateAssociationCommand(class1, class2, container, new Controller());
 		container.getController().executeCommand(command);
 		container.getController().undo();
 		container.getController().redo();

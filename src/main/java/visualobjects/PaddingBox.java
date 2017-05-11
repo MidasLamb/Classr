@@ -6,6 +6,7 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
 
+import command.Controller;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
@@ -50,8 +51,8 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	 * 			the corresponding logicalObject
 	 */
 	public PaddingBox(int x, int y, int z, int width, int height, int paddingLeft, int paddingRight, int paddingTop,
-			int paddingBottom,T content, VisualObject parent, LogicalObject object) {
-		super(x, y, -10, width, height, parent);
+			int paddingBottom,T content, VisualObject parent, LogicalObject object, Controller controller) {
+		super(x, y, -10, width, height, parent, controller);
 		setLogicalObject(object);
 		this.setPaddingLeft(paddingLeft);
 		this.setPaddingRight(paddingRight);
@@ -90,8 +91,8 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	 * @param 	object
 	 * 			the corresponding logicalObject
 	 */
-	public PaddingBox(int x, int y, int z, int width, int height, int padding,T content, VisualObject parent, LogicalObject object) {
-		this(x, y, z, width, height, padding, padding, padding, padding,content, parent, object);
+	public PaddingBox(int x, int y, int z, int width, int height, int padding,T content, VisualObject parent, LogicalObject object, Controller controller) {
+		this(x, y, z, width, height, padding, padding, padding, padding,content, parent, object, controller);
 	}
 
 	/**
@@ -111,8 +112,8 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	 * @param 	object
 	 * 			the corresponding logicalObject
 	 */
-	public PaddingBox(int x, int y, int z, int padding,T content, VisualObject parent, LogicalObject object) {
-		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding, STANDARD_PADDING,content, parent, object);
+	public PaddingBox(int x, int y, int z, int padding,T content, VisualObject parent, LogicalObject object, Controller controller) {
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + padding + padding, STANDARD_PADDING,content, parent, object, controller);
 	}
 
 	/**
@@ -130,8 +131,8 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	 * @param 	object
 	 * 			the corresponding logicalObject
 	 */
-	public PaddingBox(int x, int y, int z,T content, VisualObject parent, LogicalObject object) {
-		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent, object);
+	public PaddingBox(int x, int y, int z,T content, VisualObject parent, LogicalObject object, Controller controller) {
+		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent, object, controller);
 	}
 
 	@Override

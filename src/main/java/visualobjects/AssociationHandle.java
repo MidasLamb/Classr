@@ -13,12 +13,10 @@ import gui.inputHandlers.clicks.Drag;
  */
 public class AssociationHandle extends VisualObject {
 	private final VisualClass parent;
-	private final Controller controller;
 
 	public AssociationHandle(int x, int y, int z, VisualClass parent, Controller controller) {
-		super(x, y, z, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent);
+		super(x, y, z, ASSOCIATIONHANDLE_SIZE, ASSOCIATIONHANDLE_SIZE, parent, controller);
 		this.parent = parent;
-		this.controller = controller;
 	}
 
 	@Override
@@ -45,19 +43,11 @@ public class AssociationHandle extends VisualObject {
 	 *            The other visualClass to which the link needs to be made
 	 */
 	private void createAssociation(VisualClass other) {
-		CreateAssociationCommand command = new CreateAssociationCommand(getParent(), other, getContainer());
+		CreateAssociationCommand command = new CreateAssociationCommand(getParent(), other, getContainer(), getController());
 		getController().executeCommand(command);
 	}
 	
 	VisualClass getParent(){
 		return parent;
-	}
-	
-	/**
-	 * Returns the controller
-	 * @return the controller
-	 */
-	private Controller getController() {
-		return controller;
 	}
 }

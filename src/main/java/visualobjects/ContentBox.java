@@ -3,6 +3,7 @@ package visualobjects;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import command.Controller;
 import gui.form.base.Form;
 import gui.form.base.FormContainer;
 import gui.inputHandlers.clicks.DoubleClick;
@@ -14,8 +15,8 @@ import interfaces.CanvasContent;
 public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer{
 	private CanvasContent content;
 
-	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent) {
-		super(x, y, z, width, height, parent);
+	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
+		super(x, y, z, width, height, parent, controller);
 
 	}
 

@@ -1,5 +1,6 @@
 package visualobjects;
 
+import command.Controller;
 import gui.inputHandlers.clicks.Drag;
 
 public abstract class ResizableAndMovableVisualObject extends VisualObject {
@@ -17,8 +18,8 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	private int lastX;
 	private int lastY;
 
-	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
-		super(x, y, z, width, height, parent);
+	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
+		super(x, y, z, width, height, parent, controller);
 		this.setBeingResizedFromBottom(false);
 		this.setBeingResizedFromLeft(false);
 		this.setBeingResizedFromRight(false);

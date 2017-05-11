@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
+import command.Controller;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -41,6 +42,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	public boolean isDeleted;
 	private Color color;
 	private Color forcedColor;
+	
+	private final Controller controller;
 
 	/**
 	 * Constructs a new visual object with the stated coordinates, width, height
@@ -60,7 +63,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param parent
 	 *            the parent visual object of this visual object
 	 */
-	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent) {
+	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
 		setChildren(new ArrayList<VisualObject>());
 		this.setDeleteListeners(new ArrayList<DeleteListener>());
 		this.setDeleted(false);
@@ -72,6 +75,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		setParent(parent);
 		if (parent != null)
 			parent.addChild(this);
+		this.controller = controller;
 	}
 
 	/**
@@ -610,6 +614,13 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 		return color;
 	}
 	
+	/**
+	 * Returns the controller
+	 * @return the controller
+	 */
+	Controller getController() {
+		return controller;
+	}
 	
 
 }

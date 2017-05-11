@@ -10,15 +10,18 @@ public class CreateAssociationCommand extends Command {
 	private final Container container;
 	private VisualAssociation createdAssociation;
 	
-	public CreateAssociationCommand(VisualClass class1, VisualClass class2, Container container) {
+	private final Controller controller;
+	
+	public CreateAssociationCommand(VisualClass class1, VisualClass class2, Container container, Controller controller) {
 		this.class1 = class1;
 		this.class2 = class2;
 		this.container = container;
+		this.controller = controller;
 	}
 
 	@Override
 	void execute() {
-		setCreatedAssociation(new VisualAssociation(getClass1(), getClass2(), getContainer()));
+		setCreatedAssociation(new VisualAssociation(getClass1(), getClass2(), getContainer(), this.controller));
 	}
 
 	@Override

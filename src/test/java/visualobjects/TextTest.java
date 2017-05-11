@@ -7,6 +7,7 @@ import static main.Constants.*;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
+import command.Controller;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import logicalobjects.LogicalClass;
@@ -17,7 +18,7 @@ public class TextTest {
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".+", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".+", c , r, new Controller());
 		assertEquals("", t.getCurrentDisplayedString());
 		t.setSelected(false);
 		assertEquals(DEFAULT_CLASS_NAME, t.getCurrentDisplayedString());
@@ -27,7 +28,7 @@ public class TextTest {
 	public void typeATest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
 		t.setSelected(true);
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
@@ -40,7 +41,7 @@ public class TextTest {
 	public void typeAaTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r, new Controller());
 		t.setSelected(true);
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
@@ -54,7 +55,7 @@ public class TextTest {
 	public void typeAaBackspaceTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
 		t.setSelected(true);
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
@@ -69,7 +70,7 @@ public class TextTest {
 	public void typeCapitalATest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r);
+		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
 		t.setSelected(true);
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));

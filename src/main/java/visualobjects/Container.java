@@ -18,8 +18,6 @@ import interfaces.CanvasContent;
 public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
-	private final Controller controller;
-
 
 	/**
 	 * 
@@ -35,9 +33,8 @@ public class Container extends VisualObject  implements CanvasContent{
 	 * 			the canvas window in this container
 	 */
 	public Container(int x, int y, int width, int height, MyCanvasWindow window) {
-		super(x, y, Integer.MIN_VALUE, width, height, null);
+		super(x, y, Integer.MIN_VALUE, width, height, null, new Controller());
 		this.setCanvasWindow(window);
-		controller = new Controller();
 		
 		this.createMenuBar();
 		this.createToolBar();
@@ -47,7 +44,7 @@ public class Container extends VisualObject  implements CanvasContent{
 		MenuBar menu = new MenuBar(0,0,100, 100);
 		menu.addMenuHeader(new MenuHeader("test", 0, 0, 100, 100));
 		
-		new FormObjectWrapper<MenuBar>(menu, 0,0, 0, 100,100, this);
+		new FormObjectWrapper<MenuBar>(menu, 0,0, 0, 100,100, this, getController());
 	}
 	
 	private void createToolBar(){
@@ -207,12 +204,4 @@ public class Container extends VisualObject  implements CanvasContent{
 			getSelected().handleFunctionKey(key);
 	}
 
-	/**
-	 * Returns the controller
-	 * @return the controller
-	 */
-	Controller getController() {
-		return controller;
-	}
-	
 }
