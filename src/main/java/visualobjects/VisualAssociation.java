@@ -43,6 +43,8 @@ public class VisualAssociation extends VisualObject {
 	@Override
 	public final void draw(Graphics g) {
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
+		getText().setX(getP1().getX() + (getP2().getX() - getP1().getX()) / 2);
+		getText().setY(getP1().getY() + (getP2().getY() - getP1().getY()) / 2);
 	}
 
 	@Override
