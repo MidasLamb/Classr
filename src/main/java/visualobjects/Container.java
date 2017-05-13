@@ -37,7 +37,7 @@ public class Container extends VisualObject  implements CanvasContent{
 		super(x, y, Integer.MIN_VALUE, width, height, null, new Controller());
 		this.setCanvasWindow(window);
 		
-		new BarBackend(this, getController());
+		BarBackend.initialize(this, getController());
 		this.createMenuBar();
 		this.createToolBar();
 	}

@@ -8,16 +8,12 @@ public class BarBackend {
 	private static Controller controller;
 	private static Container container;
 
-	public BarBackend(Container container, Controller controller) {
+	public static void initialize(Container container, Controller controller) {
 		BarBackend.setContainer(container);
 		BarBackend.setController(controller);
 	}
 	
 	
-	
-	
-	
-
 	private static final Controller getController() {
 		return controller;
 	}
