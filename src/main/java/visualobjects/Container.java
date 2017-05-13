@@ -3,6 +3,7 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
+import backend.BarBackend;
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
@@ -36,6 +37,7 @@ public class Container extends VisualObject  implements CanvasContent{
 		super(x, y, Integer.MIN_VALUE, width, height, null, new Controller());
 		this.setCanvasWindow(window);
 		
+		new BarBackend(this, getController());
 		this.createMenuBar();
 		this.createToolBar();
 	}
