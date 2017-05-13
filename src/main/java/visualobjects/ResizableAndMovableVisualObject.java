@@ -2,6 +2,7 @@ package visualobjects;
 
 import command.Controller;
 import command.MoveCommand;
+import command.ResizeCommand;
 import gui.inputHandlers.clicks.Drag;
 
 public abstract class ResizableAndMovableVisualObject extends VisualObject {
@@ -19,7 +20,13 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	private int lastX;
 	private int lastY;
 
-	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
+	private int resizeStartX;
+	private int resizeStartY;
+	private int resizeStartWidth;
+	private int resizeStartHeight;
+
+	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject parent,
+			Controller controller) {
 		super(x, y, z, width, height, parent, controller);
 		this.setBeingResizedFromBottom(false);
 		this.setBeingResizedFromLeft(false);
@@ -53,13 +60,16 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	@Override
 	public void onDragEnd(Drag drag) {
 		super.onDragEnd(drag);
-		
-		if (isBeingMoved()){
+
+		if (isBeingMoved()) {
 			int xDiff = drag.getEndX() - this.getX();
 			int yDiff = drag.getEndY() - this.getY();
-			getController().executeCommand(new MoveCommand(this, drag.getStartX(), drag.getStartY(),drag.getEndX() - xDiff, drag.getEndY() - yDiff));
-		} else if ( isBeingResized()){
-			
+			getController().executeCommand(new MoveCommand(this, drag.getStartX() - xDiff, drag.getStartY() - xDiff,
+					drag.getEndX() - xDiff, drag.getEndY() - yDiff));
+		} else if (isBeingResized()) {
+			getController()
+					.executeCommand(new ResizeCommand(this, getResizeStartX(), getResizeStartY(), getResizeStartWidth(),
+							getResizeStartHeight(), this.getX(), this.getY(), this.getWidth(), this.getHeight()));
 		}
 		this.setBeingResizedFromBottom(false);
 		this.setBeingResizedFromLeft(false);
@@ -72,6 +82,12 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	protected abstract boolean isInMoveActivator(int x, int y);
 
 	private void handleResize(Drag drag) {
+		if (!isBeingResized()) {
+			this.setResizeStartX(this.getX());
+			this.setResizeStartY(this.getY());
+			this.setResizeStartWidth(this.getWidth());
+			this.setResizeStartHeight(this.getHeight());
+		}
 
 		int x = drag.getStartX();
 		int y = drag.getStartY();
@@ -90,12 +106,10 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 		int newWidth = this.getWidth();
 		int newHeight = this.getHeight();
 
-
 		if ((isOnLeftSide(x, y) && !this.isBeingResized()) || isBeingResizedFromLeft()) {
 			newX = drag.getEndX();
 			newWidth = this.getWidth() + (this.getX() - drag.getEndX());
-	
-			
+
 			if (!this.isBeingResized())
 				this.setBeingResizedFromLeft(true);
 		}
@@ -108,7 +122,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 		}
 
 		if ((isOnRightSide(x, y) && !this.isBeingResized()) || isBeingResizedFromRight()) {
-			
+
 			newWidth = drag.getEndX() - this.getX();
 			if (!this.isBeingResized())
 				this.setBeingResizedFromRight(true);
@@ -116,7 +130,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 
 		if ((isOnBottomSide(x, y) && !this.isBeingResized()) || isBeingResizedFromBottom()) {
 			newHeight = drag.getEndY() - this.getY();
-			
+
 			if (!this.isBeingResized())
 				this.setBeingResizedFromBottom(true);
 		}
@@ -125,17 +139,18 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 				|| isBeingResizedFromTop()) {
 			this.setBeingResized(true);
 		}
-		
-		//Change children relative, because their position is relative to this.
+
+		// Change children relative, because their position is relative to this.
 		this.changeChildrenX(newX - this.getX());
 		this.changeChildrenY(newY - this.getY());
 
-		// Change yourself absolute, so resizing follows the mouse, not the change of the mouse.
+		// Change yourself absolute, so resizing follows the mouse, not the
+		// change of the mouse.
 		this.setX(newX);
 		this.setY(newY);
 		this.setWidth(newWidth);
 		this.setHeight(newHeight);
-		
+
 	}
 
 	private void handleMove(Drag drag) {
@@ -273,7 +288,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	void setWidth(int width) {
 		if (width >= this.getMinimumWidth())
 			super.setWidth(width);
-		else 
+		else
 			super.setWidth(this.getMinimumWidth());
 	}
 
@@ -281,15 +296,53 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 	void setHeight(int height) {
 		if (height >= this.getMinimumHeight())
 			super.setHeight(height);
-		else 
+		else
 			super.setHeight(this.getMinimumHeight());
 	}
 
-	public void moveTo(int x, int y){	
+	public void moveTo(int x, int y) {
 		this.changeChildrenX(x - this.getX());
 		this.changeChildrenY(y - this.getY());
-		
+
 		this.setX(x);
 		this.setY(y);
+	}
+
+	public void resizeTo(int x, int y, int width, int height) {
+		moveTo(x, y);
+		this.setWidth(width);
+		this.setHeight(height);
+	}
+
+	private final int getResizeStartX() {
+		return resizeStartX;
+	}
+
+	private final void setResizeStartX(int resizeStartX) {
+		this.resizeStartX = resizeStartX;
+	}
+
+	private final int getResizeStartY() {
+		return resizeStartY;
+	}
+
+	private final void setResizeStartY(int resizeStartY) {
+		this.resizeStartY = resizeStartY;
+	}
+
+	private final int getResizeStartWidth() {
+		return resizeStartWidth;
+	}
+
+	private final void setResizeStartWidth(int resizeStartWidth) {
+		this.resizeStartWidth = resizeStartWidth;
+	}
+
+	private final int getResizeStartHeight() {
+		return resizeStartHeight;
+	}
+
+	private final void setResizeStartHeight(int resizeStartHeight) {
+		this.resizeStartHeight = resizeStartHeight;
 	}
 }
