@@ -47,7 +47,8 @@ public class AssociationHandle extends VisualObject {
 		getController().executeCommand(command);
 	}
 	
-	VisualClass getParent(){
+	@Override
+	public VisualClass getParent(){
 		return parent;
 	}
 }
