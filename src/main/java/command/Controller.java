@@ -101,7 +101,7 @@ public class Controller {
 	 * @return returns true if the undo stack is not empty
 	 */
 	public boolean canUndo() {
-		return !this.getUndoStack().isEmpty();
+		return !getUndoStack().isEmpty();
 	}
 	
 	/**
@@ -109,6 +109,6 @@ public class Controller {
 	 * @return returns true if the redo stack is not empty
 	 */
 	public boolean canRedo() {
-		return !this.getRedoStack().isEmpty();
+		return !getRedoStack().isEmpty();
 	}
 }
