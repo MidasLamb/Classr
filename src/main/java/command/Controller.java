@@ -64,11 +64,7 @@ public class Controller {
 		if(getRedoStack().isEmpty()) return;
 		Command command = getRedoStack().pop();
 		getUndoStack().push(command);
-		try{
-			command.execute();
-		}catch(IllegalStateException e){
-			redo();
-		}
+		command.execute();
 	}
 	
 	/**
