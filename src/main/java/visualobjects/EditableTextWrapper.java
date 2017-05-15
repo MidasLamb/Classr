@@ -182,7 +182,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
 		this.getTextObject().handleAsciiKey(key);
-		if (this.satisfiesRegex())
+		if (this.getLogicalObject().canHaveAsName(this.getCurrentDisplayedString()))
 			this.save();
 	}
 
@@ -206,7 +206,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 			break;
 		case BACKSPACE:
 			this.getTextObject().handleFunctionKey(key);
-			if (this.satisfiesRegex())
+			if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
 				this.save();
 			break;
 		default:
