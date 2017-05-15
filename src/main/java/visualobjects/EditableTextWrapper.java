@@ -298,8 +298,6 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-		System.out.println("here");
-		System.out.println(Text.getStringFromAttributedString(getText()));
 		this.getTextObject().setAttributedText(getText());
 	}
 }
