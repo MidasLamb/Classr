@@ -3,6 +3,8 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
+import java.awt.Menu;
+
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
@@ -19,6 +21,7 @@ import interfaces.CanvasContent;
 public class Container extends VisualObject  implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
+	private MenuBar toolbar;
 
 	/**
 	 * 
@@ -57,6 +60,8 @@ public class Container extends VisualObject  implements CanvasContent{
 		int newPosX = x;
 		
 		MenuBar toolbar = new MenuBar(x, y, this.getWidth(), defaultHeight);
+		this.setToolbar(toolbar);
+		
 		toolbar.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
@@ -71,6 +76,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			protected void onAction() {
 				BarBackend.addAttribute();
 			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canAddAttribute();
+			}
 		});
 		
 		newPosX += defaultWidth;
@@ -79,6 +89,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			@Override
 			protected void onAction() {
 				BarBackend.addMethod();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canAddMethod();
 			}
 		});
 		
@@ -89,6 +104,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			protected void onAction() {
 				BarBackend.addParameter();
 			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canAddParameter();
+			}
 		});
 		
 		newPosX += defaultWidth;
@@ -97,6 +117,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			@Override
 			protected void onAction() {
 				BarBackend.editName();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canEditName();
 			}
 		});
 		
@@ -107,6 +132,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			protected void onAction() {
 				BarBackend.editName();
 			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canEditTripleDot();
+			}
 		});
 		
 		newPosX += defaultWidth;
@@ -115,6 +145,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			@Override
 			protected void onAction() {
 				BarBackend.delete();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canDelete();
 			}
 		});
 		
@@ -125,6 +160,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			protected void onAction() {
 				BarBackend.undo();
 			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canUndo();
+			}
 		});
 		
 		newPosX += defaultWidth;
@@ -133,6 +173,11 @@ public class Container extends VisualObject  implements CanvasContent{
 			@Override
 			protected void onAction() {
 				BarBackend.redo();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canRedo();
 			}
 		});
 		
@@ -154,6 +199,8 @@ public class Container extends VisualObject  implements CanvasContent{
 		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
+		
+		this.getToolbar().updateEnabled();
 	}
 
 	/**
@@ -291,5 +338,21 @@ public class Container extends VisualObject  implements CanvasContent{
 		if(getSelected() != null)
 			getSelected().handleFunctionKey(key);
 	}
+
+	/**
+	 * @return the toolbar
+	 */
+	private final MenuBar getToolbar() {
+		return toolbar;
+	}
+
+	/**
+	 * @param toolbar the toolbar to set
+	 */
+	private final void setToolbar(MenuBar toolbar) {
+		this.toolbar = toolbar;
+	}
+	
+	
 
 }

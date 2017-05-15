@@ -91,5 +91,9 @@ public class MenuHeader extends Button {
 		this.getDropDownMenu().toggle();
 		// draw listbox beneath with MenuItems
 	}
+	
+	protected boolean canBeEnabled() {
+		return true;
+	}
 
 }
