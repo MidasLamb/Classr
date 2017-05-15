@@ -270,6 +270,20 @@ public class ControllerTest {
 		controller.undoCommands(unexecuteList);
 		assertEquals("ab", text);
 	}
+	
+	@Test
+	public void undoCommandsTest6(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(new addACommand());
+		controller.executeCommand(addB);
+		ArrayList<Command> unexecuteList = new ArrayList<>();
+		unexecuteList.add(new addACommand());
+		controller.undoCommands(unexecuteList);
+		assertEquals("aab", text);
+	}
 
 	private class addACommand extends Command{
 
