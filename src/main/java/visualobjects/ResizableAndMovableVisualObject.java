@@ -4,8 +4,10 @@ import command.Controller;
 import command.MoveCommand;
 import command.ResizeCommand;
 import gui.inputHandlers.clicks.Drag;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 
-public abstract class ResizableAndMovableVisualObject extends VisualObject {
+public abstract class ResizableAndMovableVisualObject extends VisualObject implements UpdateListener {
 	private boolean beingResizedFromLeft;
 	private boolean beingResizedFromRight;
 	private boolean beingResizedFromTop;
@@ -64,7 +66,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 		if (isBeingMoved()) {
 			int xDiff = drag.getEndX() - this.getX();
 			int yDiff = drag.getEndY() - this.getY();
-			getController().executeCommand(new MoveCommand(this, drag.getStartX() - xDiff, drag.getStartY() - xDiff,
+			getController().executeCommand(new MoveCommand(this, drag.getStartX() - xDiff, drag.getStartY() - yDiff,
 					drag.getEndX() - xDiff, drag.getEndY() - yDiff));
 		} else if (isBeingResized()) {
 			getController()
@@ -347,5 +349,12 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject {
 
 	private final void setResizeStartHeight(int resizeStartHeight) {
 		this.resizeStartHeight = resizeStartHeight;
+	}
+	
+	@Override
+	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+		if (getMinimumWidth() > getWidth()){
+			this.setWidth(getMinimumWidth());
+		}
 	}
 }
