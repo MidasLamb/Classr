@@ -34,11 +34,16 @@ public class MenuBar extends FormObject {
 		this.menuHeaders = menuHeaders;
 	}
 
-	@Override
+	
 	void onClick(MouseClick click) {
-		// TODO Auto-generated method stub
-
+		for (MenuHeader header : this.getMenuHeaders()){
+			if (header.isIn(click.getX(),click.getY())){
+				header.onClick(click);
+			}
+		}
 	}
+	
+	
 
 	@Override
 	public

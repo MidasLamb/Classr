@@ -61,9 +61,21 @@ public class MenuHeader extends Button {
 		this.dropDownMenu = dropDownMenu;
 	}
 
+	boolean isIn(int x, int y) {
+		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
+				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
+	}
+	
+	/**
+	 * Checks if c is between a and b
+	 */
+	final static boolean isBetween(int a, int b, int c) {
+		return a <= c && b >= c;
+	}
+	
 	@Override
 	void onClick(MouseClick click) {
-		// TODO Auto-generated method stub
+		onAction();
 
 	}
 
@@ -75,7 +87,6 @@ public class MenuHeader extends Button {
 
 	@Override
 	protected void onAction() {
-		// TODO
 		this.getDropDownMenu().toggle();
 		// draw listbox beneath with MenuItems
 
