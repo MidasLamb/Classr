@@ -71,27 +71,27 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton publicButton = new DefaultRadioButton(group, 10, 110);
 		this.addFormObject(publicButton);
-		this.addLabelToRightOfLostFormObject("Public");
+		this.addLabelToRightOfLastFormObject("Public");
 		RadioButton privateButton = new DefaultRadioButton(group, 10, 160);
 		this.addFormObject(privateButton);
-		this.addLabelToRightOfLostFormObject("Private");
+		this.addLabelToRightOfLastFormObject("Private");
 		RadioButton packageButton = new DefaultRadioButton(group, 10, 210);
 		this.addFormObject(packageButton);
-		this.addLabelToRightOfLostFormObject("Package");
+		this.addLabelToRightOfLastFormObject("Package");
 		RadioButton protectedButton = new DefaultRadioButton(group, 10, 260);
 		this.addFormObject(protectedButton);
-		this.addLabelToRightOfLostFormObject("Protected");
+		this.addLabelToRightOfLastFormObject("Protected");
 		// Static checkbox
 		// ---------------------------------------------------------------
 		CheckBox staticCheckbox = new DefaultCheckBox(10, 310);
 		this.addFormObject(staticCheckbox);
-		this.addLabelToRightOfLostFormObject("Static");
+		this.addLabelToRightOfLastFormObject("Static");
 
 		// Abstract checkbox
 		// ----------------------------------------------------------
 		CheckBox abstractCheckbox = new DefaultCheckBox(10, 360);
 		this.addFormObject(abstractCheckbox);
-		this.addLabelToRightOfLostFormObject("Abstract");
+		this.addLabelToRightOfLastFormObject("Abstract");
 
 		// Parameters
 		// ---------------------------------------------------------------

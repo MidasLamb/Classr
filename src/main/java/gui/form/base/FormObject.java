@@ -98,7 +98,7 @@ public abstract class FormObject implements Comparable<FormObject> {
 			break;
 		case TOP:
 			x = this.getX();
-			y = this.getY() - STANDARD_TEXT_HEIGHT;
+			y = this.getY() - STANDARD_TEXT_HEIGHT - STANDARD_LABEL_PADDING;
 			break;
 		}
 		FormObject thisFormObject = this;

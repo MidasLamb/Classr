@@ -5,15 +5,19 @@ import java.util.Collection;
 
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 
 /**
  * A class of logical objects, involving a name and visual object
  * 
  * @author team 11
  */
-public abstract class LogicalObject implements DeleteSubject {
+public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
+	private Collection<UpdateListener> updateListeners = new ArrayList<UpdateListener>();
+	
 	private String name = "";
 
 	/**
@@ -36,6 +40,7 @@ public abstract class LogicalObject implements DeleteSubject {
 	public final void setName(String name) throws IllegalArgumentException {
 		if (this.canHaveAsName(name)) {
 			this.name = name;
+			this.notifyUpdateListeners();
 		} else {
 			throw new IllegalArgumentException("Invalid name. Check if the name is valid with canHaveAsName(name).");
 		}
@@ -48,12 +53,12 @@ public abstract class LogicalObject implements DeleteSubject {
 		if (!isDeleted()) {
 			setDeleted(true);
 			onDelete();
-			notifyListeners();
+			notifyDeleteListeners();
 		}
 	}
 
 	@Override
-	public void notifyListeners() {
+	public void notifyDeleteListeners() {
 		for (DeleteListener d : this.getDeleteListeners())
 			d.getNotifiedSubjectDeleted(this);
 	}
@@ -126,4 +131,30 @@ public abstract class LogicalObject implements DeleteSubject {
 	 * @return true if the string would be a valid name, false otherwise
 	 */
 	public abstract boolean canHaveAsName(String string);
+	
+	@Override
+	public final void addUpdateListener(UpdateListener Updatelistener) {
+		this.getUpdateListeners().add(Updatelistener);
+	}
+
+	@Override
+	public final void removeUpdateListener(UpdateListener Updatelistener) {
+		Collection<UpdateListener> cd = new ArrayList<UpdateListener>();
+		cd.remove(Updatelistener);
+		this.setUpdateListeners(cd);
+	}
+	
+	@Override
+	public void notifyUpdateListeners() {
+		for (UpdateListener d : this.getUpdateListeners())
+			d.getNotifiedOfUpdate(this);
+	}
+
+	private final Collection<UpdateListener> getUpdateListeners() {
+		return updateListeners;
+	}
+
+	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
+		this.updateListeners = updateListeners;
+	}
 }

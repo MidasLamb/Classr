@@ -21,5 +21,5 @@ public interface DeleteSubject {
 	/**
 	 * A function that notifies the deleteListeners
 	 */
-	public void notifyListeners();
+	public void notifyDeleteListeners();
 }
