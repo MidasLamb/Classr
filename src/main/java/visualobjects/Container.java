@@ -58,7 +58,7 @@ public class Container extends VisualObject  implements CanvasContent{
 			}
 		});
 		
-		new FormObjectWrapper<>(toolbar, 0, 0, 1, this.getWidth(), 100, this, getController());
+		new FormObjectWrapper<MenuBar>(toolbar, 0, 100, 0, this.getWidth(), 100, this, getController());
 	}
 
 	/**

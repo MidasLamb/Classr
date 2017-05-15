@@ -76,7 +76,6 @@ public class MenuHeader extends Button {
 	
 	@Override
 	public void onClick(MouseClick click) {
-		System.out.println("werkt");
 		onAction();
 
 	}
@@ -91,7 +90,6 @@ public class MenuHeader extends Button {
 	protected void onAction() {
 		this.getDropDownMenu().toggle();
 		// draw listbox beneath with MenuItems
-
 	}
 
 }
