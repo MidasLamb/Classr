@@ -91,6 +91,7 @@ public class TextWrapper extends VisualObject {
 		ContentBox b = new ContentBox(10, 10, 0, 200, 200, getContainer(), getController());
 		FormCreator creator = new FormCreator(getLogicalObject(), b, false);
 		b.setContent(creator.getForm());
+		getLogicalObject().addDeleteListener(b);
 	}
 	
 	/**
