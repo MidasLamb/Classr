@@ -95,4 +95,20 @@ public class Controller {
 	private void setRedoStack(Stack<Command> redoStack) {
 		this.redoStack = redoStack;
 	}
+	
+	/**
+	 * Returns whether an undo operation can be executed.
+	 * @return returns true if the undo stack is not empty
+	 */
+	public boolean canUndo() {
+		return !this.getUndoStack().isEmpty();
+	}
+	
+	/**
+	 * Returns whether an redo operation can be executed.
+	 * @return returns true if the redo stack is not empty
+	 */
+	public boolean canRedo() {
+		return !this.getRedoStack().isEmpty();
+	}
 }

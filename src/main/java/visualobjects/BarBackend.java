@@ -116,14 +116,20 @@ class BarBackend {
 		return false;
 	}
 	
+	/**
+	 * Indicates whether an undo operation can be executed.
+	 * @return Returns true if a undo operation can be executed, false otherwise.
+	 */
 	public static final boolean canUndo() {
-		// TODO
-		return false;
+		return getController().canUndo();
 	}
 	
+	/**
+	 * Indicates whether an redo operation can be executed.
+	 * @return Returns true if a redo operation can be executed, false otherwise.
+	 */
 	public static final boolean canRedo() {
-		// TODO
-		return false;
+		return getController().canRedo();
 	}
 
 }
