@@ -16,7 +16,7 @@ public class Toolbar extends FormObject {
 	}
 
 	@Override
-	void onClick(MouseClick click) {
+	public void onClick(MouseClick click) {
 		// TODO Auto-generated method stub
 
 	}

@@ -2,7 +2,7 @@ package visualobjects;
 
 import command.Controller;
 
-public class BarBackend {
+class BarBackend {
 	
 	private static Controller controller;
 	private static Container container;
@@ -30,5 +30,69 @@ public class BarBackend {
 		if (BarBackend.container == null)
 			BarBackend.container = container;
 	}
+	
+	public static final void createClass(){
+		//TODO
+	}
+	
+	public static final void addAttribute(){
+		//TODO
+	}
+	
+	public static final void addMethod(){
+		//TODO
+	}
+	
+	public static final void addParameter(){
+		//TODO
+	}
+	
+	public static final void editName(){
+		//TODO
+	}
+	
+	public static final void editTripleDot(){
+		//TODO
+	}
+	
+	public static final void delete(){
+		//TODO
+	}
+	
+	public static final void undo(){
+		getController().undo();
+	}
+	
+	public static final void redo(){
+		getController().redo();
+	}
+	
+	public static final boolean canAddAttribute(){
+		//TODO
+		return false;
+	}
+	
+	public static final boolean canAddMethod(){
+		//TODO
+		return false;
+	}
+	public static final boolean canAddParameter(){
+		//TODO
+		return false;
+	}
+	public static final boolean canEditName(){
+		//TODO
+		return false;
+	}
+	public static final boolean canEditTripleDot(){
+		//TODO
+		return false;
+	}
+	public static final boolean canDelete(){
+		//TODO
+		return false;
+	}
+	
+	
 
 }

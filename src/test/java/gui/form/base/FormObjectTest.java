@@ -18,7 +18,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -42,7 +42,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -66,7 +66,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -89,7 +89,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -112,7 +112,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -136,7 +136,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -160,7 +160,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -184,7 +184,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -208,7 +208,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -232,7 +232,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}
@@ -256,7 +256,7 @@ public class FormObjectTest {
 		FormObject dummy = new FormObject(10, 20, 30, 40) {
 
 			@Override
-			void onClick(MouseClick click) {
+			public void onClick(MouseClick click) {
 				clicked = true;
 
 			}

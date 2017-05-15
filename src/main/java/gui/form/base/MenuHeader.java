@@ -17,6 +17,7 @@ public class MenuHeader extends Button {
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
 		this.setMenuItems(new ArrayList<MenuItem>());
+		this.setDropDownMenu(new DropDownMenu<MenuItem>(0,0,0,0));
 	}
 
 	public MenuBar getMenuBar() {
@@ -74,7 +75,8 @@ public class MenuHeader extends Button {
 	}
 	
 	@Override
-	void onClick(MouseClick click) {
+	public void onClick(MouseClick click) {
+		System.out.println("werkt");
 		onAction();
 
 	}

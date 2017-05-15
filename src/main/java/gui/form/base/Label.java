@@ -31,7 +31,7 @@ public class Label extends FormObject {
 	}
 
 	@Override
-	void onClick(MouseClick click) {
+	public void onClick(MouseClick click) {
 		onAction();
 	}
 
