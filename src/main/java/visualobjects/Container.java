@@ -3,7 +3,6 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
-import backend.BarBackend;
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;

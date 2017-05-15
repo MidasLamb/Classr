@@ -98,9 +98,4 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
-	
-
 }

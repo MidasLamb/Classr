@@ -88,19 +88,20 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
-		FormCreator creator = new FormCreator(this.getLogicalObject(), b, false, getController());
+		ContentBox b = new ContentBox(10, 10, 0, 200, 200, getContainer(), getController());
+		FormCreator creator = new FormCreator(getLogicalObject(), b, false);
 		b.setContent(creator.getForm());
-		
+		getLogicalObject().addDeleteListener(b);
 	}
 	
 	/**
 	 * Opens the form to add new text
 	 */
 	public final void openNewForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
-		FormCreator creator = new FormCreator(this.getLogicalObject(), b, true, getController());
+		ContentBox b = new ContentBox(10, 10, 0, 200, 200, getContainer(), getController());
+		FormCreator creator = new FormCreator(getLogicalObject(), b, true);
 		b.setContent(creator.getForm());
+		getLogicalObject().addDeleteListener(b);
 	}
 	
 	@Override

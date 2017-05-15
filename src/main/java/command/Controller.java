@@ -24,8 +24,8 @@ public class Controller {
 		if(getUndoStack().contains(command) || getRedoStack().contains(command))
 			throw new IllegalArgumentException("You cannot run the same command twice");
 		emptyRedoStack();
-		command.execute();
-		getUndoStack().add(command);		
+		getUndoStack().add(command);
+		command.execute();		
 	}
 	
 	/**
@@ -53,8 +53,8 @@ public class Controller {
 	public void undo(){
 		if(getUndoStack().isEmpty()) return;
 		Command command = getUndoStack().pop();
-		command.unexecute();
 		getRedoStack().push(command);
+		command.unexecute();
 	}
 	
 	/**
@@ -63,8 +63,8 @@ public class Controller {
 	public void redo(){
 		if(getRedoStack().isEmpty()) return;
 		Command command = getRedoStack().pop();
-		command.execute();
 		getUndoStack().push(command);
+		command.execute();
 	}
 	
 	/**

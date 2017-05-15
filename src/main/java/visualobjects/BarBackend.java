@@ -1,7 +1,6 @@
-package backend;
+package visualobjects;
 
 import command.Controller;
-import visualobjects.Container;
 
 public class BarBackend {
 	
