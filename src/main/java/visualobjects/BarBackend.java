@@ -82,18 +82,26 @@ class BarBackend {
 	}
 
 	public static final boolean canAddAttribute() {
+		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
+			return false;
 		return getContainer().getSelected() instanceof VisualClass;
 	}
 
 	public static final boolean canAddMethod() {
+		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
+			return false;
 		return getContainer().getSelected() instanceof VisualClass;
 	}
 
 	public static final boolean canAddParameter() {
+		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
+			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof Method;
 	}
 
 	public static final boolean canEditName() {
+		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
+			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof Method
 				|| getContainer().getSelected().getLogicalObject() instanceof Attribute;
 	}
