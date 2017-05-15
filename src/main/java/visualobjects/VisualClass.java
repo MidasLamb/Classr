@@ -345,9 +345,25 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	@Override
 	public int getMinimumWidth() {
 		//TODO also implement for other stuff.
-		if( this.getName() != null)
-			return this.getName().getWidth();
-		return 0;
+		int minWidth = 0;
+		if (this.getLogicalObject() != null) {
+			for (VisualObject m : this.getMethods()) {
+				if (m.getWidth() > minWidth) {
+					minWidth = m.getWidth();
+				}
+			}
+			
+			for (VisualObject a : this.getAttributes()) {
+				if (a.getWidth() > minWidth) {
+					minWidth = a.getWidth();
+				}
+			}
+		}
+		if(this.getName() != null && this.getName().getWidth() > minWidth) {
+			minWidth = this.getName().getWidth();
+		}
+		
+		return minWidth;
 	}
 
 	@Override
