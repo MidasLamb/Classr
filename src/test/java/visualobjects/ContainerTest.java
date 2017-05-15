@@ -138,6 +138,7 @@ public class ContainerTest {
 	public void createClassTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		container.onDoubleClick(click1);
 		int count = 0;
@@ -153,6 +154,7 @@ public class ContainerTest {
 	public void createClassTest2(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		container.onDoubleClick(click1);
 		int x = 0, y = 0;
@@ -169,6 +171,7 @@ public class ContainerTest {
 	public void notCreateDoubleClassTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		SingleClick click2 = new SingleClick(1, 1);
 		container.onDoubleClick(click1);
@@ -186,7 +189,7 @@ public class ContainerTest {
 	public void clickOnClassTest1(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		SingleClick click2 = new SingleClick(1,1);
 		SingleClick click3 = new SingleClick(138,101);
@@ -207,7 +210,7 @@ public class ContainerTest {
 	public void clickOnClassTest2(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		SingleClick click2 = new SingleClick(1,1);
 		SingleClick click3 = new SingleClick(138,101);
@@ -235,6 +238,7 @@ public class ContainerTest {
 	public void createClassesTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		DoubleClick click2 = new DoubleClick(226,299);
 		DoubleClick click3 = new DoubleClick(700,400);
@@ -286,6 +290,7 @@ public class ContainerTest {
 	public void createAssTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		DoubleClick click2 = new DoubleClick(226,299);
 		Drag drag = new Drag(137,135, 225,333);
@@ -305,6 +310,7 @@ public class ContainerTest {
 	public void createTwoAssTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(138,101);
 		DoubleClick click2 = new DoubleClick(226,299);
 		DoubleClick click3 = new DoubleClick(500,500);
@@ -367,7 +373,7 @@ public class ContainerTest {
 	public void selectAssTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(103,108);
 		DoubleClick click2 = new DoubleClick(326,369);
 		Drag drag = new Drag(104,142,325,401);
@@ -385,6 +391,7 @@ public class ContainerTest {
 	public void deleteClassTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(303,326);
 		SingleClick click2 = new SingleClick(389,459);
 		SingleClick click3 = new SingleClick(329,343);
@@ -452,7 +459,7 @@ public class ContainerTest {
 		//verwijderen door klikken op ass zelf
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(103,108);
 		DoubleClick click2 = new DoubleClick(326,369);
 		Drag drag = new Drag(104,142,325,401);
@@ -528,12 +535,12 @@ public class ContainerTest {
 		//delete the ass by deleting the middle class that has a connection to both
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
-		DoubleClick click1 = new DoubleClick(129,94);
-		DoubleClick click2 = new DoubleClick(198,285);
-		DoubleClick click3 = new DoubleClick(462,259);
-		SingleClick click4 = new SingleClick(217,300); //Really close so it works with short names
-		Drag drag1 = new Drag(129,125, 198,318);
-		Drag drag2 = new Drag(198,318, 461,292);
+		DoubleClick click1 = new DoubleClick(154,301);
+		DoubleClick click2 = new DoubleClick(254,451);
+		DoubleClick click3 = new DoubleClick(41,481);
+		SingleClick click4 = new SingleClick(293,465); //Really close so it works with short names
+		Drag drag1 = new Drag(152,334,253,484);
+		Drag drag2 = new Drag(253,484,38,516);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onDoubleClick(click3);
@@ -553,7 +560,7 @@ public class ContainerTest {
 	@Test
 	public void createNewClassTest1(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		VisualClass klasse = container.createNewClass();
 		assertEquals(10, klasse.getX());
 	}
@@ -568,10 +575,10 @@ public class ContainerTest {
 	@Test
 	public void createNewClassTest3(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		container.createNewClass();
 		VisualClass klasse = container.createNewClass();
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		assertEquals(10+Constants.CLASS_WIDTH+1, klasse.getX());
 	}
 	
@@ -587,7 +594,7 @@ public class ContainerTest {
 	public void AddClassCommandTest1(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		assertEquals(1, container.getChildren().size());
@@ -597,7 +604,7 @@ public class ContainerTest {
 	public void AddClassCommandTest2(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.undo();
@@ -608,7 +615,7 @@ public class ContainerTest {
 	public void AddClassCommandTest3(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.undo();
@@ -620,7 +627,7 @@ public class ContainerTest {
 	public void AddClassCommandTest4(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
@@ -632,7 +639,7 @@ public class ContainerTest {
 	public void AddClassCommandTest5(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
@@ -645,7 +652,7 @@ public class ContainerTest {
 	public void AddClassCommandTest6(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
@@ -659,7 +666,7 @@ public class ContainerTest {
 	public void AddClassCommandTest7(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		Command c2 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
@@ -673,7 +680,7 @@ public class ContainerTest {
 	public void AddClassCommandTest8(){
 		Controller controller = new Controller();
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		Command c1 = new CreateClassCommand(container);
 		controller.executeCommand(c1);
 		controller.executeCommand(c1);
@@ -682,7 +689,7 @@ public class ContainerTest {
 	@Test
 	public void createAssTest1(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
 		Command command = new CreateAssociationCommand(class1, class2, container, new Controller());
@@ -693,7 +700,7 @@ public class ContainerTest {
 	@Test
 	public void createAssTest2(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
 		Command command = new CreateAssociationCommand(class1, class2, container, new Controller());
@@ -705,7 +712,7 @@ public class ContainerTest {
 	@Test
 	public void createAssTest3(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		container.getChildren().get(0).delete();
+		container.getChildren().forEach(x ->x.delete());
 		VisualClass class1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass class2 = new VisualClass(0, 0, 0, container, container.getController());
 		Command command = new CreateAssociationCommand(class1, class2, container, new Controller());

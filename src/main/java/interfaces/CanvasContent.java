@@ -16,4 +16,16 @@ public interface CanvasContent extends Typable, Clickable {
 	 * 			the graphics
 	 */
 	public void show(Graphics g);
+	
+	/**
+	 * Get the width of this content.
+	 * @return width of the content
+	 */
+	public int getWidth();
+	
+	/**
+	 * Get the height of this content.
+	 * @return height of the content.
+	 */
+	public int getHeight();
 }

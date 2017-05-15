@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
+import command.Command;
 import command.Controller;
+import command.DeleteVisualObjectCommand;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -386,7 +388,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the parent VisualObject of this VisualObject
 	 */
-	VisualObject getParent() {
+	public VisualObject getParent() {
 		return this.parent;
 	}
 
@@ -405,7 +407,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the list of children VisualObjects of this VisualObject
 	 */
-	final ArrayList<VisualObject> getChildren() {
+	public final ArrayList<VisualObject> getChildren() {
 		return new ArrayList<VisualObject>(this.children);
 	}
 
@@ -529,8 +531,10 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *            the function key to handle
 	 */
 	public void handleFunctionKey(FunctionKey key) {
-		if (key.getKeyType() == DELETE)
-			this.getLogicalObject().delete();
+		if (key.getKeyType() == DELETE){
+			Command command = new DeleteVisualObjectCommand(this);
+			getController().executeCommand(command);
+		}
 	};
 
 	/**
@@ -597,7 +601,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	}
 	
 	@Override
-	public void notifyListeners(){
+	public void notifyDeleteListeners(){
 		getDeleteListeners().forEach(x -> x.notify());
 	}
 

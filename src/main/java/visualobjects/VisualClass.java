@@ -54,6 +54,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		this.getName().addDeleteListener(this);
 		this.setAssociationHandle(
 				new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this, getController()));
+		getLogicalObject().addUpdateListener(this);
 	}
 
 	/**

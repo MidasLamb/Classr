@@ -14,6 +14,7 @@ import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
 import gui.text.state.PassiveState;
+import guiToApplication.FormWrapper;
 import logicalobjects.LogicalObject;
 
 /**
@@ -88,9 +89,9 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, getContainer(), getController());
-		FormCreator creator = new FormCreator(getLogicalObject(), b, false);
-		b.setContent(creator.getForm());
+		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController());
+		FormWrapper formWrapper = new FormCreator(getLogicalObject(), b, false).getForm();
+		b.setContent(formWrapper);
 		getLogicalObject().addDeleteListener(b);
 	}
 	
@@ -98,7 +99,7 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to add new text
 	 */
 	public final void openNewForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, getContainer(), getController());
+		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController());
 		FormCreator creator = new FormCreator(getLogicalObject(), b, true);
 		b.setContent(creator.getForm());
 		getLogicalObject().addDeleteListener(b);

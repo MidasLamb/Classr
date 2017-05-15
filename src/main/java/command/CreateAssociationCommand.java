@@ -21,12 +21,16 @@ public class CreateAssociationCommand extends Command {
 
 	@Override
 	void execute() {
-		setCreatedAssociation(new VisualAssociation(getClass1(), getClass2(), getContainer(), this.controller));
+		if(getCreatedAssociation() == null)
+			setCreatedAssociation(new VisualAssociation(getClass1(), 
+					getClass2(), getContainer(), getController()));
+		else
+			getCreatedAssociation().getParent().addChild(getCreatedAssociation());
 	}
 
 	@Override
 	void unexecute() {
-		getCreatedAssociation().delete();
+		getCreatedAssociation().getParent().removeChild(getCreatedAssociation());
 	}
 
 	/**
@@ -74,6 +78,14 @@ public class CreateAssociationCommand extends Command {
 	void cleanup() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * Returns the used controller
+	 * @return the used controller
+	 */
+	private Controller getController() {
+		return controller;
 	}
 
 }

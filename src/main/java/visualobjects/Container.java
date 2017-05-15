@@ -3,6 +3,10 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
+/*<<<<<<< HEAD
+=======
+import java.awt.Menu;
+>>>>>>> branch 'master' of https://github.com/MidasLamb/Classr.git*/
 
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
@@ -19,9 +23,10 @@ import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 import interfaces.CanvasContent;
 
-public class Container extends VisualObject  implements CanvasContent{
+public class Container extends VisualObject implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
+	private MenuBar toolbar;
 
 	/**
 	 * 
@@ -41,37 +46,157 @@ public class Container extends VisualObject  implements CanvasContent{
 		this.setCanvasWindow(window);
 		
 		BarBackend.initialize(this, getController());
-		this.createMenuBar();
 		this.createToolBar();
+		this.createMenuBar();
 	}
 	
 	private void createMenuBar(){
-		MenuBar menu = new MenuBar(0,0,100, 100);
-		MenuHeader header = new MenuHeader("test", 0, 0, 100, 100);
+		MenuBar menu = new MenuBar(0,30,500, 30);
+		MenuHeader header = new MenuHeader("testheader", 0, 30, 100, 30);
 		for (int i = 0; i < 15;i++){
-			MenuItem item = new MenuItem(0,i+1,100,0);
+			MenuItem item = new MenuItem(0,i+31,100,0);
 			item.setName("testitem"+i);
 			header.getDropDownMenu().addMenuItem(item);
 		}
 				
 		menu.addMenuHeader(header);
-		new FormObjectWrapper<MenuBar>(menu, 0,0, 0, 100,100, this, getController());
+		new FormObjectWrapper<MenuBar>(menu, 0,30, 0, 500,30, this, getController());
 		
 		DropDownMenu<MenuItem> dd = header.getDropDownMenu();
-		new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,100,0,100,238, this, getController());
+		new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,60,0,100,238, this, getController());
 		
 	}
 	
 	private void createToolBar(){
-		MenuBar toolbar = new MenuBar(0, 100, this.getWidth(), 50);
-		toolbar.addMenuHeader(new MenuHeader("YOLO", 0, 100, 50, 50) {
+		int defaultHeight = 30;
+		int x = 0;
+		int y = 0;
+		int defaultWidth = 100;
+		int newPosX = x;
+		
+		MenuBar toolbar = new MenuBar(x, y, this.getWidth(), defaultHeight);
+		this.setToolbar(toolbar);
+		
+		toolbar.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				System.out.println("Clicked yolo");
+				BarBackend.createClass();
 			}
 		});
 		
-		new FormObjectWrapper<>(toolbar, 0, 0, 1, this.getWidth(), 100, this, getController());
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Add Attribute", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.addAttribute();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canAddAttribute();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Add Method", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.addMethod();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canAddMethod();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Add Parameter", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.addParameter();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canAddParameter();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Edit Name", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.editName();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canEditName();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Edit...", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.editName();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canEditTripleDot();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Delete", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.delete();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canDelete();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Undo", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.undo();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canUndo();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Redo", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.redo();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return BarBackend.canRedo();
+			}
+		});
+		
+		new FormObjectWrapper<MenuBar>(toolbar, x, y, 0, 100000, defaultHeight, this, getController());
 	}
 
 	/**
@@ -89,6 +214,8 @@ public class Container extends VisualObject  implements CanvasContent{
 		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
+		
+		this.getToolbar().updateEnabled();
 	}
 
 	/**
@@ -225,6 +352,30 @@ public class Container extends VisualObject  implements CanvasContent{
 			getController().redo();
 		if(getSelected() != null)
 			getSelected().handleFunctionKey(key);
+	}
+
+	/**
+	 * @return the toolbar
+	 */
+	private final MenuBar getToolbar() {
+		return toolbar;
+	}
+
+	/**
+	 * @param toolbar the toolbar to set
+	 */
+	private final void setToolbar(MenuBar toolbar) {
+		this.toolbar = toolbar;
+	}
+	
+	@Override
+	public int getWidth() {
+		return super.getWidth();
+	}
+	
+	@Override
+	public int getHeight() {
+		return super.getHeight();
 	}
 
 }

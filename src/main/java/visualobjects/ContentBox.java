@@ -57,6 +57,8 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 
 	public final void setContent(CanvasContent content) {
 		this.content = content;
+		this.setWidth(content.getWidth());
+		this.setHeight(content.getHeight());
 	}
 
 	@Override

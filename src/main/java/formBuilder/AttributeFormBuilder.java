@@ -8,6 +8,7 @@ import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
+import gui.form.base.Label;
 import gui.form.utility.DefaultCheckBox;
 import gui.form.utility.DefaultRadioButton;
 import gui.form.utility.FormBuilder;
@@ -43,40 +44,42 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.formContainer));
+		this.setForm(new FormWrapper(270, 180, this.formContainer));
 		RegexCheckedInputBox attrName = new RegexCheckedInputBox(getAttribute().getName(), "^[a-z][a-zA-Z0-9_]*", 10,
-				10, 100, 16);
+				26, 100, 16);
 		this.addFormObject(attrName);
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "^[a-z][a-zA-Z0-9_]*", 10,
-				100, 100, 16);
+		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "^[a-z][a-zA-Z0-9_]*", 150,
+				26, 100, 16);
 		this.addFormObject(attrType);
 		this.addLabelToTopOfLastFormObject("Attribute type");
 
 		// Radio buttons for visibility.
+		this.addFormObject(new Label("Visibility", 10, 65));
+		
 		RadioButtonGroup group = new RadioButtonGroup();
-		RadioButton publicButton = new DefaultRadioButton(group, 10, 250);
+		RadioButton publicButton = new DefaultRadioButton(group, 10, 90);
 		this.addFormObject(publicButton);
-		this.addLabelToRightOfLostFormObject("Public");
-		RadioButton privateButton = new DefaultRadioButton(group, 10, 300);
+		this.addLabelToRightOfLastFormObject("Public");
+		RadioButton privateButton = new DefaultRadioButton(group, 10, 110);
 		this.addFormObject(privateButton);
-		this.addLabelToRightOfLostFormObject("Private");
-		RadioButton packageButton = new DefaultRadioButton(group, 10, 350);
+		this.addLabelToRightOfLastFormObject("Private");
+		RadioButton packageButton = new DefaultRadioButton(group, 10, 130);
 		this.addFormObject(packageButton);
-		this.addLabelToRightOfLostFormObject("Package");
-		RadioButton protectedButton = new DefaultRadioButton(group, 10, 400);
+		this.addLabelToRightOfLastFormObject("Package");
+		RadioButton protectedButton = new DefaultRadioButton(group, 10, 150);
 		this.addFormObject(protectedButton);
-		this.addLabelToRightOfLostFormObject("Protected");
+		this.addLabelToRightOfLastFormObject("Protected");
 
 		// Static checkbox
-
-		CheckBox staticCheckbox = new DefaultCheckBox(10, 450);
+		this.addFormObject(new Label("Modifiers", 150, 65));
+		CheckBox staticCheckbox = new DefaultCheckBox(150, 90);
 
 		this.addFormObject(staticCheckbox);
-		this.addLabelToRightOfLostFormObject("Static");
+		this.addLabelToRightOfLastFormObject("Static");
 
-		OkButton ok = new OkButton(10, 500, 50, 50) {
+		OkButton ok = new OkButton(150, 120, 50, 50) {
 
 			@Override
 			protected void onOk() {
@@ -103,7 +106,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(ok);
 
-		Button cancel = new Button("Cancel", 110, 500, 50, 50) {
+		Button cancel = new Button("Cancel", 210, 120, 50, 50) {
 
 			@Override
 			protected void onAction() {
