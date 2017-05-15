@@ -57,14 +57,14 @@ public class VisualAssociation extends VisualObject {
 	/**
 	 * @return the first visualClass from this association
 	 */
-	private VisualClass getP1() {
+	public VisualClass getP1() {
 		return p1;
 	}
 
 	/**
 	 * @return the second VisualClass from this association
 	 */
-	private VisualClass getP2() {
+	public VisualClass getP2() {
 		return p2;
 	}
 
