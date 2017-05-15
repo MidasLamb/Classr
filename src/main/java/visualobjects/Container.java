@@ -10,6 +10,7 @@ import command.CreateClassCommand;
 import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import gui.inputHandlers.clicks.DoubleClick;
+import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -50,7 +51,15 @@ public class Container extends VisualObject  implements CanvasContent{
 	}
 	
 	private void createToolBar(){
+		MenuBar toolbar = new MenuBar(0, 100, this.getWidth(), 50);
+		toolbar.addMenuHeader(new MenuHeader("YOLO", 0, 100, 50, 50) {
+			@Override
+			protected void onAction() {
+				System.out.println("Clicked yolo");
+			}
+		});
 		
+		new FormObjectWrapper<>(toolbar, 0, 0, 1, this.getWidth(), 100, this, getController());
 	}
 
 	/**
