@@ -89,7 +89,7 @@ public class TextWrapper extends VisualObject {
 	 */
 	public final void openForm(){
 		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
-		FormCreator creator = new FormCreator(this.getLogicalObject(), b, false);
+		FormCreator creator = new FormCreator(this.getLogicalObject(), b, false, getController());
 		b.setContent(creator.getForm());
 		
 	}
@@ -99,7 +99,7 @@ public class TextWrapper extends VisualObject {
 	 */
 	public final void openNewForm(){
 		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
-		FormCreator creator = new FormCreator(this.getLogicalObject(), b, true);
+		FormCreator creator = new FormCreator(this.getLogicalObject(), b, true, getController());
 		b.setContent(creator.getForm());
 	}
 	

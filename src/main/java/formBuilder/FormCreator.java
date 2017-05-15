@@ -1,6 +1,6 @@
 package formBuilder;
 
-import canvaswindow.MyCanvasWindow;
+import command.Controller;
 import gui.form.base.FormContainer;
 import gui.form.utility.FormBuilder;
 import guiToApplication.FormWrapper;
@@ -17,9 +17,11 @@ import logicalobjects.Parameter;
  */
 public class FormCreator implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
-	private FormContainer formContainer;
-	private boolean isNew;
-
+	private final FormContainer formContainer;
+	private final boolean isNew;
+	private final Controller controller;
+	
+	
 	/**
 	 * Creates a new FormCreator
 	 * 
@@ -28,10 +30,12 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public FormCreator(LogicalObject o, FormContainer formContainer, boolean isNew) {
-		this.setFormContainer(formContainer);
-		this.setNew(isNew);
+	public FormCreator(LogicalObject o, FormContainer formContainer, 
+			boolean isNew, Controller controller) {
+		this.formContainer = formContainer;
+		this.isNew = isNew;
 		this.startVisit(o);
+		this.controller = controller;
 	}
 
 	@Override
@@ -58,20 +62,29 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 		return null;
 	}
 
+	/**
+	 * To get the current form builder
+	 * @return the current form builder
+	 */
 	private FormBuilder<FormWrapper> getFormBuilder() {
 		return formBuilder;
 	}
 
+	/**
+	 * Sets the current form builder
+	 * @param 	formBuilder
+	 * 			the new form builder
+	 */
 	private void setFormBuilder(FormBuilder<FormWrapper> formBuilder) {
 		this.formBuilder = formBuilder;
 	}
 
+	/**
+	 * Returns the current form container
+	 * @return the form container
+	 */
 	private FormContainer getFormContainer() {
 		return formContainer;
-	}
-
-	private void setFormContainer(FormContainer formContainer) {
-		this.formContainer = formContainer;
 	}
 
 	/**
@@ -88,12 +101,20 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 		return null;
 	}
 
+	/**
+	 * Returns is this is new
+	 * @return	true if this is new, false otherwise
+	 */
 	private final boolean isNew() {
 		return isNew;
 	}
-
-	private final void setNew(boolean isNew) {
-		this.isNew = isNew;
+	
+	/**
+	 * Returns the controller
+	 * @return the used controller
+	 */
+	private Controller getController() {
+		return controller;
 	}
 
 }
