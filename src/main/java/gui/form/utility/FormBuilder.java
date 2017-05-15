@@ -47,7 +47,7 @@ public abstract class FormBuilder<T extends Form> {
 	 * @param s
 	 *            text that should be displayed in the Label
 	 */
-	protected final void addLabelToRightOfLostFormObject(String s) {
+	protected final void addLabelToRightOfLastFormObject(String s) {
 		Label l = this.getLastAddedFormObject().createLabel(FormObject.LabelPosition.RIGHT, s);
 		this.addFormObject(l);
 	}

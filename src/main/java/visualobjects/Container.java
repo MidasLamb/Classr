@@ -18,7 +18,7 @@ import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 import interfaces.CanvasContent;
 
-public class Container extends VisualObject  implements CanvasContent{
+public class Container extends VisualObject implements CanvasContent{
 	private VisualObject selected;
 	private MyCanvasWindow window;
 	private MenuBar toolbar;
@@ -353,6 +353,14 @@ public class Container extends VisualObject  implements CanvasContent{
 		this.toolbar = toolbar;
 	}
 	
+	@Override
+	public int getWidth() {
+		return super.getWidth();
+	}
 	
+	@Override
+	public int getHeight() {
+		return super.getHeight();
+	}
 
 }
