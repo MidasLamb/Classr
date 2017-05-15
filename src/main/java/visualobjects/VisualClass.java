@@ -25,50 +25,47 @@ import logicalobjects.Method;
 public class VisualClass extends ResizableAndMovableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
 	private AssociationHandle associationHandle;
+
 	/**
 	 * 
-	 * @param 	x
-	 * 			the x-coordinate
-	 * @param 	y
-	 * 			the y-coordinate
-	 * @param 	z
-	 * 			the z-coordinate
-	 * @param 	width
-	 * 			the width
-	 * @param 	height
-	 * 			the height
-	 * @param 	parent
-	 * 			the parent of this VisualObject
+	 * @param x
+	 *            the x-coordinate
+	 * @param y
+	 *            the y-coordinate
+	 * @param z
+	 *            the z-coordinate
+	 * @param width
+	 *            the width
+	 * @param height
+	 *            the height
+	 * @param parent
+	 *            the parent of this VisualObject
 	 */
 	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
 		super(x, y, z, width, height, parent, controller);
 		setLogicalObject(new LogicalClass());
 		// TODO clean up this -1 to indicate nog max width exists.
-		this.setName(
-				new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, 
-						new EditableTextWrapper(0, 0, 0, "Klasse","^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), -1, getController())
-						, this, getLogicalObject(), getController()
-				)
-				);
+		this.setName(new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, new EditableTextWrapper(0, 0, 0, "Klasse",
+				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), -1, getController()), this, getLogicalObject(),
+				getController()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
 		this.updateDimensions();
 
 		this.getName().addDeleteListener(this);
-		this.setAssociationHandle(new AssociationHandle(
-				this.getX() - 5, this.getY() + this.getHeight() / 2,
-				0, this, getController()));
+		this.setAssociationHandle(
+				new AssociationHandle(this.getX() - 5, this.getY() + this.getHeight() / 2, 0, this, getController()));
 	}
 
 	/**
 	 * 
-	 * @param 	x
-	 * 			the x-coordinate
-	 * @param 	y
-	 * 			the y-coordinate
-	 * @param 	z
-	 * 			the z-coordinate
-	 * @param 	parent
-	 * 			the parent of this VisualObject
+	 * @param x
+	 *            the x-coordinate
+	 * @param y
+	 *            the y-coordinate
+	 * @param z
+	 *            the z-coordinate
+	 * @param parent
+	 *            the parent of this VisualObject
 	 */
 	public VisualClass(int x, int y, int z, VisualObject parent, Controller controller) {
 		this(x, y, z, CLASS_WIDTH, CLASS_BODY_INITIAL_HEIGHT, parent, controller);
@@ -121,7 +118,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		}
 
 		y += CLASS_WHITE_SPACE;
-		
+
 		if (y - this.getY() > this.getHeight()) {
 			this.setHeight(y - this.getY());
 		}
@@ -189,10 +186,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 */
 	private Collection<VisualObject> getAttributes() {
 		Collection<Attribute> attr = ((LogicalClass) this.getLogicalObject()).getAttributes();
-		return getChildren()
-				.stream()
-				.filter(x -> attr.contains(x.getLogicalObject()))
-				.collect(Collectors.toList());
+		return getChildren().stream().filter(x -> attr.contains(x.getLogicalObject())).collect(Collectors.toList());
 	}
 
 	/**
@@ -234,10 +228,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 */
 	private Collection<VisualObject> getMethods() {
 		Collection<Method> meth = ((LogicalClass) this.getLogicalObject()).getMethods();
-		return getChildren()
-				.stream()
-				.filter(x -> meth.contains(x.getLogicalObject()))
-				.collect(Collectors.toList());
+		return getChildren().stream().filter(x -> meth.contains(x.getLogicalObject())).collect(Collectors.toList());
 	}
 
 	@Override
@@ -264,8 +255,8 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 	/**
 	 * 
-	 * @param 	object
-	 * 			the logicalObject to which this VisualObject is associated
+	 * @param object
+	 *            the logicalObject to which this VisualObject is associated
 	 */
 	public final void setLogicalObject(LogicalClass object) {
 		super.setLogicalObject(object);
@@ -294,9 +285,9 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 	/**
 	 * 
-	 * @param 	paddingBox
-	 * 			the new paddingBox inside which 
-	 * 				the className needs to be stored
+	 * @param paddingBox
+	 *            the new paddingBox inside which the className needs to be
+	 *            stored
 	 */
 	private void setName(PaddingBox<EditableTextWrapper> paddingBox) {
 		this.name = paddingBox;
@@ -319,10 +310,10 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		}
 
 	}
-	
+
 	@Override
 	public boolean isOnLeftSide(int x, int y) {
-		if (!this.getAssociationHandle().isIn(x, y)){
+		if (!this.getAssociationHandle().isIn(x, y)) {
 			return super.isOnLeftSide(x, y);
 		} else {
 			return false;
@@ -344,7 +335,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 	@Override
 	public int getMinimumWidth() {
-		//TODO also implement for other stuff.
+		// TODO also implement for other stuff.
 		int minWidth = 0;
 		if (this.getLogicalObject() != null) {
 			for (VisualObject m : this.getMethods()) {
@@ -352,26 +343,38 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 					minWidth = m.getWidth();
 				}
 			}
-			
+
 			for (VisualObject a : this.getAttributes()) {
 				if (a.getWidth() > minWidth) {
 					minWidth = a.getWidth();
 				}
 			}
 		}
-		if(this.getName() != null && this.getName().getWidth() > minWidth) {
+		if (this.getName() != null && this.getName().getWidth() > minWidth) {
 			minWidth = this.getName().getWidth();
 		}
-		
+
 		return minWidth;
 	}
 
 	@Override
 	public int getMinimumHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		int y = 0;
+		if (this.getName() != null)
+			y += this.getName().getHeight();
+
+		if (this.getLogicalObject() != null) {
+			for (VisualObject t : this.getAttributes()) {
+				y += t.getHeight();
+			}
+			for (VisualObject t : this.getMethods()) {
+				y += t.getHeight();
+			}
+		}
+
+		y += CLASS_WHITE_SPACE;
+		y += CLASS_WHITE_SPACE;
+		return y;
 	}
-	
-	
 
 }
