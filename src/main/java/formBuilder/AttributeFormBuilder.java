@@ -73,7 +73,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		this.addLabelToRightOfLastFormObject("Protected");
 
 		// Static checkbox
-		this.addFormObject(new Label("Options", 150, 65));
+		this.addFormObject(new Label("Modifiers", 150, 65));
 		CheckBox staticCheckbox = new DefaultCheckBox(150, 90);
 
 		this.addFormObject(staticCheckbox);

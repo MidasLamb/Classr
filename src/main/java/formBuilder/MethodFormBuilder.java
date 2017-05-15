@@ -10,6 +10,7 @@ import canvaswindow.MyCanvasWindow;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
+import gui.form.base.Label;
 import gui.form.base.ListBox;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
@@ -53,14 +54,14 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.container));
+		this.setForm(new FormWrapper(330, 330, this.container));
 
-		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10,
+		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 26,
 				100, 16);
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), "^[a-z][a-zA-Z0-9_]*", 10, 60,
+		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), "^[a-z][a-zA-Z0-9_]*", 150, 26,
 				100, 16);
 
 		this.addFormObject(methType);
@@ -68,34 +69,36 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Radio buttons for visibility.
 		// ---------------------------------------------------------------
+		this.addFormObject(new Label("Visibility", 10, 65));
 		RadioButtonGroup group = new RadioButtonGroup();
-		RadioButton publicButton = new DefaultRadioButton(group, 10, 110);
+		RadioButton publicButton = new DefaultRadioButton(group, 10, 90);
 		this.addFormObject(publicButton);
 		this.addLabelToRightOfLastFormObject("Public");
-		RadioButton privateButton = new DefaultRadioButton(group, 10, 160);
+		RadioButton privateButton = new DefaultRadioButton(group, 10, 110);
 		this.addFormObject(privateButton);
 		this.addLabelToRightOfLastFormObject("Private");
-		RadioButton packageButton = new DefaultRadioButton(group, 10, 210);
+		RadioButton packageButton = new DefaultRadioButton(group, 10, 130);
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLastFormObject("Package");
-		RadioButton protectedButton = new DefaultRadioButton(group, 10, 260);
+		RadioButton protectedButton = new DefaultRadioButton(group, 10, 150);
 		this.addFormObject(protectedButton);
 		this.addLabelToRightOfLastFormObject("Protected");
 		// Static checkbox
 		// ---------------------------------------------------------------
-		CheckBox staticCheckbox = new DefaultCheckBox(10, 310);
+		this.addFormObject(new Label("Modifiers", 150, 65));
+		CheckBox staticCheckbox = new DefaultCheckBox(150, 90);
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLastFormObject("Static");
 
 		// Abstract checkbox
 		// ----------------------------------------------------------
-		CheckBox abstractCheckbox = new DefaultCheckBox(10, 360);
+		CheckBox abstractCheckbox = new DefaultCheckBox(150, 110);
 		this.addFormObject(abstractCheckbox);
 		this.addLabelToRightOfLastFormObject("Abstract");
 
 		// Parameters
 		// ---------------------------------------------------------------
-		parameters = new ListBox<ParameterWrapper>(10, 450, 100, 100) {
+		parameters = new ListBox<ParameterWrapper>(10, 200, 100, 100) {
 
 			@Override
 			protected void onAction() {
@@ -107,7 +110,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(parameters);
 		this.addLabelToTopOfLastFormObject("Parameters");
 
-		Button addParameter = new Button("Add", 150, 450, 50, 50) {
+		Button addParameter = new Button("Add", 150, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -129,7 +132,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(addParameter);
 
-		editParameter = new Button("Edit", 250, 450, 50, 50) {
+		editParameter = new Button("Edit", 210, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -151,7 +154,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(editParameter);
 
-		removeParameter = new Button("Remove", 350, 450, 50, 50) {
+		removeParameter = new Button("Remove", 270, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -165,7 +168,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// OK and cancel
 		// ---------------------------------------------------------------
-		OkButton ok = new OkButton(10, 500, 50, 50) {
+		OkButton ok = new OkButton(210, 270, 50, 50) {
 
 			@Override
 			protected void onOk() {
@@ -201,7 +204,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(ok);
 
-		Button cancel = new Button("Cancel", 110, 500, 50, 50) {
+		Button cancel = new Button("Cancel", 270, 270, 50, 50) {
 
 			@Override
 			protected void onAction() {
