@@ -16,7 +16,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	boolean isInElement(ListBoxElement<T> e, int clickX, int clickY, int elementX, int elementY) {
-		System.out.println(this.getWidth()+" "+e.getHeight());
 		boolean isInHorizontal = clickX >= elementX && clickX < elementX + this.getWidth();
 		boolean isInVertical = clickY >= elementY && clickY < elementY + e.getHeight();
 		return isInHorizontal && isInVertical;

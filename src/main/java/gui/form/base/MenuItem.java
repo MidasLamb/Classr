@@ -98,12 +98,6 @@ public class MenuItem extends FormObject implements Displayable, Clickable {
 
 
 	boolean isIn(int x, int y) {
-		System.out.println("my name is: "+name);
-		System.out.println("my pos is: "+this.getX()+" "+this.getY());
-		System.out.println("I check for: "+x+" "+y);
-		boolean bool = isBetween(this.getX(), this.getX() + this.getWidth(), x)
-				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
-		System.out.println("result: "+bool);
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}

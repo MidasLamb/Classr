@@ -88,53 +88,14 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int y = getY();
 			int sumOfVerticalMovement = 0;
 			for (ListBoxElement<MenuItem> e : getListboxElements()) {
-				System.out.println(click.getX()+" "+click.getY()+" "+x+" "+y+" "+sumOfVerticalMovement);
 				boolean isin = isInElement(e, click.getX(), click.getY(), x, y + sumOfVerticalMovement);
-				System.out.println(isin);
 				if (isin) {
-					//this.setSelectedElement(e);
-					//e.setFocused(true);
 					e.obj.onClick(click);
 					return;
 				}
 				sumOfVerticalMovement += e.getHeight();
 			}
-			//this.setSelectedElement(null);
-			//this.onAction();
 		}
-		
-		/*@Override
-		void onClick(MouseClick click) {
-			int x = getX();
-			int y = getY();
-			int sumOfVerticalMovements = 0;
-			for (MenuItem item : getElements()){
-				if (item.isIn(click.getX(),click.getY()-100)){
-					item.onClick(click);
-					return;
-				}
-				sumOfVerticalMovements += item.getHeight();
-			}
-			
-			System.out.println("clicking the enabled");*/
-			
-			/*// Check on which element there has been clicked.
-		int x = this.getX();
-		int y = this.getY();
-		int sumOfVerticalMovement = 0;
-		for (ListBoxElement<T> e : this.getListboxElements()) {
-			boolean isin = isInElement(e, click.getX(), click.getY(), x, y + sumOfVerticalMovement);
-			if (isin) {
-				this.setSelectedElement(e);
-				e.setFocused(true);
-				this.onAction();
-				return;
-			}
-			sumOfVerticalMovement += e.getHeight();
-		}
-		this.setSelectedElement(null);
-		this.onAction();
-		}*/
 	
 		@Override
 		void draw(Graphics g) {
