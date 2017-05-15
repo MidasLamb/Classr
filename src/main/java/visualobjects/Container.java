@@ -50,15 +50,93 @@ public class Container extends VisualObject  implements CanvasContent{
 	}
 	
 	private void createToolBar(){
-		MenuBar toolbar = new MenuBar(0, 100, this.getWidth(), 50);
-		toolbar.addMenuHeader(new MenuHeader("YOLO", 0, 100, 50, 50) {
+		int defaultHeight = 30;
+		int x = 0;
+		int y = 100;
+		int defaultWidth = 100;
+		int newPosX = x;
+		
+		MenuBar toolbar = new MenuBar(x, y, this.getWidth(), defaultHeight);
+		toolbar.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				System.out.println("Clicked yolo");
+				BarBackend.createClass();
 			}
 		});
 		
-		new FormObjectWrapper<MenuBar>(toolbar, 0, 100, 0, this.getWidth(), 100, this, getController());
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Add Attribute", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.addAttribute();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Add Method", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.addMethod();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Add Parameter", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.addParameter();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Edit Name", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.editName();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Edit...", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.editName();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Delete", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.delete();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Undo", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.undo();
+			}
+		});
+		
+		newPosX += defaultWidth;
+		
+		toolbar.addMenuHeader(new MenuHeader("Redo", newPosX, y, defaultWidth, defaultHeight) {
+			@Override
+			protected void onAction() {
+				BarBackend.redo();
+			}
+		});
+		
+		new FormObjectWrapper<MenuBar>(toolbar, x, y, 0, this.getWidth(), defaultHeight, this, getController());
 	}
 
 	/**
