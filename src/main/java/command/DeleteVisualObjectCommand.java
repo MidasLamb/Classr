@@ -34,7 +34,7 @@ public class DeleteVisualObjectCommand extends Command {
 
 	@Override
 	void cleanup() {
-		getVisualObject().delete();
+		
 	}
 
 	/**
