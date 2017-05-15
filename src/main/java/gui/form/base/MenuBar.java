@@ -34,7 +34,7 @@ public class MenuBar extends FormObject {
 		this.menuHeaders = menuHeaders;
 	}
 
-	
+	@Override
 	void onClick(MouseClick click) {
 		for (MenuHeader header : this.getMenuHeaders()){
 			if (header.isIn(click.getX(),click.getY())){
