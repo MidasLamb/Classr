@@ -435,9 +435,12 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param c
 	 *            the child to be removed
 	 */
-	public final void removeChild(VisualObject c) {
-		if (this.children.remove(c))
+	public final boolean removeChild(VisualObject c) {
+		if (this.children.remove(c)){
 			this.afterDeleteChild(c);
+			return true;
+		}
+		return false;
 	}
 
 	/**

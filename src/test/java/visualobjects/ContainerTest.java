@@ -56,15 +56,15 @@ public class ContainerTest {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
 		new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass klasse2 = new VisualClass(1, 1, 1, container, container.getController());
-		container.removeChild(klasse2);
+		assertTrue(container.removeChild(klasse2));
 	}
 	
 	@Test
 	public void deleteTest3() {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container, container.getController());
-		container.removeChild(klasse1);
-		container.removeChild(klasse1);
+		assertTrue(container.removeChild(klasse1));
+		assertFalse(container.removeChild(klasse1));
 	}
 	
 	@Test
@@ -72,8 +72,8 @@ public class ContainerTest {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container, container.getController());
 		new VisualClass(1, 1, 1, container, container.getController());
-		container.removeChild(klasse1);
-		container.removeChild(klasse1);
+		assertTrue(container.removeChild(klasse1));
+		assertFalse(container.removeChild(klasse1));
 	}
 	
 	@Test
@@ -81,8 +81,8 @@ public class ContainerTest {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
 		VisualClass klasse1 = new VisualClass(0, 0, 0, container, container.getController());
 		VisualClass klasse2 = new VisualClass(1, 1, 1, container, container.getController());
-		container.removeChild(klasse1);
-		container.removeChild(klasse2);
+		assertTrue(container.removeChild(klasse1));
+		assertTrue(container.removeChild(klasse2));
 	}
 	
 	@Test
@@ -90,7 +90,7 @@ public class ContainerTest {
 		Container container = new Container(10, 10, 100, 100, new MyCanvasWindow("test"));
 		VisualClass klasse = new VisualClass(0, 0, 0, container, container.getController());
 		klasse.delete();
-		container.removeChild(klasse);
+		assertFalse(container.removeChild(klasse));
 	}
 	
 	@Test
