@@ -112,8 +112,7 @@ class BarBackend {
 	}
 
 	public static final boolean canDelete() {
-		// TODO
-		return false;
+		return getContainer().getSelected() != null;
 	}
 	
 	/**
