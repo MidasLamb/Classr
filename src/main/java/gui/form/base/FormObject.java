@@ -6,6 +6,7 @@ import static gui.form.base.Constants.STANDARD_TEXT_HEIGHT;
 import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.SingleClick;
 
 /**
  * Object that can be added to a Form.
@@ -54,6 +55,10 @@ public abstract class FormObject implements Comparable<FormObject> {
 	 */
 
 	abstract void onClick(MouseClick click);
+	
+	public void onClickk(SingleClick click){
+		onClick(click);
+	}
 
 	/**
 	 * Draw this FormObject.

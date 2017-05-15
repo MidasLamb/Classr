@@ -3,6 +3,8 @@ import java.awt.Graphics;
 
 import command.Controller;
 import gui.form.base.*;
+import gui.inputHandlers.clicks.MouseClick;
+import gui.inputHandlers.clicks.SingleClick;
 
 public class FormObjectWrapper<T extends FormObject> extends VisualObject {
 	T fo;
@@ -19,6 +21,12 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject {
 	@Override
 	void draw(Graphics g) {
 		this.getFormObject().draw(g);
+	}
+	
+	@Override
+	void onClick(SingleClick click){
+		T f = this.getFormObject();
+		f.onClickk(click);
 	}
 	
 	
