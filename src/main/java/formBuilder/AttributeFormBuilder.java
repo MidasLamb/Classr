@@ -3,7 +3,6 @@ package formBuilder;
 import static main.Constants.CONTAINER_HEIGHT;
 import static main.Constants.CONTAINER_WIDTH;
 
-import canvaswindow.MyCanvasWindow;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
