@@ -1,6 +1,5 @@
 package formBuilder;
 
-import command.Controller;
 import gui.form.base.FormContainer;
 import gui.form.utility.FormBuilder;
 import guiToApplication.FormWrapper;
@@ -19,7 +18,6 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
 	private final FormContainer formContainer;
 	private final boolean isNew;
-	private final Controller controller;
 	
 	
 	/**
@@ -30,12 +28,10 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public FormCreator(LogicalObject o, FormContainer formContainer, 
-			boolean isNew, Controller controller) {
+	public FormCreator(LogicalObject o, FormContainer formContainer, boolean isNew) {
 		this.formContainer = formContainer;
 		this.isNew = isNew;
 		this.startVisit(o);
-		this.controller = controller;
 	}
 
 	@Override
@@ -107,14 +103,6 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 */
 	private final boolean isNew() {
 		return isNew;
-	}
-	
-	/**
-	 * Returns the controller
-	 * @return the used controller
-	 */
-	private Controller getController() {
-		return controller;
 	}
 
 }

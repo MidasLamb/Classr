@@ -8,8 +8,9 @@ import java.awt.Graphics;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
+import command.Command;
 import command.Controller;
-import formBuilder.FormCreator;
+import command.OpenFormCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
@@ -88,19 +89,18 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
-		FormCreator creator = new FormCreator(this.getLogicalObject(), b, false, getController());
-		b.setContent(creator.getForm());
-		
+		Command command = new OpenFormCommand(getLogicalObject(), false,
+				getContainer(), getController());
+		getController().executeCommand(command);
 	}
 	
 	/**
 	 * Opens the form to add new text
 	 */
 	public final void openNewForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 200, 200, this.getContainer(), getController());
-		FormCreator creator = new FormCreator(this.getLogicalObject(), b, true, getController());
-		b.setContent(creator.getForm());
+		Command command = new OpenFormCommand(getLogicalObject(), true,
+				getContainer(), getController());
+		getController().executeCommand(command);
 	}
 	
 	@Override
