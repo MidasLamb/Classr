@@ -2,6 +2,8 @@ package command;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -200,6 +202,74 @@ public class ControllerTest {
 		controller.undo();
 		assertEquals("", text);	
 	}
+	
+	@Test
+	public void undoCommandsTest1(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(addB);
+		ArrayList<Command> unexecuteList = new ArrayList<>();
+		unexecuteList.add(addA);
+		controller.undoCommands(unexecuteList);
+		assertEquals("b", text);
+	}
+	
+	@Test
+	public void undoCommandsTest2(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(addB);
+		ArrayList<Command> unexecuteList = new ArrayList<>();
+		unexecuteList.add(addA);
+		unexecuteList.add(addB);
+		controller.undoCommands(unexecuteList);
+		assertEquals("", text);
+	}
+	
+	@Test
+	public void undoCommandsTest3(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(addB);
+		ArrayList<Command> unexecuteList = new ArrayList<>();
+		controller.undoCommands(unexecuteList);
+		assertEquals("ab", text);
+	}
+	
+	@Test
+	public void undoCommandsTest4(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(new addACommand());
+		controller.executeCommand(addB);
+		ArrayList<Command> unexecuteList = new ArrayList<>();
+		unexecuteList.add(addA);
+		controller.undoCommands(unexecuteList);
+		assertEquals("ab", text);
+	}
+	
+	@Test
+	public void undoCommandsTest5(){
+		Controller controller = new Controller();
+		Command addA = new addACommand();
+		Command addB = new addBCommand();
+		controller.executeCommand(addA);
+		controller.executeCommand(new addACommand());
+		controller.executeCommand(addB);
+		ArrayList<Command> unexecuteList = new ArrayList<>();
+		unexecuteList.add(addA);
+		unexecuteList.add(addA);
+		controller.undoCommands(unexecuteList);
+		assertEquals("ab", text);
+	}
 
 	private class addACommand extends Command{
 
@@ -211,7 +281,11 @@ public class ControllerTest {
 
 		@Override
 		void unexecute() {
-			text =  text.substring(0, text.length()-1);
+			int index = text.lastIndexOf("a");
+			if(index < 0) return;
+			StringBuilder builder = new StringBuilder(text);
+			builder.deleteCharAt(index);			
+			text = builder.toString();
 		}
 
 		@Override
@@ -232,7 +306,11 @@ public class ControllerTest {
 
 		@Override
 		void unexecute() {
-			text =  text.substring(0, text.length()-1);
+			int index = text.lastIndexOf("b");
+			if(index < 0) return;
+			StringBuilder builder = new StringBuilder(text);
+			builder.deleteCharAt(index);			
+			text = builder.toString();
 		}
 
 		@Override
