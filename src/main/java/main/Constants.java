@@ -14,7 +14,7 @@ public final class Constants {
 	public static final String DEFAULT_ATTRIBUTE_NAME = "newAttribute";
 
 
-	public static final int CONTAINER_WIDTH = 600;
+	public static final int CONTAINER_WIDTH = 900;
 	public static final int CONTAINER_HEIGHT = 800;
 
 
