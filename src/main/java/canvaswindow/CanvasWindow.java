@@ -26,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import main.VisualTestUpdater;
+import static main.Constants.*;
 
 /**
  * A window for custom drawing.
@@ -279,8 +280,8 @@ class CanvasWindowRecording {
 
 public class CanvasWindow {
 
-	int width = 600;
-	int height = 600;
+	int width = CONTAINER_WIDTH;
+	int height = CONTAINER_HEIGHT;
 	String title;
 	Panel panel;
 	private Frame frame;
