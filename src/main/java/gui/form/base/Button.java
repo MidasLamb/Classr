@@ -131,7 +131,7 @@ public abstract class Button extends FormObject implements FunctionTypable {
 		getText().draw(g);
 	}
 
-	private ButtonState getState() {
+	protected ButtonState getState() {
 		return state;
 	}
 

@@ -1,6 +1,7 @@
 package gui.form.base;
 
-import java.util.ArrayList;
+
+import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.MouseClick;
 
@@ -10,14 +11,12 @@ import gui.inputHandlers.clicks.MouseClick;
  */
 public class MenuHeader extends Button {
 	private MenuBar menuBar;
-	private ArrayList<MenuItem> menuItems;
 	private String name;
 	private DropDownMenu<MenuItem> dropDownMenu;
 
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
-		this.setMenuItems(new ArrayList<MenuItem>());
-		this.setDropDownMenu(new DropDownMenu<MenuItem>(0,0,0,0));
+		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));//TODO hoogte
 	}
 
 	public MenuBar getMenuBar() {
@@ -28,23 +27,6 @@ public class MenuHeader extends Button {
 		this.menuBar = menuBar;
 	}
 
-	public void addMenuItem(MenuItem item) {
-		this.menuItems.add(item);
-		item.setMenuHeader(this);
-	}
-
-	public void deleteMenuItem(MenuItem item) {
-		item.setMenuHeader(null);
-		this.menuItems.remove(item);
-	}
-
-	public ArrayList<MenuItem> getMenuItems() {
-		return menuItems;
-	}
-
-	public void setMenuItems(ArrayList<MenuItem> menuItems) {
-		this.menuItems = menuItems;
-	}
 
 	public String getName() {
 		return name;
@@ -76,9 +58,15 @@ public class MenuHeader extends Button {
 	
 	@Override
 	public void onClick(MouseClick click) {
-		System.out.println("werkt");
 		onAction();
 
+	}
+	
+	
+	@Override
+	public void draw(Graphics g) {
+		getState().draw(g);
+		this.getDropDownMenu().draw(g);
 	}
 
 	/*

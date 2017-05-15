@@ -3,11 +3,14 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
+
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
+import gui.form.base.DropDownMenu;
 import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
+import gui.form.base.MenuItem;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -44,9 +47,19 @@ public class Container extends VisualObject  implements CanvasContent{
 	
 	private void createMenuBar(){
 		MenuBar menu = new MenuBar(0,0,100, 100);
-		menu.addMenuHeader(new MenuHeader("test", 0, 0, 100, 100));
-		
+		MenuHeader header = new MenuHeader("test", 0, 0, 100, 100);
+		for (int i = 0; i < 15;i++){
+			MenuItem item = new MenuItem(0,i+1,100,0);
+			item.setName("testitem"+i);
+			header.getDropDownMenu().addMenuItem(item);
+		}
+				
+		menu.addMenuHeader(header);
 		new FormObjectWrapper<MenuBar>(menu, 0,0, 0, 100,100, this, getController());
+		
+		DropDownMenu<MenuItem> dd = header.getDropDownMenu();
+		new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,100,0,100,238, this, getController());
+		
 	}
 	
 	private void createToolBar(){

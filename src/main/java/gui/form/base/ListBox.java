@@ -15,7 +15,8 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		this.setElements(new ArrayList<ListBoxElement<T>>());
 	}
 
-	private boolean isInElement(ListBoxElement<T> e, int clickX, int clickY, int elementX, int elementY) {
+	boolean isInElement(ListBoxElement<T> e, int clickX, int clickY, int elementX, int elementY) {
+		System.out.println(this.getWidth()+" "+e.getHeight());
 		boolean isInHorizontal = clickX >= elementX && clickX < elementX + this.getWidth();
 		boolean isInVertical = clickY >= elementY && clickY < elementY + e.getHeight();
 		return isInHorizontal && isInVertical;
@@ -107,7 +108,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		this.setSelectedElement(lbe);
 	}
 
-	private final ArrayList<ListBoxElement<T>> getListboxElements() {
+	final ArrayList<ListBoxElement<T>> getListboxElements() {
 		return elements;
 	}
 
@@ -118,7 +119,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return c;
 	}
 
-	private final void setElements(ArrayList<ListBoxElement<T>> elements) {
+	protected final void setElements(ArrayList<ListBoxElement<T>> elements) {
 		this.elements = elements;
 	}
 

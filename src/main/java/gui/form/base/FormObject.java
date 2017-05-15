@@ -13,7 +13,8 @@ import gui.inputHandlers.clicks.SingleClick;
  */
 public abstract class FormObject implements Comparable<FormObject> {
 
-	private final int x, y, width, height;
+	private final int x, y, width;
+	protected int height;
 	private boolean focused;
 	private boolean focusable = true;
 
