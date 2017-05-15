@@ -21,7 +21,5 @@ public final class Constants {
 	public static final int STANDARD_TEXT_ASCEND = STANDARD_FONTMETRICS.getAscent();
 
 	public static final int STANDARD_LABEL_PADDING = 5;
-	
-	public static final int STANDARD_TOOLBAR_HEIGHT = 20;
 
 }
