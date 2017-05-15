@@ -1,5 +1,9 @@
 package command;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -22,6 +26,25 @@ public class Controller {
 		emptyRedoStack();
 		command.execute();
 		getUndoStack().add(command);		
+	}
+	
+	/**
+	 * Undoes all the given commands
+	 * @param 	commands
+	 * 			the commands that need to be undone
+	 */
+	public void undoCommands(Collection<Command> commands){
+		HashSet<Command> set = new HashSet<>(commands);
+		Iterator<Command> iterator = getUndoStack().iterator();
+		ArrayList<Command> removeList = new ArrayList<>();
+		while(!commands.isEmpty() && iterator.hasNext()){
+			Command next = iterator.next();
+			if(set.contains(next)){
+				next.unexecute();
+				removeList.add(next);
+			}
+		}
+		getUndoStack().remove(removeList);
 	}
 	
 	/**
