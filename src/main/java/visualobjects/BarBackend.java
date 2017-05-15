@@ -107,5 +107,15 @@ class BarBackend {
 		// TODO
 		return false;
 	}
+	
+	public static final boolean canUndo() {
+		// TODO
+		return false;
+	}
+	
+	public static final boolean canRedo() {
+		// TODO
+		return false;
+	}
 
 }
