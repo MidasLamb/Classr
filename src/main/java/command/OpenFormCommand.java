@@ -22,6 +22,8 @@ public class OpenFormCommand extends Command {
 
 	@Override
 	void execute() {
+		if(contentBox != null)
+			throw new IllegalStateException("Cannot redo this command");
 		ContentBox b = new ContentBox(10, 10, 0, 200, 200, getContainer(), getController());
 		FormCreator creator = new FormCreator(getLogicalObject(), b, isNew());
 		b.setContent(creator.getForm());
