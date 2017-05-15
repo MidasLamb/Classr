@@ -121,8 +121,10 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		}
 
 		y += CLASS_WHITE_SPACE;
-
-		this.setHeight(y - this.getY());
+		
+		if (y - this.getY() > this.getHeight()) {
+			this.setHeight(y - this.getY());
+		}
 	}
 
 	/**
@@ -228,7 +230,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 	/**
 	 * 
-	 * @return the methodes inside this VisualClass
+	 * @return the methods inside this VisualClass
 	 */
 	private Collection<VisualObject> getMethods() {
 		Collection<Method> meth = ((LogicalClass) this.getLogicalObject()).getMethods();
