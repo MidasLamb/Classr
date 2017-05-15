@@ -45,7 +45,7 @@ public class MenuItem extends FormObject implements Displayable, Clickable {
 	}
 
 	@Override
-	void onClick(MouseClick click) {
+	public void onClick(MouseClick click) {
 		this.getMenuHeader().getDropDownMenu().setEnabled(false);
 		this.onAction();
 	}

@@ -27,7 +27,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	@Override
-	void onClick(MouseClick click) {
+	public void onClick(MouseClick click) {
 		// Check on which element there has been clicked.
 		int x = this.getX();
 		int y = this.getY();
@@ -213,7 +213,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		}
 
 		@Override
-		void onClick(MouseClick click) {
+		public void onClick(MouseClick click) {
 
 		}
 

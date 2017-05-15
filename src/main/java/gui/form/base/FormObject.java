@@ -54,11 +54,8 @@ public abstract class FormObject implements Comparable<FormObject> {
 	 *            Registered MouseClick
 	 */
 
-	abstract void onClick(MouseClick click);
+	public abstract void onClick(MouseClick click);
 	
-	public void onClickk(SingleClick click){
-		onClick(click);
-	}
 
 	/**
 	 * Draw this FormObject.

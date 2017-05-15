@@ -75,7 +75,7 @@ public class MenuHeader extends Button {
 	}
 	
 	@Override
-	void onClick(MouseClick click) {
+	public void onClick(MouseClick click) {
 		System.out.println("werkt");
 		onAction();
 

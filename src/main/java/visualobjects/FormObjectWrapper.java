@@ -26,7 +26,7 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject {
 	@Override
 	void onClick(SingleClick click){
 		T f = this.getFormObject();
-		f.onClickk(click);
+		f.onClick(click);
 	}
 	
 	
