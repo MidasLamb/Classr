@@ -26,7 +26,7 @@ public class ResizeCommand extends Command {
 
 	@Override
 	void unexecute() {
-		getObject().resizeTo(getStartX(), getStartY(), getStartWidth(), getStartWidth());
+		getObject().resizeTo(getStartX(), getStartY(), getStartWidth(), getStartHeight());
 
 	}
 
