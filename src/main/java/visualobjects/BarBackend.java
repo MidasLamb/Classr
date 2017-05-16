@@ -6,6 +6,7 @@ import command.CreateAttributeCommand;
 import command.CreateClassCommand;
 import command.CreateMethodCommand;
 import logicalobjects.Attribute;
+import logicalobjects.LogicalClass;
 import logicalobjects.Method;
 
 class BarBackend {
@@ -103,12 +104,15 @@ class BarBackend {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof Method
-				|| getContainer().getSelected().getLogicalObject() instanceof Attribute;
+				|| getContainer().getSelected().getLogicalObject() instanceof Attribute
+				|| getContainer().getSelected().getLogicalObject() instanceof LogicalClass;
 	}
 
 	public static final boolean canEditTripleDot() {
-		// TODO
-		return false;
+		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
+			return false;
+		return getContainer().getSelected().getLogicalObject() instanceof Method
+				|| getContainer().getSelected().getLogicalObject() instanceof Attribute;
 	}
 
 	public static final boolean canDelete() {
