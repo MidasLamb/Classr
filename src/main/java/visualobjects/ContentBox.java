@@ -77,7 +77,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 		if (isIn(sc.getX(), sc.getY())) {
 			this.getContainer().switchSelectedTo(this);
 		}
-		sc.translate(this.getX(), this.getY());
+		sc.translate(this.getX(), this.getY() + TITLEBAR_HEIGHT);
 		getContent().onClick(sc);
 	}
 
