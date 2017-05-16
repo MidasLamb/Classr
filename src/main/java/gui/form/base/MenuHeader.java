@@ -15,7 +15,7 @@ public class MenuHeader extends Button {
 
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
-		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));//TODO hoogte
+		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));
 	}
 
 	public String getName() {
