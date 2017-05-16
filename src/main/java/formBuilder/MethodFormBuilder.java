@@ -136,7 +136,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, container) {
+				FormContainer c = getContainer().getExtraContainer();
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c) {
 
 					@Override
 					public void onOk() {
@@ -144,7 +145,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					}
 
 				};
-				getContainer().switchTo(parabuilder.getForm());
+				c.switchTo(parabuilder.getForm());
 
 			}
 
