@@ -34,20 +34,20 @@ public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(CONTAINER_WIDTH, CONTAINER_HEIGHT, this.formContainer));
+		this.setForm(new FormWrapper(260, 125, this.formContainer));
 
-		RegexCheckedInputBox parName = new RegexCheckedInputBox(parameter.getName(), "^[a-z][a-zA-Z0-9_]*", 10, 10, 100,
+		RegexCheckedInputBox parName = new RegexCheckedInputBox(parameter.getName(), "^[a-z][a-zA-Z0-9_]*", 10, 26, 100,
 				16);
 		this.addFormObject(parName);
 		this.addLabelToTopOfLastFormObject("Parameter name");
 
-		RegexCheckedInputBox parType = new RegexCheckedInputBox(parameter.getType(), "^[a-z][a-zA-Z0-9_]*", 10, 100,
+		RegexCheckedInputBox parType = new RegexCheckedInputBox(parameter.getType(), "^[a-z][a-zA-Z0-9_]*", 150, 26,
 				100, 16);
 		this.addFormObject(parType);
 		this.addLabelToTopOfLastFormObject("Parameter type");
 
 		MethodParameterFormBuilder t = this;
-		OkButton ok = new OkButton(10, 500, 50, 50) {
+		OkButton ok = new OkButton(140, 65, 50, 50) {
 
 			@Override
 			protected void onOk() {
@@ -64,7 +64,7 @@ public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper
 
 		this.addFormObject(ok);
 
-		Button cancel = new Button("Cancel", 110, 500, 50, 50) {
+		Button cancel = new Button("Cancel", 200, 65, 50, 50) {
 
 			@Override
 			protected void onAction() {
