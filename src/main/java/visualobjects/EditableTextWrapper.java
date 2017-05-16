@@ -6,6 +6,8 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.text.AttributedString;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import command.ChangeLogicalObjectNameCommand;
 import command.Controller;
@@ -24,9 +26,10 @@ import logicalobjects.LogicalObject;
  * A wrapper for the GUI Text to adapt it to the application part.
  *
  */
-public class EditableTextWrapper extends TextWrapper implements UpdateListener {
+public class EditableTextWrapper extends TextWrapper implements UpdateListener, UpdateSubject {
 	private String standardString;
 	private String regex;
+	private Collection<UpdateListener> updateListeners;
 
 	/**
 	 * 
@@ -56,7 +59,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 		if (!this.getStandardString().matches(this.getRegex())) {
 			throw new RuntimeException();
 		}
-		
+		this.setUpdateListeners(new ArrayList<UpdateListener>());
 		
 	}
 
@@ -184,6 +187,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 		this.getTextObject().handleAsciiKey(key);
 		if (this.getLogicalObject().canHaveAsName(this.getCurrentDisplayedString()))
 			this.save();
+		this.notifyUpdateListeners();
 	}
 
 	@Override
@@ -213,7 +217,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 			this.getTextObject().handleFunctionKey(key);
 			break;
 		}
-
+		this.notifyUpdateListeners();
 		
 	}
 
@@ -299,5 +303,33 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 		this.getTextObject().setAttributedText(getText());
+	}
+
+	@Override
+	public void addUpdateListener(UpdateListener updateListener) {
+		this.getUpdateListeners().add(updateListener);
+		
+	}
+
+	@Override
+	public void removeUpdateListener(UpdateListener updateListener) {
+		this.getUpdateListeners().remove(updateListener);
+		
+	}
+
+	@Override
+	public void notifyUpdateListeners() {
+		if (getUpdateListeners()!= null){
+			getUpdateListeners().stream().forEach(x -> x.getNotifiedOfUpdate(this));
+		}
+		
+	}
+
+	private final Collection<UpdateListener> getUpdateListeners() {
+		return updateListeners;
+	}
+
+	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
+		this.updateListeners = updateListeners;
 	}
 }

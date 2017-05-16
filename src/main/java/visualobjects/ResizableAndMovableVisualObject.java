@@ -1,5 +1,8 @@
 package visualobjects;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import command.Controller;
 import command.MoveCommand;
 import command.ResizeCommand;
@@ -7,7 +10,7 @@ import gui.inputHandlers.clicks.Drag;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
 
-public abstract class ResizableAndMovableVisualObject extends VisualObject implements UpdateListener {
+public abstract class ResizableAndMovableVisualObject extends VisualObject implements UpdateListener, UpdateSubject {
 	private boolean beingResizedFromLeft;
 	private boolean beingResizedFromRight;
 	private boolean beingResizedFromTop;
@@ -26,6 +29,8 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 	private int resizeStartY;
 	private int resizeStartWidth;
 	private int resizeStartHeight;
+	
+	private Collection<UpdateListener> updateListeners;
 
 	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject parent,
 			Controller controller) {
@@ -37,6 +42,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 		this.setBeingResized(false);
 
 		this.setBeingMoved(false);
+		this.setUpdateListeners(new ArrayList<UpdateListener>());
 	}
 
 	public boolean isOnLeftSide(int x, int y) {
@@ -295,6 +301,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 			super.setWidth(width);
 		else
 			super.setWidth(this.getMinimumWidth());
+		this.notifyUpdateListeners();
 	}
 
 	@Override
@@ -303,6 +310,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 			super.setHeight(height);
 		else
 			super.setHeight(this.getMinimumHeight());
+		this.notifyUpdateListeners();
 	}
 
 	public void moveTo(int x, int y) {
@@ -311,12 +319,14 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 
 		this.setX(x);
 		this.setY(y);
+		this.notifyUpdateListeners();
 	}
 
 	public void resizeTo(int x, int y, int width, int height) {
 		moveTo(x, y);
 		this.setWidth(width);
 		this.setHeight(height);
+		this.notifyUpdateListeners();
 	}
 
 	private final int getResizeStartX() {
@@ -357,4 +367,45 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 			this.setWidth(getMinimumWidth());
 		}
 	}
+	
+	@Override
+	public void addUpdateListener(UpdateListener updateListener) {
+		this.getUpdateListeners().add(updateListener);
+		
+	}
+
+	@Override
+	public void removeUpdateListener(UpdateListener updateListener) {
+		this.getUpdateListeners().remove(updateListener);
+		
+	}
+
+	@Override
+	public void notifyUpdateListeners() {
+		if (getUpdateListeners()!= null)
+			getUpdateListeners().stream().forEach(x -> x.getNotifiedOfUpdate(this));
+		
+	}
+
+	private final Collection<UpdateListener> getUpdateListeners() {
+		return updateListeners;
+	}
+
+	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
+		this.updateListeners = updateListeners;
+	}
+
+	@Override
+	void setX(int x) {
+		super.setX(x);
+		this.notifyUpdateListeners();
+	}
+
+	@Override
+	void setY(int y) {
+		super.setY(y);
+		this.notifyUpdateListeners();
+	}
+	
+	
 }

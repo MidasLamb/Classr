@@ -6,6 +6,7 @@ import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_PADDING_BOX;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,8 @@ import command.CreateAttributeCommand;
 import command.CreateMethodCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.Method;
@@ -22,9 +25,10 @@ import logicalobjects.Method;
 /**
  * The visualization of a logicalClass
  */
-public class VisualClass extends ResizableAndMovableVisualObject {
+public class VisualClass extends ResizableAndMovableVisualObject{
 	private PaddingBox<EditableTextWrapper> name;
 	private AssociationHandle associationHandle;
+
 
 	/**
 	 * 
@@ -377,5 +381,9 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		y += CLASS_WHITE_SPACE;
 		return y;
 	}
+
+	
+	
+	
 
 }

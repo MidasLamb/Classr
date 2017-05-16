@@ -328,7 +328,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param x
 	 *            the x-coordinate to be set
 	 */
-	final void setX(int x) {
+	void setX(int x) {
 		this.x = x;
 	}
 
