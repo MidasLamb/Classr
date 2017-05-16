@@ -145,7 +145,7 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Edit...", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.editName();
+				BarBackend.editTripleDot();
 			}
 			
 			@Override

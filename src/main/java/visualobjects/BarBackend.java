@@ -5,8 +5,11 @@ import command.Controller;
 import command.CreateAttributeCommand;
 import command.CreateClassCommand;
 import command.CreateMethodCommand;
+import formBuilder.FormCreator;
+import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
+import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 
 class BarBackend {
@@ -65,7 +68,13 @@ class BarBackend {
 	}
 
 	public static final void editTripleDot() {
-		// TODO
+		if (canEditTripleDot()) {
+			LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
+			ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
+			FormWrapper formWrapper = new FormCreator(logicalObject, b, false).getForm();
+			b.setContent(formWrapper);
+			logicalObject.addDeleteListener(b);
+		}
 	}
 
 	public static final void delete() {
