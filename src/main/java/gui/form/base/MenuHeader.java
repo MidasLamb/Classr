@@ -15,7 +15,7 @@ public class MenuHeader extends Button {
 
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
-		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));//TODO hoogte
+		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));
 	}
 
 	public String getName() {
@@ -71,6 +71,10 @@ public class MenuHeader extends Button {
 		// draw listbox beneath with MenuItems
 	}
 	
+	/**
+	 * Checks if this button can be enabled
+	 * @return true if this button can be enabled, otherwise false
+	 */
 	protected boolean canBeEnabled() {
 		return true;
 	}

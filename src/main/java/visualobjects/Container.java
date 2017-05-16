@@ -48,11 +48,12 @@ public class Container extends VisualObject implements CanvasContent{
 		MenuBar menu = new MenuBar(0,30,500, 30);
 		MenuHeader header = new MenuHeader("testheader", 0, 30, 100, 30);
 		for (int i = 0; i < 15;i++){
-			MenuItem item = new MenuItem("testitem"+i,100,0){
+			String name = "testitem"+i;
+			MenuItem item = new MenuItem(name,100,0){
 				@Override
 				protected void onAction() {
 					
-					System.out.println(getName());
+					System.out.println(name);
 				}
 				
 			};
@@ -214,8 +215,6 @@ public class Container extends VisualObject implements CanvasContent{
 		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
-		
-		this.getToolbar().updateEnabled();
 	}
 
 	/**
