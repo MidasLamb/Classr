@@ -19,15 +19,6 @@ public class MenuHeader extends Button {
 		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));//TODO hoogte
 	}
 
-	public MenuBar getMenuBar() {
-		return menuBar;
-	}
-
-	public void setMenuBar(MenuBar menuBar) {
-		this.menuBar = menuBar;
-	}
-
-
 	public String getName() {
 		return name;
 	}

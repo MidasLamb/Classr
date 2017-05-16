@@ -101,13 +101,4 @@ public class MenuBarTest {
 		bar.deleteMenuHeader(header1);
 		assertEquals(header2, bar.getMenuHeaders().get(0));
 	}
-
-	@Test
-	public void addMenuHeaderCheckParentMenuBarTest() {
-		MenuBar bar = new MenuBar(0, 0, 0, 0);
-		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
-		bar.addMenuHeader(header);
-		assertEquals(bar, header.getMenuBar());
-	}
-
 }
