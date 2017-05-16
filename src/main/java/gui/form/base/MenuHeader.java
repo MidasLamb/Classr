@@ -71,6 +71,10 @@ public class MenuHeader extends Button {
 		// draw listbox beneath with MenuItems
 	}
 	
+	/**
+	 * Checks if this button can be enabled
+	 * @return true if this button can be enabled, otherwise false
+	 */
 	protected boolean canBeEnabled() {
 		return true;
 	}

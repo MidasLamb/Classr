@@ -89,10 +89,7 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
-		FormWrapper formWrapper = new FormCreator(getLogicalObject(), b, false).getForm();
-		b.setContent(formWrapper);
-		getLogicalObject().addDeleteListener(b);
+		BarBackend.editTripleDot();
 	}
 	
 	/**
