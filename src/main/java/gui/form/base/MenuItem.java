@@ -12,37 +12,46 @@ import gui.inputHandlers.clicks.SingleClick;
 /**
  * A class representing a MenuItem in a drop down menu of a MenuHeader
  */
-public class MenuItem extends FormObject implements Displayable, Clickable {
+//TODO WRONG!
+public abstract class MenuItem extends FormObject implements Displayable, Clickable {
+	//TODO WRONG!
 	private DropDownMenu<MenuItem> dropDownMenu;
 	private String name;
 	private boolean enabled;
+	//TODO WRONG!
 	private int height;
+	
 
-	public MenuItem(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	public MenuItem(String name, int width, int height) {
+		super(0, 0, width, height);
+		this.setName(name);
 	}
 	
-	
+	//TODO WRONG!
 	public DropDownMenu<MenuItem> getDropDownMenu() {
 		return dropDownMenu;
 	}
-	
+	// TODO WRONG!
 	public void setDropDownMenu(DropDownMenu<MenuItem> dropDownMenu) {
 		this.dropDownMenu = dropDownMenu;
 	}
 
+	// TODO WRONG!
 	public String getName() {
 		return name;
 	}
 
+	// TODO WRONG!
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	// TODO WRONG!
 	public boolean isEnabled() {
 		return enabled;
 	}
 
+	// TODO WRONG!
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -70,15 +79,11 @@ public class MenuItem extends FormObject implements Displayable, Clickable {
 	}
 
 	@Override
-	protected void onAction() {
-		System.out.println("do action for: "+name);
-	}
-
-	@Override
 	public String getDisplayableString() {
 		return this.getName();
 	}
 
+	// TODO WRONG!
 	@Override
 	public void onClick(SingleClick click) {
 		this.onAction();
@@ -95,7 +100,6 @@ public class MenuItem extends FormObject implements Displayable, Clickable {
 	@Override
 	public void onDragUpdate(Drag drag) {
 	}
-
 
 	boolean isIn(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)

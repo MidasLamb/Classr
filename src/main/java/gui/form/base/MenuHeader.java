@@ -10,7 +10,6 @@ import gui.inputHandlers.clicks.MouseClick;
  *
  */
 public class MenuHeader extends Button {
-	private MenuBar menuBar;
 	private String name;
 	private DropDownMenu<MenuItem> dropDownMenu;
 

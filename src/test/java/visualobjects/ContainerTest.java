@@ -568,6 +568,7 @@ public class ContainerTest {
 	@Test
 	public void createNewClassTest2(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		container.getChildren().forEach(x ->x.delete());
 		VisualClass klasse = container.createNewClass();
 		assertEquals(10, klasse.getY());
 	}
@@ -585,6 +586,7 @@ public class ContainerTest {
 	@Test
 	public void createNewClassTest4(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		container.getChildren().forEach(x ->x.delete());
 		container.createNewClass();
 		VisualClass klasse = container.createNewClass();
 		assertEquals(10, klasse.getY());

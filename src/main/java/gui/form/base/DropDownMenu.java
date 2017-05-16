@@ -41,11 +41,13 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		return menuItems;
 	}*/
 
+	// WRONG!
 	public void addMenuItem(MenuItem item) {
 		this.addElement(item);
 		item.setDropDownMenu((DropDownMenu<MenuItem>) this);
 	}
 
+	// WRONG!
 	public void deleteMenuItem(MenuItem item) {
 		item.setDropDownMenu(null);
 		this.removeElement(item);
@@ -64,6 +66,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		this.setState(this.isEnabled());
 	}
 
+	// TODO WRONG!
 	@Override
 	public void onClick(MouseClick click){
 		getState().onClick(click);
@@ -74,6 +77,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		getState().draw(g);
 	}
 
+	// TODO WRONG!
 	@Override
 	protected void onAction() {
 

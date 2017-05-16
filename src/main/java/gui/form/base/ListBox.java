@@ -167,7 +167,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 
 	class ListBoxElement<T2 extends Displayable> extends FormObject implements FormObjectChild {
 		protected T2 obj;
-		private int height;
 
 		ListBoxElement(T2 obj) {
 			super(0, 0, 0, 0);
@@ -202,10 +201,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 				setSelectedElement((ListBox<T>.ListBoxElement<T>) this);
 			}
 			onAction();
-		}
-
-		public int getHeight() {
-			return this.height;
 		}
 
 		public T2 getObject() {
