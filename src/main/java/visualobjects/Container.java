@@ -214,8 +214,6 @@ public class Container extends VisualObject implements CanvasContent{
 		setSelected(vo);
 		if (vo != null)
 			vo.setSelected(true);
-		
-		this.getToolbar().updateEnabled();
 	}
 
 	/**

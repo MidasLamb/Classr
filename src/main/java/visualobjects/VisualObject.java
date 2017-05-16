@@ -233,9 +233,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *        	The drag object
 	 */
 	public void onDragEnd(Drag d) {
-		if(getDraggedChild() != null)
-			getDraggedChild().onDragEnd(d);
 		setDraggedChild(null);
+		getChildren().forEach(x -> x.onDragEnd(d));
 	}
 	
 	/**
