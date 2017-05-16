@@ -10,9 +10,10 @@ import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
+import guiToApplication.FormWrapper;
 import interfaces.CanvasContent;
 
-public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer{
+public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer<FormWrapper>{
 	private CanvasContent content;
 
 	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
@@ -85,8 +86,9 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	}
 
 	@Override
-	public void switchTo(Form f) {
-				
+	public void switchTo(FormWrapper f) {
+		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController());
+		b.setContent(f);
 	}
 
 	@Override

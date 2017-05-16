@@ -29,7 +29,7 @@ import visibilities.Visibility;
  */
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
-	private FormContainer container;
+	private FormContainer<FormWrapper> container;
 	private boolean isNew;
 
 	private Button editParameter;
@@ -46,7 +46,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	 * @param isNew
 	 *            indicates whether this is a newly created method
 	 */
-	public MethodFormBuilder(Method method, FormContainer container, boolean isNew) {
+	public MethodFormBuilder(Method method, FormContainer<FormWrapper> container, boolean isNew) {
 		this.method = method;
 		this.container = container;
 		this.isNew = isNew;
@@ -124,8 +124,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					}
 
 				};
-				//TODO update for switching
-				//getForm().getContentBox().addContentAndSwitchTo(parabuilder.getForm());
+				getContainer().switchTo(parabuilder.getForm());
 			}
 
 		};
@@ -145,8 +144,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					}
 
 				};
-				//TODO update for switching
-				//getForm().getContentBox().addContentAndSwitchTo(parabuilder.getForm());
+				getContainer().switchTo(parabuilder.getForm());
 
 			}
 
@@ -251,6 +249,14 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 	private Method getMethod() {
 		return method;
+	}
+
+	private final FormContainer<FormWrapper> getContainer() {
+		return container;
+	}
+
+	private final void setContainer(FormContainer<FormWrapper> container) {
+		this.container = container;
 	}
 
 }
