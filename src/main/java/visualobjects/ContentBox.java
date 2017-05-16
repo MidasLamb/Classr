@@ -91,13 +91,17 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 
 	@Override
 	public int getMinimumWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (this.getContent() != null)
+			return this.getContent().getWidth();
+		else
+			return 0;
 	}
 
 	@Override
 	public int getMinimumHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (this.getContent() != null)
+			return this.getContent().getHeight();
+		else
+			return 0;
 	}
 }
