@@ -151,8 +151,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	@Override
 
 	public void switchTo(FormWrapper f) {
-		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog box");
-		b.setContent(f);
+		this.setContent(f);;
 	}
 
 	@Override
@@ -184,6 +183,11 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	 */
 	private final void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public FormContainer<FormWrapper> getExtraContainer() {
+		return new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog box");
 	}
 
 }
