@@ -12,22 +12,43 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import interfaces.CanvasContent;
 
-public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer{
+import static gui.form.base.Constants.*;
+
+public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer {
 	private CanvasContent content;
+	private String name;
+	private static final int TITLEBAR_HEIGHT = STANDARD_TEXT_HEIGHT + 2 * STANDARD_LABEL_PADDING;
 
-	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
+	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller,
+			String name) {
 		super(x, y, z, width, height, parent, controller);
-
+		this.setName(name);
 	}
 
 	@Override
 	protected boolean isInMoveActivator(int x, int y) {
-		return false;
+		// return true if is in the title bar
+		return isInTitleBar(x, y);
+	}
+
+	/**
+	 * Checks if the given coordinates are in the title bar of this ContentBox
+	 * 
+	 * @param x
+	 *            x coordinate
+	 * @param y
+	 *            y coordinate
+	 * @return Returns true if the coordinate is in the title bar, false
+	 *         otherwise
+	 */
+	private boolean isInTitleBar(int x, int y) {
+		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
+				&& isBetween(this.getY(), this.getY() + TITLEBAR_HEIGHT, y);
 	}
 
 	@Override
 	void onClick(SingleClick sc) {
-		if (isIn(sc.getX(), sc.getY())){
+		if (isIn(sc.getX(), sc.getY())) {
 			this.getContainer().switchSelectedTo(this);
 		}
 		sc.translate(this.getX(), this.getY());
@@ -63,20 +84,26 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 
 	@Override
 	void draw(Graphics g) {
-		
-		
+
 		Color c = g.getColor();
 		g.setColor(Color.WHITE);
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(this.getX(), this.getY(), this.getWidth(), TITLEBAR_HEIGHT);
+		g.setColor(Color.WHITE);
+		g.drawString(this.getName(), this.getX() + STANDARD_LABEL_PADDING,
+				this.getY() + STANDARD_TEXT_ASCEND + STANDARD_LABEL_PADDING);
 		g.setColor(c);
-		
+
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		
-		g.translate(this.getX(), this.getY());
+
+		// Calculate begin position
+		int beginX = this.getX();
+		int beginY = this.getY() + TITLEBAR_HEIGHT;
+		g.translate(beginX, beginY);
 		getContent().show(g);
-		g.translate(-this.getX(), -this.getY());
-		
-		
+		// Undo translate
+		g.translate(-beginX, -beginY);
 	}
 
 	@Override
@@ -86,7 +113,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 
 	@Override
 	public void switchTo(Form f) {
-				
+
 	}
 
 	@Override
@@ -100,8 +127,24 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	@Override
 	public int getMinimumHeight() {
 		if (this.getContent() != null)
-			return this.getContent().getHeight();
+			return this.getContent().getHeight() + STANDARD_TEXT_HEIGHT + 2 * STANDARD_LABEL_PADDING;
 		else
 			return 0;
 	}
+
+	/**
+	 * @return the name
+	 */
+	private final String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name
+	 *            the name to set
+	 */
+	private final void setName(String name) {
+		this.name = name;
+	}
+
 }
