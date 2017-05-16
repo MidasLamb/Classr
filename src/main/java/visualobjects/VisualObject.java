@@ -46,6 +46,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	public boolean isDeleted;
 	private Color color;
 	private Color forcedColor;
+	private VisualObject draggedChild;
 	
 	private final Controller controller;
 
@@ -228,19 +229,25 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	/**
 	 * Triggers the onDragEnd function of the child where there is dragged too
 	 * 
-	 * @param d
-	 *            The drag object
+	 * @param 	d
+	 *        	The drag object
 	 */
 	public void onDragEnd(Drag d) {
-		for (VisualObject v : this.getChildren()) {
-			v.onDragEnd(d);
-		}
+		if(getDraggedChild() != null)
+			getDraggedChild().onDragEnd(d);
+		setDraggedChild(null);
 	}
 	
+	/**
+	 * Triggers the onDragUpdate function of the child that is being dragged if there is one
+	 * @param 	drag
+	 * 			the drag object
+	 */
 	public void onDragUpdate(Drag drag) {
-		for (VisualObject v : this.getChildren()) {
-			v.onDragUpdate(drag);
-		}
+		if(getDraggedChild() == null)
+			setDraggedChild(getClickedChild(drag));
+		if(getDraggedChild() != null)
+			getDraggedChild().onDragUpdate(drag);
 	}
 	
 	/**
@@ -635,6 +642,32 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 */
 	Controller getController() {
 		return controller;
+	}
+
+	/**
+	 * Sets the forced color
+	 * @param 	forced Color
+	 * 			the forced color
+	 */
+	private void setForcedColor(Color forcedColor) {
+		this.forcedColor = forcedColor;
+	}
+
+	/**
+	 * The child that is currently being dragged
+	 * @return the child that is currently being dragged
+	 */
+	private VisualObject getDraggedChild() {
+		return draggedChild;
+	}
+
+	/**
+	 * Sets the child that is getting dragged
+	 * @param 	draggedObject
+	 * 			the child that is getting dragged
+	 */
+	private void setDraggedChild(VisualObject draggedObject) {
+		this.draggedChild = draggedObject;
 	}
 	
 
