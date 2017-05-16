@@ -3,11 +3,6 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
-/*<<<<<<< HEAD
-=======
-import java.awt.Menu;
->>>>>>> branch 'master' of https://github.com/MidasLamb/Classr.git*/
-
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
@@ -16,7 +11,6 @@ import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import gui.form.base.MenuItem;
 import gui.inputHandlers.clicks.DoubleClick;
-import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;

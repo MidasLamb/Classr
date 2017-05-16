@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Optional;
 
 import command.Command;
 import command.Controller;
@@ -14,6 +15,7 @@ import command.DeleteVisualObjectCommand;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -190,15 +192,9 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *            The single click object
 	 */
 	void onClick(SingleClick sc) {
-		for (VisualObject v : this.getChildren()) {
-			if (v.isIn(sc.getX(), sc.getY())) {
-				v.onClick(sc);
-				// Return is required because association text would get two
-				// clicks when one is pressed, because it get's it from both
-				// parents
-				return;
-			}
-		}
+		VisualObject clickedChild = getClickedChild(sc);
+		if(clickedChild != null)
+			clickedChild.onClick(sc);
 	}
 
 	/**
@@ -208,11 +204,25 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *            The double click object
 	 */
 	void onDoubleClick(DoubleClick dc) {
-		for (VisualObject v : this.getChildren()) {
-			if (v.isIn(dc.getX(), dc.getY())) {
-				v.onDoubleClick(dc);
-			}
-		}
+		VisualObject clickedChild = getClickedChild(dc);
+		if(clickedChild != null)
+			clickedChild.onDoubleClick(dc);
+	}
+	
+	/**
+	 * Given a click this function returns the child on which is clicked
+	 * @param 	click
+	 * 			the click that happened
+	 * @return	the child on which there is clicked, otherwise null
+	 */
+	private VisualObject getClickedChild(MouseClick click){
+		//Reduce is to get the last element
+		Optional<VisualObject> clickedChild = getChildren().stream()
+				.filter(x -> x.isIn(click.getX(), click.getY()))
+				.sorted(new VisualObjectComparator()).reduce((a, b) -> b);
+		if(clickedChild.isPresent())
+			return clickedChild.get();
+		return null;
 	}
 
 	/**
