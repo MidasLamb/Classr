@@ -1,6 +1,6 @@
 package gui.form.base;
 
-public interface FormContainer {
+public interface FormContainer<T extends Form> {
 	public void close();
-	public void switchTo(Form f);
+	public void switchTo(T f);
 }

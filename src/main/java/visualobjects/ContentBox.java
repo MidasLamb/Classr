@@ -10,15 +10,41 @@ import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
+import guiToApplication.FormWrapper;
 import interfaces.CanvasContent;
 
 import static gui.form.base.Constants.*;
 
-public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer {
+
+/**
+ * Box that contains CanvasContent, can be resized and moved.
+ */
+public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer<FormWrapper> {
 	private CanvasContent content;
 	private String name;
 	private static final int TITLEBAR_HEIGHT = STANDARD_TEXT_HEIGHT + 2 * STANDARD_LABEL_PADDING;
 
+	/**
+	 * Construct a new ContentBox with given coordinates, dimensions, parent,
+	 * controller and name.
+	 * 
+	 * @param x
+	 *            x coordinate
+	 * @param y
+	 *            y coordinate
+	 * @param z
+	 *            z coordinate (depth)
+	 * @param width
+	 *            width
+	 * @param height
+	 *            height
+	 * @param parent
+	 *            parent
+	 * @param controller
+	 *            controller
+	 * @param name
+	 *            name
+	 */
 	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller,
 			String name) {
 		super(x, y, z, width, height, parent, controller);
@@ -72,10 +98,21 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 		getContent().handleFunctionKey(key);
 	}
 
+	/**
+	 * Get the content of this ContentBox
+	 * 
+	 * @return content
+	 */
 	private final CanvasContent getContent() {
 		return content;
 	}
 
+	/**
+	 * Set the content of this ContentBox
+	 * 
+	 * @param content
+	 *            content to be set in this ContentBox
+	 */
 	public final void setContent(CanvasContent content) {
 		this.content = content;
 		this.setWidth(content.getWidth());
@@ -112,8 +149,10 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	}
 
 	@Override
-	public void switchTo(Form f) {
 
+	public void switchTo(FormWrapper f) {
+		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog box");
+		b.setContent(f);
 	}
 
 	@Override
