@@ -1,5 +1,6 @@
 package logicalobjects;
 
+import static main.Constants.*;
 import visibilities.Visibility;
 
 public abstract class ClassContent extends LogicalObject{
@@ -89,6 +90,10 @@ public abstract class ClassContent extends LogicalObject{
 	 */
 	public void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
+	}
+	
+	public boolean canHaveAsType(String type) {
+		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);
 	}
 	
 }
