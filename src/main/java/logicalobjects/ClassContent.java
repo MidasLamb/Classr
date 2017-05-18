@@ -3,12 +3,11 @@ package logicalobjects;
 import static main.Constants.*;
 import visibilities.Visibility;
 
-public abstract class ClassContent extends LogicalObject{
+public abstract class ClassContent extends LogicalObject {
 	private LogicalClass realClass;
 	private Visibility visibility;
 	private String type;
 	private boolean isStatic;
-	
 
 	/**
 	 * Constructs a new ClassContent belonging to the stated RealClass.
@@ -53,8 +52,8 @@ public abstract class ClassContent extends LogicalObject{
 	}
 
 	/**
-	 * @param 	visibility
-	 * 			The new visibility for this object
+	 * @param visibility
+	 *            The new visibility for this object
 	 */
 	public final void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
@@ -62,7 +61,7 @@ public abstract class ClassContent extends LogicalObject{
 	}
 
 	/**
-	 * @return the type 
+	 * @return the type
 	 */
 	public final String getType() {
 		return type;
@@ -70,8 +69,9 @@ public abstract class ClassContent extends LogicalObject{
 
 	/**
 	 * Sets the type
-	 * @param 	type
-	 * 			the new type
+	 * 
+	 * @param type
+	 *            the new type
 	 */
 	public final void setType(String type) {
 		this.type = type;
@@ -87,16 +87,36 @@ public abstract class ClassContent extends LogicalObject{
 
 	/**
 	 * Changes the isStatic attribute
-	 * @param 	isStatic
-	 * 			The new value for the isStatic attribute
+	 * 
+	 * @param isStatic
+	 *            The new value for the isStatic attribute
 	 */
 	public void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
 		notifyUpdateListeners();
 	}
-	
+
 	public boolean canHaveAsType(String type) {
 		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);
 	}
-	
+
+	/**
+	 * Check if this visibility can be set for this ClassContent.
+	 * 
+	 * @param visibility
+	 *            visibility to be checked
+	 * @return true
+	 */
+	public boolean canHaveAsVisibility(Visibility visibility) {
+		return true;
+	}
+
+	/**
+	 * Check if this ClassContent can be set static
+	 * 
+	 * @param isStatic
+	 *            value that needs to be checked
+	 * @return true if this ClassContent can be static, false otherwise
+	 */
+	public abstract boolean canBeStatic(boolean isStatic);
 }

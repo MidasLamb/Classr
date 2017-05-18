@@ -114,4 +114,21 @@ public class Method extends ClassContent {
 	public boolean canHaveAsName(String name) {
 		return (name.matches(REGEX_START_NO_CAPITAL) && !getRealClass().methodNameAlreadyExists(name, this));
 	}
+
+	/**
+	 * Indicates whether this Method can be set abstract
+	 * 
+	 * @param isAbstract
+	 *            value that needs to be checked
+	 * @return returns false if this Method is static, and isAbstract is true,
+	 *         otherwise true
+	 */
+	public boolean canBeAbstract(boolean isAbstract) {
+		return !(this.isStatic() && isAbstract);
+	}
+
+	@Override
+	public boolean canBeStatic(boolean isStatic) {
+		return !(this.isAbstract && isStatic);
+	}
 }
