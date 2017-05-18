@@ -1,6 +1,5 @@
 package gui.form.base;
 
-
 import java.awt.Graphics;
 
 import gui.inputHandlers.clicks.MouseClick;
@@ -15,7 +14,7 @@ public class MenuHeader extends Button {
 
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
-		this.setDropDownMenu(new DropDownMenu<MenuItem>(x,y+this.getHeight(),width,500));
+		this.setDropDownMenu(new DropDownMenu<MenuItem>(x, y + this.getHeight(), width, 500));
 	}
 
 	public String getName() {
@@ -34,43 +33,44 @@ public class MenuHeader extends Button {
 		this.dropDownMenu = dropDownMenu;
 	}
 
-	boolean isIn(int x, int y) {
+	@Override
+	public boolean isIn(int x, int y) {
+		if (this.getDropDownMenu().isEnabled()) {
+			return isInSelf(x, y) || isInDropDown(x, y);
+		} else {
+			return isInSelf(x, y);
+		}
+	}
+
+	boolean isInSelf(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}
-	
-	/**
-	 * Checks if c is between a and b
-	 */
-	final static boolean isBetween(int a, int b, int c) {
-		return a <= c && b >= c;
+
+	boolean isInDropDown(int x, int y) {
+		return this.getDropDownMenu().isIn(x, y);
 	}
-	
+
 	@Override
 	public void onClick(MouseClick click) {
-		onAction();
-
+		if (this.isInSelf(click.getX(), click.getY())) {
+			onAction();
+		} else if (this.isInDropDown(click.getX(), click.getY())) {
+			this.getDropDownMenu().onClick(click);
+		}
 	}
-	
-	
+
 	@Override
 	public void draw(Graphics g) {
 		getState().draw(g);
 		this.getDropDownMenu().draw(g);
 	}
 
-	/*
-	 * @Override void draw(Graphics g) { g.fillRect(this.getX(), this.getY(),
-	 * this.getWidth(), this.getHeight()); for (MenuItem item :
-	 * this.getMenuItems()) { item.draw(g); } }
-	 */
-
 	@Override
 	protected void onAction() {
 		this.getDropDownMenu().toggle();
-		// draw listbox beneath with MenuItems
 	}
-	
+
 	protected boolean canBeEnabled() {
 		return true;
 	}

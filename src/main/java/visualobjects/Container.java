@@ -63,8 +63,9 @@ public class Container extends VisualObject implements CanvasContent{
 		menu.addMenuHeader(header);
 		new FormObjectWrapper<MenuBar>(menu, 0,30, 0, 500,30, this, getController());
 		
-		DropDownMenu<MenuItem> dd = header.getDropDownMenu();
-		new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,60,0,100,238, this, getController());
+		
+		//DropDownMenu<MenuItem> dd = header.getDropDownMenu();
+		//new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,60,0,100,238, this, getController());
 		
 	}
 	

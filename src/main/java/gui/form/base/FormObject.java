@@ -174,6 +174,18 @@ public abstract class FormObject implements Comparable<FormObject> {
 	int getHeight() {
 		return height;
 	}
+	
+	public boolean isIn(int x, int y) {
+		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
+				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
+	}
+
+	/**
+	 * Checks if c is between a and b
+	 */
+	final static boolean isBetween(int a, int b, int c) {
+		return a <= c && b >= c;
+	}
 
 	/**
 	 * Enumeration of possible label positions.
