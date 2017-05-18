@@ -102,5 +102,13 @@ public class MenuHeader extends Button {
 	protected boolean canBeEnabled() {
 		return true;
 	}
+	
+	
+	/**
+	 * Update the state of this Button
+	 */
+	void updateState() {
+		setEnabled(this.canBeEnabled());
+	}
 
 }
