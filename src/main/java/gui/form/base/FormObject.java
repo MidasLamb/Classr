@@ -175,6 +175,11 @@ public abstract class FormObject implements Comparable<FormObject> {
 		return height;
 	}
 	
+	/**
+	 * Returns whether or not the coordinate at x,y is in this FormObject.
+	 * @param x
+	 * @param y
+	 */
 	public boolean isIn(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
