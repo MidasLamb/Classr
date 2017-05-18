@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import canvaswindow.MyCanvasWindow;
+import command.ChangeClassContentTypeCommand;
+import command.ChangeLogicalObjectNameCommand;
+import command.Controller;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
+import gui.form.base.InputBox;
 import gui.form.base.Label;
 import gui.form.base.ListBox;
 import gui.form.base.RadioButton;
@@ -30,7 +34,7 @@ import visibilities.Visibility;
 public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	private Method method;
 	private FormContainer<FormWrapper> container;
-	private boolean isNew;
+	private final Controller controller;
 
 	private Button editParameter;
 	private Button removeParameter;
@@ -46,23 +50,40 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	 * @param isNew
 	 *            indicates whether this is a newly created method
 	 */
-	public MethodFormBuilder(Method method, FormContainer<FormWrapper> container, boolean isNew) {
+	public MethodFormBuilder(Method method, FormContainer<FormWrapper> container, Controller controller) {
 		this.method = method;
 		this.container = container;
-		this.isNew = isNew;
+		this.controller = controller;
 	}
 
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(330, 330, this.container));
 
-		RegexCheckedInputBox methName = new RegexCheckedInputBox(getMethod().getName(), "^[a-z][a-zA-Z0-9_]*", 10, 26,
-				100, 16);
+		InputBox methName = new InputBox(getMethod().getName(), 10, 26, 100, 16) {
+			@Override
+			protected void onAction() {
+				if (method.canHaveAsName(getText())) {
+					controller.executeCommand(new ChangeLogicalObjectNameCommand(method, getText()));
+				}
+
+			}
+
+		};
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		RegexCheckedInputBox methType = new RegexCheckedInputBox(getMethod().getType(), "^[a-z][a-zA-Z0-9_]*", 150, 26,
-				100, 16);
+		InputBox methType = new InputBox(getMethod().getType(), 150, 26, 100, 16) {
+
+			@Override
+			protected void onAction() {
+				if (method.canHaveAsType(getText())) {
+					controller.executeCommand(new ChangeClassContentTypeCommand(method, getText()));
+				}
+
+			}
+
+		};
 
 		this.addFormObject(methType);
 		this.addLabelToTopOfLastFormObject("Method type");
@@ -71,28 +92,69 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		// ---------------------------------------------------------------
 		this.addFormObject(new Label("Visibility", 10, 65));
 		RadioButtonGroup group = new RadioButtonGroup();
-		RadioButton publicButton = new DefaultRadioButton(group, 10, 90);
+		RadioButton publicButton = new RadioButton(group, 10, 90) {
+			@Override
+			protected void onAction() {
+				if (method.canHaveAsVisibility(Visibility.PUBLIC))
+					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PUBLIC));
+			}
+		};
 		this.addFormObject(publicButton);
 		this.addLabelToRightOfLastFormObject("Public");
-		RadioButton privateButton = new DefaultRadioButton(group, 10, 110);
+		RadioButton privateButton = new RadioButton(group, 10, 110) {
+			@Override
+			protected void onAction() {
+				if (method.canHaveAsVisibility(Visibility.PRIVATE))
+					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PRIVATE));
+			}
+		};
+		;
 		this.addFormObject(privateButton);
 		this.addLabelToRightOfLastFormObject("Private");
-		RadioButton packageButton = new DefaultRadioButton(group, 10, 130);
+		RadioButton packageButton = new RadioButton(group, 10, 130) {
+			@Override
+			protected void onAction() {
+				if (method.canHaveAsVisibility(Visibility.PACKAGE))
+					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PACKAGE));
+			}
+		};
+		;
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLastFormObject("Package");
-		RadioButton protectedButton = new DefaultRadioButton(group, 10, 150);
+		RadioButton protectedButton = new RadioButton(group, 10, 150) {
+			@Override
+			protected void onAction() {
+				if (method.canHaveAsVisibility(Visibility.PROTECTED))
+					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PROTECTED));
+			}
+		};
+		;
 		this.addFormObject(protectedButton);
 		this.addLabelToRightOfLastFormObject("Protected");
 		// Static checkbox
 		// ---------------------------------------------------------------
 		this.addFormObject(new Label("Modifiers", 150, 65));
-		CheckBox staticCheckbox = new DefaultCheckBox(150, 90);
+		CheckBox staticCheckbox = new CheckBox(150, 90){
+			@Override
+			protected void onAction() {
+				if (method.canBeStatic()){
+					
+				}
+			}
+		};
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLastFormObject("Static");
 
 		// Abstract checkbox
 		// ----------------------------------------------------------
-		CheckBox abstractCheckbox = new DefaultCheckBox(150, 110);
+		CheckBox abstractCheckbox = new CheckBox(150, 110){
+			@Override
+			protected void onAction() {
+				if (method.canBeAbstract()){
+					
+				}
+			}
+		};
 		this.addFormObject(abstractCheckbox);
 		this.addLabelToRightOfLastFormObject("Abstract");
 
@@ -199,41 +261,37 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		};
 
-		ok.addCheckableConstraint(methName);
-		ok.addCheckableConstraint(methType);
+		// ok.addCheckableConstraint(methName);
+		// ok.addCheckableConstraint(methType);
 
-		this.addFormObject(ok);
-
-		Button cancel = new Button("Cancel", 270, 270, 50, 50) {
+		Button close = new Button("Close", 270, 270, 50, 50) {
 
 			@Override
 			protected void onAction() {
-				if (isNew)
-					method.delete();
 				getForm().close();
 			}
 		};
 
-		this.addFormObject(cancel);
+		this.addFormObject(close);
 
 		// Initialize all objects with correct startinput.
 
 		Visibility v = getMethod().getVisibility();
 		switch (v) {
-			case PUBLIC:
-				group.setSelectedButton(publicButton);
-				break;
-			case PROTECTED:
-				group.setSelectedButton(protectedButton);
-				break;
-			case PACKAGE:
-				group.setSelectedButton(packageButton);
-				break;
-			case PRIVATE:
-				group.setSelectedButton(privateButton);
-				break;
-			default:
-				throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+		case PUBLIC:
+			group.setSelectedButton(publicButton);
+			break;
+		case PROTECTED:
+			group.setSelectedButton(protectedButton);
+			break;
+		case PACKAGE:
+			group.setSelectedButton(packageButton);
+			break;
+		case PRIVATE:
+			group.setSelectedButton(privateButton);
+			break;
+		default:
+			throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
 		}
 
 		for (Parameter p : getMethod().getParameters())

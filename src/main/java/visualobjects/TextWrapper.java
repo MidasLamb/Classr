@@ -92,17 +92,6 @@ public class TextWrapper extends VisualObject {
 		Backend.editTripleDot();
 	}
 	
-	/**
-	 * Opens the form to add new text
-	 */
-	public final void openNewForm(){
-		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
-		FormCreator creator = new FormCreator(getLogicalObject(), b, getController());
-		b.setContent(creator.getForm());
-		// TODO implement subscribe(logicalobject)
-		getLogicalObject().addDeleteListener(b);
-	}
-	
 	@Override
 	int getWidth(){
 		return STANDARD_FONTMETRICS.stringWidth(getString());

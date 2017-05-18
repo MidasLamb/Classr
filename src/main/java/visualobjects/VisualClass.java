@@ -127,12 +127,11 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 */
 	public PaddingBox<TextWrapper> createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		TextWrapper t = new EditableTextWrapper(0, 0, 0, "test", null, attr, getController());
+		TextWrapper t = new EditableTextWrapper(0, 0, 0, "attribute", null, attr, getController());
 		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				attr, getController());
 		this.updateDimensions();
 		getContainer().switchSelectedTo(tbox.getContent());
-		tbox.getContent().openForm();
 		return tbox;
 	}
 
@@ -143,12 +142,11 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 */
 	public PaddingBox<TextWrapper> createMethod() {
 		Method method = getLogicalObject().addMethod();
-		TextWrapper t = new TextWrapper(0, 0, 0, null, method, getController());
+		TextWrapper t = new EditableTextWrapper(0, 0, 0, "methods",null, method, getController());
 		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				method, getController());
 		this.updateDimensions();
 		this.getContainer().switchSelectedTo(tbox.getContent());
-		tbox.getContent().openForm();
 		return tbox;
 	}
 

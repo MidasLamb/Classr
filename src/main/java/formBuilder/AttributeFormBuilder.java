@@ -3,6 +3,7 @@ package formBuilder;
 import static main.Constants.CONTAINER_HEIGHT;
 import static main.Constants.CONTAINER_WIDTH;
 
+import command.ChangeClassContentTypeCommand;
 import command.ChangeLogicalObjectNameCommand;
 import command.Controller;
 import gui.form.base.Button;
@@ -51,39 +52,39 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(270, 180, this.formContainer));
-		InputBox attrName = new InputBox(getAttribute().getName(), 10,
-				26, 100, 16){
+		InputBox attrName = new InputBox(getAttribute().getName(), 150, 25, 100, 16) {
 
-					@Override
-					protected void onAction() {
-						if (attribute.canHaveAsName(getText())){
-							controller.executeCommand(
-									new ChangeLogicalObjectNameCommand(attribute, getText()));
-						}
-						
-					}
-			
+			@Override
+			protected void onAction() {
+				if (attribute.canHaveAsName(getText())) {
+					controller.executeCommand(new ChangeLogicalObjectNameCommand(attribute, getText()));
+				}
+
+			}
+
 		};
 		this.addFormObject(attrName);
-		
-		attribute.addUpdateListener(new UpdateListener() {
-			
-			@Override
-			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-				attrName.setText(attribute.getName());
-			}
-		});
-		
+
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
-		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "^[a-z][a-zA-Z0-9_]*", 150,
-				26, 100, 16);
+		InputBox attrType = new InputBox(getAttribute().getType(), 150, 75, 100, 16) {
+
+			@Override
+			protected void onAction() {
+				if (attribute.canHaveAsType(getText())) {
+					controller.executeCommand(new ChangeClassContentTypeCommand(attribute, getText()));
+					System.out.println(getText());
+				}
+
+			}
+
+		};
 		this.addFormObject(attrType);
 		this.addLabelToTopOfLastFormObject("Attribute type");
 
 		// Radio buttons for visibility.
 		this.addFormObject(new Label("Visibility", 10, 65));
-		
+
 		RadioButtonGroup group = new RadioButtonGroup();
 		RadioButton publicButton = new DefaultRadioButton(group, 10, 90);
 		this.addFormObject(publicButton);
@@ -99,8 +100,8 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		this.addLabelToRightOfLastFormObject("Protected");
 
 		// Static checkbox
-		this.addFormObject(new Label("Modifiers", 150, 65));
-		CheckBox staticCheckbox = new DefaultCheckBox(150, 90);
+		this.addFormObject(new Label("Modifiers", 10, 3));
+		CheckBox staticCheckbox = new DefaultCheckBox(10, 25);
 
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLastFormObject("Static");
@@ -109,8 +110,6 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onOk() {
-				getAttribute().setName(attrName.getText());
-				getAttribute().setType(attrType.getText());
 				if (group.getSelectedButton().equals(publicButton))
 					getAttribute().setVisibility(Visibility.PUBLIC);
 				else if (group.getSelectedButton().equals(packageButton))
@@ -127,42 +126,44 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 		};
 
-		//ok.addCheckableConstraint(attrName);
-		ok.addCheckableConstraint(attrType);
-
-		this.addFormObject(ok);
-
-		Button cancel = new Button("Cancel", 210, 120, 50, 50) {
+		Button close = new Button("Close", 200, 120, 50, 50) {
 
 			@Override
 			protected void onAction() {
-				if (isNew)
-					attribute.delete();
 				getForm().close();
 			}
 		};
 
-		this.addFormObject(cancel);
+		this.addFormObject(close);
 
 		// Initialize all objects with correct startinput.
 		Visibility v = getAttribute().getVisibility();
 		switch (v) {
-			case PUBLIC: 
-				group.setSelectedButton(publicButton);
-				break;
-			case PROTECTED:
-				group.setSelectedButton(protectedButton);
-				break;
-			case PACKAGE:
-				group.setSelectedButton(packageButton);
-				break;
-			case PRIVATE:
-				group.setSelectedButton(privateButton);
-				break;
-			default:
-				throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+		case PUBLIC:
+			group.setSelectedButton(publicButton);
+			break;
+		case PROTECTED:
+			group.setSelectedButton(protectedButton);
+			break;
+		case PACKAGE:
+			group.setSelectedButton(packageButton);
+			break;
+		case PRIVATE:
+			group.setSelectedButton(privateButton);
+			break;
+		default:
+			throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
 		}
 		staticCheckbox.setChecked(getAttribute().isStatic());
+
+		attribute.addUpdateListener(new UpdateListener() {
+
+			@Override
+			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+				attrName.setText(attribute.getName());
+				attrType.setText(attribute.getType());
+			}
+		});
 	}
 
 	private Attribute getAttribute() {

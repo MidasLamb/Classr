@@ -42,7 +42,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	@Override
 	public Void visit(Method c) {
-		this.setFormBuilder(new MethodFormBuilder(c, this.getFormContainer(), false));
+		this.setFormBuilder(new MethodFormBuilder(c, this.getFormContainer(), controller));
 		return null;
 	}
 
