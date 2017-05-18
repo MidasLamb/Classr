@@ -12,6 +12,16 @@ public class MenuHeader extends Button {
 	private String name;
 	private DropDownMenu<MenuItem> dropDownMenu;
 
+	/**
+	 * Default constructor for a MenuHeader. Creates a new MenuHeader and sets
+	 * its name, coordinates and dimensions and initializes its DropDownMenu.
+	 * 
+	 * @param name
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
 		this.setDropDownMenu(new DropDownMenu<MenuItem>(x, y + this.getHeight(), width, 500));
@@ -42,11 +52,24 @@ public class MenuHeader extends Button {
 		}
 	}
 
+	/**
+	 * Returns whether or not a coordinate at x,y is in this MenuHeader itself.
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	boolean isInSelf(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}
 
+	/**
+	 * Returns whether or not a coordinate at x,y is in the DropDownMenu of this
+	 * MenuHeader.
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	boolean isInDropDown(int x, int y) {
 		return this.getDropDownMenu().isIn(x, y);
 	}
@@ -73,6 +96,7 @@ public class MenuHeader extends Button {
 
 	/**
 	 * Checks if this button can be enabled
+	 * 
 	 * @return true if this button can be enabled, otherwise false
 	 */
 	protected boolean canBeEnabled() {
