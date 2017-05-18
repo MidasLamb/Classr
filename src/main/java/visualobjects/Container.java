@@ -39,7 +39,7 @@ public class Container extends VisualObject implements CanvasContent{
 		super(x, y, Integer.MIN_VALUE, width, height, null, new Controller());
 		this.setCanvasWindow(window);
 		
-		BarBackend.initialize(this, getController());
+		Backend.initialize(this, getController());
 		this.createToolBar();
 		this.createMenuBar();
 	}
@@ -81,7 +81,7 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.createClass();
+				Backend.createClass();
 			}
 		});
 		
@@ -90,12 +90,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Add Attribute", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.addAttribute();
+				Backend.addAttribute();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canAddAttribute();
+				return Backend.canAddAttribute();
 			}
 		});
 		
@@ -104,12 +104,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Add Method", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.addMethod();
+				Backend.addMethod();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canAddMethod();
+				return Backend.canAddMethod();
 			}
 		});
 		
@@ -118,12 +118,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Add Parameter", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.addParameter();
+				Backend.addParameter();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canAddParameter();
+				return Backend.canAddParameter();
 			}
 		});
 		
@@ -132,12 +132,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Edit Name", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.editName();
+				Backend.editName();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canEditName();
+				return Backend.canEditName();
 			}
 		});
 		
@@ -146,12 +146,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Edit...", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.editTripleDot();
+				Backend.editTripleDot();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canEditTripleDot();
+				return Backend.canEditTripleDot();
 			}
 		});
 		
@@ -160,12 +160,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Delete", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.delete();
+				Backend.delete();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canDelete();
+				return Backend.canDelete();
 			}
 		});
 		
@@ -174,12 +174,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Undo", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.undo();
+				Backend.undo();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canUndo();
+				return Backend.canUndo();
 			}
 		});
 		
@@ -188,12 +188,12 @@ public class Container extends VisualObject implements CanvasContent{
 		toolbar.addMenuHeader(new MenuHeader("Redo", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
-				BarBackend.redo();
+				Backend.redo();
 			}
 			
 			@Override
 			protected boolean canBeEnabled() {
-				return BarBackend.canRedo();
+				return Backend.canRedo();
 			}
 		});
 		

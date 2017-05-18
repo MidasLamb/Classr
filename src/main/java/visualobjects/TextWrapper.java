@@ -89,7 +89,7 @@ public class TextWrapper extends VisualObject {
 	 * Opens the form to edit this text
 	 */
 	public final void openForm(){
-		BarBackend.editTripleDot();
+		Backend.editTripleDot();
 	}
 	
 	/**

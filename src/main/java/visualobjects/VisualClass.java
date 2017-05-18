@@ -141,7 +141,7 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 				attr, getController());
 		this.updateDimensions();
 		getContainer().switchSelectedTo(tbox.getContent());
-		tbox.getContent().openNewForm();
+		tbox.getContent().openForm();
 		return tbox;
 	}
 
@@ -157,7 +157,7 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 				method, getController());
 		this.updateDimensions();
 		this.getContainer().switchSelectedTo(tbox.getContent());
-		tbox.getContent().openNewForm();
+		tbox.getContent().openForm();
 		return tbox;
 	}
 
