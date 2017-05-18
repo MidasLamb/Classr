@@ -181,7 +181,7 @@ class Backend {
 				
 			});
 		} else {
-			// bring form to the front
+			getContainer().bringToFront(getFormsMap().get(logicalObject));
 		}
 	}
 }

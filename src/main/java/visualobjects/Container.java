@@ -17,186 +17,186 @@ import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 import interfaces.CanvasContent;
 
-public class Container extends VisualObject implements CanvasContent{
+public class Container extends VisualObject implements CanvasContent {
 	private VisualObject selected;
 	private MyCanvasWindow window;
 	private MenuBar toolbar;
 
 	/**
 	 * 
-	 * @param 	x
-	 * 			The x-coordinate of the container
-	 * @param 	y
-	 * 			The y-coordinate of the container
-	 * @param 	width
-	 * 			the width of the container
-	 * @param 	height
-	 * 			the height of the container
-	 * @param 	window
-	 * 			the canvas window in this container
+	 * @param x
+	 *            The x-coordinate of the container
+	 * @param y
+	 *            The y-coordinate of the container
+	 * @param width
+	 *            the width of the container
+	 * @param height
+	 *            the height of the container
+	 * @param window
+	 *            the canvas window in this container
 	 */
 	public Container(int x, int y, int width, int height, MyCanvasWindow window) {
 		super(x, y, Integer.MIN_VALUE, width, height, null, new Controller());
 		this.setCanvasWindow(window);
-		
+
 		Backend.initialize(this, getController());
 		this.createToolBar();
 		this.createMenuBar();
 	}
-	
-	private void createMenuBar(){
-		MenuBar menu = new MenuBar(0,30,500, 30);
+
+	private void createMenuBar() {
+		MenuBar menu = new MenuBar(0, 30, 500, 30);
 		MenuHeader header = new MenuHeader("testheader", 0, 30, 100, 30);
-		for (int i = 0; i < 15;i++){
-			String name = "testitem"+i;
-			MenuItem item = new MenuItem(name,100,0){
+		for (int i = 0; i < 15; i++) {
+			String name = "testitem" + i;
+			MenuItem item = new MenuItem(name, 100, 0) {
 				@Override
 				protected void onAction() {
-					
+
 					System.out.println(name);
 				}
-				
+
 			};
 			header.getDropDownMenu().addMenuItem(item);
 		}
-				
+
 		menu.addMenuHeader(header);
-		new FormObjectWrapper<MenuBar>(menu, 0,30, 0, 500,30, this, getController());
-		
+		new FormObjectWrapper<MenuBar>(menu, 0, 30, 0, 500, 30, this, getController());
+
 		DropDownMenu<MenuItem> dd = header.getDropDownMenu();
-		new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,60,0,100,238, this, getController());
-		
+		new FormObjectWrapper<DropDownMenu<MenuItem>>(dd, 0, 60, 0, 100, 238, this, getController());
+
 	}
-	
-	private void createToolBar(){
+
+	private void createToolBar() {
 		int defaultHeight = 30;
 		int x = 0;
 		int y = 0;
 		int defaultWidth = 100;
 		int newPosX = x;
-		
+
 		MenuBar toolbar = new MenuBar(x, y, this.getWidth(), defaultHeight);
 		this.setToolbar(toolbar);
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.createClass();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Add Attribute", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.addAttribute();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canAddAttribute();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Add Method", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.addMethod();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canAddMethod();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Add Parameter", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.addParameter();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canAddParameter();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Edit Name", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.editName();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canEditName();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Edit...", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.editTripleDot();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canEditTripleDot();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Delete", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.delete();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canDelete();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Undo", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.undo();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canUndo();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		toolbar.addMenuHeader(new MenuHeader("Redo", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
 			protected void onAction() {
 				Backend.redo();
 			}
-			
+
 			@Override
 			protected boolean canBeEnabled() {
 				return Backend.canRedo();
 			}
 		});
-		
+
 		new FormObjectWrapper<MenuBar>(toolbar, x, y, 0, 100000, defaultHeight, this, getController());
 	}
 
@@ -230,55 +230,57 @@ public class Container extends VisualObject implements CanvasContent{
 	public VisualClass createNewClass(int x, int y) {
 		return new VisualClass(x, y, Z_CLASS, this, getController());
 	}
-	
+
 	/**
 	 * Creates a new visual class in this container when no location is given
-	 *  adds the class to the children makes the text item of the class the selected item
-	 * The location for this class will be an empty location in the container
-	 * If there is no empty location, no class will be created
+	 * adds the class to the children makes the text item of the class the
+	 * selected item The location for this class will be an empty location in
+	 * the container If there is no empty location, no class will be created
 	 * 
 	 * @return the created visualClass, null if there is no empty space
 	 */
-	public VisualClass createNewClass(){
-		try{
+	public VisualClass createNewClass() {
+		try {
 			int[] coordinates = findEmptyPosition();
 			return createNewClass(coordinates[0], coordinates[1]);
-		} catch (IllegalStateException e){
+		} catch (IllegalStateException e) {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Finds an empty position in the container
-	 * @return	coordinates [x,y] if there exists a position
-	 * @throws 	IllegalStateException
-	 * 			if there is no empty position
+	 * 
+	 * @return coordinates [x,y] if there exists a position
+	 * @throws IllegalStateException
+	 *             if there is no empty position
 	 */
-	private int[] findEmptyPosition() throws IllegalStateException{
+	private int[] findEmptyPosition() throws IllegalStateException {
 		int startPos = 10;
 		int x = startPos;
 		int y = startPos;
-		while(isChildIn(x, y)){
-			if(x+CLASS_WIDTH > getWidth()){
+		while (isChildIn(x, y)) {
+			if (x + CLASS_WIDTH > getWidth()) {
 				x = startPos;
 				y++;
 			} else {
 				x++;
 			}
-			if(y > getHeight()) throw new IllegalStateException();
+			if (y > getHeight())
+				throw new IllegalStateException();
 		}
-		return new int[]{x,y};
+		return new int[] { x, y };
 	}
-	
+
 	/**
-	 * @param 	x
-	 * 			the x-coordinate
-	 * @param 	y
-	 * 			the y-coordinate
-	 * @return	True if there is a child in the given coordinates,
-	 * 				otherwise false
+	 * @param x
+	 *            the x-coordinate
+	 * @param y
+	 *            the y-coordinate
+	 * @return True if there is a child in the given coordinates, otherwise
+	 *         false
 	 */
-	private boolean isChildIn(int x, int y){
+	private boolean isChildIn(int x, int y) {
 		return getChildren().stream().anyMatch(child -> child.isIn(x, y));
 	}
 
@@ -286,7 +288,7 @@ public class Container extends VisualObject implements CanvasContent{
 	public void onDoubleClick(DoubleClick dc) {
 		if (this.select(dc.getX(), dc.getY()).equals(this)) {
 			// Double click on empty
-			getController().executeCommand(new CreateClassCommand(this,dc.getX(), dc.getY()));
+			getController().executeCommand(new CreateClassCommand(this, dc.getX(), dc.getY()));
 		} else {
 			super.onDoubleClick(dc);
 		}
@@ -330,8 +332,8 @@ public class Container extends VisualObject implements CanvasContent{
 	}
 
 	/**
-	 * @param 	window
-	 * 			the canvas window
+	 * @param window
+	 *            the canvas window
 	 */
 	private void setCanvasWindow(MyCanvasWindow window) {
 		this.window = window;
@@ -339,17 +341,17 @@ public class Container extends VisualObject implements CanvasContent{
 
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
-		if(getSelected() != null)
+		if (getSelected() != null)
 			getSelected().handleAsciiKey(key);
 	}
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
-		if(key.getKeyType() == FunctionKeyType.CTRL_Z)
+		if (key.getKeyType() == FunctionKeyType.CTRL_Z)
 			getController().undo();
-		if(key.getKeyType() == FunctionKeyType.CTRL_Y)
+		if (key.getKeyType() == FunctionKeyType.CTRL_Y)
 			getController().redo();
-		if(getSelected() != null)
+		if (getSelected() != null)
 			getSelected().handleFunctionKey(key);
 	}
 
@@ -361,20 +363,32 @@ public class Container extends VisualObject implements CanvasContent{
 	}
 
 	/**
-	 * @param toolbar the toolbar to set
+	 * @param toolbar
+	 *            the toolbar to set
 	 */
 	private final void setToolbar(MenuBar toolbar) {
 		this.toolbar = toolbar;
 	}
-	
+
 	@Override
 	public int getWidth() {
 		return super.getWidth();
 	}
-	
+
 	@Override
 	public int getHeight() {
 		return super.getHeight();
+	}
+
+	/**
+	 * Bring the given VisualObject to the front of the canvas.
+	 * 
+	 * @param vo
+	 *            the VisualObject to draw at the front
+	 */
+	void bringToFront(VisualObject vo) {
+		children.remove(vo);
+		children.add(vo);
 	}
 
 }
