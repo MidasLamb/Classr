@@ -486,7 +486,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the LogicalObject belonging to this VisualObject
 	 */
-	LogicalObject getLogicalObject() {
+	public LogicalObject getLogicalObject() {
 		return logicalObject;
 	}
 
