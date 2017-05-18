@@ -12,11 +12,17 @@ import gui.inputHandlers.clicks.SingleClick;
 /**
  * A class representing a MenuItem in a drop down menu of a MenuHeader
  */
-// TODO WRONG!
 public abstract class MenuItem extends FormObject implements Displayable {
 	private DropDownMenu<MenuItem> dropDownMenu;
 	private final String name;
 
+	/**
+	 * Default constructor for a MenuItem. Creates a new MenuItem and sets its
+	 * name and dimensions.
+	 * 
+	 * @param width
+	 * @param height
+	 */
 	public MenuItem(String name, int width, int height) {
 		super(0, 0, width, height);
 		this.name = name;
@@ -51,12 +57,6 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	@Override
 	public String getDisplayableString() {
 		return this.name;
-	}
-
-	@Override
-	public boolean isIn(int x, int y) {
-		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
-				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}
 
 }
