@@ -51,6 +51,7 @@ public final class Constants {
 	
 	public static final String REGEX_START_CAPITAL = "^[A-Z][a-zA-Z0-9_]*";
 	public static final String REGEX_START_NO_CAPITAL = "^[a-z][a-zA-Z0-9_]*";
+	public static final String REGEX_ALPHANUMERIC_UNDERSCORE = "^[a-zA-Z][a-zA-Z0-9_]*";
 
 	private Constants() {
 		throw new AssertionError();
