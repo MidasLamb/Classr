@@ -6,7 +6,6 @@ import gui.inputHandlers.clicks.MouseClick;
 
 /**
  * A class that represents a Header in a MenuBar
- *
  */
 public class MenuHeader extends Button {
 	private String name;

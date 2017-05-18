@@ -8,91 +8,109 @@ import gui.form.base.ListBox;
 import gui.form.base.ListBox.ListBoxElement;
 import gui.inputHandlers.clicks.MouseClick;
 
+/**
+ * A class of DropDownMenus, extending a listbox, but being able to be disabled.
+ *
+ * @param <T>
+ */
 public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	private boolean enabled;
 	private DropDownMenuState state;
-	//private ArrayList<MenuItem> menuItems;
 
+	/**
+	 * Default constructor for a DropDownMenu. Creates a new DropDownMenu and
+	 * sets its coordinates and dimensions and initializes its State and lsit of
+	 * MenuItems.
+	 * 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public DropDownMenu(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		//this.menuItems = new ArrayList<MenuItem>();
+		// this.menuItems = new ArrayList<MenuItem>();
 		this.setState(false);
 		this.setElements(new ArrayList<ListBoxElement<MenuItem>>());
 	}
 
-	public DropDownMenuState getState() {
+	DropDownMenuState getState() {
 		return state;
 	}
 
-	public void setState(boolean bool){
-		if (bool){
+	private void setState(boolean bool) {
+		if (bool) {
 			setState(new Enabled());
-		}
-		else{
+		} else {
 			setState(new Disabled());
 		}
 	}
-	
-	public void setState(DropDownMenuState state) {
+
+	private void setState(DropDownMenuState state) {
 		this.state = state;
 	}
 
-	/*public ArrayList<MenuItem> getMenuItems() {
-		return menuItems;
-	}*/
-
-	// WRONG!
+	/**
+	 * Adds a MenuItem to its list of MenuItems.
+	 * 
+	 * @param item
+	 */
 	public void addMenuItem(MenuItem item) {
 		this.addElement(item);
 		item.setDropDownMenu((DropDownMenu<MenuItem>) this);
 	}
 
-	// WRONG!
-	public void deleteMenuItem(MenuItem item) {
+	/**
+	 * Deletes a MenuItem from its list of MenuItems.
+	 * 
+	 * @param item
+	 */
+	void deleteMenuItem(MenuItem item) {
 		item.setDropDownMenu(null);
 		this.removeElement(item);
 	}
 
-	public boolean isEnabled() {
+	boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	private void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	public void toggle() {
+	/**
+	 * Inverses the enabled state of this DropDownMenu
+	 */
+	void toggle() {
 		this.setEnabled(!this.isEnabled());
 		this.setState(this.isEnabled());
 	}
 
-	// TODO WRONG!
 	@Override
-	public void onClick(MouseClick click){
+	public void onClick(MouseClick click) {
 		getState().onClick(click);
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
 		getState().draw(g);
 	}
 
-	// TODO WRONG!
 	@Override
 	protected void onAction() {
-
 	}
-	
+
 	@Override
 	public boolean isIn(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
 				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
 	}
-	
 
+	/**
+	 * A class representing that a DropDownMenu is enabled
+	 */
 	private class Enabled extends DropDownMenuState {
-		
-		
+
 		@Override
 		void onClick(MouseClick click) {
 			int x = getX();
@@ -107,7 +125,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 				sumOfVerticalMovement += e.getHeight();
 			}
 		}
-	
+
 		@Override
 		void draw(Graphics g) {
 			int translatedX = getX();
@@ -124,10 +142,11 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
 		}
 
-		
-
 	}
 
+	/**
+	 * A class representing that a DropDownMenu is disabled.
+	 */
 	private class Disabled extends DropDownMenuState {
 
 		@Override
@@ -139,8 +158,5 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		}
 
 	}
-	
-	
-	
 
 }
