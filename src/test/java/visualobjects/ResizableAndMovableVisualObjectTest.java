@@ -21,14 +21,16 @@ public class ResizableAndMovableVisualObjectTest {
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 
-		Drag drag1 = new Drag(99, 505, 89, 505);
+		Drag drag1 = new Drag(100, 555, 89, 505);
 		container.onDragUpdate(drag1);
 		container.onDragEnd(drag1);
 
 		int width = 0;
+		int vcCount = 0;
 
 		for (VisualObject child : container.getChildren()) {
 			if (child instanceof VisualClass) {
+				vcCount++;
 				if (width != 0) {
 					assertNotEquals(width, child.getWidth());
 				} else {
@@ -36,6 +38,8 @@ public class ResizableAndMovableVisualObjectTest {
 				}
 			}
 		}
+		
+		assertEquals(2, vcCount);
 
 	}
 
