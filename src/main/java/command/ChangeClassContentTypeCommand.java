@@ -1,8 +1,10 @@
 package command;
 
+import logicalobjects.ClassContent;
+
 public class ChangeClassContentTypeCommand extends Command {
 
-	public ChangeClassContentTypeCommand() {
+	public ChangeClassContentTypeCommand(ClassContent classContent) {
 		// TODO Auto-generated constructor stub
 	}
 
