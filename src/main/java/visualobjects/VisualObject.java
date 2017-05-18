@@ -618,7 +618,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	
 	@Override
 	public void notifyDeleteListeners(){
-		getDeleteListeners().forEach(x -> x.notify());
+		getDeleteListeners().forEach(x -> x.getNotifiedSubjectDeleted(this));
 	}
 
 	/**

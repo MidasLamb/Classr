@@ -71,7 +71,7 @@ class BarBackend {
 		if (canEditTripleDot()) {
 			LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
 			ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
-			FormWrapper formWrapper = new FormCreator(logicalObject, b, false).getForm();
+			FormWrapper formWrapper = new FormCreator(logicalObject, b, getController()).getForm();
 			b.setContent(formWrapper);
 			logicalObject.addDeleteListener(b);
 		}
@@ -79,6 +79,7 @@ class BarBackend {
 
 	public static final void delete() {
 		if (canDelete()){
+			//TODO update with command
 			getContainer().getSelected().delete();
 		}
 	}

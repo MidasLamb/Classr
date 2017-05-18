@@ -25,10 +25,9 @@ import logicalobjects.Method;
 /**
  * The visualization of a logicalClass
  */
-public class VisualClass extends ResizableAndMovableVisualObject{
+public class VisualClass extends ResizableAndMovableVisualObject {
 	private PaddingBox<EditableTextWrapper> name;
 	private AssociationHandle associationHandle;
-
 
 	/**
 	 * 
@@ -50,9 +49,10 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 		setLogicalObject(new LogicalClass());
 		// TODO clean up this -1 to indicate nog max width exists.
 		this.setName(new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, new EditableTextWrapper(0, 0, 0, "Klasse",
-				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), -1, getController()), this, getLogicalObject(),
+				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), getController()), this, getLogicalObject(),
 				getController()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
+		this.getName().getContent().setEditable();
 		this.updateDimensions();
 
 		this.getName().addDeleteListener(this);
@@ -136,12 +136,12 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 	 */
 	public PaddingBox<TextWrapper> createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		TextWrapper t = new TextWrapper(0, 0, 0, null, attr, getController());
+		TextWrapper t = new EditableTextWrapper(0, 0, 0, "test", null, attr, getController());
 		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				attr, getController());
 		this.updateDimensions();
 		getContainer().switchSelectedTo(tbox.getContent());
-		tbox.getContent().openNewForm();
+		//tbox.getContent().openForm();
 		return tbox;
 	}
 
@@ -157,7 +157,7 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 				method, getController());
 		this.updateDimensions();
 		this.getContainer().switchSelectedTo(tbox.getContent());
-		tbox.getContent().openNewForm();
+		//tbox.getContent().openNewForm();
 		return tbox;
 	}
 
@@ -308,10 +308,12 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 		}
 
 		else if (this.isSelected()) {
-			if (this.getName().isIn(sc.getX(), sc.getY()))
+			if (this.getName().isIn(sc.getX(), sc.getY())) {
 				this.getContainer().switchSelectedTo(this.getName().getContent());
-			else
+				this.getName().getContent().setEditable();
+			} else {
 				super.onClick(sc);
+			}
 		}
 
 	}
@@ -381,9 +383,5 @@ public class VisualClass extends ResizableAndMovableVisualObject{
 		y += CLASS_WHITE_SPACE;
 		return y;
 	}
-
-	
-	
-	
 
 }
