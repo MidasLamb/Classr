@@ -30,14 +30,18 @@ public class Attribute extends ClassContent {
 		this.setType("string");
 	}
 
-
 	@Override
 	Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
-	
+
 	@Override
 	public boolean canHaveAsName(String name) {
 		return (name.matches(REGEX_START_NO_CAPITAL) && !getRealClass().attributeNameAlreadyExists(name, this));
+	}
+
+	@Override
+	public boolean canBeStatic(boolean isStatic) {
+		return true;
 	}
 }
