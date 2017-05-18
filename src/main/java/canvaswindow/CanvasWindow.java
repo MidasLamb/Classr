@@ -302,7 +302,6 @@ public class CanvasWindow {
 	 */
 	protected CanvasWindow(String title) {
 		this.title = title;
-		
 	}
 
 	public final void recordSession(String path) {
@@ -383,7 +382,7 @@ public class CanvasWindow {
 			setPreferredSize(new Dimension(width, height));
 			setBackground(Color.WHITE);
 			setFocusable(true);
-			
+
 			addMouseListener(new MouseAdapter() {
 
 				@Override
@@ -448,7 +447,7 @@ public class CanvasWindow {
 	private class Frame extends JFrame {
 		Frame(String title) {
 			super(title);
-			setMinimumSize(new Dimension(CONTAINER_WIDTH, CONTAINER_HEIGHT));
+
 			addWindowListener(new WindowAdapter() {
 
 				@Override

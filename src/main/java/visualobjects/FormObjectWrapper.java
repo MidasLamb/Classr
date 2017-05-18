@@ -29,6 +29,10 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject {
 		f.onClick(click);
 	}
 	
+	@Override
+	boolean isIn(int x, int y){
+		return fo.isIn(x, y);
+	}
 	
 
 }

@@ -9,6 +9,8 @@ import command.CreateClassCommand;
 import command.CreateMethodCommand;
 import formBuilder.FormCreator;
 import guiToApplication.FormWrapper;
+import interfaces.DeleteListener;
+import interfaces.DeleteSubject;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
@@ -169,9 +171,17 @@ class Backend {
 			b.setContent(formWrapper);
 			logicalObject.addDeleteListener(b);
 			getFormsMap().put(logicalObject, b);
+			b.addDeleteListener(new DeleteListener() {
+				
+				@Override
+				public void getNotifiedSubjectDeleted(DeleteSubject subject) {
+					assert(Backend.getFormsMap().containsValue(subject));
+					getFormsMap().values().remove(subject);
+				}
+				
+			});
 		} else {
-			// bring form to the front
+			getContainer().bringToFront(getFormsMap().get(logicalObject));
 		}
 	}
-
 }

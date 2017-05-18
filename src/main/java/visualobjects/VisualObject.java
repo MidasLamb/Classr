@@ -38,7 +38,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	private int z;
 	private int width;
 	private int height;
-	private ArrayList<VisualObject> children;
+	ArrayList<VisualObject> children;
 	private VisualObject parent;
 	private LogicalObject logicalObject;
 	private Collection<DeleteListener> deleteListeners;
