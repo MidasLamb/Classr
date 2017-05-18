@@ -30,6 +30,7 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
 		t.setSelected(true);
+		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}		
@@ -43,6 +44,7 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r, new Controller());
 		t.setSelected(true);
+		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
@@ -57,6 +59,7 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
 		t.setSelected(true);
+		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
@@ -72,6 +75,7 @@ public class TextTest {
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
 		t.setSelected(true);
+		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
