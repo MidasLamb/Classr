@@ -78,6 +78,7 @@ class Backend {
 
 	public static final void delete() {
 		if (canDelete()) {
+			// TODO use command
 			getContainer().getSelected().delete();
 		}
 	}
@@ -164,7 +165,7 @@ class Backend {
 		LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
 		if (!getFormsMap().containsKey(logicalObject)) {
 			ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
-			FormWrapper formWrapper = new FormCreator(logicalObject, b, false).getForm();
+			FormWrapper formWrapper = new FormCreator(logicalObject, b, getController()).getForm();
 			b.setContent(formWrapper);
 			logicalObject.addDeleteListener(b);
 			getFormsMap().put(logicalObject, b);
