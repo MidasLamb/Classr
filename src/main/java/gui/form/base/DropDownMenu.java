@@ -82,6 +82,13 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	protected void onAction() {
 
 	}
+	
+	@Override
+	public boolean isIn(int x, int y) {
+		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
+				&& isBetween(this.getY(), this.getY() + this.getHeight(), y);
+	}
+	
 
 	private class Enabled extends DropDownMenuState {
 		

@@ -109,16 +109,16 @@ public abstract class InputBox extends FormObject implements Typable {
 	private final void setTextObject(Text textObject) {
 		this.textObject = textObject;
 	}
-	
-	public void setText(String string){
-		this.getTextObject().setAttributedText(new AttributedString(string));
-	}
 
 	/**
 	 * @return Text entered in this InputBox.
 	 */
 	public String getText() {
 		return this.getTextObject().getText();
+	}
+
+	public void setText(String string) {
+		this.getTextObject().setAttributedText(new AttributedString(string));
 	}
 
 }
