@@ -6,7 +6,6 @@ import gui.inputHandlers.clicks.MouseClick;
 
 /**
  * A class that represents a Header in a MenuBar
- *
  */
 public class MenuHeader extends Button {
 	private String name;
@@ -101,6 +100,14 @@ public class MenuHeader extends Button {
 	 */
 	protected boolean canBeEnabled() {
 		return true;
+	}
+	
+	
+	/**
+	 * Update the state of this Button
+	 */
+	void updateState() {
+		setEnabled(this.canBeEnabled());
 	}
 
 }
