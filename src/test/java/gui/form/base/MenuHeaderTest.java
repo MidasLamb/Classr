@@ -2,11 +2,9 @@ package gui.form.base;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
-public class MenuHeaderTest {
-	
+public class MenuHeaderTest {	
 	
 	private MenuItem itemDummy(){
 		MenuItem item = new MenuItem("BBB", 0, 0){
@@ -122,5 +120,4 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().addMenuItem(item);
 		assertEquals(header.getDropDownMenu(), item.getDropDownMenu());
 	}
-
 }

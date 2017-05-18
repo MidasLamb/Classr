@@ -22,7 +22,7 @@ public class Drag extends MouseClick {
 	 *            End y-coordinate
 	 */
 	public Drag(int startX, int startY, int endX, int endY) {
-		super(endX, endY);
+		super(startX, startY);
 		this.setStartX(startX);
 		this.setStartY(startY);
 		this.setEndX(endX);

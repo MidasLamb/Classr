@@ -71,6 +71,10 @@ public class MenuHeader extends Button {
 		this.getDropDownMenu().toggle();
 	}
 
+	/**
+	 * Checks if this button can be enabled
+	 * @return true if this button can be enabled, otherwise false
+	 */
 	protected boolean canBeEnabled() {
 		return true;
 	}

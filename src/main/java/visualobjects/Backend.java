@@ -1,22 +1,28 @@
 package visualobjects;
 
+import java.util.HashMap;
+
 import command.Command;
 import command.Controller;
 import command.CreateAttributeCommand;
 import command.CreateClassCommand;
 import command.CreateMethodCommand;
+import formBuilder.FormCreator;
+import guiToApplication.FormWrapper;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
+import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 
-class BarBackend {
+class Backend {
 
 	private static Controller controller;
 	private static Container container;
+	private static HashMap<LogicalObject, ContentBox> formsMap = new HashMap<>();
 
 	public static void initialize(Container container, Controller controller) {
-		BarBackend.setContainer(container);
-		BarBackend.setController(controller);
+		Backend.setContainer(container);
+		Backend.setController(controller);
 	}
 
 	private static final Controller getController() {
@@ -24,8 +30,8 @@ class BarBackend {
 	}
 
 	private static final void setController(Controller controller) {
-		if (BarBackend.controller == null)
-			BarBackend.controller = controller;
+		if (Backend.controller == null)
+			Backend.controller = controller;
 	}
 
 	private static final Container getContainer() {
@@ -33,8 +39,8 @@ class BarBackend {
 	}
 
 	private static final void setContainer(Container container) {
-		if (BarBackend.container == null)
-			BarBackend.container = container;
+		if (Backend.container == null)
+			Backend.container = container;
 	}
 
 	public static final void createClass() {
@@ -42,15 +48,15 @@ class BarBackend {
 	}
 
 	public static final void addAttribute() {
-		if (canAddAttribute()){	
+		if (canAddAttribute()) {
 			Command c = new CreateAttributeCommand(((VisualClass) getContainer().getSelected()));
 			getController().executeCommand(c);
 		}
-			
+
 	}
 
 	public static final void addMethod() {
-		if (canAddMethod()){	
+		if (canAddMethod()) {
 			Command c = new CreateMethodCommand(((VisualClass) getContainer().getSelected()));
 			getController().executeCommand(c);
 		}
@@ -65,11 +71,14 @@ class BarBackend {
 	}
 
 	public static final void editTripleDot() {
-		// TODO
+		if (canEditTripleDot()) {
+			createForm();
+		}
 	}
 
 	public static final void delete() {
-		if (canDelete()){
+		if (canDelete()) {
+			// TODO use command
 			getContainer().getSelected().delete();
 		}
 	}
@@ -118,21 +127,51 @@ class BarBackend {
 	public static final boolean canDelete() {
 		return getContainer().getSelected() != null;
 	}
-	
+
 	/**
 	 * Indicates whether an undo operation can be executed.
-	 * @return Returns true if a undo operation can be executed, false otherwise.
+	 * 
+	 * @return Returns true if a undo operation can be executed, false
+	 *         otherwise.
 	 */
 	public static final boolean canUndo() {
 		return getController().canUndo();
 	}
-	
+
 	/**
 	 * Indicates whether an redo operation can be executed.
-	 * @return Returns true if a redo operation can be executed, false otherwise.
+	 * 
+	 * @return Returns true if a redo operation can be executed, false
+	 *         otherwise.
 	 */
 	public static final boolean canRedo() {
 		return getController().canRedo();
+	}
+
+	/**
+	 * Get the HashMap with LogicalObjects and corresponding Forms
+	 * 
+	 * @return
+	 */
+	private static final HashMap<LogicalObject, ContentBox> getFormsMap() {
+		return formsMap;
+	}
+
+	/**
+	 * Create a new form for the selected object in Container, if no form
+	 * already exists. Otherwise bring the existing form to the front.
+	 */
+	private static final void createForm() {
+		LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
+		if (!getFormsMap().containsKey(logicalObject)) {
+			ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
+			FormWrapper formWrapper = new FormCreator(logicalObject, b, getController()).getForm();
+			b.setContent(formWrapper);
+			logicalObject.addDeleteListener(b);
+			getFormsMap().put(logicalObject, b);
+		} else {
+			// bring form to the front
+		}
 	}
 
 }

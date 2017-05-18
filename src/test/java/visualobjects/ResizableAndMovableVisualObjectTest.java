@@ -54,14 +54,14 @@ public class ResizableAndMovableVisualObjectTest {
 			}
 		}
 		int startWidth = vc.getWidth();
-
-		Drag drag1 = new Drag(99, 505, 99 - w, 505);
+		
+		//Drag on side but not on name, so move down
+		Drag drag1 = new Drag(100, 551, 100 - w, 551);
 		container.onDragUpdate(drag1);
 		container.onDragEnd(drag1);
 
-		// + 1 because the absolute change and we start dragging 1 pixel more to
-		// the left.
-		assertEquals(startWidth + w + 1, vc.getWidth());
+
+		assertEquals(startWidth + w, vc.getWidth());
 
 		startWidth = vc.getWidth();
 		Drag drag2 = new Drag(100 + CLASS_WIDTH, 502, 100 + CLASS_WIDTH + w, 502);

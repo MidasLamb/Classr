@@ -2,6 +2,7 @@ package gui.form.base;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.text.AttributedString;
 
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.MouseClick;
@@ -114,6 +115,10 @@ public abstract class InputBox extends FormObject implements Typable {
 	 */
 	public String getText() {
 		return this.getTextObject().getText();
+	}
+
+	public void setText(String string) {
+		this.getTextObject().setAttributedText(new AttributedString(string));
 	}
 
 }

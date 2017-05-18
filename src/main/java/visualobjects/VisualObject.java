@@ -233,9 +233,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *        	The drag object
 	 */
 	public void onDragEnd(Drag d) {
-		if(getDraggedChild() != null)
-			getDraggedChild().onDragEnd(d);
 		setDraggedChild(null);
+		getChildren().forEach(x -> x.onDragEnd(d));
 	}
 	
 	/**
@@ -329,7 +328,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param x
 	 *            the x-coordinate to be set
 	 */
-	final void setX(int x) {
+	void setX(int x) {
 		this.x = x;
 	}
 
@@ -619,7 +618,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	
 	@Override
 	public void notifyDeleteListeners(){
-		getDeleteListeners().forEach(x -> x.notify());
+		getDeleteListeners().forEach(x -> x.getNotifiedSubjectDeleted(this));
 	}
 
 	/**

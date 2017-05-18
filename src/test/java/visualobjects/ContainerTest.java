@@ -343,10 +343,13 @@ public class ContainerTest {
 	public void selectAttributeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
-		DoubleClick click1 = new DoubleClick(182,162);
-		DoubleClick click2 = new DoubleClick(210,196);
-		SingleClick click3 = new SingleClick(1,1);
-		SingleClick click4 = new SingleClick(210,196);
+		container.getChildren().forEach(x -> x.delete());
+		//Klasse maken
+		DoubleClick click1 = new DoubleClick(294,199);
+		//Attribuut maken
+		DoubleClick click2 = new DoubleClick(331,230);
+		SingleClick click3 = new SingleClick(603,462);
+		SingleClick click4 = new SingleClick(331,230);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onClick(click3);
@@ -358,10 +361,11 @@ public class ContainerTest {
 	public void selectMethodeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
-		DoubleClick click1 = new DoubleClick(149,118);
-		DoubleClick click2 = new DoubleClick(201,164);
-		SingleClick click3 = new SingleClick(1,1);
-		SingleClick click4 = new SingleClick(201,164);
+		container.getChildren().forEach(x -> x.delete());
+		DoubleClick click1 = new DoubleClick(305,266);
+		DoubleClick click2 = new DoubleClick(376,316);
+		SingleClick click3 = new SingleClick(587,430);
+		SingleClick click4 = new SingleClick(399,320);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onClick(click3);
@@ -374,11 +378,11 @@ public class ContainerTest {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
 		container.getChildren().forEach(x ->x.delete());
-		DoubleClick click1 = new DoubleClick(103,108);
-		DoubleClick click2 = new DoubleClick(326,369);
-		Drag drag = new Drag(104,142,325,401);
+		DoubleClick click1 = new DoubleClick(211,257);
+		DoubleClick click2 = new DoubleClick(147,521);
+		Drag drag = new Drag(147,555,212,292);
 		SingleClick click3 = new SingleClick(1,1);
-		SingleClick click4 = new SingleClick(243,256);
+		SingleClick click4 = new SingleClick(128,401);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onDragEnd(drag);
@@ -460,11 +464,11 @@ public class ContainerTest {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
 		container.getChildren().forEach(x ->x.delete());
-		DoubleClick click1 = new DoubleClick(103,108);
-		DoubleClick click2 = new DoubleClick(326,369);
-		Drag drag = new Drag(104,142,325,401);
+		DoubleClick click1 = new DoubleClick(211,257);
+		DoubleClick click2 = new DoubleClick(147,521);
+		Drag drag = new Drag(147,555,212,292);
 		SingleClick click3 = new SingleClick(1,1);
-		SingleClick click4 = new SingleClick(243,256);
+		SingleClick click4 = new SingleClick(128,401);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onDragEnd(drag);

@@ -3,9 +3,12 @@ package formBuilder;
 import static main.Constants.CONTAINER_HEIGHT;
 import static main.Constants.CONTAINER_WIDTH;
 
+import command.ChangeLogicalObjectNameCommand;
+import command.Controller;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
+import gui.form.base.InputBox;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
 import gui.form.base.Label;
@@ -15,6 +18,8 @@ import gui.form.utility.FormBuilder;
 import gui.form.utility.OkButton;
 import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 import logicalobjects.Attribute;
 import visibilities.Visibility;
 
@@ -23,8 +28,9 @@ import visibilities.Visibility;
  */
 public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
-	private FormContainer formContainer;
+	private FormContainer<FormWrapper> formContainer;
 	private boolean isNew;
+	private final Controller controller;
 
 	/**
 	 * Create a new AttributeFormBuilder.
@@ -36,18 +42,38 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	 * @param isNew
 	 *            indicates whether this is a newly created attribute
 	 */
-	public AttributeFormBuilder(Attribute attribute, FormContainer formContainer, boolean isNew) {
+	public AttributeFormBuilder(Attribute attribute, FormContainer<FormWrapper> formContainer, Controller controller) {
 		this.attribute = attribute;
 		this.formContainer = formContainer;
-		this.isNew = isNew;
+		this.controller = controller;
 	}
 
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(270, 180, this.formContainer));
-		RegexCheckedInputBox attrName = new RegexCheckedInputBox(getAttribute().getName(), "^[a-z][a-zA-Z0-9_]*", 10,
-				26, 100, 16);
+		InputBox attrName = new InputBox(getAttribute().getName(), 10,
+				26, 100, 16){
+
+					@Override
+					protected void onAction() {
+						if (attribute.canHaveAsName(getText())){
+							controller.executeCommand(
+									new ChangeLogicalObjectNameCommand(attribute, getText()));
+						}
+						
+					}
+			
+		};
 		this.addFormObject(attrName);
+		
+		attribute.addUpdateListener(new UpdateListener() {
+			
+			@Override
+			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+				attrName.setText(attribute.getName());
+			}
+		});
+		
 		this.addLabelToTopOfLastFormObject("Attribute name");
 
 		RegexCheckedInputBox attrType = new RegexCheckedInputBox(getAttribute().getType(), "^[a-z][a-zA-Z0-9_]*", 150,
@@ -101,7 +127,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 		};
 
-		ok.addCheckableConstraint(attrName);
+		//ok.addCheckableConstraint(attrName);
 		ok.addCheckableConstraint(attrType);
 
 		this.addFormObject(ok);

@@ -6,6 +6,8 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.text.AttributedString;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import command.ChangeLogicalObjectNameCommand;
 import command.Controller;
@@ -24,9 +26,10 @@ import logicalobjects.LogicalObject;
  * A wrapper for the GUI Text to adapt it to the application part.
  *
  */
-public class EditableTextWrapper extends TextWrapper implements UpdateListener {
+public class EditableTextWrapper extends TextWrapper implements UpdateListener, UpdateSubject {
 	private String standardString;
 	private String regex;
+	private Collection<UpdateListener> updateListeners;
 
 	/**
 	 * 
@@ -56,8 +59,8 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 		if (!this.getStandardString().matches(this.getRegex())) {
 			throw new RuntimeException();
 		}
-		
-		
+		this.setUpdateListeners(new ArrayList<UpdateListener>());
+
 	}
 
 	/**
@@ -114,8 +117,8 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 			this.setColor(Color.RED);
 		else
 			this.setColor(Color.BLACK);
-
-		if (this.isSelected()) {
+		//TODO is this instanceof neccesary?
+		if (this.isSelected() && (this.getTextObject().getState() instanceof EditableState)) {
 			if (!satisfiesRegex())
 				this.forceColor(Color.RED);
 			else
@@ -135,8 +138,12 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 	 * @return Returns the text of the Logical Object
 	 */
 	protected AttributedString getText() {
-		StringVisitor strVis = new StringVisitor();
-		return strVis.startVisit(this.getLogicalObject());
+		if (getTextObject().getState() instanceof PassiveState){
+			StringVisitor strVis = new StringVisitor();
+			return strVis.startVisit(this.getLogicalObject());
+		} else {
+			return new AttributedString(getLogicalObject().getName());
+		}
 	}
 
 	/**
@@ -148,26 +155,32 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 
 	@Override
 	void onClick(SingleClick sc) {
-		this.getContainer().switchSelectedTo(this);
+		if (this.isSelected()) {
+			this.makeEditable();
+		} else {
+			this.getContainer().switchSelectedTo(this);
+		}
+	}
+
+	public void setEditable() {
+		this.makeEditable();
 	}
 
 	@Override
 	public void setSelected(boolean b) {
 		super.setSelected(b);
-		if (b) {
-			this.getTextObject().switchState(new EditableState());
-		} else {
-			this.getTextObject().switchState(new PassiveState());
+		if (!b) {
+			this.makeUneditable();
 			this.quit();
 		}
 
 		this.getTextObject().setAttributedText(getText());
 	}
 
-	@Override
-	void onDoubleClick(DoubleClick sc) {
-		this.getContainer().switchSelectedTo(this);
-	}
+	// @Override
+	// void onDoubleClick(DoubleClick sc) {
+	// this.getContainer().switchSelectedTo(this);
+	// }
 
 	@Override
 	int getWidth() {
@@ -184,6 +197,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 		this.getTextObject().handleAsciiKey(key);
 		if (this.getLogicalObject().canHaveAsName(this.getCurrentDisplayedString()))
 			this.save();
+		this.notifyUpdateListeners();
 	}
 
 	@Override
@@ -213,8 +227,8 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 			this.getTextObject().handleFunctionKey(key);
 			break;
 		}
+		this.notifyUpdateListeners();
 
-		
 	}
 
 	private final String getStandardString() {
@@ -299,5 +313,42 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener {
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 		this.getTextObject().setAttributedText(getText());
+	}
+
+	@Override
+	public void addUpdateListener(UpdateListener updateListener) {
+		this.getUpdateListeners().add(updateListener);
+
+	}
+
+	@Override
+	public void removeUpdateListener(UpdateListener updateListener) {
+		this.getUpdateListeners().remove(updateListener);
+
+	}
+
+	@Override
+	public void notifyUpdateListeners() {
+		if (getUpdateListeners() != null) {
+			getUpdateListeners().stream().forEach(x -> x.getNotifiedOfUpdate(this));
+		}
+
+	}
+
+	private final Collection<UpdateListener> getUpdateListeners() {
+		return updateListeners;
+	}
+
+	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
+		this.updateListeners = updateListeners;
+	}
+	
+	private final void makeEditable(){
+		this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
+		this.getTextObject().switchState(new EditableState());
+	}
+	
+	private final void makeUneditable(){
+		this.getTextObject().switchState(new PassiveState());
 	}
 }

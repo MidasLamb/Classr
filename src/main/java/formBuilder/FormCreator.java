@@ -1,5 +1,6 @@
 package formBuilder;
 
+import command.Controller;
 import gui.form.base.FormContainer;
 import gui.form.utility.FormBuilder;
 import guiToApplication.FormWrapper;
@@ -16,9 +17,8 @@ import logicalobjects.Parameter;
  */
 public class FormCreator implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
-	private final FormContainer formContainer;
-	private final boolean isNew;
-	
+	private final FormContainer<FormWrapper> formContainer;
+	private final Controller controller;
 	
 	/**
 	 * Creates a new FormCreator
@@ -28,9 +28,9 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public FormCreator(LogicalObject o, FormContainer formContainer, boolean isNew) {
+	public FormCreator(LogicalObject o, FormContainer<FormWrapper> formContainer, Controller controller) {
 		this.formContainer = formContainer;
-		this.isNew = isNew;
+		this.controller = controller;
 		this.startVisit(o);
 	}
 
@@ -42,13 +42,13 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	@Override
 	public Void visit(Method c) {
-		this.setFormBuilder(new MethodFormBuilder(c, this.getFormContainer(), isNew()));
+		this.setFormBuilder(new MethodFormBuilder(c, this.getFormContainer(), false));
 		return null;
 	}
 
 	@Override
 	public Void visit(Attribute c) {
-		this.setFormBuilder(new AttributeFormBuilder(c, this.getFormContainer(), isNew()));
+		this.setFormBuilder(new AttributeFormBuilder(c, this.getFormContainer(), controller));
 		return null;
 	}
 
@@ -79,7 +79,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * Returns the current form container
 	 * @return the form container
 	 */
-	private FormContainer getFormContainer() {
+	private FormContainer<FormWrapper> getFormContainer() {
 		return formContainer;
 	}
 
@@ -95,14 +95,6 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	public Void visit(Parameter parameter) {
 		// No form for parameter exists.
 		return null;
-	}
-
-	/**
-	 * Returns is this is new
-	 * @return	true if this is new, false otherwise
-	 */
-	private final boolean isNew() {
-		return isNew;
 	}
 
 }

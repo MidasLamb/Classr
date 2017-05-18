@@ -6,45 +6,63 @@ import java.awt.Graphics;
 
 import command.Controller;
 import gui.inputHandlers.clicks.SingleClick;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 import logicalobjects.Association;
 
 /**
  * The visualization of a logical association
  */
-public class VisualAssociation extends VisualObject {
+public class VisualAssociation extends VisualObject implements UpdateListener{
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox<EditableTextWrapper> text;
 
 	/**
 	 * 
-	 * @param 	participant1
-	 * 			one VisualClass of the association
-	 * @param 	participant2
-	 * 			the second visualClass of the association
-	 * @param 	parent
-	 * 			The parent object of this VisualObject
+	 * @param participant1
+	 *            one VisualClass of the association
+	 * @param participant2
+	 *            the second visualClass of the association
+	 * @param parent
+	 *            The parent object of this VisualObject
 	 */
-	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent, Controller controller) {
+	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent,
+			Controller controller) {
 		super(0, 0, 0, 0, 0, parent, controller);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
 		this.setLogicalObject(association);
-		
+
 		p1 = participant1;
 		p2 = participant2;
+		
+		p1.addUpdateListener(this);
+		p2.addUpdateListener(this);
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0,0,0,"associatie","^[a-z][a-zA-Z0-9_]*" , null, association, getController()), this, association, getController());
+		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0, 0,
+				0, "associatie", "^[a-z][a-zA-Z0-9_]*", null, association, getController()), this, association,
+				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.text.addDeleteListener(this);
+		this.text.getContent().addUpdateListener(this);
+		this.updateTextPosition();
 	}
 
 	@Override
 	public final void draw(Graphics g) {
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
-		getText().setX(getP1().getX() + (getP2().getX() - getP1().getX()) / 2);
-		getText().setY(getP1().getY() + (getP2().getY() - getP1().getY()) / 2);
+	}
+
+	/**
+	 * Updates the current position of the text.
+	 */
+	private void updateTextPosition() {
+		if (getText() != null) {
+			getText().setX(getP1().getX() + (getP2().getX() - getP1().getX()) / 2 - getText().getWidth());
+			getText().setY(getP1().getY() + (getP2().getY() - getP1().getY()) / 2);
+		}
 	}
 
 	@Override
@@ -76,7 +94,7 @@ public class VisualAssociation extends VisualObject {
 	}
 
 	@Override
-	public void onDelete(){
+	public void onDelete() {
 		getP1().removeDeleteListener(this);
 		getP2().removeDeleteListener(this);
 	}
@@ -87,6 +105,11 @@ public class VisualAssociation extends VisualObject {
 			this.getContainer().switchSelectedTo(this);
 		else if (this.isSelected())
 			this.getContainer().switchSelectedTo(this.getText().getContent());
+	}
+
+	@Override
+	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+		this.updateTextPosition();
 	}
 
 }
