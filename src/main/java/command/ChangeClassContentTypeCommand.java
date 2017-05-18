@@ -3,9 +3,10 @@ package command;
 import logicalobjects.ClassContent;
 
 public class ChangeClassContentTypeCommand extends Command {
-
-	public ChangeClassContentTypeCommand(ClassContent classContent) {
-		// TODO Auto-generated constructor stub
+	private final ClassContent classContent;
+	
+	public ChangeClassContentTypeCommand(ClassContent classContent, String newType) {
+		this.classContent = classContent;
 	}
 
 	@Override
@@ -24,6 +25,10 @@ public class ChangeClassContentTypeCommand extends Command {
 	void cleanup() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	private ClassContent getClassContent() {
+		return classContent;
 	}
 
 }
