@@ -26,7 +26,7 @@ import logicalobjects.LogicalObject;
  * A wrapper for the GUI Text to adapt it to the application part.
  *
  */
-public class EditableTextWrapper extends TextWrapper implements UpdateListener, UpdateSubject {
+public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L> implements UpdateListener, UpdateSubject {
 	private String standardString;
 	private String regex;
 	private Collection<UpdateListener> updateListeners;
@@ -48,8 +48,8 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener, 
 	 * @param object
 	 *            the logicalObject which is linked to this text
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
-			LogicalObject object, Controller controller) {
+	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject<?> parent,
+			L object, Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
@@ -82,8 +82,8 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener, 
 	 * @param maxWidth
 	 *            the maxWidth that this text may have
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject parent,
-			LogicalObject object, int maxWidth, Controller controller) {
+	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject<?> parent,
+			L object, int maxWidth, Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
@@ -106,7 +106,7 @@ public class EditableTextWrapper extends TextWrapper implements UpdateListener, 
 	 * @param object
 	 *            the logicalObject which is linked to this text
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, VisualObject parent, LogicalObject object,
+	public EditableTextWrapper(int x, int y, int z, String string, VisualObject<?> parent, L object,
 			Controller controller) {
 		this(x, y, z, string, ".*", parent, object, controller);
 	}

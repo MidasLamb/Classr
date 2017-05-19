@@ -12,6 +12,7 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import guiToApplication.FormWrapper;
 import interfaces.CanvasContent;
+import logicalobjects.LogicalObject;
 
 import static gui.form.base.Constants.*;
 
@@ -19,7 +20,7 @@ import static gui.form.base.Constants.*;
 /**
  * Box that contains CanvasContent, can be resized and moved.
  */
-public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer<FormWrapper> {
+public class ContentBox<L extends LogicalObject> extends ResizableAndMovableVisualObject<L> implements FormContainer<FormWrapper> {
 	private CanvasContent content;
 	private String name;
 	private static final int TITLEBAR_HEIGHT = STANDARD_TEXT_HEIGHT + 2 * STANDARD_LABEL_PADDING;
@@ -45,7 +46,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	 * @param name
 	 *            name
 	 */
-	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller,
+	public ContentBox(int x, int y, int z, int width, int height, VisualObject<?> parent, Controller controller,
 			String name) {
 		super(x, y, z, width, height, parent, controller);
 		this.setName(name);

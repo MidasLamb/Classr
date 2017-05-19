@@ -14,13 +14,14 @@ import interfaces.DeleteSubject;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
+import logicalobjects.LogicalVoid;
 import logicalobjects.Method;
 
 class Backend {
 
 	private static Controller controller;
 	private static Container container;
-	private static HashMap<LogicalObject, ContentBox> formsMap = new HashMap<>();
+	private static HashMap<LogicalObject, ContentBox<?>> formsMap = new HashMap<>();
 
 	public static void initialize(Container container, Controller controller) {
 		Backend.setContainer(container);
@@ -155,7 +156,7 @@ class Backend {
 	 * 
 	 * @return
 	 */
-	private static final HashMap<LogicalObject, ContentBox> getFormsMap() {
+	private static final HashMap<LogicalObject, ContentBox<?>> getFormsMap() {
 		return formsMap;
 	}
 
@@ -166,7 +167,7 @@ class Backend {
 	private static final void createForm() {
 		LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
 		if (!getFormsMap().containsKey(logicalObject)) {
-			ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
+			ContentBox<LogicalVoid> b = new ContentBox<LogicalVoid>(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
 			FormWrapper formWrapper = new FormCreator(logicalObject, b, getController()).getForm();
 			b.setContent(formWrapper);
 			logicalObject.addDeleteListener(b);

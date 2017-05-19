@@ -20,7 +20,7 @@ import logicalobjects.LogicalObject;
 /**
  * A wrapper to use the Text box from the GUI as a VisualObject
  */
-public class TextWrapper extends VisualObject {
+public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 	private Text textObject;
 
 	/**
@@ -36,7 +36,7 @@ public class TextWrapper extends VisualObject {
 	 * @param 	object
 	 * 			the corresponding logicalObject
 	 */
-	public TextWrapper(int x, int y, int z, VisualObject parent, LogicalObject object, Controller controller) {
+	public TextWrapper(int x, int y, int z, VisualObject<?> parent, T object, Controller controller) {
 		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent, controller);
 		setLogicalObject(object);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));

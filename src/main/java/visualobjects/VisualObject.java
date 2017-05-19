@@ -32,21 +32,21 @@ import logicalobjects.LogicalObject;
  * 
  * @author team 11
  */
-public abstract class VisualObject implements DeleteListener, DeleteSubject, Typable {
+public abstract class VisualObject<L extends LogicalObject> implements DeleteListener, DeleteSubject, Typable {
 	private int x;
 	private int y;
 	private int z;
 	private int width;
 	private int height;
-	ArrayList<VisualObject> children;
-	private VisualObject parent;
-	private LogicalObject logicalObject;
+	ArrayList<VisualObject<?>> children;
+	private VisualObject<?> parent;
+	private L logicalObject;
 	private Collection<DeleteListener> deleteListeners;
 	private boolean isSelected;
 	public boolean isDeleted;
 	private Color color;
 	private Color forcedColor;
-	private VisualObject draggedChild;
+	private VisualObject<?> draggedChild;
 	
 	private final Controller controller;
 
@@ -68,8 +68,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param parent
 	 *            the parent visual object of this visual object
 	 */
-	public VisualObject(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
-		setChildren(new ArrayList<VisualObject>());
+	public VisualObject(int x, int y, int z, int width, int height, VisualObject<?> parent, Controller controller) {
+		setChildren(new ArrayList<VisualObject<?>>());
 		this.setDeleteListeners(new ArrayList<DeleteListener>());
 		this.setDeleted(false);
 		setX(x);
@@ -127,7 +127,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 			g.setColor(this.getForcedColor());
 		
 		this.draw(g);
-		for (VisualObject v : this.getChildren()) {
+		for (VisualObject<?> v : this.getChildren()) {
 			v.show(g);
 		}
 		if (this.isSelected()) {
@@ -177,8 +177,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @return the visual object that is in this region it can be one of the
 	 *         children or this object itself
 	 */
-	public final VisualObject select(int x, int y) {
-		for (VisualObject v : this.getChildren()) {
+	public final VisualObject<?> select(int x, int y) {
+		for (VisualObject<?> v : this.getChildren()) {
 			if (v.isIn(x, y)) {
 				return v.select(x, y);
 			}
@@ -193,7 +193,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *            The single click object
 	 */
 	void onClick(SingleClick sc) {
-		VisualObject clickedChild = getClickedChild(sc);
+		VisualObject<?> clickedChild = getClickedChild(sc);
 		if(clickedChild != null)
 			clickedChild.onClick(sc);
 	}
@@ -205,7 +205,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *            The double click object
 	 */
 	void onDoubleClick(DoubleClick dc) {
-		VisualObject clickedChild = getClickedChild(dc);
+		VisualObject<?> clickedChild = getClickedChild(dc);
 		if(clickedChild != null)
 			clickedChild.onDoubleClick(dc);
 	}
@@ -216,9 +216,9 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 			the click that happened
 	 * @return	the child on which there is clicked, otherwise null
 	 */
-	private VisualObject getClickedChild(MouseClick click){
+	private VisualObject<?> getClickedChild(MouseClick click){
 		//Reduce is to get the last element
-		Optional<VisualObject> clickedChild = getChildren().stream()
+		Optional<VisualObject<?>> clickedChild = getChildren().stream()
 				.filter(x -> x.isIn(click.getX(), click.getY()))
 				.sorted(new VisualObjectComparator()).reduce((a, b) -> b);
 		if(clickedChild.isPresent())
@@ -265,7 +265,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 */
 	protected final void forceColor(Color c){
 		setForcedColor(c);
-		for (VisualObject v: this.getChildren())
+		for (VisualObject<?> v: this.getChildren())
 			v.forceColor(c);
 	}
 
@@ -295,7 +295,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @return the container where this object is in
 	 */
 	final Container getContainer() {
-		VisualObject v = this;
+		VisualObject<?> v = this;
 		while (v != null && !(v instanceof Container))
 			v = v.getParent();
 		return (Container) v;
@@ -307,7 +307,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param child
 	 *            The child that is deleted
 	 */
-	void afterDeleteChild(VisualObject child) {
+	void afterDeleteChild(VisualObject<?> child) {
 
 	}
 
@@ -395,7 +395,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param parent
 	 *            the parent VisualObject to be set
 	 */
-	final void setParent(VisualObject parent) {
+	final void setParent(VisualObject<?> parent) {
 		this.parent = parent;
 	}
 
@@ -404,7 +404,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the parent VisualObject of this VisualObject
 	 */
-	public VisualObject getParent() {
+	public VisualObject<?> getParent() {
 		return this.parent;
 	}
 
@@ -414,7 +414,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param list
 	 *            the list of children VisualObjects
 	 */
-	private void setChildren(ArrayList<VisualObject> list) {
+	private void setChildren(ArrayList<VisualObject<?>> list) {
 		this.children = list;
 	}
 
@@ -423,8 +423,8 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the list of children VisualObjects of this VisualObject
 	 */
-	public final ArrayList<VisualObject> getChildren() {
-		return new ArrayList<VisualObject>(this.children);
+	public final ArrayList<VisualObject<?>> getChildren() {
+		return new ArrayList<VisualObject<?>>(this.children);
 	}
 
 	/**
@@ -433,7 +433,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param c
 	 *            the child to be added
 	 */
-	public final void addChild(VisualObject c) {
+	public final void addChild(VisualObject<?> c) {
 		this.children.add(c);
 		c.addDeleteListener(new DeleteListener() {
 
@@ -453,7 +453,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param c
 	 *            the child to be removed
 	 */
-	public final boolean removeChild(VisualObject c) {
+	public final boolean removeChild(VisualObject<?> c) {
 		if (this.children.remove(c)){
 			this.afterDeleteChild(c);
 			return true;
@@ -486,7 +486,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @return the LogicalObject belonging to this VisualObject
 	 */
-	public LogicalObject getLogicalObject() {
+	public L getLogicalObject() {
 		return logicalObject;
 	}
 
@@ -496,7 +496,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param object
 	 *            the LogicalObject to be set
 	 */
-	final void setLogicalObject(LogicalObject object) {
+	final void setLogicalObject(L object) {
 		this.logicalObject = object;
 		this.logicalObject.addDeleteListener(this);
 	}
@@ -526,9 +526,9 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * 
 	 * @author team 11
 	 */
-	private class VisualObjectComparator implements Comparator<VisualObject> {
+	private class VisualObjectComparator implements Comparator<VisualObject<?>> {
 		@Override
-		public int compare(VisualObject x, VisualObject y) {
+		public int compare(VisualObject<?> x, VisualObject<?> y) {
 			int diff = x.getZ() - y.getZ();
 			return diff;
 		}
@@ -607,7 +607,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 *         selected
 	 */
 	boolean hasSelectedAncestor() {
-		VisualObject v = this;
+		VisualObject<?> v = this;
 		while (v != null) {
 			if (v.isSelected())
 				return true;
@@ -656,7 +656,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * The child that is currently being dragged
 	 * @return the child that is currently being dragged
 	 */
-	private VisualObject getDraggedChild() {
+	private VisualObject<?> getDraggedChild() {
 		return draggedChild;
 	}
 
@@ -665,7 +665,7 @@ public abstract class VisualObject implements DeleteListener, DeleteSubject, Typ
 	 * @param 	draggedObject
 	 * 			the child that is getting dragged
 	 */
-	private void setDraggedChild(VisualObject draggedObject) {
+	private void setDraggedChild(VisualObject<?> draggedObject) {
 		this.draggedChild = draggedObject;
 	}
 	
