@@ -4,28 +4,40 @@ import logicalobjects.Method;
 import logicalobjects.Parameter;
 
 public class addParameterCommand extends Command {
+	private final Method method;
+	private final Parameter parameter;
 
 	public addParameterCommand(Method method, Parameter parameter) {
-		
+		this.method = method;
+		this.parameter = parameter;
 	}
-		// TODO Auto-generated constructor stu
+
 
 	@Override
 	void execute() {
-		// TODO Auto-generated method stub
+		getMethod().addParameter(getParameter());
 		
 	}
 
 	@Override
 	void unexecute() {
-		// TODO Auto-generated method stub
+		getMethod().removeParameter(getParameter());
 		
 	}
 
 	@Override
 	void cleanup() {
-		// TODO Auto-generated method stub
 		
+	}
+
+
+	private final Method getMethod() {
+		return method;
+	}
+
+
+	private final Parameter getParameter() {
+		return parameter;
 	}
 
 }

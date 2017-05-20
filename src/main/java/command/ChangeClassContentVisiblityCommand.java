@@ -21,7 +21,6 @@ public class ChangeClassContentVisiblityCommand extends Command {
 	@Override
 	void unexecute() {
 		getClassContent().setVisibility(getOldVis());
-
 	}
 
 	@Override

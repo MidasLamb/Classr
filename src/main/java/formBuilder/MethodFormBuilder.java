@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import canvaswindow.MyCanvasWindow;
+import command.ChangeClassContentStaticCommand;
 import command.ChangeClassContentTypeCommand;
+import command.ChangeClassContentVisibilityCommand;
 import command.ChangeLogicalObjectNameCommand;
+import command.ChangeMethodAbstractCommand;
 import command.Controller;
+import command.addParameterCommand;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
@@ -24,6 +28,8 @@ import gui.form.utility.FormBuilder;
 import gui.form.utility.OkButton;
 import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 import visibilities.Visibility;
@@ -63,7 +69,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		InputBox methName = new InputBox(getMethod().getName(), 10, 26, 100, 16) {
 			@Override
 			protected void onAction() {
-				if (method.canHaveAsName(getText())) {
+				if (method.canHaveAsName(getText()) && !method.getName().equals(getText())) {
 					controller.executeCommand(new ChangeLogicalObjectNameCommand(method, getText()));
 				}
 
@@ -77,7 +83,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onAction() {
-				if (method.canHaveAsType(getText())) {
+				if (method.canHaveAsType(getText()) && !method.getType().equals(getText())) {
 					controller.executeCommand(new ChangeClassContentTypeCommand(method, getText()));
 				}
 
@@ -96,7 +102,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				if (method.canHaveAsVisibility(Visibility.PUBLIC))
-					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PUBLIC));
+					controller.executeCommand(new ChangeClassContentVisibilityCommand(method, Visibility.PUBLIC));
 			}
 		};
 		this.addFormObject(publicButton);
@@ -105,7 +111,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				if (method.canHaveAsVisibility(Visibility.PRIVATE))
-					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PRIVATE));
+					controller.executeCommand(new ChangeClassContentVisibilityCommand(method, Visibility.PRIVATE));
 			}
 		};
 		;
@@ -115,7 +121,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				if (method.canHaveAsVisibility(Visibility.PACKAGE))
-					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PACKAGE));
+					controller.executeCommand(new ChangeClassContentVisibilityCommand(method, Visibility.PACKAGE));
 			}
 		};
 		;
@@ -125,7 +131,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				if (method.canHaveAsVisibility(Visibility.PROTECTED))
-					controller.executeCommand(new ChangeClassContentTypeCommand(method, Visibility.PROTECTED));
+					controller.executeCommand(new ChangeClassContentVisibilityCommand(method, Visibility.PROTECTED));
 			}
 		};
 		;
@@ -134,11 +140,13 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		// Static checkbox
 		// ---------------------------------------------------------------
 		this.addFormObject(new Label("Modifiers", 150, 65));
-		CheckBox staticCheckbox = new CheckBox(150, 90){
+		CheckBox staticCheckbox = new CheckBox(150, 90) {
 			@Override
 			protected void onAction() {
-				if (method.canBeStatic()){
-					
+				if (method.canBeStatic(isChecked())) {
+					controller.executeCommand(new ChangeClassContentStaticCommand(method, isChecked()));
+				} else {
+					setChecked(false);
 				}
 			}
 		};
@@ -147,11 +155,13 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Abstract checkbox
 		// ----------------------------------------------------------
-		CheckBox abstractCheckbox = new CheckBox(150, 110){
+		CheckBox abstractCheckbox = new CheckBox(150, 110) {
 			@Override
 			protected void onAction() {
-				if (method.canBeAbstract()){
-					
+				if (method.canBeAbstract(isChecked())) {
+					controller.executeCommand(new ChangeMethodAbstractCommand(method, isChecked()));
+				} else {
+					setChecked(false);
 				}
 			}
 		};
@@ -171,23 +181,15 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(parameters);
 		this.addLabelToTopOfLastFormObject("Parameters");
-
 		Button addParameter = new Button("Add", 150, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
 				Parameter p = new Parameter("name", "type");
-				FormContainer c = getContainer().getExtraContainer();
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c) {
+				controller.executeCommand(new addParameterCommand(method, p));
+				//parameters.addElement(new ParameterWrapper(p));
+				checkEditAndCancelButtons();
 
-					@Override
-					public void onOk() {
-						parameters.addElement(new ParameterWrapper(p));
-						checkEditAndCancelButtons();
-					}
-
-				};
-				c.switchTo(parabuilder.getForm());
 			}
 
 		};
@@ -200,14 +202,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
 				FormContainer c = getContainer().getExtraContainer();
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c) {
-
-					@Override
-					public void onOk() {
-
-					}
-
-				};
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c, controller);
 				c.switchTo(parabuilder.getForm());
 
 			}
@@ -300,7 +295,45 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		staticCheckbox.setChecked(getMethod().isStatic());
 		abstractCheckbox.setChecked(getMethod().isAbstract());
 		checkEditAndCancelButtons();
+		
+		method.addUpdateListener(new UpdateListener() {
+			
+			@Override
+			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+				methName.setText(method.getName());
+				methType.setText(method.getType());
+				for (Parameter p : getMethod().getParameters()){
+					ParameterWrapper pw = new ParameterWrapper(p);
+					if (!parameters.contains(pw))
+						parameters.addElement(pw);
+				}
+				
+				Visibility v = getMethod().getVisibility();
+				switch (v) {
+				case PUBLIC:
+					group.setSelectedButton(publicButton);
+					break;
+				case PROTECTED:
+					group.setSelectedButton(protectedButton);
+					break;
+				case PACKAGE:
+					group.setSelectedButton(packageButton);
+					break;
+				case PRIVATE:
+					group.setSelectedButton(privateButton);
+					break;
+				default:
+					throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+				}
+				
+				staticCheckbox.setChecked(getMethod().isStatic());
+				abstractCheckbox.setChecked(getMethod().isAbstract());
+				checkEditAndCancelButtons();
+				
+			}
+		});
 	}
+	
 
 	private void checkEditAndCancelButtons() {
 		editParameter.setEnabled(parameters.getSelectedObject() != null);
