@@ -1,10 +1,13 @@
 package visualobjects;
 
+import static gui.form.base.Constants.STANDARD_LABEL_PADDING;
+import static gui.form.base.Constants.STANDARD_TEXT_ASCEND;
+import static gui.form.base.Constants.STANDARD_TEXT_HEIGHT;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
 import command.Controller;
-import gui.form.base.Form;
 import gui.form.base.FormContainer;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -12,13 +15,12 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import guiToApplication.FormWrapper;
 import interfaces.CanvasContent;
-
-import static gui.form.base.Constants.*;
+import logicalobjects.LogicalVoid;
 
 /**
  * Box that contains CanvasContent, can be resized and moved.
  */
-public class ContentBox extends ResizableAndMovableVisualObject implements FormContainer<FormWrapper> {
+public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> implements FormContainer<FormWrapper> {
 	private CanvasContent content;
 	private String name;
 	private static final int TITLEBAR_HEIGHT = STANDARD_TEXT_HEIGHT + 2 * STANDARD_LABEL_PADDING;
@@ -44,7 +46,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	 * @param name
 	 *            name
 	 */
-	public ContentBox(int x, int y, int z, int width, int height, VisualObject parent, Controller controller,
+	public ContentBox(int x, int y, int z, int width, int height, VisualObject<?> parent, Controller controller,
 			String name) {
 		super(x, y, z, width, height, parent, controller);
 		this.setName(name);

@@ -1,5 +1,6 @@
 package command;
 
+import logicalobjects.Method;
 import visualobjects.PaddingBox;
 import visualobjects.TextWrapper;
 import visualobjects.VisualClass;
@@ -10,7 +11,7 @@ import visualobjects.VisualClass;
 public class CreateMethodCommand extends Command {
 
 	private final VisualClass visualClass;
-	private PaddingBox<TextWrapper> methodPaddingBox;
+	private PaddingBox<TextWrapper<Method>> methodPaddingBox;
 
 	/**
 	 * Construct a new Command for creating a Method for the given VisualClass
@@ -37,7 +38,7 @@ public class CreateMethodCommand extends Command {
 	 * 
 	 * @return PaddingBox for the created Method
 	 */
-	private final PaddingBox<TextWrapper> getMethodPaddingBox() {
+	private final PaddingBox<TextWrapper<Method>> getMethodPaddingBox() {
 		return methodPaddingBox;
 	}
 
@@ -47,7 +48,7 @@ public class CreateMethodCommand extends Command {
 	 * @param methodPaddingBox
 	 *            the PaddingBox to be set
 	 */
-	private final void setMethodPaddingBox(PaddingBox<TextWrapper> methodPaddingBox) {
+	private final void setMethodPaddingBox(PaddingBox<TextWrapper<Method>> methodPaddingBox) {
 		this.methodPaddingBox = methodPaddingBox;
 	}
 

@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collection;
+
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
@@ -142,7 +144,7 @@ public class ContainerTest {
 		DoubleClick click1 = new DoubleClick(138,101);
 		container.onDoubleClick(click1);
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				count++;
 			}
@@ -158,7 +160,7 @@ public class ContainerTest {
 		DoubleClick click1 = new DoubleClick(138,101);
 		container.onDoubleClick(click1);
 		int x = 0, y = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				x = ((VisualClass) child).getX();
 				y = ((VisualClass) child).getY();
@@ -227,7 +229,8 @@ public class ContainerTest {
 			}
 		}
 		assertTrue(klasse.equals(selectedClass));
-		for (VisualObject v: selectedClass.getChildren()){
+		Collection<VisualObject<?>> children = selectedClass.getChildren();
+		for (VisualObject<?> v: children){
 			if (v instanceof PaddingBox){
 				assertTrue(v.getChildren().contains(text));
 			}

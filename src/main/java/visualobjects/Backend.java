@@ -12,7 +12,6 @@ import guiToApplication.FormWrapper;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
 import logicalobjects.Attribute;
-import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 
@@ -70,7 +69,7 @@ class Backend {
 
 	public static final void editName() {
 		if (canEditName()) {
-			((EditableTextWrapper) getContainer().getSelected()).setEditable();
+			((EditableTextWrapper<?>) getContainer().getSelected()).setEditable();
 		}
 	}
 

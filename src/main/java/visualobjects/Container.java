@@ -6,7 +6,6 @@ import static main.Constants.Z_CLASS;
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
-import gui.form.base.DropDownMenu;
 import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import gui.form.base.MenuItem;
@@ -17,9 +16,10 @@ import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 import interfaces.CanvasContent;
+import logicalobjects.LogicalVoid;
 
-public class Container extends VisualObject implements CanvasContent {
-	private VisualObject selected;
+public class Container extends VisualObject<LogicalVoid> implements CanvasContent {
+	private VisualObject<?> selected;
 	private MyCanvasWindow window;
 	private MenuBar toolbar;
 
@@ -214,7 +214,7 @@ public class Container extends VisualObject implements CanvasContent {
 	 * @param vo
 	 *            VisualObject that will be selected
 	 */
-	public final void switchSelectedTo(VisualObject vo) {
+	public final void switchSelectedTo(VisualObject<?> vo) {
 		// Unselect previous selected item
 		if (getSelected() != null)
 			getSelected().setSelected(false);
@@ -306,7 +306,7 @@ public class Container extends VisualObject implements CanvasContent {
 		int x = sc.getX();
 		int y = sc.getY();
 		boolean b = false;
-		for (VisualObject v : this.getChildren()) {
+		for (VisualObject<?> v : this.getChildren()) {
 			if (v.isIn(x, y))
 				b = true;
 		}
@@ -319,7 +319,7 @@ public class Container extends VisualObject implements CanvasContent {
 	/**
 	 * @return VisualObject that is selected
 	 */
-	final VisualObject getSelected() {
+	final VisualObject<?> getSelected() {
 		return selected;
 	}
 
@@ -327,7 +327,7 @@ public class Container extends VisualObject implements CanvasContent {
 	 * @param selected
 	 *            VisualObject that will be set as selected
 	 */
-	private void setSelected(VisualObject selected) {
+	private void setSelected(VisualObject<?> selected) {
 		this.selected = selected;
 	}
 
@@ -393,7 +393,7 @@ public class Container extends VisualObject implements CanvasContent {
 	 * @param vo
 	 *            the VisualObject to draw at the front
 	 */
-	void bringToFront(VisualObject vo) {
+	void bringToFront(VisualObject<?> vo) {
 		children.remove(vo);
 		children.add(vo);
 	}

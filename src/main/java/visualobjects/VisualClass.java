@@ -1,25 +1,10 @@
 package visualobjects;
-import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;
-import static main.Constants.CLASS_WHITE_SPACE;
-import static main.Constants.CLASS_WIDTH;
-import static main.Constants.Z_PADDING_BOX;
-import java.awt.Graphics;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import command.Command;
-import command.Controller;
-import command.CreateAttributeCommand;
-import command.CreateMethodCommand;
-import gui.inputHandlers.clicks.DoubleClick;
-import gui.inputHandlers.clicks.SingleClick;
-import logicalobjects.Attribute;
-import logicalobjects.LogicalClass;
-import logicalobjects.Method;
+import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;import static main.Constants.CLASS_WHITE_SPACE;import static main.Constants.CLASS_WIDTH;import static main.Constants.Z_PADDING_BOX;import java.awt.Graphics;import java.util.ArrayList;import java.util.Collection;import command.Command;import command.Controller;import command.CreateAttributeCommand;import command.CreateMethodCommand;import gui.inputHandlers.clicks.DoubleClick;import gui.inputHandlers.clicks.SingleClick;import logicalobjects.Attribute;import logicalobjects.LogicalClass;import logicalobjects.Method;
 /**
  * The visualization of a logicalClass
  */
-public class VisualClass extends ResizableAndMovableVisualObject {
-	private PaddingBox<EditableTextWrapper> name;
+public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
+	private PaddingBox<EditableTextWrapper<LogicalClass>> name;
 	private AssociationHandle associationHandle;
 	/**
 	 * 
@@ -36,11 +21,11 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * @param parent
 	 *            the parent of this VisualObject
 	 */
-	public VisualClass(int x, int y, int z, int width, int height, VisualObject parent, Controller controller) {
+	public VisualClass(int x, int y, int z, int width, int height, VisualObject<?> parent, Controller controller) {
 		super(x, y, z, width, height, parent, controller);
 		setLogicalObject(new LogicalClass());
 		// TODO clean up this -1 to indicate nog max width exists.
-		this.setName(new PaddingBox<EditableTextWrapper>(getX(), getY(), 0, new EditableTextWrapper(0, 0, 0, "Klasse",
+		this.setName(new PaddingBox<EditableTextWrapper<LogicalClass>>(getX(), getY(), 0, new EditableTextWrapper<LogicalClass>(0, 0, 0, "Klasse",
 				"^[A-Z][a-zA-Z0-9_]*", null, getLogicalObject(), getController()), this, getLogicalObject(),
 				getController()));
 		this.getContainer().switchSelectedTo(this.getName().getContent());
@@ -64,7 +49,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * @param parent
 	 *            the parent of this VisualObject
 	 */
-	public VisualClass(int x, int y, int z, VisualObject parent, Controller controller) {
+	public VisualClass(int x, int y, int z, VisualObject<?> parent, Controller controller) {
 		this(x, y, z, CLASS_WIDTH, CLASS_BODY_INITIAL_HEIGHT, parent, controller);
 	}
 
@@ -78,7 +63,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
 
-		for (VisualObject t : this.getAttributes()) {
+		for (VisualObject<Attribute> t : this.getAttributes()) {
 			y += t.getHeight();
 		}
 
@@ -87,7 +72,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		y += CLASS_WHITE_SPACE;
 		g.drawLine(this.getX(), y, this.getX() + this.getWidth(), y);
 
-		for (VisualObject t : this.getMethods()) {
+		for (VisualObject<Method> t : this.getMethods()) {
 			y += t.getHeight();
 		}
 		// g.fillRect(this.getX(), y, this.getWidth(),
@@ -102,14 +87,14 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 		y += this.getName().getHeight();
 
-		for (VisualObject t : this.getAttributes()) {
+		for (VisualObject<Attribute> t : this.getAttributes()) {
 			t.setY(y);
 			y += t.getHeight();
 		}
 
 		y += CLASS_WHITE_SPACE;
 
-		for (VisualObject t : this.getMethods()) {
+		for (VisualObject<Method> t : this.getMethods()) {
 			t.setY(y);
 			y += t.getHeight();
 		}
@@ -125,10 +110,10 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * 
 	 * @return PaddingBox of the attribute that was created
 	 */
-	public PaddingBox<TextWrapper> createAttribute() {
+	public PaddingBox<TextWrapper<Attribute>> createAttribute() {
 		Attribute attr = getLogicalObject().addAttribute();
-		TextWrapper t = new EditableTextWrapper(0, 0, 0, "attribute", null, attr, getController());
-		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
+		TextWrapper<Attribute> t = new EditableTextWrapper<Attribute>(0, 0, 0, "attribute", null, attr, getController());
+		PaddingBox<TextWrapper<Attribute>> tbox = new PaddingBox<TextWrapper<Attribute>>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				attr, getController());
 		this.updateDimensions();
 		getContainer().switchSelectedTo(tbox.getContent());
@@ -140,10 +125,10 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * 
 	 * @return PaddingBox of the method that was created
 	 */
-	public PaddingBox<TextWrapper> createMethod() {
+	public PaddingBox<TextWrapper<Method>> createMethod() {
 		Method method = getLogicalObject().addMethod();
-		TextWrapper t = new EditableTextWrapper(0, 0, 0, "methods",null, method, getController());
-		PaddingBox<TextWrapper> tbox = new PaddingBox<TextWrapper>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
+		TextWrapper<Method> t = new EditableTextWrapper<Method>(0, 0, 0, "methods",null, method, getController());
+		PaddingBox<TextWrapper<Method>> tbox = new PaddingBox<TextWrapper<Method>>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				method, getController());
 		this.updateDimensions();
 		this.getContainer().switchSelectedTo(tbox.getContent());
@@ -165,7 +150,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		int bottom = this.getY();
 		bottom += this.getName().getHeight();
 
-		for (VisualObject t : this.getAttributes()) {
+		for (VisualObject<Attribute> t : getAttributes()) {
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
@@ -177,9 +162,9 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	/**
 	 * @return the attributes from this VisualClass
 	 */
-	private Collection<VisualObject> getAttributes() {
-		Collection<Attribute> attr = ((LogicalClass) this.getLogicalObject()).getAttributes();
-		return getChildren().stream().filter(x -> attr.contains(x.getLogicalObject())).collect(Collectors.toList());
+	private Collection<VisualObject<Attribute>> getAttributes() {
+		Collection<Attribute> attr = getLogicalObject().getAttributes();		ArrayList<VisualObject<?>> children = getChildren();		ArrayList<VisualObject<Attribute>> result = new ArrayList<>();		for(VisualObject<?> child : children){			if(attr.contains(child.getLogicalObject()))				result.add((VisualObject<Attribute>) child);						}
+		return result;
 	}
 
 	/**
@@ -198,14 +183,14 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 
 		bottom += this.getName().getHeight();
 
-		for (VisualObject t : this.getAttributes()) {
+		for (VisualObject<?> t : this.getAttributes()) {
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
 		top += CLASS_WHITE_SPACE;
 		bottom += CLASS_WHITE_SPACE;
 
-		for (VisualObject t : this.getMethods()) {
+		for (VisualObject<Method> t : this.getMethods()) {
 			top += t.getHeight();
 			bottom += t.getHeight();
 		}
@@ -219,9 +204,8 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 * 
 	 * @return the methods inside this VisualClass
 	 */
-	private Collection<VisualObject> getMethods() {
-		Collection<Method> meth = ((LogicalClass) this.getLogicalObject()).getMethods();
-		return getChildren().stream().filter(x -> meth.contains(x.getLogicalObject())).collect(Collectors.toList());
+	private Collection<VisualObject<Method>> getMethods() {		
+		Collection<Method> meth = getLogicalObject().getMethods();		Collection<VisualObject<Method>> result = new ArrayList<>();		ArrayList<VisualObject<?>> children = getChildren();		for(VisualObject<?> child : children){			if(meth.contains(child.getLogicalObject())){				result.add((VisualObject<Method>) child);			}		}		return result;
 	}
 
 	@Override
@@ -237,7 +221,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	}
 
 	@Override
-	protected final void afterDeleteChild(VisualObject v) {
+	protected final void afterDeleteChild(VisualObject<?> v) {
 		this.updateDimensions();
 	}
 
@@ -246,18 +230,9 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		return (LogicalClass) super.getLogicalObject();
 	}
 
-	/**
-	 * 
-	 * @param object
-	 *            the logicalObject to which this VisualObject is associated
-	 */
-	public final void setLogicalObject(LogicalClass object) {
-		super.setLogicalObject(object);
-	}
-
 	@Override
-	public final boolean isIn(int x, int y) {
-		for (VisualObject vo : this.getChildren()) {
+	public final boolean isIn(int x, int y) {		ArrayList<VisualObject<?>> children = getChildren();
+		for (VisualObject<?> vo : children) {
 			if (vo.isIn(x, y))
 				return true;
 		}
@@ -272,7 +247,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	/**
 	 * @return the paddingBox inside which the className is stored
 	 */
-	public final PaddingBox<EditableTextWrapper> getName() {
+	public final PaddingBox<EditableTextWrapper<LogicalClass>> getName() {
 		return name;
 	}
 
@@ -282,7 +257,7 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 	 *            the new paddingBox inside which the className needs to be
 	 *            stored
 	 */
-	private void setName(PaddingBox<EditableTextWrapper> paddingBox) {
+	private void setName(PaddingBox<EditableTextWrapper<LogicalClass>> paddingBox) {
 		this.name = paddingBox;
 	}
 
@@ -330,12 +305,12 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 		// TODO also implement for other stuff.
 		int minWidth = 0;
 		if (this.getLogicalObject() != null) {
-			for (VisualObject m : this.getMethods()) {
+			for (VisualObject<Method> m : this.getMethods()) {
 				if (m.getWidth() > minWidth) {
 					minWidth = m.getWidth();
 				}
 			}
-			for (VisualObject a : this.getAttributes()) {
+			for (VisualObject<Attribute> a : this.getAttributes()) {
 				if (a.getWidth() > minWidth) {
 					minWidth = a.getWidth();
 				}
@@ -354,10 +329,10 @@ public class VisualClass extends ResizableAndMovableVisualObject {
 			y += this.getName().getHeight();
 
 		if (this.getLogicalObject() != null) {
-			for (VisualObject t : this.getAttributes()) {
+			for (VisualObject<?> t : this.getAttributes()) {
 				y += t.getHeight();
 			}
-			for (VisualObject t : this.getMethods()) {
+			for (VisualObject<?> t : this.getMethods()) {
 				y += t.getHeight();
 			}
 		}
