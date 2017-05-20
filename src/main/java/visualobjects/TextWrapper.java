@@ -9,12 +9,10 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
 import command.Controller;
-import formBuilder.FormCreator;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
 import gui.text.state.PassiveState;
-import guiToApplication.FormWrapper;
 import logicalobjects.LogicalObject;
 
 /**

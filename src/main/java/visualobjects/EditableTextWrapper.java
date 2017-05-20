@@ -11,7 +11,6 @@ import java.util.Collection;
 
 import command.ChangeLogicalObjectNameCommand;
 import command.Controller;
-import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
