@@ -3,20 +3,24 @@ package command;
 import logicalobjects.Parameter;
 
 public class changeParameterNameCommand extends Command {
+	private final Parameter parameter;
+	private final String newName, oldName;
 
 	public changeParameterNameCommand(Parameter parameter, String newName) {
-		// TODO Auto-generated constructor stub
+		this.parameter = parameter;
+		this.newName = newName;
+		this.oldName = parameter.getName();
 	}
 
 	@Override
 	void execute() {
-		// TODO Auto-generated method stub
+		getParameter().setName(getNewName());
 		
 	}
 
 	@Override
 	void unexecute() {
-		// TODO Auto-generated method stub
+		getParameter().setName(getOldName());
 		
 	}
 
@@ -24,6 +28,18 @@ public class changeParameterNameCommand extends Command {
 	void cleanup() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	private final Parameter getParameter() {
+		return parameter;
+	}
+
+	private final String getNewName() {
+		return newName;
+	}
+
+	private final String getOldName() {
+		return oldName;
 	}
 
 }

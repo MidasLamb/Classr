@@ -15,7 +15,6 @@ import interfaces.CanvasContent;
 
 import static gui.form.base.Constants.*;
 
-
 /**
  * Box that contains CanvasContent, can be resized and moved.
  */
@@ -49,6 +48,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 			String name) {
 		super(x, y, z, width, height, parent, controller);
 		this.setName(name);
+		getContainer().switchSelectedTo(this);
 	}
 
 	@Override
@@ -125,22 +125,27 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 		Color c = g.getColor();
 		g.setColor(Color.WHITE);
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-		g.setColor(Color.LIGHT_GRAY);
+		if (isSelected())
+			g.setColor(Color.red);
+		else
+			g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), TITLEBAR_HEIGHT);
 		g.setColor(Color.WHITE);
 		g.drawString(this.getName(), this.getX() + STANDARD_LABEL_PADDING,
 				this.getY() + STANDARD_TEXT_ASCEND + STANDARD_LABEL_PADDING);
-		g.setColor(c);
 
+		g.setColor(Color.black);
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 
 		// Calculate begin position
 		int beginX = this.getX();
 		int beginY = this.getY() + TITLEBAR_HEIGHT;
 		g.translate(beginX, beginY);
+		g.setColor(Color.black);
 		getContent().show(g);
 		// Undo translate
 		g.translate(-beginX, -beginY);
+		g.setColor(c);
 	}
 
 	@Override
@@ -151,7 +156,7 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 	@Override
 
 	public void switchTo(FormWrapper f) {
-		this.setContent(f);;
+		this.setContent(f);
 	}
 
 	@Override
@@ -187,7 +192,9 @@ public class ContentBox extends ResizableAndMovableVisualObject implements FormC
 
 	@Override
 	public FormContainer<FormWrapper> getExtraContainer() {
-		return new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog box");
+		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog box");
+		this.addDeleteListener(b);
+		return b;
 	}
 
 }

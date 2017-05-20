@@ -1,5 +1,6 @@
 package logicalobjects;
 
+import static main.Constants.REGEX_ALPHANUMERIC_UNDERSCORE;
 import static main.Constants.REGEX_START_NO_CAPITAL;
 
 /**
@@ -51,5 +52,9 @@ public class Parameter extends LogicalObject {
 	@Override
 	public boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_NO_CAPITAL);
+	}
+
+	public boolean canHaveAsType(String type) {
+		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);
 	}
 }

@@ -57,6 +57,7 @@ public abstract class ClassContent extends LogicalObject {
 	 */
 	public final void setVisibility(Visibility visibility) {
 		this.visibility = visibility;
+		notifyUpdateListeners();
 	}
 
 	/**
@@ -74,6 +75,7 @@ public abstract class ClassContent extends LogicalObject {
 	 */
 	public final void setType(String type) {
 		this.type = type;
+		notifyUpdateListeners();
 	}
 
 	/**
@@ -91,6 +93,7 @@ public abstract class ClassContent extends LogicalObject {
 	 */
 	public void setStatic(boolean isStatic) {
 		this.isStatic = isStatic;
+		notifyUpdateListeners();
 	}
 
 	public boolean canHaveAsType(String type) {

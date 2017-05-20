@@ -21,6 +21,10 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return isInHorizontal && isInVertical;
 	}
 	
+	public boolean contains(T el){
+		return getElements().contains(el);
+	}
+	
 	@Override
 	public void unfocusChildren(){
 		this.getListboxElements().stream().forEach(x -> x.setFocused(false));

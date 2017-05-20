@@ -3,20 +3,23 @@ package command;
 import logicalobjects.Parameter;
 
 public class changeParameterTypeCommand extends Command {
+	private final Parameter parameter;
+	private final String newType, oldType;
 
 	public changeParameterTypeCommand(Parameter parameter, String newType) {
-		// TODO Auto-generated constructor stub
+		this.parameter = parameter;
+		this.newType = newType;
+		this.oldType = parameter.getType();
 	}
 
 	@Override
 	void execute() {
-		// TODO Auto-generated method stub
-		
+		getParameter().setType(getNewType());
 	}
 
 	@Override
 	void unexecute() {
-		// TODO Auto-generated method stub
+		getParameter().setType(getOldType());
 		
 	}
 
@@ -24,6 +27,18 @@ public class changeParameterTypeCommand extends Command {
 	void cleanup() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	private final Parameter getParameter() {
+		return parameter;
+	}
+
+	private final String getNewType() {
+		return newType;
+	}
+
+	private final String getOldType() {
+		return oldType;
 	}
 
 }
