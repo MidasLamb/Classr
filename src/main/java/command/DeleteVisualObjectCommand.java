@@ -6,10 +6,10 @@ import visualobjects.VisualAssociation;
 import visualobjects.VisualObject;
 
 public class DeleteVisualObjectCommand extends Command {
-	private final VisualObject visualObject;
+	private final VisualObject<?> visualObject;
 	private ArrayList<VisualAssociation> deletedAssociations;
 	
-	public DeleteVisualObjectCommand(VisualObject object) {
+	public DeleteVisualObjectCommand(VisualObject<?> object) {
 		this.visualObject = object;
 	}
 
@@ -17,10 +17,14 @@ public class DeleteVisualObjectCommand extends Command {
 	void execute() {
 		ArrayList<VisualAssociation> ass = new ArrayList<>();
 		getVisualObject().getParent().removeChild(getVisualObject());
-		getVisualObject().getParent().getChildren().stream()
-		.filter(x -> x instanceof VisualAssociation).map(x -> (VisualAssociation) x)
-		.filter(x -> x.getP1().equals(getVisualObject()) || x.getP2().equals(getVisualObject()))
-		.forEach(x -> ass.add(x));
+		ArrayList<VisualObject<?>> children = getVisualObject().getParent().getChildren();
+		for(VisualObject<?> child : children){
+			if(child instanceof VisualAssociation){
+				VisualAssociation vass = (VisualAssociation) child;
+				if(vass.getP1().equals(getVisualObject()) || vass.getP2().equals(getVisualObject()))
+					ass.add(vass);
+			}
+		}
 		ass.forEach(x -> getVisualObject().getParent().removeChild(x));
 		setDeletedAssociations(ass);
 	}
