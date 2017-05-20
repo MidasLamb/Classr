@@ -70,7 +70,9 @@ class Backend {
 	}
 
 	public static final void editName() {
-		// TODO
+		if (canEditName()) {
+			((EditableTextWrapper) getContainer().getSelected()).setEditable();
+		}
 	}
 
 	public static final void editTripleDot() {
@@ -115,9 +117,10 @@ class Backend {
 	public static final boolean canEditName() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
-		return getContainer().getSelected().getLogicalObject() instanceof Method
-				|| getContainer().getSelected().getLogicalObject() instanceof Attribute
-				|| getContainer().getSelected().getLogicalObject() instanceof LogicalClass;
+//		return getContainer().getSelected().getLogicalObject() instanceof Method
+//				|| getContainer().getSelected().getLogicalObject() instanceof Attribute
+//				|| getContainer().getSelected().getLogicalObject() instanceof LogicalClass;
+		return getContainer().getSelected() instanceof EditableTextWrapper;
 	}
 
 	public static final boolean canEditTripleDot() {

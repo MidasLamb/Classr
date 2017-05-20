@@ -4,20 +4,28 @@ import static main.Constants.CONTAINER_HEIGHT;
 import static main.Constants.CONTAINER_WIDTH;
 
 import canvaswindow.MyCanvasWindow;
+import command.ChangeClassContentStaticCommand;
+import command.Controller;
+import command.changeParameterNameCommand;
+import command.changeParameterTypeCommand;
 import gui.form.base.Button;
 import gui.form.base.FormContainer;
+import gui.form.base.InputBox;
 import gui.form.utility.FormBuilder;
 import gui.form.utility.OkButton;
 import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
 import logicalobjects.Parameter;
 
 /**
  * Builds a Form for managing the parameter for a method
  */
-public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
+public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 	private FormContainer formContainer;
 	private Parameter parameter;
+	private final Controller controller;
 
 	/**
 	 * Create a new MethodParameterFormBuilder.
@@ -27,65 +35,61 @@ public abstract class MethodParameterFormBuilder extends FormBuilder<FormWrapper
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public MethodParameterFormBuilder(Parameter parameter, FormContainer formContainer) {
+	public MethodParameterFormBuilder(Parameter parameter, FormContainer formContainer, Controller controller) {
 		this.formContainer = formContainer;
 		this.parameter = parameter;
+		this.controller = controller;
 	}
 
 	@Override
 	protected void buildForm() {
 		this.setForm(new FormWrapper(260, 125, this.formContainer));
 
-		RegexCheckedInputBox parName = new RegexCheckedInputBox(parameter.getName(), "^[a-z][a-zA-Z0-9_]*", 10, 26, 100,
-				16);
-		this.addFormObject(parName);
-		this.addLabelToTopOfLastFormObject("Parameter name");
-
-		RegexCheckedInputBox parType = new RegexCheckedInputBox(parameter.getType(), "^[a-z][a-zA-Z0-9_]*", 150, 26,
-				100, 16);
-		this.addFormObject(parType);
-		this.addLabelToTopOfLastFormObject("Parameter type");
-
-		MethodParameterFormBuilder t = this;
-		OkButton ok = new OkButton(140, 65, 50, 50) {
-
+		InputBox parName = new InputBox(parameter.getName(), 10, 26, 100, 16) {
 			@Override
-			protected void onOk() {
-				parameter.setName(parName.getText());
-				parameter.setType(parType.getText());
-				t.onOk();
-				getForm().close();
+			protected void onAction() {
+				if (parameter.canHaveAsName(getText()) && !parameter.getName().equals(getText())) {
+					controller.executeCommand(new changeParameterNameCommand(parameter, getText()));
+				}
 			}
 
 		};
+		this.addFormObject(parName);
+		this.addLabelToTopOfLastFormObject("Parameter name");
 
-		ok.addCheckableConstraint(parName);
-		ok.addCheckableConstraint(parType);
+		InputBox parType = new InputBox(parameter.getType(), 150, 26, 100, 16) {
 
-		this.addFormObject(ok);
+			@Override
+			protected void onAction() {
+				if (parameter.canHaveAsType(getText()) && !parameter.getType().equals(getText())) {
+					controller.executeCommand(new changeParameterTypeCommand(parameter, getText()));
+				}
 
-		Button cancel = new Button("Cancel", 200, 65, 50, 50) {
+			}
+
+		};
+		this.addFormObject(parType);
+		this.addLabelToTopOfLastFormObject("Parameter type");
+
+		Button close = new Button("Close", 200, 65, 50, 50) {
 
 			@Override
 			protected void onAction() {
 				getForm().close();
-				onCancel();
 			}
 		};
 
-		this.addFormObject(cancel);
-	}
-
-	/**
-	 * Method executed when the OK button is triggered
-	 */
-	public abstract void onOk();
-
-	/**
-	 * Method executed when the Cancel button is triggered
-	 */
-	public void onCancel() {
-		// Default behavior is to do nothing
+		this.addFormObject(close);
+		
+		parameter.addUpdateListener(new UpdateListener() {
+			
+			@Override
+			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+				parName.setText(parameter.getName());
+				parType.setText(parameter.getType());
+				
+			}
+		});
 	}
 
 }

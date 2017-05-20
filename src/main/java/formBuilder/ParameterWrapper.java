@@ -36,5 +36,13 @@ public class ParameterWrapper implements Displayable {
 	private final void setParameter(Parameter parameter) {
 		this.parameter = parameter;
 	}
+	
+	@Override
+	public boolean equals(Object other){
+		if (!(other instanceof ParameterWrapper))
+			return false;
+		ParameterWrapper op = (ParameterWrapper) other;
+		return op.getParameter().equals(getParameter());
+	}
 
 }
