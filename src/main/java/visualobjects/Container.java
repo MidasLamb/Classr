@@ -46,33 +46,142 @@ public class Container extends VisualObject implements CanvasContent {
 	}
 
 	private void createMenuBar() {
-		MenuBar menu = new MenuBar(0, 30, 500, 30);
-		MenuHeader header = new MenuHeader("testheader", 0, 30, 100, 30);
-		for (int i = 0; i < 15; i++) {
-			String name = "testitem" + i;
-			MenuItem item = new MenuItem(name, 100, 0) {
-				@Override
-				protected void onAction() {
-
-					System.out.println(name);
-				}
-				
-				
-
-			};
-			if (i>5){
-				MenuItemState disabled = item.new Disabled();
-				item.setState(disabled);
-			}
-			header.getDropDownMenu().addMenuItem(item);
-		}
-
-		menu.addMenuHeader(header);
-
-		new FormObjectWrapper<MenuBar>(menu, 0,30, 0, 500,30, this, getController());		
+		int defaultHeight = 30;
+		int x = 0;
+		int y = 30;
+		int defaultWidth = 100;
+		int newPosX = x;
 		
-		//DropDownMenu<MenuItem> dd = header.getDropDownMenu();
-		//new FormObjectWrapper<DropDownMenu<MenuItem>>(dd,0,60,0,100,238, this, getController());
+		MenuBar menu = new MenuBar(x, y, this.getWidth(), defaultHeight);
+		MenuHeader createHeader = new MenuHeader("Create/Add", x, y, defaultWidth, defaultHeight);
+		
+		MenuItem createClass = new MenuItem("Create Class", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.createClass();
+			}
+		};
+		
+		createHeader.getDropDownMenu().addMenuItem(createClass);
+		
+		MenuItem addAttribute = new MenuItem("Add Attribute", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.addAttribute();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canAddAttribute();
+			}
+		};
+		
+		createHeader.getDropDownMenu().addMenuItem(addAttribute);
+		
+		MenuItem addMethod = new MenuItem("Add Method", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.addMethod();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canAddMethod();
+			}
+		};
+		
+		createHeader.getDropDownMenu().addMenuItem(addMethod);
+		
+		MenuItem addParameter = new MenuItem("Add Parameter", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.addParameter();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canAddParameter();
+			}
+		};
+		
+		createHeader.getDropDownMenu().addMenuItem(addParameter);
+		menu.addMenuHeader(createHeader);
+		newPosX += defaultWidth;
+		
+		MenuHeader editHeader = new MenuHeader("Edit", newPosX, y, defaultWidth, defaultHeight);
+		
+		MenuItem editName = new MenuItem("Edit Name", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.editName();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canEditName();
+			}
+		};
+	
+		editHeader.getDropDownMenu().addMenuItem(editName);
+		
+		MenuItem editTripleDot = new MenuItem("Edit...", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.editTripleDot();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canEditTripleDot();
+			}
+		};
+	
+		editHeader.getDropDownMenu().addMenuItem(editTripleDot);
+		
+		MenuItem delete = new MenuItem("Delete", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.delete();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canDelete();
+			}
+		};
+	
+		editHeader.getDropDownMenu().addMenuItem(delete);
+		
+		MenuItem undo = new MenuItem("Undo", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.undo();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canUndo();
+			}
+		};
+	
+		editHeader.getDropDownMenu().addMenuItem(undo);
+		
+		MenuItem redo = new MenuItem("Redo", defaultWidth, 0) {
+			@Override
+			protected void onAction() {
+				Backend.redo();
+			}
+			
+			@Override
+			protected boolean canBeEnabled() {
+				return Backend.canRedo();
+			}
+		};
+	
+		editHeader.getDropDownMenu().addMenuItem(redo);
+		menu.addMenuHeader(editHeader);
+
+		new FormObjectWrapper<MenuBar>(menu, x, y, 0, defaultWidth, defaultHeight, this, getController());		
 	}
 
 	private void createToolBar() {

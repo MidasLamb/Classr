@@ -108,6 +108,13 @@ public class MenuHeader extends Button {
 	 */
 	void updateState() {
 		setEnabled(this.canBeEnabled());
+		for (MenuItem item : this.getDropDownMenu().getElements()){
+			item.updateState();
+		}
+		
+		/*for (MenuHeader header : this.getMenuHeaders()) {
+			header.updateState();
+		}*/
 	}
 
 }
