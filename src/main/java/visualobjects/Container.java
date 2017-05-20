@@ -10,6 +10,7 @@ import gui.form.base.DropDownMenu;
 import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import gui.form.base.MenuItem;
+import gui.form.base.MenuItemState;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -55,8 +56,14 @@ public class Container extends VisualObject implements CanvasContent {
 
 					System.out.println(name);
 				}
+				
+				
 
 			};
+			if (i>5){
+				MenuItemState disabled = item.new Disabled();
+				item.setState(disabled);
+			}
 			header.getDropDownMenu().addMenuItem(item);
 		}
 

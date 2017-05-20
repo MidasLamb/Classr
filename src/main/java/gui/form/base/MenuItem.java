@@ -15,6 +15,7 @@ import gui.inputHandlers.clicks.SingleClick;
 public abstract class MenuItem extends FormObject implements Displayable {
 	private DropDownMenu<MenuItem> dropDownMenu;
 	private final String name;
+	private MenuItemState state;
 
 	/**
 	 * Default constructor for a MenuItem. Creates a new MenuItem and sets its
@@ -26,6 +27,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public MenuItem(String name, int width, int height) {
 		super(0, 0, width, height);
 		this.name = name;
+		this.setState(new Enabled());
 	}
 
 	DropDownMenu<MenuItem> getDropDownMenu() {
@@ -38,8 +40,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 
 	@Override
 	public void onClick(MouseClick click) {
-		this.getDropDownMenu().toggle();
-		this.onAction();
+		this.getState().onAction();
 	}
 
 	@Override
@@ -57,6 +58,51 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	@Override
 	public String getDisplayableString() {
 		return this.name;
+	}
+	
+	public MenuItemState getState() {
+		return state;
+	}
+
+	public void setState(MenuItemState state) {
+		this.state = state;
+	}
+
+	public class Enabled extends MenuItemState{
+
+		@Override
+		void draw(Graphics g) {
+			Color c = g.getColor();
+			if (MenuItem.this.isFocused())
+				g.setColor(Color.BLUE);
+			height = g.getFontMetrics().getHeight();
+			int descent = g.getFontMetrics().getDescent();
+			g.drawString(getDisplayableString(), 0, height - descent);
+			g.setColor(c);
+		}
+		
+		public void onAction(){
+			MenuItem.this.getDropDownMenu().toggle();
+			MenuItem.this.onAction();
+		}
+	}
+	
+	public class Disabled extends MenuItemState{
+
+		@Override
+		void draw(Graphics g) {
+			Color c = g.getColor();
+			if (MenuItem.this.isFocused())
+				g.setColor(Color.RED);
+			height = g.getFontMetrics().getHeight();
+			int descent = g.getFontMetrics().getDescent();
+			g.drawString(getDisplayableString(), 0, height - descent);
+			g.setColor(c);
+		}
+		
+		public void onAction(){
+		}
+		
 	}
 
 }
