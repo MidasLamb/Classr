@@ -13,10 +13,10 @@ import logicalobjects.Association;
 /**
  * The visualization of a logical association
  */
-public class VisualAssociation extends VisualObject implements UpdateListener{
+public class VisualAssociation extends VisualObject<Association> implements UpdateListener{
 	private final VisualClass p1;
 	private final VisualClass p2;
-	private final PaddingBox<EditableTextWrapper> text;
+	private final PaddingBox<EditableTextWrapper<Association>> text;
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class VisualAssociation extends VisualObject implements UpdateListener{
 	 * @param parent
 	 *            The parent object of this VisualObject
 	 */
-	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject parent,
+	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject<?> parent,
 			Controller controller) {
 		super(0, 0, 0, 0, 0, parent, controller);
 		Association association = new Association(participant1.getLogicalObject(), participant2.getLogicalObject());
@@ -41,7 +41,7 @@ public class VisualAssociation extends VisualObject implements UpdateListener{
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<EditableTextWrapper>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper(0, 0,
+		this.text = new PaddingBox<EditableTextWrapper<Association>>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper<Association>(0, 0,
 				0, "associatie", "^[a-z][a-zA-Z0-9_]*", null, association, getController()), this, association,
 				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
@@ -89,7 +89,7 @@ public class VisualAssociation extends VisualObject implements UpdateListener{
 	/**
 	 * @return the paddingBox in which the text object is placed
 	 */
-	public final PaddingBox<EditableTextWrapper> getText() {
+	public final PaddingBox<EditableTextWrapper<Association>> getText() {
 		return this.text;
 	}
 

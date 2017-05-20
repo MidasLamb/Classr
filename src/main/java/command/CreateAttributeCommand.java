@@ -1,5 +1,6 @@
 package command;
 
+import logicalobjects.Attribute;
 import visualobjects.PaddingBox;
 import visualobjects.TextWrapper;
 import visualobjects.VisualClass;
@@ -10,7 +11,7 @@ import visualobjects.VisualClass;
 public class CreateAttributeCommand extends Command {
 
 	private final VisualClass visualClass;
-	private PaddingBox<TextWrapper> attributePaddingBox;
+	private PaddingBox<TextWrapper<Attribute>> attributePaddingBox;
 	
 	/**
 	 * The constructor
@@ -35,7 +36,7 @@ public class CreateAttributeCommand extends Command {
 	 * Returns the padding box in which the created attribute is
 	 * @return the padding box in which the created attribute is
 	 */
-	private final PaddingBox<TextWrapper> getAttributePaddingBox() {
+	private final PaddingBox<TextWrapper<Attribute>> getAttributePaddingBox() {
 		return attributePaddingBox;
 	}
 
@@ -44,7 +45,7 @@ public class CreateAttributeCommand extends Command {
 	 * @param 	attributePaddingBox
 	 * 			the padding box in which the created attribute is
 	 */
-	private final void setAttributePaddingBox(PaddingBox<TextWrapper> attributePaddingBox) {
+	private final void setAttributePaddingBox(PaddingBox<TextWrapper<Attribute>> attributePaddingBox) {
 		this.attributePaddingBox = attributePaddingBox;
 	}
 

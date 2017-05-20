@@ -7,11 +7,12 @@ import java.awt.Graphics;
 import command.Controller;
 import command.CreateAssociationCommand;
 import gui.inputHandlers.clicks.Drag;
+import logicalobjects.LogicalVoid;
 
 /**
  * A handle on VisualClasses to help create VisualObjects
  */
-public class AssociationHandle extends VisualObject {
+public class AssociationHandle extends VisualObject<LogicalVoid> {
 	private final VisualClass parent;
 
 	public AssociationHandle(int x, int y, int z, VisualClass parent, Controller controller) {
@@ -27,7 +28,7 @@ public class AssociationHandle extends VisualObject {
 	@Override
 	public final void onDragEnd(Drag d) {
 		if (isIn(d.getEndX(), d.getEndY())) {
-			VisualObject otherHandle = this.getContainer().select(d.getStartX(), d.getStartY());
+			VisualObject<?> otherHandle = getContainer().select(d.getStartX(), d.getStartY());
 			if (otherHandle instanceof AssociationHandle) {
 				VisualClass other = (VisualClass) otherHandle.getParent();
 				this.createAssociation(other);

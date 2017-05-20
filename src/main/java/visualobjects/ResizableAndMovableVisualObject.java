@@ -9,8 +9,9 @@ import command.ResizeCommand;
 import gui.inputHandlers.clicks.Drag;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
+import logicalobjects.LogicalObject;
 
-public abstract class ResizableAndMovableVisualObject extends VisualObject implements UpdateListener, UpdateSubject {
+public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> extends VisualObject<T> implements UpdateListener, UpdateSubject {
 	private boolean beingResizedFromLeft;
 	private boolean beingResizedFromRight;
 	private boolean beingResizedFromTop;
@@ -32,7 +33,7 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 	
 	private Collection<UpdateListener> updateListeners;
 
-	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject parent,
+	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject<?> parent,
 			Controller controller) {
 		super(x, y, z, width, height, parent, controller);
 		this.setBeingResizedFromBottom(false);
@@ -206,13 +207,13 @@ public abstract class ResizableAndMovableVisualObject extends VisualObject imple
 	}
 
 	private void changeChildrenX(int x) {
-		for (VisualObject v : this.getChildren()) {
+		for (VisualObject<?> v : this.getChildren()) {
 			v.setX(v.getX() + x);
 		}
 	}
 
 	private void changeChildrenY(int y) {
-		for (VisualObject v : this.getChildren()) {
+		for (VisualObject<?> v : this.getChildren()) {
 			v.setY(v.getY() + y);
 		}
 	}
