@@ -45,14 +45,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 
 	@Override
 	public void draw(Graphics g) {
-
-		Color c = g.getColor();
-		if (this.isFocused())
-			g.setColor(Color.BLUE);
-		height = g.getFontMetrics().getHeight();
-		int descent = g.getFontMetrics().getDescent();
-		g.drawString(getDisplayableString(), 0, height - descent);
-		g.setColor(c);
+		this.getState().draw(g);
 	}
 
 	@Override
@@ -73,8 +66,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 		@Override
 		void draw(Graphics g) {
 			Color c = g.getColor();
-			if (MenuItem.this.isFocused())
-				g.setColor(Color.BLUE);
+			g.setColor(Color.GREEN);
 			height = g.getFontMetrics().getHeight();
 			int descent = g.getFontMetrics().getDescent();
 			g.drawString(getDisplayableString(), 0, height - descent);
@@ -92,8 +84,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 		@Override
 		void draw(Graphics g) {
 			Color c = g.getColor();
-			if (MenuItem.this.isFocused())
-				g.setColor(Color.RED);
+			g.setColor(Color.RED);
 			height = g.getFontMetrics().getHeight();
 			int descent = g.getFontMetrics().getDescent();
 			g.drawString(getDisplayableString(), 0, height - descent);

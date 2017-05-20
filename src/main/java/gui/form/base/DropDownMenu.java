@@ -132,10 +132,9 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int translatedY = getY();
 			int sumOfVerticalTranslations = 0;
 			g.translate(translatedX, translatedY);
-			for (ListBox<MenuItem>.ListBoxElement<MenuItem> e : getListboxElements()) {
-				Color c = g.getColor();
+			
+			for (MenuItem e : getElements()){
 				e.draw(g);
-				g.setColor(c);
 				sumOfVerticalTranslations += e.getHeight();
 				g.translate(0, e.getHeight());
 			}
