@@ -163,7 +163,7 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 	 * @return the attributes from this VisualClass
 	 */
 	private Collection<VisualObject<Attribute>> getAttributes() {
-		Collection<Attribute> attr = getLogicalObject().getAttributes();		ArrayList<VisualObject<?>> children = getChildren();		ArrayList<VisualObject<Attribute>> result = new ArrayList<>();		for(VisualObject<?> child : children){			if(attr.contains(child))				result.add((VisualObject<Attribute>) child);						}
+		Collection<Attribute> attr = getLogicalObject().getAttributes();		ArrayList<VisualObject<?>> children = getChildren();		ArrayList<VisualObject<Attribute>> result = new ArrayList<>();		for(VisualObject<?> child : children){			if(attr.contains(child.getLogicalObject()))				result.add((VisualObject<Attribute>) child);						}
 		return result;
 	}
 
@@ -205,7 +205,7 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 	 * @return the methods inside this VisualClass
 	 */
 	private Collection<VisualObject<Method>> getMethods() {		
-		Collection<Method> meth = getLogicalObject().getMethods();		Collection<VisualObject<Method>> result = new ArrayList<>();		ArrayList<VisualObject<?>> children = getChildren();		for(VisualObject<?> child : children){			if(meth.contains(child)){				result.add((VisualObject<Method>) child);			}		}		return result;
+		Collection<Method> meth = getLogicalObject().getMethods();		Collection<VisualObject<Method>> result = new ArrayList<>();		ArrayList<VisualObject<?>> children = getChildren();		for(VisualObject<?> child : children){			if(meth.contains(child.getLogicalObject())){				result.add((VisualObject<Method>) child);			}		}		return result;
 	}
 
 	@Override
