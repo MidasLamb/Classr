@@ -3,6 +3,7 @@ package gui.form.base;
 import java.awt.Color;
 import java.awt.Graphics;
 
+
 import gui.inputHandlers.Clickable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -52,7 +53,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public String getDisplayableString() {
 		return this.name;
 	}
-	
+
 	public MenuItemState getState() {
 		return state;
 	}
@@ -60,8 +61,17 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public void setState(MenuItemState state) {
 		this.state = state;
 	}
+	
+	private void setEnabled(boolean b){
+		if (b){
+			this.setState(new Enabled());
+		}
+		else {
+			this.setState(new Disabled());
+		};
+	}
 
-	public class Enabled extends MenuItemState{
+	public class Enabled extends MenuItemState {
 
 		@Override
 		void draw(Graphics g) {
@@ -72,14 +82,14 @@ public abstract class MenuItem extends FormObject implements Displayable {
 			g.drawString(getDisplayableString(), 0, height - descent);
 			g.setColor(c);
 		}
-		
-		public void onAction(){
-			MenuItem.this.getDropDownMenu().toggle();
+
+		public void onAction() {
+			getDropDownMenu().toggle();
 			MenuItem.this.onAction();
 		}
 	}
-	
-	public class Disabled extends MenuItemState{
+
+	public class Disabled extends MenuItemState {
 
 		@Override
 		void draw(Graphics g) {
@@ -90,10 +100,18 @@ public abstract class MenuItem extends FormObject implements Displayable {
 			g.drawString(getDisplayableString(), 0, height - descent);
 			g.setColor(c);
 		}
-		
-		public void onAction(){
+
+		public void onAction() {
 		}
-		
+
+	}
+
+	protected boolean canBeEnabled() {
+		return true;
+	}
+	
+	void updateState() {
+		this.setEnabled(this.canBeEnabled());
 	}
 
 }

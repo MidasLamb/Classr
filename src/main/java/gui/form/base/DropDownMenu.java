@@ -117,12 +117,13 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int y = getY();
 			int sumOfVerticalMovement = 0;
 			for (ListBoxElement<MenuItem> e : getListboxElements()) {
+				e.height = e.getObject().getHeight();
 				boolean isin = isInElement(e, click.getX(), click.getY(), x, y + sumOfVerticalMovement);
 				if (isin) {
-					e.obj.onClick(click);
+					e.getObject().onClick(click);
 					return;
 				}
-				sumOfVerticalMovement += e.getHeight();
+				sumOfVerticalMovement += e.getObject().getHeight();
 			}
 		}
 
@@ -133,10 +134,10 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int sumOfVerticalTranslations = 0;
 			g.translate(translatedX, translatedY);
 			
-			for (MenuItem e : getElements()){
-				e.draw(g);
-				sumOfVerticalTranslations += e.getHeight();
-				g.translate(0, e.getHeight());
+			for (ListBoxElement<MenuItem> e : getListboxElements()){
+				e.getObject().draw(g);
+				sumOfVerticalTranslations += e.getObject().getHeight();
+				g.translate(0, e.getObject().getHeight());
 			}
 			g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
 		}
