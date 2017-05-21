@@ -4,6 +4,8 @@ import static gui.form.base.Constants.STANDARD_LABEL_PADDING;
 import static gui.form.base.Constants.STANDARD_TEXT_HEIGHT;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -11,12 +13,13 @@ import gui.inputHandlers.clicks.SingleClick;
 /**
  * Object that can be added to a Form.
  */
-public abstract class FormObject implements Comparable<FormObject> {
+public abstract class FormObject implements Comparable<FormObject>, ChangeSubject {
 
 	private final int x, y, width;
 	protected int height;
 	private boolean focused;
 	private boolean focusable = true;
+	private Collection<ChangeListener> changeListeners;
 
 	/**
 	 * Default constructor for a FormObject. Creates a new FormObject and sets
@@ -32,6 +35,7 @@ public abstract class FormObject implements Comparable<FormObject> {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		setChangeListeners(new ArrayList<ChangeListener>());
 	}
 
 	/**
@@ -198,4 +202,33 @@ public abstract class FormObject implements Comparable<FormObject> {
 	static public enum LabelPosition {
 		RIGHT, TOP;
 	}
+
+	/**
+	 * @return the changeListeners
+	 */
+	private final Collection<ChangeListener> getChangeListeners() {
+		return changeListeners;
+	}
+
+	/**
+	 * @param changeListeners the changeListeners to set
+	 */
+	private final void setChangeListeners(Collection<ChangeListener> changeListeners) {
+		this.changeListeners = changeListeners;
+	}
+	
+	public void addChangeListener(ChangeListener c){
+		getChangeListeners().add(c);
+	}
+	
+	public void removeChangeListener(ChangeListener c){
+		getChangeListeners().remove(c);
+	}
+	
+	public void notifyChangeListeners(){
+		getChangeListeners().stream().forEach(x -> x.getNotifiedOfChange(this));
+	}
+	
+	
+	
 }

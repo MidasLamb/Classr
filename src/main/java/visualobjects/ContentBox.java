@@ -198,5 +198,15 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 		this.addDeleteListener(b);
 		return b;
 	}
+	
+	@Override
+	int getWidth(){
+		return Math.max(getContent().getWidth(), super.getWidth());
+	}
+	
+	@Override
+	int getHeight(){
+		return Math.max(getContent().getHeight() + TITLEBAR_HEIGHT, super.getHeight());
+	}
 
 }

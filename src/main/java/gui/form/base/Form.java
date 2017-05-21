@@ -1,6 +1,8 @@
 package gui.form.base;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.TreeSet;
 
@@ -18,11 +20,12 @@ import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 /**
  * Form in which FormObjects can be placed.
  */
-public class Form implements Typable, Clickable {
+public class Form implements Typable, Clickable, ChangeListener{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
-	private final int width, height;
+	private int width, height;
+	private final int startWidth, startHeight;
 
 	/**
 	 * Create a new Form and set its dimensions.
@@ -33,6 +36,8 @@ public class Form implements Typable, Clickable {
 	public Form(int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.startHeight = height;
+		this.startWidth = width;
 	}
 
 	/**
@@ -43,6 +48,7 @@ public class Form implements Typable, Clickable {
 	 */
 	public void addFormObject(FormObject formObject) {
 		getFormObjects().add(formObject);
+		formObject.addChangeListener(this);
 	}
 
 	/**
@@ -228,4 +234,59 @@ public class Form implements Typable, Clickable {
 	public void onDragUpdate(Drag drag) {
 
 	}
+	
+	/**
+	 * Determines the width of the Form.
+	 */
+	private void determineWidth(){
+		int mostRightX = 0;
+		for(FormObject fo: getFormObjects()){
+			mostRightX = Math.max(mostRightX, fo.getX() + fo.getWidth());
+		}
+		this.setWidth(Math.max(mostRightX + 5, getStartWidth()));
+	}
+	
+	private void determineHeight(){
+		int mostBottomY = 0;
+		for(FormObject fo: getFormObjects()){
+			mostBottomY = Math.max(mostBottomY, fo.getY() + fo.getHeight());
+		}
+		this.setHeight(Math.max(mostBottomY + 5, getStartHeight()));
+	}
+
+	@Override
+	public void getNotifiedOfChange(ChangeSubject c) {
+		determineWidth();
+		determineHeight();
+	}
+
+	/**
+	 * @param width the width to set
+	 */
+	private final void setWidth(int width) {
+		this.width = width;
+	}
+
+	/**
+	 * @param height the height to set
+	 */
+	private final void setHeight(int height) {
+		this.height = height;
+	}
+
+	/**
+	 * @return the startWidth
+	 */
+	private final int getStartWidth() {
+		return startWidth;
+	}
+
+	/**
+	 * @return the startHeight
+	 */
+	private final int getStartHeight() {
+		return startHeight;
+	}
+	
+
 }

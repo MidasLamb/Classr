@@ -43,7 +43,7 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(260, 125, this.formContainer));
+		this.setForm(new FormWrapper(150, 200, this.formContainer));
 
 		InputBox parName = new InputBox(parameter.getName(), 10, 26, 100, 16) {
 			@Override
@@ -57,7 +57,7 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(parName);
 		this.addLabelToTopOfLastFormObject("Parameter name");
 
-		InputBox parType = new InputBox(parameter.getType(), 150, 26, 100, 16) {
+		InputBox parType = new InputBox(parameter.getType(), 10, 76, 100, 16) {
 
 			@Override
 			protected void onAction() {
@@ -71,7 +71,7 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(parType);
 		this.addLabelToTopOfLastFormObject("Parameter type");
 
-		Button close = new Button("Close", 200, 65, 50, 50) {
+		Button close = new Button("Close", 60, 126, 50, 50) {
 
 			@Override
 			protected void onAction() {

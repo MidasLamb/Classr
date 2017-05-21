@@ -137,6 +137,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int boxHeight = 0;
 			
 			for (ListBoxElement<MenuItem> e : getListboxElements()){
+				//TODO see if we can move this check to a correct static check
 				e.getObject().determineHeight(g);
 				e.height = e.getObject().getHeight();
 				boxHeight += e.getObject().getHeight();

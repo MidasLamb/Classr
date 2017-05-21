@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.text.AttributedString;
 
+import static gui.form.base.Constants.*;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -16,7 +17,6 @@ import gui.text.state.PassiveState;
  * InputBox that can be added to a Form.
  */
 public abstract class InputBox extends FormObject implements Typable {
-
 	private Text textObject;
 
 	/**
@@ -60,12 +60,14 @@ public abstract class InputBox extends FormObject implements Typable {
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
 		this.getTextObject().handleAsciiKey(key);
+		notifyChangeListeners();
 		onAction();
 	}
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
 		this.getTextObject().handleFunctionKey(key);
+		notifyChangeListeners();
 		onAction();
 	}
 
@@ -120,5 +122,13 @@ public abstract class InputBox extends FormObject implements Typable {
 	public void setText(String string) {
 		this.getTextObject().setAttributedText(new AttributedString(string));
 	}
+
+	@Override
+	int getWidth() {
+		return Math.max(getTextObject().getTextWidth() + 4, 100);
+	}
+
+	
+	
 
 }

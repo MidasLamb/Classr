@@ -107,8 +107,6 @@ public class Text implements Typable {
 	 * 			The char that needs to be added
 	 */
 	public void addLetter(char c) {
-		if(getMaxWidth() > 0 && getDrawLength(getText() + c) > getMaxWidth())
-			return;
 		this.setText(this.getText() + c);
 		if (isAttributed()) {
 			this.setAttributedText(new AttributedString(this.getText()));
@@ -134,6 +132,10 @@ public class Text implements Typable {
 	 */
 	public int getTextWidth(Graphics g) {
 		return g.getFontMetrics().stringWidth(this.getText());
+	}
+	
+	public int getTextWidth(){
+		return STANDARD_FONTMETRICS.stringWidth(this.getText());
 	}
 
 	/**
