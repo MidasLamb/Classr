@@ -4,9 +4,9 @@ import visualobjects.ResizableAndMovableVisualObject;
 
 public class MoveCommand extends Command {
 	private final int startX, startY, endX, endY;
-	private final ResizableAndMovableVisualObject object;
+	private final ResizableAndMovableVisualObject<?> object;
 
-	public MoveCommand(ResizableAndMovableVisualObject object, int startX, int startY, int endX, int endY) {
+	public MoveCommand(ResizableAndMovableVisualObject<?> object, int startX, int startY, int endX, int endY) {
 		this.startX = startX;
 		this.startY = startY;
 		this.endX = endX;

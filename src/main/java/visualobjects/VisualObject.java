@@ -92,7 +92,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 *            the deletelistener to add
 	 */
 	public final void addDeleteListener(DeleteListener deletelistener) {
-		this.getDeleteListeners().add(deletelistener);
+		this.deleteListeners.add(deletelistener);
 	}
 
 	/**
@@ -102,8 +102,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 *            the deletelistener to remove
 	 */
 	public final void removeDeleteListener(DeleteListener deletelistener) {
-		Collection<DeleteListener> cd = new ArrayList<DeleteListener>(this.getDeleteListeners());
-
+		Collection<DeleteListener> cd = getDeleteListeners();
 		cd.remove(deletelistener);
 		this.setDeleteListeners(cd);
 	}

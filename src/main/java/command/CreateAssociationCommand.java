@@ -1,5 +1,6 @@
 package command;
 
+import decoupling.Decoupler;
 import visualobjects.Container;
 import visualobjects.VisualAssociation;
 import visualobjects.VisualClass;
@@ -14,6 +15,7 @@ public class CreateAssociationCommand extends Command {
 	private final VisualClass class2;
 	private final Container container;
 	private VisualAssociation createdAssociation;
+	private Decoupler decoupler;
 	
 	private final Controller controller;
 	
@@ -37,16 +39,17 @@ public class CreateAssociationCommand extends Command {
 
 	@Override
 	void execute() {
-		if(getCreatedAssociation() == null)
+		if(getDecoupler() == null)
 			setCreatedAssociation(new VisualAssociation(getClass1(), 
 					getClass2(), getContainer(), getController()));
 		else
-			getCreatedAssociation().getParent().addChild(getCreatedAssociation());
+			getDecoupler().recouple();
 	}
 
 	@Override
 	void unexecute() {
-		getCreatedAssociation().getParent().removeChild(getCreatedAssociation());
+		if(getDecoupler() != null)
+			getDecoupler().decouple();
 	}
 
 	/**
@@ -103,5 +106,23 @@ public class CreateAssociationCommand extends Command {
 	private Controller getController() {
 		return controller;
 	}
+	
+	/**
+	 * Returns the decoupler for the created association
+	 * @return the decoupler for the created association
+	 */
+	private Decoupler getDecoupler() {
+		return decoupler;
+	}
+	
+	/**
+	 * Sets the decoupler for the created association
+	 * @param 	decoupler
+	 * 			the decoupler for the created association
+	 */
+	private void setDecoupler(Decoupler decoupler) {
+		this.decoupler = decoupler;
+	}
+	
 
 }

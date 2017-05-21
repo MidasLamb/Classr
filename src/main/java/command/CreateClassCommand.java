@@ -1,5 +1,7 @@
 package command;
 
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import visualobjects.Container;
 import visualobjects.VisualClass;
 
@@ -13,6 +15,7 @@ public class CreateClassCommand extends Command {
 	private VisualClass createdClass;
 	private int x = -1;
 	private int y = -1;
+	private Decoupler decoupler;
 
 	/**
 	 * Creates the command
@@ -39,20 +42,21 @@ public class CreateClassCommand extends Command {
 
 	@Override
 	void execute() {
-		if (getCreatedClass() == null) {
+		if (getDecoupler() == null) {
 			if (getX() >= 0 && getY() >= 0)
 				setCreatedClass(getContainer().createNewClass(getX(), getY()));
 			else
 				setCreatedClass(getContainer().createNewClass());
+			setDecoupler(getCreatedClass().decoupleVisitor(new CoupleVisitor()));
 		} else {
-			getContainer().addChild(getCreatedClass());
+			getDecoupler().recouple();
 		}
 	}
 
 	@Override
 	void unexecute() {
-		if (getCreatedClass() != null)
-			getContainer().removeChild(getCreatedClass());
+		if (getDecoupler()!= null)
+			getDecoupler().decouple();
 	}
 
 	@Override
@@ -124,5 +128,21 @@ public class CreateClassCommand extends Command {
 		this.y = y;
 	}
 
+	/**
+	 * Returns the decoupler for the created class
+	 * @return the decoupler for the created class
+	 */
+	private Decoupler getDecoupler() {
+		return decoupler;
+	}
 
+	/**
+	 * Sets the decoupler for the created class
+	 * @param 	decoupler
+	 * 			the decoupler for the created class
+	 */
+	private void setDecoupler(Decoupler decoupler) {
+		this.decoupler = decoupler;
+	}
+	
 }

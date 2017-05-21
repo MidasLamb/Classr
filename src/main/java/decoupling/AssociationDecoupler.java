@@ -41,7 +41,7 @@ public class AssociationDecoupler extends Decoupler {
 	 * Decouples the visual part of the association
 	 */
 	private void decoupleVisual(){
-		getAss().getParent().removeChild(getAss());		
+		getAss().getParent().removeChild(getAss());
 	}
 	
 	/**

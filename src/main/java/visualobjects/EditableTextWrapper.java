@@ -11,6 +11,10 @@ import java.util.Collection;
 
 import command.ChangeLogicalObjectNameCommand;
 import command.Controller;
+import command.DeleteVisualObjectCommand;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
+import decoupling.EditableTextWrapperDecoupler;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -210,7 +214,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		case DELETE:
 			this.getTextObject().handleFunctionKey(key);
 			if (!(getTextObject().getState() instanceof EditableState))
-				this.getLogicalObject().delete();
+				getController().executeCommand(new DeleteVisualObjectCommand(this));
 			break;
 		case BACKSPACE:
 			this.getTextObject().handleFunctionKey(key);
@@ -331,5 +335,10 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	
 	private final void makeUneditable(){
 		this.getTextObject().switchState(new PassiveState());
+	}
+	
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return new EditableTextWrapperDecoupler(this);
 	}
 }

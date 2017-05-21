@@ -133,7 +133,7 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	 * @param 	object
 	 * 			the corresponding logicalObject
 	 */
-	public PaddingBox(int x, int y, int z,T content, VisualObject parent, LogicalObject object, Controller controller) {
+	public PaddingBox(int x, int y, int z,T content, VisualObject<?> parent, LogicalObject object, Controller controller) {
 		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING,content, parent, object, controller);
 	}
 

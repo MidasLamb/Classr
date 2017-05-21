@@ -126,8 +126,7 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 	 * @return PaddingBox of the method that was created
 	 */
 	public PaddingBox<TextWrapper<Method>> createMethod() {
-		Method method = getLogicalObject().addMethod();
-		TextWrapper<Method> t = new EditableTextWrapper<Method>(0, 0, 0, "methods",null, method, getController());
+		Method method = getLogicalObject().addMethod();		TextWrapper<Method> t = new EditableTextWrapper<Method>(0, 0, 0, "methods",null, method, getController());
 		PaddingBox<TextWrapper<Method>> tbox = new PaddingBox<TextWrapper<Method>>(this.getX(), this.getY(), Z_PADDING_BOX, t, this,
 				method, getController());
 		this.updateDimensions();
