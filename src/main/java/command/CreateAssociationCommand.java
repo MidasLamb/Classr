@@ -4,6 +4,11 @@ import visualobjects.Container;
 import visualobjects.VisualAssociation;
 import visualobjects.VisualClass;
 
+/**
+ * A command to create an Association.
+ * @author group11
+ *
+ */
 public class CreateAssociationCommand extends Command {
 	private final VisualClass class1;
 	private final VisualClass class2;
@@ -12,6 +17,17 @@ public class CreateAssociationCommand extends Command {
 	
 	private final Controller controller;
 	
+	/**
+	 * Constructs the parameter.
+	 * @param class1
+	 * 			The first class to create the Association with.
+	 * @param class2
+	 * 			The second class to create the Association with.
+	 * @param container
+	 * 			The Container in which the created Association should reside.
+	 * @param controller
+	 * 			The Controller which the created Association should use.
+	 */
 	public CreateAssociationCommand(VisualClass class1, VisualClass class2, Container container, Controller controller) {
 		this.class1 = class1;
 		this.class2 = class2;

@@ -11,6 +11,13 @@ public class ChangeClassContentVisibilityCommand extends Command {
 	private final Visibility oldVisibility;
 	private final Visibility newVisibility;
 	
+	/**
+	 * Creates the command.
+	 * @param classContent
+	 * 			The ClassContent of which to change the Visibility.
+	 * @param newVisibility
+	 * 			The Visibility to change the visibility of the ClassContent to.
+	 */
 	public ChangeClassContentVisibilityCommand(ClassContent classContent, Visibility newVisibility) {
 		this.classContent = classContent;
 		this.newVisibility = newVisibility;

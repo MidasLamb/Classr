@@ -3,6 +3,7 @@ package gui.form.base;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import gui.inputHandlers.clicks.MouseClick;
 
@@ -20,13 +21,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		boolean isInVertical = clickY >= elementY && clickY < elementY + e.getHeight();
 		return isInHorizontal && isInVertical;
 	}
-	
-	public boolean contains(T el){
+
+	public boolean contains(T el) {
 		return getElements().contains(el);
 	}
-	
+
 	@Override
-	public void unfocusChildren(){
+	public void unfocusChildren() {
 		this.getListboxElements().stream().forEach(x -> x.setFocused(false));
 	}
 
@@ -51,8 +52,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	@Override
-	public
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		// We use translating, so it's easier to remove an element from the
 		// middle of the list.
 		int translatedX = this.getX();
@@ -70,12 +70,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		}
 		g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
 	}
+
 	@Override
 	void setFocused(boolean b) {
 		super.setFocused(b);
 		System.out.println("Ok");
 	}
-	
 
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
@@ -90,8 +90,11 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * @param e
 	 */
 	public void removeElement(T e) {
-		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
-		getListboxElements().remove(lbe);
+		Collection<ListBoxElement<T>> clone = new ArrayList<ListBoxElement<T>>(getListboxElements());
+		for (ListBoxElement<T> lbe: clone){
+			if (lbe.getObject().equals(e))
+				getListboxElements().remove(lbe);
+		}
 	}
 
 	public void removeSelectedElement() {
@@ -140,8 +143,8 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	final void setSelectedElement(ListBoxElement<T> selectedElement) {
 		this.selectedElement = selectedElement;
 	}
-	
-	public FormObject getClickedChild(){
+
+	public FormObject getClickedChild() {
 		return this.getSelectedElement();
 	}
 
@@ -152,7 +155,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		}
 		return null;
 	}
-
 
 	@Override
 	public boolean hasChildren() {

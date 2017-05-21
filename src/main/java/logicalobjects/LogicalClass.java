@@ -7,6 +7,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.NoSuchElementException;
 
+import interfaces.UpdateListener;
+import interfaces.UpdateSubject;
+
 import static main.Constants.DEFAULT_CLASS_NAME;
 
 /**
@@ -41,6 +44,12 @@ public class LogicalClass extends LogicalObject {
 	public final Attribute addAttribute() {
 		Attribute attr = new Attribute(this);
 		this.attributes.add(attr);
+		attr.addUpdateListener(new UpdateListener() {
+			@Override
+			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+				notifyUpdateListeners();
+			}
+		});
 		return attr;
 	}
 
@@ -56,6 +65,7 @@ public class LogicalClass extends LogicalObject {
 		if (!this.attributes.remove(attribute)) {
 			throw new NoSuchElementException();
 		}
+		notifyUpdateListeners();
 	}
 
 	/**
@@ -81,6 +91,12 @@ public class LogicalClass extends LogicalObject {
 	public final Method addMethod() {
 		Method method = new Method(this);
 		this.methods.add(method);
+		method.addUpdateListener(new UpdateListener() {
+			@Override
+			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+				notifyUpdateListeners();
+			}
+		});
 		return method;
 	}
 
@@ -96,6 +112,7 @@ public class LogicalClass extends LogicalObject {
 		if (!this.methods.remove(method)) {
 			throw new NoSuchElementException();
 		}
+		notifyUpdateListeners();
 	}
 
 	/**

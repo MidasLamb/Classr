@@ -6,8 +6,8 @@ import static main.Constants.CONTAINER_WIDTH;
 import canvaswindow.MyCanvasWindow;
 import command.ChangeClassContentStaticCommand;
 import command.Controller;
-import command.changeParameterNameCommand;
-import command.changeParameterTypeCommand;
+import command.ChangeParameterNameCommand;
+import command.ChangeParameterTypeCommand;
 import gui.form.base.Button;
 import gui.form.base.FormContainer;
 import gui.form.base.InputBox;
@@ -49,7 +49,7 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				if (parameter.canHaveAsName(getText()) && !parameter.getName().equals(getText())) {
-					controller.executeCommand(new changeParameterNameCommand(parameter, getText()));
+					controller.executeCommand(new ChangeParameterNameCommand(parameter, getText()));
 				}
 			}
 
@@ -62,7 +62,7 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				if (parameter.canHaveAsType(getText()) && !parameter.getType().equals(getText())) {
-					controller.executeCommand(new changeParameterTypeCommand(parameter, getText()));
+					controller.executeCommand(new ChangeParameterTypeCommand(parameter, getText()));
 				}
 
 			}

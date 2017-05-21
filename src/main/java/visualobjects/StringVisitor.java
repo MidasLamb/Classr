@@ -73,9 +73,9 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 	 */
 	private String trimString(String string){
 		int i = string.length();
-		while(STANDARD_FONTMETRICS.stringWidth(string.substring(0, i)) > MAX_TEXT_WIDTH){
-			i--;
-		}
+		//while(STANDARD_FONTMETRICS.stringWidth(string.substring(0, i)) > MAX_TEXT_WIDTH){
+		//	i--;
+		//}
 		return string.substring(0,i);
 	}
 

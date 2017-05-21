@@ -10,6 +10,13 @@ public class ChangeClassContentTypeCommand extends Command {
 	private final String newType;
 	private final String oldType;
 	
+	/**
+	 * Creates the command.
+	 * @param classContent
+	 * 			The ClassContent of which to change the type.
+	 * @param newType
+	 * 			The new Type that should be given to the ClassContent.
+	 */
 	public ChangeClassContentTypeCommand(ClassContent classContent, String newType) {
 		this.classContent = classContent;
 		this.newType = newType;

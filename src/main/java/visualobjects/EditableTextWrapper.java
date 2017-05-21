@@ -203,11 +203,6 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	public void handleFunctionKey(FunctionKey key) {
 		switch (key.getKeyType()) {
 		case ENTER:
-			if (this.satisfiesRegex()) {
-				this.saveAndExit();
-				this.getTextObject().handleFunctionKey(key);
-			}
-			break;
 		case ESCAPE:
 			this.getTextObject().handleFunctionKey(key);
 			this.exit();
@@ -244,12 +239,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 */
 	private void save() {
 
-		if (!this.getLogicalObject().getName().matches(this.regex) && !this.satisfiesRegex()) {
-			this.getLogicalObject().setName(this.getStandardString());
-		} else if (!this.satisfiesRegex()) {
-			// It should just reset to the previous
-		} else {
-			// this.getLogicalObject().setName(this.getCurrentDisplayedString());
+		if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString())){
 			getController().executeCommand(
 					new ChangeLogicalObjectNameCommand(getLogicalObject(), getCurrentDisplayedString()));
 		}
@@ -273,14 +263,6 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	private void exit() {
 		this.quit();
 		this.getContainer().switchSelectedTo(null);
-	}
-
-	/**
-	 * Saves the text if it matches the constraints and exits
-	 */
-	private void saveAndExit() {
-		this.save();
-		this.exit();
 	}
 
 	/**

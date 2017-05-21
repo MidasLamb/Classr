@@ -13,7 +13,8 @@ import command.ChangeClassContentVisibilityCommand;
 import command.ChangeLogicalObjectNameCommand;
 import command.ChangeMethodAbstractCommand;
 import command.Controller;
-import command.addParameterCommand;
+import command.DeleteParameterCommand;
+import command.AddParameterCommand;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
@@ -186,7 +187,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = new Parameter("name", "type");
-				controller.executeCommand(new addParameterCommand(method, p));
+				controller.executeCommand(new AddParameterCommand(method, p));
 				//parameters.addElement(new ParameterWrapper(p));
 				checkEditAndCancelButtons();
 
@@ -215,7 +216,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onAction() {
-				parameters.removeSelectedElement();
+				controller.executeCommand(new DeleteParameterCommand(method, parameters.getSelectedObject().getParameter()));
+				//parameters.removeSelectedElement();
 				checkEditAndCancelButtons();
 			}
 
@@ -256,8 +258,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		};
 
-		// ok.addCheckableConstraint(methName);
-		// ok.addCheckableConstraint(methType);
 
 		Button close = new Button("Close", 270, 270, 50, 50) {
 
@@ -302,6 +302,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 				methName.setText(method.getName());
 				methType.setText(method.getType());
+				for (ParameterWrapper pw: parameters.getElements())
+					parameters.removeElement(pw);
 				for (Parameter p : getMethod().getParameters()){
 					ParameterWrapper pw = new ParameterWrapper(p);
 					if (!parameters.contains(pw))
