@@ -15,7 +15,6 @@ public class DeleteVisualObjectCommand extends Command {
 
 	@Override
 	void execute() {
-		System.out.println("executed");
 		getDecoupler().decouple();
 	}
 
