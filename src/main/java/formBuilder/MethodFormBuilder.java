@@ -67,7 +67,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 	protected void buildForm() {
 		this.setForm(new FormWrapper(330, 330, this.container));
 
-		InputBox methName = new InputBox(getMethod().getName(), 10, 26, 100, 16) {
+		InputBox methName = new InputBox(getMethod().getName(), 150, 26, 100, 16) {
 			@Override
 			protected void onAction() {
 				if (method.canHaveAsName(getText()) && !method.getName().equals(getText())) {
@@ -80,7 +80,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
 
-		InputBox methType = new InputBox(getMethod().getType(), 150, 26, 100, 16) {
+		InputBox methType = new InputBox(getMethod().getType(), 150, 70, 100, 16) {
 
 			@Override
 			protected void onAction() {
@@ -140,8 +140,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		this.addLabelToRightOfLastFormObject("Protected");
 		// Static checkbox
 		// ---------------------------------------------------------------
-		this.addFormObject(new Label("Modifiers", 150, 65));
-		CheckBox staticCheckbox = new CheckBox(150, 90) {
+		this.addFormObject(new Label("Modifiers", 10, 5));
+		CheckBox staticCheckbox = new CheckBox(10, 26) {
 			@Override
 			protected void onAction() {
 				if (method.canBeStatic(isChecked())) {
@@ -156,7 +156,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Abstract checkbox
 		// ----------------------------------------------------------
-		CheckBox abstractCheckbox = new CheckBox(150, 110) {
+		CheckBox abstractCheckbox = new CheckBox(10, 46) {
 			@Override
 			protected void onAction() {
 				if (method.canBeAbstract(isChecked())) {
@@ -202,7 +202,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
-				FormContainer c = getContainer().getExtraContainer();
+				FormContainer<FormWrapper> c = getContainer().getExtraContainer();
 				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c, controller);
 				c.switchTo(parabuilder.getForm());
 
@@ -217,7 +217,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				controller.executeCommand(new DeleteParameterCommand(method, parameters.getSelectedObject().getParameter()));
-				//parameters.removeSelectedElement();
 				checkEditAndCancelButtons();
 			}
 
@@ -225,38 +224,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(removeParameter);
 
-		// OK and cancel
-		// ---------------------------------------------------------------
-		OkButton ok = new OkButton(210, 270, 50, 50) {
-
-			@Override
-			protected void onOk() {
-				getMethod().setName(methName.getText());
-				getMethod().setType(methType.getText());
-				if (group.getSelectedButton().equals(publicButton))
-					getMethod().setVisibility(Visibility.PUBLIC);
-				else if (group.getSelectedButton().equals(packageButton))
-					getMethod().setVisibility(Visibility.PACKAGE);
-				else if (group.getSelectedButton().equals(privateButton))
-					getMethod().setVisibility(Visibility.PRIVATE);
-				else if (group.getSelectedButton().equals(protectedButton))
-					getMethod().setVisibility(Visibility.PROTECTED);
-
-				getMethod().setStatic(staticCheckbox.isChecked());
-				getMethod().setAbstract(abstractCheckbox.isChecked());
-
-				Collection<Parameter> c = new ArrayList<Parameter>(getMethod().getParameters());
-				for (Parameter p : c) {
-					getMethod().removeParameter(p);
-				}
-
-				for (ParameterWrapper p : parameters.getElements())
-					getMethod().addParameter(p.getParameter());
-
-				getForm().close();
-			}
-
-		};
 
 
 		Button close = new Button("Close", 270, 270, 50, 50) {

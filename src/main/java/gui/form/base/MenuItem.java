@@ -48,6 +48,10 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public void draw(Graphics g) {
 		this.getState().draw(g);
 	}
+	
+	public void determineHeight(Graphics g){
+		height = g.getFontMetrics().getHeight();
+	}
 
 	@Override
 	public String getDisplayableString() {
