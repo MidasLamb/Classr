@@ -6,6 +6,8 @@ import static main.Constants.Z_CLASS;
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import gui.form.base.MenuItem;
@@ -505,6 +507,12 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	void bringToFront(VisualObject<?> vo) {
 		children.remove(vo);
 		children.add(vo);
+	}
+
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

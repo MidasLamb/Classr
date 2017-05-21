@@ -1,5 +1,5 @@
 package visualobjects;
-import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;import static main.Constants.CLASS_WHITE_SPACE;import static main.Constants.CLASS_WIDTH;import static main.Constants.Z_PADDING_BOX;import java.awt.Graphics;import java.util.ArrayList;import java.util.Collection;import command.Command;import command.Controller;import command.CreateAttributeCommand;import command.CreateMethodCommand;import gui.inputHandlers.clicks.DoubleClick;import gui.inputHandlers.clicks.SingleClick;import logicalobjects.Attribute;import logicalobjects.LogicalClass;import logicalobjects.Method;
+import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;import static main.Constants.CLASS_WHITE_SPACE;import static main.Constants.CLASS_WIDTH;import static main.Constants.Z_PADDING_BOX;import java.awt.Graphics;import java.util.ArrayList;import java.util.Collection;import command.Command;import command.Controller;import command.CreateAttributeCommand;import command.CreateMethodCommand;import decoupling.CoupleVisitor;import decoupling.Decoupler;import gui.inputHandlers.clicks.DoubleClick;import gui.inputHandlers.clicks.SingleClick;import logicalobjects.Attribute;import logicalobjects.LogicalClass;import logicalobjects.Method;
 /**
  * The visualization of a logicalClass
  */
@@ -340,5 +340,5 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 		y += CLASS_WHITE_SPACE;
 		y += CLASS_WHITE_SPACE;
 		return y;
-	}
+	}	@Override	public Decoupler decoupleVisitor(CoupleVisitor visitor) {		return visitor.visit(this);			}
 }

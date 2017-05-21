@@ -6,6 +6,8 @@ import java.awt.Graphics;
 
 import command.Controller;
 import command.CreateAssociationCommand;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.inputHandlers.clicks.Drag;
 import logicalobjects.LogicalVoid;
 
@@ -51,5 +53,10 @@ public class AssociationHandle extends VisualObject<LogicalVoid> {
 	@Override
 	public VisualClass getParent(){
 		return parent;
+	}
+
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return null;
 	}
 }

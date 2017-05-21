@@ -12,6 +12,8 @@ import java.util.Optional;
 import command.Command;
 import command.Controller;
 import command.DeleteVisualObjectCommand;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -669,5 +671,6 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 		this.draggedChild = draggedObject;
 	}
 	
+	public abstract Decoupler decoupleVisitor(CoupleVisitor visitor);
 
 }

@@ -1,5 +1,6 @@
 package command;
 
+
 import logicalobjects.ClassContent;
 
 /**

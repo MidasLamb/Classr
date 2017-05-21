@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import command.Controller;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.form.base.FormContainer;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
@@ -197,6 +199,11 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 		ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog box");
 		this.addDeleteListener(b);
 		return b;
+	}
+
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return null;
 	}
 
 }

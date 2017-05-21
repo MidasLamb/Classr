@@ -135,9 +135,8 @@ public class LogicalClass extends LogicalObject {
 	 */
 
 	public final void deleteAssociation(Association association) throws NoSuchElementException {
-		if (!this.associations.remove(association)) {
-			throw new NoSuchElementException();
-		}
+		if(associations.contains(association))
+			associations.remove(association);
 	}
 
 	/**

@@ -7,6 +7,8 @@ import static main.Constants.STANDARD_TEXT_HEIGHT;
 import java.awt.Graphics;
 
 import command.Controller;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalObject;
@@ -253,5 +255,10 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 	 */
 	private void setContent(T content) {
 		this.content = content;
+	}
+
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return null;
 	}
 }

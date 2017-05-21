@@ -9,6 +9,8 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
 import command.Controller;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.text.Text;
@@ -115,6 +117,11 @@ public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 	 */
 	protected final void setTextObject(Text textObject) {
 		this.textObject = textObject;
+	}
+
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return null;
 	}
 
 }

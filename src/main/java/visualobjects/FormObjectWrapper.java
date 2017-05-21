@@ -2,6 +2,8 @@ package visualobjects;
 import java.awt.Graphics;
 
 import command.Controller;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.form.base.FormObject;
 import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalVoid;
@@ -32,6 +34,10 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject<Logica
 	@Override
 	boolean isIn(int x, int y){
 		return fo.isIn(x, y);
+	}
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return null;
 	}
 	
 

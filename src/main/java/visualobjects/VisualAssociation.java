@@ -5,6 +5,8 @@ import static main.Constants.Z_PADDING_BOX;
 import java.awt.Graphics;
 
 import command.Controller;
+import decoupling.CoupleVisitor;
+import decoupling.Decoupler;
 import gui.inputHandlers.clicks.SingleClick;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
@@ -110,6 +112,11 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 		this.updateTextPosition();
+	}
+
+	@Override
+	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
+		return visitor.visit(this);	
 	}
 
 }
