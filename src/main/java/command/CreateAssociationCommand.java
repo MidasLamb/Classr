@@ -1,5 +1,7 @@
 package command;
 
+import decoupling.AssociationDecoupler;
+import decoupling.CoupleVisitor;
 import decoupling.Decoupler;
 import visualobjects.Container;
 import visualobjects.VisualAssociation;
@@ -39,11 +41,14 @@ public class CreateAssociationCommand extends Command {
 
 	@Override
 	void execute() {
-		if(getDecoupler() == null)
+		if(getDecoupler() == null){
 			setCreatedAssociation(new VisualAssociation(getClass1(), 
 					getClass2(), getContainer(), getController()));
-		else
+			setDecoupler(getCreatedAssociation().decoupleVisitor(new CoupleVisitor()));
+			
+		}else{
 			getDecoupler().recouple();
+		}
 	}
 
 	@Override
