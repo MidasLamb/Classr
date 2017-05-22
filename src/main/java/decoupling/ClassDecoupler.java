@@ -7,7 +7,7 @@ import visualobjects.VisualAssociation;
 import visualobjects.VisualClass;
 
 /**
- * This decoupler is created for decoupeling a class in the logical and visual layer
+ * This decoupler is created for decoupling a class in the logical and visual layer
  */
 public class ClassDecoupler extends Decoupler {
 	

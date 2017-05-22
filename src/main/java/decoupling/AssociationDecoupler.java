@@ -3,6 +3,9 @@ package decoupling;
 import logicalobjects.Association;
 import visualobjects.VisualAssociation;
 
+/**
+ * A class that decouples associations
+ */
 public class AssociationDecoupler extends Decoupler {
 	private final VisualAssociation ass;
 

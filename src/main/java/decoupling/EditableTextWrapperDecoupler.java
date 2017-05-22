@@ -2,6 +2,9 @@ package decoupling;
 
 import visualobjects.EditableTextWrapper;
 
+/**
+ * A class that decouples EditableTextWrappers
+ */
 public class EditableTextWrapperDecoupler extends Decoupler {
 	
 	private final EditableTextWrapper<?> textWrapper;

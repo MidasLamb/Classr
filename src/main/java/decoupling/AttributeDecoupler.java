@@ -2,6 +2,10 @@ package decoupling;
 
 import logicalobjects.Attribute;
 
+/**
+ * A class that decouples attributes
+ */
+
 public class AttributeDecoupler extends Decoupler {
 	private final Attribute attribute;
 
