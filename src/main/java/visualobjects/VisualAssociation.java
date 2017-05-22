@@ -55,6 +55,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 	@Override
 	public final void draw(Graphics g) {
+		updateTextPosition();
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
 	}
 
