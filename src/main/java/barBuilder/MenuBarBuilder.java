@@ -24,14 +24,14 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 		
 		this.setMenuBar(new MenuBar(x, y, this.getWidth(), defaultHeight));
 		this.addMenuHeader(new MenuHeader("Create/Add", x, y, defaultWidth, defaultHeight));
-		this.addMenuItemToLastAddedHeader(new MenuItem("Create Class", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Create Class", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.createClass();
 			}
 		});
 
-		this.addMenuItemToLastAddedHeader(new MenuItem("Add Attribute", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Add Attribute", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.addAttribute();
@@ -43,7 +43,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 			}
 		});
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Add Method", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Add Method", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.addMethod();
@@ -55,7 +55,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 			}
 		});
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Add Parameter", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Add Parameter", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.addParameter();
@@ -72,7 +72,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 		// EDIT menu header
 		this.addMenuHeader(new MenuHeader("Edit", newPosX, y, defaultWidth, defaultHeight));
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Edit Name", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Edit Name", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.editName();
@@ -84,7 +84,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 			}
 		});
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Edit...", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Edit...", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.editTripleDot();
@@ -96,7 +96,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 			}
 		});
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Delete", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Delete", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.delete();
@@ -108,7 +108,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 			}
 		});
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Undo", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Undo", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.undo();
@@ -120,7 +120,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 			}
 		});
 		
-		this.addMenuItemToLastAddedHeader(new MenuItem("Redo", defaultWidth, 0) {
+		this.addMenuItemToLastAddedHeader(new MenuItem("Redo", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.redo();

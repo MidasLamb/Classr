@@ -27,19 +27,11 @@ public class ChangeClassContentStaticCommand extends Command {
 	@Override
 	void execute() {
 		getClassContent().setStatic(isSetStatic());
-
 	}
 
 	@Override
 	void unexecute() {
 		getClassContent().setStatic(isLastStatic());
-
-	}
-
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

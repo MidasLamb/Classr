@@ -25,8 +25,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -45,8 +44,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -65,8 +63,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -86,8 +83,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -107,8 +103,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -127,8 +122,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -147,8 +141,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -168,8 +161,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -189,8 +181,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -210,8 +201,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -231,8 +221,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -252,8 +241,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);
@@ -273,8 +261,7 @@ public class FormTest {
 
 			@Override
 			public boolean isValidString(String string) {
-				// TODO Auto-generated method stub
-				return false;
+				return true;
 			}
 		};
 		Form form = new Form(0, 0);

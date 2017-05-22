@@ -7,7 +7,7 @@ import org.junit.Test;
 public class MenuHeaderTest {	
 	
 	private MenuItem itemDummy(){
-		MenuItem item = new MenuItem("BBB", 0, 0){
+		MenuItem item = new MenuItem("BBB", 0){
 			@Override
 			protected void onAction() {
 				
@@ -111,13 +111,5 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().addMenuItem(item2);
 		header.getDropDownMenu().deleteMenuItem(item1);
 		assertEquals(item2, header.getDropDownMenu().getElements().get(0));
-	}
-	
-	@Test
-	public void AddMenuItemCheckParentMenuHeaderTest(){
-		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
-		MenuItem item = itemDummy();
-		header.getDropDownMenu().addMenuItem(item);
-		assertEquals(header.getDropDownMenu(), item.getDropDownMenu());
 	}
 }

@@ -59,11 +59,6 @@ public class CreateClassCommand extends Command {
 			getDecoupler().decouple();
 	}
 
-	@Override
-	void cleanup() {
-		getCreatedClass().delete();
-	}
-
 	/**
 	 * @return the container of this object
 	 */

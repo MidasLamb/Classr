@@ -36,16 +36,12 @@ public class ContainerTest {
 			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 			field.set(null, null);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -57,16 +53,12 @@ public class ContainerTest {
 			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 			field.set(null, null);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -389,7 +381,7 @@ public class ContainerTest {
 	@Test
 	public void selectAttributeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
-		Container container = new Container(0, 0, 1000, 1000, window);
+		Container container = (Container) window.getContent();
 		container.getChildren().forEach(x -> x.delete());
 		//Klasse maken
 		DoubleClick click1 = new DoubleClick(294,199);
@@ -407,7 +399,7 @@ public class ContainerTest {
 	@Test
 	public void selectMethodeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
-		Container container = new Container(0, 0, 1000, 1000, window);
+		Container container = (Container) window.getContent();
 		container.getChildren().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(305,266);
 		DoubleClick click2 = new DoubleClick(376,316);
@@ -464,8 +456,8 @@ public class ContainerTest {
 	
 	@Test
 	public void deleteAttributeTest(){
-		MyCanvasWindow window = new MyCanvasWindow("Test");
-		Container container = new Container(0, 0, 1000, 1000, window);
+		MyCanvasWindow canvas = new MyCanvasWindow("Test");
+		Container container = (Container) canvas.getContent();
 		container.getChildren().forEach(x -> container.removeChild(x));
 		DoubleClick click1 = new DoubleClick(182,162);
 		DoubleClick click2 = new DoubleClick(210,196);
@@ -486,7 +478,7 @@ public class ContainerTest {
 	@Test
 	public void deleteMethodeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
-		Container container = new Container(0, 0, 1000, 1000, window);
+		Container container = (Container) window.getContent();
 		container.getChildren().forEach(x -> container.removeChild(x));
 		DoubleClick click1 = new DoubleClick(362,353);
 		DoubleClick click2 = new DoubleClick(393,403);
@@ -632,7 +624,7 @@ public class ContainerTest {
 		container.createNewClass();
 		VisualClass klasse = container.createNewClass();
 		container.getChildren().forEach(x ->x.delete());
-		assertEquals(10+Constants.CLASS_WIDTH+1, klasse.getX());
+		assertEquals(10+Constants.CLASS_WIDTH+10, klasse.getX());
 	}
 	
 	@Test

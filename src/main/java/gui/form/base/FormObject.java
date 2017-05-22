@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import gui.inputHandlers.clicks.MouseClick;
-import gui.inputHandlers.clicks.SingleClick;
 
 /**
  * Object that can be added to a Form.

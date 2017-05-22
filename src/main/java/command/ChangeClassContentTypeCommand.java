@@ -34,8 +34,6 @@ public class ChangeClassContentTypeCommand extends Command {
 		getClassContent().setType(getOldType());		
 	}
 
-	@Override
-	void cleanup() {}
 
 	/**
 	 * Returns the class content of which the type needs to be changed

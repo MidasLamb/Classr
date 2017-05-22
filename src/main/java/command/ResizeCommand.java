@@ -29,13 +29,7 @@ public class ResizeCommand extends Command {
 		getObject().resizeTo(getStartX(), getStartY(), getStartWidth(), getStartHeight());
 
 	}
-
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	private final int getStartX() {
 		return startX;
 	}

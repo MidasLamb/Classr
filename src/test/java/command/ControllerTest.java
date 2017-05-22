@@ -301,12 +301,6 @@ public class ControllerTest {
 			builder.deleteCharAt(index);			
 			text = builder.toString();
 		}
-
-		@Override
-		void cleanup() {
-			// TODO Auto-generated method stub
-			
-		}
 		
 	}
 	
@@ -325,12 +319,6 @@ public class ControllerTest {
 			StringBuilder builder = new StringBuilder(text);
 			builder.deleteCharAt(index);			
 			text = builder.toString();
-		}
-
-		@Override
-		void cleanup() {
-			// TODO Auto-generated method stub
-			
 		}
 		
 	}

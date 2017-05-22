@@ -28,20 +28,12 @@ public class AddParameterCommand extends Command {
 	@Override
 	void execute() {
 		getMethod().addParameter(getParameter());
-		
 	}
 
 	@Override
 	void unexecute() {
 		getMethod().removeParameter(getParameter());
-		
 	}
-
-	@Override
-	void cleanup() {
-		
-	}
-
 
 	/**
 	 * Returns the method which was given during construction.

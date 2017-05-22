@@ -175,7 +175,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		protected T2 obj;
 
 		ListBoxElement(T2 obj) {
-			super(0, 0, 0, 0);
+			super(0, 0, 0, obj.getHeight());
 			this.obj = obj;
 		}
 
@@ -192,9 +192,9 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 			Color c = g.getColor();
 			if (this.isFocused())
 				g.setColor(Color.BLUE);
-			height = g.getFontMetrics().getHeight();
+			
 			int descent = g.getFontMetrics().getDescent();
-			g.drawString(obj.getDisplayableString(), 0, height - descent);
+			g.drawString(obj.getDisplayableString(), 0, getHeight() - descent);
 			g.setColor(c);
 		}
 
@@ -261,6 +261,10 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		@Override
 		public FormObject getParent() {
 			return ListBox.this;
+		}
+		
+		public int getHeight(){
+			return getObject().getHeight();
 		}
 
 	}

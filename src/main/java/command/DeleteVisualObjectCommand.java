@@ -23,11 +23,6 @@ public class DeleteVisualObjectCommand extends Command {
 		getDecoupler().recouple();
 	}
 
-	@Override
-	void cleanup() {
-		
-	}
-
 	/**
 	 * Returns the visual object that will be deleted
 	 * @return the visual object that will be deleted
