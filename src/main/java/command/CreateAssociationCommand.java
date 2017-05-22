@@ -98,12 +98,6 @@ public class CreateAssociationCommand extends Command {
 		return container;
 	}
 
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/**
 	 * Returns the used controller
 	 * @return the used controller

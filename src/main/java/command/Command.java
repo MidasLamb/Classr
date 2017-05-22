@@ -8,6 +8,4 @@ public abstract class Command {
 	 abstract void execute();
 	 
 	 abstract void unexecute();
-
-	 abstract void cleanup();
 }

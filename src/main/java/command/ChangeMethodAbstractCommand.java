@@ -32,13 +32,6 @@ public class ChangeMethodAbstractCommand extends Command {
 	@Override
 	void unexecute() {
 		getMethod().setAbstract(isLastAbstract());
-
-	}
-
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

@@ -56,12 +56,4 @@ public class ChangeLogicalObjectNameCommand extends Command {
 	private String getOldText() {
 		return oldText;
 	}
-
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

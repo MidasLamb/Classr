@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import gui.form.base.ListBox;
-import gui.form.base.ListBox.ListBoxElement;
 import gui.inputHandlers.clicks.MouseClick;
 
 /**
@@ -57,7 +55,6 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	 */
 	public void addMenuItem(MenuItem item) {
 		this.addElement(item);
-		item.setDropDownMenu((DropDownMenu<MenuItem>) this);
 	}
 
 	/**
@@ -66,7 +63,6 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	 * @param item
 	 */
 	void deleteMenuItem(MenuItem item) {
-		item.setDropDownMenu(null);
 		this.removeElement(item);
 	}
 
@@ -117,13 +113,13 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int y = getY();
 			int sumOfVerticalMovement = 0;
 			for (ListBoxElement<MenuItem> e : getListboxElements()) {
-				e.height = e.getObject().getHeight();
 				boolean isin = isInElement(e, click.getX(), click.getY(), x, y + sumOfVerticalMovement);
 				if (isin) {
 					e.getObject().onClick(click);
+					toggle();
 					return;
 				}
-				sumOfVerticalMovement += e.getObject().getHeight();
+				sumOfVerticalMovement += e.getHeight();
 			}
 		}
 
@@ -137,10 +133,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			int boxHeight = 0;
 			
 			for (ListBoxElement<MenuItem> e : getListboxElements()){
-				//TODO see if we can move this check to a correct static check
-				e.getObject().determineHeight(g);
-				e.height = e.getObject().getHeight();
-				boxHeight += e.getObject().getHeight();
+				boxHeight += e.getHeight();
 			}
 			g.drawRect(0, 0, getWidth(), boxHeight);
 			Color c = g.getColor();
@@ -154,8 +147,8 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			
 			for (ListBoxElement<MenuItem> e : getListboxElements()){
 				e.getObject().draw(g);
-				sumOfVerticalTranslations += e.getObject().getHeight();
-				g.translate(0, e.getObject().getHeight());
+				sumOfVerticalTranslations += e.getHeight();
+				g.translate(0, e.getHeight());
 			}
 			g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
 		}

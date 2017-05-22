@@ -36,12 +36,6 @@ public class ChangeParameterNameCommand extends Command {
 		
 	}
 
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/**
 	 * Returns the Parameter given during construction.
 	 * @return The Parameter given during construction.

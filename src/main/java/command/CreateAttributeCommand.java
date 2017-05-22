@@ -66,12 +66,6 @@ public class CreateAttributeCommand extends Command {
 		return visualClass;
 	}
 
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/**
 	 * Returns the decoupler for the attribute
 	 * @return the decoupler for the attribute

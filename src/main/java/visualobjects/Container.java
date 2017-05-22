@@ -125,9 +125,9 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		while (isChildIn(x, y)) {
 			if (x + CLASS_WIDTH > getWidth()) {
 				x = startPos;
-				y++;
+				y += 10;
 			} else {
-				x++;
+				x += 10;
 			}
 			if (y > getHeight())
 				throw new IllegalStateException();

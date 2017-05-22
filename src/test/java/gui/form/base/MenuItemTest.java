@@ -16,7 +16,7 @@ public class MenuItemTest {
 	
 	@Test
 	public void enabledTest(){
-		MenuItem item = new MenuItem("testItem", 100, 0) {
+		MenuItem item = new MenuItem("testItem", 100) {
 			@Override
 			protected boolean canBeEnabled() {
 				return true;
@@ -31,7 +31,7 @@ public class MenuItemTest {
 	
 	@Test
 	public void disabledTest(){
-		MenuItem item = new MenuItem("testItem", 100, 0) {
+		MenuItem item = new MenuItem("testItem", 100) {
 			@Override
 			protected boolean canBeEnabled() {
 				return false;

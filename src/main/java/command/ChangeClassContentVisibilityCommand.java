@@ -34,9 +34,6 @@ public class ChangeClassContentVisibilityCommand extends Command {
 		getClassContent().setVisibility(getOldVisibility());
 	}
 
-	@Override
-	void cleanup() {}
-
 	/**
 	 * Returns the class content of which the type needs to be changed
 	 * @return
