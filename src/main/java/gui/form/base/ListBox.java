@@ -7,21 +7,50 @@ import java.util.Collection;
 
 import gui.inputHandlers.clicks.MouseClick;
 
+/**
+ * A class that represents a ListBox in which ListBoxItems exist
+ *
+ * @param <T>
+ */
 public abstract class ListBox<T extends Displayable> extends FormObject implements FormObjectWithChildren {
 	ArrayList<ListBoxElement<T>> elements;
 	ListBoxElement<T> selectedElement;
 
+	/**
+	 * Constructs a ListBox at the stated coordinates, width and height
+	 * 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public ListBox(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		this.setElements(new ArrayList<ListBoxElement<T>>());
 	}
 
+	/**
+	 * Returns whether a click is in a LitBoxElement
+	 * 
+	 * @param e
+	 * @param clickX
+	 * @param clickY
+	 * @param elementX
+	 * @param elementY
+	 * @return
+	 */
 	boolean isInElement(ListBoxElement<T> e, int clickX, int clickY, int elementX, int elementY) {
 		boolean isInHorizontal = clickX >= elementX && clickX < elementX + this.getWidth();
 		boolean isInVertical = clickY >= elementY && clickY < elementY + e.getHeight();
 		return isInHorizontal && isInVertical;
 	}
 
+	/**
+	 * Returns whether this ListBox contains the stated ListBoxElement
+	 * 
+	 * @param el
+	 * @return
+	 */
 	public boolean contains(T el) {
 		return getElements().contains(el);
 	}
@@ -77,6 +106,11 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		System.out.println("Ok");
 	}
 
+	/**
+	 * Adds a ListBoxElement to this ListBox
+	 * 
+	 * @param e
+	 */
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		getListboxElements().add(lbe);
@@ -91,12 +125,15 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 */
 	public void removeElement(T e) {
 		Collection<ListBoxElement<T>> clone = new ArrayList<ListBoxElement<T>>(getListboxElements());
-		for (ListBoxElement<T> lbe: clone){
+		for (ListBoxElement<T> lbe : clone) {
 			if (lbe.getObject().equals(e))
 				getListboxElements().remove(lbe);
 		}
 	}
 
+	/**
+	 * Removes the ListBoxElement that is currently selected from this ListBox
+	 */
 	public void removeSelectedElement() {
 		int index = getListboxElements().indexOf(this.getSelectedElement());
 		getListboxElements().remove(this.getSelectedElement());
@@ -107,6 +144,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		}
 	}
 
+	/**
+	 * Switches the ListBoxElement that is currently selected with the stated
+	 * ListBoxElement
+	 * 
+	 * @param e
+	 */
 	public void switchSelectedElementWith(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		int index = getListboxElements().indexOf(this.getSelectedElement());
@@ -114,10 +157,20 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		this.setSelectedElement(lbe);
 	}
 
+	/**
+	 * Returns the ListBoxElements of this ListBox
+	 * 
+	 * @return
+	 */
 	final ArrayList<ListBoxElement<T>> getListboxElements() {
 		return elements;
 	}
 
+	/**
+	 * Returns the objects of the ListBoxElements of this ListBox
+	 * 
+	 * @return
+	 */
 	public final ArrayList<T> getElements() {
 		ArrayList<T> c = new ArrayList<T>();
 		for (ListBoxElement<T> t : this.getListboxElements())
@@ -125,6 +178,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return c;
 	}
 
+	/**
+	 * Set the ListBoxElements of this ListBox to the stated list of
+	 * ListBoxElements
+	 * 
+	 * @param elements
+	 */
 	protected final void setElements(ArrayList<ListBoxElement<T>> elements) {
 		this.elements = elements;
 	}
@@ -133,6 +192,11 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return this.selectedElement;
 	}
 
+	/**
+	 * Return the object of the ListBoxElement that is currently selected
+	 * 
+	 * @return
+	 */
 	public final T getSelectedObject() {
 		ListBoxElement<T> lb = this.getSelectedElement();
 		if (lb == null)
@@ -144,10 +208,16 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		this.selectedElement = selectedElement;
 	}
 
+	/**
+	 * Returns the clicked ListBoxElement
+	 */
 	public FormObject getClickedChild() {
 		return this.getSelectedElement();
 	}
 
+	/**
+	 * Returns the ListBoxElement that is currently selected
+	 */
 	public FormObject getFocusedChild() {
 		for (ListBoxElement<T> l : this.getListboxElements()) {
 			if (l.isFocused())
@@ -171,14 +241,29 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return getListboxElements().get(getListboxElements().size() - 1);
 	}
 
+	/**
+	 * A class of ListBoxElements representing the elements of a ListBox
+	 * 
+	 * @param <T2>
+	 */
 	class ListBoxElement<T2 extends Displayable> extends FormObject implements FormObjectChild {
 		protected T2 obj;
 
+		/**
+		 * Constructs a new ListBoxElement with the stated object
+		 * 
+		 * @param obj
+		 */
 		ListBoxElement(T2 obj) {
 			super(0, 0, 0, 0);
 			this.obj = obj;
 		}
 
+		/**
+		 * Returns the displayable String of the object of this ListBoxElement
+		 * 
+		 * @return
+		 */
 		public String getDisplayableString() {
 			return obj.getDisplayableString();
 		}
