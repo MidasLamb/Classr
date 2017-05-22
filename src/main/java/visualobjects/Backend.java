@@ -1,7 +1,6 @@
 package visualobjects;
 
 import java.util.HashMap;
-import java.util.ResourceBundle.Control;
 
 import command.AddParameterCommand;
 import command.Command;
@@ -21,39 +20,79 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
+/**
+ * Collection of operations that are invoked from the menu bar and tool bar, or
+ * by keystrokes and clicks or both.
+ */
 public class Backend {
 
 	private static Controller controller;
 	private static Container container;
 	private static HashMap<LogicalObject, ContentBox> formsMap = new HashMap<>();
 
+	/**
+	 * Initialize the Backend with a Container and Controller.
+	 * 
+	 * @param container
+	 *            Container for this Backend
+	 * @param controller
+	 *            Controller for this Backend
+	 */
 	public static void initialize(Container container, Controller controller) {
 		Backend.setContainer(container);
 		Backend.setController(controller);
 	}
 
+	/**
+	 * Get the Controller for the Backend.
+	 * 
+	 * @return the controller
+	 */
 	private static final Controller getController() {
 		return controller;
 	}
 
+	/**
+	 * Set the Controller for the Backend.
+	 * 
+	 * @param controller
+	 *            controller to be set as the Controller for the Backend
+	 */
 	private static final void setController(Controller controller) {
 		if (Backend.controller == null)
 			Backend.controller = controller;
 	}
 
+	/**
+	 * Get the Container for the Backend
+	 * 
+	 * @return the container
+	 */
 	private static final Container getContainer() {
 		return container;
 	}
 
+	/**
+	 * Set the Container for the Backend
+	 * 
+	 * @param container
+	 *            container to be set as the Container for the Backend
+	 */
 	private static final void setContainer(Container container) {
 		if (Backend.container == null)
 			Backend.container = container;
 	}
 
+	/**
+	 * Create a new Class.
+	 */
 	public static final void createClass() {
 		getController().executeCommand(new CreateClassCommand(getContainer()));
 	}
 
+	/**
+	 * Add a new Attribute to the selected Class
+	 */
 	public static final void addAttribute() {
 		if (canAddAttribute()) {
 			Command c = new CreateAttributeCommand(((VisualClass) getContainer().getSelected()));
@@ -62,6 +101,9 @@ public class Backend {
 
 	}
 
+	/**
+	 * Add a new Method to the selected Class
+	 */
 	public static final void addMethod() {
 		if (canAddMethod()) {
 			Command c = new CreateMethodCommand(((VisualClass) getContainer().getSelected()));
@@ -69,6 +111,9 @@ public class Backend {
 		}
 	}
 
+	/**
+	 * Add a new Parameter to the selected Method
+	 */
 	public static final void addParameter() {
 		if (canAddParameter()) {
 			Method method = (Method) getContainer().getSelected().getLogicalObject();
@@ -77,21 +122,31 @@ public class Backend {
 		}
 	}
 
+	/**
+	 * Edit the name of the selected object, if it can be edited
+	 */
 	public static final void editName() {
 		if (canEditName()) {
 			((Editable) getContainer().getSelected()).setEditable();
 		}
 	}
 
+	/**
+	 * Open a form to edit the properties of the selected object, or edit the
+	 * name in-place if no form can be opened.
+	 */
 	public static final void editTripleDot() {
-		if (canEditTripleDotForm()){
+		if (canEditTripleDotForm()) {
 			createForm();
-		} else if (canEditTripleDotName()){
+		} else if (canEditTripleDotName()) {
 			editName();
 		}
 
 	}
 
+	/**
+	 * Delete the selected object, if the selected object can be deleted
+	 */
 	public static final void delete() {
 		if (canDelete()) {
 			DeleteVisualObjectCommand c = new DeleteVisualObjectCommand(getContainer().getContainer().getSelected());
@@ -100,32 +155,54 @@ public class Backend {
 		}
 	}
 
+	/**
+	 * Undo the last action
+	 */
 	public static final void undo() {
 		getController().undo();
 	}
 
+	/**
+	 * Redo the last action that is reverted
+	 */
 	public static final void redo() {
 		getController().redo();
 	}
 
+	/**
+	 * @return true if an attribute can be added to the selected object, false
+	 *         otherwise
+	 */
 	public static final boolean canAddAttribute() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected() instanceof VisualClass;
 	}
 
+	/**
+	 * @return true if a method can be added to the selected object, false
+	 *         otherwise
+	 */
 	public static final boolean canAddMethod() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected() instanceof VisualClass;
 	}
 
+	/**
+	 * @return true if a parameter can be added to the selected object, false
+	 *         otherwise
+	 */
 	public static final boolean canAddParameter() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof Method;
 	}
 
+	/**
+	 * @return true if the name of the selected object can be edited in-place,
+	 *         false otherwise
+	 */
 	public static final boolean canEditName() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
@@ -133,24 +210,39 @@ public class Backend {
 		// return getContainer().getSelected() instanceof EditableTextWrapper;
 	}
 
+	/**
+	 * @return true if the selected object can be edited in a form, or its name
+	 *         can be edited in-place
+	 */
 	public static final boolean canEditTripleDot() {
 		return canEditTripleDotForm() || canEditTripleDotName();
 	}
-	
-	private static final boolean canEditTripleDotForm(){
+
+	/**
+	 * @return true if the selected object can be edited in a form, false
+	 *         otherwise
+	 */
+	private static final boolean canEditTripleDotForm() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof Method
 				|| getContainer().getSelected().getLogicalObject() instanceof Attribute;
 	}
-	
-	private static final boolean canEditTripleDotName(){
+
+	/**
+	 * @return true if the name of the selected object can be edited in-place,
+	 *         false otherwise
+	 */
+	private static final boolean canEditTripleDotName() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof LogicalClass
 				|| getContainer().getSelected().getLogicalObject() instanceof Association;
 	}
 
+	/**
+	 * @return true if the selected object can be deleted, false otherwise
+	 */
 	public static final boolean canDelete() {
 		return getContainer().getSelected() != null;
 	}
