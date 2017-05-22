@@ -5,9 +5,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
@@ -22,6 +25,51 @@ import gui.inputHandlers.keys.FunctionKey;
 import main.Constants;
 
 public class ContainerTest {
+	
+	@Before
+	public void init(){
+		try {
+			final Field field = Backend.class.getDeclaredField("container");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			final Field field = Backend.class.getDeclaredField("controller");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	public void isInTest1() {
@@ -331,6 +379,7 @@ public class ContainerTest {
 	@Test
 	public void selectContainerTest(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		container.getChildren().forEach(x -> x.delete());
 		SingleClick click = new SingleClick(1,1);
 		container.onClick(click);
 		VisualObject<?> selected = container.getSelected();
@@ -392,7 +441,7 @@ public class ContainerTest {
 	@Test
 	public void deleteClassTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
 		container.getChildren().forEach(x -> container.removeChild(x));
 		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(303,326);
@@ -459,7 +508,7 @@ public class ContainerTest {
 	public void deleteAssTest1(){
 		//verwijderen door klikken op ass zelf
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
 		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(211,257);
 		DoubleClick click2 = new DoubleClick(147,521);
@@ -485,7 +534,8 @@ public class ContainerTest {
 	public void deleteAssTest2(){
 		//verwijderen door klikken op p1
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
+		container.getChildren().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(103,108);
 		DoubleClick click2 = new DoubleClick(326,369);
 		Drag drag = new Drag(104,142,325,401);
@@ -510,7 +560,7 @@ public class ContainerTest {
 	public void deleteAssTest3(){
 		//verwijderen door klikken op p2
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
 		DoubleClick click1 = new DoubleClick(103,108);
 		DoubleClick click2 = new DoubleClick(326,369);
 		Drag drag = new Drag(104,142,325,401);
@@ -535,7 +585,8 @@ public class ContainerTest {
 	public void deleteTwoAssTest(){
 		//delete the ass by deleting the middle class that has a connection to both
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
+		container.getChildren().stream().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(154,301);
 		DoubleClick click2 = new DoubleClick(254,451);
 		DoubleClick click3 = new DoubleClick(41,481);

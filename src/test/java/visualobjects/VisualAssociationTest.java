@@ -2,9 +2,14 @@ package visualobjects;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
+import command.Controller;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
@@ -12,11 +17,35 @@ import gui.inputHandlers.keys.FunctionKey;
 import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 
 public class VisualAssociationTest {
+	
+	@Before
+	public void init(){
+		try {
+			final Field field = Backend.class.getDeclaredField("container");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	public void deleteOnDeleteClassTest() {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
 		container.getChildren().forEach(x -> x.delete());
 		// Create new class
 		DoubleClick click1 = new DoubleClick(211,215);
