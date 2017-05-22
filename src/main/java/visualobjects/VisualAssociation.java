@@ -15,7 +15,7 @@ import logicalobjects.Association;
 /**
  * The visualization of a logical association
  */
-public class VisualAssociation extends VisualObject<Association> implements UpdateListener{
+public class VisualAssociation extends VisualObject<Association> implements UpdateListener, Editable{
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox<EditableTextWrapper<Association>> text;
@@ -120,6 +120,12 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return visitor.visit(this);	
+	}
+
+	@Override
+	public void setEditable() {
+		getText().getContent().setEditable();
+		
 	}
 
 }

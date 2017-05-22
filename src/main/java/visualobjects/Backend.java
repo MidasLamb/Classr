@@ -79,14 +79,7 @@ class Backend {
 
 	public static final void editName() {
 		if (canEditName()) {
-			//TODO a bit much coupling? Maybe give visualClass a "setEditable"?
-			if (getContainer().getSelected() instanceof VisualClass) {
-				EditableTextWrapper<?> e = ((VisualClass) getContainer().getSelected()).getName().getContent();
-				getContainer().switchSelectedTo(e);
-				e.setEditable();
-			} else {
-				((EditableTextWrapper<?>) getContainer().getSelected()).setEditable();
-			}
+			((Editable) getContainer().getSelected()).setEditable();
 		}
 	}
 
@@ -135,9 +128,7 @@ class Backend {
 	public static final boolean canEditName() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
-		return getContainer().getSelected().getLogicalObject() instanceof Method
-				|| getContainer().getSelected().getLogicalObject() instanceof Attribute
-				|| getContainer().getSelected().getLogicalObject() instanceof LogicalClass;
+		return getContainer().getSelected() instanceof Editable;
 		// return getContainer().getSelected() instanceof EditableTextWrapper;
 	}
 

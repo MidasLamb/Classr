@@ -549,8 +549,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 */
 	public void handleFunctionKey(FunctionKey key) {
 		if (key.getKeyType() == DELETE){
-			Command command = new DeleteVisualObjectCommand(this);
-			getController().executeCommand(command);
+			Backend.delete();
 		}
 	};
 
