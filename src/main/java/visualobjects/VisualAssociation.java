@@ -47,6 +47,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 				0, "associatie", "^[a-z][a-zA-Z0-9_]*", null, association, getController()), this, association,
 				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
+		this.getText().getContent().setEditable();
 		this.text.addDeleteListener(this);
 		this.text.getContent().addUpdateListener(this);
 		this.updateTextPosition();
@@ -103,10 +104,12 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 	@Override
 	protected void onClick(SingleClick sc) {
-		if (!this.isSelected() && !this.getText().getContent().isSelected())
+		if (!this.isSelected() && !this.getText().getContent().isSelected()){
 			this.getContainer().switchSelectedTo(this);
-		else if (this.isSelected())
+		} else if (this.isSelected()){
 			this.getContainer().switchSelectedTo(this.getText().getContent());
+			this.getText().getContent().setEditable();
+		}
 	}
 
 	@Override

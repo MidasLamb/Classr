@@ -76,6 +76,11 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 			}
 
+			@Override
+			public boolean isValidString(String string) {
+				return method.canHaveAsName(string);
+			}
+
 		};
 		this.addFormObject(methName);
 		this.addLabelToTopOfLastFormObject("Method name");
@@ -88,6 +93,11 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					controller.executeCommand(new ChangeClassContentTypeCommand(method, getText()));
 				}
 
+			}
+
+			@Override
+			public boolean isValidString(String string) {
+				return method.canHaveAsType(string);
 			}
 
 		};

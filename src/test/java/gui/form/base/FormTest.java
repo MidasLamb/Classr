@@ -22,6 +22,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -36,6 +42,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -50,6 +62,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -65,6 +83,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -80,6 +104,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -94,6 +124,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -108,6 +144,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -123,6 +165,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -138,6 +186,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -153,6 +207,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -168,6 +228,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -183,6 +249,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);
@@ -198,6 +270,12 @@ public class FormTest {
 		InputBox inputBox = new InputBox(0,0,5,5) {
 			@Override
 			protected void onAction() {}
+
+			@Override
+			public boolean isValidString(String string) {
+				// TODO Auto-generated method stub
+				return false;
+			}
 		};
 		Form form = new Form(0, 0);
 		form.addFormObject(box);

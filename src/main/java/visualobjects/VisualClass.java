@@ -301,7 +301,6 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 
 	@Override
 	public int getMinimumWidth() {
-		// TODO also implement for other stuff.
 		int minWidth = 0;
 		if (this.getLogicalObject() != null) {
 			for (VisualObject<Method> m : this.getMethods()) {
@@ -339,5 +338,5 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 		y += CLASS_WHITE_SPACE;
 		y += CLASS_WHITE_SPACE;
 		return y;
-	}	@Override	public Decoupler decoupleVisitor(CoupleVisitor visitor) {		return visitor.visit(this);			}
+	}	@Override	public Decoupler decoupleVisitor(CoupleVisitor visitor) {		return visitor.visit(this);			}	@Override	int getWidth() {		return Math.max(super.getWidth(), this.getMinimumWidth());	}
 }

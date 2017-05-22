@@ -187,7 +187,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	@Override
 	int getWidth() {
-		return STANDARD_FONTMETRICS.stringWidth(getString());
+		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()), STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
 	}
 
 	@Override
