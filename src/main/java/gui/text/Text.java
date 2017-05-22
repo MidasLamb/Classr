@@ -261,4 +261,8 @@ public class Text implements Typable {
 	private void setMaxWidth(int maxWidth) {
 		this.maxWidth = maxWidth;
 	}
+	
+	public boolean isEditable(){
+		return getState().isEditable();
+	}
 }

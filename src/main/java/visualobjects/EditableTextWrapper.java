@@ -121,7 +121,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		else
 			this.setColor(Color.BLACK);
 		//TODO is this instanceof neccesary?
-		if (this.isSelected() && (this.getTextObject().getState() instanceof EditableState)) {
+		if (this.isSelected() && (this.getTextObject().isEditable())) {
 			if (!satisfiesRegex())
 				this.forceColor(Color.RED);
 			else
@@ -134,7 +134,11 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 */
 	@Override
 	public void draw(Graphics g) {
-		this.getTextObject().draw(g, this.getX(), this.getY());
+		Color c = g.getColor();
+		if (isEditable() && !getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
+			g.setColor(Color.RED);
+		this.getTextObject().draw(g, this.getX(), this.getY());	
+		g.setColor(c);
 	}
 
 	/**
@@ -342,5 +346,10 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return new EditableTextWrapperDecoupler(this);
+	}
+
+	@Override
+	public boolean isEditable() {
+		return getTextObject().isEditable();
 	}
 }

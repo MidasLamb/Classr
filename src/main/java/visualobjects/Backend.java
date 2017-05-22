@@ -244,6 +244,10 @@ public class Backend {
 	 * @return true if the selected object can be deleted, false otherwise
 	 */
 	public static final boolean canDelete() {
+		if (getContainer().getSelected() != null && getContainer().getSelected() instanceof Editable){
+			if (((Editable)getContainer().getSelected()).isEditable())
+				return false;
+		}
 		return getContainer().getSelected() != null;
 	}
 
@@ -256,6 +260,7 @@ public class Backend {
 	public static final boolean canUndo() {
 		return getController().canUndo();
 	}
+	
 
 	/**
 	 * Indicates whether an redo operation can be executed.
