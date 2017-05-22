@@ -125,7 +125,7 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 
 	@Override
 	void draw(Graphics g) {
-
+		this.getContainer().bringToFront(this);
 		Color c = g.getColor();
 		g.setColor(Color.WHITE);
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
