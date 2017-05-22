@@ -2,10 +2,27 @@ package command;
 
 import visualobjects.ResizableAndMovableVisualObject;
 
+/**
+ * A command to move a ResizableAndMovableVisualObject
+ */
 public class MoveCommand extends Command {
 	private final int startX, startY, endX, endY;
 	private final ResizableAndMovableVisualObject<?> object;
 
+	/**
+	 * Constructs the Command
+	 * 
+	 * @param object
+	 *            the VisualObject to move
+	 * @param startX
+	 *            the initial x-position
+	 * @param startY
+	 *            the initial y-position
+	 * @param endX
+	 *            the x-coordinate to which the VisualObject should be moved
+	 * @param endY
+	 *            the y-coordinate to which the VisualObject should be moved
+	 */
 	public MoveCommand(ResizableAndMovableVisualObject<?> object, int startX, int startY, int endX, int endY) {
 		this.startX = startX;
 		this.startY = startY;
