@@ -21,7 +21,7 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-class Backend {
+public class Backend {
 
 	private static Controller controller;
 	private static Container container;
@@ -96,6 +96,7 @@ class Backend {
 		if (canDelete()) {
 			DeleteVisualObjectCommand c = new DeleteVisualObjectCommand(getContainer().getContainer().getSelected());
 			getController().executeCommand(c);
+			getContainer().switchSelectedTo(null);
 		}
 	}
 
