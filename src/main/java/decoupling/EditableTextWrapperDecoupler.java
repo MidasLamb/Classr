@@ -30,11 +30,11 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 	}
 	
 	private void decoupleVisual(){
-		getTextWrapper().getParent().removeChild(getTextWrapper());
+		getTextWrapper().getParent().getParent().removeChild(getTextWrapper().getParent());
 	}
 	
 	private void recoupleVisual(){
-		getTextWrapper().getParent().addChild(getTextWrapper());
+		getTextWrapper().getParent().getParent().addChild(getTextWrapper().getParent());
 	}
 	
 	private void decoupleLogical(){

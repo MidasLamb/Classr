@@ -1,5 +1,5 @@
 package visualobjects;
-import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;import static main.Constants.CLASS_WHITE_SPACE;import static main.Constants.CLASS_WIDTH;import static main.Constants.Z_PADDING_BOX;import java.awt.Graphics;import java.util.ArrayList;import java.util.Collection;import command.Command;import command.Controller;import command.CreateAttributeCommand;import command.CreateMethodCommand;import decoupling.CoupleVisitor;import decoupling.Decoupler;import gui.inputHandlers.clicks.DoubleClick;import gui.inputHandlers.clicks.SingleClick;import logicalobjects.Attribute;import logicalobjects.LogicalClass;import logicalobjects.Method;
+import static main.Constants.CLASS_BODY_INITIAL_HEIGHT;import static main.Constants.CLASS_WHITE_SPACE;import static main.Constants.CLASS_WIDTH;import static main.Constants.Z_PADDING_BOX;import java.awt.Color;import java.awt.Graphics;import java.util.ArrayList;import java.util.Collection;import command.Command;import command.Controller;import command.CreateAttributeCommand;import command.CreateMethodCommand;import decoupling.CoupleVisitor;import decoupling.Decoupler;import gui.inputHandlers.clicks.DoubleClick;import gui.inputHandlers.clicks.SingleClick;import logicalobjects.Attribute;import logicalobjects.LogicalClass;import logicalobjects.Method;
 /**
  * The visualization of a logicalClass
  */
@@ -55,7 +55,7 @@ public class VisualClass extends ResizableAndMovableVisualObject<LogicalClass> {
 
 	@Override
 	public final void draw(Graphics g) {
-		this.updateDimensions();
+		this.updateDimensions();		Color c = g.getColor();		g.setColor(Color.WHITE);		g.fillRect(getX(), getY(), getWidth(), getHeight());		g.setColor(c);
 		g.drawRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 		int y = this.getY();
 

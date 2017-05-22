@@ -49,7 +49,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		strBuilder.append(c.getName());
 		strBuilder.append("(");
 		for (String parameter : parameters) {
-			if(!parameter.equals(parameters.get(0)))
+			if(parameter != parameters.get(0))
 				strBuilder.append(", ");
 			strBuilder.append(parameter);
 		}
