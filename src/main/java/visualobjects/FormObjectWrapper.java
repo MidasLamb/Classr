@@ -22,6 +22,7 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject<Logica
 	}
 	@Override
 	void draw(Graphics g) {
+		this.getContainer().bringToFront(this);
 		this.getFormObject().draw(g);
 	}
 	
