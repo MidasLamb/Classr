@@ -135,22 +135,24 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 			for (ListBoxElement<MenuItem> e : getListboxElements()){
 				boxHeight += e.getHeight();
 			}
-			g.drawRect(0, 0, getWidth(), boxHeight);
 			Color c = g.getColor();
-			g.setColor(Color.white);
-			g.fillRect(1, 1, getWidth() - 1, boxHeight - 1);
+			g.setColor(new Color(240,240,240));
+			g.fillRect(1, 1, getWidth(), boxHeight);
+			g.setColor(Color.GRAY);
+			g.drawRect(0, 0, getWidth(), boxHeight);
 			g.setColor(c);
 			
 			
 			int sumOfVerticalTranslations = 0;
 			
-			
+			int leftMargin = 5;
+			g.translate(leftMargin, 0);
 			for (ListBoxElement<MenuItem> e : getListboxElements()){
 				e.getObject().draw(g);
 				sumOfVerticalTranslations += e.getHeight();
 				g.translate(0, e.getHeight());
 			}
-			g.translate(-translatedX, -(translatedY + sumOfVerticalTranslations));
+			g.translate(-translatedX-leftMargin, -(translatedY + sumOfVerticalTranslations));
 		}
 
 	}
