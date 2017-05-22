@@ -35,7 +35,7 @@ public class MenuHeaderTest {
 		assertEquals(2, header.getDropDownMenu().getElements().size());
 	}
 
-	/*@Test
+	@Test
 	public void addAndRemoveTwoMenuItemsSizeTest() {
 		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = itemDummy();
@@ -45,9 +45,9 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().deleteMenuItem(item1);
 		header.getDropDownMenu().deleteMenuItem(item2);
 		assertEquals(0, header.getDropDownMenu().getListboxElements().size());
-	}*/
+	}
 
-	/*@Test
+	@Test
 	public void addTwoAndRemoveFirstMenuItemSizeTest() {
 		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = itemDummy();
@@ -56,9 +56,9 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().addMenuItem(item2);
 		header.getDropDownMenu().deleteMenuItem(item1);
 		assertEquals(1, header.getDropDownMenu().getElements().size());
-	}*/
+	}
 
-	/*@Test
+	@Test
 	public void addTwoAndRemoveSecondMenuItemSizeTest() {
 		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = itemDummy();
@@ -67,7 +67,7 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().addMenuItem(item2);
 		header.getDropDownMenu().deleteMenuItem(item2);
 		assertEquals(1, header.getDropDownMenu().getElements().size());
-	}*/
+	}
 
 	@Test
 	public void addTwoIdenticalMenuItemsDeleteTest1() {
@@ -80,7 +80,7 @@ public class MenuHeaderTest {
 		assertEquals(item1, header.getDropDownMenu().getElements().get(0));
 	}
 
-	/*@Test
+	@Test
 	public void addTwoIdenticalMenuItemsDeleteTest2() {
 		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = itemDummy();
@@ -89,7 +89,7 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().addMenuItem(item2);
 		header.getDropDownMenu().deleteMenuItem(item1);
 		assertEquals(item2, header.getDropDownMenu().getElements().get(0));
-	}*/
+	}
 
 	@Test
 	public void addTwoNonIdenticalMenuItemsDeleteTest1() {
@@ -102,7 +102,7 @@ public class MenuHeaderTest {
 		assertEquals(item1, header.getDropDownMenu().getElements().get(0));
 	}
 
-	/*@Test
+	@Test
 	public void addTwoNonIdenticalMenuItemsDeleteTest2() {
 		MenuHeader header = new MenuHeader("AAA", 0, 0, 0, 0);
 		MenuItem item1 = itemDummy();
@@ -111,7 +111,7 @@ public class MenuHeaderTest {
 		header.getDropDownMenu().addMenuItem(item2);
 		header.getDropDownMenu().deleteMenuItem(item1);
 		assertEquals(item2, header.getDropDownMenu().getElements().get(0));
-	}*/
+	}
 	
 	@Test
 	public void AddMenuItemCheckParentMenuHeaderTest(){
