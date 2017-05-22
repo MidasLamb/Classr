@@ -4,6 +4,11 @@ import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import gui.form.base.MenuItem;
 
+/**
+ * A class that builds a MenuBar
+ * 
+ * @param <T>
+ */
 public abstract class BarBuilder<T extends MenuBar> {
 
 	private T menuBar;
