@@ -11,8 +11,6 @@ import interfaces.UpdateSubject;
 
 /**
  * A class of logical objects, involving a real class
- * 
- * @author team 11
  */
 public class Method extends ClassContent {
 	private Collection<Parameter> parameters;

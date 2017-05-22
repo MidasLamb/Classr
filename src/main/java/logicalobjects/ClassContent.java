@@ -3,6 +3,9 @@ package logicalobjects;
 import static main.Constants.*;
 import visibilities.Visibility;
 
+/**
+ * An object that is content of a class
+ */
 public abstract class ClassContent extends LogicalObject {
 	private LogicalClass realClass;
 	private Visibility visibility;
@@ -96,6 +99,13 @@ public abstract class ClassContent extends LogicalObject {
 		notifyUpdateListeners();
 	}
 
+	/**
+	 * Returns whether or not this ClassContent object can have the stated type
+	 * string as its type name
+	 * 
+	 * @param type
+	 * @return
+	 */
 	public boolean canHaveAsType(String type) {
 		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);
 	}
