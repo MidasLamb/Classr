@@ -48,4 +48,9 @@ public class EditableState extends TextState {
 
 	}
 
+	@Override
+	public boolean isEditable() {
+		return true;
+	}
+
 }

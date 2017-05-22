@@ -129,4 +129,9 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 		
 	}
 
+	@Override
+	public boolean isEditable() {
+		return getText().getContent().isEditable();
+	}
+
 }

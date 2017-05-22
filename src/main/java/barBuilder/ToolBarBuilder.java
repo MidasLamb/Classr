@@ -4,10 +4,19 @@ import gui.form.base.MenuBar;
 import gui.form.base.MenuHeader;
 import visualobjects.Backend;
 
+/**
+ * A class that builds a ToolBar
+ */
 public class ToolBarBuilder extends BarBuilder<MenuBar> {
 
 	private final int width, height;
 
+	/**
+	 * Constructs a ToolBar with the stated width and height
+	 * 
+	 * @param width
+	 * @param height
+	 */
 	public ToolBarBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;

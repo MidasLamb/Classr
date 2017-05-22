@@ -2,6 +2,9 @@ package decoupling;
 
 import visualobjects.PaddingBox;
 
+/**
+ * A class that decouples PaddingBoxes
+ */
 public class PaddingBoxDecoupler extends Decoupler {
 	private final PaddingBox<?> paddingBox;
 	private final Decoupler logicalDecoupler;

@@ -37,4 +37,10 @@ public abstract class TextState implements Typable{
 	 * 			the y-coordinate 
 	 */
 	public abstract void draw(Graphics g, int x, int y);
+	
+	/**
+	 * Returns whether or not this state is an editable state.
+	 * @return Whether or not this state is an editable state.
+	 */
+	public abstract boolean isEditable();
 }

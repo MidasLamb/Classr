@@ -5,10 +5,18 @@ import gui.form.base.MenuHeader;
 import gui.form.base.MenuItem;
 import visualobjects.Backend;
 
+/**
+ * A class that builds a MenuBar
+ */
 public class MenuBarBuilder extends BarBuilder<MenuBar> {
 	
 	private final int width, height;
 	
+	/**
+	 * Constructs a MenuBarBuilder with the stated width and height
+	 * @param width
+	 * @param height
+	 */
 	public MenuBarBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;

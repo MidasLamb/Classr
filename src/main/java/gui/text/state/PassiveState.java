@@ -31,4 +31,9 @@ public class PassiveState extends TextState {
 		}
 	}
 
+	@Override
+	public boolean isEditable() {
+		return false;
+	}
+
 }

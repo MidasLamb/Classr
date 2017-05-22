@@ -2,6 +2,9 @@ package decoupling;
 
 import logicalobjects.Method;
 
+/**
+ * A class that decouples Methods
+ */
 public class MethodDecoupler extends Decoupler {
 	private final Method method;
 
