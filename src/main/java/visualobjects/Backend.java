@@ -306,4 +306,12 @@ public class Backend {
 			getContainer().bringToFront(getFormsMap().get(logicalObject));
 		}
 	}
+	
+	public static void closeFormBelogingTo(LogicalObject lo){
+		if(getFormsMap().containsKey(lo)){
+			ContentBox form = getFormsMap().get(lo);
+			form.close();
+			getFormsMap().remove(lo);
+		}
+	}
 }

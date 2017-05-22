@@ -1,5 +1,7 @@
 package decoupling;
 
+import static visualobjects.Backend.closeFormBelogingTo;
+
 import visualobjects.PaddingBox;
 
 /**
@@ -35,6 +37,7 @@ public class PaddingBoxDecoupler extends Decoupler {
 	 * Decouples the visual part
 	 */
 	private void decoupleVisual(){
+		closeFormBelogingTo(getPaddingBox().getLogicalObject());
 		getPaddingBox().getParent().removeChild(getPaddingBox());
 	}
 

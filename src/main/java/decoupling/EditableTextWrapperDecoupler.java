@@ -1,5 +1,7 @@
 package decoupling;
 
+import static visualobjects.Backend.closeFormBelogingTo;
+
 import visualobjects.EditableTextWrapper;
 
 /**
@@ -41,6 +43,7 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 	 * Decouples the visual part
 	 */
 	private void decoupleVisual(){
+		closeFormBelogingTo(getTextWrapper().getLogicalObject());
 		getParentDecoupler().decouple();
 	}
 	
