@@ -71,7 +71,6 @@ public class Controller {
 	 * Empty's the redo stack
 	 */
 	private void emptyRedoStack(){
-		getRedoStack().stream().forEach(x -> x.cleanup());
 		setRedoStack(new Stack<Command>());
 	}
 

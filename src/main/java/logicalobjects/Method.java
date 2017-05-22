@@ -14,7 +14,7 @@ import interfaces.UpdateSubject;
  * 
  * @author team 11
  */
-public class Method extends ClassContent {
+public class Method extends ClassContent implements UpdateListener{
 	private Collection<Parameter> parameters;
 	private boolean isAbstract;
 
@@ -68,12 +68,7 @@ public class Method extends ClassContent {
 	public void addParameter(Parameter p) {
 		this.parameters.add(p);
 		this.notifyUpdateListeners();
-		p.addUpdateListener(new UpdateListener() {
-			@Override
-			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-				notifyUpdateListeners();
-			}
-		});
+		p.addUpdateListener(this);
 	}
 
 	/**
@@ -85,7 +80,7 @@ public class Method extends ClassContent {
 	public void removeParameter(Parameter p) {
 		this.parameters.remove(p);
 		this.notifyUpdateListeners();
-		//TODO remove listener
+		p.removeUpdateListener(this);
 	}
 
 	/**
@@ -144,5 +139,11 @@ public class Method extends ClassContent {
 	@Override
 	public boolean canBeStatic(boolean isStatic) {
 		return !(this.isAbstract && isStatic);
+	}
+
+	@Override
+	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
+		notifyUpdateListeners();
+		
 	}
 }

@@ -35,12 +35,6 @@ public class DeleteParameterCommand extends Command {
 		getMethod().addParameter(getParameter());
 	}
 
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	/**
 	 * Returns the parameter which was given during construction.
 	 * @return The parameter which was given during construction.

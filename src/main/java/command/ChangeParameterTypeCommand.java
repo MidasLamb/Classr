@@ -31,14 +31,7 @@ public class ChangeParameterTypeCommand extends Command {
 
 	@Override
 	void unexecute() {
-		getParameter().setType(getOldType());
-		
-	}
-
-	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
+		getParameter().setType(getOldType());	
 	}
 
 	/**

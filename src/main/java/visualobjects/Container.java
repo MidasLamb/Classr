@@ -57,7 +57,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		MenuBar menu = new MenuBar(x, y, this.getWidth(), defaultHeight);
 		MenuHeader createHeader = new MenuHeader("Create/Add", x, y, defaultWidth, defaultHeight);
 		
-		MenuItem createClass = new MenuItem("Create Class", defaultWidth, 0) {
+		MenuItem createClass = new MenuItem("Create Class", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.createClass();
@@ -66,7 +66,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		
 		createHeader.getDropDownMenu().addMenuItem(createClass);
 		
-		MenuItem addAttribute = new MenuItem("Add Attribute", defaultWidth, 0) {
+		MenuItem addAttribute = new MenuItem("Add Attribute", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.addAttribute();
@@ -80,7 +80,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		
 		createHeader.getDropDownMenu().addMenuItem(addAttribute);
 		
-		MenuItem addMethod = new MenuItem("Add Method", defaultWidth, 0) {
+		MenuItem addMethod = new MenuItem("Add Method", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.addMethod();
@@ -94,7 +94,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		
 		createHeader.getDropDownMenu().addMenuItem(addMethod);
 		
-		MenuItem addParameter = new MenuItem("Add Parameter", defaultWidth, 0) {
+		MenuItem addParameter = new MenuItem("Add Parameter", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.addParameter();
@@ -112,7 +112,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		
 		MenuHeader editHeader = new MenuHeader("Edit", newPosX, y, defaultWidth, defaultHeight);
 		
-		MenuItem editName = new MenuItem("Edit Name", defaultWidth, 0) {
+		MenuItem editName = new MenuItem("Edit Name", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.editName();
@@ -126,7 +126,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	
 		editHeader.getDropDownMenu().addMenuItem(editName);
 		
-		MenuItem editTripleDot = new MenuItem("Edit...", defaultWidth, 0) {
+		MenuItem editTripleDot = new MenuItem("Edit...", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.editTripleDot();
@@ -140,7 +140,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	
 		editHeader.getDropDownMenu().addMenuItem(editTripleDot);
 		
-		MenuItem delete = new MenuItem("Delete", defaultWidth, 0) {
+		MenuItem delete = new MenuItem("Delete", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.delete();
@@ -154,7 +154,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	
 		editHeader.getDropDownMenu().addMenuItem(delete);
 		
-		MenuItem undo = new MenuItem("Undo", defaultWidth, 0) {
+		MenuItem undo = new MenuItem("Undo", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.undo();
@@ -168,7 +168,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	
 		editHeader.getDropDownMenu().addMenuItem(undo);
 		
-		MenuItem redo = new MenuItem("Redo", defaultWidth, 0) {
+		MenuItem redo = new MenuItem("Redo", defaultWidth) {
 			@Override
 			protected void onAction() {
 				Backend.redo();
@@ -380,9 +380,9 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		while (isChildIn(x, y)) {
 			if (x + CLASS_WIDTH > getWidth()) {
 				x = startPos;
-				y++;
+				y += 10;
 			} else {
-				x++;
+				x += 10;
 			}
 			if (y > getHeight())
 				throw new IllegalStateException();

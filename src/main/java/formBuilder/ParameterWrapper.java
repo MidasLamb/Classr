@@ -2,6 +2,7 @@ package formBuilder;
 
 import gui.form.base.Displayable;
 import logicalobjects.Parameter;
+import static main.Constants.*;
 
 /**
  * A wrapper to be able to display a parameter in a ListBox
@@ -43,6 +44,11 @@ public class ParameterWrapper implements Displayable {
 			return false;
 		ParameterWrapper op = (ParameterWrapper) other;
 		return op.getParameter().equals(getParameter());
+	}
+
+	@Override
+	public int getHeight() {
+		return STANDARD_FONTMETRICS.getHeight();
 	}
 
 }

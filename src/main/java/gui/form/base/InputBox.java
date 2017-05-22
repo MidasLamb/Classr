@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.text.AttributedString;
 
-import static gui.form.base.Constants.*;
 import gui.inputHandlers.Typable;
 import gui.inputHandlers.clicks.MouseClick;
 import gui.inputHandlers.keys.AsciiKey;
