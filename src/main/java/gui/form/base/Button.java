@@ -84,7 +84,7 @@ public abstract class Button extends FormObject implements FunctionTypable {
 		@Override
 		void draw(Graphics g) {
 			Color color = g.getColor();
-			g.setColor(Color.GREEN);
+			g.setColor(new Color(240,240,240));
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
 			g.setColor(Color.BLACK);
 			drawText(g);
@@ -115,9 +115,9 @@ public abstract class Button extends FormObject implements FunctionTypable {
 		@Override
 		void draw(Graphics g) {
 			Color color = g.getColor();
-			g.setColor(Color.RED);
+			g.setColor(new Color(240,240,240));
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
-			g.setColor(Color.DARK_GRAY);
+			g.setColor(Color.LIGHT_GRAY);
 			drawText(g);
 			g.setColor(color);
 		}
