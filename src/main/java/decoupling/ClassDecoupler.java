@@ -2,6 +2,7 @@ package decoupling;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import static visualobjects.Backend.closeFormBelogingTo;
 
 import visualobjects.VisualAssociation;
 import visualobjects.VisualClass;
@@ -22,12 +23,20 @@ public class ClassDecoupler extends Decoupler {
 	@Override
 	public void decouple() {
 		if(!isDecoupled()){
+			closeAssociatedForms();
 			setDecoupled(true);
 			decoupleVisualClass();
 			decoupleAssociations();
 		}
 	}
 	
+	/**
+	 * Closes the forms associated to this class
+	 */
+	private void closeAssociatedForms() {
+		getVisualClass().getChildren().stream().forEach(x -> closeFormBelogingTo(x.getLogicalObject()));
+	}
+
 	@Override
 	public void recouple() {
 		if(isDecoupled()){
