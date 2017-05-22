@@ -29,7 +29,7 @@ import logicalobjects.LogicalObject;
  * A wrapper for the GUI Text to adapt it to the application part.
  *
  */
-public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L> implements UpdateListener, UpdateSubject {
+public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L> implements UpdateListener, UpdateSubject, Editable {
 	private String standardString;
 	private String regex;
 	private Collection<UpdateListener> updateListeners;
@@ -165,6 +165,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		}
 	}
 
+	@Override
 	public void setEditable() {
 		this.makeEditable();
 	}
@@ -187,7 +188,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	@Override
 	int getWidth() {
-		return STANDARD_FONTMETRICS.stringWidth(getString());
+		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()), STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
 	}
 
 	@Override
@@ -329,6 +330,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	}
 	
 	private final void makeEditable(){
+		this.getContainer().switchSelectedTo(this);
 		this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
 		this.getTextObject().switchState(new EditableState());
 	}
