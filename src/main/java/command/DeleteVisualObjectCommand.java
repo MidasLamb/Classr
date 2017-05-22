@@ -4,10 +4,19 @@ import decoupling.CoupleVisitor;
 import decoupling.Decoupler;
 import visualobjects.VisualObject;
 
+/**
+ * A command to delete a VisualObject.
+ */
 public class DeleteVisualObjectCommand extends Command {
 	private final VisualObject<?> visualObject;
 	private final Decoupler decoupler;
 	
+	/**
+	 * Constructs the Command
+	 * 
+	 * @param object
+	 * 			the VisualObject to delete
+	 */
 	public DeleteVisualObjectCommand(VisualObject<?> object) {
 		this.visualObject = object;
 		this.decoupler = getVisualObject().decoupleVisitor(new CoupleVisitor());

@@ -42,6 +42,9 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 		this(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
 	}
 
+	/**
+	 * A class representing that a CheckBox is selected
+	 */
 	private class Selected extends CheckBoxState {
 
 		@Override
@@ -67,6 +70,9 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 
 	}
 
+	/**
+	 * A class representing that a CheckBox is not selected
+	 */
 	private class NotSelected extends CheckBoxState {
 
 		@Override
@@ -108,6 +114,7 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 		}
 	}
 
+	@Override
 	public void draw(Graphics g) {
 		getState().draw(g);
 	}

@@ -2,10 +2,35 @@ package command;
 
 import visualobjects.ResizableAndMovableVisualObject;
 
+/**
+ * A command to resize a ResizableAndMovableVisualObject
+ */
 public class ResizeCommand extends Command {
 	private final int startX, startY, startWidth, startHeight, endX, endY, endWidth, endHeight;
 	private final ResizableAndMovableVisualObject object;
 
+	/**
+	 * Constructs the Command
+	 * 
+	 * @param object
+	 *            the VisualObject to resize
+	 * @param startX
+	 *            the initial x-coordinate
+	 * @param startY
+	 *            the initial y-cordinate
+	 * @param startWidth
+	 *            the initial width
+	 * @param startHeight
+	 *            the initial height
+	 * @param endX
+	 *            the x-coordinate to which the VisualObject should be resized
+	 * @param endY
+	 *            the y-coordinate to which the VisualObject should be resized
+	 * @param endWidth
+	 *            the width to which the VisualObject should be resized
+	 * @param endHeight
+	 *            the height to which the VisualObject should be resized
+	 */
 	public ResizeCommand(ResizableAndMovableVisualObject object, int startX, int startY, int startWidth, int startHeight, int endX, int endY, int endWidth, int endHeight) {
 		this.startX = startX;
 		this.startY = startY;

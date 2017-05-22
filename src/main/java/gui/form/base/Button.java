@@ -76,6 +76,9 @@ public abstract class Button extends FormObject implements FunctionTypable {
 		}
 	}
 
+	/**
+	 * A class representing that a Button is enabled
+	 */
 	private class Enabled extends ButtonState {
 
 		@Override
@@ -104,6 +107,9 @@ public abstract class Button extends FormObject implements FunctionTypable {
 
 	}
 
+	/**
+	 * A class representing that a Button is disabled
+	 */
 	private class Disabled extends ButtonState {
 
 		@Override
