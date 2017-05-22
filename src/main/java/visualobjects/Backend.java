@@ -20,7 +20,7 @@ import logicalobjects.LogicalObject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
-class Backend {
+public class Backend {
 
 	private static Controller controller;
 	private static Container container;

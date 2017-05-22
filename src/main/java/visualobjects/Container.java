@@ -3,15 +3,14 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
+import barBuilder.MenuBarBuilder;
+import barBuilder.ToolBarBuilder;
 import canvaswindow.MyCanvasWindow;
 import command.Controller;
 import command.CreateClassCommand;
 import decoupling.CoupleVisitor;
 import decoupling.Decoupler;
 import gui.form.base.MenuBar;
-import gui.form.base.MenuHeader;
-import gui.form.base.MenuItem;
-import gui.form.base.MenuItemState;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
@@ -23,7 +22,6 @@ import logicalobjects.LogicalVoid;
 public class Container extends VisualObject<LogicalVoid> implements CanvasContent {
 	private VisualObject<?> selected;
 	private MyCanvasWindow window;
-	private MenuBar toolbar;
 
 	/**
 	 * 
@@ -46,276 +44,23 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		this.createToolBar();
 		this.createMenuBar();
 	}
-
+	
 	private void createMenuBar() {
 		int defaultHeight = 30;
 		int x = 0;
 		int y = 30;
-		int defaultWidth = 100;
-		int newPosX = x;
-		
-		MenuBar menu = new MenuBar(x, y, this.getWidth(), defaultHeight);
-		MenuHeader createHeader = new MenuHeader("Create/Add", x, y, defaultWidth, defaultHeight);
-		
-		MenuItem createClass = new MenuItem("Create Class", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.createClass();
-			}
-		};
-		
-		createHeader.getDropDownMenu().addMenuItem(createClass);
-		
-		MenuItem addAttribute = new MenuItem("Add Attribute", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.addAttribute();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canAddAttribute();
-			}
-		};
-		
-		createHeader.getDropDownMenu().addMenuItem(addAttribute);
-		
-		MenuItem addMethod = new MenuItem("Add Method", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.addMethod();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canAddMethod();
-			}
-		};
-		
-		createHeader.getDropDownMenu().addMenuItem(addMethod);
-		
-		MenuItem addParameter = new MenuItem("Add Parameter", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.addParameter();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canAddParameter();
-			}
-		};
-		
-		createHeader.getDropDownMenu().addMenuItem(addParameter);
-		menu.addMenuHeader(createHeader);
-		newPosX += defaultWidth;
-		
-		MenuHeader editHeader = new MenuHeader("Edit", newPosX, y, defaultWidth, defaultHeight);
-		
-		MenuItem editName = new MenuItem("Edit Name", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.editName();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canEditName();
-			}
-		};
-	
-		editHeader.getDropDownMenu().addMenuItem(editName);
-		
-		MenuItem editTripleDot = new MenuItem("Edit...", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.editTripleDot();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canEditTripleDot();
-			}
-		};
-	
-		editHeader.getDropDownMenu().addMenuItem(editTripleDot);
-		
-		MenuItem delete = new MenuItem("Delete", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.delete();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canDelete();
-			}
-		};
-	
-		editHeader.getDropDownMenu().addMenuItem(delete);
-		
-		MenuItem undo = new MenuItem("Undo", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.undo();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canUndo();
-			}
-		};
-	
-		editHeader.getDropDownMenu().addMenuItem(undo);
-		
-		MenuItem redo = new MenuItem("Redo", defaultWidth, 0) {
-			@Override
-			protected void onAction() {
-				Backend.redo();
-			}
-			
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canRedo();
-			}
-		};
-	
-		editHeader.getDropDownMenu().addMenuItem(redo);
-		menu.addMenuHeader(editHeader);
-
-		new FormObjectWrapper<MenuBar>(menu, x, y, 0, defaultWidth, defaultHeight, this, getController());		
+		MenuBarBuilder builder = new MenuBarBuilder(this.getWidth(), defaultHeight);
+		MenuBar menu = builder.getMenuBar();
+		new FormObjectWrapper<MenuBar>(menu, x, y, 0, this.getWidth(), defaultHeight, this, getController());
 	}
-
+	
 	private void createToolBar() {
 		int defaultHeight = 30;
 		int x = 0;
 		int y = 0;
-		int defaultWidth = 100;
-		int newPosX = x;
-
-		MenuBar toolbar = new MenuBar(x, y, this.getWidth(), defaultHeight);
-		this.setToolbar(toolbar);
-
-		toolbar.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.createClass();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Add Attribute", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.addAttribute();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canAddAttribute();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Add Method", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.addMethod();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canAddMethod();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Add Parameter", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.addParameter();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canAddParameter();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Edit Name", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.editName();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canEditName();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Edit...", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.editTripleDot();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canEditTripleDot();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Delete", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.delete();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canDelete();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Undo", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.undo();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canUndo();
-			}
-		});
-
-		newPosX += defaultWidth;
-
-		toolbar.addMenuHeader(new MenuHeader("Redo", newPosX, y, defaultWidth, defaultHeight) {
-			@Override
-			protected void onAction() {
-				Backend.redo();
-			}
-
-			@Override
-			protected boolean canBeEnabled() {
-				return Backend.canRedo();
-			}
-		});
-
-		new FormObjectWrapper<MenuBar>(toolbar, x, y, 0, 100000, defaultHeight, this, getController());
+		ToolBarBuilder builder = new ToolBarBuilder(this.getWidth(), defaultHeight);
+		MenuBar toolbar = builder.getMenuBar();
+		new FormObjectWrapper<>(toolbar, x, y, 0, this.getWidth(), defaultHeight, this, getController());
 	}
 
 	/**
@@ -471,21 +216,6 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 			getController().redo();
 		if (getSelected() != null)
 			getSelected().handleFunctionKey(key);
-	}
-
-	/**
-	 * @return the toolbar
-	 */
-	private final MenuBar getToolbar() {
-		return toolbar;
-	}
-
-	/**
-	 * @param toolbar
-	 *            the toolbar to set
-	 */
-	private final void setToolbar(MenuBar toolbar) {
-		this.toolbar = toolbar;
 	}
 
 	@Override
