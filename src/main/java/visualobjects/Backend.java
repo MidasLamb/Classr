@@ -96,6 +96,7 @@ public class Backend {
 		if (canDelete()) {
 			DeleteVisualObjectCommand c = new DeleteVisualObjectCommand(getContainer().getContainer().getSelected());
 			getController().executeCommand(c);
+			getContainer().switchSelectedTo(null);
 		}
 	}
 
