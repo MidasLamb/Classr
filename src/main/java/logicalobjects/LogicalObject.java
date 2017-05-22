@@ -10,8 +10,6 @@ import interfaces.UpdateSubject;
 
 /**
  * A class of logical objects, involving a name and visual object
- * 
- * @author team 11
  */
 public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 	private boolean isDeleted = false;

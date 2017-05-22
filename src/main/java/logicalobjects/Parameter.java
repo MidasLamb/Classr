@@ -5,8 +5,6 @@ import static main.Constants.REGEX_START_NO_CAPITAL;
 
 /**
  * Parameter which can be added to methods
- * 
- * @author group11
  */
 public class Parameter extends LogicalObject {
 	private String type;
@@ -54,6 +52,13 @@ public class Parameter extends LogicalObject {
 		return name.matches(REGEX_START_NO_CAPITAL);
 	}
 
+	/**
+	 * Returns whether or not this Parameter object can have the stated type
+	 * string as its type name
+	 * 
+	 * @param type
+	 * @return
+	 */
 	public boolean canHaveAsType(String type) {
 		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);
 	}

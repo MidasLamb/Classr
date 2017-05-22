@@ -14,19 +14,24 @@ import static main.Constants.DEFAULT_CLASS_NAME;
 
 /**
  * A class of real classes, involving associations, attributes and methods
- * 
- * @author team 11
  */
 public class LogicalClass extends LogicalObject {
 	private ArrayList<Attribute> attributes;
 	private ArrayList<Method> methods;
 	private HashSet<Association> associations;
-	
 
+	/**
+	 * Constructs a LogicalClass object with the default name
+	 */
 	public LogicalClass() {
 		this(DEFAULT_CLASS_NAME);
 	}
-	
+
+	/**
+	 * Constructs a LogicalClass object with the stated name
+	 * 
+	 * @param name
+	 */
 	public LogicalClass(String name) {
 		super();
 		this.setAttributes(new ArrayList<>());
@@ -52,11 +57,12 @@ public class LogicalClass extends LogicalObject {
 		addAttribute(attr);
 		return attr;
 	}
-	
+
 	/**
 	 * Adds the given attribute to the LogicalClass
-	 * @param 	attribute
-	 * 			the attribute that needs to be added
+	 * 
+	 * @param attribute
+	 *            the attribute that needs to be added
 	 */
 	public final void addAttribute(Attribute attribute) {
 		this.attributes.add(attribute);
@@ -87,7 +93,7 @@ public class LogicalClass extends LogicalObject {
 	 *             The logical object is not present
 	 */
 
-	public void deleteChild(LogicalObject child){
+	public void deleteChild(LogicalObject child) {
 		new DeleteChildVisitor().startVisit(child);
 	}
 
@@ -108,11 +114,12 @@ public class LogicalClass extends LogicalObject {
 		addMethod(method);
 		return method;
 	}
-	
+
 	/**
 	 * Adds the given method to the methods of the LogicalClass
-	 * @param 	method
-	 * 			the method that needs to be added
+	 * 
+	 * @param method
+	 *            the method that needs to be added
 	 */
 	public void addMethod(Method method) {
 		this.methods.add(method);
@@ -153,7 +160,7 @@ public class LogicalClass extends LogicalObject {
 	 */
 
 	public final void deleteAssociation(Association association) throws NoSuchElementException {
-		if(associations.contains(association))
+		if (associations.contains(association))
 			associations.remove(association);
 	}
 
@@ -219,7 +226,6 @@ public class LogicalClass extends LogicalObject {
 		for (Association a : this.getAssociations())
 			a.delete();
 	}
-	
 
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -231,7 +237,7 @@ public class LogicalClass extends LogicalObject {
 	public boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_CAPITAL);
 	}
-	
+
 	boolean methodNameAlreadyExists(String name, Method method) {
 		for (Method m : this.getMethods()) {
 			if (m.getName().equals(name) && !m.equals(method)) {
@@ -240,7 +246,7 @@ public class LogicalClass extends LogicalObject {
 		}
 		return false;
 	}
-	
+
 	boolean attributeNameAlreadyExists(String name, Attribute attribute) {
 		for (Attribute a : this.getAttributes()) {
 			if (a.getName().equals(name) && !a.equals(attribute)) {
