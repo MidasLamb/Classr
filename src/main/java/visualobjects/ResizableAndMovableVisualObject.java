@@ -12,7 +12,13 @@ import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
 import logicalobjects.LogicalObject;
 
-public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> extends VisualObject<T> implements UpdateListener, UpdateSubject {
+/**
+ * A class of VisualObjects that are resizable and movable
+ *
+ * @param <T>
+ */
+public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> extends VisualObject<T>
+		implements UpdateListener, UpdateSubject {
 	private boolean beingResizedFromLeft;
 	private boolean beingResizedFromRight;
 	private boolean beingResizedFromTop;
@@ -31,9 +37,21 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	private int resizeStartY;
 	private int resizeStartWidth;
 	private int resizeStartHeight;
-	
+
 	private Collection<UpdateListener> updateListeners;
 
+	/**
+	 * Creates a new ResizableAndMovableVisualObject with the stated
+	 * coordinates, width, height, parent VisualObject and Controller
+	 * 
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param width
+	 * @param height
+	 * @param parent
+	 * @param controller
+	 */
 	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject<?> parent,
 			Controller controller) {
 		super(x, y, z, width, height, parent, controller);
@@ -47,21 +65,53 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		this.setUpdateListeners(new ArrayList<UpdateListener>());
 	}
 
+	/**
+	 * Returns whether a coordinate is within a margin of the left side of this
+	 * VisualObject
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isOnLeftSide(int x, int y) {
 		return (x >= this.getX() - deadzone && x <= this.getX() + deadzone)
 				&& (y > this.getY() - deadzone && y < this.getY() + this.getHeight() + deadzone);
 	}
 
+	/**
+	 * Returns whether a coordinate is within a margin of the top side of this
+	 * VisualObject
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isOnTopSide(int x, int y) {
 		return (y >= this.getY() - deadzone && y <= this.getY() + deadzone)
 				&& (x > this.getX() - deadzone && x < this.getX() + this.getWidth() + deadzone);
 	}
 
+	/**
+	 * Returns whether a coordinate is within a margin of the right side of this
+	 * VisualObject
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isOnRightSide(int x, int y) {
 		return (x >= this.getX() + this.getWidth() - deadzone && x <= this.getX() + this.getWidth() + deadzone)
 				&& (y > this.getY() - deadzone && y < this.getY() + this.getHeight() + deadzone);
 	}
 
+	/**
+	 * Returns whether a coordinate is within a margin of the bottom side of
+	 * this VisualObject
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean isOnBottomSide(int x, int y) {
 		return (y >= this.getY() + this.getHeight() - deadzone && y <= this.getY() + this.getHeight() + deadzone)
 				&& (x > this.getX() - deadzone && x < this.getX() + this.getWidth() + deadzone);
@@ -199,7 +249,7 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		if (!this.isBeingMoved())
 			handleResize(drag);
 	}
-	
+
 	@Override
 	void onClick(SingleClick sc) {
 		getContainer().bringToFront(this);
@@ -322,6 +372,12 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		this.notifyUpdateListeners();
 	}
 
+	/**
+	 * Moves this VisualObject and its children to the stated coordinate
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public void moveTo(int x, int y) {
 		this.changeChildrenX(x - this.getX());
 		this.changeChildrenY(y - this.getY());
@@ -331,6 +387,15 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		this.notifyUpdateListeners();
 	}
 
+	/**
+	 * Resizes this VisualObject so that it matches the stated coordinates,
+	 * width and height
+	 * 
+	 * @param x
+	 * @param y
+	 * @param width
+	 * @param height
+	 */
 	public void resizeTo(int x, int y, int width, int height) {
 		moveTo(x, y);
 		this.setWidth(width);
@@ -369,31 +434,31 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	private final void setResizeStartHeight(int resizeStartHeight) {
 		this.resizeStartHeight = resizeStartHeight;
 	}
-	
+
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-		if (getMinimumWidth() > getWidth()){
+		if (getMinimumWidth() > getWidth()) {
 			this.setWidth(getMinimumWidth());
 		}
 	}
-	
+
 	@Override
 	public void addUpdateListener(UpdateListener updateListener) {
 		this.getUpdateListeners().add(updateListener);
-		
+
 	}
 
 	@Override
 	public void removeUpdateListener(UpdateListener updateListener) {
 		this.getUpdateListeners().remove(updateListener);
-		
+
 	}
 
 	@Override
 	public void notifyUpdateListeners() {
-		if (getUpdateListeners()!= null)
+		if (getUpdateListeners() != null)
 			getUpdateListeners().stream().forEach(x -> x.getNotifiedOfUpdate(this));
-		
+
 	}
 
 	private final Collection<UpdateListener> getUpdateListeners() {
@@ -415,6 +480,5 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		super.setY(y);
 		this.notifyUpdateListeners();
 	}
-	
-	
+
 }
