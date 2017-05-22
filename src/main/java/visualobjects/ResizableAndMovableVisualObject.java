@@ -7,6 +7,7 @@ import command.Controller;
 import command.MoveCommand;
 import command.ResizeCommand;
 import gui.inputHandlers.clicks.Drag;
+import gui.inputHandlers.clicks.SingleClick;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
 import logicalobjects.LogicalObject;
@@ -192,10 +193,17 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	@Override
 	public void onDragUpdate(Drag drag) {
+		getContainer().bringToFront(this);
 		if (!this.isBeingResized())
 			handleMove(drag);
 		if (!this.isBeingMoved())
 			handleResize(drag);
+	}
+	
+	@Override
+	void onClick(SingleClick sc) {
+		getContainer().bringToFront(this);
+		super.onClick(sc);
 	}
 
 	private void changeX(int x) {

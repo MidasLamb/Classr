@@ -1,12 +1,14 @@
 package visualobjects;
 
 import java.util.HashMap;
+import java.util.ResourceBundle.Control;
 
 import command.Command;
 import command.Controller;
 import command.CreateAttributeCommand;
 import command.CreateClassCommand;
 import command.CreateMethodCommand;
+import command.DeleteVisualObjectCommand;
 import formBuilder.FormCreator;
 import guiToApplication.FormWrapper;
 import interfaces.DeleteListener;
@@ -89,8 +91,8 @@ class Backend {
 
 	public static final void delete() {
 		if (canDelete()) {
-			// TODO use command
-			getContainer().getSelected().delete();
+			DeleteVisualObjectCommand c = new DeleteVisualObjectCommand(getContainer().getContainer().getSelected());
+			getController().executeCommand(c);
 		}
 	}
 
