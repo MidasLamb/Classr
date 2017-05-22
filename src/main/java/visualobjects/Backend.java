@@ -10,6 +10,7 @@ import command.CreateClassCommand;
 import command.CreateMethodCommand;
 import command.DeleteVisualObjectCommand;
 import formBuilder.FormCreator;
+import formBuilder.MethodParameterFormBuilder;
 import guiToApplication.FormWrapper;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
@@ -307,6 +308,29 @@ public class Backend {
 		}
 	}
 	
+	/**
+	 * Creates a new form for the given parameter
+	 * @param 	parameter
+	 * 			the parameter for which the form needs to be created
+	 */
+	public static final void createForm(Parameter parameter) {	
+		if(parameter != null){
+			if (!getFormsMap().containsKey(parameter)) {
+				ContentBox c = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Edit Parameter");
+				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(parameter, c, getController());
+				c.switchTo(parabuilder.getForm());
+				getFormsMap().put(parameter, c);
+			} else {
+				getContainer().bringToFront(getFormsMap().get(parameter));
+			}
+		}
+	}
+	
+	/**
+	 * Closes the form belonging to the given logical object
+	 * @param 	lo
+	 * 			the logical object for which the associated forms need to be closed
+	 */
 	public static void closeFormBelogingTo(LogicalObject lo){
 		if(getFormsMap().containsKey(lo)){
 			ContentBox form = getFormsMap().get(lo);

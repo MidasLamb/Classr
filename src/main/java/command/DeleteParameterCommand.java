@@ -1,5 +1,7 @@
 package command;
 
+import static visualobjects.Backend.closeFormBelogingTo;
+
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 
@@ -27,6 +29,7 @@ public class DeleteParameterCommand extends Command {
 
 	@Override
 	void execute() {
+		closeFormBelogingTo(getParameter());
 		getMethod().removeParameter(getParameter());
 	}
 

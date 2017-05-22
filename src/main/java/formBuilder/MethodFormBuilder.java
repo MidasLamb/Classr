@@ -1,12 +1,6 @@
 package formBuilder;
 
-import static main.Constants.CONTAINER_HEIGHT;
-import static main.Constants.CONTAINER_WIDTH;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import canvaswindow.MyCanvasWindow;
+import command.AddParameterCommand;
 import command.ChangeClassContentStaticCommand;
 import command.ChangeClassContentTypeCommand;
 import command.ChangeClassContentVisibilityCommand;
@@ -14,7 +8,6 @@ import command.ChangeLogicalObjectNameCommand;
 import command.ChangeMethodAbstractCommand;
 import command.Controller;
 import command.DeleteParameterCommand;
-import command.AddParameterCommand;
 import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
@@ -23,17 +16,14 @@ import gui.form.base.Label;
 import gui.form.base.ListBox;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
-import gui.form.utility.DefaultCheckBox;
-import gui.form.utility.DefaultRadioButton;
 import gui.form.utility.FormBuilder;
-import gui.form.utility.OkButton;
-import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
 import visibilities.Visibility;
+import visualobjects.Backend;
 
 /**
  * Builds a form managing a method
@@ -212,9 +202,10 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
-				FormContainer<FormWrapper> c = getContainer().getExtraContainer();
+				Backend.createForm(p);				
+				/**FormContainer<FormWrapper> c = getContainer().getExtraContainer();
 				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c, controller);
-				c.switchTo(parabuilder.getForm());
+				c.switchTo(parabuilder.getForm());**/
 
 			}
 

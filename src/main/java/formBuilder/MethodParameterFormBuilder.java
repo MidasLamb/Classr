@@ -1,19 +1,12 @@
 package formBuilder;
 
-import static main.Constants.CONTAINER_HEIGHT;
-import static main.Constants.CONTAINER_WIDTH;
-
-import canvaswindow.MyCanvasWindow;
-import command.ChangeClassContentStaticCommand;
-import command.Controller;
 import command.ChangeParameterNameCommand;
 import command.ChangeParameterTypeCommand;
+import command.Controller;
 import gui.form.base.Button;
 import gui.form.base.FormContainer;
 import gui.form.base.InputBox;
 import gui.form.utility.FormBuilder;
-import gui.form.utility.OkButton;
-import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
@@ -23,7 +16,7 @@ import logicalobjects.Parameter;
  * Builds a Form for managing the parameter for a method
  */
 public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
-	private FormContainer formContainer;
+	private FormContainer<?> formContainer;
 	private Parameter parameter;
 	private final Controller controller;
 
@@ -35,7 +28,7 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public MethodParameterFormBuilder(Parameter parameter, FormContainer formContainer, Controller controller) {
+	public MethodParameterFormBuilder(Parameter parameter, FormContainer<?> formContainer, Controller controller) {
 		this.formContainer = formContainer;
 		this.parameter = parameter;
 		this.controller = controller;

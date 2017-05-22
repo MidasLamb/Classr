@@ -2,6 +2,7 @@ package command;
 
 import logicalobjects.Method;
 import logicalobjects.Parameter;
+import static visualobjects.Backend.closeFormBelogingTo;
 
 /**
  * A command to add a parameter to a method.
@@ -32,6 +33,7 @@ public class AddParameterCommand extends Command {
 
 	@Override
 	void unexecute() {
+		closeFormBelogingTo(getParameter());
 		getMethod().removeParameter(getParameter());
 	}
 
