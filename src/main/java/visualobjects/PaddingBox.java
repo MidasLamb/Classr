@@ -259,6 +259,6 @@ public class PaddingBox<T extends VisualObject> extends VisualObject {
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		return null;
+		return visitor.visit(this);
 	}
 }
