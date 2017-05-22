@@ -87,4 +87,9 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 		this.checkers = checkers;
 	}
 
+	@Override
+	public boolean isValidString(String string) {
+		return string.matches(getRegex());
+	}
+
 }

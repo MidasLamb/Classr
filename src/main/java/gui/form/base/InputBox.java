@@ -87,7 +87,11 @@ public abstract class InputBox extends FormObject implements Typable {
 		}
 		g.drawRect(getX(), getY(), getWidth(), getHeight());
 		g.setColor(c);
+		if (!isValidString(getText()))
+			g.setColor(Color.RED);
 		getTextObject().draw(g, this.getX(), this.getY());
+		
+		g.setColor(c);
 	}
 
 	@Override
@@ -128,6 +132,7 @@ public abstract class InputBox extends FormObject implements Typable {
 		return Math.max(getTextObject().getTextWidth() + 4, 100);
 	}
 
+	public abstract boolean isValidString(String string);
 	
 	
 

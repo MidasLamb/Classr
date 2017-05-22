@@ -1,5 +1,7 @@
 package command;
 
+import decoupling.Decoupler;
+import decoupling.PaddingBoxDecoupler;
 import logicalobjects.Method;
 import visualobjects.PaddingBox;
 import visualobjects.TextWrapper;
@@ -12,6 +14,7 @@ public class CreateMethodCommand extends Command {
 
 	private final VisualClass visualClass;
 	private PaddingBox<TextWrapper<Method>> methodPaddingBox;
+	private Decoupler decoupler;
 
 	/**
 	 * Construct a new Command for creating a Method for the given VisualClass
@@ -25,12 +28,19 @@ public class CreateMethodCommand extends Command {
 
 	@Override
 	void execute() {
-		setMethodPaddingBox(this.getVisualClass().createMethod());
+		if(getDecoupler() == null){
+			setMethodPaddingBox(this.getVisualClass().createMethod());
+			setDecoupler(new PaddingBoxDecoupler(getMethodPaddingBox()));
+		} else {
+			getDecoupler().recouple();
+		}
+			
 	}
 
 	@Override
 	void unexecute() {
-		this.getMethodPaddingBox().delete();
+		if(getDecoupler() != null)
+			getDecoupler().decouple();
 	}
 
 	/**
@@ -62,9 +72,23 @@ public class CreateMethodCommand extends Command {
 	}
 
 	@Override
-	void cleanup() {
-		// TODO Auto-generated method stub
-		
+	void cleanup() {}
+	
+	/**
+	 * Returns the decoupler for the attribute
+	 * @return the decoupler for the attribute
+	 */
+	private Decoupler getDecoupler() {
+		return decoupler;
+	}
+
+	/**
+	 * Sets the new decoupler for the attribute
+	 * @param 	decoupler
+	 * 			the new decoupler for the attribute
+	 */
+	private void setDecoupler(Decoupler decoupler) {
+		this.decoupler = decoupler;
 	}
 
 }

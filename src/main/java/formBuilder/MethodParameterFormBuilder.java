@@ -53,6 +53,11 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 				}
 			}
 
+			@Override
+			public boolean isValidString(String string) {
+				return parameter.canHaveAsName(string);
+			}
+
 		};
 		this.addFormObject(parName);
 		this.addLabelToTopOfLastFormObject("Parameter name");
@@ -65,6 +70,11 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 					controller.executeCommand(new ChangeParameterTypeCommand(parameter, getText()));
 				}
 
+			}
+
+			@Override
+			public boolean isValidString(String string) {
+				return parameter.canHaveAsType(string);
 			}
 
 		};

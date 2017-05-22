@@ -3,7 +3,6 @@ package gui.form.base;
 import java.awt.Color;
 import java.awt.Graphics;
 
-
 import gui.inputHandlers.Clickable;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -48,8 +47,13 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public void draw(Graphics g) {
 		this.getState().draw(g);
 	}
-	
-	public void determineHeight(Graphics g){
+
+	/**
+	 * Determines the height of this MenuItem from the stated Graphics
+	 * 
+	 * @param g
+	 */
+	public void determineHeight(Graphics g) {
 		height = g.getFontMetrics().getHeight();
 	}
 
@@ -65,14 +69,14 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public void setState(MenuItemState state) {
 		this.state = state;
 	}
-	
-	private void setEnabled(boolean b){
-		if (b){
+
+	private void setEnabled(boolean b) {
+		if (b) {
 			this.setState(new Enabled());
-		}
-		else {
+		} else {
 			this.setState(new Disabled());
-		};
+		}
+		;
 	}
 
 	public class Enabled extends MenuItemState {
@@ -113,7 +117,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	protected boolean canBeEnabled() {
 		return true;
 	}
-	
+
 	void updateState() {
 		this.setEnabled(this.canBeEnabled());
 	}

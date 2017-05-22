@@ -20,7 +20,7 @@ import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 /**
  * Form in which FormObjects can be placed.
  */
-public class Form implements Typable, Clickable, ChangeListener{
+public class Form implements Typable, Clickable{
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
@@ -48,7 +48,6 @@ public class Form implements Typable, Clickable, ChangeListener{
 	 */
 	public void addFormObject(FormObject formObject) {
 		getFormObjects().add(formObject);
-		formObject.addChangeListener(this);
 	}
 
 	/**
@@ -192,10 +191,12 @@ public class Form implements Typable, Clickable, ChangeListener{
 
 	// Getters and setters
 	public int getWidth() {
+		determineWidth();
 		return width;
 	}
 
 	public int getHeight() {
+		determineHeight();
 		return height;
 	}
 
@@ -252,12 +253,6 @@ public class Form implements Typable, Clickable, ChangeListener{
 			mostBottomY = Math.max(mostBottomY, fo.getY() + fo.getHeight());
 		}
 		this.setHeight(Math.max(mostBottomY + 5, getStartHeight()));
-	}
-
-	@Override
-	public void getNotifiedOfChange(ChangeSubject c) {
-		determineWidth();
-		determineHeight();
 	}
 
 	/**

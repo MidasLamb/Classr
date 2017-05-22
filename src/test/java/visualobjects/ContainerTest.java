@@ -5,22 +5,71 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import canvaswindow.MyCanvasWindow;
+import command.Command;
+import command.Controller;
+import command.CreateAssociationCommand;
+import command.CreateClassCommand;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.FunctionKey;
 import main.Constants;
-import command.CreateClassCommand;
-import command.Command;
-import command.Controller;
-import command.CreateAssociationCommand;
 
 public class ContainerTest {
+	
+	@Before
+	public void init(){
+		try {
+			final Field field = Backend.class.getDeclaredField("container");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			final Field field = Backend.class.getDeclaredField("controller");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	public void isInTest1() {
@@ -179,7 +228,7 @@ public class ContainerTest {
 		container.onDoubleClick(click1);
 		container.onClick(click2);
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				count++;
 			}
@@ -199,8 +248,8 @@ public class ContainerTest {
 		container.onClick(click2);
 		container.onClick(click3);
 		VisualClass klasse = null;
-		VisualObject selected = container.getSelected();
-		for(VisualObject child : container.getChildren()){
+		VisualObject<?> selected = container.getSelected();
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				klasse = (VisualClass) child;
 			}
@@ -220,10 +269,10 @@ public class ContainerTest {
 		container.onClick(click2);
 		container.onClick(click3);
 		VisualClass klasse = null;
-		VisualObject selectedClass = container.getSelected();
+		VisualObject<?> selectedClass = container.getSelected();
 		container.onClick(click3);
-		VisualObject text = container.getSelected();
-		for(VisualObject child : container.getChildren()){
+		VisualObject<?> text = container.getSelected();
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				klasse = (VisualClass) child;
 			}
@@ -249,7 +298,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onDoubleClick(click3);
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				count++;
 			}
@@ -257,36 +306,30 @@ public class ContainerTest {
 		assertEquals(3, count);
 	}
 	
-	//@Test
+	@Test
 	public void createAttributeTest(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		container.getChildren().forEach(x -> container.removeChild(x));
 		DoubleClick click1 = new DoubleClick(182,162);
 		DoubleClick click2 = new DoubleClick(210,196);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		int count = 0;
-		for(VisualObject child : container.getChildren()){
-			if(child instanceof PaddingBox){
-				count++;
-			}
-		}
-		assertEquals(1, count);
+		VisualClass k = (VisualClass) container.getChildren().get(0);
+		assertEquals(2, k.getChildren().stream().filter(x -> x instanceof PaddingBox)
+				.collect(Collectors.toList()).size());
 	}
 	
-	//@Test
-	public void createMethodeTest(){
+	@Test
+	public void createMethodTest(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
-		DoubleClick click1 = new DoubleClick(149,118);
-		DoubleClick click2 = new DoubleClick(201,164);
+		container.getChildren().forEach(x -> container.removeChild(x));
+		DoubleClick click1 = new DoubleClick(403,346);
+		DoubleClick click2 = new DoubleClick(452,401);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
-		int count = 0;
-		for(VisualObject child : container.getChildren()){
-			if(child instanceof PaddingBox){
-				count++;
-			}
-		}
-		assertEquals(1, count);
+		VisualClass k = (VisualClass) container.getChildren().get(0);
+		assertEquals(2, k.getChildren().stream().filter(x -> x instanceof PaddingBox)
+				.collect(Collectors.toList()).size());
 	}
 	
 	@Test
@@ -301,7 +344,7 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onDragEnd(drag);
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualAssociation){
 				count++;
 			}
@@ -325,7 +368,7 @@ public class ContainerTest {
 		container.onDragEnd(drag1);
 		container.onDragEnd(drag2);
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualAssociation){
 				count++;
 			}
@@ -336,9 +379,10 @@ public class ContainerTest {
 	@Test
 	public void selectContainerTest(){
 		Container container = new Container(0, 0, 1000, 1000, new MyCanvasWindow("test"));
+		container.getChildren().forEach(x -> x.delete());
 		SingleClick click = new SingleClick(1,1);
 		container.onClick(click);
-		VisualObject selected = container.getSelected();
+		VisualObject<?> selected = container.getSelected();
 		assertEquals(null, selected);
 	}
 	
@@ -397,7 +441,8 @@ public class ContainerTest {
 	@Test
 	public void deleteClassTest(){
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
+		container.getChildren().forEach(x -> container.removeChild(x));
 		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(303,326);
 		SingleClick click2 = new SingleClick(389,459);
@@ -409,7 +454,7 @@ public class ContainerTest {
 		container.onClick(click3);
 		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualClass){
 				count++;
 			}
@@ -421,6 +466,7 @@ public class ContainerTest {
 	public void deleteAttributeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
+		container.getChildren().forEach(x -> container.removeChild(x));
 		DoubleClick click1 = new DoubleClick(182,162);
 		DoubleClick click2 = new DoubleClick(210,196);
 		SingleClick click3 = new SingleClick(1,1);
@@ -429,43 +475,40 @@ public class ContainerTest {
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
+		VisualClass k = (VisualClass) container.getChildren().get(0);
+		assertEquals(2, k.getChildren().stream().filter(x -> x instanceof PaddingBox)
+				.collect(Collectors.toList()).size());
 		container.handleFunctionKey(getDeleteKey());
-		int count = 0;
-		for(VisualObject child : container.getChildren()){
-			if(child instanceof PaddingBox){
-				count++;
-			}
-		}		
-		assertEquals(0, count);
+		assertEquals(1, k.getChildren().stream().filter(x -> x instanceof PaddingBox)
+				.collect(Collectors.toList()).size());
 	}
 	
 	@Test
 	public void deleteMethodeTest(){
 		MyCanvasWindow window = new MyCanvasWindow("Test");
 		Container container = new Container(0, 0, 1000, 1000, window);
-		DoubleClick click1 = new DoubleClick(149,118);
-		DoubleClick click2 = new DoubleClick(201,164);
-		SingleClick click3 = new SingleClick(1,1);
-		SingleClick click4 = new SingleClick(201,164);
+		container.getChildren().forEach(x -> container.removeChild(x));
+		DoubleClick click1 = new DoubleClick(362,353);
+		DoubleClick click2 = new DoubleClick(393,403);
+		SingleClick click3 = new SingleClick(600,591);
+		SingleClick click4 = new SingleClick(407,408);
 		container.onDoubleClick(click1);
 		container.onDoubleClick(click2);
 		container.onClick(click3);
 		container.onClick(click4);
+		VisualClass k = (VisualClass) container.getChildren().get(0);
+		assertEquals(2, k.getChildren().stream().filter(x -> x instanceof PaddingBox)
+				.collect(Collectors.toList()).size());
 		container.handleFunctionKey(getDeleteKey());
-		int count = 0;
-		for(VisualObject child : container.getChildren()){
-			if(child instanceof PaddingBox){
-				count++;
-			}
-		}		
-		assertEquals(0, count);
+		assertEquals(1, k.getChildren().stream().filter(x -> x instanceof PaddingBox)
+				.collect(Collectors.toList()).size());
 	}
 	
 	@Test
 	public void deleteAssTest1(){
 		//verwijderen door klikken op ass zelf
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
 		container.getChildren().forEach(x ->x.delete());
 		DoubleClick click1 = new DoubleClick(211,257);
 		DoubleClick click2 = new DoubleClick(147,521);
@@ -479,7 +522,7 @@ public class ContainerTest {
 		container.onClick(click4);
 		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualAssociation){
 				count++;
 			}
@@ -491,7 +534,8 @@ public class ContainerTest {
 	public void deleteAssTest2(){
 		//verwijderen door klikken op p1
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
+		container.getChildren().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(103,108);
 		DoubleClick click2 = new DoubleClick(326,369);
 		Drag drag = new Drag(104,142,325,401);
@@ -504,7 +548,7 @@ public class ContainerTest {
 		container.onClick(click4);
 		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualAssociation){
 				count++;
 			}
@@ -516,7 +560,7 @@ public class ContainerTest {
 	public void deleteAssTest3(){
 		//verwijderen door klikken op p2
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
 		DoubleClick click1 = new DoubleClick(103,108);
 		DoubleClick click2 = new DoubleClick(326,369);
 		Drag drag = new Drag(104,142,325,401);
@@ -529,7 +573,7 @@ public class ContainerTest {
 		container.onClick(click4);
 		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualAssociation){
 				count++;
 			}
@@ -541,7 +585,8 @@ public class ContainerTest {
 	public void deleteTwoAssTest(){
 		//delete the ass by deleting the middle class that has a connection to both
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
-		Container container = new Container(0, 0, 1000, 1000, canvas);
+		Container container = (Container) canvas.getContent();
+		container.getChildren().stream().forEach(x -> x.delete());
 		DoubleClick click1 = new DoubleClick(154,301);
 		DoubleClick click2 = new DoubleClick(254,451);
 		DoubleClick click3 = new DoubleClick(41,481);
@@ -556,7 +601,7 @@ public class ContainerTest {
 		container.onClick(click4);
 		container.handleFunctionKey(getDeleteKey());
 		int count = 0;
-		for(VisualObject child : container.getChildren()){
+		for(VisualObject<?> child : container.getChildren()){
 			if(child instanceof VisualAssociation){
 				count++;
 			}

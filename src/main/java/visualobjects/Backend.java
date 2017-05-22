@@ -14,6 +14,7 @@ import formBuilder.FormCreator;
 import guiToApplication.FormWrapper;
 import interfaces.DeleteListener;
 import interfaces.DeleteSubject;
+import logicalobjects.Association;
 import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
@@ -78,21 +79,17 @@ public class Backend {
 
 	public static final void editName() {
 		if (canEditName()) {
-			//TODO a bit much coupling? Maybe give visualClass a "setEditable"?
-			if (getContainer().getSelected() instanceof VisualClass) {
-				EditableTextWrapper<?> e = ((VisualClass) getContainer().getSelected()).getName().getContent();
-				getContainer().switchSelectedTo(e);
-				e.setEditable();
-			} else {
-				((EditableTextWrapper<?>) getContainer().getSelected()).setEditable();
-			}
+			((Editable) getContainer().getSelected()).setEditable();
 		}
 	}
 
 	public static final void editTripleDot() {
-		if (canEditTripleDot()) {
+		if (canEditTripleDotForm()){
 			createForm();
+		} else if (canEditTripleDotName()){
+			editName();
 		}
+
 	}
 
 	public static final void delete() {
@@ -131,17 +128,26 @@ public class Backend {
 	public static final boolean canEditName() {
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
-		return getContainer().getSelected().getLogicalObject() instanceof Method
-				|| getContainer().getSelected().getLogicalObject() instanceof Attribute
-				|| getContainer().getSelected().getLogicalObject() instanceof LogicalClass;
+		return getContainer().getSelected() instanceof Editable;
 		// return getContainer().getSelected() instanceof EditableTextWrapper;
 	}
 
 	public static final boolean canEditTripleDot() {
+		return canEditTripleDotForm() || canEditTripleDotName();
+	}
+	
+	private static final boolean canEditTripleDotForm(){
 		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
 			return false;
 		return getContainer().getSelected().getLogicalObject() instanceof Method
 				|| getContainer().getSelected().getLogicalObject() instanceof Attribute;
+	}
+	
+	private static final boolean canEditTripleDotName(){
+		if (getContainer().getSelected() == null || getContainer().getSelected().getLogicalObject() == null)
+			return false;
+		return getContainer().getSelected().getLogicalObject() instanceof LogicalClass
+				|| getContainer().getSelected().getLogicalObject() instanceof Association;
 	}
 
 	public static final boolean canDelete() {

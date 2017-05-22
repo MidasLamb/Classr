@@ -43,14 +43,23 @@ public class LogicalClass extends LogicalObject {
 	 */
 	public final Attribute addAttribute() {
 		Attribute attr = new Attribute(this);
-		this.attributes.add(attr);
 		attr.addUpdateListener(new UpdateListener() {
 			@Override
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 				notifyUpdateListeners();
 			}
 		});
+		addAttribute(attr);
 		return attr;
+	}
+	
+	/**
+	 * Adds the given attribute to the LogicalClass
+	 * @param 	attribute
+	 * 			the attribute that needs to be added
+	 */
+	public final void addAttribute(Attribute attribute) {
+		this.attributes.add(attribute);
 	}
 
 	/**
@@ -83,21 +92,30 @@ public class LogicalClass extends LogicalObject {
 	}
 
 	/**
-	 * Generates a new method belonging to this RealClass, adds it to the
-	 * methods of this RealClass and returns it.
+	 * Generates a new method belonging to this LogicalClass, adds it to the
+	 * methods of this LogicalClass and returns it.
 	 * 
 	 * @return The newly added Method
 	 */
 	public final Method addMethod() {
 		Method method = new Method(this);
-		this.methods.add(method);
 		method.addUpdateListener(new UpdateListener() {
 			@Override
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 				notifyUpdateListeners();
 			}
 		});
+		addMethod(method);
 		return method;
+	}
+	
+	/**
+	 * Adds the given method to the methods of the LogicalClass
+	 * @param 	method
+	 * 			the method that needs to be added
+	 */
+	public void addMethod(Method method) {
+		this.methods.add(method);
 	}
 
 	/**

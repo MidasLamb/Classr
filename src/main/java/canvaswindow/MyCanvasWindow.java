@@ -79,7 +79,7 @@ public class MyCanvasWindow extends CanvasWindow {
 		this.repaint();
 	}
 
-	private CanvasContent getContent() {
+	public CanvasContent getContent() {
 		return content;
 	}
 

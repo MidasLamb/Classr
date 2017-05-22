@@ -1,5 +1,7 @@
 package command;
 
+import decoupling.Decoupler;
+import decoupling.PaddingBoxDecoupler;
 import logicalobjects.Attribute;
 import visualobjects.PaddingBox;
 import visualobjects.TextWrapper;
@@ -12,6 +14,7 @@ public class CreateAttributeCommand extends Command {
 
 	private final VisualClass visualClass;
 	private PaddingBox<TextWrapper<Attribute>> attributePaddingBox;
+	private Decoupler decoupler;
 	
 	/**
 	 * The constructor
@@ -24,12 +27,18 @@ public class CreateAttributeCommand extends Command {
 
 	@Override
 	void execute() {
-		setAttributePaddingBox(this.getVisualClass().createAttribute());
+		if(getDecoupler() == null){
+			setAttributePaddingBox(this.getVisualClass().createAttribute());
+			setDecoupler(new PaddingBoxDecoupler(getAttributePaddingBox()));
+		} else {
+			getDecoupler().recouple();
+		}
 	}
 
 	@Override
 	void unexecute() {
-		this.getAttributePaddingBox().delete();
+		if(getDecoupler() != null)
+			getDecoupler().decouple();
 	}
 
 	/**
@@ -61,6 +70,23 @@ public class CreateAttributeCommand extends Command {
 	void cleanup() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * Returns the decoupler for the attribute
+	 * @return the decoupler for the attribute
+	 */
+	private Decoupler getDecoupler() {
+		return decoupler;
+	}
+
+	/**
+	 * Sets the new decoupler for the attribute
+	 * @param 	decoupler
+	 * 			the new decoupler for the attribute
+	 */
+	private void setDecoupler(Decoupler decoupler) {
+		this.decoupler = decoupler;
 	}
 
 }

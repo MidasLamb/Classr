@@ -15,7 +15,7 @@ import logicalobjects.Association;
 /**
  * The visualization of a logical association
  */
-public class VisualAssociation extends VisualObject<Association> implements UpdateListener{
+public class VisualAssociation extends VisualObject<Association> implements UpdateListener, Editable{
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox<EditableTextWrapper<Association>> text;
@@ -47,6 +47,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 				0, "associatie", "^[a-z][a-zA-Z0-9_]*", null, association, getController()), this, association,
 				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
+		this.getText().getContent().setEditable();
 		this.text.addDeleteListener(this);
 		this.text.getContent().addUpdateListener(this);
 		this.updateTextPosition();
@@ -54,6 +55,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 	@Override
 	public final void draw(Graphics g) {
+		updateTextPosition();
 		g.drawLine(getP1().getX(), getP1().getY(), getP2().getX(), getP2().getY());
 	}
 
@@ -103,10 +105,12 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 	@Override
 	protected void onClick(SingleClick sc) {
-		if (!this.isSelected() && !this.getText().getContent().isSelected())
+		if (!this.isSelected() && !this.getText().getContent().isSelected()){
 			this.getContainer().switchSelectedTo(this);
-		else if (this.isSelected())
+		} else if (this.isSelected()){
 			this.getContainer().switchSelectedTo(this.getText().getContent());
+			this.getText().getContent().setEditable();
+		}
 	}
 
 	@Override
@@ -117,6 +121,12 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return visitor.visit(this);	
+	}
+
+	@Override
+	public void setEditable() {
+		getText().getContent().setEditable();
+		
 	}
 
 }

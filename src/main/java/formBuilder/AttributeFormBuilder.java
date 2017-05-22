@@ -64,6 +64,11 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 			}
 
+			@Override
+			public boolean isValidString(String string) {
+				return attribute.canHaveAsName(getText());
+			}
+
 		};
 		this.addFormObject(attrName);
 
@@ -75,9 +80,13 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 			protected void onAction() {
 				if (attribute.canHaveAsType(getText())  && !attribute.getType().equals(getText())) {
 					controller.executeCommand(new ChangeClassContentTypeCommand(attribute, getText()));
-					System.out.println(getText());
 				}
 
+			}
+
+			@Override
+			public boolean isValidString(String string) {
+				return attribute.canHaveAsType(getText());
 			}
 
 		};
