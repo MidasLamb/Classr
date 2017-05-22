@@ -3,6 +3,7 @@ package visualobjects;
 import java.util.HashMap;
 import java.util.ResourceBundle.Control;
 
+import command.AddParameterCommand;
 import command.Command;
 import command.Controller;
 import command.CreateAttributeCommand;
@@ -17,6 +18,7 @@ import logicalobjects.Attribute;
 import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObject;
 import logicalobjects.Method;
+import logicalobjects.Parameter;
 
 class Backend {
 
@@ -67,7 +69,11 @@ class Backend {
 	}
 
 	public static final void addParameter() {
-		// TODO
+		if (canAddParameter()) {
+			Method method = (Method) getContainer().getSelected().getLogicalObject();
+			Parameter p = new Parameter("name", "type");
+			getController().executeCommand(new AddParameterCommand(method, p));
+		}
 	}
 
 	public static final void editName() {
