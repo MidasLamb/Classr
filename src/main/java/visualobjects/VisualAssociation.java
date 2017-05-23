@@ -44,7 +44,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
 		this.text = new PaddingBox<EditableTextWrapper<Association>>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper<Association>(0, 0,
-				0, "associatie", "^[a-z][a-zA-Z0-9_]*", null, association, getController()), this, association,
+				0, null, association, getController()), this, association,
 				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.getText().getContent().setEditable();
