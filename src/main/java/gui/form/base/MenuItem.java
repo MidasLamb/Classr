@@ -112,5 +112,10 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	public int getHeight(){
 		return super.getHeight();
 	}
+	
+	@Override
+	public int getWidth(){
+		return STANDARD_FONTMETRICS.stringWidth(getDisplayableString());
+	}
 
 }

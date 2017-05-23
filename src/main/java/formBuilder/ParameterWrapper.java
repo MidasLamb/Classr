@@ -4,6 +4,8 @@ import gui.form.base.Displayable;
 import logicalobjects.Parameter;
 import static main.Constants.*;
 
+import java.security.GeneralSecurityException;
+
 /**
  * A wrapper to be able to display a parameter in a ListBox
  */
@@ -50,5 +52,12 @@ public class ParameterWrapper implements Displayable {
 	public int getHeight() {
 		return STANDARD_FONTMETRICS.getHeight();
 	}
+
+	@Override
+	public int getWidth() {
+		return STANDARD_FONTMETRICS.stringWidth(getDisplayableString());
+	}
+	
+	
 
 }
