@@ -323,6 +323,14 @@ public class Backend {
 				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(parameter, c, getController());
 				c.switchTo(parabuilder.getForm());
 				getFormsMap().put(parameter, c);
+				c.addDeleteListener(new DeleteListener() {
+					
+					@Override
+					public void getNotifiedSubjectDeleted(DeleteSubject subject) {
+						assert (Backend.getFormsMap().containsValue(subject));
+						getFormsMap().values().remove(subject);
+					}
+				});
 			} else {
 				getContainer().bringToFront(getFormsMap().get(parameter));
 			}
