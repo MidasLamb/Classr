@@ -188,7 +188,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			protected void onAction() {
 				Parameter p = new Parameter("name", "type");
 				controller.executeCommand(new AddParameterCommand(method, p));
-				//parameters.addElement(new ParameterWrapper(p));
 				checkEditAndCancelButtons();
 
 			}
@@ -202,11 +201,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			@Override
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
-				Backend.createForm(p);				
-				/**FormContainer<FormWrapper> c = getContainer().getExtraContainer();
-				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(p, c, controller);
-				c.switchTo(parabuilder.getForm());**/
-
+				Backend.createForm(p);
 			}
 
 		};
@@ -217,15 +212,14 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onAction() {
-				controller.executeCommand(new DeleteParameterCommand(method, parameters.getSelectedObject().getParameter()));
+				controller.executeCommand(
+						new DeleteParameterCommand(method, parameters.getSelectedObject().getParameter()));
 				checkEditAndCancelButtons();
 			}
 
 		};
 
 		this.addFormObject(removeParameter);
-
-
 
 		Button close = new Button("Close", 270, 270, 50, 50) {
 
@@ -263,21 +257,25 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		staticCheckbox.setChecked(getMethod().isStatic());
 		abstractCheckbox.setChecked(getMethod().isAbstract());
 		checkEditAndCancelButtons();
-		
+
 		method.addUpdateListener(new UpdateListener() {
-			
+
 			@Override
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 				methName.setText(method.getName());
 				methType.setText(method.getType());
-				for (ParameterWrapper pw: parameters.getElements())
+				for (ParameterWrapper pw : parameters.getElements())
 					parameters.removeElement(pw);
-				for (Parameter p : getMethod().getParameters()){
+				for (Parameter p : getMethod().getParameters()) {
 					ParameterWrapper pw = new ParameterWrapper(p);
 					if (!parameters.contains(pw))
 						parameters.addElement(pw);
 				}
-				
+
+				if (!parameters.getElements().contains(parameters.getSelectedObject())) {
+					parameters.unselect();
+				}
+
 				Visibility v = getMethod().getVisibility();
 				switch (v) {
 				case PUBLIC:
@@ -293,17 +291,17 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 					group.setSelectedButton(privateButton);
 					break;
 				default:
-					throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+					throw new AssertionError(
+							"Visibility must be one of the following: public, protected, package or private.");
 				}
-				
+
 				staticCheckbox.setChecked(getMethod().isStatic());
 				abstractCheckbox.setChecked(getMethod().isAbstract());
 				checkEditAndCancelButtons();
-				
+
 			}
 		});
 	}
-	
 
 	private void checkEditAndCancelButtons() {
 		editParameter.setEnabled(parameters.getSelectedObject() != null);

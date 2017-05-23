@@ -14,7 +14,6 @@ import command.Controller;
 import command.DeleteVisualObjectCommand;
 import decoupling.CoupleVisitor;
 import decoupling.Decoupler;
-import decoupling.EditableTextWrapperDecoupler;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -29,9 +28,8 @@ import logicalobjects.LogicalObject;
  * A wrapper for the GUI Text to adapt it to the application part.
  *
  */
-public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L> implements UpdateListener, UpdateSubject, Editable {
-	private String standardString;
-	private String regex;
+public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
+		implements UpdateListener, UpdateSubject, Editable {
 	private Collection<UpdateListener> updateListeners;
 
 	/**
@@ -42,92 +40,19 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 *            the y-coordinate
 	 * @param z
 	 *            the z-coordinate
-	 * @param string
-	 *            the text
-	 * @param regex
-	 *            the regex to which the text needs to match
 	 * @param parent
 	 *            the VisualObject which is the parent of this object
 	 * @param object
 	 *            the logicalObject which is linked to this text
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject<?> parent,
-			L object, Controller controller) {
+	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent, L object, Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
-		this.setStandardString(string);
-		this.setRegex(regex);
-		if (!this.getStandardString().matches(this.getRegex())) {
-			throw new RuntimeException();
-		}
 		this.setUpdateListeners(new ArrayList<UpdateListener>());
-
 	}
 
-	/**
-	 * 
-	 * @param x
-	 *            the x-coordinate
-	 * @param y
-	 *            the y-coordinate
-	 * @param z
-	 *            the z-coordinate
-	 * @param string
-	 *            the text
-	 * @param regex
-	 *            the regex to which the text needs to match
-	 * @param parent
-	 *            the VisualObject which is the parent of this object
-	 * @param object
-	 *            the logicalObject which is linked to this text
-	 * @param maxWidth
-	 *            the maxWidth that this text may have
-	 */
-	public EditableTextWrapper(int x, int y, int z, String string, String regex, VisualObject<?> parent,
-			L object, int maxWidth, Controller controller) {
-		super(x, y, z, parent, object, controller);
-		setLogicalObject(object);
-		this.getLogicalObject().addUpdateListener(this);
-		this.setTextObject(new Text(new AttributedString(""), new PassiveState(), maxWidth));
-		this.setStandardString(string);
-		this.setRegex(regex);
-	}
-
-	/**
-	 * @param x
-	 *            the x-coordinate
-	 * @param y
-	 *            the y-coordinate
-	 * @param z
-	 *            the z-coordinate
-	 * @param string
-	 *            the text
-	 * @param parent
-	 *            the VisualObject which is the parent of this object
-	 * @param object
-	 *            the logicalObject which is linked to this text
-	 */
-	public EditableTextWrapper(int x, int y, int z, String string, VisualObject<?> parent, L object,
-			Controller controller) {
-		this(x, y, z, string, ".*", parent, object, controller);
-	}
-
-	@Override
-	public void determineColors(Graphics g) {
-		if (!satisfiesRegex())
-			this.setColor(Color.RED);
-		else
-			this.setColor(Color.BLACK);
-		//TODO is this instanceof neccesary?
-		if (this.isSelected() && (this.getTextObject().isEditable())) {
-			if (!satisfiesRegex())
-				this.forceColor(Color.RED);
-			else
-				this.forceColor(Color.BLACK);
-		}
-	}
 
 	/**
 	 * Shows the text frame
@@ -137,7 +62,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		Color c = g.getColor();
 		if (isEditable() && !getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
 			g.setColor(Color.RED);
-		this.getTextObject().draw(g, this.getX(), this.getY());	
+		this.getTextObject().draw(g, this.getX(), this.getY());
 		g.setColor(c);
 	}
 
@@ -145,7 +70,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @return Returns the text of the Logical Object
 	 */
 	protected AttributedString getText() {
-		if (getTextObject().getState() instanceof PassiveState){
+		if (getTextObject().getState() instanceof PassiveState) {
 			StringVisitor strVis = new StringVisitor();
 			return strVis.startVisit(this.getLogicalObject());
 		} else {
@@ -157,7 +82,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @return The current displayed String
 	 */
 	public final String getCurrentDisplayedString() {
-		return this.getTextObject().getText();
+		return this.getTextObject().getTextAsString();
 	}
 
 	@Override
@@ -179,20 +104,26 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		super.setSelected(b);
 		if (!b) {
 			this.makeUneditable();
-			this.quit();
 		}
 
 		this.getTextObject().setAttributedText(getText());
 	}
 
-	// @Override
-	// void onDoubleClick(DoubleClick sc) {
-	// this.getContainer().switchSelectedTo(this);
-	// }
+	@Override
+	public void determineColors(Graphics g) {
+
+		if (this.isSelected() && (this.getTextObject().isEditable())) {
+			if (!getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
+				this.forceColor(Color.RED);
+			else
+				this.forceColor(Color.BLACK);
+		}
+	}
 
 	@Override
 	int getWidth() {
-		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()), STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
+		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()),
+				STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
 	}
 
 	@Override
@@ -234,21 +165,13 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	}
 
-	private final String getStandardString() {
-		return standardString;
-	}
-
-	private final void setStandardString(String standardString) {
-		this.standardString = standardString;
-	}
-
 	/**
 	 * Saves the currently displayed text to the logical object if the Regex is
 	 * satisfied and length is > 0.
 	 */
 	private void save() {
 
-		if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString())){
+		if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString())) {
 			getController().executeCommand(
 					new ChangeLogicalObjectNameCommand(getLogicalObject(), getCurrentDisplayedString()));
 		}
@@ -257,47 +180,10 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	}
 
 	/**
-	 * If the string doesn't match the regex, the string will be discarded
-	 */
-	private void quit() {
-		if (!this.getLogicalObject().getName().matches(this.regex)) {
-			this.getLogicalObject().setName(this.getStandardString());
-			this.getTextObject().setAttributedText(getText());
-		}
-	}
-
-	/**
 	 * To safely deselect this object
 	 */
 	private void exit() {
-		this.quit();
 		this.getContainer().switchSelectedTo(null);
-	}
-
-	/**
-	 * @return the regex of this text
-	 */
-	private final String getRegex() {
-		return regex;
-	}
-
-	/**
-	 * Sets the regex for this text
-	 * 
-	 * @param regex
-	 *            the new regex
-	 */
-	private final void setRegex(String regex) {
-		this.regex = regex;
-	}
-
-	/**
-	 * Checks if the text satisfies the regex
-	 * 
-	 * @return true if the text matches the regex, false otherwise
-	 */
-	private final boolean satisfiesRegex() {
-		return this.getCurrentDisplayedString().matches(this.getRegex());
 	}
 
 	@Override
@@ -325,27 +211,44 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	}
 
+	/**
+	 * Returns the update listeners
+	 * 
+	 * @return the update listeners
+	 */
 	private final Collection<UpdateListener> getUpdateListeners() {
 		return updateListeners;
 	}
 
+	/**
+	 * Sets the update listeners
+	 * 
+	 * @param updateListeners
+	 *            the new update listeners
+	 */
 	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
 		this.updateListeners = updateListeners;
 	}
-	
-	private final void makeEditable(){
+
+	/**
+	 * Makes the text back editable
+	 */
+	private final void makeEditable() {
 		this.getContainer().switchSelectedTo(this);
 		this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
 		this.getTextObject().switchState(new EditableState());
 	}
-	
-	private final void makeUneditable(){
+
+	/**
+	 * Puts the editable text in passiveState, so you cannot edit it anymore
+	 */
+	private final void makeUneditable() {
 		this.getTextObject().switchState(new PassiveState());
 	}
-	
+
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		return new EditableTextWrapperDecoupler(this);
+		return visitor.visit(this);
 	}
 
 	@Override

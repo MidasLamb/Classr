@@ -18,7 +18,7 @@ import logicalobjects.Association;
 public class VisualAssociation extends VisualObject<Association> implements UpdateListener, Editable{
 	private final VisualClass p1;
 	private final VisualClass p2;
-	private final PaddingBox<EditableTextWrapper<Association>> text;
+	private final PaddingBox<Association, EditableTextWrapper<Association>> text;
 
 	/**
 	 * 
@@ -43,8 +43,8 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<EditableTextWrapper<Association>>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper<Association>(0, 0,
-				0, "associatie", "^[a-z][a-zA-Z0-9_]*", null, association, getController()), this, association,
+		this.text = new PaddingBox<Association, EditableTextWrapper<Association>>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper<Association>(0, 0,
+				0, null, association, getController()), this, association,
 				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.getText().getContent().setEditable();
@@ -93,7 +93,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 	/**
 	 * @return the paddingBox in which the text object is placed
 	 */
-	public final PaddingBox<EditableTextWrapper<Association>> getText() {
+	public final PaddingBox<Association, EditableTextWrapper<Association>> getText() {
 		return this.text;
 	}
 

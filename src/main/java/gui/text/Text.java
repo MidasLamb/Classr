@@ -16,10 +16,7 @@ import gui.text.state.TextState;
  */
 public class Text implements Typable {
 	private TextState state;
-	private String text;
 	private AttributedString attributedText;
-	private boolean isAttributed;
-	private int maxWidth = -1;
 
 	/**
 	 * Constructor for this class
@@ -29,24 +26,7 @@ public class Text implements Typable {
 	 * 			The current state for this object
 	 */
 	public Text(String text, TextState startState) {
-		this.setText(text);
-		this.switchState(startState);
-		this.setAttributed(false);
-	}
-	
-	/**
-	 * Constructor for this class
-	 * @param 	text
-	 * 			The current text that need to be displayed
-	 * @param 	startState
-	 * 			The current state for this object
-	 * @param 	maxWidth
-	 * 			the max width that the max may have if 
-	 * 				it is drawn using the standard font matrics (see constants)
-	 */
-	public Text(String text, TextState startState, int maxWidth) {
-		this(text, startState);
-		setMaxWidth(maxWidth);
+		this(new AttributedString(text), startState);
 	}
 	
 	/**
@@ -58,24 +38,7 @@ public class Text implements Typable {
 	 */
 	public Text(AttributedString as, TextState startState) {
 		this.setAttributedText(as);
-		this.setText(getStringFromAttributedString(as));
-		this.setAttributed(true);
 		this.switchState(startState);
-	}
-	
-	/**
-	 * Constructor for this class
-	 * @param 	as
-	 * 			The attributed string containing the text that need to be displayed
-	 * @param 	startState
-	 * 			The current state for this object
-	 * @param 	maxWidth
-	 * 			the max width that the max may have if 
-	 * 				it is drawn using the standard font matrics (see constants)
-	 */
-	public Text(AttributedString as, TextState startState, int maxWidth) {
-		this(as, startState);
-		setMaxWidth(maxWidth);		
 	}
 	
 	/**
@@ -107,21 +70,16 @@ public class Text implements Typable {
 	 * 			The char that needs to be added
 	 */
 	public void addLetter(char c) {
-		this.setText(this.getText() + c);
-		if (isAttributed()) {
-			this.setAttributedText(new AttributedString(this.getText()));
-		}
+		String newText = getTextAsString() + c;
+		setAttributedText(new AttributedString(newText));
 	}
 
 	/**
 	 * Deletes the last char of the current text
 	 */
 	public void deleteChar() {
-		if (this.getText().length() > 0)
-			this.setText(this.getText().substring(0, this.getText().length() - 1));
-		if (isAttributed()) {
-			this.setAttributedText(new AttributedString(this.getText()));
-		}
+		String newText = getTextAsString().substring(0, getTextAsString().length()-1);
+		setAttributedText(new AttributedString(newText));
 	}
 
 	/**
@@ -131,11 +89,11 @@ public class Text implements Typable {
 	 * @return the current text width
 	 */
 	public int getTextWidth(Graphics g) {
-		return g.getFontMetrics().stringWidth(this.getText());
+		return g.getFontMetrics().stringWidth(getTextAsString());
 	}
 	
 	public int getTextWidth(){
-		return STANDARD_FONTMETRICS.stringWidth(this.getText());
+		return STANDARD_FONTMETRICS.stringWidth(getTextAsString());
 	}
 
 	/**
@@ -145,7 +103,6 @@ public class Text implements Typable {
 	 */
 	public final void setAttributedText(AttributedString attributedText) {
 		this.attributedText = attributedText;
-		this.setText(getStringFromAttributedString(attributedText));
 	}
 
 	/**
@@ -163,18 +120,6 @@ public class Text implements Typable {
 		if(string.length() > 0)
 			string.delete(string.length()-1, string.length());
 		return string.toString().replaceAll("#", "");
-	}
-	
-	/**
-	 * Returns the draw length of the given string using 
-	 * 		the Standard FontMetrics from the constants file
-	 * @param 	text
-	 * 			the text from which you want to know the length
-	 * @return	the length of the text when its drawn ussing 
-	 * 				the standard font metrics from the constants file
-	 */
-	private int getDrawLength(String text){
-		return STANDARD_FONTMETRICS.stringWidth(text);
 	}
 	
 	@Override
@@ -210,17 +155,8 @@ public class Text implements Typable {
 	/**
 	 * @return the current text in a string
 	 */
-	public final String getText() {
-		return text;
-	}
-
-	/**
-	 * Sets the text for this object
-	 * @param 	text
-	 * 			The new text
-	 */
-	private final void setText(String text) {
-		this.text = text;
+	public final String getTextAsString() {
+		return getStringFromAttributedString(getAttributedText());
 	}
 	
 	/**
@@ -231,37 +167,9 @@ public class Text implements Typable {
 	}
 	
 	/**
-	 * Returns if this text is originally an attributed string text
-	 * @return isAttributed
+	 * Returns if the current text is editable
+	 * @return true if the current text is editable, otherwise false
 	 */
-	public final boolean isAttributed() {
-		return isAttributed;
-	}
-
-	/**
-	 * @param 	isAttributed
-	 * 			the new value for the isAttributed bool
-	 */
-	private final void setAttributed(boolean isAttributed) {
-		this.isAttributed = isAttributed;
-	}
-	
-	/**
-	 * @return the maxWidth that this text may have
-	 */
-	private int getMaxWidth() {
-		return maxWidth;
-	}
-
-	/**
-	 * Sets the maxWidth that this text may have
-	 * @param 	maxWidth
-	 * 			the new maxWidth
-	 */
-	private void setMaxWidth(int maxWidth) {
-		this.maxWidth = maxWidth;
-	}
-	
 	public boolean isEditable(){
 		return getState().isEditable();
 	}

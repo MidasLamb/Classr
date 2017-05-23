@@ -8,10 +8,10 @@ import visualobjects.PaddingBox;
  * A class that decouples PaddingBoxes
  */
 public class PaddingBoxDecoupler extends Decoupler {
-	private final PaddingBox<?> paddingBox;
+	private final PaddingBox<?,?> paddingBox;
 	private final Decoupler logicalDecoupler;
 
-	public PaddingBoxDecoupler(PaddingBox<?> paddingBox) {
+	public PaddingBoxDecoupler(PaddingBox<?,?> paddingBox) {
 		this.paddingBox = paddingBox;
 		CoupleVisitor visitor = new CoupleVisitor();
 		this.logicalDecoupler = visitor.startVisit(getPaddingBox().getLogicalObject());
@@ -69,7 +69,7 @@ public class PaddingBoxDecoupler extends Decoupler {
 	 * Returns the padddingBox that needs to be decoupled
 	 * @return the padddingBox that needs to be decoupled
 	 */
-	private PaddingBox<?> getPaddingBox() {
+	private PaddingBox<?,?> getPaddingBox() {
 		return paddingBox;
 	}
 	

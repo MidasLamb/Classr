@@ -249,6 +249,8 @@ public class Backend {
 			if (((Editable)getContainer().getSelected()).isEditable())
 				return false;
 		}
+		if (getContainer().getSelected() instanceof ContentBox)
+			return false;
 		return getContainer().getSelected() != null;
 	}
 
@@ -305,6 +307,7 @@ public class Backend {
 			});
 		} else {
 			getContainer().bringToFront(getFormsMap().get(logicalObject));
+			getContainer().switchSelectedTo(getFormsMap().get(logicalObject));
 		}
 	}
 	

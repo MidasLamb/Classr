@@ -18,7 +18,7 @@ public class TextTest {
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"Standaard", ".+", c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c , r, new Controller());
 		assertEquals("", t.getCurrentDisplayedString());
 		t.setSelected(false);
 		assertEquals(DEFAULT_CLASS_NAME, t.getCurrentDisplayedString());
@@ -28,7 +28,7 @@ public class TextTest {
 	public void typeATest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0,c , r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
@@ -42,7 +42,7 @@ public class TextTest {
 	public void typeAaTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"", ".*", c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c , r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
@@ -57,7 +57,7 @@ public class TextTest {
 	public void typeAaBackspaceTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0,c , r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {
@@ -73,7 +73,7 @@ public class TextTest {
 	public void typeCapitalATest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper t = new EditableTextWrapper(0, 0, 0,"",  ".*",c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0,c , r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
 		while(!t.getCurrentDisplayedString().equals("")) {

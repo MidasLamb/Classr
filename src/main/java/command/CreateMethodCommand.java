@@ -13,7 +13,7 @@ import visualobjects.VisualClass;
 public class CreateMethodCommand extends Command {
 
 	private final VisualClass visualClass;
-	private PaddingBox<TextWrapper<Method>> methodPaddingBox;
+	private PaddingBox<Method, TextWrapper<Method>> methodPaddingBox;
 	private Decoupler decoupler;
 
 	/**
@@ -48,7 +48,7 @@ public class CreateMethodCommand extends Command {
 	 * 
 	 * @return PaddingBox for the created Method
 	 */
-	private final PaddingBox<TextWrapper<Method>> getMethodPaddingBox() {
+	private final PaddingBox<Method, TextWrapper<Method>> getMethodPaddingBox() {
 		return methodPaddingBox;
 	}
 
@@ -58,7 +58,7 @@ public class CreateMethodCommand extends Command {
 	 * @param methodPaddingBox
 	 *            the PaddingBox to be set
 	 */
-	private final void setMethodPaddingBox(PaddingBox<TextWrapper<Method>> methodPaddingBox) {
+	private final void setMethodPaddingBox(PaddingBox<Method, TextWrapper<Method>> methodPaddingBox) {
 		this.methodPaddingBox = methodPaddingBox;
 	}
 

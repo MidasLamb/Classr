@@ -241,8 +241,7 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		// TODO Auto-generated method stub
-		return null;
+		return visitor.visit(this);
 	}
 
 }

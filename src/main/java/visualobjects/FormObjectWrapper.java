@@ -48,6 +48,6 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject<Logica
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		return null;
+		return visitor.visit(this);
 	}
 }
