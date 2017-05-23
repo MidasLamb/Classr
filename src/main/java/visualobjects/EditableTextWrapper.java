@@ -55,29 +55,6 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	}
 
 	/**
-	 * 
-	 * @param x
-	 *            the x-coordinate
-	 * @param y
-	 *            the y-coordinate
-	 * @param z
-	 *            the z-coordinate
-	 * @param parent
-	 *            the VisualObject which is the parent of this object
-	 * @param object
-	 *            the logicalObject which is linked to this text
-	 * @param maxWidth
-	 *            the maxWidth that this text may have
-	 */
-	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent,
-			L object, int maxWidth, Controller controller) {
-		super(x, y, z, parent, object, controller);
-		setLogicalObject(object);
-		this.getLogicalObject().addUpdateListener(this);
-		this.setTextObject(new Text(new AttributedString(""), new PassiveState(), maxWidth));
-	}
-
-	/**
 	 * Shows the text frame
 	 */
 	@Override
@@ -105,7 +82,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @return The current displayed String
 	 */
 	public final String getCurrentDisplayedString() {
-		return this.getTextObject().getText();
+		return this.getTextObject().getTextAsString();
 	}
 
 	@Override

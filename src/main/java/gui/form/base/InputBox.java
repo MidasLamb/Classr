@@ -32,7 +32,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	 */
 	public InputBox(String text, int x, int y, int width, int height) {
 		super(x, y, width, height);
-		this.setTextObject(new Text(text, new PassiveState(), width));
+		this.setTextObject(new Text(text, new PassiveState()));
 	}
 
 	/**
@@ -119,7 +119,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	 * @return Text entered in this InputBox.
 	 */
 	public String getText() {
-		return this.getTextObject().getText();
+		return this.getTextObject().getTextAsString();
 	}
 
 	/**

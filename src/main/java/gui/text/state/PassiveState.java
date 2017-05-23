@@ -22,13 +22,7 @@ public class PassiveState extends TextState {
 
 	@Override
 	public void draw(Graphics g, int x, int y) {
-		if (getText().isAttributed()) {
-			g.drawString(getText().getAttributedText().getIterator(), x, y + g.getFontMetrics().getAscent());
-
-		} else {
-			g.drawString(getText().getText(), x, y + g.getFontMetrics().getAscent());
-
-		}
+		g.drawString(getText().getAttributedText().getIterator(), x, y + g.getFontMetrics().getAscent());
 	}
 
 	@Override
