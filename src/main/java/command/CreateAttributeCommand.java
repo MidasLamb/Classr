@@ -13,7 +13,7 @@ import visualobjects.VisualClass;
 public class CreateAttributeCommand extends Command {
 
 	private final VisualClass visualClass;
-	private PaddingBox<TextWrapper<Attribute>> attributePaddingBox;
+	private PaddingBox<Attribute, TextWrapper<Attribute>> attributePaddingBox;
 	private Decoupler decoupler;
 	
 	/**
@@ -45,7 +45,7 @@ public class CreateAttributeCommand extends Command {
 	 * Returns the padding box in which the created attribute is
 	 * @return the padding box in which the created attribute is
 	 */
-	private final PaddingBox<TextWrapper<Attribute>> getAttributePaddingBox() {
+	private final PaddingBox<Attribute, TextWrapper<Attribute>> getAttributePaddingBox() {
 		return attributePaddingBox;
 	}
 
@@ -54,7 +54,7 @@ public class CreateAttributeCommand extends Command {
 	 * @param 	attributePaddingBox
 	 * 			the padding box in which the created attribute is
 	 */
-	private final void setAttributePaddingBox(PaddingBox<TextWrapper<Attribute>> attributePaddingBox) {
+	private final void setAttributePaddingBox(PaddingBox<Attribute, TextWrapper<Attribute>> attributePaddingBox) {
 		this.attributePaddingBox = attributePaddingBox;
 	}
 

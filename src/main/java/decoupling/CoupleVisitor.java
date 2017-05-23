@@ -39,7 +39,7 @@ public class CoupleVisitor implements LogicalObjectVisitor<Decoupler>{
 	 * 			the padding box you want to visit
 	 * @return returns the decoupler for the given paddingbox
 	 */
-	public Decoupler visit(PaddingBox<?> paddingBox) {
+	public Decoupler visit(PaddingBox<?,?> paddingBox) {
 		return new PaddingBoxDecoupler(paddingBox);
 	}
 
@@ -61,13 +61,11 @@ public class CoupleVisitor implements LogicalObjectVisitor<Decoupler>{
 
 	@Override
 	public Decoupler visit(Association c) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Decoupler visit(Parameter c) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
