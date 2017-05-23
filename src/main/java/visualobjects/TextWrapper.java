@@ -121,7 +121,7 @@ public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		return null;
+		return visitor.visit(this);
 	}
 
 }
