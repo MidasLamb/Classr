@@ -40,10 +40,6 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 *            the y-coordinate
 	 * @param z
 	 *            the z-coordinate
-	 * @param string
-	 *            the text
-	 * @param regex
-	 *            the regex to which the text needs to match
 	 * @param parent
 	 *            the VisualObject which is the parent of this object
 	 * @param object
@@ -66,10 +62,6 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 *            the y-coordinate
 	 * @param z
 	 *            the z-coordinate
-	 * @param string
-	 *            the text
-	 * @param regex
-	 *            the regex to which the text needs to match
 	 * @param parent
 	 *            the VisualObject which is the parent of this object
 	 * @param object
@@ -139,12 +131,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 		this.getTextObject().setAttributedText(getText());
 	}
-
-	// @Override
-	// void onDoubleClick(DoubleClick sc) {
-	// this.getContainer().switchSelectedTo(this);
-	// }
-
+	
 	@Override
 	int getWidth() {
 		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()), STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
