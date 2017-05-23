@@ -54,7 +54,7 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 
 	@Override
 	public boolean check() {
-		return super.getTextObject().getText().matches(this.getRegex());
+		return super.getTextObject().getTextAsString().matches(this.getRegex());
 	}
 
 	@Override
@@ -71,18 +71,36 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 		this.getCheckers().add(c);
 	}
 
+	/**
+	 * Returns the regex
+	 * @return the used regex
+	 */
 	private final String getRegex() {
 		return regex;
 	}
 
+	/**
+	 * Sets the regex
+	 * @param 	regex	
+	 * 			the regex that is set
+	 */
 	private final void setRegex(String regex) {
 		this.regex = regex;
 	}
 
+	/**
+	 * Returns the checkers
+	 * @return	the checkers
+	 */
 	private final Collection<Checker> getCheckers() {
 		return checkers;
 	}
 
+	/**
+	 * Sets the checkers
+	 * @param 	checkers
+	 * 			the checkers that need to be used
+	 */
 	private final void setCheckers(Collection<Checker> checkers) {
 		this.checkers = checkers;
 	}
