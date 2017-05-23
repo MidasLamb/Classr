@@ -132,9 +132,12 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 		if (isSelected())
 			g.setColor(Color.red);
 		else
-			g.setColor(Color.LIGHT_GRAY);
+			g.setColor(new Color(240,240,240));
 		g.fillRect(this.getX(), this.getY(), this.getWidth(), TITLEBAR_HEIGHT);
-		g.setColor(Color.WHITE);
+		if (isSelected())
+			g.setColor(Color.WHITE);
+		else
+			g.setColor(Color.BLACK);
 		g.drawString(this.getName(), this.getX() + STANDARD_LABEL_PADDING,
 				this.getY() + STANDARD_TEXT_ASCEND + STANDARD_LABEL_PADDING);
 
