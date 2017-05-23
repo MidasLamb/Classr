@@ -156,6 +156,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		getListboxElements().set(index, lbe);
 		this.setSelectedElement(lbe);
 	}
+	
+	/**
+	 * Unselects all objects.
+	 */
+	public void unselect(){
+		this.setSelectedElement(null);
+	}
 
 	/**
 	 * Returns the ListBoxElements of this ListBox
