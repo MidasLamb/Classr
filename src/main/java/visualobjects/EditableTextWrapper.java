@@ -14,7 +14,6 @@ import command.Controller;
 import command.DeleteVisualObjectCommand;
 import decoupling.CoupleVisitor;
 import decoupling.Decoupler;
-import decoupling.EditableTextWrapperDecoupler;
 import gui.inputHandlers.clicks.SingleClick;
 import gui.inputHandlers.keys.AsciiKey;
 import gui.inputHandlers.keys.FunctionKey;
@@ -249,7 +248,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		return new EditableTextWrapperDecoupler(this);
+		return visitor.visit(this);
 	}
 
 	@Override

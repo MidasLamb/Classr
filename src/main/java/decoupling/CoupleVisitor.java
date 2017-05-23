@@ -6,6 +6,10 @@ import logicalobjects.LogicalClass;
 import logicalobjects.LogicalObjectVisitor;
 import logicalobjects.Method;
 import logicalobjects.Parameter;
+import visualobjects.AssociationHandle;
+import visualobjects.Container;
+import visualobjects.EditableTextWrapper;
+import visualobjects.FormObjectWrapper;
 import visualobjects.PaddingBox;
 import visualobjects.TextWrapper;
 import visualobjects.VisualAssociation;
@@ -42,10 +46,35 @@ public class CoupleVisitor implements LogicalObjectVisitor<Decoupler>{
 	public Decoupler visit(PaddingBox<?,?> paddingBox) {
 		return new PaddingBoxDecoupler(paddingBox);
 	}
+	
+	/**
+	 * A visitor to get the decoupler for the given EditableTextWrapper
+	 * @param 	textWrapper
+	 * 			the EditableTextWrapper you want to visit
+	 * @return returns the decoupler for the given EditableTextWrapper
+	 */
+	public Decoupler visit(EditableTextWrapper<?> textWrapper) {
+		return new EditableTextWrapperDecoupler(textWrapper);
+	}
+	
+	public Decoupler visit(TextWrapper<?> textWrapper) {
+		return null;
+	}
+
+	public Decoupler visit(AssociationHandle associationHandle) {
+		return null;
+	}
+
+	public Decoupler visit(Container container) {
+		return null;
+	}
+
+	public Decoupler visit(FormObjectWrapper<?> formObjectWrapper) {
+		return null;
+	}
 
 	@Override
 	public Decoupler visit(LogicalClass c) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -66,10 +95,6 @@ public class CoupleVisitor implements LogicalObjectVisitor<Decoupler>{
 
 	@Override
 	public Decoupler visit(Parameter c) {
-		return null;
-	}
-
-	public Decoupler visit(TextWrapper<?> textWrapper) {
 		return null;
 	}
 }

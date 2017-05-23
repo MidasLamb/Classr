@@ -481,10 +481,19 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	}
 
+	/**
+	 * Returns the update Listeners
+	 * @return the update Listeners
+	 */
 	private final Collection<UpdateListener> getUpdateListeners() {
 		return updateListeners;
 	}
 
+	/**
+	 * Sets the update listeners
+	 * @param 	updateListeners
+	 * 			the new update listeners
+	 */
 	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
 		this.updateListeners = updateListeners;
 	}
