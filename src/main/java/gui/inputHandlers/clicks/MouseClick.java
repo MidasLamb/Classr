@@ -65,7 +65,7 @@ public class MouseClick {
 	 */
 	public void translate(int x, int y){
 		this.setX(this.getX() - x);
-		this.setY(this.getY() +- y);
+		this.setY(this.getY() - y);
 	}
 
 }

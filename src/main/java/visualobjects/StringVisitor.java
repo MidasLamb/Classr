@@ -4,8 +4,6 @@ import static java.awt.Font.ITALIC;
 import static java.awt.font.TextAttribute.FONT;
 import static java.awt.font.TextAttribute.UNDERLINE;
 import static java.awt.font.TextAttribute.UNDERLINE_ON;
-import static main.Constants.MAX_TEXT_WIDTH;
-import static main.Constants.STANDARD_FONTMETRICS;
 import static main.Constants.STANDARD_FONT_NAME;
 import static main.Constants.STANDARD_FONT_SIZE;
 
@@ -34,7 +32,6 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 	@Override
 	public AttributedString visit(LogicalClass c) {
 		String text = c.getName();
-		text = trimString(text);
 		AttributedString string = new AttributedString(text);
 		return string;
 	}
@@ -56,27 +53,12 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		strBuilder.append(") : ");
 		strBuilder.append(c.getType());
 		String text = strBuilder.toString();
-		text = trimString(text);
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
 			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
 		if(c.isAbstract())
 			string.addAttribute(FONT, new Font(STANDARD_FONT_NAME, ITALIC, STANDARD_FONT_SIZE), 1, text.length());
 		return string;
-	}
-	
-	/**
-	 * Trims the string to the max text width
-	 * @param 	string
-	 * 			the string that needs to be trimmed
-	 * @return	the trimmed string
-	 */
-	private String trimString(String string){
-		int i = string.length();
-		//while(STANDARD_FONTMETRICS.stringWidth(string.substring(0, i)) > MAX_TEXT_WIDTH){
-		//	i--;
-		//}
-		return string.substring(0,i);
 	}
 
 	@Override
@@ -87,7 +69,6 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		strBuilder.append(" : ");
 		strBuilder.append(c.getType());
 		String text = strBuilder.toString();
-		text = trimString(text);
 		AttributedString string = new AttributedString(text);
 		if(c.isStatic())
 			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
