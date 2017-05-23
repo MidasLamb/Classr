@@ -80,4 +80,9 @@ public class FormWrapper extends Form implements CanvasContent{
 		super.handleFunctionKey(key);		
 	}
 
+	@Override
+	public void clearFocus() {
+		super.clearFocus();	
+	}
+
 }

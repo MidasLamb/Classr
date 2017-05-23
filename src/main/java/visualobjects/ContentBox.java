@@ -263,5 +263,13 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return null;
 	}
+	
+	@Override
+	public void setSelected(boolean b){
+		super.setSelected(b); 
+		if (!b){
+			getContent().clearFocus();
+		}
+	}
 
 }

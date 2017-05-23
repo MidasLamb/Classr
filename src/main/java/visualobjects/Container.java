@@ -3,6 +3,10 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import barBuilder.MenuBarBuilder;
 import barBuilder.ToolBarBuilder;
 import canvaswindow.MyCanvasWindow;
@@ -21,6 +25,7 @@ import logicalobjects.LogicalVoid;
 
 public class Container extends VisualObject<LogicalVoid> implements CanvasContent {
 	private VisualObject<?> selected;
+	private Collection<VisualObject<?>> prior;
 	private MyCanvasWindow window;
 
 	/**
@@ -41,8 +46,10 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		this.setCanvasWindow(window);
 
 		Backend.initialize(this, getController());
+		this.setPrior(new ArrayList<VisualObject<?>>());
 		this.createToolBar();
 		this.createMenuBar();
+
 	}
 	
 	private void createMenuBar() {
@@ -51,7 +58,8 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		int y = 30;
 		MenuBarBuilder builder = new MenuBarBuilder(this.getWidth(), defaultHeight);
 		MenuBar menu = builder.getMenuBar();
-		new FormObjectWrapper<MenuBar>(menu, x, y, 0, this.getWidth(), defaultHeight, this, getController());
+		FormObjectWrapper<MenuBar> bar = new FormObjectWrapper<MenuBar>(menu, x, y, Integer.MAX_VALUE, this.getWidth(), defaultHeight, this, getController());
+		addToPrior(bar);
 	}
 	
 	private void createToolBar() {
@@ -60,7 +68,8 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		int y = 0;
 		ToolBarBuilder builder = new ToolBarBuilder(this.getWidth(), defaultHeight);
 		MenuBar toolbar = builder.getMenuBar();
-		new FormObjectWrapper<>(toolbar, x, y, 0, this.getWidth(), defaultHeight, this, getController());
+		FormObjectWrapper<MenuBar> bar = new FormObjectWrapper<>(toolbar, x, y, Integer.MAX_VALUE, this.getWidth(), defaultHeight, this, getController());
+		addToPrior(bar);
 	}
 
 	/**
@@ -237,11 +246,36 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	void bringToFront(VisualObject<?> vo) {
 		children.remove(vo);
 		children.add(vo);
+		children.remove(getPrior());
+		children.addAll(getPrior());
 	}
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return visitor.visit(this);
+	}
+
+	/**
+	 * @return the prior
+	 */
+	private final Collection<VisualObject<?>> getPrior() {
+		return prior;
+	}
+
+	/**
+	 * @param prior the prior to set
+	 */
+	private final void setPrior(Collection<VisualObject<?>> prior) {
+		this.prior = prior;
+	}
+	
+	private final void addToPrior(VisualObject<?> prior){
+		getPrior().add(prior);
+	}
+
+	@Override
+	public void clearFocus() {
+		this.switchSelectedTo(null);	
 	}
 
 }

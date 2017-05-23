@@ -237,6 +237,13 @@ public class Form implements Typable, Clickable{
 	}
 	
 	/**
+	 * Clears the focus.
+	 */
+	public void clearFocus(){
+		this.setFocusedObject(null);
+	}
+	
+	/**
 	 * Determines the width of the Form.
 	 */
 	private void determineWidth(){

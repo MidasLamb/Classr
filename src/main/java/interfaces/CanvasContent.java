@@ -28,4 +28,9 @@ public interface CanvasContent extends Typable, Clickable {
 	 * @return height of the content.
 	 */
 	public int getHeight();
+	
+	/**
+	 * Called when the focus from the container of this canvas content is switched.
+	 */
+	public void clearFocus();
 }

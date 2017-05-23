@@ -1,5 +1,5 @@
 package main;
-//
+
 //import java.lang.reflect.Method;
 //
 //import org.junit.runner.Computer;
@@ -19,14 +19,14 @@ package main;
 public class VisualTestUpdater {
 
 	public static boolean update = false;
-	
-	public static void main(String[] args) {
-		
+//	
+//	public static void main(String[] args) {
+//		
 //		VisualTestUpdater.update = true;
 //		
 //		Computer computer = new Computer();
 //
 //		JUnitCore jUnitCore = new JUnitCore();
 //		jUnitCore.run(computer, canvaswindow.VisualTests.class);
-	}
+//	}
 }
