@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 
 import gui.inputHandlers.clicks.MouseClick;
 
@@ -247,6 +248,8 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	public FormObject getLastChild() {
 		return getListboxElements().get(getListboxElements().size() - 1);
 	}
+	
+	
 
 	/**
 	 * A class of ListBoxElements representing the elements of a ListBox
@@ -358,7 +361,30 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		public int getHeight(){
 			return getObject().getHeight();
 		}
+		
+		public int getWidth(){
+			return getObject().getWidth();
+		}
 
+	}
+
+	@Override
+	int getWidth() {
+		int max = super.getWidth();
+		for (ListBoxElement<T> lbe: getListboxElements()){
+			if (lbe.getWidth() > max)
+				max = lbe.getWidth();
+		}
+		return max;
+	}
+
+	@Override
+	int getHeight() {
+		int height = 0;
+		for (ListBoxElement<T> lbe: getListboxElements()){
+			height += lbe.getHeight();
+		}
+		return Math.max(height,super.getHeight());
 	}
 
 }
