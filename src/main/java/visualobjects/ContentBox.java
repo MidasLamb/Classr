@@ -58,7 +58,7 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 		getContainer().switchSelectedTo(this);
 
 		int dimensions = TITLEBAR_HEIGHT - 4;
-		int xPos = x + width - dimensions - 2;
+		int xPos = this.getX() + 2;
 		int yPos = y + 2;
 		this.closeButton = new FormObjectWrapper<>(new Button("x", 0, 0, dimensions, dimensions) {
 
@@ -162,9 +162,6 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 	@Override
 	void setWidth(int width) {
 		super.setWidth(width);
-		if (closeButton != null) {
-			closeButton.setX(this.getX() + this.getWidth() - closeButton.getWidth() - 2);
-		}
 	}
 
 	@Override
@@ -181,7 +178,7 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 			g.setColor(Color.WHITE);
 		else
 			g.setColor(Color.BLACK);
-		g.drawString(this.getName(), this.getX() + STANDARD_LABEL_PADDING,
+		g.drawString(this.getName(), this.getX() + closeButton.getWidth() + STANDARD_LABEL_PADDING,
 				this.getY() + STANDARD_TEXT_ASCEND + STANDARD_LABEL_PADDING);
 
 		g.setColor(Color.black);
