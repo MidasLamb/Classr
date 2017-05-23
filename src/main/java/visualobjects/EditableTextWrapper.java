@@ -29,7 +29,8 @@ import logicalobjects.LogicalObject;
  * A wrapper for the GUI Text to adapt it to the application part.
  *
  */
-public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L> implements UpdateListener, UpdateSubject, Editable {
+public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
+		implements UpdateListener, UpdateSubject, Editable {
 	private Collection<UpdateListener> updateListeners;
 
 	/**
@@ -49,8 +50,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @param object
 	 *            the logicalObject which is linked to this text
 	 */
-	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent,
-			L object, Controller controller) {
+	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent, L object, Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
@@ -77,8 +77,8 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @param maxWidth
 	 *            the maxWidth that this text may have
 	 */
-	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent,
-			L object, int maxWidth, Controller controller) {
+	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent, L object, int maxWidth,
+			Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
@@ -93,7 +93,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		Color c = g.getColor();
 		if (isEditable() && !getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
 			g.setColor(Color.RED);
-		this.getTextObject().draw(g, this.getX(), this.getY());	
+		this.getTextObject().draw(g, this.getX(), this.getY());
 		g.setColor(c);
 	}
 
@@ -101,7 +101,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @return Returns the text of the Logical Object
 	 */
 	protected AttributedString getText() {
-		if (getTextObject().getState() instanceof PassiveState){
+		if (getTextObject().getState() instanceof PassiveState) {
 			StringVisitor strVis = new StringVisitor();
 			return strVis.startVisit(this.getLogicalObject());
 		} else {
@@ -140,14 +140,21 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		this.getTextObject().setAttributedText(getText());
 	}
 
-	// @Override
-	// void onDoubleClick(DoubleClick sc) {
-	// this.getContainer().switchSelectedTo(this);
-	// }
+	@Override
+	public void determineColors(Graphics g) {
+
+		if (this.isSelected() && (this.getTextObject().isEditable())) {
+			if (!getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
+				this.forceColor(Color.RED);
+			else
+				this.forceColor(Color.BLACK);
+		}
+	}
 
 	@Override
 	int getWidth() {
-		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()), STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
+		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()),
+				STANDARD_FONTMETRICS.stringWidth(getCurrentDisplayedString()));
 	}
 
 	@Override
@@ -195,7 +202,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 */
 	private void save() {
 
-		if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString())){
+		if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString())) {
 			getController().executeCommand(
 					new ChangeLogicalObjectNameCommand(getLogicalObject(), getCurrentDisplayedString()));
 		}
@@ -237,6 +244,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	/**
 	 * Returns the update listeners
+	 * 
 	 * @return the update listeners
 	 */
 	private final Collection<UpdateListener> getUpdateListeners() {
@@ -245,29 +253,30 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	/**
 	 * Sets the update listeners
-	 * @param 	updateListeners
-	 * 			the new update listeners
+	 * 
+	 * @param updateListeners
+	 *            the new update listeners
 	 */
 	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
 		this.updateListeners = updateListeners;
 	}
-	
+
 	/**
 	 * Makes the text back editable
 	 */
-	private final void makeEditable(){
+	private final void makeEditable() {
 		this.getContainer().switchSelectedTo(this);
 		this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
 		this.getTextObject().switchState(new EditableState());
 	}
-	
+
 	/**
 	 * Puts the editable text in passiveState, so you cannot edit it anymore
 	 */
-	private final void makeUneditable(){
+	private final void makeUneditable() {
 		this.getTextObject().switchState(new PassiveState());
 	}
-	
+
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return new EditableTextWrapperDecoupler(this);

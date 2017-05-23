@@ -305,6 +305,7 @@ public class Backend {
 			});
 		} else {
 			getContainer().bringToFront(getFormsMap().get(logicalObject));
+			getContainer().switchSelectedTo(getFormsMap().get(logicalObject));
 		}
 	}
 	
