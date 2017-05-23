@@ -45,6 +45,11 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject<Logica
 		T f = this.getFormObject();
 		f.onClick(click);
 	}
+	
+	@Override
+	boolean isIn(int x, int y) {
+		return fo.isIn(x - this.getX(), y - this.getY());
+	}
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {

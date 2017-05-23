@@ -239,6 +239,8 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 	private final void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
 	@Override
 	public FormContainer<FormWrapper> getExtraContainer() {

@@ -55,7 +55,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 	@Override
 	protected void buildForm() {
-		this.setForm(new FormWrapper(330, 330, this.container));
+		this.setForm(new FormWrapper(200, 330, this.container));
 
 		InputBox methName = new InputBox(getMethod().getName(), 150, 26, 100, 16) {
 			@Override
@@ -171,18 +171,8 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Parameters
 		// ---------------------------------------------------------------
-		parameters = new ListBox<ParameterWrapper>(10, 200, 100, 100) {
-
-			@Override
-			protected void onAction() {
-				checkEditAndCancelButtons();
-			}
-
-		};
-
-		this.addFormObject(parameters);
-		this.addLabelToTopOfLastFormObject("Parameters");
-		Button addParameter = new Button("Add", 150, 200, 50, 50) {
+		
+		Button addParameter = new Button("Add", 10, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -195,8 +185,9 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		};
 
 		this.addFormObject(addParameter);
+		this.addLabelToTopOfLastFormObject("Parameters");
 
-		editParameter = new Button("Edit", 210, 200, 50, 50) {
+		editParameter = new Button("Edit", 70, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -208,7 +199,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(editParameter);
 
-		removeParameter = new Button("Remove", 270, 200, 50, 50) {
+		removeParameter = new Button("Remove", 130, 200, 50, 50) {
 
 			@Override
 			protected void onAction() {
@@ -221,15 +212,16 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		this.addFormObject(removeParameter);
 
-		Button close = new Button("Close", 270, 270, 50, 50) {
+		parameters = new ListBox<ParameterWrapper>(10, 260, 100, 100) {
 
 			@Override
 			protected void onAction() {
-				getForm().close();
+				checkEditAndCancelButtons();
 			}
+
 		};
 
-		this.addFormObject(close);
+		this.addFormObject(parameters);
 
 		// Initialize all objects with correct startinput.
 

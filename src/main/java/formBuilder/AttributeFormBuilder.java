@@ -151,17 +151,6 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 		this.addFormObject(staticCheckbox);
 		this.addLabelToRightOfLastFormObject("Static");
 
-
-		Button close = new Button("Close", 200, 120, 50, 50) {
-
-			@Override
-			protected void onAction() {
-				getForm().close();
-			}
-		};
-
-		this.addFormObject(close);
-
 		// Initialize all objects with correct startinput.
 		Visibility v = getAttribute().getVisibility();
 		switch (v) {
