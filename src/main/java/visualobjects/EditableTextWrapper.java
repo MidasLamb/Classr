@@ -30,7 +30,6 @@ import logicalobjects.LogicalObject;
  *
  */
 public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L> implements UpdateListener, UpdateSubject, Editable {
-	private String standardString;
 	private Collection<UpdateListener> updateListeners;
 
 	/**
@@ -50,13 +49,12 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @param object
 	 *            the logicalObject which is linked to this text
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, VisualObject<?> parent,
+	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent,
 			L object, Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
-		this.setStandardString(string);
 		this.setUpdateListeners(new ArrayList<UpdateListener>());
 	}
 
@@ -79,13 +77,12 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 * @param maxWidth
 	 *            the maxWidth that this text may have
 	 */
-	public EditableTextWrapper(int x, int y, int z, String string, VisualObject<?> parent,
+	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent,
 			L object, int maxWidth, Controller controller) {
 		super(x, y, z, parent, object, controller);
 		setLogicalObject(object);
 		this.getLogicalObject().addUpdateListener(this);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState(), maxWidth));
-		this.setStandardString(string);
 	}
 
 	/**
@@ -190,14 +187,6 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		}
 		this.notifyUpdateListeners();
 
-	}
-
-	private final String getStandardString() {
-		return standardString;
-	}
-
-	private final void setStandardString(String standardString) {
-		this.standardString = standardString;
 	}
 
 	/**
