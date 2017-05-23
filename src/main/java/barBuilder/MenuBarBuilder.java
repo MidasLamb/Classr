@@ -26,7 +26,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 	protected void buildBar() {
 		int defaultHeight = this.getHeight();
 		int x = 0;
-		int y = 30;
+		int y = 0;
 		int defaultWidth = 100;
 		int newPosX = x;
 		

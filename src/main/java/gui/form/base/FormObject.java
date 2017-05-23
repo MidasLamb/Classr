@@ -146,35 +146,35 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 * 
 	 * @return Returns true if this FormObject is focused, false otherwise.
 	 */
-	boolean isFocused() {
+	protected boolean isFocused() {
 		return this.focused;
 	}
 
 	/**
 	 * @return The x-coordinate of this FormObject.
 	 */
-	int getX() {
+	protected int getX() {
 		return x;
 	}
 
 	/**
 	 * @return The y-coordinate of this FormObject.
 	 */
-	int getY() {
+	protected int getY() {
 		return y;
 	}
 
 	/**
 	 * @return The width of this FormObject.
 	 */
-	int getWidth() {
+	protected int getWidth() {
 		return width;
 	}
 
 	/**
 	 * @return The height of this FormObject.
 	 */
-	int getHeight() {
+	protected int getHeight() {
 		return height;
 	}
 	

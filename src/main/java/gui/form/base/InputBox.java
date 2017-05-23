@@ -131,7 +131,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	}
 
 	@Override
-	int getWidth() {
+	protected int getWidth() {
 		return Math.max(getTextObject().getTextWidth() + 4, 100);
 	}
 

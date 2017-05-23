@@ -289,7 +289,7 @@ public class Backend {
 	private static final void createForm() {
 		LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
 		if (!getFormsMap().containsKey(logicalObject)) {
-			ContentBox b = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Dialog Box");
+			ContentBox b = new ContentBox(10, 10, 1, 300, 300, getContainer(), getController(), "Dialog Box");
 			FormWrapper formWrapper = new FormCreator(logicalObject, b, getController()).getForm();
 			b.setContent(formWrapper);
 			logicalObject.addDeleteListener(b);
@@ -316,7 +316,7 @@ public class Backend {
 	public static final void createForm(Parameter parameter) {	
 		if(parameter != null){
 			if (!getFormsMap().containsKey(parameter)) {
-				ContentBox c = new ContentBox(10, 10, 0, 300, 300, getContainer(), getController(), "Edit Parameter");
+				ContentBox c = new ContentBox(10, 10, 1, 300, 300, getContainer(), getController(), "Edit Parameter");
 				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(parameter, c, getController());
 				c.switchTo(parabuilder.getForm());
 				getFormsMap().put(parameter, c);

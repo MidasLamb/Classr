@@ -47,7 +47,7 @@ public class Label extends FormObject {
 	}
 	
 	@Override
-	int getHeight(){
+	protected int getHeight(){
 		return STANDARD_TEXT_HEIGHT;
 	}
 	
@@ -56,7 +56,7 @@ public class Label extends FormObject {
 	}
 	
 	@Override
-	int getWidth(){
+	protected int getWidth(){
 		Canvas c = new Canvas();
 		FontMetrics m = c.getFontMetrics(STANDARD_FONT);
 		return m.stringWidth(getText());
