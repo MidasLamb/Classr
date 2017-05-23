@@ -369,7 +369,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	@Override
-	int getWidth() {
+	protected int getWidth() {
 		int max = super.getWidth();
 		for (ListBoxElement<T> lbe: getListboxElements()){
 			if (lbe.getWidth() > max)
@@ -379,7 +379,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	@Override
-	int getHeight() {
+	protected int getHeight() {
 		int height = 0;
 		for (ListBoxElement<T> lbe: getListboxElements()){
 			height += lbe.getHeight();
