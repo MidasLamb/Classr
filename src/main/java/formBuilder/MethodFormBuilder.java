@@ -188,7 +188,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			protected void onAction() {
 				Parameter p = new Parameter("name", "type");
 				controller.executeCommand(new AddParameterCommand(method, p));
-				// parameters.addElement(new ParameterWrapper(p));
 				checkEditAndCancelButtons();
 
 			}
@@ -203,14 +202,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 			protected void onAction() {
 				Parameter p = parameters.getSelectedObject().getParameter();
 				Backend.createForm(p);
-				/**
-				 * FormContainer<FormWrapper> c =
-				 * getContainer().getExtraContainer();
-				 * MethodParameterFormBuilder parabuilder = new
-				 * MethodParameterFormBuilder(p, c, controller);
-				 * c.switchTo(parabuilder.getForm());
-				 **/
-
 			}
 
 		};
