@@ -256,20 +256,40 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		super.onClick(sc);
 	}
 
+	/**
+	 * Changes this x position relatively.
+	 * @param x
+	 * 			The amount of x to change.
+	 */
 	private void changeX(int x) {
 		this.setX(this.getX() + x);
 	}
 
+	/**
+	 * Changes this y position relatively.
+	 * @param y
+	 * 			The amount of y to change.
+	 */
 	private void changeY(int y) {
 		this.setY(this.getY() + y);
 	}
 
+	/**
+	 * Changes this objects children's x relatively.
+	 * @param x
+	 * 			The amount of x to change.
+	 */
 	private void changeChildrenX(int x) {
 		for (VisualObject<?> v : this.getChildren()) {
 			v.setX(v.getX() + x);
 		}
 	}
 
+	/**
+	 * Changes this objects children's y relatively.
+	 * @param 
+	 * 			The amount of y to change.
+	 */
 	private void changeChildrenY(int y) {
 		for (VisualObject<?> v : this.getChildren()) {
 			v.setY(v.getY() + y);
