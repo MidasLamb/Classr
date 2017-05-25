@@ -76,7 +76,7 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 				g.setColor(Color.WHITE);
 				Font f = g.getFont();
 				g.setFont(new Font("default", Font.BOLD, 16));
-				g.drawString("x", this.getX()+6, this.getY()+this.getHeight()/2+5);
+				g.drawString("x", this.getX() + 6, this.getY() + this.getHeight() / 2 + 5);
 				g.setFont(f);
 				if (isFocused()) {
 					g.setColor(Color.BLUE);
@@ -84,8 +84,6 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 				}
 				g.setColor(color);
 			}
-			
-			
 
 		}, xPos, yPos, 1, dimensions, dimensions, this, this.getController());
 	}
@@ -235,8 +233,6 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 	private final void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 	@Override
 	public FormContainer<FormWrapper> getExtraContainer() {
@@ -259,11 +255,11 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
 		return null;
 	}
-	
+
 	@Override
-	public void setSelected(boolean b){
-		super.setSelected(b); 
-		if (!b){
+	public void setSelected(boolean b) {
+		super.setSelected(b);
+		if (!b) {
 			getContent().clearFocus();
 		}
 	}

@@ -1,4 +1,5 @@
 package logicalobjects;
+
 import static main.Constants.REGEX_START_NO_CAPITAL;
 import static main.Constants.*;
 
@@ -7,7 +8,7 @@ import static main.Constants.*;
  * 
  * @author team 11
  */
-public class Association extends LogicalObject{
+public class Association extends LogicalObject {
 	private LogicalClass class1;
 	private LogicalClass class2;
 
@@ -26,7 +27,6 @@ public class Association extends LogicalObject{
 		this.getClass2().addAssociation(this);
 		this.setName(DEFAULT_ASS_NAME);
 	}
-	
 
 	/**
 	 * Removes this association from it's participants.
@@ -81,16 +81,14 @@ public class Association extends LogicalObject{
 		this.class2 = class2;
 	}
 
-
 	@Override
 	Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
 
-
 	@Override
 	public boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_NO_CAPITAL);
 	}
-	
+
 }

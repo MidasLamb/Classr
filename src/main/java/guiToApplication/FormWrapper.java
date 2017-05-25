@@ -14,16 +14,16 @@ import interfaces.CanvasContent;
 /**
  * A bridge to let a form be displayed in a canvas window
  */
-public class FormWrapper extends Form implements CanvasContent{
+public class FormWrapper extends Form implements CanvasContent {
 	private FormContainer<?> formContainer;
 
 	/**
-	 * @param 	width
-	 * 			the width of the form 
-	 * @param 	height
-	 * 			the heigth of the form
-	 * @param 	canvasWindow
-	 * 			the canvas window in which the form needs to be displayed
+	 * @param width
+	 *            the width of the form
+	 * @param height
+	 *            the heigth of the form
+	 * @param canvasWindow
+	 *            the canvas window in which the form needs to be displayed
 	 */
 	public FormWrapper(int width, int height, FormContainer<?> formContainer) {
 		super(width, height);
@@ -57,29 +57,30 @@ public class FormWrapper extends Form implements CanvasContent{
 	public void close() {
 		this.getFormContainer().close();
 	}
-	
+
 	/**
 	 * Returns the CanvasWindow.
+	 * 
 	 * @return
 	 */
-	public FormContainer<?> getFormContainer(){
+	public FormContainer<?> getFormContainer() {
 		return this.formContainer;
 	}
 
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
 		super.handleAsciiKey(key);
-		
+
 	}
 
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
-		super.handleFunctionKey(key);		
+		super.handleFunctionKey(key);
 	}
 
 	@Override
 	public void clearFocus() {
-		super.clearFocus();	
+		super.clearFocus();
 	}
 
 }

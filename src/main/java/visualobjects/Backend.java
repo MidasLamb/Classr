@@ -245,8 +245,8 @@ public class Backend {
 	 * @return true if the selected object can be deleted, false otherwise
 	 */
 	public static final boolean canDelete() {
-		if (getContainer().getSelected() != null && getContainer().getSelected() instanceof Editable){
-			if (((Editable)getContainer().getSelected()).isEditable())
+		if (getContainer().getSelected() != null && getContainer().getSelected() instanceof Editable) {
+			if (((Editable) getContainer().getSelected()).isEditable())
 				return false;
 		}
 		if (getContainer().getSelected() instanceof ContentBox)
@@ -263,7 +263,6 @@ public class Backend {
 	public static final boolean canUndo() {
 		return getController().canUndo();
 	}
-	
 
 	/**
 	 * Indicates whether an redo operation can be executed.
@@ -310,21 +309,22 @@ public class Backend {
 			getContainer().switchSelectedTo(getFormsMap().get(logicalObject));
 		}
 	}
-	
+
 	/**
 	 * Creates a new form for the given parameter
-	 * @param 	parameter
-	 * 			the parameter for which the form needs to be created
+	 * 
+	 * @param parameter
+	 *            the parameter for which the form needs to be created
 	 */
-	public static final void createForm(Parameter parameter) {	
-		if(parameter != null){
+	public static final void createForm(Parameter parameter) {
+		if (parameter != null) {
 			if (!getFormsMap().containsKey(parameter)) {
 				ContentBox c = new ContentBox(100, 100, 1, 300, 300, getContainer(), getController(), "Edit Parameter");
 				MethodParameterFormBuilder parabuilder = new MethodParameterFormBuilder(parameter, c, getController());
 				c.switchTo(parabuilder.getForm());
 				getFormsMap().put(parameter, c);
 				c.addDeleteListener(new DeleteListener() {
-					
+
 					@Override
 					public void getNotifiedSubjectDeleted(DeleteSubject subject) {
 						assert (Backend.getFormsMap().containsValue(subject));
@@ -336,14 +336,16 @@ public class Backend {
 			}
 		}
 	}
-	
+
 	/**
 	 * Closes the form belonging to the given logical object
-	 * @param 	lo
-	 * 			the logical object for which the associated forms need to be closed
+	 * 
+	 * @param lo
+	 *            the logical object for which the associated forms need to be
+	 *            closed
 	 */
-	public static void closeFormBelogingTo(LogicalObject lo){
-		if(getFormsMap().containsKey(lo)){
+	public static void closeFormBelogingTo(LogicalObject lo) {
+		if (getFormsMap().containsKey(lo)) {
 			ContentBox form = getFormsMap().get(lo);
 			form.close();
 			getFormsMap().remove(lo);

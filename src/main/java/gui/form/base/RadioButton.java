@@ -57,6 +57,9 @@ public abstract class RadioButton extends FormObject implements FunctionTypable 
 		this.group = group;
 	}
 
+	/**
+	 * The selected State of the RadioButton
+	 */
 	private class Selected extends RadioButtonState {
 
 		@Override
@@ -72,6 +75,9 @@ public abstract class RadioButton extends FormObject implements FunctionTypable 
 
 	}
 
+	/**
+	 * The not selected State of the RadioButton
+	 */
 	private class NotSelected extends RadioButtonState {
 
 		@Override
@@ -105,8 +111,7 @@ public abstract class RadioButton extends FormObject implements FunctionTypable 
 	}
 
 	@Override
-	public
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		getState().draw(g);
 	}
 
@@ -132,10 +137,21 @@ public abstract class RadioButton extends FormObject implements FunctionTypable 
 		return getState() instanceof Selected;
 	}
 
+	/**
+	 * Get the state of this RadioButton
+	 * 
+	 * @return the state
+	 */
 	private RadioButtonState getState() {
 		return state;
 	}
 
+	/**
+	 * Set the state of this RadioButton
+	 * 
+	 * @param state
+	 *            RadioButtonState to set as the state of this RadioButton
+	 */
 	private void setState(RadioButtonState state) {
 		this.state = state;
 	}

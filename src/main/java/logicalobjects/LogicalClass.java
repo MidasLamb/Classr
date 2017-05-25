@@ -231,9 +231,8 @@ public class LogicalClass extends LogicalObject {
 			a.delete();
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
-	public Object accept(LogicalObjectVisitor v) {
+	public Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
 

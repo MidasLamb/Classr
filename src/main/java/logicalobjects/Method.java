@@ -12,7 +12,7 @@ import interfaces.UpdateSubject;
 /**
  * A class of logical objects, involving a real class
  */
-public class Method extends ClassContent implements UpdateListener{
+public class Method extends ClassContent implements UpdateListener {
 	private Collection<Parameter> parameters;
 	private boolean isAbstract;
 
@@ -109,7 +109,7 @@ public class Method extends ClassContent implements UpdateListener{
 		} else {
 			super.setStatic(isStatic);
 		}
-		
+
 	}
 
 	@Override
@@ -142,6 +142,6 @@ public class Method extends ClassContent implements UpdateListener{
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 		notifyUpdateListeners();
-		
+
 	}
 }

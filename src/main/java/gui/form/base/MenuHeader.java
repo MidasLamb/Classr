@@ -8,7 +8,6 @@ import gui.inputHandlers.clicks.MouseClick;
  * A class that represents a Header in a MenuBar
  */
 public class MenuHeader extends Button {
-	private String name;
 	private DropDownMenu<MenuItem> dropDownMenu;
 
 	/**
@@ -26,19 +25,19 @@ public class MenuHeader extends Button {
 		this.setDropDownMenu(new DropDownMenu<MenuItem>(x, y + this.getHeight(), width, 500));
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	/**
+	 * Get the DropDownMenu of this MenuHeader
+	 * 
+	 * @return dropDownMenu
+	 */
 	public DropDownMenu<MenuItem> getDropDownMenu() {
 		return dropDownMenu;
 	}
 
-	public void setDropDownMenu(DropDownMenu<MenuItem> dropDownMenu) {
+	/**
+	 * @param dropDownMenu
+	 */
+	private void setDropDownMenu(DropDownMenu<MenuItem> dropDownMenu) {
 		this.dropDownMenu = dropDownMenu;
 	}
 
@@ -55,7 +54,9 @@ public class MenuHeader extends Button {
 	 * Returns whether or not a coordinate at x,y is in this MenuHeader itself.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 */
 	boolean isInSelf(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
@@ -67,6 +68,7 @@ public class MenuHeader extends Button {
 	 * MenuHeader.
 	 * 
 	 * @param x
+	 * 
 	 * @param y
 	 */
 	boolean isInDropDown(int x, int y) {
@@ -101,20 +103,15 @@ public class MenuHeader extends Button {
 	protected boolean canBeEnabled() {
 		return true;
 	}
-	
-	
+
 	/**
 	 * Update the state of this Button
 	 */
 	void updateState() {
 		setEnabled(this.canBeEnabled());
-		for (MenuItem item : this.getDropDownMenu().getElements()){
+		for (MenuItem item : this.getDropDownMenu().getElements()) {
 			item.updateState();
 		}
-		
-		/*for (MenuHeader header : this.getMenuHeaders()) {
-			header.updateState();
-		}*/
 	}
 
 }

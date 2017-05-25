@@ -6,18 +6,20 @@ package interfaces;
 public interface UpdateSubject {
 	/**
 	 * To add a new updateListener
-	 * @param 	updateListener
-	 * 			the new updateListener
+	 * 
+	 * @param updateListener
+	 *            the new updateListener
 	 */
 	public void addUpdateListener(UpdateListener updateListener);
-	
+
 	/**
 	 * To remove a updateListener
-	 * @param 	updateListener
-	 * 			the updateListener that need to be removed
+	 * 
+	 * @param updateListener
+	 *            the updateListener that need to be removed
 	 */
 	public void removeUpdateListener(UpdateListener updateListener);
-	
+
 	/**
 	 * A function that notifies the updateListeners
 	 */

@@ -47,7 +47,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	private Color color;
 	private Color forcedColor;
 	private VisualObject<?> draggedChild;
-	
+
 	private final Controller controller;
 
 	/**
@@ -112,19 +112,18 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 * @param g
 	 *            Graphics g
 	 */
-	public void show(Graphics g) {		
+	public void show(Graphics g) {
 		Color c = g.getColor();
 		if (this.isSelected() || this.hasSelectedAncestor()) {
 			this.forceColor(Color.RED);
 		} else {
 			this.forceColor(null);
 		}
-		this.determineColors(g);
 		if (this.getColor() != null)
 			g.setColor(this.getColor());
 		if (this.getForcedColor() != null)
 			g.setColor(this.getForcedColor());
-		
+
 		this.draw(g);
 		for (VisualObject<?> v : this.getChildren()) {
 			v.show(g);
@@ -133,15 +132,20 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 			g.setColor(c);
 		}
 	}
-	
-	protected void determineColors(Graphics g){
-		
-	}
 
+	/**
+	 * Draws the visualObject
+	 * 
+	 * @param g
+	 *            the graphics to draw the visualObject
+	 */
 	void draw(Graphics g) {
 
 	}
 
+	/**
+	 * Function that is called on deletion
+	 */
 	void onDelete() {
 
 	}
@@ -160,7 +164,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 				if (c.getSelected() != null && c.getSelected().equals(this))
 					c.switchSelectedTo(null);
 			}
-			
+
 			for (DeleteListener d : this.getDeleteListeners()) {
 				d.getNotifiedSubjectDeleted(this);
 			}
@@ -193,7 +197,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 */
 	void onClick(SingleClick sc) {
 		VisualObject<?> clickedChild = getClickedChild(sc);
-		if(clickedChild != null)
+		if (clickedChild != null)
 			clickedChild.onClick(sc);
 	}
 
@@ -205,22 +209,22 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 */
 	void onDoubleClick(DoubleClick dc) {
 		VisualObject<?> clickedChild = getClickedChild(dc);
-		if(clickedChild != null)
+		if (clickedChild != null)
 			clickedChild.onDoubleClick(dc);
 	}
-	
+
 	/**
 	 * Given a click this function returns the child on which is clicked
-	 * @param 	click
-	 * 			the click that happened
-	 * @return	the child on which there is clicked, otherwise null
+	 * 
+	 * @param click
+	 *            the click that happened
+	 * @return the child on which there is clicked, otherwise null
 	 */
-	private VisualObject<?> getClickedChild(MouseClick click){
-		//Reduce is to get the last element
-		Optional<VisualObject<?>> clickedChild = getChildren().stream()
-				.filter(x -> x.isIn(click.getX(), click.getY()))
+	private VisualObject<?> getClickedChild(MouseClick click) {
+		// Reduce is to get the last element
+		Optional<VisualObject<?>> clickedChild = getChildren().stream().filter(x -> x.isIn(click.getX(), click.getY()))
 				.sorted(new VisualObjectComparator()).reduce((a, b) -> b);
-		if(clickedChild.isPresent())
+		if (clickedChild.isPresent())
 			return clickedChild.get();
 		return null;
 	}
@@ -228,43 +232,45 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	/**
 	 * Triggers the onDragEnd function of the child where there is dragged too
 	 * 
-	 * @param 	d
-	 *        	The drag object
+	 * @param d
+	 *            The drag object
 	 */
 	public void onDragEnd(Drag d) {
 		setDraggedChild(null);
 		getChildren().forEach(x -> x.onDragEnd(d));
 	}
-	
+
 	/**
-	 * Triggers the onDragUpdate function of the child that is being dragged if there is one
-	 * @param 	drag
-	 * 			the drag object
+	 * Triggers the onDragUpdate function of the child that is being dragged if
+	 * there is one
+	 * 
+	 * @param drag
+	 *            the drag object
 	 */
 	public void onDragUpdate(Drag drag) {
-		if(getDraggedChild() == null)
+		if (getDraggedChild() == null)
 			setDraggedChild(getClickedChild(drag));
-		if(getDraggedChild() != null)
+		if (getDraggedChild() != null)
 			getDraggedChild().onDragUpdate(drag);
 	}
-	
+
 	/**
 	 * @param c
-	 * 			the color for this VisualObject
+	 *            the color for this VisualObject
 	 */
-	protected final void setColor(Color c){
+	protected final void setColor(Color c) {
 		this.color = c;
 	}
-	
+
 	/**
 	 * 
-	 * @param 	c
-	 * 			the color that all the children of 
-	 * 				this VisualObject are forced to use
+	 * @param c
+	 *            the color that all the children of this VisualObject are
+	 *            forced to use
 	 */
-	protected final void forceColor(Color c){
+	protected final void forceColor(Color c) {
 		setForcedColor(c);
-		for (VisualObject<?> v: this.getChildren())
+		for (VisualObject<?> v : this.getChildren())
 			v.forceColor(c);
 	}
 
@@ -453,7 +459,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 *            the child to be removed
 	 */
 	public final boolean removeChild(VisualObject<?> c) {
-		if (this.children.remove(c)){
+		if (this.children.remove(c)) {
 			this.afterDeleteChild(c);
 			return true;
 		}
@@ -534,6 +540,12 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 
 	}
 
+	/**
+	 * Handles a given AsciiKey
+	 * 
+	 * @param key
+	 *            the key that need to be handled
+	 */
 	public void handleAsciiKey(AsciiKey key) {
 
 	};
@@ -546,7 +558,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 *            the function key to handle
 	 */
 	public void handleFunctionKey(FunctionKey key) {
-		if (key.getKeyType() == DELETE){
+		if (key.getKeyType() == DELETE) {
 			Backend.delete();
 		}
 	};
@@ -613,9 +625,9 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 		}
 		return false;
 	}
-	
+
 	@Override
-	public void notifyDeleteListeners(){
+	public void notifyDeleteListeners() {
 		getDeleteListeners().forEach(x -> x.getNotifiedSubjectDeleted(this));
 	}
 
@@ -632,9 +644,10 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	private final Color getColor() {
 		return color;
 	}
-	
+
 	/**
 	 * Returns the controller
+	 * 
 	 * @return the controller
 	 */
 	Controller getController() {
@@ -643,8 +656,9 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 
 	/**
 	 * Sets the forced color
-	 * @param 	forced Color
-	 * 			the forced color
+	 * 
+	 * @param forced
+	 *            Color the forced color
 	 */
 	private void setForcedColor(Color forcedColor) {
 		this.forcedColor = forcedColor;
@@ -652,6 +666,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 
 	/**
 	 * The child that is currently being dragged
+	 * 
 	 * @return the child that is currently being dragged
 	 */
 	private VisualObject<?> getDraggedChild() {
@@ -660,13 +675,20 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 
 	/**
 	 * Sets the child that is getting dragged
-	 * @param 	draggedObject
-	 * 			the child that is getting dragged
+	 * 
+	 * @param draggedObject
+	 *            the child that is getting dragged
 	 */
 	private void setDraggedChild(VisualObject<?> draggedObject) {
 		this.draggedChild = draggedObject;
 	}
-	
+
+	/**
+	 * The decouple visitor
+	 * @param 	visitor
+	 * 			the visitor that needs to be visited
+	 * @return	the decoupler associated to this object
+	 */
 	public abstract Decoupler decoupleVisitor(CoupleVisitor visitor);
 
 }

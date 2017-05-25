@@ -6,8 +6,9 @@ package interfaces;
 public interface UpdateListener {
 	/**
 	 * Called when subject is updated.
-	 * @param 	subject
-	 * 			the subject that is updated
+	 * 
+	 * @param subject
+	 *            the subject that is updated
 	 */
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject);
 }

@@ -15,11 +15,12 @@ import gui.inputHandlers.clicks.MouseClick;
  * Label that can be added to a Form.
  */
 public class Label extends FormObject {
-	
+
 	final private String text;
 
 	/**
 	 * Create a new Label and set its text and coordinates.
+	 * 
 	 * @param text
 	 * @param x
 	 * @param y
@@ -36,37 +37,43 @@ public class Label extends FormObject {
 	}
 
 	@Override
-	public
-	void draw(Graphics g) {
+	public void draw(Graphics g) {
 		Color c = g.getColor();
 		if (this.isFocused()) {
 			g.setColor(Color.BLUE);
 		}
-		g.drawString(getText(), this.getX(), this.getY()+this.getHeight());
+		g.drawString(getText(), this.getX(), this.getY() + this.getHeight());
 		g.setColor(c);
 	}
-	
+
 	@Override
-	protected int getHeight(){
+	protected int getHeight() {
 		return STANDARD_TEXT_HEIGHT;
 	}
-	
-	int getAscent(){
+
+	/**
+	 * @return the ascend of the Label
+	 */
+	int getAscent() {
 		return STANDARD_TEXT_ASCEND;
 	}
-	
+
 	@Override
-	protected int getWidth(){
+	protected int getWidth() {
 		Canvas c = new Canvas();
 		FontMetrics m = c.getFontMetrics(STANDARD_FONT);
 		return m.stringWidth(getText());
 	}
 
+	/**
+	 * @return the text of this Label
+	 */
 	private String getText() {
 		return text;
 	}
 
 	@Override
-	protected void onAction() {}
-	
+	protected void onAction() {
+	}
+
 }

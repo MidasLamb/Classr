@@ -51,14 +51,31 @@ public abstract class MenuItem extends FormObject implements Displayable {
 		return this.name;
 	}
 
-	public MenuItemState getState() {
+	/**
+	 * Get the state of this MenuItem
+	 * 
+	 * @return state of this MenuItem
+	 */
+	private MenuItemState getState() {
 		return state;
 	}
 
-	public void setState(MenuItemState state) {
+	/**
+	 * Set the state of this MenuItem
+	 * 
+	 * @param state
+	 *            MenuItemState to set
+	 */
+	private void setState(MenuItemState state) {
 		this.state = state;
 	}
 
+	/**
+	 * Enable or disable this MenuItem
+	 * 
+	 * @param b
+	 *            boolean that indicates the state to set
+	 */
 	private void setEnabled(boolean b) {
 		if (b) {
 			this.setState(new Enabled());
@@ -68,7 +85,10 @@ public abstract class MenuItem extends FormObject implements Displayable {
 		;
 	}
 
-	public class Enabled extends MenuItemState {
+	/**
+	 * The enabled state of a MenuItem
+	 */
+	private class Enabled extends MenuItemState {
 
 		@Override
 		void draw(Graphics g) {
@@ -79,12 +99,16 @@ public abstract class MenuItem extends FormObject implements Displayable {
 			g.setColor(c);
 		}
 
+		@Override
 		public void onAction() {
 			MenuItem.this.onAction();
 		}
 	}
 
-	public class Disabled extends MenuItemState {
+	/**
+	 * The disabled state of a MenuItem
+	 */
+	private class Disabled extends MenuItemState {
 
 		@Override
 		void draw(Graphics g) {
@@ -95,26 +119,33 @@ public abstract class MenuItem extends FormObject implements Displayable {
 			g.setColor(c);
 		}
 
+		@Override
 		public void onAction() {
 		}
 
 	}
 
+	/**
+	 * @return true if this MenuItem can be enabled, false otherwise
+	 */
 	protected boolean canBeEnabled() {
 		return true;
 	}
 
+	/**
+	 * Update the state of this MenuItem
+	 */
 	void updateState() {
 		this.setEnabled(this.canBeEnabled());
 	}
-	
+
 	@Override
-	public int getHeight(){
+	public int getHeight() {
 		return super.getHeight();
 	}
-	
+
 	@Override
-	public int getWidth(){
+	public int getWidth() {
 		return STANDARD_FONTMETRICS.stringWidth(getDisplayableString());
 	}
 
