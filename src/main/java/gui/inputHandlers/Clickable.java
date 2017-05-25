@@ -33,9 +33,10 @@ public interface Clickable {
 	 *            Drag containing information about the positions of the drag
 	 */
 	public void onDragEnd(Drag drag);
-	
+
 	/**
-	 * Implement to choose the expected behavior when a the mouse is being dragged.
+	 * Implement to choose the expected behavior when a the mouse is being
+	 * dragged.
 	 * 
 	 * @param drag
 	 *            Drag containing information about the positions of the drag

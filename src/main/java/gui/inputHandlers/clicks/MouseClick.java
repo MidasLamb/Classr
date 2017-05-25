@@ -57,13 +57,14 @@ public class MouseClick {
 	private final void setY(int y) {
 		this.y = y;
 	}
-	
+
 	/**
 	 * Translates a mouseclick so that the given x and y is the new origin.
-	 * @param x 
-	 * @param y 
+	 * 
+	 * @param x
+	 * @param y
 	 */
-	public void translate(int x, int y){
+	public void translate(int x, int y) {
 		this.setX(this.getX() - x);
 		this.setY(this.getY() - y);
 	}
