@@ -15,7 +15,7 @@ import logicalobjects.Parameter;
 /**
  * A visitor to create the Form for the corresponding logical object.
  */
-public class FormCreator implements LogicalObjectVisitor<Void> {
+public class FormBuilderDeterminerVisitor implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
 	private final FormContainer<FormWrapper> formContainer;
 	private final Controller controller;
@@ -28,7 +28,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public FormCreator(LogicalObject o, FormContainer<FormWrapper> formContainer, Controller controller) {
+	public FormBuilderDeterminerVisitor(LogicalObject o, FormContainer<FormWrapper> formContainer, Controller controller) {
 		this.formContainer = formContainer;
 		this.controller = controller;
 		this.startVisit(o);
