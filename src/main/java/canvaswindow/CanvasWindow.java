@@ -30,19 +30,6 @@ import static main.Constants.*;
 
 /**
  * A window for custom drawing.
- *
- * To use this class, create a subclass, say MyCanvasWindow, that overrides
- * methods {@link #paint(Graphics)}, {@link #handleMouseEvent(MouseEvent)}, and
- * {@link #handleKeyEvent(KeyEvent)}, and then launch it from your main method
- * as follows:
- * 
- * <pre>
- * public static void main(String[] args) {
- * 	java.awt.EventQueue.invokeLater(() -> {
- * 		new MyCanvasWindow("My Canvas Window").show();
- * 	});
- * }
- * </pre>
  */
 
 abstract class RecordingItem {
