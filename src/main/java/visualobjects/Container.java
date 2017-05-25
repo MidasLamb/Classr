@@ -3,7 +3,6 @@ package visualobjects;
 import static main.Constants.CLASS_WIDTH;
 import static main.Constants.Z_CLASS;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 
