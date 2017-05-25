@@ -39,6 +39,7 @@ public class Parameter extends LogicalObject {
 	 */
 	public final void setType(String type) {
 		this.type = type;
+		notifyUpdateListeners();
 	}
 
 
