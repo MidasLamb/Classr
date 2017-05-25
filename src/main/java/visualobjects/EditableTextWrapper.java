@@ -45,6 +45,8 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 *            the VisualObject which is the parent of this object
 	 * @param object
 	 *            the logicalObject which is linked to this text
+	 * @param controller
+	 *            the controller for this object.
 	 */
 	public EditableTextWrapper(int x, int y, int z, VisualObject<?> parent, L object, Controller controller) {
 		super(x, y, z, parent, object, controller);

@@ -52,6 +52,8 @@ public class PaddingBox<D extends LogicalObject, T extends VisualObject<D>> exte
 	 *            the parent object for this object
 	 * @param object
 	 *            the corresponding logicalObject
+	 * @param controller
+	 *            the controller for this object.
 	 */
 	public PaddingBox(int x, int y, int z, int width, int height, int paddingLeft, int paddingRight, int paddingTop,
 			int paddingBottom, T content, VisualObject<?> parent, D object, Controller controller) {
@@ -93,6 +95,8 @@ public class PaddingBox<D extends LogicalObject, T extends VisualObject<D>> exte
 	 *            the parent object for this object
 	 * @param object
 	 *            the corresponding logicalObject
+	 * @param controller
+	 *            the controller for this object.
 	 */
 	public PaddingBox(int x, int y, int z, int width, int height, int padding, T content, VisualObject<?> parent,
 			D object, Controller controller) {
@@ -115,6 +119,8 @@ public class PaddingBox<D extends LogicalObject, T extends VisualObject<D>> exte
 	 *            the parent object for this object
 	 * @param object
 	 *            the corresponding logicalObject
+	 * @param controller
+	 *            the controller for this object
 	 */
 	public PaddingBox(int x, int y, int z, int padding, T content, VisualObject<?> parent, D object,
 			Controller controller) {
@@ -136,6 +142,9 @@ public class PaddingBox<D extends LogicalObject, T extends VisualObject<D>> exte
 	 *            the parent object for this object
 	 * @param object
 	 *            the corresponding logicalObject
+	 * 
+	 * @param controller
+	 *            the controller for this object.
 	 */
 	public PaddingBox(int x, int y, int z, T content, VisualObject<?> parent, D object, Controller controller) {
 		this(x, y, z, CLASS_WIDTH, STANDARD_TEXT_HEIGHT + (2 * STANDARD_PADDING), STANDARD_PADDING, content, parent,

@@ -45,12 +45,19 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * coordinates, width, height, parent VisualObject and Controller
 	 * 
 	 * @param x
+	 * 			The x coordinate for this object.
 	 * @param y
+	 * 			the y coordinate for this object.
 	 * @param z
+	 * 			the z coordinate for this object.
 	 * @param width
+	 * 			the width for this object.
 	 * @param height
+	 * 			the height for this object.
 	 * @param parent
+	 * 			the parent for this object.
 	 * @param controller
+	 * 			the controller for this object.
 	 */
 	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject<?> parent,
 			Controller controller) {
@@ -70,8 +77,12 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * VisualObject
 	 * 
 	 * @param x
+	 *            The x value
 	 * @param y
-	 * @return
+	 *            The y value
+	 * @return Whether or not the x and y are on the left side of this object,
+	 *         with regards to the deadzone.
+	 * 
 	 */
 	public boolean isOnLeftSide(int x, int y) {
 		return (x >= this.getX() - deadzone && x <= this.getX() + deadzone)
@@ -83,8 +94,11 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * VisualObject
 	 * 
 	 * @param x
+	 *            The x value
 	 * @param y
-	 * @return
+	 *            The y value
+	 * @return Whether or not the x and y are on the top side of this object,
+	 *         with regards to the deadzone.
 	 */
 	public boolean isOnTopSide(int x, int y) {
 		return (y >= this.getY() - deadzone && y <= this.getY() + deadzone)
@@ -96,8 +110,12 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * VisualObject
 	 * 
 	 * @param x
+	 *            The x value
 	 * @param y
-	 * @return
+	 *            The y value
+	 * @return Whether or not the x and y are on the right side of this object,
+	 *         with regards to the deadzone.
+	 * 
 	 */
 	public boolean isOnRightSide(int x, int y) {
 		return (x >= this.getX() + this.getWidth() - deadzone && x <= this.getX() + this.getWidth() + deadzone)
@@ -109,8 +127,12 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * this VisualObject
 	 * 
 	 * @param x
+	 *            The x value
 	 * @param y
-	 * @return
+	 *            The y value
+	 * @return Whether or not the x and y are on the bottom side of this object,
+	 *         with regards to the deadzone.
+	 * 
 	 */
 	public boolean isOnBottomSide(int x, int y) {
 		return (y >= this.getY() + this.getHeight() - deadzone && y <= this.getY() + this.getHeight() + deadzone)
@@ -411,7 +433,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * Moves this VisualObject and its children to the stated coordinate
 	 * 
 	 * @param x
+	 * 			The x value to which to move.
 	 * @param y
+	 * 			The y value to which to move.
 	 */
 	public void moveTo(int x, int y) {
 		this.changeChildrenX(x - this.getX());
@@ -427,9 +451,13 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * width and height
 	 * 
 	 * @param x
+	 * 			The x value to move the object to.
 	 * @param y
+	 * 			The y value to move the object to.
 	 * @param width
+	 * 			The width to which to set the object.
 	 * @param height
+	 * 			The height to which to set the object.
 	 */
 	public void resizeTo(int x, int y, int width, int height) {
 		moveTo(x, y);

@@ -289,7 +289,16 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	}
 
 	/**
-	 * Checks if c is between a en b
+	 * Checks if c is between a and b
+	 * 
+	 * @param a
+	 * 			The lower bound
+	 * @param b
+	 * 			The upper bound
+	 * @param c
+	 * 			The value to check
+	 * 
+	 * @return wheter or not c is between a and b.
 	 */
 	final static boolean isBetween(int a, int b, int c) {
 		return a <= c && b >= c;
@@ -457,6 +466,8 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 * 
 	 * @param c
 	 *            the child to be removed
+	 * 
+	 * @return Whether or not the child was removed
 	 */
 	public final boolean removeChild(VisualObject<?> c) {
 		if (this.children.remove(c)) {
@@ -685,9 +696,10 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 
 	/**
 	 * The decouple visitor
-	 * @param 	visitor
-	 * 			the visitor that needs to be visited
-	 * @return	the decoupler associated to this object
+	 * 
+	 * @param visitor
+	 *            the visitor that needs to be visited
+	 * @return the decoupler associated to this object
 	 */
 	public abstract Decoupler decoupleVisitor(CoupleVisitor visitor);
 

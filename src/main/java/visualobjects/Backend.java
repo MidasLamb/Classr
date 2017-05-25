@@ -277,7 +277,7 @@ public class Backend {
 	/**
 	 * Get the HashMap with LogicalObjects and corresponding Forms
 	 * 
-	 * @return
+	 * @return HashMap with LogicalObjects and corresponding Forms
 	 */
 	private static final HashMap<LogicalObject, ContentBox> getFormsMap() {
 		return formsMap;
