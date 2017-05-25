@@ -24,8 +24,10 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 	 * 
 	 * @param parameter
 	 *            Parameter for which the Form is to be created
-	 * @param window
-	 *            MyCanvasWindow where the Form needs to be drawn
+	 * @param formContainer
+	 *            the container for the created form
+	 * @param controller
+	 *            the Controller to execute the commands
 	 */
 	public MethodParameterFormBuilder(Parameter parameter, FormContainer<?> formContainer, Controller controller) {
 		this.formContainer = formContainer;

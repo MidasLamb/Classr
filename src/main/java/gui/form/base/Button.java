@@ -22,10 +22,15 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	 * Create a new Button and set its text, coordinates and dimensions.
 	 * 
 	 * @param text
+	 *            the text to be displayed in the Button
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public Button(String text, int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -37,6 +42,8 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	 * Enable or disable the Button
 	 * 
 	 * @param bool
+	 *            boolean to indicate whether Button needs to be enabled or
+	 *            disabled
 	 */
 	public void setEnabled(boolean bool) {
 		if (bool)

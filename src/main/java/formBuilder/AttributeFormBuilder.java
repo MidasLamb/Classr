@@ -31,10 +31,10 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	 * 
 	 * @param attribute
 	 *            Attribute for which a Form must be created
-	 * @param window
-	 *            MyCanvasWindow where the Form needs to be drawn
-	 * @param isNew
-	 *            indicates whether this is a newly created attribute
+	 * @param formContainer
+	 *            the container for the created form
+	 * @param controller
+	 *            the Controller to execute the commands
 	 */
 	public AttributeFormBuilder(Attribute attribute, FormContainer<FormWrapper> formContainer, Controller controller) {
 		this.attribute = attribute;

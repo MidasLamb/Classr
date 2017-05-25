@@ -89,7 +89,7 @@ public class LogicalClass extends LogicalObject {
 	 * Deletes a given child, being a logical object, from the appropriate list
 	 * of logical objects.
 	 * 
-	 * @param object
+	 * @param child
 	 *            The logical object to be deleted
 	 * @throws NoSuchElementException
 	 *             The logical object is not present
@@ -199,7 +199,7 @@ public class LogicalClass extends LogicalObject {
 	/**
 	 * Sets the collection of Methods belonging to this RealClass
 	 * 
-	 * @param attributes
+	 * @param methods
 	 *            the collection of Methods to be set
 	 */
 	private void setMethods(ArrayList<Method> methods) {
@@ -218,7 +218,7 @@ public class LogicalClass extends LogicalObject {
 	/**
 	 * Sets the collection of Associations belonging to this RealClass
 	 * 
-	 * @param attributes
+	 * @param associations
 	 *            the collection of Associations to be set
 	 */
 	private void setAssociations(HashSet<Association> associations) {

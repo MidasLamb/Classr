@@ -96,6 +96,7 @@ public class Form implements Typable, Clickable {
 	 * Handle an ASCII keystroke.
 	 * 
 	 * @param key
+	 *            AsciiKey to handle
 	 */
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
@@ -107,6 +108,7 @@ public class Form implements Typable, Clickable {
 	 * Handle a function keystroke.
 	 * 
 	 * @param key
+	 *            FunctionKey to handle
 	 */
 	@Override
 	public void handleFunctionKey(FunctionKey key) {

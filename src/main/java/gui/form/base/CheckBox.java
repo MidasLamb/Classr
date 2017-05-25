@@ -22,9 +22,13 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 	 * Create a new CheckBox and set its coordinates and dimensions.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public CheckBox(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -36,7 +40,9 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 	 * dimensions.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 */
 	public CheckBox(int x, int y) {
 		this(x, y, STANDARD_CHECKBOX_WIDTH, STANDARD_CHECKBOX_HEIGHT);
@@ -149,6 +155,7 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 	 * Set this CheckBox as checked or unchecked.
 	 * 
 	 * @param b
+	 *            boolean indicating whether b should be checked or not
 	 */
 	public void setChecked(boolean b) {
 		if (b)

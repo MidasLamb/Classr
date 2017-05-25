@@ -254,7 +254,7 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	@Override
 	public void onDragUpdate(Drag drag) {
 		getContainer().bringToFront(this);
-		
+
 		if (!this.isBeingMoved())
 			handleResize(drag);
 		if (!this.isBeingResized())
@@ -302,8 +302,8 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	/**
 	 * Changes this objects children's y relatively.
 	 * 
-	 * @param The
-	 *            amount of y to change.
+	 * @param y
+	 *            the amount of y to change.
 	 */
 	private void changeChildrenY(int y) {
 		for (VisualObject<?> v : this.getChildren()) {

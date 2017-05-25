@@ -22,8 +22,8 @@ public class FormWrapper extends Form implements CanvasContent {
 	 *            the width of the form
 	 * @param height
 	 *            the heigth of the form
-	 * @param canvasWindow
-	 *            the canvas window in which the form needs to be displayed
+	 * @param formContainer
+	 *            the container for this form
 	 */
 	public FormWrapper(int width, int height, FormContainer<?> formContainer) {
 		super(width, height);
@@ -59,9 +59,9 @@ public class FormWrapper extends Form implements CanvasContent {
 	}
 
 	/**
-	 * Returns the CanvasWindow.
+	 * Returns the FormContainer
 	 * 
-	 * @return
+	 * @return formContainer
 	 */
 	public FormContainer<?> getFormContainer() {
 		return this.formContainer;

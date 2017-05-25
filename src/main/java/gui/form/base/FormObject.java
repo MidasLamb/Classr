@@ -63,6 +63,7 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 * Draw this FormObject.
 	 * 
 	 * @param g
+	 *            the Graphics
 	 */
 	public abstract void draw(Graphics g);
 
@@ -91,7 +92,7 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 *            desired position of the label
 	 * @param text
 	 *            text that should be displayed by the label
-	 * @return
+	 * @return the created Label
 	 */
 	public Label createLabel(LabelPosition position, String text) {
 		int x = 0, y = 0;
@@ -183,7 +184,10 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 * Returns whether or not the coordinate at x,y is in this FormObject.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
+	 * @return true when the coordinates are in this FormObject, false otherwise
 	 */
 	public boolean isIn(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
@@ -192,6 +196,14 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 
 	/**
 	 * Checks if c is between a and b
+	 * 
+	 * @param a
+	 *            lower bound
+	 * @param b
+	 *            higher bound
+	 * @param c
+	 *            number to check
+	 * @return true when c is between a and b, false otherwise
 	 */
 	final static boolean isBetween(int a, int b, int c) {
 		return a <= c && b >= c;

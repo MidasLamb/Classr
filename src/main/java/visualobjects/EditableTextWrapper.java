@@ -163,8 +163,8 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	}
 
 	/**
-	 * Saves the currently displayed text to the logical object if the Regex is
-	 * satisfied and length is > 0.
+	 * Saves the currently displayed text to the logical object if the
+	 * conditions on the name of the logical object are satisfied.
 	 */
 	private void save() {
 

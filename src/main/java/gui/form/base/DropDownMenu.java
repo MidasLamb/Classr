@@ -35,7 +35,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	/**
 	 * Get the state of this DropDownMenu
 	 * 
-	 * @return
+	 * @return state of this DropDownMenu
 	 */
 	DropDownMenuState getState() {
 		return state;
@@ -69,6 +69,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	 * Adds a MenuItem to its list of MenuItems.
 	 * 
 	 * @param item
+	 *            MenuItem to add to the list of MenuItems
 	 */
 	public void addMenuItem(MenuItem item) {
 		this.addElement(item);
@@ -78,6 +79,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	 * Deletes a MenuItem from its list of MenuItems.
 	 * 
 	 * @param item
+	 *            MenuItem to delete
 	 */
 	void deleteMenuItem(MenuItem item) {
 		this.removeElement(item);
@@ -94,6 +96,8 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	 * Enable or disable this DropDownMenu
 	 * 
 	 * @param enabled
+	 *            boolean that indicates whether the DropDownMenu needs to be
+	 *            enabled
 	 */
 	private void setEnabled(boolean enabled) {
 		this.enabled = enabled;

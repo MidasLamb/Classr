@@ -33,7 +33,7 @@ public class DeleteChildVisitor implements LogicalObjectVisitor<Void> {
 	/**
 	 * Removes a Method correctly
 	 * 
-	 * @param Method
+	 * @param method
 	 *            the Method to remove
 	 */
 	@Override

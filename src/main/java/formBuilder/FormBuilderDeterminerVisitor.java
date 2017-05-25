@@ -25,10 +25,13 @@ public class FormBuilderDeterminerVisitor implements LogicalObjectVisitor<Void> 
 	 * 
 	 * @param o
 	 *            LogicalObject for which a Form needs to be created
-	 * @param window
-	 *            MyCanvasWindow where the Form needs to be drawn
+	 * @param formContainer
+	 *            the container for the created form
+	 * @param controller
+	 *            the Controller to execute the commands
 	 */
-	public FormBuilderDeterminerVisitor(LogicalObject o, FormContainer<FormWrapper> formContainer, Controller controller) {
+	public FormBuilderDeterminerVisitor(LogicalObject o, FormContainer<FormWrapper> formContainer,
+			Controller controller) {
 		this.formContainer = formContainer;
 		this.controller = controller;
 		this.startVisit(o);

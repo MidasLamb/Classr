@@ -657,7 +657,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	/**
 	 * Sets the forced color
 	 * 
-	 * @param forced
+	 * @param forcedColor
 	 *            Color the forced color
 	 */
 	private void setForcedColor(Color forcedColor) {

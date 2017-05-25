@@ -7,7 +7,7 @@ public interface UpdateListener {
 	/**
 	 * Called when subject is updated.
 	 * 
-	 * @param subject
+	 * @param updateSubject
 	 *            the subject that is updated
 	 */
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject);
