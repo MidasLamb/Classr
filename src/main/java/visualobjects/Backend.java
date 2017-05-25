@@ -9,7 +9,7 @@ import command.CreateAttributeCommand;
 import command.CreateClassCommand;
 import command.CreateMethodCommand;
 import command.DeleteVisualObjectCommand;
-import formBuilder.FormCreator;
+import formBuilder.FormBuilderDeterminerVisitor;
 import formBuilder.MethodParameterFormBuilder;
 import guiToApplication.FormWrapper;
 import interfaces.DeleteListener;
@@ -292,7 +292,7 @@ public class Backend {
 		LogicalObject logicalObject = getContainer().getSelected().getLogicalObject();
 		if (!getFormsMap().containsKey(logicalObject)) {
 			ContentBox b = new ContentBox(100, 100, 1, 300, 300, getContainer(), getController(), "Dialog Box");
-			FormWrapper formWrapper = new FormCreator(logicalObject, b, getController()).getForm();
+			FormWrapper formWrapper = new FormBuilderDeterminerVisitor(logicalObject, b, getController()).getForm();
 			b.setContent(formWrapper);
 			logicalObject.addDeleteListener(b);
 			getFormsMap().put(logicalObject, b);
