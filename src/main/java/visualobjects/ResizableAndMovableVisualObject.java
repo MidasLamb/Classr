@@ -139,6 +139,16 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 		this.setBeingMoved(false);
 	}
 
+	/**
+	 * Indicates whether the coordinate is in the area to move the VisualObject
+	 * 
+	 * @param x
+	 *            x-coordinate
+	 * @param y
+	 *            y-coordinate
+	 * @return true if the coordinate is in the area to move the VisualObject,
+	 *         false otherwise
+	 */
 	protected abstract boolean isInMoveActivator(int x, int y);
 
 	private void handleResize(Drag drag) {
@@ -258,8 +268,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	/**
 	 * Changes this x position relatively.
+	 * 
 	 * @param x
-	 * 			The amount of x to change.
+	 *            The amount of x to change.
 	 */
 	private void changeX(int x) {
 		this.setX(this.getX() + x);
@@ -267,8 +278,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	/**
 	 * Changes this y position relatively.
+	 * 
 	 * @param y
-	 * 			The amount of y to change.
+	 *            The amount of y to change.
 	 */
 	private void changeY(int y) {
 		this.setY(this.getY() + y);
@@ -276,8 +288,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	/**
 	 * Changes this objects children's x relatively.
+	 * 
 	 * @param x
-	 * 			The amount of x to change.
+	 *            The amount of x to change.
 	 */
 	private void changeChildrenX(int x) {
 		for (VisualObject<?> v : this.getChildren()) {
@@ -287,8 +300,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	/**
 	 * Changes this objects children's y relatively.
-	 * @param 
-	 * 			The amount of y to change.
+	 * 
+	 * @param The
+	 *            amount of y to change.
 	 */
 	private void changeChildrenY(int y) {
 		for (VisualObject<?> v : this.getChildren()) {
@@ -483,6 +497,7 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	/**
 	 * Returns the update Listeners
+	 * 
 	 * @return the update Listeners
 	 */
 	private final Collection<UpdateListener> getUpdateListeners() {
@@ -491,8 +506,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 
 	/**
 	 * Sets the update listeners
-	 * @param 	updateListeners
-	 * 			the new update listeners
+	 * 
+	 * @param updateListeners
+	 *            the new update listeners
 	 */
 	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
 		this.updateListeners = updateListeners;

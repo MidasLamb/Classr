@@ -10,6 +10,7 @@ import gui.inputHandlers.clicks.SingleClick;
 import logicalobjects.LogicalVoid;
 
 /**
+ * Wrapper for FormObject to display them as VisualObject
  *
  * @param <T>
  */
@@ -22,10 +23,19 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject<Logica
 		setFormObject(fo);
 	}
 
+	/**
+	 * @return formObject
+	 */
 	private final T getFormObject() {
 		return fo;
 	}
 
+	/**
+	 * Set the FormObject of this FormObjectWrapper
+	 * 
+	 * @param fo
+	 *            FormObject to set
+	 */
 	private final void setFormObject(T fo) {
 		this.fo = fo;
 	}
@@ -45,7 +55,7 @@ public class FormObjectWrapper<T extends FormObject> extends VisualObject<Logica
 		T f = this.getFormObject();
 		f.onClick(click);
 	}
-	
+
 	@Override
 	boolean isIn(int x, int y) {
 		return fo.isIn(x - this.getX(), y - this.getY());

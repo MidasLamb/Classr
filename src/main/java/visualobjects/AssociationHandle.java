@@ -46,12 +46,13 @@ public class AssociationHandle extends VisualObject<LogicalVoid> {
 	 *            The other visualClass to which the link needs to be made
 	 */
 	private void createAssociation(VisualClass other) {
-		CreateAssociationCommand command = new CreateAssociationCommand(getParent(), other, getContainer(), getController());
+		CreateAssociationCommand command = new CreateAssociationCommand(getParent(), other, getContainer(),
+				getController());
 		getController().executeCommand(command);
 	}
-	
+
 	@Override
-	public VisualClass getParent(){
+	public VisualClass getParent() {
 		return parent;
 	}
 

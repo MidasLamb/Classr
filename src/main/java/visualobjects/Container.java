@@ -22,6 +22,9 @@ import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 import interfaces.CanvasContent;
 import logicalobjects.LogicalVoid;
 
+/**
+ * Container for VisualObjects
+ */
 public class Container extends VisualObject<LogicalVoid> implements CanvasContent {
 	private VisualObject<?> selected;
 	private Collection<VisualObject<?>> prior;
@@ -50,24 +53,32 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 		this.createMenuBar();
 
 	}
-	
+
+	/**
+	 * Create a MenuBar
+	 */
 	private void createMenuBar() {
 		int defaultHeight = 30;
 		int x = 0;
 		int y = 30;
 		MenuBarBuilder builder = new MenuBarBuilder(this.getWidth(), defaultHeight);
 		MenuBar menu = builder.getMenuBar();
-		FormObjectWrapper<MenuBar> bar = new FormObjectWrapper<MenuBar>(menu, x, y, Integer.MAX_VALUE, this.getWidth(), defaultHeight, this, getController());
+		FormObjectWrapper<MenuBar> bar = new FormObjectWrapper<MenuBar>(menu, x, y, Integer.MAX_VALUE, this.getWidth(),
+				defaultHeight, this, getController());
 		addToPrior(bar);
 	}
-	
+
+	/**
+	 * Create a ToolBar
+	 */
 	private void createToolBar() {
 		int defaultHeight = 30;
 		int x = 0;
 		int y = 0;
 		ToolBarBuilder builder = new ToolBarBuilder(this.getWidth(), defaultHeight);
 		MenuBar toolbar = builder.getMenuBar();
-		FormObjectWrapper<MenuBar> bar = new FormObjectWrapper<>(toolbar, x, y, Integer.MAX_VALUE, this.getWidth(), defaultHeight, this, getController());
+		FormObjectWrapper<MenuBar> bar = new FormObjectWrapper<>(toolbar, x, y, Integer.MAX_VALUE, this.getWidth(),
+				defaultHeight, this, getController());
 		addToPrior(bar);
 	}
 
@@ -262,19 +273,20 @@ public class Container extends VisualObject<LogicalVoid> implements CanvasConten
 	}
 
 	/**
-	 * @param prior the prior to set
+	 * @param prior
+	 *            the prior to set
 	 */
 	private final void setPrior(Collection<VisualObject<?>> prior) {
 		this.prior = prior;
 	}
-	
-	private final void addToPrior(VisualObject<?> prior){
+
+	private final void addToPrior(VisualObject<?> prior) {
 		getPrior().add(prior);
 	}
 
 	@Override
 	public void clearFocus() {
-		this.switchSelectedTo(null);	
+		this.switchSelectedTo(null);
 	}
 
 }
