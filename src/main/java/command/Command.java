@@ -5,7 +5,13 @@ package command;
  */
 public abstract class Command {
 
-	 abstract void execute();
-	 
-	 abstract void unexecute();
+	/**
+	 * Execute the command
+	 */
+	abstract void execute();
+
+	/**
+	 * Rollback the execution of the command
+	 */
+	abstract void unexecute();
 }

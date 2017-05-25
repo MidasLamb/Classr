@@ -10,15 +10,16 @@ public class ChangeLogicalObjectNameCommand extends Command {
 	private final LogicalObject logicalObject;
 	private final String newText;
 	private final String oldText;
-	
+
 	/**
 	 * Creates the command
-	 * @param 	logicalObject
-	 * 			the logical object from which the name needs to be changed
-	 * @param 	newName
-	 * 			the new name for the logical object
+	 * 
+	 * @param logicalObject
+	 *            the logical object from which the name needs to be changed
+	 * @param newName
+	 *            the new name for the logical object
 	 */
-	public ChangeLogicalObjectNameCommand(LogicalObject logicalObject, String newName){
+	public ChangeLogicalObjectNameCommand(LogicalObject logicalObject, String newName) {
 		this.logicalObject = logicalObject;
 		this.newText = newName;
 		this.oldText = logicalObject.getName();
@@ -43,6 +44,7 @@ public class ChangeLogicalObjectNameCommand extends Command {
 
 	/**
 	 * Returns the new text
+	 * 
 	 * @return the new text
 	 */
 	private String getNewText() {
@@ -51,6 +53,7 @@ public class ChangeLogicalObjectNameCommand extends Command {
 
 	/**
 	 * Returns the old text
+	 * 
 	 * @return the old text
 	 */
 	private String getOldText() {

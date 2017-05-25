@@ -15,20 +15,21 @@ public class AttributeDecoupler extends Decoupler {
 
 	@Override
 	public void decouple() {
-		if(!isDecoupled())
+		if (!isDecoupled())
 			getAttribute().getRealClass().deleteChild(getAttribute());
 		setDecoupled(true);
 	}
 
 	@Override
 	public void recouple() {
-		if(isDecoupled())
+		if (isDecoupled())
 			getAttribute().getRealClass().addAttribute(getAttribute());
 		setDecoupled(false);
 	}
 
 	/**
 	 * Returns the attribute that needs to be decoupled
+	 * 
 	 * @return the attribute that needs to be decoupled
 	 */
 	private Attribute getAttribute() {

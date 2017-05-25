@@ -35,12 +35,18 @@ public class ParameterWrapper implements Displayable {
 		return parameter;
 	}
 
+	/**
+	 * Set the Parameter of this ParameterWrapper
+	 * 
+	 * @param parameter
+	 *            Parameter to set
+	 */
 	private final void setParameter(Parameter parameter) {
 		this.parameter = parameter;
 	}
-	
+
 	@Override
-	public boolean equals(Object other){
+	public boolean equals(Object other) {
 		if (!(other instanceof ParameterWrapper))
 			return false;
 		ParameterWrapper op = (ParameterWrapper) other;
@@ -56,7 +62,5 @@ public class ParameterWrapper implements Displayable {
 	public int getWidth() {
 		return STANDARD_FONTMETRICS.stringWidth(getDisplayableString());
 	}
-	
-	
 
 }

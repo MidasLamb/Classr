@@ -15,11 +15,11 @@ import logicalobjects.Parameter;
 /**
  * A visitor to create the Form for the corresponding logical object.
  */
-public class FormCreator implements LogicalObjectVisitor<Void> {
+public class FormBuilderDeterminerVisitor implements LogicalObjectVisitor<Void> {
 	private FormBuilder<FormWrapper> formBuilder;
 	private final FormContainer<FormWrapper> formContainer;
 	private final Controller controller;
-	
+
 	/**
 	 * Creates a new FormCreator
 	 * 
@@ -28,7 +28,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 	 * @param window
 	 *            MyCanvasWindow where the Form needs to be drawn
 	 */
-	public FormCreator(LogicalObject o, FormContainer<FormWrapper> formContainer, Controller controller) {
+	public FormBuilderDeterminerVisitor(LogicalObject o, FormContainer<FormWrapper> formContainer, Controller controller) {
 		this.formContainer = formContainer;
 		this.controller = controller;
 		this.startVisit(o);
@@ -60,6 +60,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	/**
 	 * To get the current form builder
+	 * 
 	 * @return the current form builder
 	 */
 	private FormBuilder<FormWrapper> getFormBuilder() {
@@ -68,8 +69,9 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	/**
 	 * Sets the current form builder
-	 * @param 	formBuilder
-	 * 			the new form builder
+	 * 
+	 * @param formBuilder
+	 *            the new form builder
 	 */
 	private void setFormBuilder(FormBuilder<FormWrapper> formBuilder) {
 		this.formBuilder = formBuilder;
@@ -77,6 +79,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	/**
 	 * Returns the current form container
+	 * 
 	 * @return the form container
 	 */
 	private FormContainer<FormWrapper> getFormContainer() {
@@ -85,6 +88,7 @@ public class FormCreator implements LogicalObjectVisitor<Void> {
 
 	/**
 	 * Get the FormWrapper of this FormCreator
+	 * 
 	 * @return FormWrapper of this FormCreator
 	 */
 	public FormWrapper getForm() {

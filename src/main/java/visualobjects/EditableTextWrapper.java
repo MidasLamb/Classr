@@ -32,6 +32,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		implements UpdateListener, UpdateSubject, Editable {
 	private Collection<UpdateListener> updateListeners;
 	private boolean wrongName;
+
 	/**
 	 * 
 	 * @param x
@@ -55,16 +56,15 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		this.setWrongName(false);
 	}
 
-	
 	@Override
 	public void draw(Graphics g) {
 		Color c = g.getColor();
-		if (this.isSelected() && (this.getTextObject().isEditable())|| this.isWrongName()) {
+		if (this.isSelected() && (this.getTextObject().isEditable()) || this.isWrongName()) {
 			if (!getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
 				g.setColor(Color.RED);
 			else
 				g.setColor(Color.BLACK);
-		} 
+		}
 		this.getTextObject().draw(g, this.getX(), this.getY());
 		g.setColor(c);
 	}
@@ -111,10 +111,10 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 				this.getTextObject().setAttributedText(getText());
 
 		} else {
-			
+
 		}
 	}
-	
+
 	@Override
 	int getWidth() {
 		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()),
@@ -185,8 +185,10 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-		this.getTextObject().setAttributedText(getText());
-		this.setWrongName(false);
+		if (updateSubject.equals(getLogicalObject())) {
+			this.getTextObject().setAttributedText(getText());
+			this.setWrongName(false);
+		}
 	}
 
 	@Override
@@ -233,11 +235,11 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 */
 	private final void makeEditable() {
 		this.getContainer().switchSelectedTo(this);
-		if (!this.isWrongName()){
+		if (!this.isWrongName()) {
 			this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
 		}
 		this.getTextObject().switchState(new EditableState());
-		
+
 	}
 
 	/**
@@ -265,7 +267,8 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	}
 
 	/**
-	 * @param wrongName the wrongName to set
+	 * @param wrongName
+	 *            the wrongName to set
 	 */
 	private final void setWrongName(boolean wrongName) {
 		this.wrongName = wrongName;

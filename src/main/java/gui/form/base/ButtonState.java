@@ -7,6 +7,16 @@ import gui.inputHandlers.clicks.MouseClick;
  */
 public abstract class ButtonState extends State {
 
+	/**
+	 * Method executed when clicked on this Button
+	 * 
+	 * @param click
+	 *            MouseClick containing details of the click
+	 */
 	abstract void onClick(MouseClick click);
-	abstract boolean isFocusable();	
+
+	/**
+	 * @return whether or not this button is focusable
+	 */
+	abstract boolean isFocusable();
 }

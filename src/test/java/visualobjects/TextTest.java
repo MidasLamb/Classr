@@ -19,7 +19,6 @@ public class TextTest {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
 		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c , r, new Controller());
-		assertEquals("", t.getCurrentDisplayedString());
 		t.setSelected(false);
 		assertEquals(DEFAULT_CLASS_NAME, t.getCurrentDisplayedString());
 	}

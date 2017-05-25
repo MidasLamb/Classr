@@ -119,10 +119,21 @@ public abstract class CheckBox extends FormObject implements FunctionTypable {
 		getState().draw(g);
 	}
 
+	/**
+	 * Get the state of this CheckBox
+	 * 
+	 * @return state
+	 */
 	private CheckBoxState getState() {
 		return state;
 	}
 
+	/**
+	 * Set the state of this CheckBox
+	 * 
+	 * @param state
+	 *            State to set
+	 */
 	private void setState(CheckBoxState state) {
 		this.state = state;
 	}

@@ -61,7 +61,6 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 				if (parameter.canHaveAsType(getText()) && !parameter.getType().equals(getText())) {
 					controller.executeCommand(new ChangeParameterTypeCommand(parameter, getText()));
 				}
-
 			}
 
 			@Override
@@ -72,14 +71,13 @@ public class MethodParameterFormBuilder extends FormBuilder<FormWrapper> {
 		};
 		this.addFormObject(parType);
 		this.addLabelToTopOfLastFormObject("Parameter type");
-		
+
 		parameter.addUpdateListener(new UpdateListener() {
-			
+
 			@Override
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 				parName.setText(parameter.getName());
 				parType.setText(parameter.getType());
-				
 			}
 		});
 	}

@@ -51,7 +51,8 @@ public class LogicalClass extends LogicalObject {
 		attr.addUpdateListener(new UpdateListener() {
 			@Override
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-				notifyUpdateListeners();
+				for (UpdateListener d : getUpdateListeners())
+					d.getNotifiedOfUpdate(updateSubject);
 			}
 		});
 		addAttribute(attr);
@@ -80,7 +81,8 @@ public class LogicalClass extends LogicalObject {
 		if (!this.attributes.remove(attribute)) {
 			throw new NoSuchElementException();
 		}
-		notifyUpdateListeners();
+		for (UpdateListener d : this.getUpdateListeners())
+			d.getNotifiedOfUpdate(attribute);
 	}
 
 	/**
@@ -108,7 +110,8 @@ public class LogicalClass extends LogicalObject {
 		method.addUpdateListener(new UpdateListener() {
 			@Override
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
-				notifyUpdateListeners();
+				for (UpdateListener d : getUpdateListeners())
+					d.getNotifiedOfUpdate(updateSubject);
 			}
 		});
 		addMethod(method);
@@ -137,7 +140,8 @@ public class LogicalClass extends LogicalObject {
 		if (!this.methods.remove(method)) {
 			throw new NoSuchElementException();
 		}
-		notifyUpdateListeners();
+		for (UpdateListener d : getUpdateListeners())
+			d.getNotifiedOfUpdate(method);
 	}
 
 	/**
