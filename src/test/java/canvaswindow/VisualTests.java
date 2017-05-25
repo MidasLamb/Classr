@@ -172,8 +172,8 @@ public class VisualTests {
 	}
 	
 	@Test 
-	public void decoupleTest() throws IOException { 
-		 String name = "decoupleTest"; 
+	public void decouplerTest() throws IOException { 
+		 String name = "decouplerTest"; 
 		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
 		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
 	}
