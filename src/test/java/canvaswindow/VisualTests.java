@@ -6,11 +6,14 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import logicalobjects.LogicalObject;
 import visualobjects.Backend;
+import visualobjects.ContentBox;
 
 public class VisualTests {
 	
@@ -40,6 +43,12 @@ public class VisualTests {
 			modifiersField.setAccessible(true);
 			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 			field.set(null, null);
+			final Field map = Backend.class.getDeclaredField("formsMap");
+			map.setAccessible(true);
+			final Field modifiersmapField = Field.class.getDeclaredField("modifiers");
+			modifiersmapField.setAccessible(true);
+			modifiersmapField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			map.set(null, new HashMap<LogicalObject, ContentBox>());
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
