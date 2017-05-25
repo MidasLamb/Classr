@@ -13,7 +13,7 @@ import canvaswindow.MyCanvasWindow;
 public class Recorder {
 
 	public static void main(String[] args) {
-		String testName = "createAttributeTest";
+		String testName = "autoresizeTest";
 		prepareDirectory(testName);
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		canvasWindow.recordSession("recordings/" + testName + "/recording");
