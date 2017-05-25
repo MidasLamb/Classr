@@ -13,7 +13,7 @@ public class RadioButtonGroup {
 	 * RadioButtonGroup.
 	 * 
 	 * @param button
-	 * 			The button which to set to be clicked.
+	 *            The button which to set to be clicked.
 	 */
 	void radioButtonIsClicked(RadioButton button) {
 		setSelectedButton(button);

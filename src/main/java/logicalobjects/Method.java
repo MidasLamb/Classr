@@ -1,7 +1,7 @@
 package logicalobjects;
 
+import static main.Constants.DEFAULT_METHOD_NAME;
 import static main.Constants.REGEX_START_NO_CAPITAL;
-import static main.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Collection;

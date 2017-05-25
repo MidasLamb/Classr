@@ -1,8 +1,8 @@
 package visualobjects;
 
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
-
-import static main.Constants.*;
+import static main.Constants.CLASS_WHITE_SPACE;
+import static main.Constants.CLASS_WIDTH;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -163,17 +163,17 @@ public class VisualClassTest {
 		MyCanvasWindow canvas = new MyCanvasWindow("test");
 		Container container = new Container(0, 0, 1000, 1000, canvas);
 		container.onDoubleClick(new DoubleClick(300, 300));
-		
+
 		VisualClass vc = null;
 		for (VisualObject v : container.getChildren()) {
 			if (v instanceof VisualClass)
 				vc = (VisualClass) v;
 		}
-		
+
 		while (!vc.getName().getContent().getCurrentDisplayedString().equals("")) {
 			container.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
-		
+
 		container.handleAsciiKey(new AsciiKey('a'));
 
 		String current = vc.getName().getContent().getCurrentDisplayedString();

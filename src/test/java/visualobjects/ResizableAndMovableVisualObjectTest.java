@@ -1,10 +1,11 @@
 package visualobjects;
 
-import static org.junit.Assert.*;
-import static main.Constants.*;
+import static main.Constants.CLASS_WIDTH;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import org.junit.Test;
 
-import canvaswindow.CanvasWindow;
 import canvaswindow.MyCanvasWindow;
 import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
@@ -38,7 +39,7 @@ public class ResizableAndMovableVisualObjectTest {
 				}
 			}
 		}
-		
+
 		assertEquals(2, vcCount);
 
 	}
@@ -58,12 +59,11 @@ public class ResizableAndMovableVisualObjectTest {
 			}
 		}
 		int startWidth = vc.getWidth();
-		
-		//Drag on side but not on name, so move down
+
+		// Drag on side but not on name, so move down
 		Drag drag1 = new Drag(100, 551, 100 - w, 551);
 		container.onDragUpdate(drag1);
 		container.onDragEnd(drag1);
-
 
 		assertEquals(startWidth + w, vc.getWidth());
 

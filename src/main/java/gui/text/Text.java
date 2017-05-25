@@ -84,7 +84,7 @@ public class Text implements Typable {
 	 * Deletes the last char of the current text
 	 */
 	public void deleteChar() {
-		if(getTextAsString().length() > 0){
+		if (getTextAsString().length() > 0) {
 			String newText = getTextAsString().substring(0, getTextAsString().length() - 1);
 			setAttributedText(new AttributedString(newText));
 		}

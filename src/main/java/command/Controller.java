@@ -98,7 +98,7 @@ public class Controller {
 	 * Sets the redo stack
 	 * 
 	 * @param redoStack
-	 * 			The Stack to which to set the redostack.
+	 *            The Stack to which to set the redostack.
 	 */
 	private void setRedoStack(Stack<Command> redoStack) {
 		this.redoStack = redoStack;

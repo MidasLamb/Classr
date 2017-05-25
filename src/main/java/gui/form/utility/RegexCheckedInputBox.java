@@ -101,7 +101,7 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 	/**
 	 * Sets the checkers
 	 * 
-	 * @param 	checkers
+	 * @param checkers
 	 *            the checkers that need to be used
 	 */
 	private final void setCheckers(Collection<Checker> checkers) {

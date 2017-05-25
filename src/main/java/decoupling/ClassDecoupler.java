@@ -1,8 +1,9 @@
 package decoupling;
 
+import static visualobjects.Backend.closeFormBelogingTo;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import static visualobjects.Backend.closeFormBelogingTo;
 
 import visualobjects.VisualAssociation;
 import visualobjects.VisualClass;

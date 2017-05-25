@@ -1,8 +1,9 @@
 package command;
 
+import static visualobjects.Backend.closeFormBelogingTo;
+
 import logicalobjects.Method;
 import logicalobjects.Parameter;
-import static visualobjects.Backend.closeFormBelogingTo;
 
 /**
  * A command to add a parameter to a method.

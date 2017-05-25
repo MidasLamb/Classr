@@ -1,7 +1,7 @@
 package logicalobjects;
 
+import static main.Constants.DEFAULT_ASS_NAME;
 import static main.Constants.REGEX_START_NO_CAPITAL;
-import static main.Constants.*;
 
 /**
  * A class of associations, involving two real classes

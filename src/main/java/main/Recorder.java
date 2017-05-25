@@ -41,14 +41,15 @@ public class Recorder {
 			return;
 		}
 	}
-	
-	private static void sysoutTest(String name){
+
+	private static void sysoutTest(String name) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("@Test \n");
 		builder.append("public void " + name + "() throws IOException { \n");
 		builder.append("\t String name = \"" + name + "\"; \n");
 		builder.append("\t MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); \n");
-		builder.append("\t assertTrue(MyCanvasWindow.replayRecording(\"recordings/\"+name+\"/recording\", canvasWindow)); \n");
+		builder.append(
+				"\t assertTrue(MyCanvasWindow.replayRecording(\"recordings/\"+name+\"/recording\", canvasWindow)); \n");
 		builder.append("}");
 		System.out.println(builder.toString());
 	}

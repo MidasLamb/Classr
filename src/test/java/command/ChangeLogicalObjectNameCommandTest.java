@@ -19,7 +19,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.executeCommand(c);
 		assertEquals("Nieuwe_naam", classe.getName());
 	}
-	
+
 	@Test
 	public void changeClassNameTest2() {
 		Controller controller = new Controller();
@@ -30,7 +30,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.undo();
 		assertEquals(oldName, classe.getName());
 	}
-	
+
 	@Test
 	public void changeClassNameTest3() {
 		Controller controller = new Controller();
@@ -41,7 +41,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.redo();
 		assertEquals("Nieuwe_naam", classe.getName());
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void changeClassNameTest4() {
 		Controller controller = new Controller();
@@ -49,7 +49,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		Command c = new ChangeLogicalObjectNameCommand(classe, "nieuwe_naam");
 		controller.executeCommand(c);
 	}
-	
+
 	@Test
 	public void changeClassNameTest5() {
 		Controller controller = new Controller();
@@ -61,7 +61,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.executeCommand(c2);
 		assertEquals("Nieuwe_naam2", classe2.getName());
 	}
-	
+
 	@Test
 	public void changeMethodeNameTest1() {
 		Controller controller = new Controller();
@@ -71,7 +71,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.executeCommand(c);
 		assertEquals("nieuwe_naam", method.getName());
 	}
-	
+
 	@Test
 	public void changeMethodeNameTest2() {
 		Controller controller = new Controller();
@@ -83,7 +83,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.undo();
 		assertEquals(oldName, method.getName());
 	}
-	
+
 	@Test
 	public void changeAttributeNameTest1() {
 		Controller controller = new Controller();
@@ -93,7 +93,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.executeCommand(c);
 		assertEquals("nieuwe_naam", attr.getName());
 	}
-	
+
 	@Test
 	public void changeAttributeNameTest2() {
 		Controller controller = new Controller();
@@ -105,7 +105,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.undo();
 		assertEquals(oldName, attr.getName());
 	}
-	
+
 	@Test
 	public void changeAssociationTest1() {
 		Controller controller = new Controller();
@@ -114,7 +114,7 @@ public class ChangeLogicalObjectNameCommandTest {
 		controller.executeCommand(c);
 		assertEquals("nieuwe_naam", ass.getName());
 	}
-	
+
 	@Test
 	public void changeAssociationTest2() {
 		Controller controller = new Controller();

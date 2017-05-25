@@ -1,6 +1,7 @@
 package logicalobjects;
 
-import static main.Constants.*;
+import static main.Constants.REGEX_ALPHANUMERIC_UNDERSCORE;
+
 import visibilities.Visibility;
 
 /**

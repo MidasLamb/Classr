@@ -29,7 +29,7 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 	 * @param parent
 	 *            The parent object of this VisualObject
 	 * @param controller
-	 * 				The controller for this object.
+	 *            The controller for this object.
 	 */
 	public VisualAssociation(VisualClass participant1, VisualClass participant2, VisualObject<?> parent,
 			Controller controller) {

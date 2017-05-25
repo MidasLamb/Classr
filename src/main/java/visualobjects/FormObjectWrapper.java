@@ -12,7 +12,8 @@ import logicalobjects.LogicalVoid;
 /**
  * Wrapper for FormObject to display them as VisualObject
  *
- * @param <T> The formobject class which to wrap.
+ * @param <T>
+ *            The formobject class which to wrap.
  */
 public class FormObjectWrapper<T extends FormObject> extends VisualObject<LogicalVoid> {
 	T fo;

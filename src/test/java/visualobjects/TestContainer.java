@@ -7,26 +7,26 @@ import gui.inputHandlers.clicks.SingleClick;
 
 public class TestContainer extends Container {
 	public TestContainer() {
-		super(0,0,100,100, new MyCanvasWindow("test"));
+		super(0, 0, 100, 100, new MyCanvasWindow("test"));
 	}
-	
+
 	@Override
-	public void onClick(SingleClick sc){
+	public void onClick(SingleClick sc) {
 		amountRecievedClicks++;
 		recievedSingleClick = true;
 	}
-	
+
 	@Override
-	public void onDoubleClick(DoubleClick dc){
+	public void onDoubleClick(DoubleClick dc) {
 		amountRecievedClicks++;
 		recievedDoubleClick = true;
 	}
-	
+
 	@Override
-	public void onDragEnd(Drag d){
+	public void onDragEnd(Drag d) {
 		isDragged = true;
 	}
-	
+
 	public int amountRecievedClicks;
 	public boolean recievedSingleClick;
 	public boolean recievedDoubleClick;

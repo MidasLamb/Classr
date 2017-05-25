@@ -19,7 +19,7 @@ public class DefaultCheckBoxTest {
 		form.handleClick(new MouseClick(0, 0));
 		assertTrue(box.isChecked());
 	}
-	
+
 	@Test
 	public void checkBoxTest2() {
 		Form form = new Form(100, 100);
@@ -28,7 +28,7 @@ public class DefaultCheckBoxTest {
 		form.handleClick(new MouseClick(50, 50));
 		assertFalse(box.isChecked());
 	}
-	
+
 	@Test
 	public void checkBoxTest3() {
 		Form form = new Form(100, 100);
@@ -40,7 +40,7 @@ public class DefaultCheckBoxTest {
 		assertTrue(box1.isChecked());
 		assertFalse(box2.isChecked());
 	}
-	
+
 	@Test
 	public void checkBoxTest5() {
 		Form form = new Form(100, 100);
@@ -52,7 +52,7 @@ public class DefaultCheckBoxTest {
 		assertTrue(box1.isChecked());
 		assertFalse(box2.isChecked());
 	}
-	
+
 	@Test
 	public void checkBoxTest6() {
 		Form form = new Form(100, 100);
@@ -64,7 +64,7 @@ public class DefaultCheckBoxTest {
 		assertTrue(box1.isChecked());
 		assertTrue(box2.isChecked());
 	}
-	
+
 	@Test
 	public void checkBoxTest7() {
 		Form form = new Form(100, 100);
@@ -76,7 +76,7 @@ public class DefaultCheckBoxTest {
 		assertFalse(box1.isChecked());
 		assertTrue(box2.isChecked());
 	}
-	
+
 	@Test
 	public void checkBoxTest8() {
 		Form form = new Form(100, 100);

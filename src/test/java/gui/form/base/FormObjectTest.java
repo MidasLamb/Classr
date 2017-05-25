@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import org.junit.Before;
 import org.junit.Test;
 
-import gui.form.base.FormObject;
 import gui.inputHandlers.clicks.MouseClick;
 
 public class FormObjectTest {
@@ -24,8 +23,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -48,13 +46,12 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
 			protected void onAction() {
-				
+
 			}
 		};
 		dummy.handleClick(new MouseClick(15, 0));
@@ -72,8 +69,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -95,8 +91,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -118,8 +113,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -142,8 +136,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -166,8 +159,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -190,8 +182,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -214,8 +205,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -238,8 +228,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override
@@ -262,8 +251,7 @@ public class FormObjectTest {
 			}
 
 			@Override
-			public
-			void draw(Graphics g) {
+			public void draw(Graphics g) {
 			}
 
 			@Override

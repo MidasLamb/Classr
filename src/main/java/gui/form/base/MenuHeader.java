@@ -41,6 +41,7 @@ public class MenuHeader extends Button {
 
 	/**
 	 * @param dropDownMenu
+	 *            DropDownMenu to be set
 	 */
 	private void setDropDownMenu(DropDownMenu<MenuItem> dropDownMenu) {
 		this.dropDownMenu = dropDownMenu;

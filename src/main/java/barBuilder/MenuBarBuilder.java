@@ -16,9 +16,9 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 	 * Constructs a MenuBarBuilder with the stated width and height
 	 * 
 	 * @param width
-	 * 			The width of the menubar to build.
+	 *            The width of the menubar to build.
 	 * @param height
-	 * 			the height of the menubar to build.
+	 *            the height of the menubar to build.
 	 */
 	public MenuBarBuilder(int width, int height) {
 		this.width = width;

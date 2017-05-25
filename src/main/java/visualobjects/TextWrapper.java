@@ -25,18 +25,18 @@ public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 
 	/**
 	 * 
-	 * @param 	x
-	 * 			the x-coordinate
-	 * @param 	y
-	 * 			the y-coordinate
-	 * @param 	z
-	 * 			the z-coordinate
-	 * @param 	parent
-	 * 			the parent of this visualObject
-	 * @param 	object
-	 * 			the corresponding logicalObject
+	 * @param x
+	 *            the x-coordinate
+	 * @param y
+	 *            the y-coordinate
+	 * @param z
+	 *            the z-coordinate
+	 * @param parent
+	 *            the parent of this visualObject
+	 * @param object
+	 *            the corresponding logicalObject
 	 * @param controller
-	 * 			the controller for this object.
+	 *            the controller for this object.
 	 */
 	public TextWrapper(int x, int y, int z, VisualObject<?> parent, T object, Controller controller) {
 		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent, controller);
@@ -48,59 +48,60 @@ public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 	 * Shows the text frame
 	 */
 	@Override
-	public void draw(Graphics g) {	
-		// Other things can change the logical object, so check if it has changed.
+	public void draw(Graphics g) {
+		// Other things can change the logical object, so check if it has
+		// changed.
 		this.getTextObject().setAttributedText(getText());
 		this.getTextObject().draw(g, this.getX(), this.getY());
 	}
-	
+
 	/**
 	 * @return Returns the text of the Logical Object
 	 */
-	protected AttributedString getText(){
+	protected AttributedString getText() {
 		StringVisitor strVis = new StringVisitor();
 		return strVis.startVisit(this.getLogicalObject());
 	}
-	
+
 	/**
 	 * @return the text inside the wrapper
 	 */
-	protected String getString(){
+	protected String getString() {
 		StringBuilder string = new StringBuilder();
 		StringVisitor strVis = new StringVisitor();
 		AttributedCharacterIterator itr = strVis.startVisit(getLogicalObject()).getIterator();
 		string.append(itr.current());
 		while (itr.getIndex() < itr.getEndIndex())
-		        string.append(itr.next());
-		if(string.length() > 0)
-			string.delete(string.length()-1, string.length());
+			string.append(itr.next());
+		if (string.length() > 0)
+			string.delete(string.length() - 1, string.length());
 		return string.toString().replaceAll("#", "");
 	}
-	
+
 	@Override
-	void onClick(SingleClick sc){
+	void onClick(SingleClick sc) {
 		this.getContainer().switchSelectedTo(this);
 	}
 
 	@Override
-	void onDoubleClick(DoubleClick sc){
+	void onDoubleClick(DoubleClick sc) {
 		openForm();
 	}
-	
+
 	/**
 	 * Opens the form to edit this text
 	 */
-	public final void openForm(){
+	public final void openForm() {
 		Backend.editTripleDot();
 	}
-	
+
 	@Override
-	int getWidth(){
+	int getWidth() {
 		return STANDARD_FONTMETRICS.stringWidth(getString());
 	}
-	
+
 	@Override
-	int getHeight(){
+	int getHeight() {
 		return STANDARD_TEXT_HEIGHT;
 	}
 
@@ -114,8 +115,9 @@ public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 
 	/**
 	 * Sets the textObject
-	 * @param 	textObject
-	 * 			The new textObject
+	 * 
+	 * @param textObject
+	 *            The new textObject
 	 */
 	protected final void setTextObject(Text textObject) {
 		this.textObject = textObject;

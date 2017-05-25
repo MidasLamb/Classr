@@ -16,9 +16,9 @@ import visualobjects.Backend;
 import visualobjects.ContentBox;
 
 public class VisualTests {
-	
+
 	@Before
-	public void init(){
+	public void init() {
 		try {
 			final Field field = Backend.class.getDeclaredField("container");
 			field.setAccessible(true);
@@ -35,7 +35,7 @@ public class VisualTests {
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			final Field field = Backend.class.getDeclaredField("controller");
 			field.setAccessible(true);
@@ -59,132 +59,132 @@ public class VisualTests {
 			e.printStackTrace();
 		}
 	}
-	
-	@Test 
-	public void reopenForms() throws IOException { 
-		 String name = "reopenForms"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
-	}
-	
-	@Test 
-	public void autoresizeTest() throws IOException { 
-		 String name = "autoresizeTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
-	}
-	
-	@Test 
-	public void faultyNameOverwriteTest() throws IOException { 
-		 String name = "faultyNameOverwriteTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
-	}
-	
-	@Test 
-	public void barTest() throws IOException { 
-		 String name = "barTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void reopenForms() throws IOException {
+		String name = "reopenForms";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
 
-	@Test 
-	public void resizeContentBoxTest() throws IOException { 
-		 String name = "resizeContentBoxTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
-		 
+	@Test
+	public void autoresizeTest() throws IOException {
+		String name = "autoresizeTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
+
+	@Test
+	public void faultyNameOverwriteTest() throws IOException {
+		String name = "faultyNameOverwriteTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
+	}
+
+	@Test
+	public void barTest() throws IOException {
+		String name = "barTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
+	}
+
+	@Test
+	public void resizeContentBoxTest() throws IOException {
+		String name = "resizeContentBoxTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
+
+	}
+
 	@Test
 	public void moveClassAndContentBoxTest() throws IOException {
 		String name = "moveClassAndContentBoxTest";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
+
 	@Test
 	public void resizeClassTest() throws IOException {
 		String name = "resizeClassTest";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void createMethodTest() throws IOException { 
-		 String name = "createMethodTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void createMethodTest() throws IOException {
+		String name = "createMethodTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void createAttributeTest() throws IOException { 
-		 String name = "createAttributeTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void createAttributeTest() throws IOException {
+		String name = "createAttributeTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void openMethodFormTest() throws IOException { 
-		 String name = "openMethodFormTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void openMethodFormTest() throws IOException {
+		String name = "openMethodFormTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void openAttributeFormTest() throws IOException { 
-		 String name = "openAttributeFormTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void openAttributeFormTest() throws IOException {
+		String name = "openAttributeFormTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void attributeFormTest1() throws IOException { 
-		 String name = "attributeFormTest1"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void attributeFormTest1() throws IOException {
+		String name = "attributeFormTest1";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void methodFormTest1() throws IOException { 
-		 String name = "methodFormTest1"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void methodFormTest1() throws IOException {
+		String name = "methodFormTest1";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void methodParameterTest1() throws IOException { 
-		 String name = "methodParameterTest1"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void methodParameterTest1() throws IOException {
+		String name = "methodParameterTest1";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void createAssociationTest() throws IOException { 
-		 String name = "createAssociationTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void createAssociationTest() throws IOException {
+		String name = "createAssociationTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void associationDeleteClassTest() throws IOException { 
-		 String name = "associationDeleteClassTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void associationDeleteClassTest() throws IOException {
+		String name = "associationDeleteClassTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void associationDeleteMiddleClassTest() throws IOException { 
-		 String name = "associationDeleteMiddleClassTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void associationDeleteMiddleClassTest() throws IOException {
+		String name = "associationDeleteMiddleClassTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
-	@Test 
-	public void decouplerTest() throws IOException { 
-		 String name = "decouplerTest"; 
-		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
-		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+
+	@Test
+	public void decouplerTest() throws IOException {
+		String name = "decouplerTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/" + name + "/recording", canvasWindow));
 	}
-	
+
 }

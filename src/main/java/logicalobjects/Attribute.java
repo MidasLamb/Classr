@@ -1,6 +1,7 @@
 package logicalobjects;
 
-import static main.Constants.*;
+import static main.Constants.DEFAULT_ATTRIBUTE_NAME;
+import static main.Constants.REGEX_START_NO_CAPITAL;
 
 /**
  * A class of attributes, involving a real class.

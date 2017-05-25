@@ -7,7 +7,8 @@ import gui.form.base.MenuItem;
 /**
  * A class that builds a MenuBar
  * 
- * @param <T> The class of which menubar to build.
+ * @param <T>
+ *            The class of which menubar to build.
  */
 public abstract class BarBuilder<T extends MenuBar> {
 

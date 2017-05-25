@@ -1,5 +1,8 @@
 package canvaswindow;
 
+import static main.Constants.CONTAINER_HEIGHT;
+import static main.Constants.CONTAINER_WIDTH;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -26,7 +29,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import main.VisualTestUpdater;
-import static main.Constants.*;
 
 /**
  * A window for custom drawing.

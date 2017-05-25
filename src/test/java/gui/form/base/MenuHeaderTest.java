@@ -4,13 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class MenuHeaderTest {	
-	
-	private MenuItem itemDummy(){
-		MenuItem item = new MenuItem("BBB", 0){
+public class MenuHeaderTest {
+
+	private MenuItem itemDummy() {
+		MenuItem item = new MenuItem("BBB", 0) {
 			@Override
 			protected void onAction() {
-				
+
 				System.out.println("BBB");
 			}
 		};

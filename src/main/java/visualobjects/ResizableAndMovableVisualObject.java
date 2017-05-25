@@ -15,7 +15,8 @@ import logicalobjects.LogicalObject;
 /**
  * A class of VisualObjects that are resizable and movable
  *
- * @param <T> The logical object class which will be linked to the object.
+ * @param <T>
+ *            The logical object class which will be linked to the object.
  */
 public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> extends VisualObject<T>
 		implements UpdateListener, UpdateSubject {
@@ -45,19 +46,19 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * coordinates, width, height, parent VisualObject and Controller
 	 * 
 	 * @param x
-	 * 			The x coordinate for this object.
+	 *            The x coordinate for this object.
 	 * @param y
-	 * 			the y coordinate for this object.
+	 *            the y coordinate for this object.
 	 * @param z
-	 * 			the z coordinate for this object.
+	 *            the z coordinate for this object.
 	 * @param width
-	 * 			the width for this object.
+	 *            the width for this object.
 	 * @param height
-	 * 			the height for this object.
+	 *            the height for this object.
 	 * @param parent
-	 * 			the parent for this object.
+	 *            the parent for this object.
 	 * @param controller
-	 * 			the controller for this object.
+	 *            the controller for this object.
 	 */
 	public ResizableAndMovableVisualObject(int x, int y, int z, int width, int height, VisualObject<?> parent,
 			Controller controller) {
@@ -433,9 +434,9 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * Moves this VisualObject and its children to the stated coordinate
 	 * 
 	 * @param x
-	 * 			The x value to which to move.
+	 *            The x value to which to move.
 	 * @param y
-	 * 			The y value to which to move.
+	 *            The y value to which to move.
 	 */
 	public void moveTo(int x, int y) {
 		this.changeChildrenX(x - this.getX());
@@ -451,13 +452,13 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	 * width and height
 	 * 
 	 * @param x
-	 * 			The x value to move the object to.
+	 *            The x value to move the object to.
 	 * @param y
-	 * 			The y value to move the object to.
+	 *            The y value to move the object to.
 	 * @param width
-	 * 			The width to which to set the object.
+	 *            The width to which to set the object.
 	 * @param height
-	 * 			The height to which to set the object.
+	 *            The height to which to set the object.
 	 */
 	public void resizeTo(int x, int y, int width, int height) {
 		moveTo(x, y);

@@ -1,13 +1,15 @@
 package gui.inputHandlers;
 
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.CTRL_Y;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.CTRL_Z;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.DELETE;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.DOWN;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.ENTER;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.ESCAPE;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.LEFT;
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.RIGHT;
-import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.*;
+import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.UP;
 
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;

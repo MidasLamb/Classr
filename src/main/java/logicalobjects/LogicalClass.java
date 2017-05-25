@@ -1,5 +1,6 @@
 package logicalobjects;
 
+import static main.Constants.DEFAULT_CLASS_NAME;
 import static main.Constants.REGEX_START_CAPITAL;
 
 import java.util.ArrayList;
@@ -9,8 +10,6 @@ import java.util.NoSuchElementException;
 
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
-
-import static main.Constants.DEFAULT_CLASS_NAME;
 
 /**
  * A class of real classes, involving associations, attributes and methods

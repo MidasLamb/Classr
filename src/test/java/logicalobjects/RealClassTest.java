@@ -23,15 +23,15 @@ public class RealClassTest {
 	@Test
 	public void testDeleteChildAttribute1() {
 		LogicalClass realclass = new LogicalClass();
-		Attribute attr = realclass.addAttribute();		
+		Attribute attr = realclass.addAttribute();
 		realclass.deleteChild(attr);
 		assertFalse(realclass.getAttributes().contains(attr));
 	}
-	
-	@Test(expected=NoSuchElementException.class)
+
+	@Test(expected = NoSuchElementException.class)
 	public void testDeleteChildAttribute2() {
 		LogicalClass realclass = new LogicalClass();
-		Attribute attr = realclass.addAttribute();		
+		Attribute attr = realclass.addAttribute();
 		realclass.deleteChild(attr);
 		realclass.deleteChild(attr);
 	}
@@ -39,15 +39,15 @@ public class RealClassTest {
 	@Test
 	public void testDeleteChildMethod1() {
 		LogicalClass realclass = new LogicalClass();
-		Method meth = realclass.addMethod();		
+		Method meth = realclass.addMethod();
 		realclass.deleteChild(meth);
 		assertFalse(realclass.getMethods().contains(meth));
 	}
-	
-	@Test(expected=NoSuchElementException.class)
+
+	@Test(expected = NoSuchElementException.class)
 	public void testDeleteChildMethod2() {
 		LogicalClass realclass = new LogicalClass();
-		Method meth = realclass.addMethod();		
+		Method meth = realclass.addMethod();
 		realclass.deleteChild(meth);
 		realclass.deleteChild(meth);
 	}
@@ -56,7 +56,7 @@ public class RealClassTest {
 	public void testDeleteChildAssociation() {
 		LogicalClass rc1 = new LogicalClass();
 		LogicalClass rc2 = new LogicalClass();
-		Association ass = new Association(rc1, rc2);		
+		Association ass = new Association(rc1, rc2);
 		rc1.deleteChild(ass);
 		assertFalse(rc1.getAssociations().contains(ass));
 	}
@@ -83,11 +83,11 @@ public class RealClassTest {
 		LogicalClass rc1 = new LogicalClass();
 		LogicalClass rc2 = new LogicalClass();
 		Association ass = new Association(rc1, rc2);
-		
+
 		rc1.deleteAssociation(ass);
 		assertFalse(rc1.getAssociations().contains(ass));
 	}
-	
+
 	@Test
 	public void getAttributesTest1() {
 		LogicalClass realclass = new LogicalClass();
@@ -96,7 +96,7 @@ public class RealClassTest {
 		realclass.addAttribute();
 		assertEquals(3, realclass.getAttributes().size());
 	}
-	
+
 	@Test
 	public void getAttributesTest2() {
 		LogicalClass realclass = new LogicalClass();
@@ -107,7 +107,7 @@ public class RealClassTest {
 		attrs.remove(attr);
 		assertEquals(3, realclass.getAttributes().size());
 	}
-	
+
 	@Test
 	public void getAttributesTest3() {
 		LogicalClass realclass = new LogicalClass();
@@ -118,7 +118,7 @@ public class RealClassTest {
 		attrs.remove(attr);
 		assertTrue(realclass.getAttributes().contains(attr));
 	}
-	
+
 	@Test
 	public void getMethodesTest1() {
 		LogicalClass realclass = new LogicalClass();
@@ -127,7 +127,7 @@ public class RealClassTest {
 		realclass.addMethod();
 		assertEquals(3, realclass.getMethods().size());
 	}
-	
+
 	@Test
 	public void getMethodesTest2() {
 		LogicalClass realclass = new LogicalClass();
@@ -137,8 +137,8 @@ public class RealClassTest {
 		Collection<Method> meths = realclass.getMethods();
 		meths.remove(meth);
 		assertEquals(3, realclass.getMethods().size());
-	}	
-	
+	}
+
 	@Test
 	public void getMethodesTest3() {
 		LogicalClass realclass = new LogicalClass();
@@ -148,7 +148,7 @@ public class RealClassTest {
 		Collection<Method> meths = realclass.getMethods();
 		meths.remove(meth);
 		assertTrue(realclass.getMethods().contains(meth));
-	}	
+	}
 
 	@Test
 	public void setClassName() {
@@ -156,26 +156,26 @@ public class RealClassTest {
 		logicalClass.setName("MyClass");
 		assertEquals("MyClass", logicalClass.getName());
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void setInvalidClassName1() {
 		LogicalClass logicalClass = new LogicalClass();
 		logicalClass.setName("myClass");
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void setInvalidClassName2() {
 		LogicalClass logicalClass = new LogicalClass();
 		logicalClass.setName("My Class");
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void setInvalidClassName3() {
 		LogicalClass logicalClass = new LogicalClass();
 		logicalClass.setName("1NewClass");
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void setDuplicateMethodName() {
 		LogicalClass logicalClass = new LogicalClass();
 		Method method1 = logicalClass.addMethod();
@@ -183,9 +183,8 @@ public class RealClassTest {
 		Method method2 = logicalClass.addMethod();
 		method2.setName("myMethod");
 	}
-	
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void setDuplicateAttributeName() {
 		LogicalClass logicalClass = new LogicalClass();
 		Attribute attribute1 = logicalClass.addAttribute();

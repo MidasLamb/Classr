@@ -1,8 +1,8 @@
 package visualobjects;
 
 import static gui.inputHandlers.keys.FunctionKey.FunctionKeyType.BACKSPACE;
+import static main.Constants.DEFAULT_CLASS_NAME;
 import static org.junit.Assert.assertEquals;
-import static main.Constants.*;
 
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class TextTest {
 	public void standardTextTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c, r, new Controller());
 		t.setSelected(false);
 		assertEquals(DEFAULT_CLASS_NAME, t.getCurrentDisplayedString());
 	}
@@ -27,12 +27,12 @@ public class TextTest {
 	public void typeATest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0,c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c, r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
-		while(!t.getCurrentDisplayedString().equals("")) {
+		while (!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
-		}		
+		}
 		t.handleAsciiKey(new AsciiKey('a'));
 		assertEquals("a", t.getCurrentDisplayedString());
 	}
@@ -41,10 +41,10 @@ public class TextTest {
 	public void typeAaTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c, r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
-		while(!t.getCurrentDisplayedString().equals("")) {
+		while (!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
 		t.handleAsciiKey(new AsciiKey('a'));
@@ -56,26 +56,26 @@ public class TextTest {
 	public void typeAaBackspaceTest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0,c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c, r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
-		while(!t.getCurrentDisplayedString().equals("")) {
+		while (!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleAsciiKey(new AsciiKey('a'));
 		t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		assertEquals("a", t.getCurrentDisplayedString());
-	}	
-	
+	}
+
 	@Test
 	public void typeCapitalATest() {
 		Container c = new Container(0, 0, 100, 100, new MyCanvasWindow("test"));
 		LogicalClass r = new LogicalClass();
-		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0,c , r, new Controller());
+		EditableTextWrapper<LogicalClass> t = new EditableTextWrapper<LogicalClass>(0, 0, 0, c, r, new Controller());
 		t.setSelected(true);
 		t.setEditable();
-		while(!t.getCurrentDisplayedString().equals("")) {
+		while (!t.getCurrentDisplayedString().equals("")) {
 			t.handleFunctionKey(new FunctionKey(BACKSPACE));
 		}
 		t.handleAsciiKey(new AsciiKey('A'));
