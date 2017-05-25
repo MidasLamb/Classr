@@ -21,7 +21,7 @@ public class MyCanvasWindow extends CanvasWindow {
 
 	private CanvasContent content;
 	private ArrayDeque<CanvasContent> contentQueue;
-	
+
 	public MyCanvasWindow(String title) {
 		super(title);
 		setContent(new Container(0, 0, CONTAINER_WIDTH, CONTAINER_HEIGHT, this));
@@ -29,9 +29,9 @@ public class MyCanvasWindow extends CanvasWindow {
 		setKeyHandler(new KeyHandler(getContent()));
 		this.setContentQueue(new ArrayDeque<CanvasContent>());
 	}
-	
-	private void setFont(Graphics g){
-		Font font = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
+
+	private void setFont(Graphics g) {
+		Font font = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
 		g.setFont(font);
 	}
 
@@ -72,6 +72,7 @@ public class MyCanvasWindow extends CanvasWindow {
 	 * enters a character (e.getID() == KeyEvent.KEY_TYPED).
 	 * 
 	 * @param e
+	 *            KeyEvent e to handle
 	 */
 	@Override
 	protected final void handleKeyEvent(KeyEvent e) {
@@ -86,49 +87,60 @@ public class MyCanvasWindow extends CanvasWindow {
 	private void setContent(CanvasContent content) {
 		this.content = content;
 	}
-	
+
 	/**
 	 * Switches to the passed in content.
+	 * 
 	 * @param content
+	 *            CanvasContent to be added and switched to
 	 */
-	public final void addContentAndSwitchTo(CanvasContent content){
+	public final void addContentAndSwitchTo(CanvasContent content) {
 		this.getContentQueue().addFirst(this.getContent());
 		this.switchToContent(content);
 	}
-	
+
 	/**
-	 * Puts the content as the next one to be displayed if the currently showed one is closed.
+	 * Puts the content as the next one to be displayed if the currently showed
+	 * one is closed.
+	 * 
 	 * @param content
+	 *            CanvasContent to be added as next
 	 */
-	public final void addContentAsNext(CanvasContent content){
+	public final void addContentAsNext(CanvasContent content) {
 		this.getContentQueue().add(content);
 	}
-	
+
 	/**
-	 * Closes the current displayed content and switches in the previous content.
+	 * Closes the current displayed content and switches in the previous
+	 * content.
 	 */
-	private void closeCurrentContent(){
+	private void closeCurrentContent() {
 		CanvasContent prev = this.getContentQueue().pop();
 		this.switchToContent(prev);
 	}
-	
+
 	/**
-	 * Closes the passed in content. If that content is the currently displayed content, we switch it out with the previous content.
+	 * Closes the passed in content. If that content is the currently displayed
+	 * content, we switch it out with the previous content.
+	 * 
 	 * @param content
+	 *            CanvasContent to be closed
 	 */
-	public final void closeContent(CanvasContent content){
-		if (content.equals(this.getContent())){
+	public final void closeContent(CanvasContent content) {
+		if (content.equals(this.getContent())) {
 			this.closeCurrentContent();
 		} else {
 			this.getContentQueue().remove(content);
 		}
 	}
-	
+
 	/**
 	 * Switches the canvas to display the passed in content.
+	 * 
 	 * @param content
+	 *            CanvasContent to be switched to
 	 */
-	private void switchToContent(CanvasContent content){
+	private void switchToContent(CanvasContent content) {
 		this.setContent(content);
 		setMouseClickHandler(new MouseClickHandler(getContent()));
 		setKeyHandler(new KeyHandler(getContent()));

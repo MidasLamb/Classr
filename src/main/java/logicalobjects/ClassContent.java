@@ -104,7 +104,8 @@ public abstract class ClassContent extends LogicalObject {
 	 * string as its type name
 	 * 
 	 * @param type
-	 * @return
+	 *            String to be checked
+	 * @return boolean indicating whether the given type is valid
 	 */
 	public boolean canHaveAsType(String type) {
 		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);

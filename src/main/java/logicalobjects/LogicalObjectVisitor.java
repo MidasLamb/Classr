@@ -23,6 +23,7 @@ public interface LogicalObjectVisitor<T> {
 	 * 
 	 * @param c
 	 *            The logicalClass you have visited
+	 * @return depends on implementation
 	 */
 	public T visit(LogicalClass c);
 
@@ -31,6 +32,7 @@ public interface LogicalObjectVisitor<T> {
 	 * 
 	 * @param c
 	 *            The Methode you have visited
+	 * @return depends on implementation
 	 */
 	public T visit(Method c);
 
@@ -39,6 +41,7 @@ public interface LogicalObjectVisitor<T> {
 	 * 
 	 * @param c
 	 *            The Attribute you have visited
+	 * @return depends on implementation
 	 */
 	public T visit(Attribute c);
 
@@ -47,6 +50,7 @@ public interface LogicalObjectVisitor<T> {
 	 * 
 	 * @param c
 	 *            The Association you have visited
+	 * @return depends on implementation
 	 */
 	public T visit(Association c);
 
@@ -55,6 +59,7 @@ public interface LogicalObjectVisitor<T> {
 	 * 
 	 * @param c
 	 *            The Parameter you have visited
+	 * @return depends on implementation
 	 */
 	public T visit(Parameter c);
 }
