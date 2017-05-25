@@ -47,10 +47,17 @@ public class VisualTests {
 	}
 	
 	@Test 
-	public void createClassTest() throws IOException { 
-		 String name = "createClassTest"; 
+	public void createMethodTest() throws IOException { 
+		 String name = "createMethodTest"; 
 		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
 		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
-	}	
+	}
+	
+	@Test 
+	public void createAttributeTest() throws IOException { 
+		 String name = "createAttributeTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
 	
 }
