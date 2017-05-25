@@ -46,5 +46,11 @@ public class VisualTests {
 		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
 	
+	@Test 
+	public void createClassTest() throws IOException { 
+		 String name = "createClassTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}	
 	
 }
