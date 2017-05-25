@@ -8,10 +8,10 @@ import visualobjects.PaddingBox;
  * A class that decouples PaddingBoxes
  */
 public class PaddingBoxDecoupler extends Decoupler {
-	private final PaddingBox<?,?> paddingBox;
+	private final PaddingBox<?, ?> paddingBox;
 	private final Decoupler logicalDecoupler;
 
-	public PaddingBoxDecoupler(PaddingBox<?,?> paddingBox) {
+	public PaddingBoxDecoupler(PaddingBox<?, ?> paddingBox) {
 		this.paddingBox = paddingBox;
 		CoupleVisitor visitor = new CoupleVisitor();
 		this.logicalDecoupler = visitor.startVisit(getPaddingBox().getLogicalObject());
@@ -19,62 +19,64 @@ public class PaddingBoxDecoupler extends Decoupler {
 
 	@Override
 	public void decouple() {
-		if(!isDecoupled()){
+		if (!isDecoupled()) {
 			decoupleLogical();
 			decoupleVisual();
 			setDecoupled(true);
 		}
 	}
-	
+
 	/**
 	 * Decouples the logical part
 	 */
-	private void decoupleLogical(){
+	private void decoupleLogical() {
 		getLogicalDecoupler().decouple();
 	}
-	
+
 	/**
 	 * Decouples the visual part
 	 */
-	private void decoupleVisual(){
+	private void decoupleVisual() {
 		closeFormBelogingTo(getPaddingBox().getLogicalObject());
 		getPaddingBox().getParent().removeChild(getPaddingBox());
 	}
 
 	@Override
 	public void recouple() {
-		if(isDecoupled()){
+		if (isDecoupled()) {
 			recoupleLogical();
 			recoupleVisual();
 			setDecoupled(false);
 		}
-		
+
 	}
-	
+
 	/**
-	 * Recouples the logical part
+	 * Re-couples the logical part
 	 */
-	private void recoupleLogical(){
+	private void recoupleLogical() {
 		getLogicalDecoupler().recouple();
 	}
-	
+
 	/**
-	 * Recouples the visual part
+	 * Re-couples the visual part
 	 */
-	private void recoupleVisual(){
+	private void recoupleVisual() {
 		getPaddingBox().getParent().addChild(getPaddingBox());
 	}
 
 	/**
 	 * Returns the padddingBox that needs to be decoupled
+	 * 
 	 * @return the padddingBox that needs to be decoupled
 	 */
-	private PaddingBox<?,?> getPaddingBox() {
+	private PaddingBox<?, ?> getPaddingBox() {
 		return paddingBox;
 	}
-	
+
 	/**
 	 * Returns the decoupler for the logical object
+	 * 
 	 * @return the decoupler for the logical object
 	 */
 	private Decoupler getLogicalDecoupler() {

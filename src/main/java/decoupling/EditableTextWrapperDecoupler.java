@@ -8,7 +8,7 @@ import visualobjects.EditableTextWrapper;
  * A class that decouples EditableTextWrappers
  */
 public class EditableTextWrapperDecoupler extends Decoupler {
-	
+
 	private final EditableTextWrapper<?> textWrapper;
 	private final Decoupler logicalDecoupler;
 	private final Decoupler parentDecoupler;
@@ -22,7 +22,7 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 
 	@Override
 	public void decouple() {
-		if(!isDecoupled()){
+		if (!isDecoupled()) {
 			setDecoupled(true);
 			decoupleVisual();
 			decoupleLogical();
@@ -31,49 +31,49 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 
 	@Override
 	public void recouple() {
-		if(isDecoupled()){
+		if (isDecoupled()) {
 			setDecoupled(false);
 			recoupleVisual();
 			recoupleLogical();
 		}
-		
 	}
-	
+
 	/**
 	 * Decouples the visual part
 	 */
-	private void decoupleVisual(){
+	private void decoupleVisual() {
 		closeFormBelogingTo(getTextWrapper().getLogicalObject());
 		getParentDecoupler().decouple();
 	}
-	
+
 	/**
-	 * Recouples the visual part
+	 * Re-couples the visual part
 	 */
-	private void recoupleVisual(){
+	private void recoupleVisual() {
 		getParentDecoupler().recouple();
 	}
-	
+
 	/**
 	 * Decouples the logical part
 	 */
-	private void decoupleLogical(){
-		if(getTextWrapper().getLogicalObject() != getTextWrapper().getParent().getLogicalObject()){
+	private void decoupleLogical() {
+		if (getTextWrapper().getLogicalObject() != getTextWrapper().getParent().getLogicalObject()) {
 			getLogicalDecoupler().decouple();
 		}
 	}
-	
+
 	/**
-	 * Recouples the logical part
+	 * Re-couples the logical part
 	 */
-	private void recoupleLogical(){
-		if(getTextWrapper().getLogicalObject() != getTextWrapper().getParent().getLogicalObject()){
+	private void recoupleLogical() {
+		if (getTextWrapper().getLogicalObject() != getTextWrapper().getParent().getLogicalObject()) {
 			getLogicalDecoupler().recouple();
 		}
 	}
 
 	/**
 	 * Returns the textWrapper that need to be decoupled
+	 * 
 	 * @return the textWrapper that need to be decoupled
 	 */
 	private EditableTextWrapper<?> getTextWrapper() {
@@ -82,6 +82,7 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 
 	/**
 	 * Returns the decoupler for the logical object
+	 * 
 	 * @return the decoupler for the logical object
 	 */
 	private Decoupler getLogicalDecoupler() {
@@ -90,6 +91,7 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 
 	/**
 	 * Returns the parent decoupler
+	 * 
 	 * @return the parent decoupler
 	 */
 	private Decoupler getParentDecoupler() {
