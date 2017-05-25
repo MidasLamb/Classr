@@ -52,6 +52,13 @@ public class VisualTests {
 	}
 	
 	@Test 
+	public void reopenForms() throws IOException { 
+		 String name = "reopenForms"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
 	public void autoresizeTest() throws IOException { 
 		 String name = "autoresizeTest"; 
 		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
