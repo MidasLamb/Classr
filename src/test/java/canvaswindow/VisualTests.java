@@ -4,10 +4,53 @@ import static main.Constants.CANVAS_TITLE;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import visualobjects.Backend;
+
 public class VisualTests {
+	
+	@Before
+	public void init(){
+		try {
+			final Field field = Backend.class.getDeclaredField("container");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			final Field field = Backend.class.getDeclaredField("controller");
+			field.setAccessible(true);
+			final Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+			field.set(null, null);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	
 	
