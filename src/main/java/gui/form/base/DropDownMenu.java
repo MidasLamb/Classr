@@ -17,7 +17,7 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 
 	/**
 	 * Default constructor for a DropDownMenu. Creates a new DropDownMenu and
-	 * sets its coordinates and dimensions and initializes its State and lsit of
+	 * sets its coordinates and dimensions and initializes its State and list of
 	 * MenuItems.
 	 * 
 	 * @param x
@@ -32,10 +32,21 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		this.setElements(new ArrayList<ListBoxElement<MenuItem>>());
 	}
 
+	/**
+	 * Get the state of this DropDownMenu
+	 * 
+	 * @return
+	 */
 	DropDownMenuState getState() {
 		return state;
 	}
 
+	/**
+	 * Set the state of this DropDownMenu
+	 * 
+	 * @param bool
+	 *            boolean indicating the state to set
+	 */
 	private void setState(boolean bool) {
 		if (bool) {
 			setState(new Enabled());
@@ -44,6 +55,12 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		}
 	}
 
+	/**
+	 * Set the State of this DropDownMenu
+	 * 
+	 * @param state
+	 *            State to set as the State of this DropDownMenu
+	 */
 	private void setState(DropDownMenuState state) {
 		this.state = state;
 	}
@@ -66,10 +83,18 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		this.removeElement(item);
 	}
 
+	/**
+	 * @return true if this DropDownMenu is enabled, false otherwise
+	 */
 	boolean isEnabled() {
 		return enabled;
 	}
 
+	/**
+	 * Enable or disable this DropDownMenu
+	 * 
+	 * @param enabled
+	 */
 	private void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -127,32 +152,31 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 		void draw(Graphics g) {
 			int translatedX = getX();
 			int translatedY = getY();
-			
+
 			g.translate(translatedX, translatedY);
-			
+
 			int boxHeight = 0;
-			
-			for (ListBoxElement<MenuItem> e : getListboxElements()){
+
+			for (ListBoxElement<MenuItem> e : getListboxElements()) {
 				boxHeight += e.getHeight();
 			}
 			Color c = g.getColor();
-			g.setColor(new Color(240,240,240));
+			g.setColor(new Color(240, 240, 240));
 			g.fillRect(1, 1, getWidth(), boxHeight);
 			g.setColor(Color.GRAY);
 			g.drawRect(0, 0, getWidth(), boxHeight);
 			g.setColor(c);
-			
-			
+
 			int sumOfVerticalTranslations = 0;
-			
+
 			int leftMargin = 5;
 			g.translate(leftMargin, 0);
-			for (ListBoxElement<MenuItem> e : getListboxElements()){
+			for (ListBoxElement<MenuItem> e : getListboxElements()) {
 				e.getObject().draw(g);
 				sumOfVerticalTranslations += e.getHeight();
 				g.translate(0, e.getHeight());
 			}
-			g.translate(-translatedX-leftMargin, -(translatedY + sumOfVerticalTranslations));
+			g.translate(-translatedX - leftMargin, -(translatedY + sumOfVerticalTranslations));
 		}
 
 	}

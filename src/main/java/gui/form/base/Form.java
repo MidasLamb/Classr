@@ -18,7 +18,7 @@ import gui.inputHandlers.keys.FunctionKey.FunctionKeyType;
 /**
  * Form in which FormObjects can be placed.
  */
-public class Form implements Typable, Clickable{
+public class Form implements Typable, Clickable {
 	private TreeSet<FormObject> formObjects = new TreeSet<>();
 	private FormObject focusedObject;
 
@@ -140,6 +140,13 @@ public class Form implements Typable, Clickable{
 		}
 	}
 
+	/**
+	 * Get the FormObject that comes before the given FormObject in this Form
+	 * 
+	 * @param current
+	 *            FormObject of which the previous FormObject is wanted
+	 * @return FormObject that comes before the given FormObject
+	 */
 	private FormObject getPreviousFormObject(FormObject current) {
 		if (current instanceof FormObjectChild) {
 			FormObjectChild foc = (FormObjectChild) current;
@@ -163,6 +170,13 @@ public class Form implements Typable, Clickable{
 		return previous;
 	}
 
+	/**
+	 * Get the FormObject that comes after the given FormObject in this Form
+	 * 
+	 * @param current
+	 *            FormObject of which the next FormObject is wanted
+	 * @return FormObject that comes after the given FormObject
+	 */
 	private FormObject getNextFormObject(FormObject current) {
 		if (current instanceof FormObjectChild) {
 			FormObjectChild foc = (FormObjectChild) current;
@@ -188,20 +202,35 @@ public class Form implements Typable, Clickable{
 	}
 
 	// Getters and setters
+	/**
+	 * @return width
+	 */
 	public int getWidth() {
 		determineWidth();
 		return width;
 	}
 
+	/**
+	 * @return height
+	 */
 	public int getHeight() {
 		determineHeight();
 		return height;
 	}
 
+	/**
+	 * @return the focused object of this Form
+	 */
 	private FormObject getFocusedObject() {
 		return focusedObject;
 	}
 
+	/**
+	 * Set the focused object of this Form
+	 * 
+	 * @param focusedObject
+	 *            FormObject to set as the focused object of this Form
+	 */
 	private void setFocusedObject(FormObject focusedObject) {
 		if (this.getFocusedObject() != null) {
 			this.getFocusedObject().setFocused(false);
@@ -233,42 +262,47 @@ public class Form implements Typable, Clickable{
 	public void onDragUpdate(Drag drag) {
 
 	}
-	
+
 	/**
 	 * Clears the focus.
 	 */
-	public void clearFocus(){
+	public void clearFocus() {
 		this.setFocusedObject(null);
 	}
-	
+
 	/**
 	 * Determines the width of the Form.
 	 */
-	private void determineWidth(){
+	private void determineWidth() {
 		int mostRightX = 0;
-		for(FormObject fo: getFormObjects()){
+		for (FormObject fo : getFormObjects()) {
 			mostRightX = Math.max(mostRightX, fo.getX() + fo.getWidth());
 		}
 		this.setWidth(Math.max(mostRightX + 5, getStartWidth()));
 	}
-	
-	private void determineHeight(){
+
+	/**
+	 * Determines the height of the Form
+	 */
+	private void determineHeight() {
 		int mostBottomY = 0;
-		for(FormObject fo: getFormObjects()){
+		for (FormObject fo : getFormObjects()) {
 			mostBottomY = Math.max(mostBottomY, fo.getY() + fo.getHeight());
 		}
 		this.setHeight(Math.max(mostBottomY + 5, getStartHeight()));
 	}
 
 	/**
-	 * @param width the width to set
+	 * @param width
+	 *            the width to set
 	 */
 	private final void setWidth(int width) {
 		this.width = width;
 	}
 
 	/**
-	 * @param height the height to set
+	 * @param height
+	 *            the height to set
 	 */
 	private final void setHeight(int height) {
 		this.height = height;
@@ -287,6 +321,5 @@ public class Form implements Typable, Clickable{
 	private final int getStartHeight() {
 		return startHeight;
 	}
-	
 
 }

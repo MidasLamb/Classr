@@ -8,7 +8,7 @@ import gui.inputHandlers.clicks.MouseClick;
 public abstract class ButtonState extends State {
 
 	/**
-	 * Method executed when clicked on this Button
+	 * Actions executed when clicked on this Button
 	 * 
 	 * @param click
 	 *            MouseClick containing details of the click

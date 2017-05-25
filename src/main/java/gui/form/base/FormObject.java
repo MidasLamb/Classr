@@ -57,9 +57,7 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 * @param click
 	 *            Registered MouseClick
 	 */
-
 	public abstract void onClick(MouseClick click);
-	
 
 	/**
 	 * Draw this FormObject.
@@ -68,6 +66,9 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 */
 	public abstract void draw(Graphics g);
 
+	/**
+	 * Called when action on this FormObject occurs
+	 */
 	protected abstract void onAction();
 
 	/**
@@ -177,9 +178,10 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	protected int getHeight() {
 		return height;
 	}
-	
+
 	/**
 	 * Returns whether or not the coordinate at x,y is in this FormObject.
+	 * 
 	 * @param x
 	 * @param y
 	 */
@@ -210,24 +212,26 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	}
 
 	/**
-	 * @param changeListeners the changeListeners to set
+	 * @param changeListeners
+	 *            the changeListeners to set
 	 */
 	private final void setChangeListeners(Collection<ChangeListener> changeListeners) {
 		this.changeListeners = changeListeners;
 	}
-	
-	public void addChangeListener(ChangeListener c){
+
+	@Override
+	public void addChangeListener(ChangeListener c) {
 		getChangeListeners().add(c);
 	}
-	
-	public void removeChangeListener(ChangeListener c){
+
+	@Override
+	public void removeChangeListener(ChangeListener c) {
 		getChangeListeners().remove(c);
 	}
-	
-	public void notifyChangeListeners(){
+
+	@Override
+	public void notifyChangeListeners() {
 		getChangeListeners().stream().forEach(x -> x.getNotifiedOfChange(this));
 	}
-	
-	
-	
+
 }
