@@ -47,9 +47,15 @@ public class KeyHandler {
 		}
 	}
 
+	/**
+	 * Get the FunctionKey of a KeyEvent
+	 * 
+	 * @param e
+	 * @return
+	 */
 	static FunctionKey getFunctionKey(KeyEvent e) {
-		if(InputEvent.CTRL_MASK == e.getModifiers()){
-			switch(KeyEvent.getKeyText(e.getKeyCode())){
+		if (InputEvent.CTRL_MASK == e.getModifiers()) {
+			switch (KeyEvent.getKeyText(e.getKeyCode())) {
 			case "Z":
 				return new FunctionKey(CTRL_Z);
 			case "Y":
@@ -78,20 +84,37 @@ public class KeyHandler {
 		}
 	}
 
+	/**
+	 * @param e
+	 * @return true if the KeyEvent is an ASCII key, false otherwise
+	 */
 	static boolean keyEventIsAscii(KeyEvent e) {
 		char c = e.getKeyChar();
 		return !e.isActionKey() && c != KeyEvent.CHAR_UNDEFINED && (isAscii(c) || e.getKeyCode() == KeyEvent.VK_SPACE);
 	}
 
+	/**
+	 * @param c
+	 * @return true if the character is a ASCII character, false otherwise
+	 */
 	private static boolean isAscii(char c) {
 		return new String(new char[] { c }).matches("[A-Z]|[0-9]|[a-z]|_");
 
 	}
 
+	/**
+	 * @return typable
+	 */
 	private Typable getTypable() {
 		return content;
 	}
 
+	/**
+	 * Set the Typable of the KeyHandler
+	 * 
+	 * @param content
+	 *            Typable to set
+	 */
 	private void setTypable(Typable content) {
 		this.content = content;
 	}

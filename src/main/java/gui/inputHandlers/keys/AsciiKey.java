@@ -19,6 +19,7 @@ public class AsciiKey extends Key {
 
 	/**
 	 * Get the character from this AsciiKey
+	 * 
 	 * @return character
 	 */
 	public char getValue() {

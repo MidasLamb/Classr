@@ -9,14 +9,17 @@ import gui.inputHandlers.clicks.DoubleClick;
 import gui.inputHandlers.clicks.Drag;
 import gui.inputHandlers.clicks.SingleClick;
 
+/**
+ * Handles MouseClicks
+ */
 public class MouseClickHandler {
 	private long lastClickTime;
 	private int lastClickXForDrag;
 	private int lastClickYForDrag;
-	
+
 	private int lastClickXForDoubleClick;
 	private int lastClickYForDoubleClick;
-	
+
 	private Clickable clickable;
 	private boolean isBeingDragged;
 
@@ -24,9 +27,15 @@ public class MouseClickHandler {
 		setClickable(clickable);
 	}
 
+	/**
+	 * Handle the input of the given MouseEvent
+	 * 
+	 * @param e
+	 *            MouseEvent to handle
+	 */
 	public void handleInput(MouseEvent e) {
 		if (e.getID() == MouseEvent.MOUSE_PRESSED) {
-			
+
 			// Save info about this click to know where a drag started.
 			setLastClickXForDrag(e.getX());
 			setLastClickYForDrag(e.getY());
@@ -34,7 +43,6 @@ public class MouseClickHandler {
 		}
 
 		if (e.getID() == MouseEvent.MOUSE_RELEASED) {
-			
 
 			if (isBeingDragged()) {
 				getClickable().onDragEnd(new Drag(getLastClickXForDrag(), getLastClickYForDrag(), e.getX(), e.getY()));
