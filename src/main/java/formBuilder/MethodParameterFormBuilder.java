@@ -3,7 +3,6 @@ package formBuilder;
 import command.ChangeParameterNameCommand;
 import command.ChangeParameterTypeCommand;
 import command.Controller;
-import gui.form.base.Button;
 import gui.form.base.FormContainer;
 import gui.form.base.InputBox;
 import gui.form.utility.FormBuilder;

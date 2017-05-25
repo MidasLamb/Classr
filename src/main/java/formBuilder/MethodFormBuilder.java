@@ -295,21 +295,20 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 		});
 	}
 
+	/**
+	 * Updates the status of the edit and cancel buttons
+	 */
 	private void checkEditAndCancelButtons() {
 		editParameter.setEnabled(parameters.getSelectedObject() != null);
 		removeParameter.setEnabled(parameters.getSelectedObject() != null);
 	}
 
+	/**
+	 * Returns the Method for which the form needs to be created
+	 * @return the Method for which the form needs to be created
+	 */
 	private Method getMethod() {
 		return method;
-	}
-
-	private final FormContainer<FormWrapper> getContainer() {
-		return container;
-	}
-
-	private final void setContainer(FormContainer<FormWrapper> container) {
-		this.container = container;
 	}
 
 }
