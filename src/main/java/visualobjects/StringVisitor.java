@@ -22,7 +22,7 @@ import logicalobjects.Parameter;
 
 /**
  * A visitor to visit logical objects and creates an attributed string
- * 		containing the data in UML representation of that logicalObject
+ * containing the data in UML representation of that logicalObject
  * 
  * @author group11
  *
@@ -46,7 +46,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		strBuilder.append(c.getName());
 		strBuilder.append("(");
 		for (String parameter : parameters) {
-			if(parameter != parameters.get(0))
+			if (parameter != parameters.get(0))
 				strBuilder.append(", ");
 			strBuilder.append(parameter);
 		}
@@ -54,9 +54,9 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		strBuilder.append(c.getType());
 		String text = strBuilder.toString();
 		AttributedString string = new AttributedString(text);
-		if(c.isStatic())
+		if (c.isStatic())
 			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
-		if(c.isAbstract())
+		if (c.isAbstract())
 			string.addAttribute(FONT, new Font(STANDARD_FONT_NAME, ITALIC, STANDARD_FONT_SIZE), 1, text.length());
 		return string;
 	}
@@ -70,7 +70,7 @@ public class StringVisitor implements LogicalObjectVisitor<AttributedString> {
 		strBuilder.append(c.getType());
 		String text = strBuilder.toString();
 		AttributedString string = new AttributedString(text);
-		if(c.isStatic())
+		if (c.isStatic())
 			string.addAttribute(UNDERLINE, UNDERLINE_ON, 1, text.length());
 		return string;
 	}

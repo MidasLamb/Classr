@@ -15,7 +15,7 @@ import logicalobjects.Association;
 /**
  * The visualization of a logical association
  */
-public class VisualAssociation extends VisualObject<Association> implements UpdateListener, Editable{
+public class VisualAssociation extends VisualObject<Association> implements UpdateListener, Editable {
 	private final VisualClass p1;
 	private final VisualClass p2;
 	private final PaddingBox<Association, EditableTextWrapper<Association>> text;
@@ -37,14 +37,14 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 		p1 = participant1;
 		p2 = participant2;
-		
+
 		p1.addUpdateListener(this);
 		p2.addUpdateListener(this);
 
 		int centerX = getP1().getX() + (getP2().getX() - getP1().getX()) / 2;
 		int centerY = getP1().getY() + (getP2().getY() - getP1().getY()) / 2;
-		this.text = new PaddingBox<Association, EditableTextWrapper<Association>>(centerX, centerY, Z_PADDING_BOX, new EditableTextWrapper<Association>(0, 0,
-				0, null, association, getController()), this, association,
+		this.text = new PaddingBox<Association, EditableTextWrapper<Association>>(centerX, centerY, Z_PADDING_BOX,
+				new EditableTextWrapper<Association>(0, 0, 0, null, association, getController()), this, association,
 				getController());
 		this.getContainer().switchSelectedTo(this.getText().getContent());
 		this.getText().getContent().setEditable();
@@ -105,9 +105,9 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 	@Override
 	protected void onClick(SingleClick sc) {
-		if (!this.isSelected() && !this.getText().getContent().isSelected()){
+		if (!this.isSelected() && !this.getText().getContent().isSelected()) {
 			this.getContainer().switchSelectedTo(this);
-		} else if (this.isSelected()){
+		} else if (this.isSelected()) {
 			this.getContainer().switchSelectedTo(this.getText().getContent());
 			this.getText().getContent().setEditable();
 		}
@@ -120,13 +120,13 @@ public class VisualAssociation extends VisualObject<Association> implements Upda
 
 	@Override
 	public Decoupler decoupleVisitor(CoupleVisitor visitor) {
-		return visitor.visit(this);	
+		return visitor.visit(this);
 	}
 
 	@Override
 	public void setEditable() {
 		getText().getContent().setEditable();
-		
+
 	}
 
 	@Override
