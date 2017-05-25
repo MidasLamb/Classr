@@ -1,5 +1,8 @@
 package logicalobjects;
 
+/**
+ * A void object that can be used as a dummy 
+ */
 public class LogicalVoid extends LogicalObject {
 
 	@Override

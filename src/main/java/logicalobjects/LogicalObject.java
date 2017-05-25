@@ -15,7 +15,7 @@ public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 	private boolean isDeleted = false;
 	private Collection<DeleteListener> deleteListeners = new ArrayList<DeleteListener>();
 	private Collection<UpdateListener> updateListeners = new ArrayList<UpdateListener>();
-	
+
 	private String name = "";
 
 	/**
@@ -30,10 +30,10 @@ public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 	/**
 	 * Sets the name of this LogicalObject
 	 * 
-	 * @param 	name
-	 *         	the name to be set
-	 * @throws 	IllegalArgumentException
-	 * 			if the given name is not allowed
+	 * @param name
+	 *            the name to be set
+	 * @throws IllegalArgumentException
+	 *             if the given name is not allowed
 	 */
 	public final void setName(String name) throws IllegalArgumentException {
 		if (this.canHaveAsName(name)) {
@@ -129,7 +129,7 @@ public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 	 * @return true if the string would be a valid name, false otherwise
 	 */
 	public abstract boolean canHaveAsName(String string);
-	
+
 	@Override
 	public final void addUpdateListener(UpdateListener Updatelistener) {
 		this.getUpdateListeners().add(Updatelistener);
@@ -141,17 +141,28 @@ public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 		cd.remove(Updatelistener);
 		this.setUpdateListeners(cd);
 	}
-	
+
 	@Override
 	public void notifyUpdateListeners() {
 		for (UpdateListener d : this.getUpdateListeners())
 			d.getNotifiedOfUpdate(this);
 	}
 
+	/**
+	 * Returns the updateListeners
+	 * 
+	 * @return the updateListeners
+	 */
 	final Collection<UpdateListener> getUpdateListeners() {
 		return updateListeners;
 	}
 
+	/**
+	 * Sets the updateListeners
+	 * 
+	 * @param updateListeners
+	 *            the new update listeners
+	 */
 	private final void setUpdateListeners(Collection<UpdateListener> updateListeners) {
 		this.updateListeners = updateListeners;
 	}
