@@ -55,7 +55,7 @@ public class CreateClassCommand extends Command {
 
 	@Override
 	void unexecute() {
-		if (getDecoupler()!= null)
+		if (getDecoupler() != null)
 			getDecoupler().decouple();
 	}
 
@@ -125,6 +125,7 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * Returns the decoupler for the created class
+	 * 
 	 * @return the decoupler for the created class
 	 */
 	private Decoupler getDecoupler() {
@@ -133,11 +134,12 @@ public class CreateClassCommand extends Command {
 
 	/**
 	 * Sets the decoupler for the created class
-	 * @param 	decoupler
-	 * 			the decoupler for the created class
+	 * 
+	 * @param decoupler
+	 *            the decoupler for the created class
 	 */
 	private void setDecoupler(Decoupler decoupler) {
 		this.decoupler = decoupler;
 	}
-	
+
 }

@@ -1,6 +1,5 @@
 package command;
 
-
 import logicalobjects.ClassContent;
 
 /**
@@ -10,13 +9,14 @@ public class ChangeClassContentTypeCommand extends Command {
 	private final ClassContent classContent;
 	private final String newType;
 	private final String oldType;
-	
+
 	/**
 	 * Creates the command.
+	 * 
 	 * @param classContent
-	 * 			The ClassContent of which to change the type.
+	 *            The ClassContent of which to change the type.
 	 * @param newType
-	 * 			The new Type that should be given to the ClassContent.
+	 *            The new Type that should be given to the ClassContent.
 	 */
 	public ChangeClassContentTypeCommand(ClassContent classContent, String newType) {
 		this.classContent = classContent;
@@ -31,12 +31,12 @@ public class ChangeClassContentTypeCommand extends Command {
 
 	@Override
 	void unexecute() {
-		getClassContent().setType(getOldType());		
+		getClassContent().setType(getOldType());
 	}
-
 
 	/**
 	 * Returns the class content of which the type needs to be changed
+	 * 
 	 * @return
 	 */
 	private ClassContent getClassContent() {
@@ -45,6 +45,7 @@ public class ChangeClassContentTypeCommand extends Command {
 
 	/**
 	 * Returns the new type for the class content
+	 * 
 	 * @return the new type for the class content
 	 */
 	private String getNewType() {
@@ -53,6 +54,7 @@ public class ChangeClassContentTypeCommand extends Command {
 
 	/**
 	 * Returns the old type for the class content
+	 * 
 	 * @return the old type for the class content
 	 */
 	private String getOldType() {

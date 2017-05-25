@@ -33,31 +33,46 @@ public class MoveCommand extends Command {
 
 	@Override
 	void execute() {
-		object.moveTo(endX, endY);
+		this.getObject().moveTo(this.getEndX(), this.getEndY());
 	}
 
 	@Override
 	void unexecute() {
-		object.moveTo(startX, startY);
+		this.getObject().moveTo(this.getStartX(), this.getStartY());
 	}
 
+	/**
+	 * @return the start x-coordinate
+	 */
 	private final int getStartX() {
 		return startX;
 	}
 
+	/**
+	 * @return the start y-coordinate
+	 */
 	private final int getStartY() {
 		return startY;
 	}
 
+	/**
+	 * @return the end x-coordinate
+	 */
 	private final int getEndX() {
 		return endX;
 	}
 
+	/**
+	 * @return the end y-coordinate
+	 */
 	private final int getEndY() {
 		return endY;
 	}
 
-	private final ResizableAndMovableVisualObject getObject() {
+	/**
+	 * @return the object
+	 */
+	private final ResizableAndMovableVisualObject<?> getObject() {
 		return object;
 	}
 

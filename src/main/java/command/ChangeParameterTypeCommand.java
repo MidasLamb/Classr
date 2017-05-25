@@ -4,6 +4,7 @@ import logicalobjects.Parameter;
 
 /**
  * A command to change the type of a parameter.
+ * 
  * @author group11
  *
  */
@@ -13,10 +14,11 @@ public class ChangeParameterTypeCommand extends Command {
 
 	/**
 	 * Constructs the command.
+	 * 
 	 * @param parameter
-	 * 			The Parameter of which to change the Type.
+	 *            The Parameter of which to change the Type.
 	 * @param newType
-	 * 			The Type to which to change the Parameter's Type.
+	 *            The Type to which to change the Parameter's Type.
 	 */
 	public ChangeParameterTypeCommand(Parameter parameter, String newType) {
 		this.parameter = parameter;
@@ -31,11 +33,12 @@ public class ChangeParameterTypeCommand extends Command {
 
 	@Override
 	void unexecute() {
-		getParameter().setType(getOldType());	
+		getParameter().setType(getOldType());
 	}
 
 	/**
 	 * Returns the Parameter which was given during construction.
+	 * 
 	 * @return The Parameter which was given during construction.
 	 */
 	private final Parameter getParameter() {
@@ -43,8 +46,11 @@ public class ChangeParameterTypeCommand extends Command {
 	}
 
 	/**
-	 * Returns the new type to which to set the Parameter's Type, which was given during construction.
-	 * @return The new type to which to set the Parameter's Type, which was given during construction.
+	 * Returns the new type to which to set the Parameter's Type, which was
+	 * given during construction.
+	 * 
+	 * @return The new type to which to set the Parameter's Type, which was
+	 *         given during construction.
 	 */
 	private final String getNewType() {
 		return newType;
@@ -52,6 +58,7 @@ public class ChangeParameterTypeCommand extends Command {
 
 	/**
 	 * Returns the type of the Parameter before this command is executed.
+	 * 
 	 * @return The type of the Parameter before this command is executed.
 	 */
 	private final String getOldType() {

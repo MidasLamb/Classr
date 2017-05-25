@@ -10,12 +10,12 @@ import visualobjects.VisualObject;
 public class DeleteVisualObjectCommand extends Command {
 	private final VisualObject<?> visualObject;
 	private final Decoupler decoupler;
-	
+
 	/**
 	 * Constructs the Command
 	 * 
 	 * @param object
-	 * 			the VisualObject to delete
+	 *            the VisualObject to delete
 	 */
 	public DeleteVisualObjectCommand(VisualObject<?> object) {
 		this.visualObject = object;
@@ -34,15 +34,17 @@ public class DeleteVisualObjectCommand extends Command {
 
 	/**
 	 * Returns the visual object that will be deleted
+	 * 
 	 * @return the visual object that will be deleted
 	 */
 	private VisualObject<?> getVisualObject() {
 		return visualObject;
 	}
-	
+
 	/**
-	 * Returns the decoupler for decoupeling the object
-	 * @return the decoupler for decoupeling the object
+	 * Returns the decoupler for decoupling the object
+	 * 
+	 * @return the decoupler for decoupling the object
 	 */
 	private Decoupler getDecoupler() {
 		return decoupler;
