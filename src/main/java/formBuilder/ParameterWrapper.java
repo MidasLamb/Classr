@@ -1,10 +1,9 @@
 package formBuilder;
 
+import static main.Constants.STANDARD_FONTMETRICS;
+
 import gui.form.base.Displayable;
 import logicalobjects.Parameter;
-import static main.Constants.*;
-
-import java.security.GeneralSecurityException;
 
 /**
  * A wrapper to be able to display a parameter in a ListBox

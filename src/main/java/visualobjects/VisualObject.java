@@ -9,9 +9,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Optional;
 
-import command.Command;
 import command.Controller;
-import command.DeleteVisualObjectCommand;
 import decoupling.CoupleVisitor;
 import decoupling.Decoupler;
 import gui.inputHandlers.Typable;

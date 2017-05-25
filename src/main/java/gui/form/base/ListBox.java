@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 
 import gui.inputHandlers.clicks.MouseClick;
 

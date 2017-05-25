@@ -1,8 +1,6 @@
 package gui.form.base;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.TreeSet;
 

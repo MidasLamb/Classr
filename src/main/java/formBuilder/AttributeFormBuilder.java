@@ -1,25 +1,17 @@
 package formBuilder;
 
-import static main.Constants.CONTAINER_HEIGHT;
-import static main.Constants.CONTAINER_WIDTH;
-
 import command.ChangeClassContentStaticCommand;
 import command.ChangeClassContentTypeCommand;
 import command.ChangeClassContentVisibilityCommand;
 import command.ChangeLogicalObjectNameCommand;
 import command.Controller;
-import gui.form.base.Button;
 import gui.form.base.CheckBox;
 import gui.form.base.FormContainer;
 import gui.form.base.InputBox;
+import gui.form.base.Label;
 import gui.form.base.RadioButton;
 import gui.form.base.RadioButtonGroup;
-import gui.form.base.Label;
-import gui.form.utility.DefaultCheckBox;
-import gui.form.utility.DefaultRadioButton;
 import gui.form.utility.FormBuilder;
-import gui.form.utility.OkButton;
-import gui.form.utility.RegexCheckedInputBox;
 import guiToApplication.FormWrapper;
 import interfaces.UpdateListener;
 import interfaces.UpdateSubject;
@@ -32,7 +24,6 @@ import visibilities.Visibility;
 public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 	private Attribute attribute;
 	private FormContainer<FormWrapper> formContainer;
-	private boolean isNew;
 	private final Controller controller;
 
 	/**

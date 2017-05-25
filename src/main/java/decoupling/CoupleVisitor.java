@@ -15,6 +15,9 @@ import visualobjects.TextWrapper;
 import visualobjects.VisualAssociation;
 import visualobjects.VisualClass;
 
+/**
+ * A visitor to get the decoupler for a certain object
+ */
 public class CoupleVisitor implements LogicalObjectVisitor<Decoupler>{
 	
 	/**
