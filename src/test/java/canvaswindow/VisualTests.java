@@ -50,12 +50,34 @@ public class VisualTests {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test 
+	public void autoresizeTest() throws IOException { 
+		 String name = "autoresizeTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void faultyNameOverwriteTest() throws IOException { 
+		 String name = "faultyNameOverwriteTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void barTest() throws IOException { 
+		 String name = "barTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
 
-	@Test
-	public void stijnBarTest() throws IOException {
-		String name = "StijnBarTest";
-		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
+	@Test 
+	public void resizeContentBoxTest() throws IOException { 
+		 String name = "resizeContentBoxTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+		 
 	}
 	
 	@Test
@@ -66,22 +88,8 @@ public class VisualTests {
 	}
 	
 	@Test
-	public void resizeContentBoxTest() throws IOException {
-		String name = "resizeContentBoxTest";
-		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
-	}
-	
-	@Test
 	public void resizeClassTest() throws IOException {
 		String name = "resizeClassTest";
-		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
-		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
-	}
-
-	@Test
-	public void barTest() throws IOException {
-		String name = "barTest";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
 	}
