@@ -13,6 +13,9 @@ public abstract class TextState implements Typable {
 
 	/**
 	 * Sets the text object to which this state is linked
+	 * 
+	 * @param text
+	 * 			the text to which to set.
 	 */
 	public void setText(Text text) {
 		this.text = text;

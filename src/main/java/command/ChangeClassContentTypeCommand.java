@@ -37,7 +37,7 @@ public class ChangeClassContentTypeCommand extends Command {
 	/**
 	 * Returns the class content of which the type needs to be changed
 	 * 
-	 * @return
+	 * @return the class content.
 	 */
 	private ClassContent getClassContent() {
 		return classContent;

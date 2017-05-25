@@ -62,7 +62,9 @@ public class MouseClick {
 	 * Translates a mouseclick so that the given x and y is the new origin.
 	 * 
 	 * @param x
+	 * 			The x value to make the new origin.
 	 * @param y
+	 * 			The y value to make the new origin.
 	 */
 	public void translate(int x, int y) {
 		this.setX(this.getX() - x);

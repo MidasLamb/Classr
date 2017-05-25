@@ -19,7 +19,9 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	 * name and dimensions.
 	 * 
 	 * @param width
-	 * @param height
+	 * 			the width of this item
+	 * @param name
+	 * 			the name to display on the item.
 	 */
 	public MenuItem(String name, int width) {
 		super(0, 0, width, STANDARD_FONTMETRICS.getHeight());
@@ -41,6 +43,7 @@ public abstract class MenuItem extends FormObject implements Displayable {
 	 * Determines the height of this MenuItem from the stated Graphics
 	 * 
 	 * @param g
+	 * 			The graphics object.
 	 */
 	public void determineHeight(Graphics g) {
 		height = g.getFontMetrics().getHeight();

@@ -35,6 +35,8 @@ public class TextWrapper<T extends LogicalObject> extends VisualObject<T> {
 	 * 			the parent of this visualObject
 	 * @param 	object
 	 * 			the corresponding logicalObject
+	 * @param controller
+	 * 			the controller for this object.
 	 */
 	public TextWrapper(int x, int y, int z, VisualObject<?> parent, T object, Controller controller) {
 		super(x, y, z, MAX_TEXT_WIDTH, STANDARD_TEXT_HEIGHT, parent, controller);

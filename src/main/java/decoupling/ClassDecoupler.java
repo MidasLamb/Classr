@@ -91,7 +91,7 @@ public class ClassDecoupler extends Decoupler {
 	/**
 	 * Decouples the associations belonging to this class
 	 * 
-	 * @return
+	 * @return The list of associations which belonged to the class.
 	 */
 	private final List<VisualAssociation> getVisualAssociations() {
 		return getVisualClass().getParent().getChildren().stream().filter(x -> x instanceof VisualAssociation)

@@ -33,6 +33,10 @@ public class CreateClassCommand extends Command {
 	 * 
 	 * @param container
 	 *            the container in which the class needs to be added
+	 * @param x
+	 * 			The x to set.
+	 * @param y
+	 * 			The y to set.
 	 */
 	public CreateClassCommand(Container container, int x, int y) {
 		this(container);
