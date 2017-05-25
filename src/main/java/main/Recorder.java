@@ -13,13 +13,14 @@ import canvaswindow.MyCanvasWindow;
 public class Recorder {
 
 	public static void main(String[] args) {
-		String testName = "barTest";
+		String testName = "createClassTest";
 		prepareDirectory(testName);
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		canvasWindow.recordSession("recordings/" + testName + "/recording");
 		java.awt.EventQueue.invokeLater(() -> {
 			canvasWindow.show();
 		});
+		sysoutTest(testName);
 	}
 
 	private static void prepareDirectory(String testName) {
@@ -39,6 +40,17 @@ public class Recorder {
 		} catch (NullPointerException e) {
 			return;
 		}
+	}
+	
+	private static void sysoutTest(String name){
+		StringBuilder builder = new StringBuilder();
+		builder.append("@Test \n");
+		builder.append("public void " + name + "() throws IOException { \n");
+		builder.append("\t String name = \"" + name + "\"; \n");
+		builder.append("\t MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); \n");
+		builder.append("\t assertTrue(MyCanvasWindow.replayRecording(\"recordings/\"+name+\"/recording\", canvasWindow)); \n");
+		builder.append("}");
+		System.out.println(builder.toString());
 	}
 
 }
