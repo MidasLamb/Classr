@@ -12,7 +12,7 @@ public class PassiveState extends TextState {
 
 	@Override
 	public void handleAsciiKey(AsciiKey key) {
-		
+
 	}
 
 	@Override

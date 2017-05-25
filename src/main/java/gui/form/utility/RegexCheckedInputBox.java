@@ -42,7 +42,6 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 		this.notifyUpdate();
 	}
 
-	
 	/**
 	 * Notify checkers that the constraints should be checked again.
 	 */
@@ -73,6 +72,7 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 
 	/**
 	 * Returns the regex
+	 * 
 	 * @return the used regex
 	 */
 	private final String getRegex() {
@@ -81,8 +81,9 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 
 	/**
 	 * Sets the regex
-	 * @param 	regex	
-	 * 			the regex that is set
+	 * 
+	 * @param regex
+	 *            the regex that is set
 	 */
 	private final void setRegex(String regex) {
 		this.regex = regex;
@@ -90,7 +91,8 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 
 	/**
 	 * Returns the checkers
-	 * @return	the checkers
+	 * 
+	 * @return the checkers
 	 */
 	private final Collection<Checker> getCheckers() {
 		return checkers;
@@ -98,8 +100,9 @@ public class RegexCheckedInputBox extends InputBox implements Checkable {
 
 	/**
 	 * Sets the checkers
+	 * 
 	 * @param 	checkers
-	 * 			the checkers that need to be used
+	 *            the checkers that need to be used
 	 */
 	private final void setCheckers(Collection<Checker> checkers) {
 		this.checkers = checkers;
