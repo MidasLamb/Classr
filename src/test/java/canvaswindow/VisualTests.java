@@ -135,4 +135,25 @@ public class VisualTests {
 		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
 	}
 	
+	@Test 
+	public void createAssociationTest() throws IOException { 
+		 String name = "createAssociationTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void associationDeleteClassTest() throws IOException { 
+		 String name = "associationDeleteClassTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void associationDeleteMiddleClassTest() throws IOException { 
+		 String name = "associationDeleteMiddleClassTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
 }
