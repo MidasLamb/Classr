@@ -64,7 +64,8 @@ public abstract class Button extends FormObject implements FunctionTypable {
 	}
 
 	/*
-	 * When Button is focused and enter key is typed, execute the onAction() method.
+	 * When Button is focused and enter key is typed, execute the onAction()
+	 * method.
 	 */
 	@Override
 	public void handleFunctionKey(FunctionKey key) {
@@ -83,7 +84,7 @@ public abstract class Button extends FormObject implements FunctionTypable {
 		@Override
 		void draw(Graphics g) {
 			Color color = g.getColor();
-			g.setColor(new Color(240,240,240));
+			g.setColor(new Color(240, 240, 240));
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
 			g.setColor(Color.BLACK);
 			drawText(g);
@@ -114,7 +115,7 @@ public abstract class Button extends FormObject implements FunctionTypable {
 		@Override
 		void draw(Graphics g) {
 			Color color = g.getColor();
-			g.setColor(new Color(240,240,240));
+			g.setColor(new Color(240, 240, 240));
 			g.fillRect(getX(), getY(), getWidth(), getHeight());
 			g.setColor(Color.LIGHT_GRAY);
 			drawText(g);
@@ -132,18 +133,40 @@ public abstract class Button extends FormObject implements FunctionTypable {
 
 	}
 
+	/**
+	 * Draw the text of this Button
+	 * 
+	 * @param g
+	 *            the graphics
+	 */
 	protected void drawText(Graphics g) {
 		getText().draw(g);
 	}
 
+	/**
+	 * Get the state of this button
+	 * 
+	 * @return state of this Button
+	 */
 	protected ButtonState getState() {
 		return state;
 	}
 
+	/**
+	 * Set the state of this Button
+	 * 
+	 * @param state
+	 *            the state to set
+	 */
 	private void setState(ButtonState state) {
 		this.state = state;
 	}
 
+	/**
+	 * Get the text Label of this Button
+	 * 
+	 * @return text Label of this Button
+	 */
 	private Label getText() {
 		return text;
 	}
