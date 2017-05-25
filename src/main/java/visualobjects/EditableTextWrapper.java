@@ -31,7 +31,7 @@ import logicalobjects.LogicalObject;
 public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		implements UpdateListener, UpdateSubject, Editable {
 	private Collection<UpdateListener> updateListeners;
-
+	private boolean wrongName;
 	/**
 	 * 
 	 * @param x
@@ -51,17 +51,20 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		this.getLogicalObject().addUpdateListener(this);
 		this.setTextObject(new Text(new AttributedString(""), new PassiveState()));
 		this.setUpdateListeners(new ArrayList<UpdateListener>());
+		this.getTextObject().setAttributedText(getText());
+		this.setWrongName(false);
 	}
 
-
-	/**
-	 * Shows the text frame
-	 */
+	
 	@Override
 	public void draw(Graphics g) {
 		Color c = g.getColor();
-		if (isEditable() && !getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
-			g.setColor(Color.RED);
+		if (this.isSelected() && (this.getTextObject().isEditable())|| this.isWrongName()) {
+			if (!getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
+				g.setColor(Color.RED);
+			else
+				g.setColor(Color.BLACK);
+		} 
 		this.getTextObject().draw(g, this.getX(), this.getY());
 		g.setColor(c);
 	}
@@ -104,22 +107,14 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		super.setSelected(b);
 		if (!b) {
 			this.makeUneditable();
-		}
+			if (getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
+				this.getTextObject().setAttributedText(getText());
 
-		this.getTextObject().setAttributedText(getText());
-	}
-
-	@Override
-	public void determineColors(Graphics g) {
-
-		if (this.isSelected() && (this.getTextObject().isEditable())) {
-			if (!getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
-				this.forceColor(Color.RED);
-			else
-				this.forceColor(Color.BLACK);
+		} else {
+			
 		}
 	}
-
+	
 	@Override
 	int getWidth() {
 		return Math.max(STANDARD_FONTMETRICS.stringWidth(getString()),
@@ -136,6 +131,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 		this.getTextObject().handleAsciiKey(key);
 		if (this.getLogicalObject().canHaveAsName(this.getCurrentDisplayedString()))
 			this.save();
+		setWrongName(!getLogicalObject().canHaveAsName(getCurrentDisplayedString()));
 		this.notifyUpdateListeners();
 	}
 
@@ -156,6 +152,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 			this.getTextObject().handleFunctionKey(key);
 			if (this.getLogicalObject().canHaveAsName(getCurrentDisplayedString()))
 				this.save();
+			setWrongName(!getLogicalObject().canHaveAsName(getCurrentDisplayedString()));
 			break;
 		default:
 			this.getTextObject().handleFunctionKey(key);
@@ -189,6 +186,7 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	@Override
 	public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 		this.getTextObject().setAttributedText(getText());
+		this.setWrongName(false);
 	}
 
 	@Override
@@ -235,8 +233,11 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	 */
 	private final void makeEditable() {
 		this.getContainer().switchSelectedTo(this);
-		this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
+		if (!this.isWrongName()){
+			this.getTextObject().setAttributedText(new AttributedString(getLogicalObject().getName()));
+		}
 		this.getTextObject().switchState(new EditableState());
+		
 	}
 
 	/**
@@ -254,5 +255,19 @@ public class EditableTextWrapper<L extends LogicalObject> extends TextWrapper<L>
 	@Override
 	public boolean isEditable() {
 		return getTextObject().isEditable();
+	}
+
+	/**
+	 * @return whether or not the name is wrong.
+	 */
+	private final boolean isWrongName() {
+		return wrongName;
+	}
+
+	/**
+	 * @param wrongName the wrongName to set
+	 */
+	private final void setWrongName(boolean wrongName) {
+		this.wrongName = wrongName;
 	}
 }
