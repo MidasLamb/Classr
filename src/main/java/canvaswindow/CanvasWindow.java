@@ -269,7 +269,6 @@ class CanvasWindowRecording {
 	}
 
 	void replay(CanvasWindow window) {
-		int itemIndex = 0;
 		for (int i = 0; i < items.size(); i++) {
 			RecordingItem item = items.get(i);
 			item.replay(i, window, path);

@@ -1,8 +1,8 @@
 package decoupling;
 
 /**
- * An abstract class to create classes which decouple
- * an object from the other objects, to pretend it is deleted
+ * An abstract class to create classes which decouple an object from the other
+ * objects, to pretend it is deleted
  */
 public abstract class Decoupler {
 	private boolean isDecoupled;
@@ -11,15 +11,14 @@ public abstract class Decoupler {
 	 * A function to decouple the object
 	 */
 	public abstract void decouple();
-	
+
 	/**
 	 * A function to couple the object again
 	 */
 	public abstract void recouple();
-	
+
 	/**
-	 * True if the current item is decoupled
-	 * @return
+	 * @return true if the current item is decoupled, false otherwise
 	 */
 	boolean isDecoupled() {
 		return isDecoupled;
@@ -27,8 +26,9 @@ public abstract class Decoupler {
 
 	/**
 	 * Sets the current decoupled state
-	 * @param 	isDecoupled
-	 * 			the new decoupled state
+	 * 
+	 * @param isDecoupled
+	 *            the new decoupled state
 	 */
 	void setDecoupled(boolean isDecoupled) {
 		this.isDecoupled = isDecoupled;

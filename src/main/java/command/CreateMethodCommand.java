@@ -28,18 +28,18 @@ public class CreateMethodCommand extends Command {
 
 	@Override
 	void execute() {
-		if(getDecoupler() == null){
+		if (getDecoupler() == null) {
 			setMethodPaddingBox(this.getVisualClass().createMethod());
 			setDecoupler(new PaddingBoxDecoupler(getMethodPaddingBox()));
 		} else {
 			getDecoupler().recouple();
 		}
-			
+
 	}
 
 	@Override
 	void unexecute() {
-		if(getDecoupler() != null)
+		if (getDecoupler() != null)
 			getDecoupler().decouple();
 	}
 
@@ -70,9 +70,10 @@ public class CreateMethodCommand extends Command {
 	private final VisualClass getVisualClass() {
 		return visualClass;
 	}
-	
+
 	/**
 	 * Returns the decoupler for the attribute
+	 * 
 	 * @return the decoupler for the attribute
 	 */
 	private Decoupler getDecoupler() {
@@ -81,8 +82,9 @@ public class CreateMethodCommand extends Command {
 
 	/**
 	 * Sets the new decoupler for the attribute
-	 * @param 	decoupler
-	 * 			the new decoupler for the attribute
+	 * 
+	 * @param decoupler
+	 *            the new decoupler for the attribute
 	 */
 	private void setDecoupler(Decoupler decoupler) {
 		this.decoupler = decoupler;

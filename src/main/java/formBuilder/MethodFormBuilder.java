@@ -63,7 +63,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 				if (method.canHaveAsName(getText()) && !method.getName().equals(getText())) {
 					controller.executeCommand(new ChangeLogicalObjectNameCommand(method, getText()));
 				}
-
 			}
 
 			@Override
@@ -82,7 +81,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 				if (method.canHaveAsType(getText()) && !method.getType().equals(getText())) {
 					controller.executeCommand(new ChangeClassContentTypeCommand(method, getText()));
 				}
-
 			}
 
 			@Override
@@ -171,7 +169,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 		// Parameters
 		// ---------------------------------------------------------------
-		
+
 		Button addParameter = new Button("Add", 10, 200, 50, 50) {
 
 			@Override
@@ -179,7 +177,6 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 				Parameter p = new Parameter("name", "type");
 				controller.executeCommand(new AddParameterCommand(method, p));
 				checkEditAndCancelButtons();
-
 			}
 
 		};
@@ -305,6 +302,7 @@ public class MethodFormBuilder extends FormBuilder<FormWrapper> {
 
 	/**
 	 * Returns the Method for which the form needs to be created
+	 * 
 	 * @return the Method for which the form needs to be created
 	 */
 	private Method getMethod() {

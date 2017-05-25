@@ -52,7 +52,6 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 				if (attribute.canHaveAsName(getText()) && !attribute.getName().equals(getText())) {
 					controller.executeCommand(new ChangeLogicalObjectNameCommand(attribute, getText()));
 				}
-
 			}
 
 			@Override
@@ -69,10 +68,9 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 
 			@Override
 			protected void onAction() {
-				if (attribute.canHaveAsType(getText())  && !attribute.getType().equals(getText())) {
+				if (attribute.canHaveAsType(getText()) && !attribute.getType().equals(getText())) {
 					controller.executeCommand(new ChangeClassContentTypeCommand(attribute, getText()));
 				}
-
 			}
 
 			@Override
@@ -104,7 +102,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 					controller.executeCommand(new ChangeClassContentVisibilityCommand(attribute, Visibility.PRIVATE));
 			}
 		};
-		
+
 		this.addFormObject(privateButton);
 		this.addLabelToRightOfLastFormObject("Private");
 		RadioButton packageButton = new RadioButton(group, 10, 130) {
@@ -114,7 +112,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 					controller.executeCommand(new ChangeClassContentVisibilityCommand(attribute, Visibility.PACKAGE));
 			}
 		};
-		
+
 		this.addFormObject(packageButton);
 		this.addLabelToRightOfLastFormObject("Package");
 		RadioButton protectedButton = new RadioButton(group, 10, 150) {
@@ -124,18 +122,17 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 					controller.executeCommand(new ChangeClassContentVisibilityCommand(attribute, Visibility.PROTECTED));
 			}
 		};
-		
+
 		this.addFormObject(protectedButton);
 		this.addLabelToRightOfLastFormObject("Protected");
 
 		// Static checkbox
 		this.addFormObject(new Label("Modifiers", 10, 3));
-		CheckBox staticCheckbox = new CheckBox(10, 25){
+		CheckBox staticCheckbox = new CheckBox(10, 25) {
 			@Override
 			protected void onAction() {
 				if (attribute.canBeStatic(isChecked()))
 					controller.executeCommand(new ChangeClassContentStaticCommand(attribute, isChecked()));
-				
 			}
 		};
 
@@ -168,7 +165,7 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 			public void getNotifiedOfUpdate(UpdateSubject updateSubject) {
 				attrName.setText(attribute.getName());
 				attrType.setText(attribute.getType());
-				
+
 				Visibility v = getAttribute().getVisibility();
 				switch (v) {
 				case PUBLIC:
@@ -184,7 +181,8 @@ public class AttributeFormBuilder extends FormBuilder<FormWrapper> {
 					group.setSelectedButton(privateButton);
 					break;
 				default:
-					throw new AssertionError("Visibility must be one of the following: public, protected, package or private.");
+					throw new AssertionError(
+							"Visibility must be one of the following: public, protected, package or private.");
 				}
 				staticCheckbox.setChecked(getAttribute().isStatic());
 			}
