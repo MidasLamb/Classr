@@ -39,6 +39,7 @@ public class PaddingBoxDecoupler extends Decoupler {
 	private void decoupleVisual() {
 		closeFormBelogingTo(getPaddingBox().getLogicalObject());
 		getPaddingBox().getParent().removeChild(getPaddingBox());
+		getPaddingBox().getContainer().switchSelectedTo(null);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ import org.junit.Test;
 public class VisualTests {
 
 	@Test
-	public void newClassTest() throws IOException {
+	public void barTest() throws IOException {
 		String name = "barTest";
 		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
 		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));

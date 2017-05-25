@@ -53,6 +53,7 @@ public class ClassDecoupler extends Decoupler {
 	 */
 	private void decoupleVisualClass() {
 		getVisualClass().getParent().removeChild(getVisualClass());
+		getVisualClass().getContainer().switchSelectedTo(null);
 	}
 
 	/**

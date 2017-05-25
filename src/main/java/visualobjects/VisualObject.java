@@ -293,7 +293,7 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 * 
 	 * @return the container where this object is in
 	 */
-	final Container getContainer() {
+	public final Container getContainer() {
 		VisualObject<?> v = this;
 		while (v != null && !(v instanceof Container))
 			v = v.getParent();

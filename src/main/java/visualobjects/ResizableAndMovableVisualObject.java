@@ -244,10 +244,11 @@ public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> e
 	@Override
 	public void onDragUpdate(Drag drag) {
 		getContainer().bringToFront(this);
-		if (!this.isBeingResized())
-			handleMove(drag);
+		
 		if (!this.isBeingMoved())
 			handleResize(drag);
+		if (!this.isBeingResized())
+			handleMove(drag);
 	}
 
 	@Override

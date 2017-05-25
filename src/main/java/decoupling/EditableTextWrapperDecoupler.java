@@ -44,6 +44,7 @@ public class EditableTextWrapperDecoupler extends Decoupler {
 	private void decoupleVisual() {
 		closeFormBelogingTo(getTextWrapper().getLogicalObject());
 		getParentDecoupler().decouple();
+		getTextWrapper().getContainer().switchSelectedTo(null);
 	}
 
 	/**
