@@ -25,9 +25,13 @@ public abstract class FormObject implements Comparable<FormObject>, ChangeSubjec
 	 * its coordinates and dimensions.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public FormObject(int x, int y, int width, int height) {
 		this.x = x;

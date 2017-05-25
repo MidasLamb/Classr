@@ -30,14 +30,19 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	/**
-	 * Returns whether a click is in a LitBoxElement
+	 * Returns whether a click is in a ListBoxElement
 	 * 
 	 * @param e
+	 *            ListBoxElement to be checked
 	 * @param clickX
+	 *            x-coordinate of the click
 	 * @param clickY
+	 *            y-coordinate of the click
 	 * @param elementX
+	 *            x-coordinate of the element
 	 * @param elementY
-	 * @return
+	 *            y-coordinate of the element
+	 * @return true when the click is in the ListBoxElement, false otherwise
 	 */
 	boolean isInElement(ListBoxElement<T> e, int clickX, int clickY, int elementX, int elementY) {
 		boolean isInHorizontal = clickX >= elementX && clickX < elementX + this.getWidth();
@@ -49,7 +54,9 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * Returns whether this ListBox contains the stated ListBoxElement
 	 * 
 	 * @param el
-	 * @return
+	 *            the ListBoxElement to be checked
+	 * @return true when the ListBox contains the given ListBoxElement, false
+	 *         otherwise
 	 */
 	public boolean contains(T el) {
 		return getElements().contains(el);
@@ -110,6 +117,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * Adds a ListBoxElement to this ListBox
 	 * 
 	 * @param e
+	 *            ListBoxElement to be added
 	 */
 	public void addElement(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
@@ -122,6 +130,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * Removes the first occurrence of the element in the list.
 	 * 
 	 * @param e
+	 *            ListBoxElement to be removed
 	 */
 	public void removeElement(T e) {
 		Collection<ListBoxElement<T>> clone = new ArrayList<ListBoxElement<T>>(getListboxElements());
@@ -132,25 +141,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	}
 
 	/**
-	 * Removes the ListBoxElement that is currently selected from this ListBox
-	 */
-	public void removeSelectedElement() {
-		int index = getListboxElements().indexOf(this.getSelectedElement());
-		getListboxElements().remove(this.getSelectedElement());
-		if (index < getListboxElements().size()) {
-			this.setSelectedElement(getListboxElements().get(index));
-		} else {
-			this.setSelectedElement(null);
-		}
-	}
-
-	/**
 	 * Switches the ListBoxElement that is currently selected with the stated
 	 * ListBoxElement
 	 * 
 	 * @param e
+	 *            ListBoxElement to switch
 	 */
-	public void switchSelectedElementWith(T e) {
+	void switchSelectedElementWith(T e) {
 		ListBoxElement<T> lbe = new ListBoxElement<T>(e);
 		int index = getListboxElements().indexOf(this.getSelectedElement());
 		getListboxElements().set(index, lbe);
@@ -167,7 +164,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	/**
 	 * Returns the ListBoxElements of this ListBox
 	 * 
-	 * @return
+	 * @return list of all the ListBoxElements of this ListBox
 	 */
 	final ArrayList<ListBoxElement<T>> getListboxElements() {
 		return elements;
@@ -176,7 +173,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	/**
 	 * Returns the objects of the ListBoxElements of this ListBox
 	 * 
-	 * @return
+	 * @return ArrayList with the objects of the ListBoxElements of this ListBox
 	 */
 	public final ArrayList<T> getElements() {
 		ArrayList<T> c = new ArrayList<T>();
@@ -190,6 +187,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * ListBoxElements
 	 * 
 	 * @param elements
+	 *            list of ListBoxElements to be set
 	 */
 	protected final void setElements(ArrayList<ListBoxElement<T>> elements) {
 		this.elements = elements;
@@ -207,7 +205,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	/**
 	 * Return the object of the ListBoxElement that is currently selected
 	 * 
-	 * @return
+	 * @return the object of the selected ListBoxElement
 	 */
 	public final T getSelectedObject() {
 		ListBoxElement<T> lb = this.getSelectedElement();

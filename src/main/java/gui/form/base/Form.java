@@ -29,7 +29,9 @@ public class Form implements Typable, Clickable {
 	 * Create a new Form and set its dimensions.
 	 * 
 	 * @param width
+	 *            The width of the Form
 	 * @param height
+	 *            The height of the Form
 	 */
 	public Form(int width, int height) {
 		this.width = width;

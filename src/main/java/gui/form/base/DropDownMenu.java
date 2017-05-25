@@ -10,6 +10,7 @@ import gui.inputHandlers.clicks.MouseClick;
  * A class of DropDownMenus, extending a listbox, but being able to be disabled.
  *
  * @param <T>
+ *            the class of the Displayable
  */
 public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	private boolean enabled;
@@ -21,9 +22,13 @@ public class DropDownMenu<T extends Displayable> extends ListBox<MenuItem> {
 	 * MenuItems.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public DropDownMenu(int x, int y, int width, int height) {
 		super(x, y, width, height);

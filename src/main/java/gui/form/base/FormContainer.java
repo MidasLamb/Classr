@@ -6,6 +6,7 @@ package gui.form.base;
  * @author group11
  *
  * @param <T>
+ *            class of the Form in this FormContainer
  */
 public interface FormContainer<T extends Form> {
 
@@ -18,13 +19,14 @@ public interface FormContainer<T extends Form> {
 	 * Switch to the given Form
 	 * 
 	 * @param f
+	 *            Form to be switched to
 	 */
 	public void switchTo(T f);
 
 	/**
-	 * Get an extra container of this FormContainer
+	 * Get an extra container
 	 * 
-	 * @return
+	 * @return an extra container
 	 */
 	public FormContainer<T> getExtraContainer();
 }

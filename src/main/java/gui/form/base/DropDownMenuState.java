@@ -12,6 +12,7 @@ public abstract class DropDownMenuState extends State {
 	 * DropDownMenu.
 	 * 
 	 * @param click
+	 *            MouseClick that was received
 	 */
 	abstract void onClick(MouseClick click);
 
