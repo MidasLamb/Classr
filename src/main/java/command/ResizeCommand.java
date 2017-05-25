@@ -17,7 +17,7 @@ public class ResizeCommand extends Command {
 	 * @param startX
 	 *            the initial x-coordinate
 	 * @param startY
-	 *            the initial y-cordinate
+	 *            the initial y-coordinate
 	 * @param startWidth
 	 *            the initial width
 	 * @param startHeight
