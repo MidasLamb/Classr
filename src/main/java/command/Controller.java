@@ -79,7 +79,9 @@ public class Controller {
 	}
 
 	/**
-	 * Returns the undo stack
+	 * Returns the undo stack.
+	 * 
+	 * @return the undo stack.
 	 */
 	private Stack<Command> getUndoStack() {
 		return undoStack;
@@ -94,6 +96,9 @@ public class Controller {
 
 	/**
 	 * Sets the redo stack
+	 * 
+	 * @param redoStack
+	 * 			The Stack to which to set the redostack.
 	 */
 	private void setRedoStack(Stack<Command> redoStack) {
 		this.redoStack = redoStack;

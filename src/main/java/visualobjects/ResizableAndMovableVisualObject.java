@@ -15,7 +15,7 @@ import logicalobjects.LogicalObject;
 /**
  * A class of VisualObjects that are resizable and movable
  *
- * @param <T>
+ * @param <T> The logical object class which will be linked to the object.
  */
 public abstract class ResizableAndMovableVisualObject<T extends LogicalObject> extends VisualObject<T>
 		implements UpdateListener, UpdateSubject {

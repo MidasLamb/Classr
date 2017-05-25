@@ -15,7 +15,9 @@ public class ToolBarBuilder extends BarBuilder<MenuBar> {
 	 * Constructs a ToolBar with the stated width and height
 	 * 
 	 * @param width
+	 * 			the width of the toolbar to build.
 	 * @param height
+	 * 			the height of the toolbar to build.
 	 */
 	public ToolBarBuilder(int width, int height) {
 		this.width = width;

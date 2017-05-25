@@ -39,7 +39,7 @@ public class ChangeClassContentVisibilityCommand extends Command {
 	/**
 	 * Returns the class content of which the type needs to be changed
 	 * 
-	 * @return
+	 * @return the classcontent.
 	 */
 	private ClassContent getClassContent() {
 		return classContent;

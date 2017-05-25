@@ -15,10 +15,15 @@ public class MenuHeader extends Button {
 	 * its name, coordinates and dimensions and initializes its DropDownMenu.
 	 * 
 	 * @param name
+	 *            the name for this header.
 	 * @param x
+	 *            the x pos of this header.
 	 * @param y
+	 *            the y pos of this header.
 	 * @param width
+	 *            the width of the header.
 	 * @param height
+	 *            the height of the header.
 	 */
 	public MenuHeader(String name, int x, int y, int width, int height) {
 		super(name, x, y, width, height);
@@ -57,6 +62,7 @@ public class MenuHeader extends Button {
 	 *            x-coordinate
 	 * @param y
 	 *            y-coordinate
+	 * @return whether or not the x and y are in itself.
 	 */
 	boolean isInSelf(int x, int y) {
 		return isBetween(this.getX(), this.getX() + this.getWidth(), x)
@@ -68,8 +74,10 @@ public class MenuHeader extends Button {
 	 * MenuHeader.
 	 * 
 	 * @param x
-	 * 
+	 *            the x value to check.
 	 * @param y
+	 *            the y value to check.
+	 * @return whether or not the x and y are in the dropdown.
 	 */
 	boolean isInDropDown(int x, int y) {
 		return this.getDropDownMenu().isIn(x, y);

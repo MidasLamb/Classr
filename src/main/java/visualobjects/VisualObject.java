@@ -67,6 +67,8 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 *            the height of the visual object
 	 * @param parent
 	 *            the parent visual object of this visual object
+	 * @param controller
+	 *            the controller for this object.
 	 */
 	public VisualObject(int x, int y, int z, int width, int height, VisualObject<?> parent, Controller controller) {
 		setChildren(new ArrayList<VisualObject<?>>());
@@ -292,11 +294,11 @@ public abstract class VisualObject<L extends LogicalObject> implements DeleteLis
 	 * Checks if c is between a and b
 	 * 
 	 * @param a
-	 * 			The lower bound
+	 *            The lower bound
 	 * @param b
-	 * 			The upper bound
+	 *            The upper bound
 	 * @param c
-	 * 			The value to check
+	 *            The value to check
 	 * 
 	 * @return wheter or not c is between a and b.
 	 */
