@@ -9,11 +9,12 @@ import visualobjects.Backend;
  * A class that builds a MenuBar
  */
 public class MenuBarBuilder extends BarBuilder<MenuBar> {
-	
+
 	private final int width, height;
-	
+
 	/**
 	 * Constructs a MenuBarBuilder with the stated width and height
+	 * 
 	 * @param width
 	 * @param height
 	 */
@@ -29,7 +30,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 		int y = 0;
 		int defaultWidth = 100;
 		int newPosX = x;
-		
+
 		this.setMenuBar(new MenuBar(x, y, this.getWidth(), defaultHeight));
 		this.addMenuHeader(new MenuHeader("Create/Add", x, y, defaultWidth, defaultHeight));
 		this.addMenuItemToLastAddedHeader(new MenuItem("Create Class", defaultWidth) {
@@ -50,7 +51,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canAddAttribute();
 			}
 		});
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Add Method", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -62,7 +63,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canAddMethod();
 			}
 		});
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Add Parameter", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -74,12 +75,12 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canAddParameter();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
-		
+
 		// EDIT menu header
 		this.addMenuHeader(new MenuHeader("Edit", newPosX, y, defaultWidth, defaultHeight));
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Edit Name", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -91,7 +92,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canEditName();
 			}
 		});
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Edit...", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -103,7 +104,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canEditTripleDot();
 			}
 		});
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Delete", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -115,7 +116,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canDelete();
 			}
 		});
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Undo", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -127,7 +128,7 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 				return Backend.canUndo();
 			}
 		});
-		
+
 		this.addMenuItemToLastAddedHeader(new MenuItem("Redo", defaultWidth) {
 			@Override
 			protected void onAction() {
@@ -155,6 +156,5 @@ public class MenuBarBuilder extends BarBuilder<MenuBar> {
 	private final int getHeight() {
 		return height;
 	}
-	
-	
+
 }

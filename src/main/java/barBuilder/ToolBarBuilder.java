@@ -29,7 +29,7 @@ public class ToolBarBuilder extends BarBuilder<MenuBar> {
 		int y = 0;
 		int defaultWidth = 100;
 		int newPosX = x;
-		
+
 		this.setMenuBar(new MenuBar(x, y, this.getWidth(), defaultHeight));
 		this.addMenuHeader(new MenuHeader("Create Class", newPosX, y, defaultWidth, defaultHeight) {
 			@Override
@@ -37,7 +37,7 @@ public class ToolBarBuilder extends BarBuilder<MenuBar> {
 				Backend.createClass();
 			}
 		});
-		
+
 		newPosX += defaultWidth;
 
 		this.addMenuHeader(new MenuHeader("Add Attribute", newPosX, y, defaultWidth, defaultHeight) {

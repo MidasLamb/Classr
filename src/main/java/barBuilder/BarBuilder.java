@@ -39,22 +39,45 @@ public abstract class BarBuilder<T extends MenuBar> {
 	void setMenuBar(T menuBar) {
 		this.menuBar = menuBar;
 	}
-	
+
+	/**
+	 * Set the last added MenuHeader to the given header
+	 * 
+	 * @param header
+	 *            header to set as last added MenuHeader
+	 */
 	private void setLastAddedHeader(MenuHeader header) {
 		this.lastAddedHeader = header;
 	}
-	
+
+	/**
+	 * Get the last added MenuHeader
+	 * 
+	 * @return last added MenuHeader
+	 */
 	private MenuHeader getLastAddedHeader() {
 		return this.lastAddedHeader;
 	}
-	
+
+	/**
+	 * Add a MenuHeader and set it as last added MenuHeader
+	 * 
+	 * @param menuHeader
+	 *            MenuHeader to add
+	 */
 	void addMenuHeader(MenuHeader menuHeader) {
 		this.getMenuBar().addMenuHeader(menuHeader);
 		this.setLastAddedHeader(menuHeader);
 	}
-	
+
+	/**
+	 * Add a MenuItem to the last added MenuHeader
+	 * 
+	 * @param item
+	 *            MenuItem to add to the last added MenuHeader
+	 */
 	void addMenuItemToLastAddedHeader(MenuItem item) {
-		if (this.getLastAddedHeader() != null){
+		if (this.getLastAddedHeader() != null) {
 			this.lastAddedHeader.getDropDownMenu().addMenuItem(item);
 		} else {
 			throw new IllegalStateException("No MenuHeaders are added to this MenuBar.");
