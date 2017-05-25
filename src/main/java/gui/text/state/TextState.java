@@ -8,38 +8,39 @@ import gui.text.Text;
 /**
  * An abstract class for defining the state of a Text object
  */
-public abstract class TextState implements Typable{
+public abstract class TextState implements Typable {
 	private Text text;
-	
+
 	/**
-	 * Sets the text object to which 
-	 * 	this state is linked
+	 * Sets the text object to which this state is linked
 	 */
-	public void setText(Text text){
+	public void setText(Text text) {
 		this.text = text;
 	}
-	
+
 	/**
 	 * @return the text object to which this state is linked
 	 */
-	protected final Text getText(){
+	protected final Text getText() {
 		return text;
 	}
-	
+
 	/**
-	 * Draws the text in the current state, given the graphics
-	 * 		and coordinates where it needs to be drawn
+	 * Draws the text in the current state, given the graphics and coordinates
+	 * where it needs to be drawn
+	 * 
 	 * @param g
-	 * 			the graphics
-	 * @param 	x
-	 * 			the x-coordinate
-	 * @param 	y
-	 * 			the y-coordinate 
+	 *            the graphics
+	 * @param x
+	 *            the x-coordinate
+	 * @param y
+	 *            the y-coordinate
 	 */
 	public abstract void draw(Graphics g, int x, int y);
-	
+
 	/**
 	 * Returns whether or not this state is an editable state.
+	 * 
 	 * @return Whether or not this state is an editable state.
 	 */
 	public abstract boolean isEditable();
