@@ -1,13 +1,8 @@
 package gui.form.base;
 
-import gui.form.base.MenuItem;
-import visualobjects.Container;
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import canvaswindow.MyCanvasWindow;
 
 
 public class MenuItemTest {

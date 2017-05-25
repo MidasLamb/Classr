@@ -148,7 +148,7 @@ public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 			d.getNotifiedOfUpdate(this);
 	}
 
-	private final Collection<UpdateListener> getUpdateListeners() {
+	final Collection<UpdateListener> getUpdateListeners() {
 		return updateListeners;
 	}
 
