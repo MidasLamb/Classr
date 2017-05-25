@@ -89,7 +89,7 @@ public abstract class InputBox extends FormObject implements Typable {
 		if (!isValidString(getText()))
 			g.setColor(Color.RED);
 		getTextObject().draw(g, this.getX(), this.getY());
-		
+
 		g.setColor(c);
 	}
 
@@ -111,6 +111,12 @@ public abstract class InputBox extends FormObject implements Typable {
 		return textObject;
 	}
 
+	/**
+	 * Set the Text object that contains the value of this InputBox
+	 * 
+	 * @param textObject
+	 *            Text object to set as the value of this InputBox
+	 */
 	private final void setTextObject(Text textObject) {
 		this.textObject = textObject;
 	}
@@ -123,7 +129,8 @@ public abstract class InputBox extends FormObject implements Typable {
 	}
 
 	/**
-	 * Sets the text of the textobject of this InputBox to the stated String 
+	 * Sets the text of the textobject of this InputBox to the stated String
+	 * 
 	 * @param string
 	 */
 	public void setText(String string) {
@@ -135,8 +142,11 @@ public abstract class InputBox extends FormObject implements Typable {
 		return Math.max(getTextObject().getTextWidth() + 4, 100);
 	}
 
+	/**
+	 * @param string
+	 *            String to be checked
+	 * @return true if the string is valid, false otherwise
+	 */
 	public abstract boolean isValidString(String string);
-	
-	
 
 }

@@ -7,14 +7,31 @@ public class RadioButtonGroup {
 
 	private RadioButton selectedButton;
 
+	/**
+	 * Called when a RadioButton of this RadioButtonGroup is clicked. The
+	 * clicked RadioButton is set as the selected RadioButton of this
+	 * RadioButtonGroup.
+	 * 
+	 * @param button
+	 */
 	void radioButtonIsClicked(RadioButton button) {
 		setSelectedButton(button);
 	}
 
+	/**
+	 * @return the selected RadioButton
+	 */
 	public RadioButton getSelectedButton() {
 		return selectedButton;
 	}
 
+	/**
+	 * Set the selected RadioButton of this RadioButtonGroup
+	 * 
+	 * @param selectedButton
+	 *            the RadioButton to set as the selected RadioButton of this
+	 *            RadioButtonGroup
+	 */
 	public void setSelectedButton(RadioButton selectedButton) {
 		if (getSelectedButton() != null)
 			getSelectedButton().setSelected(false);

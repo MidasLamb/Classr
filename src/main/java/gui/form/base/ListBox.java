@@ -156,11 +156,11 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		getListboxElements().set(index, lbe);
 		this.setSelectedElement(lbe);
 	}
-	
+
 	/**
 	 * Unselects all objects.
 	 */
-	public void unselect(){
+	public void unselect() {
 		this.setSelectedElement(null);
 	}
 
@@ -195,6 +195,11 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		this.elements = elements;
 	}
 
+	/**
+	 * Get the selected element of this ListBox
+	 * 
+	 * @return the selected element
+	 */
 	private final ListBoxElement<T> getSelectedElement() {
 		return this.selectedElement;
 	}
@@ -211,6 +216,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		return lb.getObject();
 	}
 
+	/**
+	 * Set the selected element of this ListBox
+	 * 
+	 * @param selectedElement
+	 *            ListBoxElement to set as selected element of this ListBox
+	 */
 	final void setSelectedElement(ListBoxElement<T> selectedElement) {
 		this.selectedElement = selectedElement;
 	}
@@ -247,8 +258,6 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	public FormObject getLastChild() {
 		return getListboxElements().get(getListboxElements().size() - 1);
 	}
-	
-	
 
 	/**
 	 * A class of ListBoxElements representing the elements of a ListBox
@@ -286,7 +295,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 			Color c = g.getColor();
 			if (this.isFocused())
 				g.setColor(Color.BLUE);
-			
+
 			int descent = g.getFontMetrics().getDescent();
 			g.drawString(obj.getDisplayableString(), 0, getHeight() - descent);
 			g.setColor(c);
@@ -356,12 +365,12 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		public FormObject getParent() {
 			return ListBox.this;
 		}
-		
-		public int getHeight(){
+
+		public int getHeight() {
 			return getObject().getHeight();
 		}
-		
-		public int getWidth(){
+
+		public int getWidth() {
 			return getObject().getWidth();
 		}
 
@@ -370,7 +379,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	@Override
 	protected int getWidth() {
 		int max = super.getWidth();
-		for (ListBoxElement<T> lbe: getListboxElements()){
+		for (ListBoxElement<T> lbe : getListboxElements()) {
 			if (lbe.getWidth() > max)
 				max = lbe.getWidth();
 		}
@@ -380,10 +389,10 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	@Override
 	protected int getHeight() {
 		int height = 0;
-		for (ListBoxElement<T> lbe: getListboxElements()){
+		for (ListBoxElement<T> lbe : getListboxElements()) {
 			height += lbe.getHeight();
 		}
-		return Math.max(height,super.getHeight());
+		return Math.max(height, super.getHeight());
 	}
 
 }
