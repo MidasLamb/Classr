@@ -51,9 +51,6 @@ public class VisualTests {
 		}
 	}
 
-	
-	
-	
 	@Test
 	public void stijnBarTest() throws IOException {
 		String name = "StijnBarTest";
@@ -99,6 +96,41 @@ public class VisualTests {
 	@Test 
 	public void createAttributeTest() throws IOException { 
 		 String name = "createAttributeTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void openMethodFormTest() throws IOException { 
+		 String name = "openMethodFormTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void openAttributeFormTest() throws IOException { 
+		 String name = "openAttributeFormTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void attributeFormTest1() throws IOException { 
+		 String name = "attributeFormTest1"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void methodFormTest1() throws IOException { 
+		 String name = "methodFormTest1"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
+	@Test 
+	public void methodParameterTest1() throws IOException { 
+		 String name = "methodParameterTest1"; 
 		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
 		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
 	}
