@@ -275,6 +275,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		 * Constructs a new ListBoxElement with the stated object
 		 * 
 		 * @param obj
+		 * 		the object to use.
 		 */
 		ListBoxElement(T2 obj) {
 			super(0, 0, 0, obj.getHeight());
@@ -284,7 +285,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		/**
 		 * Returns the displayable String of the object of this ListBoxElement
 		 * 
-		 * @return
+		 * @return the displayable string.
 		 */
 		public String getDisplayableString() {
 			return obj.getDisplayableString();
@@ -294,6 +295,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 		 * Draws this element at the origin.
 		 * 
 		 * @param g
+		 * 		the graphics object
 		 */
 		public void draw(Graphics g) {
 			Color c = g.getColor();
