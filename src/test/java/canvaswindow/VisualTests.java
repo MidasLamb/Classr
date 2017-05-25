@@ -9,6 +9,15 @@ import org.junit.Test;
 
 public class VisualTests {
 	
+	
+	
+	@Test
+	public void stijnBarTest() throws IOException {
+		String name = "StijnBarTest";
+		MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE);
+		assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow));
+	}
+	
 	@Test
 	public void moveClassAndContentBoxTest() throws IOException {
 		String name = "moveClassAndContentBoxTest";
