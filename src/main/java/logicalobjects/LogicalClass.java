@@ -31,6 +31,7 @@ public class LogicalClass extends LogicalObject {
 	 * Constructs a LogicalClass object with the stated name
 	 * 
 	 * @param name
+	 *            name to be set for the LogicalClass
 	 */
 	public LogicalClass(String name) {
 		super();

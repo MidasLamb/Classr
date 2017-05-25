@@ -8,24 +8,26 @@ import static main.Constants.REGEX_START_NO_CAPITAL;
  */
 public class Parameter extends LogicalObject {
 	private String type;
-	
+
 	/**
 	 * 
-	 * @param 	name
-	 * 			The name of the parameter
-	 * @param 	type
-	 * 			The type of the parameter
+	 * @param name
+	 *            The name of the parameter
+	 * @param type
+	 *            The type of the parameter
 	 */
-	public Parameter(String name, String type){
+	public Parameter(String name, String type) {
 		this.setName(name);
 		this.setType(type);
 	}
 
 	@Override
-	protected void onDelete() {}
+	protected void onDelete() {
+	}
 
 	/**
 	 * Returns the type of the parameter
+	 * 
 	 * @return the parameter type
 	 */
 	public final String getType() {
@@ -34,20 +36,20 @@ public class Parameter extends LogicalObject {
 
 	/**
 	 * To set the type of the parameter
-	 * @param 	type
-	 * 			the new type of the parameter
+	 * 
+	 * @param type
+	 *            the new type of the parameter
 	 */
 	public final void setType(String type) {
 		this.type = type;
 		notifyUpdateListeners();
 	}
 
-
 	@Override
 	public Object accept(LogicalObjectVisitor<?> v) {
 		return v.visit(this);
 	}
-	
+
 	@Override
 	public boolean canHaveAsName(String name) {
 		return name.matches(REGEX_START_NO_CAPITAL);
@@ -58,7 +60,9 @@ public class Parameter extends LogicalObject {
 	 * string as its type name
 	 * 
 	 * @param type
-	 * @return
+	 *            String to be checked
+	 * @return boolean indicating wheter or not this Parameter can have the
+	 *         given String as type
 	 */
 	public boolean canHaveAsType(String type) {
 		return type.matches(REGEX_ALPHANUMERIC_UNDERSCORE);

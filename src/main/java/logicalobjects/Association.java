@@ -13,12 +13,12 @@ public class Association extends LogicalObject {
 	private LogicalClass class2;
 
 	/**
-	 * Constructs a new Association within the two stated RealClasses.
+	 * Constructs a new Association within the two stated LogicalClasses.
 	 * 
 	 * @param class1
-	 *            The First RealClass which is linked by the association.
+	 *            The First LogicalClass which is linked by the association.
 	 * @param class2
-	 *            The other RealClass which is linked by the association.
+	 *            The other LogicalClass which is linked by the association.
 	 */
 	public Association(LogicalClass class1, LogicalClass class2) {
 		setClass1(class1);
@@ -44,38 +44,38 @@ public class Association extends LogicalObject {
 	}
 
 	/**
-	 * Returns the first RealClass belonging to this Association
+	 * Returns the first LogicalClass belonging to this Association
 	 * 
-	 * @return the first RealClass belonging to this Association
+	 * @return the first LogicalClass belonging to this Association
 	 */
 	public final LogicalClass getClass1() {
 		return class1;
 	}
 
 	/**
-	 * Sets the first RealClass belonging to this Association
+	 * Sets the first LogicalClass belonging to this Association
 	 * 
 	 * @param class1
-	 *            the RealClass to be set
+	 *            the LogicalClass to be set
 	 */
 	private void setClass1(LogicalClass class1) {
 		this.class1 = class1;
 	}
 
 	/**
-	 * Returns the second RealClass belonging to this Association
+	 * Returns the second LogicalClass belonging to this Association
 	 * 
-	 * @return the second RealClass belonging to this Association
+	 * @return the second LogicalClass belonging to this Association
 	 */
 	public final LogicalClass getClass2() {
 		return class2;
 	}
 
 	/**
-	 * Sets the second RealClass belonging to this Association
+	 * Sets the second LogicalClass belonging to this Association
 	 * 
-	 * @param class1
-	 *            the RealClass to be set
+	 * @param class2
+	 *            the LogicalClass to be set
 	 */
 	private void setClass2(LogicalClass class2) {
 		this.class2 = class2;

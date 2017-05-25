@@ -126,6 +126,8 @@ public abstract class LogicalObject implements DeleteSubject, UpdateSubject {
 	 * Returns whether this logical object can have the provided string as a
 	 * valid name
 	 * 
+	 * @param string
+	 *            String to be checked
 	 * @return true if the string would be a valid name, false otherwise
 	 */
 	public abstract boolean canHaveAsName(String string);

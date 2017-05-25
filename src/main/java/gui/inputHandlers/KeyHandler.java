@@ -33,6 +33,7 @@ public class KeyHandler {
 
 	/**
 	 * @param e
+	 *            KeyEvent to handle
 	 */
 	public void handleInput(KeyEvent e) {
 		if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() != 0) {
@@ -51,7 +52,8 @@ public class KeyHandler {
 	 * Get the FunctionKey of a KeyEvent
 	 * 
 	 * @param e
-	 * @return
+	 *            the KeyEvent
+	 * @return the FunctionKey of the given KeyEvent
 	 */
 	static FunctionKey getFunctionKey(KeyEvent e) {
 		if (InputEvent.CTRL_MASK == e.getModifiers()) {
@@ -86,6 +88,7 @@ public class KeyHandler {
 
 	/**
 	 * @param e
+	 *            KeyEvent to be checked
 	 * @return true if the KeyEvent is an ASCII key, false otherwise
 	 */
 	static boolean keyEventIsAscii(KeyEvent e) {
@@ -95,6 +98,7 @@ public class KeyHandler {
 
 	/**
 	 * @param c
+	 *            character to be checked
 	 * @return true if the character is a ASCII character, false otherwise
 	 */
 	private static boolean isAscii(char c) {

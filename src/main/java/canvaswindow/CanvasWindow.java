@@ -360,6 +360,7 @@ public class CanvasWindow {
 	 * enters a character (e.getID() == KeyEvent.KEY_TYPED).
 	 * 
 	 * @param e
+	 *            KeyEvent e to handle
 	 */
 	protected void handleKeyEvent(KeyEvent e) {
 	}

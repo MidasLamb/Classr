@@ -59,6 +59,7 @@ public class Form implements Typable, Clickable {
 	 * Handle a click by passing it to all its FormObjects.
 	 * 
 	 * @param click
+	 *            MouseClick to be handled
 	 */
 	public void handleClick(MouseClick click) {
 		setFocusedObject(null);
@@ -87,6 +88,7 @@ public class Form implements Typable, Clickable {
 	 * Draw this Form and its FormObjects.
 	 * 
 	 * @param g
+	 *            the Graphics
 	 */
 	public void draw(Graphics g) {
 		this.getFormObjects().forEach(formObject -> formObject.draw(g));
