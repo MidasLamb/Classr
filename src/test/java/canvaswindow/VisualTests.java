@@ -164,4 +164,11 @@ public class VisualTests {
 		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
 	}
 	
+	@Test 
+	public void decoupleTest() throws IOException { 
+		 String name = "decoupleTest"; 
+		 MyCanvasWindow canvasWindow = new MyCanvasWindow(CANVAS_TITLE); 
+		 assertTrue(MyCanvasWindow.replayRecording("recordings/"+name+"/recording", canvasWindow)); 
+	}
+	
 }
