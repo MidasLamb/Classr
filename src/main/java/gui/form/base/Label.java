@@ -22,8 +22,11 @@ public class Label extends FormObject {
 	 * Create a new Label and set its text and coordinates.
 	 * 
 	 * @param text
+	 *            text to be displayed in the Label
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 */
 	public Label(String text, int x, int y) {
 		super(x, y, 0, 0);

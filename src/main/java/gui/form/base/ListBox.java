@@ -11,6 +11,7 @@ import gui.inputHandlers.clicks.MouseClick;
  * A class that represents a ListBox in which ListBoxItems exist
  *
  * @param <T>
+ *            class of the Displayable ListBoxElement objects
  */
 public abstract class ListBox<T extends Displayable> extends FormObject implements FormObjectWithChildren {
 	ArrayList<ListBoxElement<T>> elements;
@@ -20,9 +21,13 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * Constructs a ListBox at the stated coordinates, width and height
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public ListBox(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -261,6 +266,7 @@ public abstract class ListBox<T extends Displayable> extends FormObject implemen
 	 * A class of ListBoxElements representing the elements of a ListBox
 	 * 
 	 * @param <T2>
+	 *            class of the Displayable ListBoxElement objects
 	 */
 	class ListBoxElement<T2 extends Displayable> extends FormObject implements FormObjectChild {
 		protected T2 obj;

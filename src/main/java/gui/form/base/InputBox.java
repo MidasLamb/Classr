@@ -28,7 +28,9 @@ public abstract class InputBox extends FormObject implements Typable {
 	 * @param y
 	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public InputBox(String text, int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -39,9 +41,13 @@ public abstract class InputBox extends FormObject implements Typable {
 	 * Create a new InputBox and set its coordinates and dimensions.
 	 * 
 	 * @param x
+	 *            x-coordinate
 	 * @param y
+	 *            y-coordinate
 	 * @param width
+	 *            width
 	 * @param height
+	 *            height
 	 */
 	public InputBox(int x, int y, int width, int height) {
 		this("", x, y, width, height);
@@ -132,6 +138,7 @@ public abstract class InputBox extends FormObject implements Typable {
 	 * Sets the text of the textobject of this InputBox to the stated String
 	 * 
 	 * @param string
+	 *            String to be set as text
 	 */
 	public void setText(String string) {
 		this.getTextObject().setAttributedText(new AttributedString(string));
