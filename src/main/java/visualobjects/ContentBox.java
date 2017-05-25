@@ -123,8 +123,7 @@ public class ContentBox extends ResizableAndMovableVisualObject<LogicalVoid> imp
 
 	@Override
 	void onDoubleClick(DoubleClick dc) {
-
-		dc.translate(this.getX(), this.getY());
+		dc.translate(this.getX(), this.getY() + TITLEBAR_HEIGHT);
 		getContent().onDoubleClick(dc);
 	}
 
